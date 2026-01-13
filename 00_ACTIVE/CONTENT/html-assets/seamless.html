@@ -1,0 +1,955 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+
+	<title>Seamless Pattern Checker</title>
+
+    <style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f4f4f4;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			flex-direction: column;
+			height: 100vh;
+			overflow: hidden;
+		}
+		
+		.h1, h1 {
+			color: #333;
+			font-size: 1.75rem;
+		}
+		.text-muted {
+			color: #6c757d !important;
+		}
+
+
+		#backgroundImage {
+			background: url(Hand_drawn_hot_air_balloon.jpg) 0% 0% / 425px repeat;		
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: -1;
+		}
+
+		#dropzone {
+			flex-grow: 1;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			box-sizing: border-box;
+			border: 2px dashed #ccc;
+		}
+		
+		#panelAndGallery {
+			width: 350px;
+			background-color: #fff;
+			padding: 5px;
+			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+			box-sizing: border-box;
+			display: flex;
+			flex-direction: column; 
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			justify-content: flex-start;
+		}
+		#controlPanel {
+			flex: none;
+			text-align: center;
+			background-color: #fff;
+			padding: 20px;
+			border: none;
+			border-radius: 0px;
+		}
+		#controlPanel h1 {
+			font-size: 1.75rem;
+		}
+		#controlPanel span {
+			margin: 10px 0px;
+			display: block;
+		}
+		
+		#uploadButton {
+			margin: 0px 0px 20px 0px;
+			padding: 5px 20px;
+			border-radius: 5px;
+			color: #fff;
+			background-color: #007bff;
+			border-color: #007bff;
+			cursor: pointer;
+		}
+		#uploadButton:hover {
+			color: #fff;
+			background-color: #0069d9;
+			border-color: #0062cc;
+		}
+
+/* ------ Slider------  */
+		#customSlider label {
+			margin-bottom: 10px;
+			display: block;
+		}
+		#customSlider #tileSize {
+			-webkit-appearance: none;
+			width: 100%;
+			height: 15px;
+			border-radius: 5px;
+			background: #d3d3d3;
+			outline: none;
+			opacity: 0.7;
+			-webkit-transition: .2s;
+			transition: opacity .2s;
+			margin-bottom: 20px;
+		}
+		#customSlider #tileSize:hover {
+			opacity: 1;
+		}
+		#customSlider #tileSize::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			appearance: none;
+			width: 25px;
+		height: 25px;
+			border-radius: 50%;
+			background: #007bff;
+			cursor: pointer;
+		}
+		#customSlider #tileSize::-moz-range-thumb {
+			width: 25px;
+			height: 25px;
+			border-radius: 50%;
+			background: #007bff;
+			cursor: pointer;
+		}
+
+/* ------ Custom Checkbox------  */
+		#customCheckbox {
+			margin-bottom: 20px;
+		}
+		#customCheckbox input[type="checkbox"] {
+			display: none;
+		}
+		#customCheckbox label {
+			position: relative;
+			cursor: pointer;
+			padding-left: 30px;
+			margin-right: 15px;
+			line-height: 20px;
+		}
+		#customCheckbox label:before {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: -3px;
+			width: 20px;
+			height: 20px;
+			border: 2px solid #007bff;
+			border-radius: 3px;
+			background-color: white;
+		}
+		#customCheckbox input[type="checkbox"]:checked + label:before {
+			background-color: #007bff;
+		}
+		#customCheckbox label:after {
+			content: "";
+			position: absolute;
+			left: 7px;
+			top: 4px;
+			width: 10px;
+			height: 10px;
+			background-color: white;
+			visibility: hidden;
+		}
+		#customCheckbox input[type="checkbox"]:checked + label:after {
+			visibility: visible;
+		}
+
+/* ------ Mock Website & Background Color Picker ------  */
+		#backgroundColor label { 
+			display: block;
+			margin-bottom: 10px;
+		}
+		#backgroundColor input {
+			display: inline-block;
+			width: 55%;
+			cursor: pointer;
+		}
+
+		#mockWebsite {
+			width: 50%;
+			margin: 0 auto;
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 0px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			background-color: #fff;
+			height: 100vh;
+		}
+		
+		.update {
+			color: #6c757d !important;
+			text-align: center;
+			padding: 0px 10px;
+		}
+
+/* ------ Image Gallery ------  */
+		#imageGallery {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			background-color: white; 
+			overflow-y: hidden; 
+			overflow-x: scroll; 
+			padding: 10px 5px;
+			box-sizing: border-box;
+			border-top: 2px solid #eee;
+			text-align: center;
+		}
+		#imageGallery img {
+			height: 50px;
+			object-fit: contain;
+		}
+		#galleryPlaceholder {
+			height: 54px;
+			object-fit: contain;
+		}
+		#imageGallery img.active-thumbnail {
+			border: 2px solid red;
+			margin: 0px 3px;
+		}
+		#imageGallery img.gallery-image {
+			height: 50px;
+			margin: 0px 5px;
+		}
+		
+		#galleryPlaceholder {
+			position: relative;
+		}
+		#galleryPlaceholder .image-placeholder {
+			display: inline-block;
+			height: 54px;
+			width: 54px;
+			margin: 0px 5px;
+			background-color: #eee;
+		}
+		#galleryPlaceholder span {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 85%;
+			transform: translate(-50%, -50%);		
+		}
+		
+/* ------ Footer ------  */
+		#legal {
+			margin-top: 4px;
+			font-size: .55em;
+			color: #aaa;
+			text-align: center;
+		}
+		#copyright {
+		}
+		#contact {
+			float: left;
+		}
+		#privacy {
+			float: right;
+		}
+		#version,
+		#contact {
+			display: inline-block;
+		}
+
+/* ------ Scroll Bar Styles ------ */
+
+		/* Style the scrollbar - the box, the thumb, and the track */
+		#imageGallery::-webkit-scrollbar {
+			height: 6px;
+		}
+		#imageGallery::-webkit-scrollbar-track {
+			background: #d3d3d3;
+		}
+		#imageGallery::-webkit-scrollbar-thumb {
+			background: #888;
+			border-radius: 4px;
+		}
+		#imageGallery::-webkit-scrollbar-thumb:hover {
+			background: #555;
+		}
+
+
+/* ------ Modal Styles ------ */
+
+		#privacyLink,
+		#contactLink,
+		#howToLink {
+			color: blue;
+			text-decoration: underline;
+			cursor: pointer;
+		}
+		
+		#howTo {
+			margin-bottom: 10px;
+		}
+		#howToModal h2,
+		#privacyModal h2 {
+			text-align: center;
+		}
+		#howToModal p {
+			margin: 0px;
+			padding: 0px;
+		}
+		
+		.modal {
+		  display: none;
+		  position: fixed;
+		  z-index: 5;
+		  left: 0;
+		  top: 0;
+		  width: 100%;
+		  height: 100%;
+		  overflow: auto;
+		  background-color: rgb(0,0,0);
+		  background-color: rgba(0,0,0,0.4);
+		}
+		.modal-content {
+		  background-color: #fefefe;
+		  margin: 15% auto;
+		  padding: 20px;
+		  border: 1px solid #888;
+		  width: 40%;
+		  min-width: 300px;
+		  position: relative;
+		  z-index: 1;
+		}
+		.close {
+		  color: #aaaaaa;
+		  float: right;
+		  font-size: 28px;
+		  font-weight: bold;
+		}
+		.close:hover,
+		.close:focus {
+		  color: #000;
+		  text-decoration: none;
+		  cursor: pointer;
+		}
+		
+		.contact-form {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			max-width: 400px;
+			margin: 0 auto;
+			padding: 20px;
+			border-radius: 4px;
+		}
+		.contact-form label {
+			font-weight: bold;
+			margin-bottom: 8px;
+		}
+		.contact-form input[type="text"],
+		.contact-form textarea {
+			width: 100%;
+			padding: 8px;
+			margin-bottom: 16px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+		}
+		.contact-form textarea {
+			height: 96px;
+		}
+		.contact-form .error {
+			border: 1px solid red;
+		}
+		.contact-form button {
+			padding: 8px 16px;
+			background-color: #4CAF50;
+			color: #fff;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+		
+		
+	</style>
+	<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=64644bd6d427210019483911&product=sticky-share-buttons&source=platform" async="async"></script>	
+
+</head>
+<body>
+	<div id="backgroundImage"></div>
+	
+	<div id="panelAndGallery">
+		<div id="controlPanel">
+			<h1>Seamless Pattern Checker</h1>
+			<h2 class="card-title text-muted">Pattern Control Panel</h2>
+			
+			<div id="howTo"><a onclick="openHowToModal()" id="howToLink">How to Use</a></div>
+
+			<button id="uploadButton" class="btn btn-primary">Upload Image(s)</button>
+			<input type="file" id="fileInput" accept="image/*" multiple hidden>
+
+			<div id="customSlider" class="form-group ">
+				<label for="tileSize">Adjust the Tile Size</label>
+				<input type="range" id="tileSize" min="50" max="800" value="400">
+			</div>
+			
+			<div id="customCheckbox" class="form-group">
+				<div class="form-check ">
+					<input class="form-check-input" type="checkbox" value="" id="previewWebsiteCheck">
+					<label class="form-check-label" for="previewWebsiteCheck">Preview as a website</label>
+				</div>
+			</div>
+
+			<div id="backgroundColor" class="form-group">
+				<label for="backgroundColor">Change the Background Color</label>
+				<input type="color" class="form-control form-control-color" value="#ffffff" id="colorPicker">
+			</div>
+		</div>
+		
+	<p class="update">NEW FEATURE!! </br>Drag and drop image grids and then press 'g' to split them!</p>
+		
+		<div id="imageGallery">
+			<div id="galleryPlaceholder">
+				<div class="image-placeholder"></div>
+				<div class="image-placeholder"></div>
+				<div class="image-placeholder"></div>
+				<div class="image-placeholder"></div>
+				<div class="image-placeholder"></div>
+				<span>Drop images on to the background to populate this gallery</span>
+			</div>
+		</div>
+		
+		<div id="legal">
+			<div id="copyright">Copyright 2023 by <a href="https://pixelperfectworks.com">PixelPerfectWorks.com</a> -- All Rights Reserved</div>
+			<div id="contact"><a onclick="openContactModal()" id="contactLink">Having Issues?</a></div>
+			<div id="version">Beta v3 - Last Updated 6/9/23</div>
+			<div id="privacy"><a onclick="openPrivacyModal()" id="privacyLink">Privacy Policy</a></div>
+
+		</div>
+	</div>
+
+
+	<div id="dropzone" role="region" aria-label="Image drop zone">
+		<div id="mockWebsite" style="display: none;"></div>
+	</div>
+
+	
+	<div id="privacyModal" class="modal">
+	  <div class="modal-content">
+		<span class="close">&times;</span>
+		<h2>Seamless Pattern Checker</h2>
+
+		<h3>Privacy Policy</h3>
+
+		<p>Effective Date: 5/20/23</p>
+
+		<p>This privacy policy ("Policy") describes how PixelPerfectWorks ("PPW", "we", "us" or "our") handle and protect your personal information in connection with our website, located at https://patternchecker.com (the "Site").</p>
+
+		<p>1. Information We Do Not Collect</p>
+
+		<p>Our Site is designed to allow you to browse and access the information without providing any personal information. We do not collect any personal data, including but not limited to your name, address, phone number, email address, or any other personal identifiable information.</p>
+
+		<p>2. Cookies and Other Tracking Technologies</p>
+
+		<p>We do not use cookies, web beacons, or similar technologies to track your activities on our Site or collect any information from you.</p>
+
+		<p>3. Third-Party Websites</p>
+
+		<p>Our Site may contain links to other websites that are not operated by us. If you click on a third-party link, you will be directed to that third-party's site. We strongly advise you to review the Privacy Policy of every site you visit. We have no control over, and assume no responsibility for the content, privacy policies or practices of any third-party sites or services.</p>
+
+		<p>4. Changes to This Privacy Policy</p>
+
+		<p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. Changes to this Privacy Policy are effective when they are posted on this page. Please review this Privacy Policy periodically for any changes.</p>
+
+		<p>5. Contact Us</p>
+
+		<p>If you have any questions about this Privacy Policy, please contact us:</p>
+
+		<p>By email: privacy@pixelperfectworks.com</p>
+		<p>By visiting this page on our website: https://patternchecker.com/</p>
+
+	  </div>
+	</div>
+
+
+	<div id="contactModal" class="modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<form id="contactForm" class="contact-form" action="send_email.php" method="POST">
+				<label for="name">Name:</label>
+				<input type="text" id="name" name="name" required>
+
+				<label for="email">Email:</label>
+				<input type="text" id="email" name="email" required>
+
+				<label for="comment">Comment:</label>
+				<textarea id="comment" name="comment" required></textarea>
+
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+	</div>
+
+
+	<div id="howToModal" class="modal">
+	  <div class="modal-content">
+		<span class="close">&times;</span>
+		
+		<h2>How to Use the Seamless Pattern Checker and Gallery</h2>
+		
+		<p>Our Seamless Pattern Checker is designed to make your pattern design and testing process more convenient and enjoyable while not being intrucive. We do not save your images so we can never share, barrow, or use the patterns you test here. The images you test here will disappear when you leave or refresh your broswer.</p>
+		
+		<br>
+		
+		<p>Enjoy the convenience of our Seamless Pattern Checker by following these simple steps.</p>
+
+		<ol>
+		  <li>Drag and Drop Images:
+			<ul>
+			  <li>Drag and drop any image you want to use as a pattern onto the hot air balloon background.</li>
+			  <li>You can drop a single pattern or a group of pattern images from your local file window or another browser window.</li>
+			  <li>This tool will automatically tile the images, creating a seamless pattern effect.</li>
+			</ul>
+		  </li>
+
+		  <li>Upload Seamless Patterns:
+			<ul>
+			  <li>If you have seamless patterns saved on your device, you can also use the upload feature to add them to the gallery.</li>
+			  <li>Upload one or more seamless patterns to further enhance your design possibilities.</li>
+			</ul>
+		  </li>
+
+		  <li>Explore the Gallery Manager:
+			  <p>Our unique gallery manager provides multiple ways to navigate and interact with your digital patterns.</p>
+			<ul>
+			  <li>Use the left and right arrow keys on your keyboard to move between images, making it quick and efficient to browse through your pattern collection.</li>
+			  <li>You can use the mouse scroll wheel to move through the gallery.</li>
+			  <li>If you prefer a more hands-on approach, manually navigate between images by clicking on the thumbnails.</li>
+			</ul>
+		  </li>
+
+		  <li>Removing Images:
+			<ul>
+			  <li>If you decide to remove an image from the gallery, simply press the 'X' key on your keyboard.</li>
+			  <li>This action will remove the selected image, and the gallery will seamlessly adjust to the updated collection.</li>
+			</ul>
+		  </li>
+		</ol>
+
+		<p>We hope you find it useful and that it enhances your workflow and allows you to create captivating designs effortlessly.  If you have any suggestions, comments or issues, use the contact form to reach us.</p>		
+	  </div>
+	</div>
+
+	<script>
+	window.onload = function() {
+		var dropzone = document.getElementById("dropzone");
+		var fileInput = document.getElementById("fileInput");
+		var tileSize = document.getElementById("tileSize");
+		var controlPanel = document.getElementById("controlPanel");
+		var previewWebsiteCheck = document.getElementById("previewWebsiteCheck");
+		var mockWebsite = document.getElementById("mockWebsite");
+		var backgroundColor = document.getElementById("colorPicker");
+		var backgroundImage = document.getElementById("backgroundImage");
+		var imageGallery = document.getElementById("imageGallery");
+		var uploadButton = document.getElementById("uploadButton");
+		var galleryPlaceholder = document.getElementById("galleryPlaceholder");
+		
+		if(!dropzone || !fileInput || !tileSize || !controlPanel || !previewWebsiteCheck || !mockWebsite ||
+		!backgroundColor || !backgroundImage || !imageGallery || !uploadButton || !galleryPlaceholder) {
+			alert("Some elements are missing in the HTML. Please check the element IDs.");
+			return;
+		}
+		
+		var images = [];
+		var activeThumbnail = null;
+		var currentImageIndex = 0;
+		
+		if(uploadButton){
+			uploadButton.addEventListener("click", function() {
+				fileInput.click();
+			});
+		}
+					
+		function handleImage(imageUrl, index) {
+			var isImageFirst = (images.length === 0);  // Check if the image is the first one before pushing new image
+			images.push(imageUrl);
+			var thumbnail = addThumbnail(imageUrl, index);
+			thumbnail.onload = function() {
+				if (isImageFirst) {
+					setActiveThumbnail(0);
+				}
+			};
+			postProcessImages();
+			setActiveThumbnail(images.length - 1);
+			updateBackground(images.length - 1);
+		}
+
+		function handleSingleImage(imageUrl, index) {
+			console.log("Handling single image URL: " + imageUrl);
+			var isImageFirst = (images.length === 0);  // Check if the image is the first one before pushing new image
+			images.push(imageUrl);
+			var thumbnail = addThumbnail(imageUrl, index);
+			thumbnail.onload = function() {
+				if (isImageFirst) {
+					setActiveThumbnail(0);
+				}
+			};
+			postProcessImages();
+			setActiveThumbnail(images.length - 1);
+			updateBackground(images.length - 1);
+		}
+
+		function splitAndHandleImage(imageUrl, width, height, indexToReplace) {
+			console.log(`Splitting image ${imageUrl} with dimensions ${width}x${height}...`);
+
+			var halfWidth = width / 2;
+			var halfHeight = height / 2;
+			var canvas = document.createElement('canvas');
+			var context = canvas.getContext('2d');
+			var image = new Image();
+			image.crossOrigin = "Anonymous"; // This should come before image.src
+			image.onload = function() {
+				// Draw the four parts of the image on the canvas and get their data URLs
+				for (var i = 0; i < 2; i++) {
+					for (var j = 0; j < 2; j++) {
+						canvas.width = halfWidth;
+						canvas.height = halfHeight;
+						context.drawImage(this, i * halfWidth, j * halfHeight, halfWidth, halfHeight, 0, 0, halfWidth, halfHeight);
+						var imageDataUrl = canvas.toDataURL();
+						// Replace the original image with the first new image, and add the rest normally
+						if (i === 0 && j === 0) {
+							images.splice(indexToReplace, 1, imageDataUrl);
+						} else {
+							images.splice(indexToReplace + 1, 0, imageDataUrl);
+						}
+					}
+				}
+				// Refresh the gallery thumbnails
+				refreshGalleryThumbnails();
+			};
+			image.src = imageUrl;
+		}
+
+		function refreshGalleryThumbnails() {
+			// Clear the current thumbnails
+			imageGallery.innerHTML = '';
+			// Re-add the thumbnails
+			images.forEach((imageUrl, index) => {
+				var thumbnail = addThumbnail(imageUrl, index);
+				console.log("Added event listener to thumbnail with index " + index); // Add this line
+			});
+			// Re-set the active thumbnail
+			setActiveThumbnail(currentImageIndex);
+		}
+
+		function handleFiles(files) {
+			var prevImageCount = images.length;
+			for (var i = 0; i < files.length; i++) {
+				var file = files[i];
+				// validate file type and size
+				var imageUrl = URL.createObjectURL(file);
+				handleImage(imageUrl, images.length);
+			}
+			if (images.length !== prevImageCount) {
+				setActiveThumbnail(prevImageCount);
+				updateBackground(prevImageCount);
+			}
+		}
+
+		function addThumbnail(imageUrl, index) {
+			var thumbnail = document.createElement("img");
+			thumbnail.src = imageUrl;
+			thumbnail.classList.add("gallery-image");
+			thumbnail.dataset.index = index; // Storing index in dataset to retrieve later
+			thumbnail.onclick = function() {
+				// Use the dataset index here
+				setActiveThumbnail(parseInt(this.dataset.index));
+			};
+			document.getElementById("imageGallery").appendChild(thumbnail);
+			return thumbnail;
+		}
+		
+		function updateBackground(index) {
+			if (images.length === 0 || index >= images.length) {
+				return;
+			}
+			var size = tileSize.value + "px";
+			backgroundImage.style.background = "url(" + images[index] + ") repeat"; // 
+			backgroundImage.style.backgroundSize = size;
+		}
+		
+		function adjustGalleryHeight() {
+			var controlPanel = document.getElementById("controlPanel");
+			var imageGallery = document.getElementById("imageGallery");
+			imageGallery.style.width = controlPanel.offsetWidth + "px"; /* CHANGED HERE */
+		}
+		
+		function postProcessImages() {
+			var imageGallery = document.getElementById("imageGallery");
+			var galleryPlaceholder = document.getElementById("galleryPlaceholder");
+
+			if (imageGallery && galleryPlaceholder) {
+				imageGallery.style.display = "flex"; // Unhide the gallery
+				galleryPlaceholder.style.display = "none"; // Hide the placeholder
+
+				// Set the first image as active if none is active
+				if (!activeThumbnail && images.length > 0) {
+					var firstThumbnail = document.querySelector("#imageGallery img");
+					activeThumbnail = firstThumbnail;
+					activeThumbnail.classList.add("active-thumbnail");
+				}
+			}
+		}
+		
+		function setActiveThumbnail(index) {
+			if (index >= images.length) {
+				return;
+			}
+			// Remove active class from current active thumbnail, if it exists
+			if (activeThumbnail) {
+				activeThumbnail.classList.remove("active-thumbnail");
+			}
+			// Get the new active thumbnail
+			activeThumbnail = document.querySelector(`img[data-index="${index}"]`);
+			// Add active class to new active thumbnail
+			if (activeThumbnail) {
+				activeThumbnail.classList.add('active-thumbnail');
+				currentImageIndex = index;
+				updateBackground(index); // Update the background with the new index
+			}				
+			
+			// Update the background image
+			backgroundImage.style.background = "url(" + images[index] + ") repeat";
+			backgroundImage.style.backgroundSize = tileSize.value + "px";
+			currentImageIndex = index; // Set the currentImageIndex when a thumbnail is clicked
+			
+			// Scroll the gallery to bring the active thumbnail into view
+			var galleryWidth = imageGallery.offsetWidth;
+			var thumbnailWidth = activeThumbnail.offsetWidth;
+			var thumbnailOffsetLeft = activeThumbnail.offsetLeft;
+			var thumbnailCenter = thumbnailOffsetLeft + thumbnailWidth / 2;
+			var scrollPosition = thumbnailCenter - galleryWidth / 2;
+			
+			// Ensure the scroll position is within the valid range
+			scrollPosition = Math.max(0, scrollPosition);
+			scrollPosition = Math.min(scrollPosition, imageGallery.scrollWidth - galleryWidth);
+			
+			// Perform smooth scrolling to the calculated position
+			imageGallery.scrollTo({ left: scrollPosition, behavior: "smooth" });
+		}
+		
+		function removeActiveImage() {
+			if (activeThumbnail) {
+				// Get the index of the active thumbnail
+				var index = Array.from(imageGallery.children).indexOf(activeThumbnail);
+				// Remove the image from the images array
+				images.splice(index, 1);
+				imageGallery.removeChild(activeThumbnail);
+
+				// Reset the images array and data-index of remaining thumbnails
+				images = Array.from(imageGallery.children)
+					.filter(img => img.nodeName === "IMG")
+					.map((img, newIndex) => {
+						img.dataset.index = newIndex; // update data-index
+						return img.src; // return src to rebuild images array
+					});
+
+				// Check if any images are left in the array
+				if (images.length > 0) {
+					// The next index will be 0 if the removed image was the first or the last,
+					// otherwise it stays the same
+					var nextIndex = index === 0 || index === images.length + 1 ? 0 : index - 1;
+
+					setActiveThumbnail(nextIndex);
+					updateBackground(nextIndex); // Update the background with the newly active thumbnail
+				} else {
+					// Clear background when no images are left
+					backgroundImage.style.background = "";
+					activeThumbnail = null;
+					currentImageIndex = -1;
+					galleryPlaceholder.style.display = "flex";
+				}
+
+				// Adjust the currentImageIndex if the removed image was before the active one
+				if (index < currentImageIndex) {
+					currentImageIndex--;
+				}
+			}
+		}
+		
+		function arrowRight() {
+			var nextIndex = (currentImageIndex + 1) % images.length; // Get the next index in a cyclic manner
+			setActiveThumbnail(nextIndex);
+		}
+		
+		function arrowLeft() {
+			var previousIndex = (currentImageIndex - 1 + images.length) % images.length; // Get the previous index in a cyclic manner
+			setActiveThumbnail(previousIndex);
+		}
+		
+		document.addEventListener("keydown", function(e) {
+			if (images.length === 0) {
+				// No images in the gallery, so skip the navigation and removal operations.
+				return;
+			}
+			
+			if (e.key === "ArrowRight") {
+				var nextIndex = (currentImageIndex + 1) % images.length;
+				setActiveThumbnail(nextIndex);
+			} else if (e.key === "ArrowLeft") {
+				var previousIndex = (currentImageIndex - 1 + images.length) % images.length;
+				setActiveThumbnail(previousIndex);
+			} else if (e.key === "x" || e.key === "X") {
+				removeActiveImage();
+			} else if (e.key === "g" || e.key === "G") {
+				console.log("G key pressed. Initiating split operation on current image...");
+				// Get the URL of the currently active image
+				var activeImageUrl = images[currentImageIndex];
+				// Split the active image into 4 images
+				var image = new Image();
+				image.onload = function() {
+					splitAndHandleImage(activeImageUrl, this.width, this.height, currentImageIndex);
+				}
+				image.src = activeImageUrl;
+			}
+		});
+		
+		dropzone.addEventListener("drop", function(e) {
+			console.log("Drop event triggered."); // Add this line
+			e.preventDefault();
+			if (e.dataTransfer.files.length > 0) {
+				console.log("Handling files: ", e.dataTransfer.files); // And this line
+				handleFiles(e.dataTransfer.files);
+			} else {
+				var imageUrl = e.dataTransfer.getData("text");
+				if (imageUrl) {
+					console.log("Handling image URL: " + imageUrl); // And this line
+					handleImage(imageUrl, images.length);
+				}
+			}
+		});
+
+		dropzone.addEventListener("click", function() {
+			fileInput.click();
+		});
+		
+		dropzone.addEventListener("dragover", function(e) {
+			e.preventDefault();
+		});
+		
+		fileInput.addEventListener("change", function() {
+			handleFiles(this.files);
+		});
+		
+		tileSize.addEventListener("input", function() {
+			updateBackground(currentImageIndex);
+		});
+		
+		previewWebsiteCheck.addEventListener("change", function() {
+			mockWebsite.style.display = this.checked ? "block" : "none";
+		});
+
+		backgroundColor.addEventListener("input", function() {
+			mockWebsite.style.backgroundColor = this.value;
+		});
+		
+		imageGallery.addEventListener("wheel", function(e) {
+			e.preventDefault();
+			imageGallery.scrollLeft += e.deltaY;
+		}, { passive: false });
+	}
+	</script>
+	
+	<script>
+		var contactModal = document.getElementById("contactModal");
+		var openContactModalBtn = document.getElementById("contactLink");
+		var closeContactModalBtn = document.querySelector("#contactModal .close");
+		var contactForm = document.getElementById("contactForm");
+
+		function openContactModal() {
+		  contactModal.style.display = "block";
+		}
+
+		function closeContactModal() {
+		  contactModal.style.display = "none";
+		}
+
+		function submitContactForm(event) {
+		  event.preventDefault();
+
+		  var formData = new FormData(contactForm);
+		  var xhr = new XMLHttpRequest();
+		  xhr.open("POST", "send_email.php");
+		  xhr.onreadystatechange = function () {
+			if (xhr.readyState === XMLHttpRequest.DONE) {
+			  if (xhr.status === 200) {
+				alert("Email sent successfully!");
+				closeContactModal();
+				contactForm.reset();
+			  } else {
+				alert("Failed to send email. Please try again later.");
+			  }
+			}
+		  };
+		  xhr.send(formData);
+		}
+
+		openContactModalBtn.addEventListener("click", openContactModal);
+		closeContactModalBtn.addEventListener("click", closeContactModal);
+		contactForm.addEventListener("submit", submitContactForm);
+		
+		window.addEventListener("click", function(event) {
+		  if (event.target === contactModal) {contactModal.style.display = "none";}
+		});
+	</script>	
+	
+	<script>
+	// Privacy Modal
+	var privacyModal = document.getElementById("privacyModal");
+	var privacyClose = document.querySelector("#privacyModal .close");
+
+	function openPrivacyModal() {privacyModal.style.display = "block";}
+	function closePrivacyModal() {privacyModal.style.display = "none";}
+	privacyClose.onclick = closePrivacyModal;
+
+	// How-To Modal
+	var howToModal = document.getElementById("howToModal");
+	var howToClose = document.querySelector("#howToModal .close");
+
+	function openHowToModal() {howToModal.style.display = "block";}
+	function closeHowToModal() {howToModal.style.display = "none";}
+	howToClose.onclick = closeHowToModal;
+
+	window.addEventListener("keydown", function(event) {
+	  if (event.key === "x" || event.key === "X") {
+		closePrivacyModal();
+		closeHowToModal();
+	  }
+	});
+
+
+	window.addEventListener("click", function(event) {
+	  var target = event.target;
+	  var modalContent = target.closest('.modal-content');
+
+	  if (target === privacyModal || target === howToModal || target.parentNode === privacyModal || target.parentNode === howToModal || target.parentNode === modalContent) {
+		privacyModal.style.display = "none";
+		howToModal.style.display = "none";
+	  }
+	});
+	</script>
+
+	<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="kuriso" data-description="Support me on Buy me a coffee!" data-message="I love that you are here! If you like my work, I'd greatly appreciate your support and would enjoy a great coffee." data-color="#FF813F" data-position="Right" data-x_margin="20" data-y_margin="40"></script>
+</body>
+
+</html>

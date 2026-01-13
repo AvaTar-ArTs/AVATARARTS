@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>LinkedIn Jobs Scraped</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        
+        .job-listing {
+            background: #fff;
+            border: 1px solid #ddd;
+            margin: 20px auto;
+            padding: 15px;
+            max-width: 800px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        
+        .job-title a {
+            color: #0073b1;
+            font-size: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .company a {
+            color: #555;
+            text-decoration: none;
+        }
+        
+        .job-details {
+            font-size: 14px;
+            color: #777;
+            margin-top: 5px;
+        }
+        
+        .description {
+            margin-top: 10px;
+            line-height: 1.5;
+            color: #333;
+        }
+        
+        .apply-link a {
+            display: inline-block;
+            margin-top: 10px;
+            background: #0073b1;
+            color: #fff;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>LinkedIn Jobs Scraped</h1>
+
+    <!-- Each job listing will be rendered as follows -->
+    <div class="job-listing">
+        <div class="job-header">
+            <div class="job-title">
+                <a href="https://www.linkedin.com/jobs/view/marketing-analyst-at-opportunity-example">
+            Marketing Analyst
+          </a>
+            </div>
+            <div class="job-posted">
+                Posted: <strong>1 week ago</strong>
+            </div>
+        </div>
+        <div class="job-details">
+            <div class="company">
+                Company: <a href="https://www.linkedin.com/company/example-company">Example Company</a>
+            </div>
+            <div class="location">
+                Location: New York, NY
+            </div>
+            <div class="salary">
+                Salary: <strong>$85,000.00/yr - $95,000.00/yr</strong>
+            </div>
+        </div>
+        <div class="description">
+            Description: Are you looking for a role in a company that's solving one of the greatest challenges... (excerpt)
+        </div>
+        <div class="apply-link">
+            <a href="https://job-boards.greenhouse.io/ophelia/jobs/4585165008" target="_blank">Apply Now</a>
+        </div>
+    </div>
+
+    <!-- Repeat similar job-listing blocks for each CSV row -->
+
+    <!-- Example of another listing -->
+    <div class="job-listing">
+        <div class="job-header">
+            <div class="job-title">
+                <a href="https://www.linkedin.com/jobs/view/business-analyst-marketing-amazon-key-at-ring-4147029588">
+            Business Analyst, Marketing
+          </a>
+            </div>
+            <div class="job-posted">
+                Posted: <strong>2 weeks ago</strong>
+            </div>
+        </div>
+        <div class="job-details">
+            <div class="company">
+                Company: <a href="https://www.linkedin.com/company/ring-labs">Ring</a>
+            </div>
+            <div class="location">
+                Location: Santa Monica, California
+            </div>
+            <div class="salary">
+                Salary: <strong>$66,900.00/yr - $143,100.00/yr</strong>
+            </div>
+        </div>
+        <div class="description">
+            Description: We are on a mission to empower customers to manage access to their homes and businesses...
+        </div>
+        <div class="apply-link">
+            <a href="https://www.amazon.jobs/jobs/2895956/business-analyst-marketing-amazon-key?cmpid=SPLICX0248M" target="_blank">Apply Now</a>
+        </div>
+    </div>
+
+    <!-- More job listings go here, parsed from your CSV file -->
+
+</body>
+
+</html>

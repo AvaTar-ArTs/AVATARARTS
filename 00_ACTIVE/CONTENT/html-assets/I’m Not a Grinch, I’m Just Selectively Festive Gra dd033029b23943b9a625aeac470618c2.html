@@ -1,0 +1,694 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>I’m Not a Grinch, I’m Just Selectively Festive Graphic by krasnevchik · Creative Fabrica</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="dd033029-b239-43b9-a625-aeac470618c2" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="https://s2.googleusercontent.com/s2/favicons?domain=https://www.creativefabrica.com/product/im-not-a-grinch-im-just-selectively-festive/"/></div><h1 class="page-title">I’m Not a Grinch, I’m Just Selectively Festive Graphic by krasnevchik · Creative Fabrica</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesCreatedAt"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM4.54102 8.91211H7.99316C8.30078 8.91211 8.54004 8.67285 8.54004 8.37207V3.8877C8.54004 3.58691 8.30078 3.34766 7.99316 3.34766C7.69238 3.34766 7.45312 3.58691 7.45312 3.8877V7.83203H4.54102C4.2334 7.83203 4.00098 8.06445 4.00098 8.37207C4.00098 8.67285 4.2334 8.91211 4.54102 8.91211Z"></path></svg></span>Created</th><td><time>@December 12, 2024 12:27 PM</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>Keys</th><td></td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>inFod</th><td><a href="https://www.creativefabrica.com/product/im-not-a-grinch-im-just-selectively-festive/">https://www.creativefabrica.com/product/im-not-a-grinch-im-just-selectively-festive/</a></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>seo</th><td></td></tr></tbody></table></header><div class="page-body"><h1 id="7225adbb-ed31-4967-a6fa-424bf2b2949a" class="">I’m Not a Grinch, I’m Just Selectively Festive</h1><p id="1fb15e0d-2cd0-484a-baf8-a8f1c841a941" class=""><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.creativefabrica.com%2Fproduct%2Fim-not-a-grinch-im-just-selectively-festive%2Fref%2F1332196&amp;utm%5Fsource=facebook&amp;utm%5Fmedium=social&amp;utm%5Fcampaign=share-button&amp;utm%5Fterm=pdp-product-image&amp;utm%5Fcontent=110242804">  Share </a></p><p id="ce47a203-b877-43ae-b16d-ba90a718a177" class=""><a href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.creativefabrica.com%2Fproduct%2Fim-not-a-grinch-im-just-selectively-festive%2Fref%2F1332196&amp;media=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fuploads%2F2024%2F11%2F20%2FIm-Not-a-Grinch-Im-Just-Selectively-Festive-Graphics-110242804-1-312x208.png&amp;description=My+digital+designs+in+SVG+and+PNG+formats+are+created+with+love+and+a+focus+on+quality.+Each+piece+is+crafted+in+CMYK+color+format+at+300+DPI+resolution%2C+ensuring+that+your+projects+look+vibrant+and+s...&amp;utm%5Fsource=pinterest&amp;utm%5Fmedium=social&amp;utm%5Fcampaign=save-button&amp;utm%5Fterm=pdp-product-image&amp;utm%5Fcontent=110242804">  Pin </a></p><p id="cc34e8ef-5d56-49e3-b67a-4c4c29dc2597" class="">
+</p><figure id="19d555ca-37c4-4c48-9fe9-82802b38a8a3" class="image"><a href="https://www.creativefabrica.com/wp-content/uploads/2024/11/20/Im-Not-a-Grinch-Im-Just-Selectively-Festive-Graphics-110242804-1-1-580x331.png"><img src="https://www.creativefabrica.com/wp-content/uploads/2024/11/20/Im-Not-a-Grinch-Im-Just-Selectively-Festive-Graphics-110242804-1-1-580x331.png"/></a></figure><p id="1b86a89f-47be-47b8-9019-e33516af4091" class="">
+</p><figure id="824e5538-ecc9-40a0-ab96-d08708e8db85" class="image"><a href="https://www.creativefabrica.com/wp-content/uploads/2024/11/20/Im-Not-a-Grinch-Im-Just-Selectively-Festive-Graphics-110242804-2-580x331.png"><img src="https://www.creativefabrica.com/wp-content/uploads/2024/11/20/Im-Not-a-Grinch-Im-Just-Selectively-Festive-Graphics-110242804-2-580x331.png"/></a></figure><p id="6a0936be-2bce-4e02-ae6e-9ca560f695da" class="">
+</p><figure id="7590aa1b-c956-459a-a24d-6414d834d9c7" class="image"><a href="https://www.creativefabrica.com/wp-content/uploads/2024/11/20/Im-Not-a-Grinch-Im-Just-Selectively-Festive-Graphics-110242804-3-580x331.png"><img src="https://www.creativefabrica.com/wp-content/uploads/2024/11/20/Im-Not-a-Grinch-Im-Just-Selectively-Festive-Graphics-110242804-3-580x331.png"/></a></figure><p id="0969ad48-69d3-4ebc-8780-71368f04e25e" class="">
+</p><figure id="c279cb44-2c3a-4d7d-ba25-3cce52a7e119" class="image"><a href="https://www.creativefabrica.com/wp-content/uploads/2024/11/20/Im-Not-a-Grinch-Im-Just-Selectively-Festive-Graphics-110242804-1-1-580x331.png"><img src="https://www.creativefabrica.com/wp-content/uploads/2024/11/20/Im-Not-a-Grinch-Im-Just-Selectively-Festive-Graphics-110242804-1-1-580x331.png"/></a></figure><p id="6ee12d45-5353-4a9d-b1c3-8da3103d58cf" class="">
+</p><figure id="5d96824e-a978-4dec-b055-0ea5dfeb8010" class="image"><a href="https://www.creativefabrica.com/wp-content/uploads/2024/11/20/Im-Not-a-Grinch-Im-Just-Selectively-Festive-Graphics-110242804-2-580x331.png"><img src="https://www.creativefabrica.com/wp-content/uploads/2024/11/20/Im-Not-a-Grinch-Im-Just-Selectively-Festive-Graphics-110242804-2-580x331.png"/></a></figure><p id="52f46083-cd07-42b7-b099-10c3b4fb5314" class="">
+</p><figure id="876fb203-9eed-4e8a-8902-02a8524821a6" class="image"><a href="https://www.creativefabrica.com/wp-content/uploads/2024/11/20/Im-Not-a-Grinch-Im-Just-Selectively-Festive-Graphics-110242804-3-580x331.png"><img src="https://www.creativefabrica.com/wp-content/uploads/2024/11/20/Im-Not-a-Grinch-Im-Just-Selectively-Festive-Graphics-110242804-3-580x331.png"/></a></figure><p id="962debc2-7a73-460a-a295-00071b457bf2" class="">
+</p><figure id="28aaebdd-a318-487b-99af-86ebf6ef1707" class="image"><a href="https://www.creativefabrica.com/wp-content/uploads/2024/11/20/Im-Not-a-Grinch-Im-Just-Selectively-Festive-Graphics-110242804-4-580x331.png"><img src="https://www.creativefabrica.com/wp-content/uploads/2024/11/20/Im-Not-a-Grinch-Im-Just-Selectively-Festive-Graphics-110242804-4-580x331.png"/></a></figure><h2 id="ba972f72-6e32-4dec-9a50-54e1a0e8c78c" class="">About I’m Not a Grinch, I’m Just Selectively Festive Graphic</h2><hr id="9b17c3a3-65bf-4580-a162-95379fcb5f9c"/><p id="ece38398-4ab7-4501-aa02-5d71c68077fd" class="">
+</p><figure id="3305c904-49f1-49b9-9cb8-4c2d5f9ebfa4" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/rocket.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/rocket.gif"/></a></figure><p id="58994a7a-5829-4e81-8fdc-e7e81d44b959" class="">197X Added to favorites</p><p id="8dd18eb9-6128-46f7-a458-3555bb5f4e95" class="">Add to favorites</p><p id="aaa7dfd1-c58a-409f-ac5b-fa3824dc2cff" class="">Added</p><p id="c80144b5-1d3c-4b9f-ba2f-832d97645cfe" class="">
+</p><figure id="63ae0d98-204d-476a-ba85-b8d2a9402b2e" class="image"><a href="https://lh3.googleusercontent.com/a/ACg8ocJK9mNcfBO6BaafXJMw4yImG-Pe79IaPKyDMD5ZCJjjIMPERA=s96-c"><img src="https://lh3.googleusercontent.com/a/ACg8ocJK9mNcfBO6BaafXJMw4yImG-Pe79IaPKyDMD5ZCJjjIMPERA=s96-c"/></a></figure><figure id="2ae47456-4086-47db-8652-d5580887fbab" class="image"><a href="https://lh3.googleusercontent.com/a/ACg8ocKlvplYZqifmz62iMw-VLMvlM8veFnNL4XwdZF4Qf0s3OMSWzA=s96-c"><img src="https://lh3.googleusercontent.com/a/ACg8ocKlvplYZqifmz62iMw-VLMvlM8veFnNL4XwdZF4Qf0s3OMSWzA=s96-c"/></a></figure><figure id="6f6730c5-9acc-49cd-a7c4-fa70e07ced17" class="image"><a href="https://secure.gravatar.com/avatar/4e8bc7393b17f89a95ec4720b68adb69?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar6.png&amp;r=g"><img src="https://secure.gravatar.com/avatar/4e8bc7393b17f89a95ec4720b68adb69?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar6.png&amp;r=g"/></a></figure><figure id="d596f952-ba5a-4835-aa0d-63bf0fff57d3" class="image"><a href="https://secure.gravatar.com/avatar/fa50f0b05dd186e4a38b3bf307243f2a?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar5.png&amp;r=g"><img src="https://secure.gravatar.com/avatar/fa50f0b05dd186e4a38b3bf307243f2a?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar5.png&amp;r=g"/></a></figure><figure id="1ce9de40-4731-486f-815b-b9e68d403789" class="image"><a href="https://lh3.googleusercontent.com/a/ACg8ocIK7F8JryPeYfUm4CtKvgR6EE8WZ62PUpLBkzyZIQ28CcvUEw=s96-c"><img src="https://lh3.googleusercontent.com/a/ACg8ocIK7F8JryPeYfUm4CtKvgR6EE8WZ62PUpLBkzyZIQ28CcvUEw=s96-c"/></a></figure><figure id="9ed4e9a3-ee82-4444-9dba-9ad8d5302154" class="image"><a href="https://secure.gravatar.com/avatar/f32e2beb962ed625615d9542823c3bd0?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar2.png&amp;r=g"><img src="https://secure.gravatar.com/avatar/f32e2beb962ed625615d9542823c3bd0?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar2.png&amp;r=g"/></a></figure><figure id="c9171aa9-07f5-4667-8a01-5a5b38f4001a" class="image"><a href="https://www.creativefabrica.com/wp-content/uploads/users/2024/03/10/avatar_4754495_1710037696.jpg"><img src="https://www.creativefabrica.com/wp-content/uploads/users/2024/03/10/avatar_4754495_1710037696.jpg"/></a></figure><figure id="42263848-31e5-4e2e-bdf7-1eb5d0f5d0fd" class="image"><a href="https://graph.facebook.com/10162397998498009/picture?width=150&amp;height=150"><img src="https://graph.facebook.com/10162397998498009/picture?width=150&amp;height=150"/></a></figure><figure id="d647a4ee-1414-4eba-baa4-d7a03d5e6f4d" class="image"><a href="https://secure.gravatar.com/avatar/be7518822f8d44d766f77cc0dc76ebbe?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar5.png&amp;r=g"><img src="https://secure.gravatar.com/avatar/be7518822f8d44d766f77cc0dc76ebbe?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar5.png&amp;r=g"/></a></figure><figure id="66ee1adf-aeb6-40c1-bbae-e710992e69cd" class="image"><a href="https://graph.facebook.com/10106717194111184/picture?width=150&amp;height=150"><img src="https://graph.facebook.com/10106717194111184/picture?width=150&amp;height=150"/></a></figure><figure id="ad01b0bb-fe76-4a04-ab8c-9bf570191e51" class="image"><a href="https://secure.gravatar.com/avatar/1ba0b93db8ab3e0af573e1886b085d36?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar4.png&amp;r=g"><img src="https://secure.gravatar.com/avatar/1ba0b93db8ab3e0af573e1886b085d36?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar4.png&amp;r=g"/></a></figure><figure id="36e1a0aa-bc43-4be4-baa2-2df79d760355" class="image"><a href="https://lh3.googleusercontent.com/a/ACg8ocJy5Jii2oiyE9GigrFyNq78deEsdW4L_4xCIzJ0_Z1rW4BrcA=s96-c"><img src="https://lh3.googleusercontent.com/a/ACg8ocJy5Jii2oiyE9GigrFyNq78deEsdW4L_4xCIzJ0_Z1rW4BrcA=s96-c"/></a></figure><figure id="5f764c54-83ac-48ba-8ee5-fb9bae1e2248" class="image"><a href="https://secure.gravatar.com/avatar/d53ca958901fd04df2b596509f9668d8?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar6.png&amp;r=g"><img src="https://secure.gravatar.com/avatar/d53ca958901fd04df2b596509f9668d8?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar6.png&amp;r=g"/></a></figure><figure id="46ccf7ae-1cba-472b-b88f-5b102ea82c0b" class="image"><a href="https://lh3.googleusercontent.com/a/ACg8ocKHSE_1O4S9OxX3_CeX81e3qGMh8T9gqTOFNKcBCcPqF9lLLA=s96-c"><img src="https://lh3.googleusercontent.com/a/ACg8ocKHSE_1O4S9OxX3_CeX81e3qGMh8T9gqTOFNKcBCcPqF9lLLA=s96-c"/></a></figure><figure id="e787eadf-9fad-4b07-8671-49bd8d669cb7" class="image"><a href="https://lh3.googleusercontent.com/a/ACg8ocKId-M_fPr932NNs0vEBwXhdCmmcO7W50CoeOopIqFbc9mGMshgtQ=s96-c"><img src="https://lh3.googleusercontent.com/a/ACg8ocKId-M_fPr932NNs0vEBwXhdCmmcO7W50CoeOopIqFbc9mGMshgtQ=s96-c"/></a></figure><figure id="18f0d903-baf0-4d9d-ae7e-a41d1102961a" class="image"><a href="https://secure.gravatar.com/avatar/2c1ba9fbd63e85559196a8e39f581bbc?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar10.png&amp;r=g"><img src="https://secure.gravatar.com/avatar/2c1ba9fbd63e85559196a8e39f581bbc?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar10.png&amp;r=g"/></a></figure><figure id="4a78d98b-f323-4cba-bdaf-3f1769812f56" class="image"><a href="https://secure.gravatar.com/avatar/b159e3ba1e084f693cb832f53184c30c?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar9.png&amp;r=g"><img src="https://secure.gravatar.com/avatar/b159e3ba1e084f693cb832f53184c30c?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar9.png&amp;r=g"/></a></figure><figure id="145ee847-b17d-4789-8fad-182c6bea5988" class="image"><a href="https://lh3.googleusercontent.com/a/ACg8ocKO89qsehluOfkQSIgMUzStKhs2RJoH2bYYC0WhTRAEAxdbHw=s96-c"><img src="https://lh3.googleusercontent.com/a/ACg8ocKO89qsehluOfkQSIgMUzStKhs2RJoH2bYYC0WhTRAEAxdbHw=s96-c"/></a></figure><figure id="0eb63dbc-7bdc-4673-9c91-8631463113b3" class="image"><a href="https://lh3.googleusercontent.com/a/ACg8ocIKHtpJWLi5TXg5-c2WBCEKE9TaghTHrnkJRKoGYe7st6SpCYip=s96-c"><img src="https://lh3.googleusercontent.com/a/ACg8ocIKHtpJWLi5TXg5-c2WBCEKE9TaghTHrnkJRKoGYe7st6SpCYip=s96-c"/></a></figure><figure id="bd62bd7c-ad51-4983-8518-3340fa24bf60" class="image"><a href="https://graph.facebook.com/10220596255479548/picture?width=150&amp;height=150"><img src="https://graph.facebook.com/10220596255479548/picture?width=150&amp;height=150"/></a></figure><figure id="a29d8ba0-48fd-432b-8592-50273bf1081d" class="image"><a href="https://lh3.googleusercontent.com/a/ACg8ocLNo3rv67Rdn255souWC7w_H0p2dHR1ZjMxXDTILTr6=s96-c"><img src="https://lh3.googleusercontent.com/a/ACg8ocLNo3rv67Rdn255souWC7w_H0p2dHR1ZjMxXDTILTr6=s96-c"/></a></figure><figure id="2066497d-6ca6-4410-afe2-73bdecabba48" class="image"><a href="https://secure.gravatar.com/avatar/1775017d1378e77b1346247046d4e9ab?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar3.png&amp;r=g"><img src="https://secure.gravatar.com/avatar/1775017d1378e77b1346247046d4e9ab?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar3.png&amp;r=g"/></a></figure><figure id="cfbc5036-04be-4998-b613-29c97bdcc6fd" class="image"><a href="https://lh3.googleusercontent.com/a/ACg8ocKuNxoW2-hH1CHGxPTJlqhIYeKiYmgtOKYd1cVzwBm_GdnS6Wpa=s96-c"><img src="https://lh3.googleusercontent.com/a/ACg8ocKuNxoW2-hH1CHGxPTJlqhIYeKiYmgtOKYd1cVzwBm_GdnS6Wpa=s96-c"/></a></figure><figure id="c8377d13-d0cd-4f04-8c79-f5198359ff61" class="image"><a href="https://secure.gravatar.com/avatar/91790d30f487d068f8f542712a8b5561?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar1.png&amp;r=g"><img src="https://secure.gravatar.com/avatar/91790d30f487d068f8f542712a8b5561?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar1.png&amp;r=g"/></a></figure><figure id="eb51beee-c7e3-4cfa-9cd5-72673fadd5d9" class="image"><a href="https://secure.gravatar.com/avatar/08982a596313ca84efe2d78de94014bf?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar1.png&amp;r=g"><img src="https://secure.gravatar.com/avatar/08982a596313ca84efe2d78de94014bf?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar1.png&amp;r=g"/></a></figure><figure id="dfd09e6b-3365-4fd0-b8d1-f7a5d4a8533f" class="image"><a href="https://lh3.googleusercontent.com/a/ACg8ocIvMGtGeUAsSLBcDqqRp4-T2HuAnAOo4IP9SnLZEtjOuBRVL0KR=s96-c"><img src="https://lh3.googleusercontent.com/a/ACg8ocIvMGtGeUAsSLBcDqqRp4-T2HuAnAOo4IP9SnLZEtjOuBRVL0KR=s96-c"/></a></figure><figure id="44af0243-a5ad-4aea-818c-e68af018a14e" class="image"><a href="https://lh3.googleusercontent.com/a/ACg8ocLuNrGRsUJsPZ5l2_XOujEoZMcb5M8ry51dYscN2HcTvYDvkjs=s96-c"><img src="https://lh3.googleusercontent.com/a/ACg8ocLuNrGRsUJsPZ5l2_XOujEoZMcb5M8ry51dYscN2HcTvYDvkjs=s96-c"/></a></figure><figure id="f6516137-9225-454b-b9d1-8bba726013c4" class="image"><a href="https://lh3.googleusercontent.com/a/ACg8ocK5Lh88qHNyR_NrhoqYMlT1k0UkAfZvUmanuiCuLEFAnZpnSA=s96-c"><img src="https://lh3.googleusercontent.com/a/ACg8ocK5Lh88qHNyR_NrhoqYMlT1k0UkAfZvUmanuiCuLEFAnZpnSA=s96-c"/></a></figure><figure id="93ae0159-a897-4d37-8cab-598c5507d7a1" class="image"><a href="https://www.creativefabrica.com/wp-content/uploads/users/2022/10/21/avatar_390815_1666324107.jpeg"><img src="https://www.creativefabrica.com/wp-content/uploads/users/2022/10/21/avatar_390815_1666324107.jpeg"/></a></figure><figure id="e26dbf5f-886a-4c91-ad65-9956be649994" class="image"><a href="https://secure.gravatar.com/avatar/6a889adc9bb521ac69e71eb3d988d336?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar8.png&amp;r=g"><img src="https://secure.gravatar.com/avatar/6a889adc9bb521ac69e71eb3d988d336?s=96&amp;d=https%3A%2F%2Fwww.creativefabrica.com%2Fwp-content%2Fthemes%2Fcreativefabricanew%2Fassets%2Fimages%2Favatar8.png&amp;r=g"/></a></figure><p id="a2fd9d0b-f9f3-4aa6-9b65-f9be20e96e4c" class="">+159</p><hr id="23689e4d-ad88-4e06-96e3-e7fb15154729"/><p id="db2d707c-d004-4a03-9155-02e190b0fded" class="">My digital designs in SVG and PNG formats are created with love and a focus on quality. Each piece is crafted in CMYK color format at 300 DPI resolution, ensuring that your projects look vibrant and sharp.</p><p id="2e969810-d9bb-4981-b871-04b56a6a4649" class="">1 Svg file1 Png file</p><p id="10b389f8-e00f-4bb2-922f-a519575e9270" class="">USE OF THESE FILES:– T-shirt– Hoodies– Mugs– Sticker– Poster Cards– Phone Cover– Scrapbook– Sublimation– Cut Machines– Pillow– Printable decoration</p><h3 id="78fa7037-ab33-4398-8372-f05bc0530658" class="">Share your project made with this product!</h3><p id="7d563819-76ab-4b5a-b50a-217f30c9dd40" class="">Did you make something using this product? Share a picture of your project so others can get inspired by your creation! Your post will be visible to others on this page and on your own social feed.</p><p id="726bbc08-f011-4ff5-9cab-d0e50fed2bd1" class="">Post a project</p><h3 id="44ab732a-fbaf-4cd8-8e5d-5793ba4977c7" class="">Post a Project</h3><p id="944918dd-cad7-4d24-94d7-66669c2cae6b" class="">Add up to 10 photos of a project you would like to share. Add project information such as materials and tools used. You will earn  2,500  sharing your project</p><figure id="28f60faa-f315-47b8-8f5f-3d4592c1be96" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/coin_star.svg"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/coin_star.svg"/></a></figure><p id="76f4b0ce-d255-4d8a-b8c3-23e49c2d96dd" class="">| | |  |  |  |  |<br/>| - |  |  |  |  |<br/></p><p id="b005857d-9f1b-48b0-a579-241a062c8552" class="">:joy::kissing_heart::heart::heart_eyes::blush::grin::+1::relaxed::pensive::smile::sob::kiss::unamused::flushed::stuck_out_tongue_winking_eye::see_no_evil::wink::smiley::cry::stuck_out_tongue_closed_eyes::scream::rage::smirk::disappointed::sweat_smile::kissing_closed_eyes::speak_no_evil::relieved::grinning::yum::ok_hand::neutral_face::confused:</p><figure id="32fdf885-ca0d-458b-bd1e-cb82ba0a00da" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="04ad3831-b1c0-4880-8b9d-fbab6a751fa3" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="b8251c1a-0348-46f5-b478-8dd6aa1ba881" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="7d567074-f356-4822-aa37-f69c5b08e451" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="bff292a0-8d1a-4b14-9b67-354471d8fb1b" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="182e82c2-a42f-4bd1-93e4-7fae5f7d9f9d" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="14b6b5f9-fc6e-4c01-8dad-94ff37e1ddda" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="ee907f73-9efb-4c05-806b-09d132b197b8" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="0fdc7c4b-8b0c-4764-8341-9594cc1e956f" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="364e0433-497a-4678-836a-e05ae0eb2c0c" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="90a7e934-b307-43e1-b447-de3eb939b9ee" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="e68d760c-f575-4972-91e8-9badb5adaaa2" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="3c1a4532-b51a-4820-bee9-e8ad69cbc025" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="c0522171-2c88-4ff5-82e3-2d78376983d4" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="3f47d795-3203-4f5b-b451-0b18a9db71f1" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="64929dc4-dd73-4eec-9c2f-574a68500779" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="01dd5b6c-fab3-472a-bfd7-50a19e2e2073" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="039f72cb-500a-47f0-b6fc-1aeacd5505a4" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="b6d7ece2-337f-4490-ab5b-64e72e508f21" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="4bed3684-1b29-4f5e-9812-da34ffaa6b1c" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="a3183f95-435d-446e-99b4-1643b0ae4139" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="526e494a-a6af-4806-92c0-9c8f9788bb22" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="f27a2e32-edfb-4ef8-a921-1bec7fc28202" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="860814d7-36f9-4aea-8aad-471a34fbc4eb" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="5f1f6b55-6833-4481-8a22-b8c76d1cd7b1" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="340c52c3-d0e2-4e71-af93-827315dd5e9a" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="5091487f-01c1-4255-97f3-c9ed1724cf97" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="10ae56f5-a18f-4bfe-97f0-585c86f292cf" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="55d2bbb6-a15b-462b-9714-c51ed3261873" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="bb57cffb-22a9-46b1-b1af-9920cf0636ff" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="4da0eee9-43c6-4b02-9c04-8ddf433b33f4" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="fd3b0e20-1be3-4291-97d8-45bf3a488b40" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><figure id="a93cbc64-ce36-4761-97a8-72125ddc8ceb" class="image"><a href="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"><img src="https://www.creativefabrica.com/wp-content/themes/creativefabricanew/v2.0/images/emoji//blank.gif"/></a></figure><ul id="21a440ba-356b-4acc-a54d-e0ddf11b4408" class="bulleted-list"><li style="list-style-type:disc"><em>+</em></li></ul><p id="31952423-ead0-4213-83cb-5bc3ef22052d" class="">Add Pictures</p><p id="e0661928-23ba-4fee-9d50-5c1d0d2abd5c" class="">Post</p><p id="877c640c-1dbe-4636-a3d8-7e4c76bb1d79" class=""><a href="https://www.creativefabrica.com/product/im-not-a-grinch-im-just-selectively-festive/#close-modal">Close</a></p><p id="9f67e312-d985-48ae-a7ac-f1252c92e959" class="">Congratulations! Your project has been published!</p><h3 id="4a4b141f-423b-43b4-a00a-716f7fe594d3" class="">Reviews</h3><p id="fd4fc5e5-e850-4645-b444-ffbd23b6440a" class="">Write a review</p><p id="a8db48d1-38c5-4392-92f6-e963ed3a8ca1" class="">
+</p><figure id="7d1b37ab-1d40-424a-968a-07ac800ed0e8" class="image"><a href="https://www.creativefabrica.com/wp-content/uploads/2024/11/10/Dear-Santa-I-Was-Good-at-Being-Bad-PNG-Graphics-109624761-1-580x386.png"><img src="https://www.creativefabrica.com/wp-content/uploads/2024/11/10/Dear-Santa-I-Was-Good-at-Being-Bad-PNG-Graphics-109624761-1-580x386.png"/></a></figure><p id="eabea76f-170a-492f-a9a1-371aa8e50f1b" class=""><a href="https://www.creativefabrica.com/tag/grinch-svg/"> Grinch Svg </a></p><p id="87e85d07-6811-490d-be0e-9966bba572d5" class=""><a href="https://www.creativefabrica.com/tag/grinch-design/"> Grinch Design </a></p><p id="e60b14bf-a6ff-4fd8-a01b-1cb82e91aeed" class=""><a href="https://www.creativefabrica.com/tag/funny-grinch/"> Funny Grinch </a></p><p id="5b3d31e6-422b-4028-8576-c38b143b6b00" class=""><a href="https://www.creativefabrica.com/tag/grinch-humor/"> Grinch Humor </a></p><p id="e2a12851-bce1-4117-9312-460a59f612e7" class=""><a href="https://www.creativefabrica.com/tag/grinch-t-shirt/"> Grinch T Shirt </a></p><p id="bc95e9f4-f077-4901-9c21-0daae178c109" class=""><a href="https://www.creativefabrica.com/tag/grinch-shirt-design/"> Grinch Shirt Design </a></p><p id="a9e47e94-8210-4230-b0a5-4298b9c2f69a" class=""><a href="https://www.creativefabrica.com/tag/grinchy-mood/"> Grinchy Mood </a></p><p id="e9fecd67-f88c-4295-84f9-6d8932a10f91" class=""><a href="https://www.creativefabrica.com/tag/grinch-life/"> Grinch Life </a></p><p id="ef88e7c7-a2f4-436f-a150-92e035d4fdd0" class=""><a href="https://www.creativefabrica.com/tag/grinch-style/"> Grinch Style </a></p><p id="5b2109cf-60a1-42db-a999-f1839ee94007" class=""><a href="https://www.creativefabrica.com/tag/christmas-grinch/"> Christmas Grinch </a></p><p id="6796c72f-61df-4a30-a87e-03a9af8815e2" class=""><a href="https://www.creativefabrica.com/tag/grinch-christmas-shirt/"> Grinch Christmas Shirt </a></p><p id="cda80133-df83-4550-8f73-733d480caff3" class=""><a href="https://www.creativefabrica.com/tag/grinch-digital/"> Grinch Digital </a></p><p id="319801c8-b493-4a7d-94f4-39daeb3629b8" class=""><a href="https://www.creativefabrica.com/tag/grinch-clipart/"> grinch Clipart </a></p><p id="205c3b4f-6276-4c74-b61f-f7ef3bcbab71" class=""><a href="https://www.creativefabrica.com/tag/grinch-art-1/"> Grinch Art </a></p><p id="18510810-f73b-43ce-9ef6-786b61466759" class=""><a href="https://www.creativefabrica.com/tag/grinchy-svg-design/"> Grinchy Svg Design </a></p><p id="39242111-db20-4c01-ba5c-ee14ecedc39b" class=""><a href="https://www.creativefabrica.com/tag/grinch-cut-file/"> Grinch Cut File </a></p><p id="3dcfcb65-1a59-4768-b43e-c037d29a443c" class=""><a href="https://www.creativefabrica.com/tag/grinch-tshirt-design/"> Grinch Tshirt Design </a></p><p id="256aa3f6-fbe6-4bcf-98e7-e16ffb68ac99" class=""><a href="https://www.creativefabrica.com/tag/grinch-craft/"> Grinch Craft </a></p><p id="b64e779f-e93f-4b21-b41a-482e69548f00" class=""><a href="https://www.creativefabrica.com/tag/grinch-digital-art/"> Grinch Digital Art </a></p><p id="ea063dac-8c11-44d5-bc50-b5fae886b3e6" class=""><a href="https://www.creativefabrica.com/tag/grinch-apparel/"> Grinch Apparel </a></p><p id="f0c0a870-9d6a-4737-83fa-b3640d14313e" class=""><a href="https://www.creativefabrica.com/tag/grinch-clothes/"> Grinch Clothes </a></p><p id="ce93c025-6dab-45c8-89d0-36020d09e2cb" class=""><a href="https://www.creativefabrica.com/tag/grinch-svg-bundle/"> Grinch Svg Bundle </a></p><p id="0c7064da-b308-46f8-bf78-770c431042c4" class=""><a href="https://www.creativefabrica.com/tag/grinch-themed-design/"> Grinch Themed Design </a></p><p id="401b65e6-4f59-447b-84f4-1f349f35c2e7" class=""><a href="https://www.creativefabrica.com/tag/holiday-grinch/"> Holiday Grinch </a></p><p id="ee0cb5c7-70e0-42d6-8878-1e59328b0dfc" class=""><a href="https://www.creativefabrica.com/tag/grinch-christmas-design/"> Grinch Christmas Design </a></p><p id="c6d55f87-1a3c-4160-ab3e-7bb69c28a7a1" class=""><a href="https://www.creativefabrica.com/tag/grinch-graphics/"> Grinch Graphics </a></p><p id="fe538445-aa2e-4676-b874-2a382f5ca7d6" class=""><a href="https://www.creativefabrica.com/tag/grinch-christmas-svg/"> Grinch Christmas Svg </a></p><p id="03cd9d63-e634-4397-82b6-474e3fec5a47" class=""><a href="https://www.creativefabrica.com/tag/grinch-quote-shirt/"> Grinch Quote Shirt </a></p><p id="4e05cbc7-e998-49c3-ad39-5b7e494c4f61" class=""><a href="https://www.creativefabrica.com/tag/grinch-inspired-design/"> Grinch Inspired Design </a></p><p id="7e89fd74-2a49-4d42-a150-c464ce37a7a5" class=""><a href="https://www.creativefabrica.com/tag/grinch-lover-gift/"> Grinch Lover Gift </a></p><p id="4ff7d95f-1666-4c3b-b08c-88da3a527742" class=""><a href="https://www.creativefabrica.com/tag/funny-christmas-quote/"> Funny Christmas Quote </a></p><p id="1f7f820f-69dc-480f-a95b-101217c9f671" class=""><a href="https://www.creativefabrica.com/tag/christmas-svg/"> Christmas Svg </a></p><p id="e6a10f72-e168-4333-9df3-95f364c3593e" class=""><a href="https://www.creativefabrica.com/tag/christmas-lights-svg/"> Christmas Lights Svg </a></p><p id="71261c22-890c-47ab-902f-b3a373387d9b" class=""><a href="https://www.creativefabrica.com/tag/grinchy-christmas/"> Grinchy Christmas </a></p><p id="8451dcec-a1be-4b75-bdb3-2d443659a2f0" class=""><a href="https://www.creativefabrica.com/tag/christmas-light-humor/"> Christmas Light Humor </a></p><p id="58824b70-7876-4af1-a770-617a654f02b1" class=""><a href="https://www.creativefabrica.com/tag/bright-christmas-svg/"> Bright Christmas Svg </a></p><p id="c07aee6e-eae5-437e-ba5d-b2009cff13bf" class=""><a href="https://www.creativefabrica.com/tag/funny-festive-quote/"> Funny Festive Quote </a></p><p id="64492b9b-0836-4b1e-ba8e-5d710831e7ce" class=""><a href="https://www.creativefabrica.com/tag/holiday-svg-file/"> Holiday Svg File </a></p><p id="3dfd255f-d75d-4e31-b7ba-db8332345a06" class=""><a href="https://www.creativefabrica.com/tag/christmas-digital-design/"> Christmas Digital Design </a></p><p id="59ddbe77-b20c-4391-84d1-408d8a4ac1d0" class=""><a href="https://www.creativefabrica.com/tag/xmas-lights-svg/"> Xmas Lights Svg </a></p><p id="e3112bc6-ec72-4e46-9adc-806bc41a218d" class=""><a href="https://www.creativefabrica.com/tag/festive-humor/"> Festive Humor </a></p><p id="71508d5b-6395-4e7a-930d-85ff4c335145" class=""><a href="https://www.creativefabrica.com/tag/turn-off-lights-svg/"> Turn Off Lights Svg </a></p><p id="b9c72c8e-5f15-401e-9efe-996142f08306" class=""><a href="https://www.creativefabrica.com/tag/grinchy-holidays/"> Grinchy Holidays </a></p><p id="758d4361-5dfb-49ae-b460-92b98ae6cf21" class=""><a href="https://www.creativefabrica.com/tag/funny-xmas-svg/"> Funny Xmas Svg </a></p><p id="8672cd82-5b23-449f-a706-a95ebbd027be" class=""><a href="https://www.creativefabrica.com/tag/holiday-cheer-svg/"> Holiday Cheer Svg </a></p><p id="c33f3c03-3c6d-4447-ac9b-0ebd230ac395" class=""><a href="https://www.creativefabrica.com/tag/grinchy-holiday-svg/"> Grinchy Holiday Svg </a></p><p id="31670017-f34e-4782-9c1f-cd2490371b51" class=""><a href="https://www.creativefabrica.com/tag/funny-xmas-quotes-1/"> Funny Xmas Quotes. </a></p><p id="125dfe07-ea2c-4d5c-889a-7dfe5fc8856e" class=""><a href="https://www.creativefabrica.com/tag/im-not-a-grinch/"> I’m Not A Grinch </a></p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

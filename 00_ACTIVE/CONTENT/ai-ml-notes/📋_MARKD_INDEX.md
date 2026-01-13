@@ -1,0 +1,17 @@
+# markD Index
+
+- /Users/steven/Documents/markD/Singer-Prompts.md (4.0K)
+- /Users/steven/Documents/markD/PRICING.md ( 24K)
+- /Users/steven/Documents/markD/Step-by-Step_Guide.md (8.0K)
+- /Users/steven/Documents/markD/17-38-26-iPhone_SE_vs_16.md (8.0K)
+- /Users/steven/Documents/markD/content-calendar.md ( 60K)
+- /Users/steven/Documents/markD/Run_rsync_with_--remove-source-files_to_move_files.md (4.0K)
+- /Users/steven/Documents/markD/AI Maskman.md (8.0K)
+- /Users/steven/Documents/markD/13-54-12-Code_and_Style_Improvement.md ( 16K)
+- /Users/steven/Documents/markD/Organize_and_Categorize_Content.md (2.6M)
+- /Users/steven/Documents/markD/14-10-13-Intro_AI_Course_Plan.md ( 36K)
+- /Users/steven/Documents/markD/Creative Automation Portfolio.md ( 44K)
+- /Users/steven/Documents/markD/TrashCats_Branding_and_Music_Project_Plan.md (168K)
+- /Users/steven/Documents/markD/ClipBoard-Opensource.md (4.0K)
+- /Users/steven/Documents/markD/MyGPTs.md ( 36K)
+- /Users/steven/Documents/markD/Ideogram – avatararts a63550ddefca405a914a0571bf76.md (8.0K)

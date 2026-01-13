@@ -1,0 +1,5 @@
+As of now, Google Colab does not offer an official iOS application. However, you can access and use Google Colab on your iPhone through the Safari or Chrome browsers by visiting the Colab website: citeturn0search2. Keep in mind that the mobile interface may have limitations compared to the desktop experience.
+
+For an enhanced experience on iOS devices, you might consider using third-party applications designed to improve Colab's usability on mobile platforms. One such app is **Programming Notebook PRO**, which offers features like preventing automatic zooming when selecting text boxes, disabling bouncing for horizontal scrolling through code cells, and other interface adaptations to provide better accessibility than a plain web browser. citeturn0search1
+
+Please note that while third-party apps aim to improve the mobile experience, they may not fully replicate the functionality available on a desktop environment. 

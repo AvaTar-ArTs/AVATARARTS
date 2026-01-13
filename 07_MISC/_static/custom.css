@@ -1,0 +1,140 @@
+/* Custom CSS for AVATARARTS Documentation */
+
+/* Brand colors */
+:root {
+    --avatararts-primary: #2980B9;
+    --avatararts-secondary: #27AE60;
+    --avatararts-accent: #E74C3C;
+    --avatararts-dark: #2C3E50;
+    --avatararts-light: #ECF0F1;
+}
+
+/* Logo and branding */
+.wy-side-nav-search {
+    background-color: var(--avatararts-primary) !important;
+}
+
+.wy-side-nav-search > a {
+    font-size: 24px;
+    font-weight: bold;
+    color: white !important;
+}
+
+/* Navigation improvements */
+.wy-menu-vertical a {
+    padding: 0.4045em 1.618em;
+}
+
+.wy-menu-vertical a:hover {
+    background-color: var(--avatararts-light);
+    color: var(--avatararts-dark);
+}
+
+/* Code blocks */
+.highlight {
+    background: #f8f8f8;
+    border: 1px solid #e1e4e5;
+    border-radius: 4px;
+}
+
+code.literal {
+    background-color: #f8f8f8;
+    border: 1px solid #e1e4e5;
+    border-radius: 3px;
+    padding: 2px 5px;
+    color: var(--avatararts-accent);
+}
+
+/* Admonitions */
+.admonition {
+    border-left: 4px solid var(--avatararts-primary);
+}
+
+.admonition.tip {
+    border-left-color: var(--avatararts-secondary);
+}
+
+.admonition.warning {
+    border-left-color: var(--avatararts-accent);
+}
+
+/* Tables */
+table.docutils {
+    border: 1px solid #e1e4e5;
+    border-collapse: collapse;
+}
+
+table.docutils th {
+    background-color: var(--avatararts-primary);
+    color: white;
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 3px;
+}
+
+.badge-success {
+    background-color: var(--avatararts-secondary);
+}
+
+.badge-info {
+    background-color: var(--avatararts-primary);
+}
+
+.badge-warning {
+    background-color: #F39C12;
+}
+
+/* Custom cards (for grid layouts) */
+.card {
+    border: 1px solid #e1e4e5;
+    border-radius: 4px;
+    padding: 15px;
+    margin: 10px 0;
+    background: white;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--avatararts-primary);
+    margin-bottom: 10px;
+}
+
+/* Responsive improvements */
+@media screen and (max-width: 768px) {
+    .wy-nav-content {
+        padding: 1.618em 1em;
+    }
+}
+
+/* Search box */
+.wy-side-nav-search input[type=text] {
+    border: 1px solid rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.2);
+}
+
+.wy-side-nav-search input[type=text]:focus {
+    background: white;
+    color: var(--avatararts-dark);
+}
+
+/* Footer */
+.rst-footer-buttons {
+    margin-top: 30px;
+}
+
+/* Sidebar version */
+.wy-side-nav-search > div.version {
+    color: rgba(255,255,255,0.9);
+}

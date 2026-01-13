@@ -1,0 +1,2993 @@
+# AVATARARTS Duplicate Cleanup Summary
+
+**Generated:** 2026-01-01 10:41:53
+**Mode:** LIVE (files deleted)
+
+---
+
+## 📊 Summary
+
+- **Duplicate groups found:** 2359
+- **Files deleted:** 2978
+- **Space saved:** 333.37 MB
+
+## 🗑️ Deleted Files
+
+- `01_GENERATIVE_AUTOMATION_SUITE/MANIFEST.json`
+- `01_GENERATIVE_AUTOMATION_SUITE/README.md`
+- `01_GENERATIVE_AUTOMATION_SUITE/scripts/01_DEEP_SCAN_ALL_CONTENT.py`
+- `01_GENERATIVE_AUTOMATION_SUITE/scripts/02_SUB_CATEGORIZE_BIG_FOLDERS.py`
+- `01_GENERATIVE_AUTOMATION_SUITE/scripts/03_leonardo-instagram-build.py`
+- `01_GENERATIVE_AUTOMATION_SUITE/scripts/04_unified_generation.py`
+- `01_GENERATIVE_AUTOMATION_SUITE/scripts/05_instagram-sort.py`
+- `01_GENERATIVE_AUTOMATION_SUITE/scripts/06_ai-deep-analyzer.py`
+- `01_GENERATIVE_AUTOMATION_SUITE/scripts/07_podcast-studio.py`
+- `01_GENERATIVE_AUTOMATION_SUITE/scripts/08_python_repo_analyzer.py`
+- `01_GENERATIVE_AUTOMATION_SUITE/scripts/09_intelligent-renamer-1.py`
+- `01_GENERATIVE_AUTOMATION_SUITE/scripts/10_deep-code.py`
+- `01_GENERATIVE_AUTOMATION_SUITE/scripts/11_pyrepo_doc_organizer_from_file-utilities.py`
+- `01_GENERATIVE_AUTOMATION_SUITE/scripts/12_scripty.py`
+- `01_GENERATIVE_AUTOMATION_SUITE/scripts/13_intelligent-docs-builder.py`
+- `01_GENERATIVE_AUTOMATION_SUITE/scripts/14_intelligent-code-orchestrator.py`
+- `01_GENERATIVE_AUTOMATION_SUITE/scripts/15_ULTIMATE_FILE_MANAGER.py`
+- `02_AI_WORKFLOW_AUTOMATION/MANIFEST.json`
+- `02_AI_WORKFLOW_AUTOMATION/README.md`
+- `02_AI_WORKFLOW_AUTOMATION/scripts/01_youtube_seo_optimizer.py`
+- `02_AI_WORKFLOW_AUTOMATION/scripts/02_create-sphinx-docs.py`
+- `02_AI_WORKFLOW_AUTOMATION/scripts/03_setup_social_media_automation_1.py`
+- `03_CREATIVE_AUTOMATION_SUITE/README.md`
+- `03_CREATIVE_AUTOMATION_SUITE/scripts/01_audio_video_editors_twitch.py`
+- `03_CREATIVE_AUTOMATION_SUITE/scripts/02_instagram-root-scripts.py`
+- `03_CREATIVE_AUTOMATION_SUITE/scripts/03_automation-selenium-content.py`
+- `03_CREATIVE_AUTOMATION_SUITE/scripts/04_instagram-dom-tree.py`
+- `03_CREATIVE_AUTOMATION_SUITE/scripts/05_instagram-directory-organizer.py`
+- `03_CREATIVE_AUTOMATION_SUITE/scripts/06_migrate_remaining_fixed.py`
+- `03_CREATIVE_AUTOMATION_SUITE/scripts/07_instagram-reorganize.py`
+- `03_CREATIVE_AUTOMATION_SUITE/scripts/08_bot.py`
+- `03_CREATIVE_AUTOMATION_SUITE/scripts/09_validate-json-reader.py`
+- `03_CREATIVE_AUTOMATION_SUITE/scripts/10_instagram-download.py`
+- `03_CREATIVE_AUTOMATION_SUITE/scripts/11_thumbnail.py`
+- `03_CREATIVE_AUTOMATION_SUITE/scripts/12_social-platforms-instagram-bot-error.py`
+- `03_CREATIVE_AUTOMATION_SUITE/scripts/13_all.py`
+- `03_CREATIVE_AUTOMATION_SUITE/scripts/14_computer.py`
+- `03_CREATIVE_AUTOMATION_SUITE/scripts/15_identify-leonardo-user-scripts.py`
+- `04_AUTOMATED_SEO_DOMINATION/README.md`
+- `04_AUTOMATED_SEO_DOMINATION/scripts/01_seo_domination_engine_v2.py`
+- `04_AUTOMATED_SEO_DOMINATION/scripts/02_organize_and_optimize.py`
+- `05_AI_CONTENT_PIPELINE/README.md`
+- `05_AI_CONTENT_PIPELINE/scripts/01_intelligent_medium_automation.py`
+- `05_AI_CONTENT_PIPELINE/scripts/Creating-something-amazing-with-skill-creator---Cl-2025-12-27.md`
+- `10k-web/files.zip`
+- `AI Presentation Generator.html`
+- `AI_Art_Workflow_ASSETS.csv`
+- `ALCHEMIST EXECUTION PACKAGE.md`
+- `Ai-Empire/10K-Ai-BluePrint/$10k dual Ai strategy.md`
+- `Ai-Empire/NOTEBOOKLLM-4hr/NotebookLM FULL COURSE 4 HOURS (Build & Automate Anything).txt`
+- `Ai-Empire/QWEN.md`
+- `AvaTar-ArTs.github.io/.git/HEAD`
+- `AvaTar-ArTs.github.io/.git/description`
+- `AvaTar-ArTs.github.io/.git/hooks/applypatch-msg.sample`
+- `AvaTar-ArTs.github.io/.git/hooks/commit-msg.sample`
+- `AvaTar-ArTs.github.io/.git/hooks/fsmonitor-watchman.sample`
+- `AvaTar-ArTs.github.io/.git/hooks/post-update.sample`
+- `AvaTar-ArTs.github.io/.git/hooks/pre-applypatch.sample`
+- `AvaTar-ArTs.github.io/.git/hooks/pre-commit.sample`
+- `AvaTar-ArTs.github.io/.git/hooks/pre-merge-commit.sample`
+- `AvaTar-ArTs.github.io/.git/hooks/pre-push.sample`
+- `AvaTar-ArTs.github.io/.git/hooks/pre-rebase.sample`
+- `AvaTar-ArTs.github.io/.git/hooks/pre-receive.sample`
+- `AvaTar-ArTs.github.io/.git/hooks/prepare-commit-msg.sample`
+- `AvaTar-ArTs.github.io/.git/hooks/push-to-checkout.sample`
+- `AvaTar-ArTs.github.io/.git/hooks/sendemail-validate.sample`
+- `AvaTar-ArTs.github.io/.git/hooks/update.sample`
+- `AvaTar-ArTs.github.io/.git/info/exclude`
+- `AvaTar-ArTs.github.io/.git/logs/HEAD`
+- `AvaTar-ArTs.github.io/.git/logs/refs/remotes/origin/HEAD`
+- `AvaTar-ArTs.github.io/.git/refs/remotes/origin/HEAD`
+- `COMPLETE_ALL_EXECUTION_SUMMARY.md`
+- `COMPLETE_ECOSYSTEM_MASTER.csv`
+- `Creative_Automation_ASSETS.csv`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/2025-10-14 15-39-48-Content_aware_deep_analysis_set_291_copy_1342.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/2025_PROFESSIONAL_WEBSITE_SUMMARY_set_96_copy_505.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/ADVANCED_SEO_RESEARCH_set_91_copy_482.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/CLEANUP_RESULTS_SUMMARY_set_293_copy_1346.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/CLIENT_REPORT_NON_TECHNICAL_set_231_copy_1129.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/COMPLETE_DESIGN_OVERHAUL_SUMMARY_set_40_copy_229.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/COMPLETE_DIRECTORY_ORGANIZATION_set_189_copy_947.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/COMPREHENSIVE_DEEPREACH_ANALYSIS.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/COMPREHENSIVE_DIGITAL_ECOSYSTEM_ANALYSIS.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/COMPREHENSIVE_MERGE_PLAN_set_281_copy_1318.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/COMPREHENSIVE_MERGE_REPORT_set_278_copy_1311.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/COMPREHENSIVE_ORGANIZATION_PLAN_set_282_copy_1320.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/COMPREHENSIVE_SEO_AUDIT_set_195_copy_969.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/COMPREHENSIVE_SEO_AUDIT_set_232_copy_1134.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/CONTENT_AWARE_RENAMING_RESULTS_set_288_copy_1334.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/CREATE_ROOT_WEBSITE_STRUCTURE.sh`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/Content-aware_deep_analysis 2_set_305_copy_1375.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/DEEP_ANALYSIS_REPORT_set_263_copy_1244.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/DNS_SETUP_set_181_copy_913.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/DR_LAWRENCE_ADU_DETAILED_RESEARCH_set_44_copy_261.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/DR_LAWRENCE_ADU_RESEARCH_SUMMARY_set_39_copy_224.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/D_. Adu has bee_ my docto_ fo_ the last 17 yea_s. /D_. Adu has bee_ my _truncated_ANALYSIS.md.seo_backup`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/DrAdu-SEO-OPTIMIZED/README.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/DrAdu-SEO-OPTIMIZED/public/assets/css/style-css.css`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/DrAdu-SEO-OPTIMIZED/public/assets/css/style-music_project.css`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/DrAdu-SEO-OPTIMIZED/public/assets/css/style-styles.css`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/DrAdu-SEO-OPTIMIZED/public/assets/js/main-Tiktok-Trending-Data-Scraper.js`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/DrAdu-SEO-OPTIMIZED/public/assets/js/main-js.js`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/DrAdu-SEO-OPTIMIZED/public/robots.txt`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/DrAdu-SEO-OPTIMIZED/public/sitemap.xml`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/Dr_Adu_GainesvillePFS_SEO_Project/DEEP_ANALYSIS_REPORT.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/FILE_08_archived_backups_@google_genai.js`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/FILE_08_archived_backups_@google_genai.js.map`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/FILE_08_archived_backups_index.mjs`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/FILE_08_archived_backups_index.mjs.map`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/FINAL_TOP_1_5_PERCENT_WEBSITE_ENHANCEMENT_set_236_copy_1154.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/FINAL_WEBSITE_MAGIC_SUMMARY_set_237_copy_1159.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/IMPROVEMENTS_SUMMARY_set_191_copy_956.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/MASTER_INDEX_set_262_copy_1239.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/MASTER_INDEX_set_265_copy_1260.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/PROFESSIONAL_MEDICAL_DESIGN_SUMMARY_set_93_copy_495.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/QUANTUMFORGELABS_DEPLOYMENT_STRATEGY_set_304_copy_1372.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/QUANTUMFORGELABS_DUPLICATE_REMOVAL_REPORT_set_275_copy_1304.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/QUANTUMFORGELABS_SETUP_set_279_copy_1313.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/ROOT_STRUCTURE_COMPLETE_set_267_copy_1273.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/SEO_IMPROVEMENTS_REPORT_set_233_copy_1137.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/SEO_SERVICES_INVOICE_set_238_copy_1162.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/SEO_SUMMARY.md_set_193_copy_960.seo_backup`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/SEO_SUMMARY_set_192_copy_958.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/SEO_SUMMARY_set_274_copy_1302.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/SEO_branding_analysis.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/SIMPLE_ORGANIZATION_SUMMARY_set_277_copy_1309.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/STEVEN_SKILLS_BREAKDOWN_DETAILED 2_set_287_copy_1331.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/STYLING_IMPROVEMENTS_SUMMARY_set_90_copy_475.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/Steven_Chaplinski_Creative_Automation_Engineer_Profile_set_290_copy_1339.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/TOP_1_5_PERCENT_IMPROVEMENTS_IMPLEMENTED_set_184_copy_926.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/ULTRA_COMPREHENSIVE_DEEPREACH_ANALYSIS.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/ULTRA_DEEP_COMPREHENSIVE_INDEX_set_302_copy_1368.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/Userscripts Deep Content-Aware Analysis_set_297_copy_1358.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/VISUAL_COVERS_set_306_copy_1377.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/WEBSITE_DEPLOYMENT_SUMMARY_set_42_copy_245.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/batch_001_set_245_copy_1182.json`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/batch_002_set_253_copy_1210.json`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/batch_003_set_250_copy_1200.json`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/batch_004_enhanced_analysis_set_252_copy_1208.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/batch_004_set_258_copy_1224.json`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/batch_005_set_256_copy_1218.json`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/batch_006_set_240_copy_1166.json`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/batch_007_set_239_copy_1164.json`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/batch_008_set_259_copy_1226.json`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/batch_009_set_255_copy_1216.json`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/batch_010_set_242_copy_1172.json`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/cLAude 26536221d8b28002a065caa9da69ad3f_set_303_copy_1370.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/comprehensive_index.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/deploy_quantumforgelabs.sh`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/documents_analysis_report_robust_set_300_copy_1364.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/dr-aduKey Improvements Made_set_104_copy_547.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/enhanced_style_set_124_copy_660.css`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/gptjunkie-content-aware-deep-analysis_chatgpt 2_set_295_copy_1353.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/index-backup_set_32_copy_182.html`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/modern-style_set_95_copy_502.css`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/properly-rename`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/python-📚_TABLE_OF_CONTENTS_set_292_copy_1344.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/visual_directory_map.txt`
+- `Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/web_development_ANALYSIS 5.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/02_Analysis_Research/01_Content_Analysis/GAINESVILLE PSYCHIAT_truncated_ANALYSIS.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/02_Analysis_Research/01_Content_Analysis/GAINESVILLE_OCALA_STRATEGY.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/02_Analysis_Research/01_Content_Analysis/gainesville-content-strategy.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/02_Analysis_Research/01_Content_Analysis/gainesville-fl-strategy.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/02_Analysis_Research/01_Content_Analysis/gainesville-seo-tools.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/06_Tools_Scripts/local_seo_gainesville.py`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/1950 horror_set_7_copy_26.xlsx`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/2025-10-14 15-39-48-Content_aware_deep_analysis_set_291_copy_1342.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/20251015_111728_f04380f5-3abb-44df-8fcc-6cbb9e235358_imports_markdown 6_set_273_copy_1300.markdown`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/2b. Example_set_100_copy_525.xlsx`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/CHANGES 3_set_166_copy_861.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/CLEANUP_RESULTS_SUMMARY_set_293_copy_1346.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/CLEANUP_SUCCESS_REPORT_set_299_copy_1362.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/CLIENT_REPORT_NON_TECHNICAL.md_set_171_copy_878.seo_backup`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/COMPREHENSIVE_DEEPREACH_ANALYSIS.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/COMPREHENSIVE_DIGITAL_ECOSYSTEM_ANALYSIS.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/COMPREHENSIVE_MERGE_PLAN_set_281_copy_1318.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/COMPREHENSIVE_MERGE_REPORT_set_278_copy_1311.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/COMPREHENSIVE_ORGANIZATION_PLAN_set_282_copy_1320.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/COMPREHENSIVE_ORIGINAL_ANALYSIS_REPORT_set_220_copy_1087.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/COMPREHENSIVE_SEO_AUDIT.md_set_121_copy_645.seo_backup`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/COMPREHENSIVE_SKILLS_SERVICES_REPORT_set_117_copy_632.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/COMPREHENSIVE_WEBSITE_ANALYSIS_set_213_copy_1053.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/CONSOLIDATION_REPORT.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/CONTENT_AWARE_RENAMING_RESULTS_set_288_copy_1334.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/CREATE_ROOT_WEBSITE_STRUCTURE.sh`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/Content-aware_deep_analysis 2_set_305_copy_1375.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/DEEP_ANALYSIS_REPORT.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/DEEP_ANALYSIS_REPORT_set_120_copy_641.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/D_. Adu has bee_ my _truncated_ANALYSIS.md.seo_backup`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/ENHANCED_MASTER_ANALYSIS_V2.md_set_268_copy_1276.seo_backup`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/Explain-MCP-settings-2025-09-09_set_301_copy_1366.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/FILE_08_archived_backups_@google_genai.js`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/FILE_08_archived_backups_@google_genai.js.map`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/FILE_08_archived_backups_index.mjs`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/FILE_08_archived_backups_index.mjs.map`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/GAINESVILLE_PFS_WEBSITE_ANALYSIS.md_set_205_copy_1015.seo_backup`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/GPTJunkie---Content-aware-deep-analysis-2025-10-15 2_set_289_copy_1337.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/IMPROVEMENTS_SUMMARY.md_set_151_copy_806.seo_backup`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/MASTER_ANALYSIS_REPORT 3_set_207_copy_1028.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/MASTER_ANALYSIS_REPORT 6_set_142_copy_770.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/MASTER_ANALYSIS_REPORT.md_set_99_copy_520.seo_backup`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/NESTED_ORGANIZATION_ANALYSIS.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/ORGANIZATION_SUMMARY_set_215_copy_1063.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/QUANTUMFORGELABS_DEPLOYMENT_STRATEGY_set_304_copy_1372.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/QUANTUMFORGELABS_DUPLICATE_REMOVAL_REPORT_set_275_copy_1304.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/QUANTUMFORGELABS_SETUP_set_279_copy_1313.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/README 11_set_150_copy_803.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/README 3_set_296_copy_1355.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/README 6_set_224_copy_1099.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/README.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/SEO_CONTINUOUS_IMPROVEMENT_PLAN_set_280_copy_1316.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/SEO_IMPROVEMENTS_REPORT.md_set_272_copy_1294.seo_backup`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/SEO_IMPROVEMENTS_REPORT_set_147_copy_787.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/SEO_IMPROVEMENTS_REPORT_set_214_copy_1061.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/SEO_SERVICES_INVOICE.md_set_169_copy_870.seo_backup`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/SEO_SERVICES_INVOICE_set_15_copy_70.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/SEO_SERVICES_INVOICE_set_222_copy_1092.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/SEO_SUMMARY.md.seo_backup`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/SEO_SUMMARY_set_274_copy_1302.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/SEO_branding_analysis.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/SIMPLE_ORGANIZATION_SUMMARY_set_277_copy_1309.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/STEVEN_CHAPLINSKI_FREELANCE_ANALYSIS_2025_set_294_copy_1349.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/STEVEN_FREELANCE_EXAMPLES_2025 2_set_307_copy_1381.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/STEVEN_SKILLS_BREAKDOWN_DETAILED 2_set_287_copy_1331.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/Steven_Chaplinski_Creative_Automation_Engineer_Profile_set_290_copy_1339.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/TOP_1_5_PERCENT_IMPROVEMENTS_IMPLEMENTED.md_set_23_copy_107.seo_backup`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/ULTIMATE_COMPREHENSIVE_DEEP_REACH_ANALYSIS_set_177_copy_898.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/ULTRA_COMPREHENSIVE_DEEPREACH_ANALYSIS.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/ULTRA_DEEP_COMPREHENSIVE_INDEX_set_302_copy_1368.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/Userscripts Deep Content-Aware Analysis_set_297_copy_1358.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/VISUAL_COVERS_set_306_copy_1377.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/WEBSITE_ANALYSIS_REPORT_set_276_copy_1307.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/WEBSITE_DEPLOYMENT_ANALYSIS.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/ai-powered-multimedia-analysis-system_set_212_copy_1051.txt`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/automation_ANALYSIS 2_set_226_copy_1104.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/automation_ANALYSIS 6_set_10_copy_38.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/automation_ANALYSIS.md_set_145_copy_782.seo_backup 4`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_001_enhanced_analysis.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_001_summary.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_002_enhanced_analysis.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_002_enhanced_analysis.md_set_168_copy_867.seo_backup`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_002_summary.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_003_enhanced_analysis.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_003_enhanced_analysis.md_set_102_copy_539.seo_backup`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_003_summary.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_004_enhanced_analysis.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_004_enhanced_analysis.md_set_174_copy_887.seo_backup`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_004_summary.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_005_enhanced_analysis.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_005_enhanced_analysis.md_set_204_copy_1012.seo_backup`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_005_summary.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_006_enhanced_analysis.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_006_enhanced_analysis.md_set_152_copy_809.seo_backup`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_006_summary.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_007_enhanced_analysis.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_007_enhanced_analysis.md_set_208_copy_1031.seo_backup`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_007_summary.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_008_enhanced_analysis.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_008_enhanced_analysis.md_set_172_copy_881.seo_backup`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_008_summary.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_009_enhanced_analysis.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_009_enhanced_analysis.md_set_228_copy_1112.seo_backup`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_009_summary.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_010_enhanced_analysis.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_010_enhanced_analysis.md_set_158_copy_829.seo_backup`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/batch_010_summary.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/bubble-top 4_set_122_copy_651.txt`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/cLAude 26536221d8b28002a065caa9da69ad3f_set_303_copy_1370.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/comprehensive_index.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/content_creation_ANALYSIS 3_set_156_copy_823.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/content_creation_ANALYSIS 6_set_148_copy_789.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/content_creation_ANALYSIS.md_set_6_copy_19.seo_backup 4`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/data_analysis_ANALYSIS 5_set_221_copy_1088.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/data_analysis_ANALYSIS.md_set_161_copy_841.seo_backup 3`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/data_analysis_ANALYSIS_set_8_copy_30.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/deploy_quantumforgelabs.sh`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/documents_analysis_report_robust_set_300_copy_1364.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/dr-adu-2_set_210_copy_1040.png`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/dr-adu_set_167_copy_864.jpeg`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/etsy-prompts-mcp-server_set_298_copy_1360.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/extract_set_21_copy_98.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/file_management_ANALYSIS 2_set_118_copy_636.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/file_management_ANALYSIS 5_set_157_copy_825.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/file_management_ANALYSIS.md_set_163_copy_847.seo_backup 3`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/fill_log_set_270_copy_1286.txt`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/gptjunkie-content-aware-deep-analysis_chatgpt 2_set_295_copy_1353.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/index 7_set_101_copy_536.js`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/main_set_203_copy_1009.js`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/mathematica 4_set_202_copy_1006.js`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/mathematica 9_set_103_copy_544.js`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/motivational 2_set_153_copy_814.txt`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/patch-fetch 10_set_165_copy_856.js`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/patch-fetch 9_set_123_copy_656.js`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/professional_format_log_set_146_copy_784.txt`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/properly-rename`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/psl 4_set_154_copy_819.cjs`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/psl 5_set_9_copy_36.mjs`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/psl.umd 5_set_170_copy_875.cjs`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/python-📚_TABLE_OF_CONTENTS_set_292_copy_1344.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/python_cleanup_report_20251015_061241_set_308_copy_1383.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/robots.txt`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/rules 3_set_209_copy_1036.js`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/seo_optimization_ANALYSIS 5_set_164_copy_851.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/seo_optimization_ANALYSIS 6_set_155_copy_821.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/seo_optimization_ANALYSIS.md_set_225_copy_1103.seo_backup 3`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/seo_optimization_log_set_159_copy_830.txt`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/sitemap.xml`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/style_set_143_copy_774.css`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/style_set_160_copy_837.css`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/targeted_cleanup_report_20251015_061510_set_285_copy_1326.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/targeted_cleanup_report_20251015_061530_set_284_copy_1324.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/tehsites_set_119_copy_638.rst`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/visual_directory_map.txt`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/web_development_ANALYSIS 3_set_269_copy_1280.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/web_development_ANALYSIS 5.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/web_development_ANALYSIS.md_set_12_copy_45.seo_backup 3`
+- `Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/yarn 5_set_13_copy_50.lock`
+- `Dr_Adu_GainesvillePFS_SEO_Project/08_CSV_Data/image_data_Dr_Adu_GainesvillePFS_SEO_Project_20251126_095415.csv`
+- `Dr_Adu_GainesvillePFS_SEO_Project/08_CSV_Data/vids_Dr_Adu_GainesvillePFS_SEO_Project_20251126_095415.csv`
+- `Dr_Adu_GainesvillePFS_SEO_Project/15_Website_Hosting/gainesville.html`
+- `Dr_Adu_GainesvillePFS_SEO_Project/DrAdu-SEO-OPTIMIZED/README.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/Dr_Adu_GainesvillePFS_SEO_Project/07_Archive_Backup/01_Original_Files/gainesville_pfs_website/reports/SEO_SUMMARY.md.seo_backup`
+- `Dr_Adu_GainesvillePFS_SEO_Project/Dr_Adu_GainesvillePFS_SEO_Project/08_Exports/batches/batch_001_enhanced_analysis.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/Dr_Adu_GainesvillePFS_SEO_Project/08_Exports/batches/batch_001_summary.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/Dr_Adu_GainesvillePFS_SEO_Project/08_Exports/batches/batch_002_enhanced_analysis.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/Dr_Adu_GainesvillePFS_SEO_Project/08_Exports/batches/batch_002_summary.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/Dr_Adu_GainesvillePFS_SEO_Project/08_Exports/batches/batch_003_enhanced_analysis.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/Dr_Adu_GainesvillePFS_SEO_Project/08_Exports/batches/batch_003_summary.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/Dr_Adu_GainesvillePFS_SEO_Project/08_Exports/batches/batch_004_enhanced_analysis.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/Dr_Adu_GainesvillePFS_SEO_Project/08_Exports/batches/batch_004_summary.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/Dr_Adu_GainesvillePFS_SEO_Project/08_Exports/batches/batch_005_enhanced_analysis.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/Dr_Adu_GainesvillePFS_SEO_Project/08_Exports/batches/batch_005_summary.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/Dr_Adu_GainesvillePFS_SEO_Project/08_Exports/batches/batch_006_enhanced_analysis.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/Dr_Adu_GainesvillePFS_SEO_Project/08_Exports/batches/batch_006_summary.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/Dr_Adu_GainesvillePFS_SEO_Project/08_Exports/batches/batch_007_enhanced_analysis.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/Dr_Adu_GainesvillePFS_SEO_Project/08_Exports/batches/batch_007_summary.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/Dr_Adu_GainesvillePFS_SEO_Project/08_Exports/batches/batch_008_enhanced_analysis.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/Dr_Adu_GainesvillePFS_SEO_Project/08_Exports/batches/batch_008_summary.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/Dr_Adu_GainesvillePFS_SEO_Project/08_Exports/batches/batch_009_enhanced_analysis.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/Dr_Adu_GainesvillePFS_SEO_Project/08_Exports/batches/batch_009_summary.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/Dr_Adu_GainesvillePFS_SEO_Project/08_Exports/batches/batch_010_enhanced_analysis.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/Dr_Adu_GainesvillePFS_SEO_Project/08_Exports/batches/batch_010_summary.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/Dr_Adu_GainesvillePFS_SEO_Project/DEEP_ANALYSIS_REPORT.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/Dr_Adu_GainesvillePFS_SEO_Project/NESTED_ORGANIZATION_ANALYSIS.md`
+- `Dr_Adu_GainesvillePFS_SEO_Project/audio_Dr_Adu_GainesvillePFS_SEO_Project_20251126_095359.csv`
+- `Dr_Adu_GainesvillePFS_SEO_Project/audio_Dr_Adu_GainesvillePFS_SEO_Project_20251126_095415.csv`
+- `Dr_Adu_GainesvillePFS_SEO_Project/vids_Dr_Adu_GainesvillePFS_SEO_Project_20251126_095359.csv`
+- `Dr_Adu_GainesvillePFS_SEO_Project/vids_Dr_Adu_GainesvillePFS_SEO_Project_20251126_095415.csv`
+- `Dual_Monetization_Strategy_Directory_and_Tools_Path_to_10K_MRR.md.md`
+- `Generative_Automation_ASSETS.csv`
+- `HIGH_VALUE_SEO_OPPORTUNITIES.csv`
+- `INTELLIGENT_PYTHON_INVENTORY.csv`
+- `Intelligent_Organization_Systems_for_Creative_Automation_Developers_2025_Implementation_Guide.md.md`
+- `JOB_SEARCH_2025_20251126_095500.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/01_20251126_095415 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/02_Conversations_20251126_095415 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/06_Archives_20251126_095415 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/09_Technical_Resources_20251126_095409 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/13_JavaScript_Tools_20251126_095415 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/14_JSON_Configs_20251126_095415 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/15_Data_Exports_20251126_095409 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/2025-09-04-conversations_20251126_095408 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/2025-10-07-conversations_(1)_20251126_095408 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/20251126_095348 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/20251126_095415 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/20251126_095509 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/20251126_095509.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/20251126_095510 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/20251126_095510.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/979d5653-54c4-45a3-bef4-cda3b3ec70d2_Export-80036393-3266-4fc8-bef5-78b8048e0863_20251126_095415 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/Archives_20251126_095347 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/Audiobooks_20251126_095346 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/Backups_20251126_095359 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/ChatGPT-export-Library_20251126_095410 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/Compressed_20251126_095415 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/Creative_Automation_Portfolio_Strategy_export_2025-09-05T22-59_20251126_095410 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/CsV_20251126_095359 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/Discorgraphy_archive_20251126_095348 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/ExportBlock-45e81a40-1567-4ee2-ac9a-3d8302eda264-Part-1_20251126_095416 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/HTML_20251126_095346 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/Ideogram_copy_Juice_20251126_095415 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/JOB_SEARCH_2025_20251126_095500 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/JOB_SEARCH_2025_20251126_095600 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/Key_Observations_export_2025-10-24T14-53_20251126_095415 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/Listen_to_your_heart_20251126_095409 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/Misc_20251126_095408 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/Notion_20251126_095348 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/Obsidian_Vault_20251126_095346 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/OrbStack_20251126_095346 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/PDFServicesAPI-Credentials_20251126_095415 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/PDFs_20251126_095359 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/PRESERVED_ARCHIVES_20251126_095346 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/PSD_EXTENM_20251126_095415 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/Strategy_Document_Received___export_2025-10-26T14-18_20251126_095410.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/Superpower-ChatGPT-Gallery_20251126_095409 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/TRANSCRIPT_SEARCH_20251104_202108_20251126_095346 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/Video_20251126_095409.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/WalterRussell_20251126_095346 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/__Strategy_Document_Received___export_2025-10-26T14-18_20251126_095410 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/_build_20251126_095509 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/_static_20251126_095509 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/_static_20251126_095509.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/_static_20251126_095510 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/_static_20251126_095510.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/_templates_20251126_095509 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/_templates_20251126_095509.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/_templates_20251126_095510 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/advanced_toolkit_20251126_095509 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/ai-sites_20251126_095509 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/ai-sites_20251126_095509.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/ai-voice-agents_20251126_095500 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/ai-voice-agents_20251126_095600 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/analysis_reports_20251126_095509 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/api-documentation_20251126_095348 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/audio_sphinx-20251126_095510.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/avatararts-complete_20251126_095440 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/avatararts-complete_20251126_095532 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/build_20251126_095509.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/build_20251126_095510 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/carbon-images_20251126_095346 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/carbon-images_20251126_095510 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/carbon-images_20251126_095510.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/categories_20251126_095415 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/cleanconnect-complete_20251126_095500 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/cleanconnect-complete_20251126_095600 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/craft_20251126_095346 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/craft_20251126_095346.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/css_20251126_095510 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/csvs-consolidated_20251126_095500 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/csvs-consolidated_20251126_095500.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/csvs-consolidated_20251126_095600 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/data_20251126_095359 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/data_20251126_095359.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/deep_analysis_20251126_095509 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/docsify_20251126_095509 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/education_20251126_095500 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/education_20251126_095500.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/education_20251126_095600 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/executables_20251126_095346 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/executables_20251126_095346.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/github_20251126_095357 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/github_20251126_095357.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/google-cloud-sdk_20251126_095410 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/gpt_20251126_095409 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/heavenlyhands-complete_20251126_095500 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/heavenlyhands-complete_20251126_095600 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/iTermAI.app_20251126_095348 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/iTermAI.app_20251126_095348.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/ideo-notiojn_20251126_095415 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/images_20251126_095346 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/intelligence_20251126_095509 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/inventory_20251126_095359 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/js_20251126_095510 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/json_20251126_095356 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/knowledge-base_20251126_095357 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/markD_20251126_095359 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/marketplace_20251126_095500 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/marketplace_20251126_095500.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/marketplace_20251126_095600 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/mk20251126_095509 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/music-analysis_20251126_095440 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/music-analysis_20251126_095440.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/music-analysis_20251126_095532 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/music-empire_20251126_095441 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/music-empire_20251126_095532 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/mydesign-uplive_20251126_095415 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/nano-large_(2)_20251126_095409 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/organize_20251126_095509 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/organized_20251126_095359 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/passive-income-empire_20251126_095500 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/passive-income-empire_20251126_095600 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/paste_export_20251126_095346 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/paste_export_20251126_095346.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/pdoc_20251126_095509 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/py20251126_095509 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/qForge_20251126_095415 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/quantumforge-complete_20251126_095500 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/quantumforge-complete_20251126_095600 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/retention-suite-complete_20251126_095500 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/retention-suite-complete_20251126_095600 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/scripts-to-remove_20251126_095415 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/scripts_20251126_095500 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/scripts_20251126_095600 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/seo_20251126_095509 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/sites-navigator_20251126_095510 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/source_20251126_095510 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/sphinx-20251126_095510 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/static_20251126_095509.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/static_20251126_095510 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/static_20251126_095510.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/system-cleanup-reports_20251126_095346 2.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/templates_20251126_095509.csv`
+- `MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/templates_20251126_095510.csv`
+- `MASTER_SEO_PACKAGE_2024/DEPLOYMENT_PACKAGES/04_AUTOMATED_SEO_DOMINATION/scripts/01_seo_domination_engine_v2.py`
+- `MUSIC_CATALOG_MASTER.csv`
+- `Portfolio/Reports/Project_Analysis_Portfolio_Analysis.md`
+- `Portfolio/Reports/Project_Analysis_Portfolio_Analysis_2.md`
+- `Portfolio/Reports/Project_Analysis_Portfolio_Analysis_3.md`
+- `Portfolio/Reports/Project_Analysis_Portfolio_Analysis_4.md`
+- `Portfolio/Reports/Project_Analysis_Portfolio_Analysis_5.md`
+- `Portfolio/Reports/Project_Analysis_Portfolio_Analysis_6.md`
+- `Portfolio/Reports/Project_Analysis_Portfolio_Analysis_7.md`
+- `REVENUE_PRIORITIZATION_MATRIX.md`
+- `SALES_MASTER_SHEET.md`
+- `SEO Content Optimization Suite/_build/html/_sources/aeo_seo_guide.rst.txt`
+- `SEO Content Optimization Suite/_build/html/_sources/api_reference.rst.txt`
+- `SEO Content Optimization Suite/_build/html/_sources/examples.rst.txt`
+- `SEO Content Optimization Suite/_build/html/_sources/hot_trending_content_engine.rst.txt`
+- `SEO Content Optimization Suite/_build/html/_sources/index.rst.txt`
+- `SEO Content Optimization Suite/_build/html/_sources/multi_platform_content_extractor.rst.txt`
+- `SEO Content Optimization Suite/_build/html/_sources/overview.rst.txt`
+- `SEO Content Optimization Suite/_build/html/_sources/strategies.rst.txt`
+- `SEO Content Optimization Suite/_build/html/_sources/youtube_seo_optimizer.rst.txt`
+- `SEO Content Optimization Suite/_build/html/_static/css/fonts/Roboto-Slab-Bold.woff`
+- `SEO Content Optimization Suite/_build/html/_static/css/fonts/Roboto-Slab-Bold.woff2`
+- `SEO Content Optimization Suite/_build/html/_static/css/fonts/Roboto-Slab-Regular.woff`
+- `SEO Content Optimization Suite/_build/html/_static/css/fonts/Roboto-Slab-Regular.woff2`
+- `SEO Content Optimization Suite/_build/html/_static/css/fonts/lato-bold-italic.woff`
+- `SEO Content Optimization Suite/_build/html/_static/css/fonts/lato-bold-italic.woff2`
+- `SEO Content Optimization Suite/_build/html/_static/css/fonts/lato-bold.woff`
+- `SEO Content Optimization Suite/_build/html/_static/css/fonts/lato-bold.woff2`
+- `SEO Content Optimization Suite/_build/html/_static/css/fonts/lato-normal-italic.woff`
+- `SEO Content Optimization Suite/_build/html/_static/css/fonts/lato-normal-italic.woff2`
+- `SEO Content Optimization Suite/_build/html/_static/css/fonts/lato-normal.woff`
+- `SEO Content Optimization Suite/_build/html/_static/css/fonts/lato-normal.woff2`
+- `SEO Content Optimization Suite/conf.py`
+- `SEO_CONTENT_STRATEGY/01_GENERATIVE_AUTOMATION_SUITE/MANIFEST.json`
+- `SEO_CONTENT_STRATEGY/01_GENERATIVE_AUTOMATION_SUITE/README.md`
+- `SEO_CONTENT_STRATEGY/01_GENERATIVE_AUTOMATION_SUITE/scripts/01_DEEP_SCAN_ALL_CONTENT.py`
+- `SEO_CONTENT_STRATEGY/01_GENERATIVE_AUTOMATION_SUITE/scripts/02_SUB_CATEGORIZE_BIG_FOLDERS.py`
+- `SEO_CONTENT_STRATEGY/01_GENERATIVE_AUTOMATION_SUITE/scripts/03_leonardo-instagram-build.py`
+- `SEO_CONTENT_STRATEGY/01_GENERATIVE_AUTOMATION_SUITE/scripts/04_unified_generation.py`
+- `SEO_CONTENT_STRATEGY/01_GENERATIVE_AUTOMATION_SUITE/scripts/05_instagram-sort.py`
+- `SEO_CONTENT_STRATEGY/01_GENERATIVE_AUTOMATION_SUITE/scripts/06_ai-deep-analyzer.py`
+- `SEO_CONTENT_STRATEGY/01_GENERATIVE_AUTOMATION_SUITE/scripts/07_podcast-studio.py`
+- `SEO_CONTENT_STRATEGY/01_GENERATIVE_AUTOMATION_SUITE/scripts/08_python_repo_analyzer.py`
+- `SEO_CONTENT_STRATEGY/01_GENERATIVE_AUTOMATION_SUITE/scripts/09_intelligent-renamer-1.py`
+- `SEO_CONTENT_STRATEGY/01_GENERATIVE_AUTOMATION_SUITE/scripts/10_deep-code.py`
+- `SEO_CONTENT_STRATEGY/01_GENERATIVE_AUTOMATION_SUITE/scripts/11_pyrepo_doc_organizer_from_file-utilities.py`
+- `SEO_CONTENT_STRATEGY/01_GENERATIVE_AUTOMATION_SUITE/scripts/12_scripty.py`
+- `SEO_CONTENT_STRATEGY/01_GENERATIVE_AUTOMATION_SUITE/scripts/13_intelligent-docs-builder.py`
+- `SEO_CONTENT_STRATEGY/01_GENERATIVE_AUTOMATION_SUITE/scripts/14_intelligent-code-orchestrator.py`
+- `SEO_CONTENT_STRATEGY/01_GENERATIVE_AUTOMATION_SUITE/scripts/15_ULTIMATE_FILE_MANAGER.py`
+- `SEO_CONTENT_STRATEGY/02_AI_WORKFLOW_AUTOMATION/MANIFEST.json`
+- `SEO_CONTENT_STRATEGY/02_AI_WORKFLOW_AUTOMATION/README.md`
+- `SEO_CONTENT_STRATEGY/02_AI_WORKFLOW_AUTOMATION/scripts/01_youtube_seo_optimizer.py`
+- `SEO_CONTENT_STRATEGY/02_AI_WORKFLOW_AUTOMATION/scripts/02_create-sphinx-docs.py`
+- `SEO_CONTENT_STRATEGY/02_AI_WORKFLOW_AUTOMATION/scripts/03_setup_social_media_automation_1.py`
+- `SEO_CONTENT_STRATEGY/03_CREATIVE_AUTOMATION_SUITE/README.md`
+- `SEO_CONTENT_STRATEGY/03_CREATIVE_AUTOMATION_SUITE/scripts/01_audio_video_editors_twitch.py`
+- `SEO_CONTENT_STRATEGY/03_CREATIVE_AUTOMATION_SUITE/scripts/02_instagram-root-scripts.py`
+- `SEO_CONTENT_STRATEGY/03_CREATIVE_AUTOMATION_SUITE/scripts/03_automation-selenium-content.py`
+- `SEO_CONTENT_STRATEGY/03_CREATIVE_AUTOMATION_SUITE/scripts/04_instagram-dom-tree.py`
+- `SEO_CONTENT_STRATEGY/03_CREATIVE_AUTOMATION_SUITE/scripts/05_instagram-directory-organizer.py`
+- `SEO_CONTENT_STRATEGY/03_CREATIVE_AUTOMATION_SUITE/scripts/06_migrate_remaining_fixed.py`
+- `SEO_CONTENT_STRATEGY/03_CREATIVE_AUTOMATION_SUITE/scripts/07_instagram-reorganize.py`
+- `SEO_CONTENT_STRATEGY/03_CREATIVE_AUTOMATION_SUITE/scripts/08_bot.py`
+- `SEO_CONTENT_STRATEGY/03_CREATIVE_AUTOMATION_SUITE/scripts/09_validate-json-reader.py`
+- `SEO_CONTENT_STRATEGY/03_CREATIVE_AUTOMATION_SUITE/scripts/10_instagram-download.py`
+- `SEO_CONTENT_STRATEGY/03_CREATIVE_AUTOMATION_SUITE/scripts/11_thumbnail.py`
+- `SEO_CONTENT_STRATEGY/03_CREATIVE_AUTOMATION_SUITE/scripts/12_social-platforms-instagram-bot-error.py`
+- `SEO_CONTENT_STRATEGY/03_CREATIVE_AUTOMATION_SUITE/scripts/13_all.py`
+- `SEO_CONTENT_STRATEGY/03_CREATIVE_AUTOMATION_SUITE/scripts/14_computer.py`
+- `SEO_CONTENT_STRATEGY/03_CREATIVE_AUTOMATION_SUITE/scripts/15_identify-leonardo-user-scripts.py`
+- `SEO_CONTENT_STRATEGY/04_AUTOMATED_SEO_DOMINATION/README.md`
+- `SEO_CONTENT_STRATEGY/04_AUTOMATED_SEO_DOMINATION/scripts/01_seo_domination_engine_v2.py`
+- `SEO_CONTENT_STRATEGY/04_AUTOMATED_SEO_DOMINATION/scripts/02_organize_and_optimize.py`
+- `SEO_CONTENT_STRATEGY/05_AI_CONTENT_PIPELINE/README.md`
+- `SEO_CONTENT_STRATEGY/05_AI_CONTENT_PIPELINE/scripts/01_intelligent_medium_automation.py`
+- `SEO_CONTENT_STRATEGY/2025-seo-kit.txt`
+- `SEO_CONTENT_STRATEGY/7-day-deployment-checklist.md`
+- `SEO_CONTENT_STRATEGY/ACTION_PLAN_SUMMARY.md`
+- `SEO_CONTENT_STRATEGY/ADVANCED_DEEPDIVE_SCATTERED_ASSETS_REPORT.md`
+- `SEO_CONTENT_STRATEGY/ADVANCED_HOME_REPORT_20251125_175509.md`
+- `SEO_CONTENT_STRATEGY/ADVANCED_VOLUMES_REPORT_20251125_211205.md`
+- `SEO_CONTENT_STRATEGY/AEO_SEO_OPTIMIZATION_GUIDE.md`
+- `SEO_CONTENT_STRATEGY/AI Presentation Generator.html`
+- `SEO_CONTENT_STRATEGY/AI automation-portfolio.txt`
+- `SEO_CONTENT_STRATEGY/AI_Art_Workflow_ASSETS.csv`
+- `SEO_CONTENT_STRATEGY/AI_TOOLS_QUICK_REFERENCE.md`
+- `SEO_CONTENT_STRATEGY/ALCHEMIST EXECUTION PACKAGE.md`
+- `SEO_CONTENT_STRATEGY/API_PYTHON_ECOSYSTEM_REPORT.md`
+- `SEO_CONTENT_STRATEGY/AUTOMATION_BOTS_QUICK_SUMMARY.txt`
+- `SEO_CONTENT_STRATEGY/Ai-INSTALL-apis.txt`
+- `SEO_CONTENT_STRATEGY/AiWorkFlowAlchemy.sublime-project`
+- `SEO_CONTENT_STRATEGY/AiWorkFlowAlchemy.sublime-workspace`
+- `SEO_CONTENT_STRATEGY/Analyzing-personal-ideas-and-suggestions---Claude-2025-11-28.md`
+- `SEO_CONTENT_STRATEGY/Analyzing_personal_ideas_and_suggestions.md`
+- `SEO_CONTENT_STRATEGY/Automation Alchemist Craetion.md`
+- `SEO_CONTENT_STRATEGY/BRAND-ALCHEMY-SEO-SKILL-UPDATED.md`
+- `SEO_CONTENT_STRATEGY/BRAND_ALCHEMY_SEO_DEMO.md`
+- `SEO_CONTENT_STRATEGY/CLI_TOOLS_GUIDE.md`
+- `SEO_CONTENT_STRATEGY/COMPLETE_ALL_EXECUTION_SUMMARY.md`
+- `SEO_CONTENT_STRATEGY/COMPLETE_ECOSYSTEM_MASTER.csv`
+- `SEO_CONTENT_STRATEGY/COMPLETE_FINAL_STATUS.md`
+- `SEO_CONTENT_STRATEGY/CONDA_FORGE_SETUP.md`
+- `SEO_CONTENT_STRATEGY/CONSOLIDATION_CHECKLIST.md`
+- `SEO_CONTENT_STRATEGY/CONSOLIDATION_HANDOFF.md`
+- `SEO_CONTENT_STRATEGY/CONSOLIDATION_PLAN.md`
+- `SEO_CONTENT_STRATEGY/CURSOR_AGENT_FIXED.md`
+- `SEO_CONTENT_STRATEGY/CURSOR_CHATS_EXPORT_COMPLETE.md`
+- `SEO_CONTENT_STRATEGY/Claude Conversations Setup.md`
+- `SEO_CONTENT_STRATEGY/Complete_SEO_Magic.md`
+- `SEO_CONTENT_STRATEGY/Creating something amazing with skill-creator.csv`
+- `SEO_CONTENT_STRATEGY/Creating_something_amazing_with_skill_creator (1).md`
+- `SEO_CONTENT_STRATEGY/Creating_something_amazing_with_skill_creator.csv`
+- `SEO_CONTENT_STRATEGY/Creating_something_amazing_with_skill_creator.html`
+- `SEO_CONTENT_STRATEGY/Creative_Automation_ASSETS.csv`
+- `SEO_CONTENT_STRATEGY/Creative_Automation_Portfolio_Strategy.md`
+- `SEO_CONTENT_STRATEGY/Cursor Chats Export-IMPROVEMENTS_COMPLETE.md`
+- `SEO_CONTENT_STRATEGY/DEEPREACH_QUICK_ACTIONS.md`
+- `SEO_CONTENT_STRATEGY/DEEP_CONTENT_REPORT.md`
+- `SEO_CONTENT_STRATEGY/DEEP_TRANSCRIPTION_PLAN.md`
+- `SEO_CONTENT_STRATEGY/DETAILED_STEP_BY_STEP_PLAN.md`
+- `SEO_CONTENT_STRATEGY/DOCUMENTATION_GUIDE.md`
+- `SEO_CONTENT_STRATEGY/DOCUMENTATION_OPTIONS.md`
+- `SEO_CONTENT_STRATEGY/DOCUMENTATION_SYSTEM_SUMMARY.md`
+- `SEO_CONTENT_STRATEGY/DUPLICATES_AND_MERGES_SUMMARY.md`
+- `SEO_CONTENT_STRATEGY/Data_organization_strategies_ANALYSIS.md`
+- `SEO_CONTENT_STRATEGY/Data_organization_strategies_COMPARISON.md`
+- `SEO_CONTENT_STRATEGY/Data_organization_strategies_SUMMARY.md`
+- `SEO_CONTENT_STRATEGY/Dr._Joseph_Rosado_Pioneering_Integrative_Medicine.txt`
+- `SEO_CONTENT_STRATEGY/GOOGLE_SHEETS_UPLOAD_INSTRUCTIONS.md`
+- `SEO_CONTENT_STRATEGY/GROK_DEEPDIVE_FINAL.md`
+- `SEO_CONTENT_STRATEGY/GROK_DEEPDIVE_SUMMARY.md`
+- `SEO_CONTENT_STRATEGY/GROK_INSTALLATION_SUMMARY.md`
+- `SEO_CONTENT_STRATEGY/Generative_Automation_ASSETS.csv`
+- `SEO_CONTENT_STRATEGY/HIGH_VALUE_SEO_OPPORTUNITIES.csv`
+- `SEO_CONTENT_STRATEGY/HOME_CLEANUP_PLAN.md`
+- `SEO_CONTENT_STRATEGY/HOT_TRENDING_AEO_SEO_COMPLETE.md`
+- `SEO_CONTENT_STRATEGY/HOT_TRENDING_QUICK_START.md`
+- `SEO_CONTENT_STRATEGY/IMMEDIATE_ACTIONS_20251125.md`
+- `SEO_CONTENT_STRATEGY/IMPLEMENTATION_GUIDE_$10K.md`
+- `SEO_CONTENT_STRATEGY/IMPROVED_ORGANIZATION_PLAN.md`
+- `SEO_CONTENT_STRATEGY/INTELLIGENT_CONTENT_AWARE_SUGGESTIONS.md`
+- `SEO_CONTENT_STRATEGY/INTELLIGENT_PYTHON_INVENTORY.csv`
+- `SEO_CONTENT_STRATEGY/JOB_SEARCH_2025_20251126_095500.csv`
+- `SEO_CONTENT_STRATEGY/MULTI_PLATFORM_QUICK_START.md`
+- `SEO_CONTENT_STRATEGY/MUSIC_CATALOG_MASTER.csv`
+- `SEO_CONTENT_STRATEGY/NOCTURNEMELODIES_FILES_INVENTORY.md`
+- `SEO_CONTENT_STRATEGY/NOCTURNEMELODIES_FILES_REPORT.md`
+- `SEO_CONTENT_STRATEGY/NOCTURNEMELODIES_MP3_DISCOGRAPHY_REPORT.md`
+- `SEO_CONTENT_STRATEGY/PACKAGE_MANAGER_GUIDE.md`
+- `SEO_CONTENT_STRATEGY/PASTE_EXPORT_COMPLETE.md`
+- `SEO_CONTENT_STRATEGY/PICTURES_CONSOLIDATION_HANDOFF_20251106_132617.md`
+- `SEO_CONTENT_STRATEGY/PROJECT_HANDOFF.md`
+- `SEO_CONTENT_STRATEGY/PYTHON_CONSOLIDATION_PLAN.md`
+- `SEO_CONTENT_STRATEGY/PYTHON_SETUP_SUMMARY.md`
+- `SEO_CONTENT_STRATEGY/Python Automation Repository.md`
+- `SEO_CONTENT_STRATEGY/REVENUE_PRIORITIZATION_MATRIX.md`
+- `SEO_CONTENT_STRATEGY/Riddle Quiz Posts Trends.pdf`
+- `SEO_CONTENT_STRATEGY/SALES_MASTER_SHEET.md`
+- `SEO_CONTENT_STRATEGY/SEO-Multi-Platform Handles.txt`
+- `SEO_CONTENT_STRATEGY/SEO_AUTOMATION_COMPLETE_CATALOG.md`
+- `SEO_CONTENT_STRATEGY/SEO_CONTENT_STRATEGY_2025.md`
+- `SEO_CONTENT_STRATEGY/SEO_EMPIRE_VISUAL_MAP.md`
+- `SEO_CONTENT_STRATEGY/SEO_YouTube_2025_Dataset/.git/hooks/push-to-checkout.sample`
+- `SEO_CONTENT_STRATEGY/SEO_YouTube_2025_Dataset/.git/index`
+- `SEO_CONTENT_STRATEGY/SEO_YouTube_2025_Dataset/.git/logs/HEAD`
+- `SEO_CONTENT_STRATEGY/SEO_YouTube_2025_Dataset/.git/logs/refs/remotes/origin/HEAD`
+- `SEO_CONTENT_STRATEGY/SEO_YouTube_2025_Dataset/.git/refs/heads/main`
+- `SEO_CONTENT_STRATEGY/SEO_YouTube_2025_Dataset/Creative Automation Engineer  AI Developer for Artists & Musicians  Python & AI Alchemist.md`
+- `SEO_CONTENT_STRATEGY/SEO_YouTube_2025_Dataset/README.md`
+- `SEO_CONTENT_STRATEGY/SEO_YouTube_2025_Dataset/SEO_youtube_2025_dataset_202504061614.csv`
+- `SEO_CONTENT_STRATEGY/SEO_YouTube_2025_Dataset/YouTube_2025_Data_Analysis_April2025.ipynb`
+- `SEO_CONTENT_STRATEGY/START_HERE_SEO_EMPIRE.md`
+- `SEO_CONTENT_STRATEGY/STEP_BY_STEP_ACTION_PLAN.md`
+- `SEO_CONTENT_STRATEGY/SYSTEM_ARCHITECTURE_MAP_20251125.md`
+- `SEO_CONTENT_STRATEGY/THE_DIGITAL_EMPIRE_NARRATIVE.md`
+- `SEO_CONTENT_STRATEGY/TOP_1-5_PERCENT_SEO_TRENDS_DUAL_DOMAIN_STRATEGY.md`
+- `SEO_CONTENT_STRATEGY/TOP_1-5_PERCENT_TRENDING_STRATEGY.md`
+- `SEO_CONTENT_STRATEGY/ULTIMATE_SEO_EMPIRE_COMPLETE_INVENTORY.md`
+- `SEO_CONTENT_STRATEGY/ULTRA_INTELLIGENT_CONTENT_AWARE_SCAN.md`
+- `SEO_CONTENT_STRATEGY/VERIFICATION_COMPLETE.md`
+- `SEO_CONTENT_STRATEGY/WHERE_TO_BEGIN.md`
+- `SEO_CONTENT_STRATEGY/YOUTUBE_SEO_STRATEGY.md`
+- `SEO_CONTENT_STRATEGY/YouTube 2025 Dataset-seo-README.md`
+- `SEO_CONTENT_STRATEGY/YouTube_2025_Data_Analysis_April2025.ipynb`
+- `SEO_CONTENT_STRATEGY/___THE_UNIFIED_ALCHEMY_STRATEGY___ONE_BRAND__INFINITE_POWER_export_2025-12-28T04-55.zip`
+- `SEO_CONTENT_STRATEGY/ai-optimizing-llm-accuracy.txt`
+- `SEO_CONTENT_STRATEGY/ai-professional-qnlysis.txt`
+- `SEO_CONTENT_STRATEGY/aiworkflowalchemy-landing-page.html`
+- `SEO_CONTENT_STRATEGY/analyzing_hot_rising_seo_trends.md`
+- `SEO_CONTENT_STRATEGY/avatararts-profit.txt`
+- `SEO_CONTENT_STRATEGY/batch_csv_analyzer.py`
+- `SEO_CONTENT_STRATEGY/brand-alchemy-seo.skill`
+- `SEO_CONTENT_STRATEGY/csv-html-sphinx-docs_generator.py`
+- `SEO_CONTENT_STRATEGY/csv_analyzer.py`
+- `SEO_CONTENT_STRATEGY/cursor_dual_domain_ai_and_automation_st.md`
+- `SEO_CONTENT_STRATEGY/cutting-edge AI tools and automation workflows-SESSION_HANDOFF_2025-12-04.md`
+- `SEO_CONTENT_STRATEGY/dalle-refind-img-generation.txt`
+- `SEO_CONTENT_STRATEGY/digitsl-dive-prompt-analyze.txt`
+- `SEO_CONTENT_STRATEGY/optimizing-css-for-dna-crime-research-f24798be.html`
+- `SEO_CONTENT_STRATEGY/seo aeo notion course.zip`
+- `SEO_CONTENT_STRATEGY/seo-aeo-personal_ideas_and_suggestions.html`
+- `SEO_CONTENT_STRATEGY/suno-organizerFINAL_SUMMARY.md`
+- `SEO_CONTENT_STRATEGY/youtube_2025_dataset_202504061614.csv`
+- `SEO_CONTENT_STRATEGY_2025.md`
+- `SEO_YouTube_2025_Dataset/.git/HEAD`
+- `SEO_YouTube_2025_Dataset/.git/config`
+- `SEO_YouTube_2025_Dataset/.git/description`
+- `SEO_YouTube_2025_Dataset/.git/hooks/applypatch-msg.sample`
+- `SEO_YouTube_2025_Dataset/.git/hooks/commit-msg.sample`
+- `SEO_YouTube_2025_Dataset/.git/hooks/fsmonitor-watchman.sample`
+- `SEO_YouTube_2025_Dataset/.git/hooks/post-update.sample`
+- `SEO_YouTube_2025_Dataset/.git/hooks/pre-applypatch.sample`
+- `SEO_YouTube_2025_Dataset/.git/hooks/pre-commit.sample`
+- `SEO_YouTube_2025_Dataset/.git/hooks/pre-merge-commit.sample`
+- `SEO_YouTube_2025_Dataset/.git/hooks/pre-push.sample`
+- `SEO_YouTube_2025_Dataset/.git/hooks/pre-rebase.sample`
+- `SEO_YouTube_2025_Dataset/.git/hooks/pre-receive.sample`
+- `SEO_YouTube_2025_Dataset/.git/hooks/prepare-commit-msg.sample`
+- `SEO_YouTube_2025_Dataset/.git/hooks/sendemail-validate.sample`
+- `SEO_YouTube_2025_Dataset/.git/hooks/update.sample`
+- `SEO_YouTube_2025_Dataset/.git/info/exclude`
+- `SEO_YouTube_2025_Dataset/.git/logs/HEAD`
+- `SEO_YouTube_2025_Dataset/.git/logs/refs/heads/main`
+- `SEO_YouTube_2025_Dataset/.git/logs/refs/remotes/origin/HEAD`
+- `SEO_YouTube_2025_Dataset/.git/objects/pack/pack-e7fbd617205a578e279dd913828794ac1bcb3879.idx`
+- `SEO_YouTube_2025_Dataset/.git/objects/pack/pack-e7fbd617205a578e279dd913828794ac1bcb3879.pack`
+- `SEO_YouTube_2025_Dataset/.git/objects/pack/pack-e7fbd617205a578e279dd913828794ac1bcb3879.rev`
+- `SEO_YouTube_2025_Dataset/.git/packed-refs`
+- `SEO_YouTube_2025_Dataset/.git/refs/remotes/origin/HEAD`
+- `SEO_YouTube_2025_Dataset/README.md`
+- `SEO_YouTube_2025_Dataset/SEO_METADATA_AVATARARTS.md`
+- `SEO_YouTube_2025_Dataset/SEO_youtube_2025_dataset_202504061614.csv`
+- `SEO_YouTube_2025_Dataset/YouTube_2025_Data_Analysis_April2025.ipynb`
+- `advanced_toolkit/1m-howto-HYBRIDTOFULLROADMAP.md`
+- `advanced_toolkit/1m-python-hybridDECISIONSUMMARY.md`
+- `advanced_toolkit/AI Art + Workflow Automation-SEO_COMPETITOR_ANALYSIS.md`
+- `advanced_toolkit/AI Art + Workflow Automation-SEO_COMPLETE_DOCUMENTATION_INDEX.md`
+- `advanced_toolkit/ALCHEMIST EXECUTION PACKAGE.md`
+- `advanced_toolkit/Advanced AI Systems Suite.md`
+- `advanced_toolkit/Advanced AI Systems complete_project_index.md`
+- `advanced_toolkit/SEO_CONTENT_CALENDAR_2025.md`
+- `advanced_toolkit/SEO_GITHUB_PAGES_PORTFOLIO.md`
+- `advanced_toolkit/SEO_HOMEPAGESTRATEGY.md`
+- `advanced_toolkit/SEO_IMPLEMENTATION_QUICKSTART.md`
+- `advanced_toolkit/SEO_METADATA_AVATARARTS.md`
+- `advanced_toolkit/SEO_METADATA_QUANTUMFORGE.md`
+- `advanced_toolkit/python-FULLPRODUCTSTRATEGY.md`
+- `advanced_toolkit/python-MODERNIZATION_COMPLETE.md`
+- `advanced_toolkit/python-info-INDEX.md`
+- `ai-ml-notes/ADVANCED_SEO_RESEARCH.md`
+- `ai-ml-notes/AI_sora-img-Branding_Chaos.md`
+- `ai-ml-notes/A_Complete_Creative_Framework_for_Your_Music_Colle.md`
+- `ai-ml-notes/Analyze_job_and_skills.md`
+- `ai-ml-notes/CLEANUP_RESULTS_SUMMARY.md`
+- `ai-ml-notes/CLEANUP_SUCCESS_REPORT.md`
+- `ai-ml-notes/COMPLETE_DIRECTORY_ORGANIZATION.md`
+- `ai-ml-notes/COMPLETE_ORGANIZATION_SUCCESS.md`
+- `ai-ml-notes/COMPREHENSIVE_SEO_AUDIT.md`
+- `ai-ml-notes/CONTENT_AWARE_RENAMING_RESULTS.md`
+- `ai-ml-notes/Comic_Trivia_Challenge.md`
+- `ai-ml-notes/Content-aware-deep-analysis-2025-10-15.md`
+- `ai-ml-notes/DEEP_DIVE_POLITICAL_NARRATIVE_2025_VIRAL_VISUAL.md`
+- `ai-ml-notes/DR_LAWRENCE_ADU_DETAILED_RESEARCH.md`
+- `ai-ml-notes/Etsy_and_TikTok_Store_Naming_Suggestions.md`
+- `ai-ml-notes/Explain-MCP-settings-2025-09-09.md`
+- `ai-ml-notes/FINAL_TOP_1_5_PERCENT_WEBSITE_ENHANCEMENT.md`
+- `ai-ml-notes/MASTER_INDEX.md`
+- `ai-ml-notes/MULTI_LAYER_CONNECTION_MAP.md`
+- `ai-ml-notes/PROFESSIONAL_FORMAT_UPGRADE_FRAMEWORK.md`
+- `ai-ml-notes/Phi_and_Fibonacci_The_Divine_Duality_of_Creation.md`
+- `ai-ml-notes/STEVEN_CHAPLINSKI_FREELANCE_ANALYSIS_2025.md`
+- `ai-ml-notes/STEVEN_FREELANCE_EXAMPLES_2025.md`
+- `ai-ml-notes/STEVEN_SKILLS_BREAKDOWN_DETAILED.md`
+- `ai-ml-notes/TOP_1_5_PERCENT_IMPROVEMENTS_IMPLEMENTED.md`
+- `ai-ml-notes/Tone_instruction_Please_ignore_all_previous_tone_i.md`
+- `ai-ml-notes/Top_5_High_Performing_Concepts.md`
+- `ai-ml-notes/VISUAL_COVERS.md`
+- `ai-ml-notes/Vision.md`
+- `ai-ml-notes/agents.md`
+- `ai-ml-notes/ai_art_packs.md`
+- `ai-ml-notes/ai_consulting_packages.md`
+- `ai-ml-notes/ai_fundamentals_course.md`
+- `ai-ml-notes/avatararts-hub - Central Hub System.md`
+- `ai-ml-notes/avatararts.org - Main Organization Website.md`
+- `ai-ml-notes/based_organization.md`
+- `ai-ml-notes/bulk_image_processor.md`
+- `ai-ml-notes/claude-txt-to-image.md`
+- `ai-ml-notes/daily-action-checklist.md`
+- `ai-ml-notes/digital-products.md`
+- `ai-ml-notes/dr-aduKey_Improvements_Made.md`
+- `ai-ml-notes/etsy-prompts-mcp-server.md`
+- `ai-ml-notes/fee_structures.md`
+- `ai-ml-notes/financial_projections.md`
+- `ai-ml-notes/gainesville-seo-tools.md`
+- `ai-ml-notes/gptjunkie_formatted_content.md`
+- `ai-ml-notes/hipaa-implementation-checklist.md`
+- `ai-ml-notes/homepage.md`
+- `ai-ml-notes/how to create a system of prices for services invo.md`
+- `ai-ml-notes/installwithvenv.md`
+- `ai-ml-notes/navigation_guide.md`
+- `ai-ml-notes/organization_summary.md`
+- `ai-ml-notes/profile-optimization.md`
+- `ai-ml-notes/project_analysis.md`
+- `ai-ml-notes/python-📚_TABLE_OF_CONTENTS.md`
+- `ai-ml-notes/python_cleanup_report.md`
+- `ai-ml-notes/python_scripts.md`
+- `ai-ml-notes/service-agreements.md`
+- `ai-ml-notes/service_packages.md`
+- `ai-ml-notes/shorts-01-9mb-rule.md`
+- `ai-ml-notes/tehSite - Steven Chaplinski's Creative Workspace.md`
+- `ai-ml-notes/terms_of_service.md`
+- `ai-ml-notes/top 2 5 analytics (1).md`
+- `ai-ml-notes/transcriber.md`
+- `ai-ml-notes/updated-positioning.md`
+- `ai-ml-notes/wall_art.md`
+- `ai-ml-notes/yt-dlp.md`
+- `ai-sites/.git/FETCH_HEAD`
+- `ai-sites/.git/HEAD`
+- `ai-sites/.git/config`
+- `ai-sites/.git/description`
+- `ai-sites/.git/hooks/applypatch-msg.sample`
+- `ai-sites/.git/hooks/commit-msg.sample`
+- `ai-sites/.git/hooks/fsmonitor-watchman.sample`
+- `ai-sites/.git/hooks/post-update.sample`
+- `ai-sites/.git/hooks/pre-applypatch.sample`
+- `ai-sites/.git/hooks/pre-commit.sample`
+- `ai-sites/.git/hooks/pre-merge-commit.sample`
+- `ai-sites/.git/hooks/pre-push.sample`
+- `ai-sites/.git/hooks/pre-rebase.sample`
+- `ai-sites/.git/hooks/pre-receive.sample`
+- `ai-sites/.git/hooks/prepare-commit-msg.sample`
+- `ai-sites/.git/hooks/push-to-checkout.sample`
+- `ai-sites/.git/hooks/sendemail-validate.sample`
+- `ai-sites/.git/hooks/update.sample`
+- `ai-sites/.git/info/exclude`
+- `ai-sites/00_SEO_Master_Index.md/00_SEO_Master_Index.md`
+- `ai-sites/00_SEO_Master_Index.md/01_Master_SEO_Analysis_Template.md`
+- `ai-sites/00_SEO_Master_Index.md/02_Technical_SEO_Strategy.md`
+- `ai-sites/00_SEO_Master_Index.md/03_Content_SEO_Strategy.md`
+- `ai-sites/00_SEO_Master_Index.md/04_Video_SEO_Strategy.md`
+- `ai-sites/00_SEO_Master_Index.md/05_SEO_Business_Templates.md`
+- `ai-sites/00_SEO_Master_Index.md/06_SEO_Resources_Tools.md`
+- `ai-sites/00_SEO_Master_Index.md/seo-monthly-keys.xlsx`
+- `ai-sites/AvaTarArTs_html_Artistic_Bio_Creation.html`
+- `ai-sites/AvatarArts_MERGED - Master Archive.md`
+- `ai-sites/COMPLETE_CHAT_EXPORT.md`
+- `ai-sites/COMPLETE_ENVIRONMENT_INTEGRATION.sh`
+- `ai-sites/COMPREHENSIVE_IMPROVEMENTS_AND_AMENDMENTS.md`
+- `ai-sites/Dr. Lawrence Adu - Professional Medical Practice Website.md`
+- `ai-sites/EMPIRE_AUTOMATION_MASTER.sh`
+- `ai-sites/INTELLIGENT_ENVIRONMENT_ANALYZER.py`
+- `ai-sites/MASTER_CREATIVE_AI_EMPIRE_LAUNCHER.sh`
+- `ai-sites/MASTER_IMPROVEMENTS_SUMMARY.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/1requirements.txt`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/2025_PROFESSIONAL_WEBSITE_SUMMARY.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/5dcc43ce-4530-4fb1-bae1-39081659f019.txt`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/AI-SETUP-README.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/AI_APIS_REFERENCE.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/AI_INTEGRATION_GUIDE.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/AVATARARTS_HOW_TO_RUN.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/AVATARARTS_INTEGRATION_GUIDE.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/AVATARARTS_RESTRUCTURING_COMPLETE.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/AVATARARTS_RESTRUCTURING_INDEX.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/AnatarArts-Auto-Portfolio.txt`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/Best_Name_for_Your_AI_Platform.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/COMPLETE_ORGANIZATION_SUCCESS.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/COMPLETE_PORTFOLIO_ANALYSIS_SYSTEM.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/COMPLETE_PROJECT_REPORT.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/COMPREHENSIVE_ANALYSIS_COMPLETE.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/COMPREHENSIVE_CONVERSATION_ANALYSIS_DEEP_RESEARCH_TOPIC_SYNTHESIS.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/COMPREHENSIVE_CREATIVE_PORTFOLIO_ANALYSIS_THE_COMPLETE_ARTISTIC_ECOSYSTEM.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/COMPREHENSIVE_DEEP_ANALYSIS_HTML_FILE_MANAGEMENT_ECOSYSTEM.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/COMPREHENSIVE_DOCUMENTS_ANALYSIS_THE_COMPLETE_PROFESSIONAL_PORTFOLIO.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/COMPREHENSIVE_FREELANCE_SKILLS_&_PRICING_GUID.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/COMPREHENSIVE_MERGE_PLAN.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/COMPREHENSIVE_MERGE_REPORT.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/COMPREHENSIVE_ORIGINAL_ANALYSIS_REPORT.pdf`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/COMPREHENSIVE_PROFESSIONAL_ROLE_ANALYSIS.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/COMPREHENSIVE_TEHSITES_DEEP_ANALYSIS.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/CONVERSATION_EXPORT_SYSTEM.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/CREATIVE_ENHANCEMENT_SUMMARY.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/Comprehensive_Deepreach_Analysis_Complete.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/Comprehensive_Sort.txt_Analysis_Complete.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/DEEP_DIVE_ADVANCED_PROFESSIONAL_ANALYSIS.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/DEEP_FOLDER_ANALYSIS_REPORT.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/DEEP_TECH_STARTUP_IPO_ANALYSIS_SUCCESS_PATTERNS_IMPLEMENTATION.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/FILES_CREATED.txt`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/FINAL_DR_ADU_ORGANIZATION_SUMMARY.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/FINAL_MERGE_REPORT.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/GOOGLE_ANALYTICS_SETUP.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/HIDDEN_REVENUE_GOLDMINES_MARKETS_YOURE_MISSING.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/INSTALL-ai-apis.txt`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/ISSUE_TEMPLATE.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/LLM-engineer-handbook.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/MASTER_ORGANIZATION_SUMMARY.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/MAX_DEPTH_ANALYSIS_REPORT.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/MERGE_REPORT.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/MOVE_MERGE_REMOVE_REPORT.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/NAVIGATION.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/PROJECT_COMPILATION_README.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/PROJECT_OVERVIEW.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/PROJECT_SUMMARY.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/Python_Prof_Skills_Gall.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/QUANTUMFORGELABS_DUPLICATE_REMOVAL_REPORT.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/QUANTUMFORGELABS_FINAL_CONSOLIDATION_REPORT.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/QUANTUM_AI_AUTOMATION_BRAND_STRATEGY.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/QUANTUM_AI_EMPIRE-_ADVANCED_IMPLEMENTATION_&_SCALING_STRATEGY.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/QUANTUM_AI_EMPIRE-_ADVANCED_IMPLEMENTATION_&_SCALING_STRATEGYs.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/QUICK_START.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/QuantumForgeLabs-SiteSetup.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/README.txt`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/REVIEW_MANAGEMENT_SYSTEM.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/Research_cleaning_business_IMPROVED.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/SEO_CONTINUOUS_IMPROVEMENT_PLAN.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/SERVICES_101_GUIDE.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/SERVICES_PROVIDED_BREAKDOWN.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/SETUP_INSTRUCTIONS.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/SOCIAL_MEDIA_TEMPLATES.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/STYLE_IMPROVEMENTS_GUIDE.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/Site_Structure_for_QuantumForgeLabs.txt`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/Steven’s_Digital_Ecosystem_-_Comprehensive_AnalysisREADME.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/THE_500000_BLUEPRINT_FROM_VISION_TO_REALITY.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/THE_NOVICES_GUIDE_TO_REVENUE_GENERATION_FROM_ZERO_TO_MILLIONAIRE.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/THE_POLYMATH_MASTER-_YOUR_MULTI-DOMAIN_GENIUS_ADVANTAGE.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/THE_PRODIGYS_PATH_FROM_SELF_TAUGHT_VISIONARY_TO_TECH_TITAN.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/THE_ULTIMATE_MONEY_MAKING_MACHINE_MAXIMUM_REVENUE_EXTRACTION.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/ULTIMATE_COMPREHENSIVE_DEEP_REACH_ANALYSIS_COMPLETE.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/ULTIMATE_DEEP_REACH_ANALYSIS_COMPLETES.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/ULTRA_COMPREHENSIVE_DEEP_ANALYSIS_THE_COMPLETE_ECOSYSTEM.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/ULTRA_DEEP_COMPREHENSIVE_INDEX.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/ULTRA_DEEP_FOLDER_ANALYSIS_REPORT.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/Visual_Dashboard_System_Created.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/WEBSITE_101_GUIDE.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/WEBSITE_ANALYSIS_REPORT.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/WEBSITE_STRUCTURE_DOCUMENTATION.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/analysis_report.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/analyze text for YouTube Shorts using OpenAI GPT.txt`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/api-endpoints.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/bubble-top.txt`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/buggy.txt`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/directory_index.txt`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/image_data.txt`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/index.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/organization_summary.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/package-manager-setup.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/packages.txt`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/pics.txt`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/prompts.txt`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/proxys.txt`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/python-audit.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/python-detailed-info.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/python-project-template.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/quantumforgelabs-content-plan.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/simple_summary_report.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/song-title-aspect-template.txt`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/welcome-to-astro.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/welcome-to-gatsby.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/documents/welcome-to-hugo.md`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/500k-blueprint.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/COMPLETE_DATA_PROCESSING_PLAN.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/COMPREHENSIVE_CURSOR_AGENT_COMPILATION.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/COMPREHENSIVE_STRATEGIC_ANALYSIS_REPORT.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/CURSOR_AGENT_COMPARATIVE_ANALYSIS.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/ComprehensiveSEOAnalysisDailyAI.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/DEEP_CONTENT_AWARE_ANALYSIS_REPORT.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/Directory_Explorer.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/ORGANIZED_CONTENT_ANALYSIS_REPORT.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/ROOT_SITE_STRUCTURE.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/SEO_branding_analysis.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/_downloads.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/ai-quantum.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/artist-story.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/asamantyhinketh-song.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/batched_content_analyzer.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/blog.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/build_portfolio.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/business-revenue.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/case-studies.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/challenges.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/collaboration.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/common.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/community.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/comprehensive-analysis-complete.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/comprehensive-professional-role-analysis.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/comprehensive-tehsites-analysis.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/comprehensive_chat_organizer.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/content_aware_analyzer.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/creative-portfolio-analysis.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/creative_tts_generator.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/dallemod.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/dark.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/deep-dive-professional-analysis.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/deepreach-analysis-complete.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/demo_emotional_generator.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/demo_mp3_generator.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/direct_content_analyzer.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/discography_merger.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/downloads-deep-analysis.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/emotional_quiz_generator.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/emotional_tts_generator.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/enhanced_batch_gallery_generator.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/enhanced_content_analyzer.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/enhanced_gallery.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/epic-assessments.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/epic-professional-assessment.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/expertise.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/fixed_chat_organizer.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/freelance-analysis-2025.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/freelance-examples-2025.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/gallery.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/gallery_build.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/gallery_init.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/generate_layouts.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/generate_mp3s.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/genindex.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/html-file-management-ecosystem.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/index_1.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/interactive.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/linkd-scrape.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/live-portfolio.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/mush.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/navigation.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/optimization_recommendations.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/portfolio-analysis.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/portfolio-showcase.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/priority-api-setup.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/process.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/professional_portfolio_analysis.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/quantum-ai-automation-strategy.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/quantum-ai-empire.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/run_business.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/search.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/services-detailed.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/simple_deep_reader.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/simple_discography_processor.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/skill_competency_matrix.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/skills-breakdown-detailed.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/skills.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/sort-analysis-complete.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/sort-analysis.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/statistics.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/store.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/system-tools.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/test.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/testimonials.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/ultimate-comprehensive-analysis.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/ultimate-money-machine.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/ultra-comprehensive-analysis.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/visual-dashboard-system.html`
+- `ai-sites/New_Folder_With_Items_3_ORGANIZED/html_files/Λ∀ʌ†ʌʀ_∆ʀ†s_-Tester_1.html`
+- `ai-sites/ORGANIZED/data/localbusiness.json`
+- `ai-sites/ORGANIZED/data/sitemap.xml`
+- `ai-sites/ORGANIZED/documents/CLIENT_REPORT_NON_TECHNICAL.md`
+- `ai-sites/ORGANIZED/documents/FINAL_DR_ADU_ORGANIZATION_SUMMARY.md`
+- `ai-sites/ORGANIZED/documents/ORGANIZATION_SUMMARY.md`
+- `ai-sites/ORGANIZED/documents/batch_001_enhanced_analysis.md`
+- `ai-sites/ORGANIZED/documents/robots.txt`
+- `ai-sites/ORGANIZED/html_files/about.html`
+- `ai-sites/ORGANIZED/html_files/contact.html`
+- `ai-sites/ORGANIZED/html_files/mental-health-services.html`
+- `ai-sites/ORGANIZED/html_files/neurostar-tms.html`
+- `ai-sites/ORGANIZED/html_files/ocala.html`
+- `ai-sites/ORGANIZED/html_files/portfolio.html`
+- `ai-sites/ORGANIZED/html_files/technical-analysis.html`
+- `ai-sites/ORGANIZED/html_files/video-content.html`
+- `ai-sites/ORGANIZED/images/favicon.svg`
+- `ai-sites/Static HTML:CSS:JS Project.md`
+- `ai-sites/Steven Chaplinski - Digital Artist Portfolio.md`
+- `ai-sites/Unified Creative Automation Workspace - Professional Analysis/README.md`
+- `ai-sites/Unified Creative Automation Workspace - Professional Analysis/requirements.txt`
+- `ai-sites/alchemy.html`
+- `ai-sites/avatararts-hub - Central Hub System.md`
+- `ai-sites/avatararts-portfolio - Portfolio Showcase.md`
+- `ai-sites/avatararts-static-gall.html`
+- `ai-sites/avatararts.org - Main Organization Website.md`
+- `ai-sites/content_management_system.py`
+- `ai-sites/creative-ai-education/README.md`
+- `ai-sites/creative-ai-education/scripts/launch_education.sh`
+- `ai-sites/creative-ai-marketplace/README.md`
+- `ai-sites/creative-ai-marketplace/scripts/launch_marketplace.sh`
+- `ai-sites/dalle-fix/.history/2_20250107114908.html`
+- `ai-sites/dalle-fix/.history/2_20250107114925.html`
+- `ai-sites/dalle-fix/.history/css/dalle_20250107122412.css`
+- `ai-sites/dalle-fix/.history/css/dalle_20250107122450.css`
+- `ai-sites/dalle-fix/.history/css/main_20250107122301.css`
+- `ai-sites/dalle-fix/.history/css/main_20250107122305.css`
+- `ai-sites/dalle-fix/.history/css/main_20250107122315.css`
+- `ai-sites/dalle-fix/.history/css/main_20250107122317.css`
+- `ai-sites/dalle-fix/.history/css/main_20250107122402.css`
+- `ai-sites/dalle-fix/.history/dallemod_20250107115758.html`
+- `ai-sites/dalle-fix/.history/dallemod_20250107120030.html`
+- `ai-sites/dalle-fix/.history/dark_20250107113246.html`
+- `ai-sites/dalle-fix/.history/dark_20250107113249.html`
+- `ai-sites/dalle-fix/.history/dark_20250107113648.html`
+- `ai-sites/dalle-fix/.history/index_20250107112636.html`
+- `ai-sites/dalle-fix/.history/index_20250107112639.html`
+- `ai-sites/dalle-fix/.history/index_20250107114637.html`
+- `ai-sites/dalle-fix/.history/index_20250107115314.html`
+- `ai-sites/dalle-fix/.history/index_20250107120315.html`
+- `ai-sites/dalle-fix/.history/index_20250107120437.html`
+- `ai-sites/dalle-fix/.history/index_20250107120556.html`
+- `ai-sites/dalle-fix/.history/index_20250107120601.html`
+- `ai-sites/dalle-fix/.history/index_20250107121539.html`
+- `ai-sites/dalle-fix/.history/index_20250107121552.html`
+- `ai-sites/dalle-fix/.history/index_20250107121826.html`
+- `ai-sites/dalle-fix/.history/index_20250107122527.html`
+- `ai-sites/dalle-fix/.history/index_20250107122543.html`
+- `ai-sites/dalle-fix/.history/index_20250107122621.html`
+- `ai-sites/dalle-fix/.history/index_20250107122622.html`
+- `ai-sites/dalle-fix/.history/index_20250107122637.html`
+- `ai-sites/dalle-fix/.history/test_20250107121452.html`
+- `ai-sites/dalle-fix/.history/test_20250107121455.html`
+- `ai-sites/dalle-fix/.history/test_20250107121504.html`
+- `ai-sites/dalle-fix/css/dalle.css`
+- `ai-sites/dalle-fix/css/info.css`
+- `ai-sites/dalle-fix/css/land.css`
+- `ai-sites/dalle-fix/dallemod.html`
+- `ai-sites/dalle-fix/dark.html`
+- `ai-sites/dalle-fix/index.html`
+- `ai-sites/dalle-fix/test.html`
+- `ai-sites/disco/.history/css/main_20250505170250.css`
+- `ai-sites/disco/.history/css/main_20250603112414.css`
+- `ai-sites/disco/.history/css/main_20250603112422.css`
+- `ai-sites/disco/.history/disco25-black_20250603113118.html`
+- `ai-sites/disco/.history/disco25-black_20250603113435.html`
+- `ai-sites/disco/.history/disco25-black_20250603115144.html`
+- `ai-sites/disco/.history/disco25-black_20250603115146.html`
+- `ai-sites/disco/.history/disco25-black_20250603115148.html`
+- `ai-sites/disco/.history/disco25-black_20250603115230.html`
+- `ai-sites/disco/.history/disco25-black_20250603115242.html`
+- `ai-sites/disco/.history/disco25-black_20250603115249.html`
+- `ai-sites/disco/.history/disco25-black_20250603115303.html`
+- `ai-sites/disco/css/main.css`
+- `ai-sites/disco/css/photoswipe.css`
+- `ai-sites/disco/disco-mp3.html`
+- `ai-sites/disco/disco-test.html`
+- `ai-sites/disco/image/02.jpg`
+- `ai-sites/disco/image/05.jpg`
+- `ai-sites/disco/image/07.jpg`
+- `ai-sites/disco/image/09.jpg`
+- `ai-sites/disco/image/100.jpg`
+- `ai-sites/disco/image/103.jpg`
+- `ai-sites/disco/image/105.jpg`
+- `ai-sites/disco/image/110.jpg`
+- `ai-sites/disco/image/112.jpg`
+- `ai-sites/disco/image/114.jpg`
+- `ai-sites/disco/image/117.jpg`
+- `ai-sites/disco/image/118.jpg`
+- `ai-sites/disco/image/120.jpg`
+- `ai-sites/disco/image/122.jpg`
+- `ai-sites/disco/image/123.jpg`
+- `ai-sites/disco/image/125.jpg`
+- `ai-sites/disco/image/127.jpg`
+- `ai-sites/disco/image/128.jpg`
+- `ai-sites/disco/image/130.jpg`
+- `ai-sites/disco/image/135.jpg`
+- `ai-sites/disco/image/137.jpg`
+- `ai-sites/disco/image/140.jpg`
+- `ai-sites/disco/image/142.jpg`
+- `ai-sites/disco/image/143.jpg`
+- `ai-sites/disco/image/146.jpg`
+- `ai-sites/disco/image/152.jpg`
+- `ai-sites/disco/image/153.jpg`
+- `ai-sites/disco/image/156.jpg`
+- `ai-sites/disco/image/162.jpg`
+- `ai-sites/disco/image/170.jpg`
+- `ai-sites/disco/image/174.jpg`
+- `ai-sites/disco/image/177.jpg`
+- `ai-sites/disco/image/178.jpg`
+- `ai-sites/disco/image/181.jpg`
+- `ai-sites/disco/image/182.jpg`
+- `ai-sites/disco/image/191.jpg`
+- `ai-sites/disco/image/216.jpg`
+- `ai-sites/disco/image/219.jpg`
+- `ai-sites/disco/image/222.jpg`
+- `ai-sites/disco/image/226.jpg`
+- `ai-sites/disco/image/229.jpg`
+- `ai-sites/disco/image/232.jpg`
+- `ai-sites/disco/image/249.jpg`
+- `ai-sites/disco/image/25.jpg`
+- `ai-sites/disco/image/271.jpg`
+- `ai-sites/disco/image/272.jpg`
+- `ai-sites/disco/image/274.jpg`
+- `ai-sites/disco/image/275.jpg`
+- `ai-sites/disco/image/28.jpg`
+- `ai-sites/disco/image/291.jpg`
+- `ai-sites/disco/image/294.jpg`
+- `ai-sites/disco/image/297.jpg`
+- `ai-sites/disco/image/300.jpg`
+- `ai-sites/disco/image/308.jpg`
+- `ai-sites/disco/image/311.jpg`
+- `ai-sites/disco/image/313.jpg`
+- `ai-sites/disco/image/315.jpg`
+- `ai-sites/disco/image/317.jpg`
+- `ai-sites/disco/image/318.jpg`
+- `ai-sites/disco/image/320.jpg`
+- `ai-sites/disco/image/328.jpg`
+- `ai-sites/disco/image/33.jpg`
+- `ai-sites/disco/image/332.jpg`
+- `ai-sites/disco/image/335.jpg`
+- `ai-sites/disco/image/338.jpg`
+- `ai-sites/disco/image/341.jpg`
+- `ai-sites/disco/image/344.jpg`
+- `ai-sites/disco/image/347.jpg`
+- `ai-sites/disco/image/35.jpg`
+- `ai-sites/disco/image/350.jpg`
+- `ai-sites/disco/image/357.jpg`
+- `ai-sites/disco/image/358.jpg`
+- `ai-sites/disco/image/359.jpg`
+- `ai-sites/disco/image/361.jpg`
+- `ai-sites/disco/image/363.jpg`
+- `ai-sites/disco/image/365.jpg`
+- `ai-sites/disco/image/367.jpg`
+- `ai-sites/disco/image/37.jpg`
+- `ai-sites/disco/image/370.jpg`
+- `ai-sites/disco/image/372.jpg`
+- `ai-sites/disco/image/374.jpg`
+- `ai-sites/disco/image/376.jpg`
+- `ai-sites/disco/image/379.jpg`
+- `ai-sites/disco/image/382.jpg`
+- `ai-sites/disco/image/383.jpg`
+- `ai-sites/disco/image/384.jpg`
+- `ai-sites/disco/image/387.jpg`
+- `ai-sites/disco/image/389.jpg`
+- `ai-sites/disco/image/391.jpg`
+- `ai-sites/disco/image/394.jpg`
+- `ai-sites/disco/image/395.jpg`
+- `ai-sites/disco/image/397.jpg`
+- `ai-sites/disco/image/399.jpg`
+- `ai-sites/disco/image/40.jpg`
+- `ai-sites/disco/image/405.jpg`
+- `ai-sites/disco/image/406.jpg`
+- `ai-sites/disco/image/408.jpg`
+- `ai-sites/disco/image/409.jpg`
+- `ai-sites/disco/image/410.jpg`
+- `ai-sites/disco/image/414.jpg`
+- `ai-sites/disco/image/415.jpg`
+- `ai-sites/disco/image/417.jpg`
+- `ai-sites/disco/image/419.jpg`
+- `ai-sites/disco/image/42.jpg`
+- `ai-sites/disco/image/421.jpg`
+- `ai-sites/disco/image/422.jpg`
+- `ai-sites/disco/image/425.jpg`
+- `ai-sites/disco/image/426.jpg`
+- `ai-sites/disco/image/433.jpg`
+- `ai-sites/disco/image/439.jpg`
+- `ai-sites/disco/image/441.jpg`
+- `ai-sites/disco/image/445.jpg`
+- `ai-sites/disco/image/449.jpg`
+- `ai-sites/disco/image/453.jpg`
+- `ai-sites/disco/image/454.jpg`
+- `ai-sites/disco/image/455.jpg`
+- `ai-sites/disco/image/456.jpg`
+- `ai-sites/disco/image/457.jpg`
+- `ai-sites/disco/image/458.jpg`
+- `ai-sites/disco/image/459.jpg`
+- `ai-sites/disco/image/460.jpg`
+- `ai-sites/disco/image/465.jpg`
+- `ai-sites/disco/image/466.jpg`
+- `ai-sites/disco/image/475.jpg`
+- `ai-sites/disco/image/478.jpg`
+- `ai-sites/disco/image/479.jpg`
+- `ai-sites/disco/image/48.jpg`
+- `ai-sites/disco/image/480.jpg`
+- `ai-sites/disco/image/482.jpg`
+- `ai-sites/disco/image/484.jpg`
+- `ai-sites/disco/image/485.jpg`
+- `ai-sites/disco/image/486.jpg`
+- `ai-sites/disco/image/488.jpg`
+- `ai-sites/disco/image/489.jpg`
+- `ai-sites/disco/image/49.jpg`
+- `ai-sites/disco/image/490.jpg`
+- `ai-sites/disco/image/492.jpg`
+- `ai-sites/disco/image/493.jpg`
+- `ai-sites/disco/image/494.jpg`
+- `ai-sites/disco/image/495.jpg`
+- `ai-sites/disco/image/496.jpg`
+- `ai-sites/disco/image/497.jpg`
+- `ai-sites/disco/image/498.jpg`
+- `ai-sites/disco/image/499.jpg`
+- `ai-sites/disco/image/500.jpg`
+- `ai-sites/disco/image/501.jpg`
+- `ai-sites/disco/image/502.jpg`
+- `ai-sites/disco/image/503.jpg`
+- `ai-sites/disco/image/506.jpg`
+- `ai-sites/disco/image/507.jpg`
+- `ai-sites/disco/image/508.jpg`
+- `ai-sites/disco/image/509.jpg`
+- `ai-sites/disco/image/51.jpg`
+- `ai-sites/disco/image/510.jpg`
+- `ai-sites/disco/image/512.jpg`
+- `ai-sites/disco/image/513.jpg`
+- `ai-sites/disco/image/514.jpg`
+- `ai-sites/disco/image/515.jpg`
+- `ai-sites/disco/image/516.jpg`
+- `ai-sites/disco/image/517.jpg`
+- `ai-sites/disco/image/518.jpg`
+- `ai-sites/disco/image/519.jpg`
+- `ai-sites/disco/image/520.jpg`
+- `ai-sites/disco/image/521.jpg`
+- `ai-sites/disco/image/522.jpg`
+- `ai-sites/disco/image/523.jpg`
+- `ai-sites/disco/image/524.jpg`
+- `ai-sites/disco/image/525.jpg`
+- `ai-sites/disco/image/526.jpg`
+- `ai-sites/disco/image/527.jpg`
+- `ai-sites/disco/image/528.jpg`
+- `ai-sites/disco/image/529.jpg`
+- `ai-sites/disco/image/53.jpg`
+- `ai-sites/disco/image/530.jpg`
+- `ai-sites/disco/image/531.jpg`
+- `ai-sites/disco/image/532.jpg`
+- `ai-sites/disco/image/533.jpg`
+- `ai-sites/disco/image/534.jpg`
+- `ai-sites/disco/image/535.jpg`
+- `ai-sites/disco/image/536.jpg`
+- `ai-sites/disco/image/537.jpg`
+- `ai-sites/disco/image/538.jpg`
+- `ai-sites/disco/image/539.jpg`
+- `ai-sites/disco/image/54.jpg`
+- `ai-sites/disco/image/540.jpg`
+- `ai-sites/disco/image/541.jpg`
+- `ai-sites/disco/image/542.jpg`
+- `ai-sites/disco/image/543.jpg`
+- `ai-sites/disco/image/544.jpg`
+- `ai-sites/disco/image/545.jpg`
+- `ai-sites/disco/image/546.jpg`
+- `ai-sites/disco/image/547.jpg`
+- `ai-sites/disco/image/548.jpg`
+- `ai-sites/disco/image/549.jpg`
+- `ai-sites/disco/image/55.jpg`
+- `ai-sites/disco/image/550.jpg`
+- `ai-sites/disco/image/552.jpg`
+- `ai-sites/disco/image/553.jpg`
+- `ai-sites/disco/image/554.jpg`
+- `ai-sites/disco/image/555.jpg`
+- `ai-sites/disco/image/557.jpg`
+- `ai-sites/disco/image/558.jpg`
+- `ai-sites/disco/image/559.jpg`
+- `ai-sites/disco/image/56.jpg`
+- `ai-sites/disco/image/560.jpg`
+- `ai-sites/disco/image/561.jpg`
+- `ai-sites/disco/image/562.jpg`
+- `ai-sites/disco/image/563.jpg`
+- `ai-sites/disco/image/58.jpg`
+- `ai-sites/disco/image/59.jpg`
+- `ai-sites/disco/image/61.jpg`
+- `ai-sites/disco/image/65.jpg`
+- `ai-sites/disco/image/66.jpg`
+- `ai-sites/disco/image/69.jpg`
+- `ai-sites/disco/image/70.jpg`
+- `ai-sites/disco/image/71.jpg`
+- `ai-sites/disco/image/73.jpg`
+- `ai-sites/disco/image/76.jpg`
+- `ai-sites/disco/image/79.jpg`
+- `ai-sites/disco/image/80.jpg`
+- `ai-sites/disco/image/83.jpg`
+- `ai-sites/disco/image/84.jpg`
+- `ai-sites/disco/image/86.jpg`
+- `ai-sites/disco/image/88.jpg`
+- `ai-sites/disco/image/90.jpg`
+- `ai-sites/disco/image/92.jpg`
+- `ai-sites/disco/image/94.jpg`
+- `ai-sites/disco/image/96.jpg`
+- `ai-sites/disco/image/97.jpg`
+- `ai-sites/disco/image/99.jpg`
+- `ai-sites/disco/images/thumbnails/103.jpg`
+- `ai-sites/disco/images/thumbnails/123.jpg`
+- `ai-sites/disco/images/thumbnails/125.jpg`
+- `ai-sites/disco/images/thumbnails/271.jpg`
+- `ai-sites/disco/images/thumbnails/275.jpg`
+- `ai-sites/disco/images/thumbnails/33.jpg`
+- `ai-sites/disco/images/thumbnails/408.jpg`
+- `ai-sites/disco/images/thumbnails/409.jpg`
+- `ai-sites/disco/images/thumbnails/414.jpg`
+- `ai-sites/disco/images/thumbnails/421.jpg`
+- `ai-sites/disco/images/thumbnails/426.jpg`
+- `ai-sites/disco/images/thumbnails/44.jpg`
+- `ai-sites/disco/images/thumbnails/448.jpg`
+- `ai-sites/disco/images/thumbnails/459.jpg`
+- `ai-sites/disco/images/thumbnails/74.jpg`
+- `ai-sites/disco/images/thumbnails/86.jpg`
+- `ai-sites/disco/images/thumbnails/92.jpg`
+- `ai-sites/disco/images/thumbnails/94.jpg`
+- `ai-sites/disco/index.html`
+- `ai-sites/disco/mp3/Beautiful Mess_transcription.txt`
+- `ai-sites/disco/mp3/Beautiful_Mess_Whimsical_Story/Beautiful_Mess_Whimsical_Story_analysis_1_1.txt`
+- `ai-sites/disco/mp3/Blues in the Alley Haunted Strings Nocturnal Notes_transcription.txt`
+- `ai-sites/disco/mp3/Blues in the Moonlit Nights_transcription.txt`
+- `ai-sites/disco/mp3/Blues-in-the-Moonlit-Nights/Blues-in-the-Moonlit-Nights_transcript.txt`
+- `ai-sites/disco/mp3/ChatGPT_Conversation (2).txt`
+- `ai-sites/disco/mp3/Dance Like Nobody's Watching_transcription.txt`
+- `ai-sites/disco/mp3/Down_the_Witchs_Road/Down_the_Witchs_Road_transcript_1_1.txt`
+- `ai-sites/disco/mp3/Dusty_Rhymes_and_Grime/Dusty_Rhymes_and_Grime_analysis_1_1.txt`
+- `ai-sites/disco/mp3/Echoes of Yesterday_transcription.txt`
+- `ai-sites/disco/mp3/Echoes_in_the_Alley/Echoes_in_the_Alley_analysis_1_1.txt`
+- `ai-sites/disco/mp3/Echoes_of_Love_(1)/Echoes_of_Love_(1)_transcript.txt`
+- `ai-sites/disco/mp3/Echoes_of_Moonlight-v4/Echoes_of_Moonlight-v4_analysis_1_1.txt`
+- `ai-sites/disco/mp3/Echoes_of_Yesterday-v4/Echoes_of_Yesterday-v4/Echoes_of_Yesterday-v4_analysis.txt`
+- `ai-sites/disco/mp3/Echoes_of_the_Alley_Blues/Echoes_of_the_Alley_Blues/Echoes_of_the_Alley_Blues_analysis.txt`
+- `ai-sites/disco/mp3/Enchanted_Woods_Song_Adventure/Enchanted_Woods_Song_Adventure_analysis_1_1.txt`
+- `ai-sites/disco/mp3/From_Ashes_I_Will_Rise/From_Ashes_I_Will_Rise_analysis_1_1.txt`
+- `ai-sites/disco/mp3/Heartbeats in the Dark_transcription.txt`
+- `ai-sites/disco/mp3/Heartbeats_in_the_Dark-v4_2/Heartbeats_in_the_Dark-v4_2/Heartbeats_in_the_Dark-v4_2_analysis.txt`
+- `ai-sites/disco/mp3/Heartbeats_in_the_Dark-v4_2/Heartbeats_in_the_Dark-v4_2/Heartbeats_in_the_Dark-v4_2_transcript.txt`
+- `ai-sites/disco/mp3/Heartbeats_in_the_Dark-v4_2/Heartbeats_in_the_Dark-v4_2_transcript_1_1.txt`
+- `ai-sites/disco/mp3/Heartbeats_in_the_Dark_Remastered_Song_Lyrics/Heartbeats_in_the_Dark_Remastered_Song_Lyrics/Heartbeats_in_the_Dark_Remastered_Song_Lyrics_analysis.txt`
+- `ai-sites/disco/mp3/Heartbeats_in_the_Dark_Soft_Whispers/Heartbeats_in_the_Dark_Soft_Whispers/Heartbeats_in_the_Dark_Soft_Whispers_analysis.txt`
+- `ai-sites/disco/mp3/Heartbeats_in_the_Dark_Soft_Whispers/Heartbeats_in_the_Dark_Soft_Whispers_analysis.txt`
+- `ai-sites/disco/mp3/Howligritty Nights_transcription.txt`
+- `ai-sites/disco/mp3/Howling Cat's Song_transcription.txt`
+- `ai-sites/disco/mp3/Island_of_Dreams/Island_of_Dreams_transcript.txt`
+- `ai-sites/disco/mp3/Junkyard Kings_transcription.txt`
+- `ai-sites/disco/mp3/Junkyard_Symphony_Scraps2_(Remastered) 2/Junkyard_Symphony_Scraps2_(Remastered) 2/Junkyard_Symphony_Scraps2_(Remastered) 2_analysis.txt`
+- `ai-sites/disco/mp3/Kings and Queens of Litter_transcription.txt`
+- `ai-sites/disco/mp3/Kings_and_Queens_of_Litter_(Remastered)1 2/Kings_and_Queens_of_Litter_(Remastered)1 2_analysis.txt`
+- `ai-sites/disco/mp3/Let's Get Trashy_transcription.txt`
+- `ai-sites/disco/mp3/Love in Imperfection_transcription.txt`
+- `ai-sites/disco/mp3/Love is Rubbish, and Rubbish is Love_transcription.txt`
+- `ai-sites/disco/mp3/Love is rubbish Let's Get Trashy (Remix)257/Love is rubbish Let's Get Trashy (Remix)257_transcript.txt`
+- `ai-sites/disco/mp3/Love_in_Imperfection_(Remastered)2/Love_in_Imperfection_(Remastered)2_analysis.txt`
+- `ai-sites/disco/mp3/Love_is_rubbish_Lets_Get_Trashy/Love_is_rubbish_Lets_Get_Trashy/Love_is_rubbish_Lets_Get_Trashy_analysis.txt`
+- `ai-sites/disco/mp3/Marching-ever-forward-neath-the-wooded-s/Marching-ever-forward-neath-the-wooded-s_transcript.txt`
+- `ai-sites/disco/mp3/Moonlit Reverie_transcription.txt`
+- `ai-sites/disco/mp3/Moonly Alley Serenade_transcription.txt`
+- `ai-sites/disco/mp3/No More Love Songs - Encore (Remastered)/No More Love Songs - Encore (Remastered)_transcript.txt`
+- `ai-sites/disco/mp3/Project 2025_ Defy Defeat_transcription.txt`
+- `ai-sites/disco/mp3/Project 2025_transcription.txt`
+- `ai-sites/disco/mp3/Recycled-Symphony2/Recycled-Symphony2_transcript.txt`
+- `ai-sites/disco/mp3/Recycled_Symphony2_(Remastered)/Recycled_Symphony2_(Remastered)_analysis_1_1.txt`
+- `ai-sites/disco/mp3/Royalty of Refuse_transcription.txt`
+- `ai-sites/disco/mp3/Rubbish Love_transcription.txt`
+- `ai-sites/disco/mp3/Sammy's Serenade (Remastered x2)2/Sammy's Serenade (Remastered x2)2_transcript.txt`
+- `ai-sites/disco/mp3/Sammys_Serenade_(Remastered)/Sammys_Serenade_(Remastered)_analysis.txt`
+- `ai-sites/disco/mp3/Sammys_Serenade_(Remastered)2/Sammys_Serenade_(Remastered)2/Sammys_Serenade_(Remastered)2_analysis.txt`
+- `ai-sites/disco/mp3/Stacie, the Wind Don’t Ask Why332/Stacie, the Wind Don’t Ask Why332_transcript.txt`
+- `ai-sites/disco/mp3/The Alley King_transcription.txt`
+- `ai-sites/disco/mp3/The-Raccoon's-Revelry/The-Raccoon's-Revelry_transcript.txt`
+- `ai-sites/disco/mp3/The_Alley_King_(Remastered)1/The_Alley_King_(Remastered)1/The_Alley_King_(Remastered)1_analysis.txt`
+- `ai-sites/disco/mp3/The_Alley_King_(Remastered)1/The_Alley_King_(Remastered)1/The_Alley_King_(Remastered)1_transcript.txt`
+- `ai-sites/disco/mp3/The_Alley_King_(Remastered)1/The_Alley_King_(Remastered)1_transcript_1_1.txt`
+- `ai-sites/disco/mp3/Whisper of the Willow_transcription.txt`
+- `ai-sites/disco/mp3/Willow_whispers-feelers-chill (Remastered x2) (3)/Willow_whispers-feelers-chill (Remastered x2) (3)_transcript.txt`
+- `ai-sites/disco/mp3/Willow_whispers-feelers-chill-lady/Willow_whispers-feelers-chill-lady_analysis.txt`
+- `ai-sites/disco/mp3/Willow_whispers-feelers-chill/Willow_whispers-feelers-chill/Willow_whispers-feelers-chill_analysis.txt`
+- `ai-sites/disco/mp3/Willow_whispers-feelers-chill/Willow_whispers-feelers-chill_analysis2_1_1.txt`
+- `ai-sites/disco/mp3/Willow_whispers-feels/Willow_whispers-feels_analysis_1_1.txt`
+- `ai-sites/disco/mp3/Willow_whispers-folk-355/Willow_whispers-folk-355_analysis_1_1.txt`
+- `ai-sites/disco/mp3/Willow_whispers-indie-folk-feelers/Willow_whispers-indie-folk-feelers_analysis.txt`
+- `ai-sites/disco/mp3/Willow_whispers-og/Willow_whispers-og/Willow_whispers-og_analysis.txt`
+- `ai-sites/disco/mp3/Willow_whispers-og/Willow_whispers-og_analysis.txt`
+- `ai-sites/disco/mp3/Witches_Road_(Remastered)/Witches_Road_(Remastered)/Witches_Road_(Remastered)_analysis.txt`
+- `ai-sites/disco/mp3/Witches_Road_(Remastered)/Witches_Road_(Remastered)/Witches_Road_(Remastered)_transcript.txt`
+- `ai-sites/disco/mp3/Witches_Road_(Remastered)/Witches_Road_(Remastered)_analysis_1_1.txt`
+- `ai-sites/disco/mp3/Witches_Road_(Remastered)/Witches_Road_(Remastered)_transcript.txt`
+- `ai-sites/disco/mp3/css/main.css`
+- `ai-sites/disco/mp3/echoes_of_yesterday_remastered/echoes_of_yesterday_remastered_analysis.txt`
+- `ai-sites/disco/mp3/html-grid/lazy.py`
+- `ai-sites/disco/mp3/in This aLLey Where i HiDe-oG (Remix)301/in This aLLey Where i HiDe-oG (Remix)301_transcript.txt`
+- `ai-sites/disco/mp3/in-this--aLLey-where-i-hiDe/in-this--aLLey-where-i-hiDe/in-this--aLLey-where-i-hiDe_analysis.txt`
+- `ai-sites/disco/mp3/in-this--aLLey-where-i-hiDe/in-this--aLLey-where-i-hiDe_transcript.txt`
+- `ai-sites/disco/mp3/in-this--aLLey-where-i-hiDe_1_1 copy/in-this--aLLey-where-i-hiDe_1_1 copy_transcript.txt`
+- `ai-sites/disco/mp3/in-this--aLLey-where-i-hiDe_1_1 copy_transcript.txt`
+- `ai-sites/disco/mp3/in-this--aLLey-where-i-hiDe_1_1/in-this--aLLey-where-i-hiDe_1_1_transcript.txt`
+- `ai-sites/disco/mp3/in_this_alley_where_i_Hide LIVE_-_CuT-og (2)/in_this_alley_where_i_Hide LIVE_-_CuT-og (2)_transcript.txt`
+- `ai-sites/disco/mp3/in_this_alley_where_i_Hide LIVE_-_CuT-og (3)/in_this_alley_where_i_Hide LIVE_-_CuT-og (3)_transcript.txt`
+- `ai-sites/disco/mp3/in_this_alley_where_i_Hide LIVE_-_CuT-og/in_this_alley_where_i_Hide LIVE_-_CuT-og_transcript.txt`
+- `ai-sites/disco/mp3/in_this_alley_where_i_Hide_-_LIVE-og-best 2/in_this_alley_where_i_Hide_-_LIVE-og-best 2/in_this_alley_where_i_Hide_-_LIVE-og-best 2_analysis.txt`
+- `ai-sites/disco/mp3/in_this_alley_where_i_Hide_-_LIVE-og-best 2/in_this_alley_where_i_Hide_-_LIVE-og-best_2_analysis2_1_1.txt`
+- `ai-sites/disco/mp3/in_this_alley_where_i_Hide_-_LIVE-stadium 2/in_this_alley_where_i_Hide_-_LIVE-stadium 2_analysis copy.txt`
+- `ai-sites/disco/mp3/in_this_alley_where_i_Hide_-_LIVE-stadium 2/in_this_alley_where_i_Hide_-_LIVE-stadium 2_analysis.txt`
+- `ai-sites/disco/mp3/js/main.js`
+- `ai-sites/disco/mp3/js/photoswipe-ui-default.min.js`
+- `ai-sites/disco/mp3/js/photoswipe.min.js`
+- `ai-sites/disco/mp3/🎵 Petals in the Dark301/🎵 Petals in the Dark301_transcript.txt`
+- `ai-sites/gptjunkie_quantumforgelabs_landings/gptjunkie_index.html`
+- `ai-sites/gptjunkie_quantumforgelabs_landings/index.html`
+- `ai-sites/heavenly-hands-voice.md`
+- `ai-sites/heavenlyHands copy/404.html`
+- `ai-sites/heavenlyHands copy/cleanconnect-pro/.git/FETCH_HEAD`
+- `ai-sites/heavenlyHands copy/cleanconnect-pro/.git/HEAD`
+- `ai-sites/heavenlyHands copy/cleanconnect-pro/.git/description`
+- `ai-sites/heavenlyHands copy/cleanconnect-pro/.git/info/exclude`
+- `ai-sites/heavenlyHands copy/cleanconnect-pro/requirements.txt`
+- `ai-sites/heavenlyHands copy/index-hh.html`
+- `ai-sites/heavenlyHands copy/script.js`
+- `ai-sites/heavenlyHands copy/styles.css`
+- `ai-sites/heavenlyHands/.lh/heavenly-hands-cleaning-site/index.html.json`
+- `ai-sites/heavenlyHands/404.html`
+- `ai-sites/heavenlyHands/EMAIL_MARKETING_TEMPLATES.html`
+- `ai-sites/heavenlyHands/FREELANCE_INVOICE_GENERAL.html`
+- `ai-sites/heavenlyHands/FREELANCE_INVOICE_HEAVENLY_HANDS.html`
+- `ai-sites/heavenlyHands/cleanconnect-leads/ai-voice-agent-script.md`
+- `ai-sites/heavenlyHands/cleanconnect-pro-enhanced/package.json`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/COMMIT_EDITMSG`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/FETCH_HEAD`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/HEAD`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/config`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/description`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/index`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/info/exclude`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/logs/HEAD`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/logs/refs/heads/main`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/0a/214c119867b91a452fae4b5cabfef2781fd274`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/0e/92ae98811935dc24f5308c98029c0e567bbcae`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/0f/8e73b17ccbde5573196650f672c7f283464bf8`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/12/38a7108246cb3f58e630703972d93923f2f284`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/19/78bc1455048ac39999f858f8d9bb9c90959a18`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/1a/43ccc1b4a4684ab0fc11009df187058b6570a2`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/1d/e51008cdb76eb21c9111c14f6bb7b452241529`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/1f/09c657f47b85ec55198dd4924d3592d72d3a0d`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/22/d41092c6be135416ed336dcb1be9ec0adc7583`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/23/986b6294ee7bdad82341d7bbf1c03d001b3b31`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/29/114ef506f37c862545a4cd708f748f42b6106b`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/2b/9986e4c70de665b0ed6e6cf7576b5ff5dfe8a7`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/2c/271c3ecd904ba874d8ba91d46f3d9008db40cd`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/32/d3b89b5219371de3ab1d846e5ea5d235751d4c`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/3a/31ad603bd756bcd9440491522844a6f17ffc91`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/3d/2e2f4b12bf46938fd07814f08c7788759c22fb`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/3f/e2f017ce098e74179361efe5b22a85345997e5`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/43/4ebad2f0395167bb5cc7092857675405098041`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/43/625db760aff81484e3628ba7f2b2578769dfcb`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/47/a904b3ca514266e7d9aed58a73a5857b8b3945`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/49/35b30241a895046725143173704fd0b7ca6065`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/4a/62aef437322493cde26d135700a99d07718979`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/56/15550d6f0bb19e43defd0706007e003f48c60a`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/5e/a012a7f7b5fb5d2f9755cbd51a7e03820a9153`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/66/10cd134f106ab4c904b2d4d4cc1a53b3e55695`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/67/0396f605c02155bc6d6f38753c8fce650d8d20`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/69/7a0e9071739cfe25cfda7cd69a938b832217b5`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/70/a6b5dfad8a521c6d83fad4bca463b7930bcb4f`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/71/3844a7afb8e89878736840326a98aabdebef59`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/71/8ff574e28a012a258f218cc01db81f9bfab8c0`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/72/154343802aa95f400b6d68356e93349c9a1cec`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/74/393f4cdb4688834ac9f2a2138ce4fe5fe4fb3e`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/74/fc1ff8a8884fdd1ba1912821cffd857151f78c`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/76/fb5c4b81043679e9c29b12d2a597e87266e685`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/77/d30daa09249946f8b30fd5ce5cabfff67d2aec`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/7e/6989d68864ae07599aa360f9ce7ca0bcdd8c2e`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/81/31fa802d681cf0e589865cec86948f63ba77d9`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/85/f4e342e2083f01bce65ab80e799916d0ed74d7`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/86/1a51a2af0b55b969e0b6a75ce0c87ac4189c57`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/8a/b95895ba68755d7fccac00776419561acc23a8`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/8b/62c910d7f4d572cf399d8cc1cde078c6d5bb13`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/8f/d02ca61db7b573602cb43c791d355b4a7c1eb3`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/9f/1e907952a357079ff48d27b23e95ddc920285b`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/a3/a2553f99395fc6d9ab469655388236a63e9166`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/a9/c5ee7084a96314242dd512bc318bac012fbc42`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/b5/53061d0d1b1085acc8bb095dceb7edc8437d4b`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/bd/020c714af4d93061eab642233be44b9de66046`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/c2/4b471fba119e50aa61edaf5398775d8089d85c`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/cf/8170b38256f277d85c5089c1a7ae98901d893f`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/d0/342d5234b8f140f51f0a69b84e12a494ebdbcb`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/d1/dd8d35792ed462368b8d3da91aa2c7eeb772f4`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/d3/9d0d39b377b5f5932045e5194bfd5e44a717a3`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/d3/d4df51fa247c1b1fd20e7a327c5983e0af0ccb`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/d7/55920c27eb5c764d218256170f49d8869167a3`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/d7/788719340087057ccdaf8a4da62e8d073f97be`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/df/6e118b2cced1b8a717aa567a3a0ee697a85a3a`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/e3/706f0c498433c78e93cee3da114fb7ca095f6a`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/e7/90e1e175aca7f1fab4e75f46a711944f7aa849`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/e8/28c7b38c288732f6fe389da3ba4cdac84efc2b`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/objects/ea/37e021ad0ce1e418559332ec94ab479bbad225`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.git/refs/heads/main`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.lh/backend/package.json.json`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.lh/environment.yml.json`
+- `ai-sites/heavenlyHands/cleanconnect-pro/.lh/package.json.json`
+- `ai-sites/heavenlyHands/cleanconnect-pro/DEPLOYMENT_QUANTUMFORGE.md`
+- `ai-sites/heavenlyHands/cleanconnect-pro/IMPLEMENTATION_GUIDE.md`
+- `ai-sites/heavenlyHands/cleanconnect-pro/INTELLIGENT_ANALYSIS_REPORT.md`
+- `ai-sites/heavenlyHands/cleanconnect-pro/LICENSE`
+- `ai-sites/heavenlyHands/cleanconnect-pro/SETUP_COMPLETE.md`
+- `ai-sites/heavenlyHands/cleanconnect-pro/YARN_SETUP.md`
+- `ai-sites/heavenlyHands/cleanconnect-pro/admin-dashboard.html`
+- `ai-sites/heavenlyHands/cleanconnect-pro/airbnb-cleaning-marketplace.html`
+- `ai-sites/heavenlyHands/cleanconnect-pro/backend/package-lock.json`
+- `ai-sites/heavenlyHands/cleanconnect-pro/backend/package.json`
+- `ai-sites/heavenlyHands/cleanconnect-pro/backend/prisma/schema.prisma`
+- `ai-sites/heavenlyHands/cleanconnect-pro/backend/src/app-enhanced.js`
+- `ai-sites/heavenlyHands/cleanconnect-pro/backend/src/app.js`
+- `ai-sites/heavenlyHands/cleanconnect-pro/cleanconnect-ENHANCED_FEATURES.md`
+- `ai-sites/heavenlyHands/cleanconnect-pro/cleanconnect-pro-mobile-app-interface.html`
+- `ai-sites/heavenlyHands/cleanconnect-pro/environment-config.env`
+- `ai-sites/heavenlyHands/cleanconnect-pro/environment.yml`
+- `ai-sites/heavenlyHands/cleanconnect-pro/frontend/package-lock.json`
+- `ai-sites/heavenlyHands/cleanconnect-pro/frontend/package.json`
+- `ai-sites/heavenlyHands/cleanconnect-pro/frontend/public/app-enhanced.js`
+- `ai-sites/heavenlyHands/cleanconnect-pro/frontend/public/app.js`
+- `ai-sites/heavenlyHands/cleanconnect-pro/frontend/public/index-enhanced.html`
+- `ai-sites/heavenlyHands/cleanconnect-pro/frontend/public/index.html`
+- `ai-sites/heavenlyHands/cleanconnect-pro/frontend/public/styles-enhanced.css`
+- `ai-sites/heavenlyHands/cleanconnect-pro/frontend/public/styles.css`
+- `ai-sites/heavenlyHands/cleanconnect-pro/package-lock.json`
+- `ai-sites/heavenlyHands/cleanconnect-pro/package.json`
+- `ai-sites/heavenlyHands/cleanconnect-pro/requirements-ai.txt`
+- `ai-sites/heavenlyHands/cleanconnect-pro/requirements.txt`
+- `ai-sites/heavenlyHands/heavenly-hands-ENHANCEMENT_SUITE_README.md`
+- `ai-sites/heavenlyHands/heavenly-hands-cleaning-site/robots.txt`
+- `ai-sites/heavenlyHands/heavenly-hands-cleaning-site/sitemap.xml`
+- `ai-sites/heavenlyHands/heavenly_hands_call_tracking.py`
+- `ai-sites/heavenlyHands/heavenly_hands_dashboard.html`
+- `ai-sites/heavenlyHands/heavenly_hands_outbound_calling.py`
+- `ai-sites/heavenlyHands/heavenly_hands_web.py`
+- `ai-sites/heavenlyHands/heavenlyhands-subdomain.zip`
+- `ai-sites/heavenlyHands/heavenlyhands/heavenly_hands_call_tracking.py`
+- `ai-sites/heavenlyHands/heavenlyhands/heavenly_hands_dashboard.html`
+- `ai-sites/heavenlyHands/heavenlyhands/heavenly_hands_web.py`
+- `ai-sites/heavenlyHands/heavenlyhands/requirements.txt`
+- `ai-sites/heavenlyHands/index-hh.html`
+- `ai-sites/heavenlyHands/intelligent-organization-system/agentic_workflows.py`
+- `ai-sites/heavenlyHands/intelligent-organization-system/ast_analyzer.py`
+- `ai-sites/heavenlyHands/intelligent-organization-system/automation_platform.py`
+- `ai-sites/heavenlyHands/intelligent-organization-system/enhance_heavenly_hands.py`
+- `ai-sites/heavenlyHands/intelligent-organization-system/integration_system.py`
+- `ai-sites/heavenlyHands/intelligent-organization-system/intelligent_org_config.yaml`
+- `ai-sites/heavenlyHands/intelligent-organization-system/requirements.txt`
+- `ai-sites/heavenlyHands/intelligent-organization-system/vector_search.py`
+- `ai-sites/heavenlyHands/requirements.txt`
+- `ai-sites/heavenlyHands/script.js`
+- `ai-sites/heavenlyHands/start-heavenly-hands.sh`
+- `ai-sites/heavenlyHands/styles.css`
+- `ai-sites/master_launcher.sh`
+- `ai-sites/master_revenue_dashboard.py`
+- `ai-sites/mix-gallery/css/default-skin.css`
+- `ai-sites/mix-gallery/css/main.css`
+- `ai-sites/mix-gallery/css/photoswipe.css`
+- `ai-sites/mix-gallery/images/default-skin.png`
+- `ai-sites/mix-gallery/images/default-skin.svg`
+- `ai-sites/mix-gallery/images/preloader.gif`
+- `ai-sites/mix-gallery/js/main.js`
+- `ai-sites/mix-gallery/js/photoswipe-ui-default.min.js`
+- `ai-sites/mix-gallery/js/photoswipe.min.js`
+- `ai-sites/monetization/ai-voice-agents/README.md`
+- `ai-sites/monetization/ai-voice-agents/ai-voice-agents.zip`
+- `ai-sites/monetization/ai-voice-agents/analysis_visualizations/business_value_indicators.html`
+- `ai-sites/monetization/ai-voice-agents/analysis_visualizations/project_overview_dashboard.html`
+- `ai-sites/monetization/ai-voice-agents/code_intelligence_engine.py`
+- `ai-sites/monetization/ai-voice-agents/heavenly_hands_call_center_agent.py`
+- `ai-sites/monetization/ai-voice-agents/openai_voice_agent.py`
+- `ai-sites/monetization/ai-voice-agents/requirements.txt`
+- `ai-sites/monetization/~/avatararts-deployment/ai-voice-agents/env_example.txt`
+- `ai-sites/n8n/INTEGRATION-COMPLETE.md`
+- `ai-sites/n8n/PORT-REFERENCE.md`
+- `ai-sites/n8n/README-AI-Agent.md`
+- `ai-sites/n8n/README-ENV-Integration.md`
+- `ai-sites/n8n/doc-generator_content_conversation-analyze-n8n-and-python-for-renaming.md`
+- `ai-sites/n8n/documentation_documentation_doc-generator_output_analyze-n8n-and-python-for-renaming.md`
+- `ai-sites/passive-income-empire/marketing/calendar.csv`
+- `ai-sites/passive-income-empire/marketing/keywords/keyword-research.csv`
+- `ai-sites/passive-income-empire/marketing/onpage/alchemy.md`
+- `ai-sites/passive-income-empire/marketing/onpage/dalle.md`
+- `ai-sites/passive-income-empire/marketing/onpage/disco.md`
+- `ai-sites/passive-income-empire/marketing/onpage/python.md`
+- `ai-sites/passive-income-empire/marketing/strategy/content-plan.md`
+- `ai-sites/passive-income-empire/marketing/strategy/seo-plan.md`
+- `ai-sites/passive-income-empire/marketing/templates/social-media-templates.md`
+- `ai-sites/public/index.html`
+- `ai-sites/python.html`
+- `ai-sites/retention-products-suite/LAUNCH_RETENTION_SUITE.sh`
+- `ai-sites/retention-products-suite/README.md`
+- `ai-sites/retention-products-suite/analytics-tracking/README.md`
+- `ai-sites/retention-products-suite/analytics-tracking/retention_analytics.db`
+- `ai-sites/retention-products-suite/community-platforms/README.md`
+- `ai-sites/retention-products-suite/community-platforms/community_hub.db`
+- `ai-sites/retention-products-suite/digital-products/README.md`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/abstract_expressionist_001.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/abstract_expressionist_002.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/abstract_expressionist_003.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/abstract_expressionist_004.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/abstract_expressionist_005.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/abstract_expressionist_006.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/abstract_expressionist_007.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/abstract_expressionist_008.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/abstract_expressionist_009.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/abstract_expressionist_010.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/abstract_expressionist_011.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/abstract_expressionist_012.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/abstract_expressionist_013.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/abstract_expressionist_014.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/abstract_expressionist_015.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/abstract_expressionist_016.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/abstract_expressionist_017.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/abstract_expressionist_018.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/abstract_expressionist_019.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/abstract_expressionist_020.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/abstract_expressionist_collection.json`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/abstract_expressionist_preview.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/cyberpunk_neon_001.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/cyberpunk_neon_002.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/cyberpunk_neon_003.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/cyberpunk_neon_004.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/cyberpunk_neon_005.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/cyberpunk_neon_006.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/cyberpunk_neon_007.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/cyberpunk_neon_008.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/cyberpunk_neon_009.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/cyberpunk_neon_010.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/cyberpunk_neon_011.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/cyberpunk_neon_012.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/cyberpunk_neon_013.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/cyberpunk_neon_014.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/cyberpunk_neon_015.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/cyberpunk_neon_016.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/cyberpunk_neon_017.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/cyberpunk_neon_018.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/cyberpunk_neon_019.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/cyberpunk_neon_020.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/cyberpunk_neon_collection.json`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/cyberpunk_neon_preview.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/marketing/collection_description.md`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/marketing/pricing_table.md`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/modern_minimalist_001.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/modern_minimalist_002.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/modern_minimalist_003.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/modern_minimalist_004.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/modern_minimalist_005.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/modern_minimalist_006.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/modern_minimalist_007.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/modern_minimalist_008.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/modern_minimalist_009.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/modern_minimalist_010.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/modern_minimalist_011.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/modern_minimalist_012.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/modern_minimalist_013.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/modern_minimalist_014.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/modern_minimalist_015.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/modern_minimalist_016.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/modern_minimalist_017.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/modern_minimalist_018.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/modern_minimalist_019.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/modern_minimalist_020.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/modern_minimalist_collection.json`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/modern_minimalist_preview.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/nature_organic_001.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/nature_organic_002.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/nature_organic_003.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/nature_organic_004.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/nature_organic_005.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/nature_organic_006.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/nature_organic_007.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/nature_organic_008.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/nature_organic_009.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/nature_organic_010.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/nature_organic_011.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/nature_organic_012.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/nature_organic_013.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/nature_organic_014.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/nature_organic_015.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/nature_organic_016.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/nature_organic_017.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/nature_organic_018.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/nature_organic_019.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/nature_organic_020.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/nature_organic_collection.json`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/nature_organic_preview.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/vintage_retro_001.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/vintage_retro_002.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/vintage_retro_003.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/vintage_retro_004.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/vintage_retro_005.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/vintage_retro_006.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/vintage_retro_007.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/vintage_retro_008.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/vintage_retro_009.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/vintage_retro_010.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/vintage_retro_011.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/vintage_retro_012.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/vintage_retro_013.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/vintage_retro_014.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/vintage_retro_015.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/vintage_retro_016.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/vintage_retro_017.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/vintage_retro_018.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/vintage_retro_019.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/vintage_retro_020.png`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/vintage_retro_collection.json`
+- `ai-sites/retention-products-suite/digital-products/creative-asset-packs/generated_art/vintage_retro_preview.png`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/complete_ai_content_creation_masterclass/README.md`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/complete_ai_content_creation_masterclass/course.json`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/complete_ai_content_creation_masterclass/module_01_introduction_to_ai_content_creation/content.md`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/complete_ai_content_creation_masterclass/module_01_introduction_to_ai_content_creation/module.json`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/complete_ai_content_creation_masterclass/module_02_mastering_ai_writing_tools/content.md`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/complete_ai_content_creation_masterclass/module_02_mastering_ai_writing_tools/module.json`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/complete_ai_content_creation_masterclass/module_03_ai_image_generation_techniques/content.md`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/complete_ai_content_creation_masterclass/module_03_ai_image_generation_techniques/module.json`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/complete_ai_content_creation_masterclass/module_04_video_content_with_ai/content.md`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/complete_ai_content_creation_masterclass/module_04_video_content_with_ai/module.json`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/complete_ai_content_creation_masterclass/module_05_content_strategy_&_planning/content.md`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/complete_ai_content_creation_masterclass/module_05_content_strategy_&_planning/module.json`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/complete_ai_content_creation_masterclass/module_06_monetizing_ai_content/content.md`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/complete_ai_content_creation_masterclass/module_06_monetizing_ai_content/module.json`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/creative_ai_tools_for_designers/README.md`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/creative_ai_tools_for_designers/course.json`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/creative_ai_tools_for_designers/module_01_ai_design_tools_overview/content.md`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/creative_ai_tools_for_designers/module_01_ai_design_tools_overview/module.json`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/creative_ai_tools_for_designers/module_02_ai-powered_logo_design/content.md`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/creative_ai_tools_for_designers/module_02_ai-powered_logo_design/module.json`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/creative_ai_tools_for_designers/module_03_automated_layout_generation/content.md`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/creative_ai_tools_for_designers/module_03_automated_layout_generation/module.json`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/creative_ai_tools_for_designers/module_04_color_palette_ai_tools/content.md`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/creative_ai_tools_for_designers/module_04_color_palette_ai_tools/module.json`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/creative_ai_tools_for_designers/module_05_typography_with_ai/content.md`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/creative_ai_tools_for_designers/module_05_typography_with_ai/module.json`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/creative_ai_tools_for_designers/module_06_portfolio_enhancement/content.md`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/creative_ai_tools_for_designers/module_06_portfolio_enhancement/module.json`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/digital_marketing_automation_bootcamp/README.md`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/digital_marketing_automation_bootcamp/course.json`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/digital_marketing_automation_bootcamp/module_01_marketing_automation_fundamentals/content.md`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/digital_marketing_automation_bootcamp/module_01_marketing_automation_fundamentals/module.json`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/digital_marketing_automation_bootcamp/module_02_email_marketing_automation/content.md`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/digital_marketing_automation_bootcamp/module_02_email_marketing_automation/module.json`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/digital_marketing_automation_bootcamp/module_03_social_media_automation/content.md`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/digital_marketing_automation_bootcamp/module_03_social_media_automation/module.json`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/digital_marketing_automation_bootcamp/module_04_lead_generation_&_nurturing/content.md`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/digital_marketing_automation_bootcamp/module_04_lead_generation_&_nurturing/module.json`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/digital_marketing_automation_bootcamp/module_05_analytics_&_optimization/content.md`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/digital_marketing_automation_bootcamp/module_05_analytics_&_optimization/module.json`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/digital_marketing_automation_bootcamp/module_06_advanced_automation_strategies/content.md`
+- `ai-sites/retention-products-suite/digital-products/educational-content/generated_courses/digital_marketing_automation_bootcamp/module_06_advanced_automation_strategies/module.json`
+- `ai-sites/retention-products-suite/engagement-tools/README.md`
+- `ai-sites/retention-products-suite/engagement-tools/gamification.db`
+- `ai-sites/retention-products-suite/gamification-systems/README.md`
+- `ai-sites/retention-products-suite/mobile-apps/README.md`
+- `ai-sites/retention-products-suite/saas-applications/README.md`
+- `ai-sites/retention-products-suite/saas-applications/creative_ai_studio_pro/templates/dashboard.html`
+- `ai-sites/retention-products-suite/templates-marketplace/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_followup_002/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_followup_002/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_followup_002/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_followup_002/email_templates_followup_002.html`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_followup_002/email_templates_followup_002_preview.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_followup_004/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_followup_004/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_followup_004/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_followup_004/email_templates_followup_004.mailchimp`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_followup_004/email_templates_followup_004_preview.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_newsletter_005/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_newsletter_005/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_newsletter_005/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_newsletter_005/email_templates_newsletter_005.constant contact`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_newsletter_005/email_templates_newsletter_005_preview.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_promotional_003/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_promotional_003/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_promotional_003/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_promotional_003/email_templates_promotional_003.sendgrid`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_promotional_003/email_templates_promotional_003_preview.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_welcome_001/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_welcome_001/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_welcome_001/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_welcome_001/email_templates_welcome_001.sendgrid`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/email_templates_welcome_001/email_templates_welcome_001_preview.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/print_templates_business_cards_001/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/print_templates_business_cards_001/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/print_templates_business_cards_001/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/print_templates_business_cards_001/print_templates_business_cards_001.psd`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/print_templates_business_cards_001/print_templates_business_cards_001_preview.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/print_templates_flyers_002/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/print_templates_flyers_002/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/print_templates_flyers_002/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/print_templates_flyers_002/print_templates_flyers_002.ai`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/print_templates_flyers_002/print_templates_flyers_002_preview.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/print_templates_posters_003/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/print_templates_posters_003/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/print_templates_posters_003/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/print_templates_posters_003/print_templates_posters_003.indesign`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/print_templates_posters_003/print_templates_posters_003_preview.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/social_media_templates_linkedin_001/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/social_media_templates_linkedin_001/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/social_media_templates_linkedin_001/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/social_media_templates_linkedin_001/social_media_templates_linkedin_001.jpg`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/social_media_templates_linkedin_001/social_media_templates_linkedin_001_preview.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_blog_002/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_blog_002/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_blog_002/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_blog_002/website_templates_blog_002.vue`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_blog_002/website_templates_blog_002_preview.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_blog_004/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_blog_004/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_blog_004/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_blog_004/website_templates_blog_004.react`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_blog_004/website_templates_blog_004_preview.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_blog_006/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_blog_006/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_blog_006/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_blog_006/website_templates_blog_006.vue`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_blog_006/website_templates_blog_006_preview.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_001/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_001/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_001/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_001/website_templates_business_001.react`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_001/website_templates_business_001_preview.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_003/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_003/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_003/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_003/website_templates_business_003.html`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_003/website_templates_business_003_preview.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_007/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_007/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_007/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_007/website_templates_business_007.wordpress`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_007/website_templates_business_007_preview.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_009/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_009/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_009/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_009/website_templates_business_009.wordpress`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_009/website_templates_business_009_preview.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_011/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_011/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_011/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_011/website_templates_business_011.html`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_011/website_templates_business_011_preview.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_014/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_014/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_014/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_014/website_templates_business_014.html`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_014/website_templates_business_014_preview.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_015/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_015/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_015/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_015/website_templates_business_015.html`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_business_015/website_templates_business_015_preview.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_collection.json`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_ecommerce_013/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_ecommerce_013/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_ecommerce_013/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_ecommerce_013/website_templates_ecommerce_013.vue`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_ecommerce_013/website_templates_ecommerce_013_preview.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_landing_010/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_landing_010/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_landing_010/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_landing_010/website_templates_landing_010.wordpress`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_landing_010/website_templates_landing_010_preview.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_landing_012/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_landing_012/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_landing_012/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_landing_012/website_templates_landing_012.vue`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_landing_012/website_templates_landing_012_preview.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_portfolio_005/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_portfolio_005/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_portfolio_005/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_portfolio_005/website_templates_portfolio_005.react`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_portfolio_005/website_templates_portfolio_005_preview.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_portfolio_008/DOCUMENTATION.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_portfolio_008/LICENSE.txt`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_portfolio_008/README.md`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_portfolio_008/website_templates_portfolio_008.vue`
+- `ai-sites/retention-products-suite/templates-marketplace/generated_templates/website_templates_portfolio_008/website_templates_portfolio_008_preview.txt`
+- `ai-sites/seo-local-geo.xlsx`
+- `ai-sites/setup copy.sh`
+- `ai-sites/setup.sh`
+- `ai-sites/setup_master_environment.sh`
+- `ai-sites/steven-chaplinski-website/content/services/02_Business_and_Finance/Business/AvatarArts_Portfolio_AutoBuilder/.github/workflows/portfolio.yml`
+- `ai-sites/steven-chaplinski-website/content/services/02_Business_and_Finance/business_setup/.git/hooks/post-update.sample`
+- `ai-sites/steven-chaplinski-website/content/services/02_Business_and_Finance/business_setup/.git/hooks/update.sample`
+- `archive/LIVE-DEPLOYMENT/heavenlyhands/script.js`
+- `archive/LIVE-DEPLOYMENT/heavenlyhands/styles.css`
+- `archive/reference-files/business-setup/business_setup/.history/03_business_website/index_20251009110820.html`
+- `archive/reference-files/business-setup/business_setup/.history/03_business_website/index_20251009125831.html`
+- `archive/reference-files/business-setup/business_setup/.history/03_business_website/index_20251009130128.html`
+- `archive/reference-files/business-setup/business_setup/.history/03_business_website/index_20251009130130.html`
+- `archive/reference-files/business-setup/business_setup/.history/03_business_website/index_20251009130135.html`
+- `archive/reference-files/business-setup/business_setup/03_business_website/index.html`
+- `archive/reference-files/business-setup/business_setup/04_marketing_materials/brand_guidelines.md`
+- `archive/system/ECOSYSTEM/docs/PROPERTIES/Automation-Empire.md`
+- `archive/system/ECOSYSTEM/docs/PROPERTIES/AvatarArts.md`
+- `archive/system/ECOSYSTEM/docs/PROPERTIES/Creative-Education.md`
+- `archive/system/ECOSYSTEM/docs/PROPERTIES/Creative-Marketplace.md`
+- `archive/system/ECOSYSTEM/docs/PROPERTIES/HeavenlyHands.md`
+- `archive/system/ECOSYSTEM/docs/PROPERTIES/Passive-Income.md`
+- `archive/system/ECOSYSTEM/docs/PROPERTIES/QuantumForge.md`
+- `archive/system/ECOSYSTEM/docs/PROPERTIES/Retention-Suite.md`
+- `archive/system/ECOSYSTEM/docs/SEO/01-Quick-Start.md`
+- `archive/system/ECOSYSTEM/docs/SEO/02-AvatarArts-Strategy.md`
+- `archive/system/ECOSYSTEM/docs/SEO/03-QuantumForge-Strategy.md`
+- `archive/system/ECOSYSTEM/docs/SEO/04-Homepage-Strategy.md`
+- `archive/system/ECOSYSTEM/docs/SEO/05-Competitor-Analysis.md`
+- `archive/system/ECOSYSTEM/docs/SEO/06-Content-Calendar-2025.md`
+- `archive/system/ECOSYSTEM/docs/SEO/07-GitHub-Portfolio.md`
+- `archive/system/advanced-systems/01_FREELANCE_BUSINESS.md`
+- `archive/system/advanced-systems/02_SCRIPT_MONETIZATION.md`
+- `archive/system/advanced-systems/03_COMPLETE_ASSETS.md`
+- `archive/system/advanced-systems/05_COMPLETE_STORY.md`
+- `archive/system/advanced-systems/ARCHIVE/original_docs/ALL_PLATFORMS_COMPLETE_GUIDE.md`
+- `archive/system/advanced-systems/ARCHIVE/original_docs/COMPLETE_SKILLS_SITES_INVENTORY.md`
+- `archive/system/advanced-systems/ARCHIVE/original_docs/FREELANCE_BUSINESS_MASTER.md`
+- `archive/system/advanced-systems/ARCHIVE/original_docs/FREELANCE_PRICING_GUIDE.md`
+- `archive/system/advanced-systems/ARCHIVE/original_docs/MASTER_DISCOVERY_AND_GIG_CREATION.md`
+- `archive/system/advanced-systems/ARCHIVE/original_docs/READY_TO_USE_GIG_PROFILES.md`
+- `archive/system/advanced-systems/ARCHIVE/pre_final_merge/ADVANCED_CONTENT_INTELLIGENCE.md`
+- `archive/system/advanced-systems/ARCHIVE/pre_final_merge/COMPARISON_AND_IMPROVEMENTS.md`
+- `archive/system/advanced-systems/ARCHIVE/pre_final_merge/COMPLETE_SYSTEM_OVERVIEW.md`
+- `archive/system/advanced-systems/ARCHIVE/pre_final_merge/ENHANCEMENT_SUMMARY.md`
+- `archive/system/advanced-systems/ARCHIVE/pre_final_merge/QUICK_START.md`
+- `archive/system/advanced-systems/ARCHIVE/pre_final_merge/START_HERE.md`
+- `archive/system/advanced-systems/ARCHIVE/pre_final_merge/ULTIMATE_SYSTEM_README.md`
+- `archive/system/advanced-systems/DOCUMENTATION/04_REFERENCE/COMPLETE_JOURNEY_NARRATIVE.md`
+- `archive/system/advanced-systems/DOCUMENTS-ARCHIVE/html/AvaTarArTs_html_Artistic_Bio_Creation.html`
+- `archive/system/advanced-systems/MARKDOWN-ARCHIVE/downloads-exports/Creative-automation-portfolio-strategy---Claude-2025-10-26.md`
+- `archive/system/advanced-systems/MARKDOWN-ARCHIVE/project-descriptions/00_SEO_Master_Index.md/SEO_Business_Templates.md`
+- `archive/system/advanced-systems/MARKDOWN-ARCHIVE/project-descriptions/AVATARARTS_COMPLETE_ANALYSIS.md`
+- `archive/system/advanced-systems/MARKDOWN-ARCHIVE/project-descriptions/CONTENT_AWARE_ANALYSIS_REPORT.md`
+- `archive/system/advanced-systems/MARKDOWN-ARCHIVE/project-descriptions/DEPLOYMENT_COMPLETE_SUMMARY.md`
+- `archive/system/advanced-systems/MARKDOWN-ARCHIVE/project-descriptions/DEPLOYMENT_GUIDE.md`
+- `archive/system/advanced-systems/MARKDOWN-ARCHIVE/project-descriptions/DEPLOYMENT_STATUS_UPDATE.md`
+- `archive/system/advanced-systems/MARKDOWN-ARCHIVE/project-descriptions/DEPLOYMENT_SUMMARY.md`
+- `archive/system/advanced-systems/MARKDOWN-ARCHIVE/project-descriptions/DEPLOYMENT_SUMMARY_CORRECTED.md`
+- `archive/system/advanced-systems/MARKDOWN-ARCHIVE/project-descriptions/DIRECTORY_STRUCTURE_GUIDE.md`
+- `archive/system/advanced-systems/MARKDOWN-ARCHIVE/project-descriptions/DIRECTORY_STRUCTURE_GUIDE_UPDATED.md`
+- `archive/system/advanced-systems/MARKDOWN-ARCHIVE/project-descriptions/ENHANCED_TELEGRAM_AI_VIDEO_GENERATOR.md`
+- `archive/system/advanced-systems/MARKDOWN-ARCHIVE/project-descriptions/EXTRACTION_GUIDE.md`
+- `archive/system/advanced-systems/MARKDOWN-ARCHIVE/project-descriptions/HEAVENLY_HANDS_LIVE_DEPLOYMENT.md`
+- `archive/system/advanced-systems/MARKDOWN-ARCHIVE/project-descriptions/HH_IMPROVEMENTS_SUMMARY.md`
+- `archive/system/advanced-systems/MARKDOWN-ARCHIVE/project-descriptions/INTEGRATION_GUIDE.md`
+- `archive/system/advanced-systems/MARKDOWN-ARCHIVE/project-descriptions/INTELLIGENT_FEATURES_SUMMARY.md`
+- `archive/system/advanced-systems/MARKDOWN-ARCHIVE/project-descriptions/README.md`
+- `archive/system/advanced-systems/MARKDOWN-ARCHIVE/project-descriptions/heavenly-hands-voice.md`
+- `archive/system/advanced-systems/MARKDOWN-ARCHIVE/project-descriptions/heavenly-updates.md`
+- `archive/system/advanced-systems/README.md`
+- `archive/system/advanced-systems/SCRIPTS/compare_and_deploy.sh`
+- `archive/system/advanced-systems/SCRIPTS/deploy_ai_voice_agents.sh`
+- `archive/system/advanced-systems/SCRIPTS/deploy_heavenly_hands.sh`
+- `archive/system/advanced-systems/SCRIPTS/deploy_improved_hh.sh`
+- `archive/system/advanced-systems/SCRIPTS/deploy_intelligent_hh.sh`
+- `archive/system/advanced-systems/SCRIPTS/deploy_main_avatararts.sh`
+- `archive/system/advanced-systems/SCRIPTS/deploy_new_index.sh`
+- `archive/system/advanced-systems/SCRIPTS/deploy_to_avatararts.sh`
+- `archive/system/advanced-systems/SCRIPTS/extract_and_deploy.sh`
+- `archive/system/advanced-systems/SCRIPTS/process_music.sh`
+- `archive/system/advanced-systems/SCRIPTS/setup-avatararts-directories.sh`
+- `archive/system/advanced-systems/SCRIPTS/upload-to-hostinger.sh`
+- `archive/system/advanced-systems/SITES-AND-PROJECTS/DOCUMENTATION/AVATARARTS_COMPLETE_ANALYSIS.md`
+- `archive/system/advanced-systems/SITES-AND-PROJECTS/DOCUMENTATION/CONTENT_AWARE_ANALYSIS_REPORT.md`
+- `archive/system/advanced-systems/SITES-AND-PROJECTS/DOCUMENTATION/DEPLOYMENT_COMPLETE_SUMMARY.md`
+- `archive/system/advanced-systems/SITES-AND-PROJECTS/DOCUMENTATION/DEPLOYMENT_GUIDE.md`
+- `archive/system/advanced-systems/SITES-AND-PROJECTS/DOCUMENTATION/DEPLOYMENT_STATUS_UPDATE.md`
+- `archive/system/advanced-systems/SITES-AND-PROJECTS/DOCUMENTATION/DEPLOYMENT_SUMMARY.md`
+- `archive/system/advanced-systems/SITES-AND-PROJECTS/DOCUMENTATION/DEPLOYMENT_SUMMARY_CORRECTED.md`
+- `archive/system/advanced-systems/SITES-AND-PROJECTS/DOCUMENTATION/DIRECTORY_STRUCTURE_GUIDE.md`
+- `archive/system/advanced-systems/SITES-AND-PROJECTS/DOCUMENTATION/DIRECTORY_STRUCTURE_GUIDE_UPDATED.md`
+- `archive/system/advanced-systems/SITES-AND-PROJECTS/DOCUMENTATION/EXTRACTION_GUIDE.md`
+- `archive/system/advanced-systems/SITES-AND-PROJECTS/DOCUMENTATION/HEAVENLY_HANDS_LIVE_DEPLOYMENT.md`
+- `archive/system/advanced-systems/SITES-AND-PROJECTS/DOCUMENTATION/HH_IMPROVEMENTS_SUMMARY.md`
+- `archive/system/advanced-systems/SITES-AND-PROJECTS/DOCUMENTATION/INTEGRATION_GUIDE.md`
+- `archive/system/advanced-systems/SITES-AND-PROJECTS/DOCUMENTATION/INTELLIGENT_FEATURES_SUMMARY.md`
+- `archive/system/advanced-systems/SITES-AND-PROJECTS/DOCUMENTATION/README.md`
+- `archive/system/advanced-systems/SITES-AND-PROJECTS/DOCUMENTATION/heavenly-hands-voice.md`
+- `archive/system/advanced-systems/SITES-AND-PROJECTS/DOCUMENTATION/heavenly-updates.md`
+- `archive/system/advanced-systems/content_intelligence/DEEP_DIVE_ANALYSIS.md`
+- `archive/system/advanced-systems/content_intelligence/MASTER_ECOSYSTEM_SUMMARY.md`
+- `archive/system/advanced-systems/content_intelligence/OMNISCIENT_README.md`
+- `archive/system/advanced-systems/content_intelligence/README.md`
+- `archive/system/advanced-systems/content_intelligence/config.yaml`
+- `archive/system/advanced-systems/content_intelligence/requirements.txt`
+- `archive/system/advanced-systems/content_pipeline/README.md`
+- `archive/system/advanced-systems/ultra-deep-intelligence/=0.17.0`
+- `archive/system/advanced-systems/ultra-deep-intelligence/=0.18.0`
+- `archive/system/advanced-systems/ultra-deep-intelligence/=0.3.0`
+- `archive/system/advanced-systems/ultra-deep-intelligence/=0.4.0`
+- `archive/system/advanced-systems/ultra-deep-intelligence/=1.12.0`
+- `archive/system/advanced-systems/ultra-deep-intelligence/=3.0.0`
+- `archive/system/advanced-systems/unified_intelligence/docs/README.md`
+- `avatararts-deployment/AVATARARTS_COMPLETE_ANALYSIS.md`
+- `avatararts-deployment/CONTENT_AWARE_ANALYSIS_REPORT.md`
+- `avatararts-deployment/DEPLOYMENT_COMPLETE_SUMMARY.md`
+- `avatararts-deployment/DEPLOYMENT_GUIDE.md`
+- `avatararts-deployment/DEPLOYMENT_STATUS_UPDATE.md`
+- `avatararts-deployment/DEPLOYMENT_SUMMARY.md`
+- `avatararts-deployment/DEPLOYMENT_SUMMARY_CORRECTED.md`
+- `avatararts-deployment/DIRECTORY_STRUCTURE_GUIDE.md`
+- `avatararts-deployment/DIRECTORY_STRUCTURE_GUIDE_UPDATED.md`
+- `avatararts-deployment/EXTRACTION_GUIDE.md`
+- `avatararts-deployment/HEAVENLY_HANDS_LIVE_DEPLOYMENT.md`
+- `avatararts-deployment/HH_IMPROVEMENTS_SUMMARY.md`
+- `avatararts-deployment/INTEGRATION_GUIDE.md`
+- `avatararts-deployment/INTELLIGENT_FEATURES_SUMMARY.md`
+- `avatararts-deployment/README.md`
+- `avatararts-deployment/about.html`
+- `avatararts-deployment/ai-voice-agents-complete-deployment.zip`
+- `avatararts-deployment/ai-voice-agents.zip`
+- `avatararts-deployment/ai-voice-agents/README.md`
+- `avatararts-deployment/ai-voice-agents/analysis_visualizations/business_value_indicators.html`
+- `avatararts-deployment/ai-voice-agents/analysis_visualizations/project_overview_dashboard.html`
+- `avatararts-deployment/ai-voice-agents/code_intelligence_engine.py`
+- `avatararts-deployment/ai-voice-agents/env_example.txt`
+- `avatararts-deployment/ai-voice-agents/heavenly_hands_call_center_agent.py`
+- `avatararts-deployment/ai-voice-agents/openai_voice_agent.py`
+- `avatararts-deployment/ai-voice-agents/requirements.txt`
+- `avatararts-deployment/ai-voice-agents/run_ai_voice_agents.py`
+- `avatararts-deployment/blog-post-1.html`
+- `avatararts-deployment/blog.html`
+- `avatararts-deployment/call-center.html`
+- `avatararts-deployment/compare_and_deploy.sh`
+- `avatararts-deployment/contact.html`
+- `avatararts-deployment/deploy_ai_voice_agents.sh`
+- `avatararts-deployment/deploy_heavenly_hands.sh`
+- `avatararts-deployment/deploy_improved_hh.sh`
+- `avatararts-deployment/deploy_intelligent_hh.sh`
+- `avatararts-deployment/deploy_main_avatararts.sh`
+- `avatararts-deployment/deploy_new_index.sh`
+- `avatararts-deployment/deploy_to_avatararts.sh`
+- `avatararts-deployment/enhanced_intelligent_organization_system.py`
+- `avatararts-deployment/extract_and_deploy.sh`
+- `avatararts-deployment/fixes.zip`
+- `avatararts-deployment/fixes/improved_hh_index.html`
+- `avatararts-deployment/fixes/index2.html`
+- `avatararts-deployment/fixes/intelligent_hh_index.html`
+- `avatararts-deployment/fixes/new-index.html`
+- `avatararts-deployment/fixes/quantum-style-index.html`
+- `avatararts-deployment/fixes/ultra_seo_hh_index.html`
+- `avatararts-deployment/heavenly-hands-voice.md`
+- `avatararts-deployment/heavenly-updates.md`
+- `avatararts-deployment/heavenly_hands_call_center.py`
+- `avatararts-deployment/heavenlyhands-complete-deployment.zip`
+- `avatararts-deployment/heavenlyhands-live-credentials.zip`
+- `avatararts-deployment/heavenlyhands-subdomain.zip`
+- `avatararts-deployment/heavenlyhands/env_example.txt`
+- `avatararts-deployment/heavenlyhands/heavenly_hands_call_tracking.py`
+- `avatararts-deployment/heavenlyhands/heavenly_hands_dashboard.html`
+- `avatararts-deployment/heavenlyhands/heavenly_hands_outbound_calling.py`
+- `avatararts-deployment/heavenlyhands/heavenly_hands_web.py`
+- `avatararts-deployment/heavenlyhands/requirements.txt`
+- `avatararts-deployment/heavenlyhands/run_heavenly_hands.py`
+- `avatararts-deployment/heavenlyhands/script.js`
+- `avatararts-deployment/heavenlyhands/start-heavenly-hands.sh`
+- `avatararts-deployment/heavenlyhands/styles.css`
+- `avatararts-deployment/heavenlyhands/webhook_handler.py`
+- `avatararts-deployment/improved_hh_index.html`
+- `avatararts-deployment/index-bg-ai.html`
+- `avatararts-deployment/index-clean.html`
+- `avatararts-deployment/index.html`
+- `avatararts-deployment/index2.html`
+- `avatararts-deployment/intelligent_hh_index.html`
+- `avatararts-deployment/new-index.html`
+- `avatararts-deployment/pricing-calculator.js`
+- `avatararts-deployment/pricing.html`
+- `avatararts-deployment/quantum-style-index.html`
+- `avatararts-deployment/requirements.txt`
+- `avatararts-deployment/script.js`
+- `avatararts-deployment/services.html`
+- `avatararts-deployment/setup-avatararts-directories.sh`
+- `avatararts-deployment/styles.css`
+- `avatararts-deployment/ultra_seo_hh_index.html`
+- `avatararts-deployment/upload-to-hostinger.sh`
+- `avatararts/DaLL-E/05998f0d-29ce-4afd-a1ae-e0d4cc860111.png`
+- `avatararts/DaLL-E/064b28dd-6f41-4bbf-9345-73242318544f.jpg`
+- `avatararts/DaLL-E/1-1/file-1D9EiiQM4oBedxySEBsA8gIg_1713351749_4918656.png`
+- `avatararts/DaLL-E/1-1/file-2KVygtbfWENZ9FdNwyTWOjqk_1718164881_1649265.png`
+- `avatararts/DaLL-E/1-1/file-3ynjHJphPHHJaBREwzAir7XE_1718584338_290216.jpeg`
+- `avatararts/DaLL-E/1-1/file-8exC24kuBu5VCx0eyENnWiyE_1713351519_977387.png`
+- `avatararts/DaLL-E/1-1/file-9n4Z3nUoyQ0mtWKRSns4FANg_1713351429_6962523.png`
+- `avatararts/DaLL-E/1-1/file-AUVNUS5v6hhhgK4Y4YNj8NkU_1713976710_876776.png`
+- `avatararts/DaLL-E/1-1/file-BYBb93Si5jHsAhEZXrw1VkNd_1715959011_4693704.png`
+- `avatararts/DaLL-E/1-1/file-JIRdfowde3QgHDJM8SwMjIdy_1713351429_675449.png`
+- `avatararts/DaLL-E/1-1/file-Jzt8G5R08gJSgiX4GJu8fKo3_1713351432_0979524.png`
+- `avatararts/DaLL-E/1-1/file-KlQtW19q7MQxnQZYhuqu9CIY_1713351426_8371198.png`
+- `avatararts/DaLL-E/1-1/file-KpwfU3L5CYR2uG3BW1TtFgmE_1713351651_38342.png`
+- `avatararts/DaLL-E/1-1/file-NR7GUTEaJM5JKz7QHIiCvF9u_1713351748_717563.png`
+- `avatararts/DaLL-E/1-1/file-NxIIgYNDQt9cQ9ZsypBek4SZ_1713351427_0091164.png`
+- `avatararts/DaLL-E/1-1/file-PJynzx4gML4FPGgBGP2jeINV_1713351754_0558913.png`
+- `avatararts/DaLL-E/1-1/file-SjdIM9tYn6S2PjlD2ATT9Du0_1713351517_0157924.png`
+- `avatararts/DaLL-E/1-1/file-TEhzmtMpsMVPA4jHGOAMTSjt_1713351430_8369539.png`
+- `avatararts/DaLL-E/1-1/file-XSJxlkpZT3ACD4NIGMfaXWqU_1713351759_2526636.png`
+- `avatararts/DaLL-E/1-1/file-bMo3x5ADtvw954Is87uDzH6H_1715673568_1109457.png`
+- `avatararts/DaLL-E/1-1/file-c9YH5wbLdCj18OgAatyGUpN6_1713351432_3759353.png`
+- `avatararts/DaLL-E/1-1/file-mWouqwIVr7XwObVO8HyMuZOl_1713351429_6614745.png`
+- `avatararts/DaLL-E/1-1/file-oPIRLMvS2JSXMe8Db9HU9rQd_1715959010_638391.png`
+- `avatararts/DaLL-E/1-1/file-oVMceoloUgnOUGkzx1IKPadU_1713351756_2530978.png`
+- `avatararts/DaLL-E/1-1/file-pF3g3Nv3lmLruxnCl6I4bpC7_1713351431_5051756.png`
+- `avatararts/DaLL-E/1-1/file-rRsMpjUONNoGV4lfJbLGfSzt_1713351518_42121.png`
+- `avatararts/DaLL-E/1-1/file-t51Z1AVZhJ0i4rmxHW5xFsX0_1713351521_3614411.png`
+- `avatararts/DaLL-E/1-1/file-tD5R2OlphYAqPS2sT7oeGkBk_1713351427_9275877.png`
+- `avatararts/DaLL-E/1-1/file-weiafS4SFyukjSJnIHSejmN4_1715959010_5225434.png`
+- `avatararts/DaLL-E/1-1/file-wl6UKkdmAz0o5uR1saG7ebTh_1718161289_5896392.png`
+- `avatararts/DaLL-E/1-1/file-xTcihY6LKJTJkpLUIs5qSAKL_1713351428_2794428.png`
+- `avatararts/DaLL-E/115831cf-7e56-4c7b-b893-638e166eeea8.jpg`
+- `avatararts/DaLL-E/117d35de-09b7-4ea8-b853-3f59f1ff2f29.jpg`
+- `avatararts/DaLL-E/16-9/file-1ayXRgybHxcg6EcdEdQgPPLP_1713351659_6190927.png`
+- `avatararts/DaLL-E/1f4382c1-e3ae-4ce3-8e11-c2f9ab806032.jpg`
+- `avatararts/DaLL-E/24fc0868-98ca-4928-acb8-502fca4a4f74.jpg`
+- `avatararts/DaLL-E/26364013.png`
+- `avatararts/DaLL-E/26364014.png`
+- `avatararts/DaLL-E/26364015.png`
+- `avatararts/DaLL-E/26364016.png`
+- `avatararts/DaLL-E/2cff4ef8-2291-4fcc-a24e-4c0c786c799c.jpg`
+- `avatararts/DaLL-E/44340786-473c-43ba-b83b-4f20f6bd9c6f.jpg`
+- `avatararts/DaLL-E/45925b65-67a8-4b68-b8b3-587eb0810845.jpg`
+- `avatararts/DaLL-E/461da7cc-6c9f-45f9-b4b4-782109cdee03.jpg`
+- `avatararts/DaLL-E/60d956fc-5b76-4e2f-8a85-da0df8462042.jpg`
+- `avatararts/DaLL-E/61b6b288-55d6-4781-809e-66116bf821af.jpg`
+- `avatararts/DaLL-E/61cec41d-b088-4e72-9455-b23055ed397c.jpg`
+- `avatararts/DaLL-E/67e4c413-53f3-44e2-8e6f-afd3fdeef2d7.jpg`
+- `avatararts/DaLL-E/74976957-3ad0-4115-9b3d-ed68315095c9.jpg`
+- `avatararts/DaLL-E/759dfad9-0a10-4dc0-b709-447f6e734ee3.jpg`
+- `avatararts/DaLL-E/852b9133-0bca-4896-a5c5-da38660d70a3.jpg`
+- `avatararts/DaLL-E/85b32845-1005-49a7-b2c0-a3e104fc402f.jpg`
+- `avatararts/DaLL-E/86ab9ff9-620c-447c-9993-2f8c0fa2f465.jpg`
+- `avatararts/DaLL-E/88602fc6-09e0-47f3-958a-befa8254b8ed.jpg`
+- `avatararts/DaLL-E/8d2d299e-010c-4e5e-acd7-af3fcad6a569.jpg`
+- `avatararts/DaLL-E/9-16/file-3J9z7hcNZICEWg8p07yzaOzP_1713351577_237048.png`
+- `avatararts/DaLL-E/9-16/file-GkqDL53N475abfy5USvm0QgW_1714588736_9524221.png`
+- `avatararts/DaLL-E/9-16/file-Sj7BhKeex0JLaVp3AjpKOkwI_1713351571_7620192.png`
+- `avatararts/DaLL-E/9-16/file-WITIoMyRju6a051yv2O4dwsE_1714588649_063949.png`
+- `avatararts/DaLL-E/9-16/file-nEUyyabJOWZBPvALpzvO7KLD_1718223648_7467039.png`
+- `avatararts/DaLL-E/9-16/file-nhT3ImwT1AQSbgnijdTbJTT9_1713351215_7319453.png`
+- `avatararts/DaLL-E/9-16/file-ozfmWknAnXhg0j5djk0af4TF_1715644255_7818053.png`
+- `avatararts/DaLL-E/9-16/file-stgItxAqrpfvpbF62JiftBt3_1718119693_305301.png`
+- `avatararts/DaLL-E/9d369f4b-0ece-43ff-bcd2-5d825bb8e6c4.jpg`
+- `avatararts/DaLL-E/ChatGPT-Project_2025_Bureaucratic_Control.md`
+- `avatararts/DaLL-E/DALL·E_2024-07-16_11.11.png`
+- `avatararts/DaLL-E/DALL·E_2024-07-16_11.23.png`
+- `avatararts/DaLL-E/DALL·E_2024-07-16_11.27.png`
+- `avatararts/DaLL-E/DALL·E_2024-07-16_11.36.png`
+- `avatararts/DaLL-E/a2670b32-ea48-4718-bdc6-1434fa8ef545.jpg`
+- `avatararts/DaLL-E/a5135975-8663-461f-aabd-a8af96d2ed51.jpg`
+- `avatararts/DaLL-E/abf8cc1b-c0b4-4089-83d0-54f272c70327.jpg`
+- `avatararts/DaLL-E/af22e359-ec5f-4c7b-956c-25ab7a22b608.jpg`
+- `avatararts/DaLL-E/all/057ZI0e38CjmJ0wOBD7uGlnw_1718670370_4525077.jpg`
+- `avatararts/DaLL-E/all/0G3dmxu4lL3xDf093ZLm2PYV_1713351435_8787274.jpg`
+- `avatararts/DaLL-E/all/0LbdKQOuph866OwbqVZKoTNf_1718588556_7049987.jpg`
+- `avatararts/DaLL-E/all/0Rec63MreiKYUdiJAnLO7DGj_1718669845_2748778.jpg`
+- `avatararts/DaLL-E/all/0YhcgFggPAbdMXsiERLv8Cp2_1718316643_7390087.jpg`
+- `avatararts/DaLL-E/all/116NcYMnP6AkXYb1SI6Da1uK_1720541467_7279446.jpg`
+- `avatararts/DaLL-E/all/12SCjhCPX6QMntXg3FrqPHJg_1718669805_562553.jpg`
+- `avatararts/DaLL-E/all/1IFN0WIvuba6bMGtK0g5FGCg_1713351435_0450356.jpg`
+- `avatararts/DaLL-E/all/1ayXRgybHxcg6EcdEdQgPPLP_1713351659_6190927.jpg`
+- `avatararts/DaLL-E/all/1kJgl3bjwQVHTVzytCMsO0C9_1718659465_1830788.jpg`
+- `avatararts/DaLL-E/all/2Gczpro4NHpDoHNFMEfoODar_1718431507_569708.jpg`
+- `avatararts/DaLL-E/all/2N4PajyYchKq0J3SNiQZUUqO_1718930936_723823.jpg`
+- `avatararts/DaLL-E/all/2SjSwGJvnCvkG78DGPu9gHTj_1718699952_4236016.jpg`
+- `avatararts/DaLL-E/all/2nItjaXZCKLrld3fG14q7rmc_1713351856_4385982.jpg`
+- `avatararts/DaLL-E/all/35W15bTfRNGt79L4636kRkk8_1718711740_0578966.jpg`
+- `avatararts/DaLL-E/all/3DU0L8yQlyBdCZ2V5Gm4rSdR_1718929912_7424824.jpg`
+- `avatararts/DaLL-E/all/3HAqRQQCNvzNCwdUvvstWHKB_1713351578_3735278.jpg`
+- `avatararts/DaLL-E/all/3J9z7hcNZICEWg8p07yzaOzP_1713351577_237048.jpg`
+- `avatararts/DaLL-E/all/3NlkmbgYUUrf9Thgqb7K25NO_1718916496_6620343.jpg`
+- `avatararts/DaLL-E/all/3RzpXAfsTEzKqC2O6wylnJW7_1713351574_225314.jpg`
+- `avatararts/DaLL-E/all/3emCeCi06yZScRXfKqpMkIGt_1718430774_170787.jpg`
+- `avatararts/DaLL-E/all/3r69qEUxPh7bYmX6dC12X6rX_1718670298_396184.jpg`
+- `avatararts/DaLL-E/all/3sKnMv1ksBuy3GSJoDEehDzH_1718669687_736947.jpg`
+- `avatararts/DaLL-E/all/4DOK6giolCMnR8Z1ZYC39tul_1713351205_666734.jpg`
+- `avatararts/DaLL-E/all/4KBxTV8P5K8OVncEhOlFvWek_1718670252_8223593.jpg`
+- `avatararts/DaLL-E/all/4MmcljDTxPHqQgP5zEbowoGw_1718704173_2392917.jpg`
+- `avatararts/DaLL-E/all/4TMGKhIpZKJQZAwy6mncmfic_1718362691_3090417.jpg`
+- `avatararts/DaLL-E/all/4ZFimRCMFi1UK03OJJ9XAy3E_1718950540_6151528.jpg`
+- `avatararts/DaLL-E/all/4ZOnHwtWMUQYNDfoMQtrX7n2_1718173232_8335314.jpg`
+- `avatararts/DaLL-E/all/4heKtheNNLFD5qCbO0GxNzHP_1713351744_2433746.jpg`
+- `avatararts/DaLL-E/all/4rcm6Nq558fmCnoNPdPr3Y9r_1720540887_4687836.jpg`
+- `avatararts/DaLL-E/all/4xGq6ZUzVyMz9V22qyc1JMxL_1713351198_1072757.jpg`
+- `avatararts/DaLL-E/all/51dwqWxo9Dm8YXxCnkntieSV_1720540877_7520132.jpg`
+- `avatararts/DaLL-E/all/58qxHcZrF6p6l3lfmYv5m8Yp_1718669688_6424484.jpg`
+- `avatararts/DaLL-E/all/5CdNwnCHVmlB1LE8rKmuQvTA_1718316404_0656266.jpg`
+- `avatararts/DaLL-E/all/5Ova2uzr43YtuEVE75NrdKhI_1718711533_2973502.jpg`
+- `avatararts/DaLL-E/all/5ShC4LIl5FJE4aoTZOIsLDDY_1718669688_9155955.jpg`
+- `avatararts/DaLL-E/all/5qSa9MdUMngs2ehVbKVhfuOJ_1718316014_7678938.jpg`
+- `avatararts/DaLL-E/all/5udtPW8VYkWLmsotmSher2TV_1718915777_066654.jpg`
+- `avatararts/DaLL-E/all/60rXtajPBBH5IVfeRNj9Rhfc_1718360724_8777523.jpg`
+- `avatararts/DaLL-E/all/6HXWUmjWiv2bhRx9RT5uQXBS_1718221690_5362298.jpg`
+- `avatararts/DaLL-E/all/6StkDbNU2rkLdQ31dojkOJ6X_1718220331_1532958.jpg`
+- `avatararts/DaLL-E/all/6XPeyraVYzXnOAvcUcAohxGE_1718659324_7062867.jpg`
+- `avatararts/DaLL-E/all/6cAJT7pFTSWT9Cr8Fyz2tBWe_1718950539_6565819.jpg`
+- `avatararts/DaLL-E/all/6uYLrLr27chrqrH6JRJbQZI2_1713351487_501494.jpg`
+- `avatararts/DaLL-E/all/71X3LaWF6wzhHwU9Pm8vxcT8_1718163889_6604412.jpg`
+- `avatararts/DaLL-E/all/7Ja240FOmtmWGjnCfmEWWX92_1713351760_193013.jpg`
+- `avatararts/DaLL-E/all/7US63mw1cdCuK42IsCsAaVIT_1718703908_4652853.jpg`
+- `avatararts/DaLL-E/all/7aKahxnS84dWo9rOTfQQDEuM_1718220804_0112336.jpg`
+- `avatararts/DaLL-E/all/7clxcqGhrvgq80hCvRIUk8qa_1720541445_7545805.jpg`
+- `avatararts/DaLL-E/all/7iso9ibuF9tPyPS1YXG9eRKE_1718930920_8961341.jpg`
+- `avatararts/DaLL-E/all/8KCSHk2S2is15Bag8TvVOfeb_1718934523_876466.jpg`
+- `avatararts/DaLL-E/all/8XVOPfxqmd3rmbPK3s6wNaWe_1718930092_3429434.jpg`
+- `avatararts/DaLL-E/all/94O7PKG3a55K2q6xewLQSR45_1718669687_7983274.jpg`
+- `avatararts/DaLL-E/all/9IH2MI174AzfyjLyvKN4GNjE_1718711691_2326188.jpg`
+- `avatararts/DaLL-E/all/9vtzjRd8gcYMo1tO9tkgAoLI_1720540981_2982247.jpg`
+- `avatararts/DaLL-E/all/A0pHIesiE00Y0zOqb7JcfSyE_1713351682_8777335.jpg`
+- `avatararts/DaLL-E/all/A5Sp4f5eZVWRjcBQo53B4uR5_1718220136_4910483.jpg`
+- `avatararts/DaLL-E/all/AJ01DGXITp7usfDh4xGkPQSt_1718792178_5169075.jpg`
+- `avatararts/DaLL-E/all/AJYStJKS5SvMRHUruWjCr0BX_1713351427_4852507.jpg`
+- `avatararts/DaLL-E/all/AKceDYnQ4C09NqgCeaPbRhij_1713351683_0703943.jpg`
+- `avatararts/DaLL-E/all/ALhW3LzGQMbLW1BXsrvepMbY_1718931511_875815.jpg`
+- `avatararts/DaLL-E/all/AzZFhPPG9u0fOu1yh3r1YZAv_1713943451_4954798.jpg`
+- `avatararts/DaLL-E/all/B0iGz82sVoIqg3dFgs4s4EBH_1720539709_6062522.jpg`
+- `avatararts/DaLL-E/all/B4mTF5PrqsrHgkekqvqfve4o_1718916496_807754.jpg`
+- `avatararts/DaLL-E/all/B5lfCznSSLppqhRDSf5hfhVs_1713351520_8290827.jpg`
+- `avatararts/DaLL-E/all/BYBb93Si5jHsAhEZXrw1VkNd_1715959011_4693704.jpg`
+- `avatararts/DaLL-E/all/BYHoESNZi98FpxXYgCEXsUsc_1718658795_0409577.jpg`
+- `avatararts/DaLL-E/all/BZ4SUc5t1HfyX0C3lzwZhyKu_1718712722_5659463.jpg`
+- `avatararts/DaLL-E/all/BhlWri3E3XcSCHTVtHfZy9F2_1718316934_3801832.jpg`
+- `avatararts/DaLL-E/all/BxZ66xwhjSNLv6kAPl7qTB7L_1713351744_4161098.jpg`
+- `avatararts/DaLL-E/all/C5yNFfGKHDx3eNWyXaSczI6H_1720541489_0266027.jpg`
+- `avatararts/DaLL-E/all/C7NBY9TOol5o3sniYgwpEPjA_1713351759_217642.jpg`
+- `avatararts/DaLL-E/all/CLF9hILbJtYetAA70S7KoIcQ_1720541455_615009.jpg`
+- `avatararts/DaLL-E/all/CMirfcSLxPDS4QtYztrMImpJ_1718711779_1431012.jpg`
+- `avatararts/DaLL-E/all/CqdmINyTlvfb2ptw2HVfrlqf_1718221905_4908407.jpg`
+- `avatararts/DaLL-E/all/CspaltxEMwAwdgRlYCST1pQo_1713976687_033941.jpg`
+- `avatararts/DaLL-E/all/CzviJmWYsLwkErbFQkDMgygq_1720539707_619098.jpg`
+- `avatararts/DaLL-E/all/D5WVWHrz2U5WBoAQyN5BuQ4n_1718931380_7579734.jpg`
+- `avatararts/DaLL-E/all/DCSPgbdqV8grGlqVfdMF2ufA_1718950541_1103308.jpg`
+- `avatararts/DaLL-E/all/DJLBTcpOsWZ0HokfBx24G7dK_1718659319_3857691.jpg`
+- `avatararts/DaLL-E/all/DMPD5pAwONZdUt7Sr2KkqL8J_1718221178_129138.jpg`
+- `avatararts/DaLL-E/all/DtsRtpFPyG9xSEcnXdVPtiT0_1718362347_7650054.jpg`
+- `avatararts/DaLL-E/all/EFY0JgQzQIXnu0Umfh7WYM37_1718574543_5825403.jpg`
+- `avatararts/DaLL-E/all/EjTwbVL0k61y5RAgMNDFzd3k_1718950540_6842408.jpg`
+- `avatararts/DaLL-E/all/ElkA0t0Jc2A4pJ8wkLt6p4Xb_1718669958_0771792.jpg`
+- `avatararts/DaLL-E/all/Eoq3IVMMzyZkFjMBYCpmsFqZ_1718431200_5649488.jpg`
+- `avatararts/DaLL-E/all/EwyY8Ej4ZkUaXGqzMnXutYxP_1718659320_4943385.jpg`
+- `avatararts/DaLL-E/all/F7B1sKaPnx8rSNvjXySeqbS6_1718934528_9033613.jpg`
+- `avatararts/DaLL-E/all/FJoVtie0CtKh6mwnXBEc9JlX_1718431177_0714269.jpg`
+- `avatararts/DaLL-E/all/FM05N7amuN4phDVGijsZ73Rn_1718950540_7541578.jpg`
+- `avatararts/DaLL-E/all/FYEUDg7NTBqiXdeK9iZc3QmN_1718431294_033456.jpg`
+- `avatararts/DaLL-E/all/FajqO4DFUIrhUSCJRsEWEfxf_1718223649_3545992.jpg`
+- `avatararts/DaLL-E/all/FsE5yBXsx9okcMZiQuJIY60W_1718214534_7171671.jpg`
+- `avatararts/DaLL-E/all/GV6K15hJ07fxJdsEcdxW7319_1718221781_7815742.jpg`
+- `avatararts/DaLL-E/all/Gx3w09TLNMMpxZ3zIM9nivFL_1713351757_3725016.jpg`
+- `avatararts/DaLL-E/all/HRTuCuouNr2Fq5KGg0dfFQj2_1718695709_9407518.jpg`
+- `avatararts/DaLL-E/all/HUC9Slrk1LQA9yLET8kEYDmj_1718930877_4001973.jpg`
+- `avatararts/DaLL-E/all/Hfelxcq77CfuxgtgUrZWSa8z_1718710666_4499547.jpg`
+- `avatararts/DaLL-E/all/HmxJ9aMATSYamfUjC2FWcNKa_1718929940_515529.jpg`
+- `avatararts/DaLL-E/all/Ho955SB2OJKppppAZCLZxcYm_1718670653_9164805.jpg`
+- `avatararts/DaLL-E/all/HrXAHnbdEZaQPbiK0YGOmdPH_1713351546_8044484.jpg`
+- `avatararts/DaLL-E/all/HtkC9NCLq6OvnVGkYlN1dngK_1718223613_709558.jpg`
+- `avatararts/DaLL-E/all/HwBmE90HJurNS5B8xEe6Xd9o_1718711718_1008744.jpg`
+- `avatararts/DaLL-E/all/IHwHiO5xHPy2wTSmaxeJKBSC_1718385838_0118692.jpg`
+- `avatararts/DaLL-E/all/IICtirx7HdCzhkcjotxDLt22_1713351780_3155854.jpg`
+- `avatararts/DaLL-E/all/IOEjOEjSOvJmWJ2ZCKiS7spN_1718173288_8408532.jpg`
+- `avatararts/DaLL-E/all/ISXw8GKKP0KT16066K8frUwq_1720540913_158174.jpg`
+- `avatararts/DaLL-E/all/IfJSqYfhOxOgGj0qeVTGuNu1_1718589874_8738046.jpg`
+- `avatararts/DaLL-E/all/Igv0YYNCGSWwNv4EZEKLoqpp_1718135991_7769597.jpg`
+- `avatararts/DaLL-E/all/IiVK6lKgQejgY9r3GUeL3Fpk_1718669686_6705503.jpg`
+- `avatararts/DaLL-E/all/IiqJST5RN1h1AdUBM4tMgPrl_1718316327_7077048.jpg`
+- `avatararts/DaLL-E/all/Iq9ghezRLJXNGJKN3pkLbOL1_1718704110_9254322.jpg`
+- `avatararts/DaLL-E/all/Iu9SxMlrPcW0kgTk0blmwjw6_1718669686_577599.jpg`
+- `avatararts/DaLL-E/all/IxW7pETe6tv0mSXaaIIb7G1j_1713976601_5005157.jpg`
+- `avatararts/DaLL-E/all/IzcNsCrEWMNgLsw6aCFpChMF_1718360106_776685.jpg`
+- `avatararts/DaLL-E/all/J93DdBU6jPSOQyEzn9GyU88L_1713943451_5702307.jpg`
+- `avatararts/DaLL-E/all/JLbeeW8thbuIcTghQ7zsBBNf_1718950540_557195.jpg`
+- `avatararts/DaLL-E/all/JStoWGk9cUFCq6yVwkQt131X_1718219904_138879.jpg`
+- `avatararts/DaLL-E/all/JdZnK1a4Lrr7K7ZWhPymzvn9_1718220247_5971773.jpg`
+- `avatararts/DaLL-E/all/JqlKqWTQ1xJJ7kZIzPii2a8E_1718792099_575941.jpg`
+- `avatararts/DaLL-E/all/KF46xObw8keH8YtteTMdrmpl_1718659320_1541383.jpg`
+- `avatararts/DaLL-E/all/KFJCDmHKxKWGEcQ2fA3tGASM_1718669958_0302942.jpg`
+- `avatararts/DaLL-E/all/KKkolBxDQmWURQhHDRFiPAb2_1713943451_5756435.jpg`
+- `avatararts/DaLL-E/all/KLStPKozfwiLsz3sZ4DB1ttY_1718221822_2158935.jpg`
+- `avatararts/DaLL-E/all/KkweLdE4e58BIN62MFgzm3Gw_1713943450_1386738.jpg`
+- `avatararts/DaLL-E/all/KmbH6rNpIcxQEyygH1QnuuiL_1718712872_4288468.jpg`
+- `avatararts/DaLL-E/all/L7LkdBa1fwR5w18O2qODmoBL_1718316178_5781384.jpg`
+- `avatararts/DaLL-E/all/LRFFl1zyfy2dtIsmT2cmVUWa_1718930618_159447.jpg`
+- `avatararts/DaLL-E/all/LecMEQZGyuNgLGAMlhXVmXfe_1718669687_9503393.jpg`
+- `avatararts/DaLL-E/all/M47KJWPmzcbBPEEDiaNDKikf_1718575310_2488136.jpg`
+- `avatararts/DaLL-E/all/MCBBqnSBAxneLvj5wNTJuAfT_1718929902_597865.jpg`
+- `avatararts/DaLL-E/all/MCE3vdJf2wgQ7HbuAOAKyZLk_1718360198_003735.jpg`
+- `avatararts/DaLL-E/all/NNs6gWLjEOagRbN2hljgUnfh_1718669928_1687977.jpg`
+- `avatararts/DaLL-E/all/NurygLw6d5REY0qnnELyuXL9_1718792099_2088835.jpg`
+- `avatararts/DaLL-E/all/NvQlvl96zLA48cqww1vNc5Xl_1718316580_4917293.jpg`
+- `avatararts/DaLL-E/all/NyJWZd5wDOWtE9tpUSLmu59A_1718164017_9824486.jpg`
+- `avatararts/DaLL-E/all/O4T96Zl71NdiXYDS2m1qlJKj_1718930976_8072326.jpg`
+- `avatararts/DaLL-E/all/OBUUKhqABAJRP87lAchqRmTL_1718711838_9641361.jpg`
+- `avatararts/DaLL-E/all/OgRq6a4G2PKG9uRo4VDTxri6_1720539707_6424148.jpg`
+- `avatararts/DaLL-E/all/OlD8yy64Yt5maEz74wezKuDT_1715959010_6146076.jpg`
+- `avatararts/DaLL-E/all/P1RBOIQByVSMtOpfP21eQdiZ_1718659324_5980484.jpg`
+- `avatararts/DaLL-E/all/P65RwYjilwyrhn2mqfQ5q9FW_1718669845_3649523.jpg`
+- `avatararts/DaLL-E/all/PBaccBsUSpRgR2y5yUA9TsDc_1718711101_8012545.jpg`
+- `avatararts/DaLL-E/all/PC0aJuDaqIo9d53YO8xnUFBQ_1718223649_5101807.jpg`
+- `avatararts/DaLL-E/all/PMX2jE3vOfL4ppNt4OoZZVyf_1718221201_5705643.jpg`
+- `avatararts/DaLL-E/all/Phx5GMaV51aHiGflZ2rSOKHt_1718221219_954671.jpg`
+- `avatararts/DaLL-E/all/QBpXGA5zmDZ3cbprvV3hmN4c_1718669687_9196517.jpg`
+- `avatararts/DaLL-E/all/R6bYVCntAp1XvBW7XfA0BRGu_1718360780_8935122.jpg`
+- `avatararts/DaLL-E/all/RBBxfpdKbWPSZ1H9MN7W14Q5_1718934529_293906.jpg`
+- `avatararts/DaLL-E/all/RBHDblia3lSIB32ZothtlA2v_1718916496_5136302.jpg`
+- `avatararts/DaLL-E/all/RorO1tKPWtfka4VZ8vW2DVlw_1720539707_646228.jpg`
+- `avatararts/DaLL-E/all/RvO5mSb3w3sKJS3r8Ze1ktev_1720541393_6297007.jpg`
+- `avatararts/DaLL-E/all/SMQo5DfIvsrKq2itH1b8Zd3G_1718950539_5956419.jpg`
+- `avatararts/DaLL-E/all/ScKR07zPuFVSISLvkrU6FUfb_1713351436_009437.jpg`
+- `avatararts/DaLL-E/all/Sj7BhKeex0JLaVp3AjpKOkwI_1713351571_7620192.jpg`
+- `avatararts/DaLL-E/all/SuZTCSjTHJtY8lbJGsXvPPOJ_1718711716_691887.jpg`
+- `avatararts/DaLL-E/all/SweiUG5HLW62jANuFf8xvZru_1720540866_8612068.jpg`
+- `avatararts/DaLL-E/all/TA74W0ZqtSTrcVrIJvDf4TRH_1713351215_6294491.jpg`
+- `avatararts/DaLL-E/all/TEFXYSWxa4u14Qdqk55e1EVk_1718950541_8793955.jpg`
+- `avatararts/DaLL-E/all/TIXMO5d5tsc8B7vBxwavjXAK_1718219948_2423985.jpg`
+- `avatararts/DaLL-E/all/TKuY04LxNJaD18L2QbNzej6U_1718655399_881828.jpg`
+- `avatararts/DaLL-E/all/TOg1B8r8tLuzUxRLmsUDaHFs_1718669688_7663891.jpg`
+- `avatararts/DaLL-E/all/Tbsm5Jp5y8usOQUx9Pkji8vU_1718432823_3784888.jpg`
+- `avatararts/DaLL-E/all/TcC64qWSVGhN3qZKqZoNiBb0_1718669844_0453706.jpg`
+- `avatararts/DaLL-E/all/TiXB5sERHzEP8riuitXaUfuG_1718391991_5385978.jpg`
+- `avatararts/DaLL-E/all/Tj6qDRtJkWj0O1ACuCLGxJbE_1718743006_6389308.jpg`
+- `avatararts/DaLL-E/all/Tkf2n19G4f4Ig1hrpqnra0eq_1720539708_5261347.jpg`
+- `avatararts/DaLL-E/all/TwTFUWtP3pMRzztcxJtex0Ub_1713351578_6885862.jpg`
+- `avatararts/DaLL-E/all/TxjSGXcoms5CRU0nbXbfIdVU_1713351779_2933924.jpg`
+- `avatararts/DaLL-E/all/U2MuL5iE6wqN6cFKqpSoMXvt_1718669847_0864904.jpg`
+- `avatararts/DaLL-E/all/U8DyfrrgT5EY3GFo1Sdkx269_1718219883_5251207.jpg`
+- `avatararts/DaLL-E/all/UdurlGf6ANLFzgBZJXdrOcnn_1718248182_8768742.jpg`
+- `avatararts/DaLL-E/all/UqDUV45JOjfTjQ2NAa0Js1jN_1718660020_26948.jpg`
+- `avatararts/DaLL-E/all/V278PtYLah5PwEPM271SoUc4_1713976715_0172043.jpg`
+- `avatararts/DaLL-E/all/V4mAav7OYmUGToJMg72Lbndd_1718669688_961049.jpg`
+- `avatararts/DaLL-E/all/VKGqNGEZFRGvhnY1NW2cATUN_1718669846_4906116.jpg`
+- `avatararts/DaLL-E/all/VQj30ZhI1Qz9BIZufV5gAQaz_1718221243_3020132.jpg`
+- `avatararts/DaLL-E/all/VTnmUZih5SO4kK35TOXhTIDA_1718223649_8540037.jpg`
+- `avatararts/DaLL-E/all/VxwShlLWGNMBWfAOTfDi1AXS_1718247913_833671.jpg`
+- `avatararts/DaLL-E/all/WU9sFOatUI0NMGKkWJQlExeo_1713351744_7088227.jpg`
+- `avatararts/DaLL-E/all/X77b0NG7bpHjNLZOIzqxEvBq_1718933432_1912973.jpg`
+- `avatararts/DaLL-E/all/XCzj3uSv3mghUYVjmk0NL6Q4_1720539707_711555.jpg`
+- `avatararts/DaLL-E/all/XMgnxaFINOfohUEW9tt6bua4_1713976686_7579987.jpg`
+- `avatararts/DaLL-E/all/XTfDhE1Iwffur6zigqRcthQK_1718173245_610189.jpg`
+- `avatararts/DaLL-E/all/XXNfgyd3wxNKWdMEr0XFvhNQ_1720541049_3818603.jpg`
+- `avatararts/DaLL-E/all/XZwaEGnlOWQNmz7dAPqQh2BT_1718161336_8710477.jpg`
+- `avatararts/DaLL-E/all/Xhhw67g4eOlsnTF54qOF5ato_1713351744_3184958.jpg`
+- `avatararts/DaLL-E/all/Xk5Zc8XGtO0h8GGhAt4NsYnP_1718385875_0916905.jpg`
+- `avatararts/DaLL-E/all/Xu9JojMZS9kasIcMbQp7JfcM_1718753537_4952116.jpg`
+- `avatararts/DaLL-E/all/ZD3Km6msltvHxL5zMXH6fY84_1718711693_756767.jpg`
+- `avatararts/DaLL-E/all/ZFMvpaAyv9BJcw79afdi48St_1718173197_2011583.jpg`
+- `avatararts/DaLL-E/all/ZQYWaXdF8ZjmjWVvYEtTiewo_1720540922_6343524.jpg`
+- `avatararts/DaLL-E/all/ZbKvEl3HkVzilia9jLZ13W9D_1718223649_6106079.jpg`
+- `avatararts/DaLL-E/all/Zbzq9U5o12w6KJmrbzUh7CUv_1718951130_7599838.jpg`
+- `avatararts/DaLL-E/all/ZeTaEKGC0hqSwUAwd9UBykzJ_1718669844_1735187.jpg`
+- `avatararts/DaLL-E/all/ZnOL2xJe5IpM6vVYQf3r3yyK_1718221653_5430465.jpg`
+- `avatararts/DaLL-E/all/ZqxQ2k8kLRsM9KR5cdCDXOOd_1718934529_0007637.jpg`
+- `avatararts/DaLL-E/all/a4TIqn77pSN4nc8y07tIwhkC_1720540969_040493.jpg`
+- `avatararts/DaLL-E/all/a8YDfjolvBvFkvk7TFA5AZum_1718359849_8212802.jpg`
+- `avatararts/DaLL-E/all/a8zghmmWzYXoHzEB0XqBc14z_1718223648_4862108.jpg`
+- `avatararts/DaLL-E/all/a9VGTGrRoPS0dUoPTw4cvDLh_1718670339_6107237.jpg`
+- `avatararts/DaLL-E/all/aKjVdu7GFXvO94kfvXFW9fEE_1718670165_8840947.jpg`
+- `avatararts/DaLL-E/all/aNTCEIviUtPry8NduNNUoAW7_1718695774_9836833.jpg`
+- `avatararts/DaLL-E/all/aPGhi5zHP0dJut2ScyB99pEM_1718221268_2350352.jpg`
+- `avatararts/DaLL-E/all/aRn0yiILe7qg4uUoh7vfpYDv_1718670218_117234.jpg`
+- `avatararts/DaLL-E/all/aewZsafH8MmuKMSMAiLtf7sX_1718360090_9727292.jpg`
+- `avatararts/DaLL-E/all/ailrfYVo4noSqISZMRIvPLy0_1720541437_4158947.jpg`
+- `avatararts/DaLL-E/all/b7dDQE4t7XXa5bqwHrWPamlN_1718360764_512381.jpg`
+- `avatararts/DaLL-E/all/b8tJJFf8de1kaHHWbr9CiTNA_1713351521_2433858.jpg`
+- `avatararts/DaLL-E/all/b8zgQNzkodNjjyOzEOFUUPLn_1718934528_7180758.jpg`
+- `avatararts/DaLL-E/all/bV58u5hc3fjmbYxBOCw52fqx_1718931281_572785.jpg`
+- `avatararts/DaLL-E/all/bziMTweOuv5oU0T6Goqfyy3F_1713351543_1693006.jpg`
+- `avatararts/DaLL-E/all/cnNattqNwSmgIkIgY4Een9tr_1718402028_2221596.jpg`
+- `avatararts/DaLL-E/all/cxDbVVhtQ0l65C6xoU2vW6G7_1713351547_5091987.jpg`
+- `avatararts/DaLL-E/all/d1xnY6wSQjG5Prm1AGVXXmoM_1718360741_5617466.jpg`
+- `avatararts/DaLL-E/all/d7EkVs1wFNS7D16qQwf8SrqE_1720540896_8148124.jpg`
+- `avatararts/DaLL-E/all/dCiG636CigEPnNlGMMjalxt9_1713351572_1609285.jpg`
+- `avatararts/DaLL-E/all/dDvqO1XhBR85T5ZvFfk7oTNS_1720539707_9187224.jpg`
+- `avatararts/DaLL-E/all/dJtGsE4R4ugT26yKtwaJrGEG_1718220161_0852993.jpg`
+- `avatararts/DaLL-E/all/dNmbky3RDDTpxr3zmh8VqKgf_1718951148_4943054.jpg`
+- `avatararts/DaLL-E/all/dSyQAmprbAy9hvJMQSLBbCQ8_1720539707_6808388.jpg`
+- `avatararts/DaLL-E/all/dVnDqRIHoxxBQCVzvilN1kZJ_1718359835_892289.jpg`
+- `avatararts/DaLL-E/all/dYYYAmzRn45wSIaQpeAa2YmU_1713351759_9203815.jpg`
+- `avatararts/DaLL-E/all/dcst2M2AGs5lebUlsI76H5uI_1713351581_017284.jpg`
+- `avatararts/DaLL-E/all/dlq1rcjapqsYpPxxIq3U3WdR_1718950540_5339124.jpg`
+- `avatararts/DaLL-E/all/dzfnKTzQOLCr7cQIPI6ZDso2_1718669686_7672985.jpg`
+- `avatararts/DaLL-E/all/eAoS7MoTQMSmXV5T8ipWckeb_1718659840_845408.jpg`
+- `avatararts/DaLL-E/all/eh8EgG00kjZkxk3S41cWWdlF_1718792170_9878833.jpg`
+- `avatararts/DaLL-E/all/eiBSbJoQgCEiWtWtrlMZRZZr_1718669845_3973887.jpg`
+- `avatararts/DaLL-E/all/fEywEW4rZBtW23K2uHCnhMrn_1718930061_0683837.jpg`
+- `avatararts/DaLL-E/all/fFittUi2CALmUr3Z1NqGlIj9_1720539708_5802395.jpg`
+- `avatararts/DaLL-E/all/fYscgGyjIs3q96efjNPtEm5x_1718710750_0014067.jpg`
+- `avatararts/DaLL-E/all/gMZlVYOmbDrd7N9wj5rmwhiK_1718930992_1385684.jpg`
+- `avatararts/DaLL-E/all/hX7D7sUMhESIYzc6aoOFyVC5_1718659324_0902848.jpg`
+- `avatararts/DaLL-E/all/hrcerZ1hrCu6AbIP8Rpqc7H2_1718392175_477403.jpg`
+- `avatararts/DaLL-E/all/htMCzL1pT0Dks0bnFDfkCrIV_1718669686_6037605.jpg`
+- `avatararts/DaLL-E/all/iGNtfUN0cS6gdQcOEJKwo1m8_1718951069_6498659.jpg`
+- `avatararts/DaLL-E/all/iMSn9wG2HdlWq7Aa41dhyI7A_1720541383_2608173.jpg`
+- `avatararts/DaLL-E/all/iPJHC8xGp4aavXAHnQfsCXIK_1718360055_0217428.jpg`
+- `avatararts/DaLL-E/all/iYUZtUnRFALq27ajHhab6q1c_1718931249_753642.jpg`
+- `avatararts/DaLL-E/all/idiZSELJktxe54yB65iCEaSU_1718712956_913329.jpg`
+- `avatararts/DaLL-E/all/ijuwIYoCCLG4r0Ku7v9pr5rT_1713351754_44066.jpg`
+- `avatararts/DaLL-E/all/itM8tPlTLXhxgDxZ1KnxwnBw_1718704160_5105047.jpg`
+- `avatararts/DaLL-E/all/j7RyzdoTVCxroa3Syv6g7Esa_1718669845_9143426.jpg`
+- `avatararts/DaLL-E/all/jD4EPv7mlCVDeJjkKJnFaEsE_1720539709_6347146.jpg`
+- `avatararts/DaLL-E/all/jENUam7AMadmobmgu8pFiz3D_1715645631_3215792.jpg`
+- `avatararts/DaLL-E/all/jGkyzsGCJVUPu4QQuUGZeE3y_1718933432_1860688.jpg`
+- `avatararts/DaLL-E/all/jraup5lx6zrrC1hBf4yaUNYU_1718704614_699098.jpg`
+- `avatararts/DaLL-E/all/jwf5Mr9aiX6Lc1Djz9j29WL9_1718930964_0646799.jpg`
+- `avatararts/DaLL-E/all/jxbOzRSoaVtnutt2F4A2KGT2_1713943450_163718.jpg`
+- `avatararts/DaLL-E/all/k5tA449177hLLWtoiy5eWni7_1718220826_9609036.jpg`
+- `avatararts/DaLL-E/all/kA6vHMp6mZZDbuICyDCohgIn_1718929891_1636162.jpg`
+- `avatararts/DaLL-E/all/kK6Jcm6lzRWLmklhshChyYaP_1720541478_5182836.jpg`
+- `avatararts/DaLL-E/all/kcMeeCA0laPE1nmuyd2IxRVk_1718316841_9484031.jpg`
+- `avatararts/DaLL-E/all/kq7TzNbemTpdplVkf9VXNPsR_1713351194_2452118.jpg`
+- `avatararts/DaLL-E/all/laadXxFfmr1xCSH0dmq7uh12_1718221554_990748.jpg`
+- `avatararts/DaLL-E/all/lf45AZy0EoOjSyIrHgwfKkdx_1718219920_7674913.jpg`
+- `avatararts/DaLL-E/all/m7QkUOxdGgyyHoxGWmBfmxWC_1718929923_3994381.jpg`
+- `avatararts/DaLL-E/all/mDJTHlfbln7e49XqEXEfvk2x_1718431924_1811302.jpg`
+- `avatararts/DaLL-E/all/mKRKNz7uaXkEcG02ihXz4SxY_1720539709_567641.jpg`
+- `avatararts/DaLL-E/all/ma1L2MPKi5TaVHfQ8zGzGAzo_1713943451_578941.jpg`
+- `avatararts/DaLL-E/all/moJcmJY2GnucFYb4k9ljwxsV_1718314152_3767774.jpg`
+- `avatararts/DaLL-E/all/nBFQnpDySb35JkHGGOFHOA2F_1718929971_3119543.jpg`
+- `avatararts/DaLL-E/all/nEUyyabJOWZBPvALpzvO7KLD_1718223648_7467039.jpg`
+- `avatararts/DaLL-E/all/nYgTzx0COwtBoCFiY8StQgz5_1718221486_2981536.jpg`
+- `avatararts/DaLL-E/all/neSpivR8xu5seaw4Kb4KGdsl_1718712975_4610307.jpg`
+- `avatararts/DaLL-E/all/oIPq76gF4eRur9Zbzff9r4bB_1718670578_0661516.jpg`
+- `avatararts/DaLL-E/all/oIy5J5FdxTsGLHduhj5RYAHs_1718743006_64108.jpg`
+- `avatararts/DaLL-E/all/oWtBadaeVBV7GtCO5G7YmHIm_1718930948_4996974.jpg`
+- `avatararts/DaLL-E/all/oZShhaUpIPGvGXNpN3SgWhgn_1718431115_9829865.jpg`
+- `avatararts/DaLL-E/all/odKxy87BaWNF6XJLw7s9Z2y2_1718315894_4821806.jpg`
+- `avatararts/DaLL-E/all/otltMREyYwlTnxflGREvrWhx_1718669688_975996.jpg`
+- `avatararts/DaLL-E/all/pQPBXUGDUbYrPyysSbbuuDtV_1718712504_4892802.jpg`
+- `avatararts/DaLL-E/all/phdXbMiefdZBkVaH8TX6ETz7_1718950540_4172056.jpg`
+- `avatararts/DaLL-E/all/q9YF0y1DV8Ewf0iBOVhNldsw_1718220909_5651326.jpg`
+- `avatararts/DaLL-E/all/qNsDkQTzGQK892iNFZUf904G_1713351542_929657.jpg`
+- `avatararts/DaLL-E/all/qOqky52AL2suPq1dqGlR8Cpk_1718220222_6702795.jpg`
+- `avatararts/DaLL-E/all/r9kRahETy7NqFfgE2sD5KUUw_1718431369_0851114.jpg`
+- `avatararts/DaLL-E/all/rGDIHlR7SnGIHgkM5m1mbWeE_1713351659_5542123.jpg`
+- `avatararts/DaLL-E/all/rGcGeyRr41HDEYaYLUnE0iUY_1718930105_461781.jpg`
+- `avatararts/DaLL-E/all/rMc2SM74K5hQf6wf1kn7Froy_1713976715_2129138.jpg`
+- `avatararts/DaLL-E/all/rlt6aQU7YFarRJSDCW7yLUoi_1713351435_274395.jpg`
+- `avatararts/DaLL-E/all/s2REEJglZ3R2OdtxTJHGN6RC_1718669845_0660682.jpg`
+- `avatararts/DaLL-E/all/s6slYZlyyGoDivwMFnn6Ja0t_1718930123_7732959.jpg`
+- `avatararts/DaLL-E/all/sZ7pentYOHplpeqg7ScYqgJU_1718669686_712072.jpg`
+- `avatararts/DaLL-E/all/sa4jefc6KJuMueA6tzyTyQcB_1718712455_1116664.jpg`
+- `avatararts/DaLL-E/all/skAlzYYfGhnVbOpUV6NwpMY7_1715644738_669969.jpg`
+- `avatararts/DaLL-E/all/stgItxAqrpfvpbF62JiftBt3_1718119693_305301.jpg`
+- `avatararts/DaLL-E/all/tWdbUYcW9NnYgnZIW19PxMz6_1718360179_324926.jpg`
+- `avatararts/DaLL-E/all/tXPCXlBcyULhiswWaRDNfna9_1718711375_1064482.jpg`
+- `avatararts/DaLL-E/all/taqJZ3KjIBW1SRplxNGoJYZ8_1720539709_6715372.jpg`
+- `avatararts/DaLL-E/all/taz0Qt7Hu1MzOhHsn5CVU8RI_1718360038_392054.jpg`
+- `avatararts/DaLL-E/all/tp53HhUG3PLN423JseJ0O1sN_1713351579_4700527.jpg`
+- `avatararts/DaLL-E/all/u5EiQlp275GawsA4eGHw7Tw2_1713351431_6690114.jpg`
+- `avatararts/DaLL-E/all/uNCGHE5T1Bb7qZRXyOobugaW_1713351779_8632584.jpg`
+- `avatararts/DaLL-E/all/ufjLqgA8UuTTUQFxvJuyrfJF_1718669687_6145258.jpg`
+- `avatararts/DaLL-E/all/uqCINrixoTys7MAV5g8iRCwe_1718360160_5742965.jpg`
+- `avatararts/DaLL-E/all/uxRKrHUKjPFHpIla9hoLsxDX_1718930073_5535908.jpg`
+- `avatararts/DaLL-E/all/v7bsF88OSN3JROZsrcfqnrEh_1718248040_6951673.jpg`
+- `avatararts/DaLL-E/all/vZvpG2pPlo2jfBrSFNTiPi1B_1718431236_95327.jpg`
+- `avatararts/DaLL-E/all/voZsgYb4msIVz2lbw8Ztmg2k_1718929956_879213.jpg`
+- `avatararts/DaLL-E/all/vsB8c35ro0NgdypSIwpmi0un_1718391931_325863.jpg`
+- `avatararts/DaLL-E/all/w3DIq70a69vyP8IvrgHU3Aq4_1718951111_8526962.jpg`
+- `avatararts/DaLL-E/all/wkPjvw2s3BXubJUQDjh0i4ZI_1713350495_9599788.jpg`
+- `avatararts/DaLL-E/all/wz0l2qFp40LMsL56cyrnx15k_1718220881_1242259.jpg`
+- `avatararts/DaLL-E/all/xobfbY3SlZgEXZIbYOjaPg1Q_1718669689_206164.jpg`
+- `avatararts/DaLL-E/all/yFZ3zeFn2xNKKb2CAyxGZ87I_1718220267_2171369.jpg`
+- `avatararts/DaLL-E/all/yJJ9FXm0qBi75XUhFBADTuCH_1718711451_2128236.jpg`
+- `avatararts/DaLL-E/all/yO3DvD1cb6A58TQZZOFNUT5q_1718669686_5656865.jpg`
+- `avatararts/DaLL-E/all/yQB2gZm8plE88eWbAyhOTEwz_1718221002_6459463.jpg`
+- `avatararts/DaLL-E/all/yhHjuqQnDTPDbtw5L1UMIiBH_1718951176_1429462.jpg`
+- `avatararts/DaLL-E/all/ylQDNiCk6YKgY2CBmJ0CtVL9_1718951093_8344893.jpg`
+- `avatararts/DaLL-E/all/ymnEz6mTbq8CNkuVK6756cKz_1718598531_3253317.jpg`
+- `avatararts/DaLL-E/all/yuEXcN2Bz9K0UD6ulNTyC2hJ_1718669687_918692.jpg`
+- `avatararts/DaLL-E/all/z04zvmtvZ14CYpcAwFJpmTsn_1718223648_7103186.jpg`
+- `avatararts/DaLL-E/all/zqLb5i8RanY0FZJOT3ITxRE5_1720540932_063261.jpg`
+- `avatararts/DaLL-E/c397dbb2-aa9b-4fe1-a45e-c7206e6d3517.jpg`
+- `avatararts/DaLL-E/captions.sbv`
+- `avatararts/DaLL-E/comic.jpg`
+- `avatararts/DaLL-E/d6325832-7d4d-494b-9ec8-0206100b91a2.jpg`
+- `avatararts/DaLL-E/dd884243-6391-49e8-b128-d50be19ad00c.jpg`
+- `avatararts/DaLL-E/download.jpeg`
+- `avatararts/DaLL-E/download_(1).jpeg`
+- `avatararts/DaLL-E/download_(2).jpeg`
+- `avatararts/DaLL-E/download_(3).jpeg`
+- `avatararts/DaLL-E/download_(4).jpeg`
+- `avatararts/DaLL-E/download_(5).jpeg`
+- `avatararts/DaLL-E/e9c9a686-d460-4599-9f22-612979db4d10.jpg`
+- `avatararts/DaLL-E/eb3af381-7436-4e18-a0f9-0de258baec5d.jpg`
+- `avatararts/DaLL-E/ec25d41c-c53a-49d6-898c-51898f3cc9e6.jpg`
+- `avatararts/DaLL-E/f4548333-6a5f-4321-9f7b-fe7b9c47d003.jpg`
+- `avatararts/DaLL-E/fd4cb311-834c-4f0c-9dfd-7a7ce7f383aa.jpg`
+- `avatararts/DaLL-E/requirements.txt`
+- `avatararts/DaLL-E/transcript.txt`
+- `avatararts/DaLL-E/ts/file-057ZI0e38CjmJ0wOBD7uGlnw_1718670370_4525077.png.jpg`
+- `avatararts/DaLL-E/ts/file-0OScMq2LJxPrzCqtmMp76Me8_1713351573_2290335.png.jpg`
+- `avatararts/DaLL-E/ts/file-0Rec63MreiKYUdiJAnLO7DGj_1718669845_2748778.png.jpg`
+- `avatararts/DaLL-E/ts/file-18a7j31Oln7bYY8Ee9J4EDg9_1714587186_1844945.png.jpg`
+- `avatararts/DaLL-E/ts/file-1HymRS4Eh3Wi4KgzKZYuiw2Z_1714587074_759341.png.jpg`
+- `avatararts/DaLL-E/ts/file-1IDGMziwENvleTWmlQBUflrI_1713351551_2275434.png.jpg`
+- `avatararts/DaLL-E/ts/file-1Qec0GtJQ1dPIkYDaocpVFvG_1718173290_2994323.png.jpg`
+- `avatararts/DaLL-E/ts/file-1UzG5xN63wJF5NENnumiVfMb_1713351810_848843.png.jpg`
+- `avatararts/DaLL-E/ts/file-1x9Zr86lwLrMzcl1W1H58WSA_1713350415_2852306.png.jpg`
+- `avatararts/DaLL-E/ts/file-238G6LUiR9mBwoLEYg20jj2z_1713351800_0934165.png.jpg`
+- `avatararts/DaLL-E/ts/file-2Gczpro4NHpDoHNFMEfoODar_1718431507_569708.png.jpg`
+- `avatararts/DaLL-E/ts/file-2HfXioaw6LK2uZF0fZFzwN92_1713351801_0410724.png.jpg`
+- `avatararts/DaLL-E/ts/file-2KVygtbfWENZ9FdNwyTWOjqk_1718164881_1649265.png.jpg`
+- `avatararts/DaLL-E/ts/file-2PTNEOvvgxBkGdorZm3a3dgv_1713351793_2214508.png.jpg`
+- `avatararts/DaLL-E/ts/file-2QLpjfxBo5ODivvERl07J89z_1713350404_659849.png.jpg`
+- `avatararts/DaLL-E/ts/file-2ixHM8UGck7QIDanrWBcw0LA_1713351520_177132.png.jpg`
+- `avatararts/DaLL-E/ts/file-2rplFSNLpunOKjmCX17jnLXq_1713351198_2142859.png.jpg`
+- `avatararts/DaLL-E/ts/file-3ABUtYa1yvMaNaT2LQpA5jEP_1713351576_5610223.png.jpg`
+- `avatararts/DaLL-E/ts/file-3BLEYMx39FtBeSAJI0OkGn9w_1713351519_5260494.png.jpg`
+- `avatararts/DaLL-E/ts/file-3ci9e6zGfVwJiTCv4ssQgeLr_1713351796_0528083.png.jpg`
+- `avatararts/DaLL-E/ts/file-3emCeCi06yZScRXfKqpMkIGt_1718430774_170787.png.jpg`
+- `avatararts/DaLL-E/ts/file-3r69qEUxPh7bYmX6dC12X6rX_1718670298_396184.png.jpg`
+- `avatararts/DaLL-E/ts/file-3sKnMv1ksBuy3GSJoDEehDzH_1718669687_736947.png.jpg`
+- `avatararts/DaLL-E/ts/file-4ESNho9nWwU8TeKCwVS9zwwv_1713351519_4291368.png.jpg`
+- `avatararts/DaLL-E/ts/file-4IKDKqun6jJFWdXXTM12DlJ9_1718163736_459495.png.jpg`
+- `avatararts/DaLL-E/ts/file-4KBxTV8P5K8OVncEhOlFvWek_1718670252_8223593.png.jpg`
+- `avatararts/DaLL-E/ts/file-4Q5WfxmUSVgBhllVihjH9taR_1713351579_2852788.png.jpg`
+- `avatararts/DaLL-E/ts/file-4QEUT9GJhI9sDhbkjNjofnSt_1713351517_2012324.png.jpg`
+- `avatararts/DaLL-E/ts/file-4RjWWms19r1VlhZHbV7p1HpY_1713351577_4690742.png.jpg`
+- `avatararts/DaLL-E/ts/file-4TMGKhIpZKJQZAwy6mncmfic_1718362691_3090417.png.jpg`
+- `avatararts/DaLL-E/ts/file-4eijppCV9kKOfisevHkcRgV9_1713351521_3720317.png.jpg`
+- `avatararts/DaLL-E/ts/file-4iOkg9ohn2iMnj0dxVOqjm72_1714588796_038661.png.jpg`
+- `avatararts/DaLL-E/ts/file-4nF0y0iMF4bdxyvc0bsGU7mO_1713351188_4510028.png.jpg`
+- `avatararts/DaLL-E/ts/file-54H7ePhBPnk34hbLlEnTYIvk_1715694434_7401993.png.jpg`
+- `avatararts/DaLL-E/ts/file-58qxHcZrF6p6l3lfmYv5m8Yp_1718669688_6424484.png.jpg`
+- `avatararts/DaLL-E/ts/file-5EFCLJbOJqIYEqu8B1tHS9gZ_1713351217_2534034.png.jpg`
+- `avatararts/DaLL-E/ts/file-5MIVdho6WOmPCyMyAZ7ZdaFu_1713351520_9404964.png.jpg`
+- `avatararts/DaLL-E/ts/file-5R16nEToYIICHrkzFcnJQzBz_1713351752_845468.png.jpg`
+- `avatararts/DaLL-E/ts/file-5Ram03olBQupgT3yVZ3geV8y_1713351462_9566212.png.jpg`
+- `avatararts/DaLL-E/ts/file-5ShC4LIl5FJE4aoTZOIsLDDY_1718669688_9155955.png.jpg`
+- `avatararts/DaLL-E/ts/file-6rVx3PQ25CfJfkda0Xz3nwsw_1713351673_1460583.png.jpg`
+- `avatararts/DaLL-E/ts/file-72RRFhGG5BWhHn3XbZZM8XDZ_1713351568_6153471.png.jpg`
+- `avatararts/DaLL-E/ts/file-765hE0ebxHPNmBb8E0kcWaDJ_1715645765_50228.png.jpg`
+- `avatararts/DaLL-E/ts/file-78wNbORYKW51Y80OoKv0uPf2_1713351579_0570302.png.jpg`
+- `avatararts/DaLL-E/ts/file-7Fv1tdNN0vmj36ksj2p6QUSN_1713351549_795559.png.jpg`
+- `avatararts/DaLL-E/ts/file-7MI69tRkWJjp0eSFVqVJRj2u_1713351550_8610609.png.jpg`
+- `avatararts/DaLL-E/ts/file-7eVVMt1OLOj9XJQs7UsHiaKG_1718391804_6607988.png.jpg`
+- `avatararts/DaLL-E/ts/file-8MLxERyksdfdqzQisXAWjpIL_1713943450_0316405.png.jpg`
+- `avatararts/DaLL-E/ts/file-8OUc6YhUwdb8nWjzHZ3pGo2v_1713351578_481771.png.jpg`
+- `avatararts/DaLL-E/ts/file-8exC24kuBu5VCx0eyENnWiyE_1713351519_977387.png.jpg`
+- `avatararts/DaLL-E/ts/file-94O7PKG3a55K2q6xewLQSR45_1718669687_7983274.png.jpg`
+- `avatararts/DaLL-E/ts/file-9TGkd0eEHJBG7Q9WqXDJooNC_1714588127_4468925.png.jpg`
+- `avatararts/DaLL-E/ts/file-9UOn2kwmgUlRPMGl87TcvlWB_1714588478_7930825.png.jpg`
+- `avatararts/DaLL-E/ts/file-9ct0TA1HTpAV2OC3jZg4pl9w_1718432272_2191591.png.jpg`
+- `avatararts/DaLL-E/ts/file-9lToG1zWw3OOonEZqJUfI2Td_1713943450_0605123.png.jpg`
+- `avatararts/DaLL-E/ts/file-9n4Z3nUoyQ0mtWKRSns4FANg_1713351429_6962523.png.jpg`
+- `avatararts/DaLL-E/ts/file-a8YDfjolvBvFkvk7TFA5AZum_1718359849_8212802.png.jpg`
+- `avatararts/DaLL-E/ts/file-a9VGTGrRoPS0dUoPTw4cvDLh_1718670339_6107237.png.jpg`
+- `avatararts/Gallery_Analysis_Project/css/main.css`
+- `avatararts/Gallery_Analysis_Project/index.html`
+- `avatararts/Makefile`
+- `avatararts/README.md`
+- `avatararts/_/index.php`
+- `avatararts/_/logs/access.log.30.2`
+- `avatararts/_/logs/sftp.log`
+- `avatararts/_/wide.php`
+- `avatararts/avatararts.org/.next/cache/webpack/client-development/0.pack.gz`
+- `avatararts/avatararts.org/.next/cache/webpack/client-development/index.pack.gz`
+- `avatararts/avatararts.org/.next/cache/webpack/client-development/index.pack.gz.old`
+- `avatararts/avatararts.org/.next/cache/webpack/server-development/0.pack.gz`
+- `avatararts/avatararts.org/.next/cache/webpack/server-development/1.pack.gz`
+- `avatararts/avatararts.org/.next/cache/webpack/server-development/index.pack.gz`
+- `avatararts/avatararts.org/.next/cache/webpack/server-development/index.pack.gz.old`
+- `avatararts/avatararts.org/.next/server/app/_not-found/page.js`
+- `avatararts/avatararts.org/.next/server/app/_not-found/page_client-reference-manifest.js`
+- `avatararts/avatararts.org/.next/server/app/page.js`
+- `avatararts/avatararts.org/.next/server/app/page_client-reference-manifest.js`
+- `avatararts/avatararts.org/.next/server/next-font-manifest.js`
+- `avatararts/avatararts.org/.next/server/next-font-manifest.json`
+- `avatararts/avatararts.org/.next/server/server-reference-manifest.json`
+- `avatararts/avatararts.org/.next/static/chunks/app/_not-found/page.js`
+- `avatararts/avatararts.org/.next/static/chunks/app/page.js`
+- `avatararts/avatararts.org/.next/trace`
+- `avatararts/avatararts.org/index.html`
+- `avatararts/avatararts.org/public/index-art.html`
+- `avatararts/css/20251015_111728_07013cdf-0f57-40b5-bc81-d6f907287a7a_imports_css.css`
+- `avatararts/css/AVATARARTS_GLOBAL_STYLES.css`
+- `avatararts/css/analysis.css`
+- `avatararts/css/cinematic.css`
+- `avatararts/css/custom.css`
+- `avatararts/css/cyberpunk.css`
+- `avatararts/css/dalle.css`
+- `avatararts/css/enhanced_style.css`
+- `avatararts/css/final.css`
+- `avatararts/css/final_1.css`
+- `avatararts/css/fwd.css`
+- `avatararts/css/glitch.css`
+- `avatararts/css/globals.css`
+- `avatararts/css/info.css`
+- `avatararts/css/land.css`
+- `avatararts/css/main-og.css`
+- `avatararts/css/masonry.css`
+- `avatararts/css/minimal.css`
+- `avatararts/css/modern-style.css`
+- `avatararts/css/navigation.css`
+- `avatararts/css/photoswipe.css`
+- `avatararts/css/plugin.css`
+- `avatararts/css/portal.css`
+- `avatararts/css/pygments.css`
+- `avatararts/css/shroo.css`
+- `avatararts/css/slicknav.css`
+- `avatararts/css/slicknav_1.css`
+- `avatararts/css/style.css`
+- `avatararts/css/styles_20251023195448.css`
+- `avatararts/gallery.json`
+- `avatararts/script.js`
+- `avatararts/style.css`
+- `cleanconnect-complete/.lh/backend/package.json.json`
+- `cleanconnect-complete/.lh/environment.yml.json`
+- `cleanconnect-complete/.lh/package.json.json`
+- `cleanconnect-complete/DEPLOYMENT_QUANTUMFORGE.md`
+- `cleanconnect-complete/LICENSE`
+- `cleanconnect-complete/README.md`
+- `cleanconnect-complete/SETUP_COMPLETE.md`
+- `cleanconnect-complete/YARN_SETUP.md`
+- `cleanconnect-complete/admin-dashboard.html`
+- `cleanconnect-complete/airbnb-cleaning-marketplace.html`
+- `cleanconnect-complete/backend/package.json`
+- `cleanconnect-complete/cleanconnect-ENHANCED_FEATURES.md`
+- `cleanconnect-complete/cleanconnect-pro-mobile-app-interface.html`
+- `cleanconnect-complete/env_example.txt`
+- `cleanconnect-complete/requirements.txt`
+- `cleanconnect-complete/run_ai_voice_agents.py`
+- `configs/Personal-GPT.txt`
+- `configs/bubble-top.txt`
+- `configs/docs.txt`
+- `configs/requirements--.txt`
+- `configs/typography_cover_image.txt`
+- `create_deployment_packages.py`
+- `create_multi_asset_csvs.py`
+- `create_seo_driven_csvs.py`
+- `csv_restore_mapping_20251125_204055.csv`
+- `guides/DNS_SETUP.md`
+- `guides/GALLERY_GENERATOR_README.md`
+- `guides/QUANTUMFORGELABS_SETUP.md`
+- `guides/QUICK_START_GUIDE.md`
+- `guides/Steven_Chaplinski_-_Professional_Portfolio_Website-node-readme.md`
+- `guides/Steven_Chaplinski_-_Unified_Creative_Automation_WorkspaceREADME.md`
+- `guides/brand_guidelines.md`
+- `guides/hipaa-compliance-guide.md`
+- `guides/pricing-guide.md`
+- `heavenlyhands-complete/.lh/heavenly-hands-cleaning-site/index.html.json`
+- `heavenlyhands-complete/EMAIL_MARKETING_TEMPLATES.html`
+- `heavenlyhands-complete/FREELANCE_INVOICE_GENERAL.html`
+- `heavenlyhands-complete/FREELANCE_INVOICE_HEAVENLY_HANDS.html`
+- `heavenlyhands-complete/cleanconnect-pro-enhanced/package.json`
+- `heavenlyhands-complete/env_example.txt`
+- `heavenlyhands-complete/heavenly-hands-ENHANCEMENT_SUITE_README.md`
+- `heavenlyhands-complete/heavenly-hands-cleaning-site/robots.txt`
+- `heavenlyhands-complete/heavenly-hands-cleaning-site/sitemap.xml`
+- `heavenlyhands-complete/heavenlyHands/.lh/heavenly-hands-cleaning-site/index.html.json`
+- `heavenlyhands-complete/heavenlyHands/404.html`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-leads/ai-voice-agent-script.md`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/.lh/backend/package.json.json`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/.lh/environment.yml.json`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/.lh/package.json.json`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/DEPLOYMENT_QUANTUMFORGE.md`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/IMPLEMENTATION_GUIDE.md`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/INTELLIGENT_ANALYSIS_REPORT.md`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/LICENSE`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/SETUP_COMPLETE.md`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/YARN_SETUP.md`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/backend/package-lock.json`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/backend/prisma/schema.prisma`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/backend/src/app-enhanced.js`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/backend/src/app.js`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/cleanconnect-ENHANCED_FEATURES.md`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/environment-config.env`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/environment.yml`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/frontend/package-lock.json`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/frontend/package.json`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/frontend/public/app-enhanced.js`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/frontend/public/app.js`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/frontend/public/index-enhanced.html`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/frontend/public/index.html`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/frontend/public/styles-enhanced.css`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/frontend/public/styles.css`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/package-lock.json`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/package.json`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/requirements-ai.txt`
+- `heavenlyhands-complete/heavenlyHands/cleanconnect-pro/requirements.txt`
+- `heavenlyhands-complete/heavenlyHands/heavenly-hands-ENHANCEMENT_SUITE_README.md`
+- `heavenlyhands-complete/heavenlyHands/heavenly-hands-cleaning-site/robots.txt`
+- `heavenlyhands-complete/heavenlyHands/heavenly-hands-cleaning-site/sitemap.xml`
+- `heavenlyhands-complete/heavenlyHands/index-hh.html`
+- `heavenlyhands-complete/heavenlyHands/script.js`
+- `heavenlyhands-complete/heavenlyHands/styles.css`
+- `heavenlyhands-complete/requirements.txt`
+- `heavenlyhands-complete/script.js`
+- `heavenlyhands-complete/start-heavenly-hands.sh`
+- `heavenlyhands-complete/styles.css`
+- `josephrosadomd/wp-content/plugins/elementor/assets/lib/font-awesome/webfonts/fa-brands-400﹖.eot`
+- `josephrosadomd/wp-content/plugins/elementor/assets/lib/font-awesome/webfonts/fa-regular-400.eot`
+- `josephrosadomd/wp-content/plugins/elementor/assets/lib/font-awesome/webfonts/fa-solid-900﹖.eot`
+- `josephrosadomd/wp-content/plugins/woo-smart-compare/assets/images/curve.svg`
+- `josephrosadomd/wp-content/themes/medicross/assets/fonts/caseicon/caseicon.eot`
+- `josephrosadomd/wp-content/themes/medicross/assets/fonts/flaticon/fonts/flaticon﹖.eot`
+- `josephrosadomd/wp-content/uploads/2024/04/42.png`
+- `josephrosadomd/wp-content/uploads/2024/04/43.png`
+- `josephrosadomd/wp-content/uploads/2025/05/Blog-Rosado-54.png`
+- `marketplace/products/hookmark-pro/.git/FETCH_HEAD`
+- `marketplace/products/hookmark-pro/.git/description`
+- `marketplace/products/hookmark-pro/.git/hooks/applypatch-msg.sample`
+- `marketplace/products/hookmark-pro/.git/hooks/commit-msg.sample`
+- `marketplace/products/hookmark-pro/.git/hooks/fsmonitor-watchman.sample`
+- `marketplace/products/hookmark-pro/.git/hooks/post-update.sample`
+- `marketplace/products/hookmark-pro/.git/hooks/pre-applypatch.sample`
+- `marketplace/products/hookmark-pro/.git/hooks/pre-commit.sample`
+- `marketplace/products/hookmark-pro/.git/hooks/pre-merge-commit.sample`
+- `marketplace/products/hookmark-pro/.git/hooks/pre-push.sample`
+- `marketplace/products/hookmark-pro/.git/hooks/pre-rebase.sample`
+- `marketplace/products/hookmark-pro/.git/hooks/pre-receive.sample`
+- `marketplace/products/hookmark-pro/.git/hooks/prepare-commit-msg.sample`
+- `marketplace/products/hookmark-pro/.git/hooks/push-to-checkout.sample`
+- `marketplace/products/hookmark-pro/.git/hooks/sendemail-validate.sample`
+- `marketplace/products/hookmark-pro/.git/hooks/update.sample`
+- `marketplace/products/hookmark-pro/.git/info/exclude`
+- `marketplace/products/hookmark-pro/build/content.styles.css`
+- `marketplace/products/hookmark-pro/build/icon-128.png`
+- `marketplace/products/hookmark-pro/build/icon-34.png`
+- `organized_intelligent/Business_and_Strategy/02-youtube-to-csvifier.html`
+- `organized_intelligent/Business_and_Strategy/03-pod-accelerator-service.html`
+- `organized_intelligent/Business_and_Strategy/GPTJunkie_Landing_Page.html`
+- `organized_intelligent/Business_and_Strategy/SEO_Analytics_Dashboard.html`
+- `organized_intelligent/Business_and_Strategy/SEO_Pricing_Guide_What's_The_Cost_of_SEO_Nutshell.html`
+- `organized_intelligent/Business_and_Strategy/Tone_Instruction_Ignore_Previous_2.html`
+- `organized_intelligent/Business_and_Strategy/ai-analysis.html`
+- `organized_intelligent/Business_and_Strategy/analysis.html`
+- `organized_intelligent/Business_and_Strategy/business-analysis.html`
+- `organized_intelligent/Business_and_Strategy/dradu-CLIENT_PROJECT_DASHBOARD.html`
+- `organized_intelligent/Business_and_Strategy/dradu-COMPLETE_HTML_COMPARISON.html`
+- `organized_intelligent/Business_and_Strategy/dradu-COMPREHENSIVE_SKILLS_SERVICES_REPORT.html`
+- `organized_intelligent/Business_and_Strategy/dradu-LIVE_WEBPAGE_COMPARISON.html`
+- `organized_intelligent/Business_and_Strategy/enhanced_tms_therapy_page.html`
+- `organized_intelligent/Business_and_Strategy/linkseo.html`
+- `organized_intelligent/Business_and_Strategy/reviews.html`
+- `organized_intelligent/Business_and_Strategy/sEOptimization-profession.html`
+- `organized_intelligent/Business_and_Strategy/seo-win_analysis.html`
+- `organized_intelligent/Business_and_Strategy/tms-therapy-gainesville.html`
+- `organized_intelligent/Business_and_Strategy/website-Organize_and_Categorize_Content.html`
+- `organized_intelligent/Cinema_and_Video/Bioluminescent_Fantasy_Journey_Claude.html`
+- `organized_intelligent/Cinema_and_Video/landing_podcast.html`
+- `organized_intelligent/Cinema_and_Video/video-analysis.html`
+- `organized_intelligent/Cinema_and_Video/video-content.html`
+- `organized_intelligent/Development_and_Code/AvatarArts_Landing_Page.html`
+- `organized_intelligent/Development_and_Code/Python_Skill_Review.html`
+- `organized_intelligent/Development_and_Code/QuantumForgeLabs.html`
+- `organized_intelligent/Development_and_Code/QuantumForgeLabs_Landing_Page.html`
+- `organized_intelligent/Development_and_Code/avatararts_analysis.html`
+- `organized_intelligent/Development_and_Code/comprehensive_deep_analysis.html`
+- `organized_intelligent/Development_and_Code/digital_ecosystem_analysis.html`
+- `organized_intelligent/Development_and_Code/documents_analysis.html`
+- `organized_intelligent/Development_and_Code/downloads_analysis.html`
+- `organized_intelligent/Development_and_Code/index-Ai-Alchemy.html`
+- `organized_intelligent/Development_and_Code/index-modern.html`
+- `organized_intelligent/Development_and_Code/index_2.html`
+- `organized_intelligent/Development_and_Code/privacy.html`
+- `organized_intelligent/Development_and_Code/python_3.html`
+- `organized_intelligent/Development_and_Code/python_enhanced.html`
+- `organized_intelligent/Development_and_Code/python_enhanced_links.html`
+- `organized_intelligent/Development_and_Code/recommendations_report.html`
+- `organized_intelligent/Development_and_Code/skills_report.html`
+- `organized_intelligent/Development_and_Code/steven-conversation_analysis.html`
+- `organized_intelligent/Development_and_Code/tehsites_analysis.html`
+- `organized_intelligent/Development_and_Code/zombot-index_cinematic.html`
+- `organized_intelligent/Music_and_Audio/AlchemyAPI-audio-showcase.html`
+- `organized_intelligent/Music_and_Audio/disco.html`
+- `organized_intelligent/Music_and_Audio/playlist.html`
+- `organized_intelligent/Uncategorized/AvatarArts_1.html`
+- `organized_intelligent/Uncategorized/Rearranging_Columns_Trivia_Table_Claude.html`
+- `organized_intelligent/Uncategorized/Untitled.html`
+- `organized_intelligent/Uncategorized/_downloads_1.html`
+- `organized_intelligent/Uncategorized/about.html`
+- `organized_intelligent/Uncategorized/clean_analysis.html`
+- `organized_intelligent/Uncategorized/dradu-mental-health-services.html`
+- `organized_intelligent/Uncategorized/enhanced_index.html`
+- `organized_intelligent/Visual_Arts_and_Design/01-aa-8mb-squisher.html`
+- `organized_intelligent/Visual_Arts_and_Design/Analyze_research_focus.html`
+- `organized_intelligent/Visual_Arts_and_Design/Batch_Narrative_Typography_Prompts.html`
+- `organized_intelligent/Visual_Arts_and_Design/First_job_application_guide.html`
+- `organized_intelligent/Visual_Arts_and_Design/Mystical_Fox_Shaman_Batch.html`
+- `organized_intelligent/Visual_Arts_and_Design/Phi_Fibonacci_Divine_Duality_Creation_1.html`
+- `organized_intelligent/Visual_Arts_and_Design/SEO-Linkd-Strat.html`
+- `organized_intelligent/Visual_Arts_and_Design/Text_to_Image_AI_Model_Catalog.html`
+- `organized_intelligent/Visual_Arts_and_Design/Typographic_Design_Enhancement_Claude.html`
+- `organized_intelligent/Visual_Arts_and_Design/aiAlchemy-Project-Portfolio.html`
+- `organized_intelligent/Visual_Arts_and_Design/dalle-index-avatar.html`
+- `organized_intelligent/Visual_Arts_and_Design/dalle.html`
+- `organized_intelligent/Visual_Arts_and_Design/josephrosadomd-rework.html`
+- `organized_intelligent/Visual_Arts_and_Design/mock-temps.html`
+- `organized_intelligent/Visual_Arts_and_Design/order_in_chaos.html`
+- `organized_intelligent/Visual_Arts_and_Design/seam.html`
+- `organized_intelligent/Visual_Arts_and_Design/seamless.html`
+- `organized_intelligent/Visual_Arts_and_Design/zombot-index_masonry.html`
+- `organized_intelligent/Visual_Arts_and_Design/zombot-index_minimal.html`
+- `organized_intelligent/Writing_and_Narrative/AvatarArts_2.html`
+- `organized_intelligent/Writing_and_Narrative/AvatarArts_3.html`
+- `organized_intelligent/Writing_and_Narrative/Convergence_Mathematical_Harmony_Cosmic_Com.html`
+- `organized_intelligent/Writing_and_Narrative/Lions_Cradle_Elsweyr_Guide_Return_Dragon.html`
+- `organized_intelligent/Writing_and_Narrative/Phi_Fibonacci_Cosmic_Creation_Claude_2.html`
+- `organized_intelligent/Writing_and_Narrative/Spectacular_Adventure_Elsweyr_Claude.html`
+- `organized_intelligent/Writing_and_Narrative/cart.html`
+- `organized_intelligent/Writing_and_Narrative/josephrosadomd-index.html`
+- `organized_intelligent/Writing_and_Narrative/pod.html`
+- `passive-income-empire/ai-receptionist/README_AI_RECEPTIONIST.md`
+- `passive-income-empire/ai-receptionist/launch_ai_receptionist.sh`
+- `passive-income-empire/ai-receptionist/requirements_ai_receptionist.txt`
+- `passive-income-empire/ai-recipe-generator/README_AI_RECIPE_GENERATOR.md`
+- `passive-income-empire/ai-recipe-generator/launch_ai_recipe_generator.sh`
+- `passive-income-empire/ai-recipe-generator/launch_recipe_generator.sh`
+- `passive-income-empire/ai-recipe-generator/requirements.txt`
+- `passive-income-empire/automation/README.md`
+- `passive-income-empire/automation/docker-compose.yml`
+- `passive-income-empire/automation/workflows/README.md`
+- `passive-income-empire/automation/workflows/SETUP.sh`
+- `passive-income-empire/automation/workflows/analytics-daily-report.json`
+- `passive-income-empire/automation/workflows/lead-router.json`
+- `passive-income-empire/automation/workflows/music-promotion.json`
+- `passive-income-empire/automation/workflows/social-media-scheduler.json`
+- `passive-income-empire/cleanconnect-leads/ai-voice-agent-script.md`
+- `passive-income-empire/databases/ai_receptionist.db`
+- `passive-income-empire/databases/recipe_generator.db`
+- `passive-income-empire/documentation/IMPROVEMENTS_AND_AMENDMENTS.md`
+- `passive-income-empire/documentation/INTELLIGENT_ORGANIZATION_SUMMARY.md`
+- `passive-income-empire/documentation/LAUNCH-PLAN.md`
+- `passive-income-empire/documentation/MOVED_FILES_SUMMARY.md`
+- `passive-income-empire/documentation/PASSIVE_INCOME_EMPIRE_OVERVIEW.md`
+- `passive-income-empire/documentation/QUICK_START.md`
+- `passive-income-empire/documentation/QUICK_START_REVENUE.md`
+- `passive-income-empire/documentation/README.md`
+- `passive-income-empire/documentation/REVENUE_OPTIMIZATION_GUIDE.md`
+- `passive-income-empire/documentation/START-HERE.md`
+- `passive-income-empire/documentation/WHAT-WE-BUILT.md`
+- `passive-income-empire/documentation/high_engagement_research.md`
+- `passive-income-empire/launch_empire.sh`
+- `passive-income-empire/marketing/onpage/alchemy.md`
+- `passive-income-empire/marketing/onpage/dalle.md`
+- `passive-income-empire/marketing/onpage/disco.md`
+- `passive-income-empire/marketing/onpage/python.md`
+- `passive-income-empire/marketing/strategy/content-plan.md`
+- `passive-income-empire/marketing/strategy/seo-plan.md`
+- `passive-income-empire/marketing/templates/social-media-templates.md`
+- `passive-income-empire/retention-hub/README.md`
+- `passive-income-empire/retention-hub/recipes/templates/recipe-template.md`
+- `passive-income-empire/setup_environment.sh`
+- `quantumforge-complete/.history/carbon_20250409033606.html`
+- `quantumforge-complete/.history/carbon_20250409033612.html`
+- `quantumforge-complete/.history/carbon_20250409033614.html`
+- `quantumforge-complete/.history/carbon_20250409033618.html`
+- `quantumforge-complete/.history/data_20250408180405.html`
+- `quantumforge-complete/.history/linkd-scrape_20250408175354.html`
+- `quantumforge-complete/gptjunkie_index.html`
+- `quantumforge-complete/linkd-scrape.html`
+- `quantumforge-complete/quantumforgelabs_index.html`
+- `reports/Business and Finance Portfolio - Professional Analysis.md`
+- `reports/CLIENT_REPORT_NON_TECHNICAL.md`
+- `reports/COMPLETE_DESIGN_OVERHAUL_SUMMARY.md`
+- `reports/COMPLETE_MP3_GENERATION_SUMMARY.md`
+- `reports/COMPREHENSIVE_ANALYSIS_SUMMARY.md`
+- `reports/DEEP_ANALYSIS_REPORT.md`
+- `reports/DR_LAWRENCE_ADU_RESEARCH_SUMMARY.md`
+- `reports/EMOTIONAL_MP3_SUMMARY.md`
+- `reports/FINAL_DR_ADU_ORGANIZATION_SUMMARY.md`
+- `reports/FINAL_WEBSITE_MAGIC_SUMMARY.md`
+- `reports/IMPLEMENTATION_COMPLETE_SUMMARY.md`
+- `reports/IMPROVEMENTS_SUMMARY.md`
+- `reports/MERGE_ANALYSIS_AND_PLAN.md`
+- `reports/MERGE_COMPLETE_SUMMARY.md`
+- `reports/PROFESSIONAL_MEDICAL_DESIGN_SUMMARY.md`
+- `reports/SEO_SUMMARY.md`
+- `reports/SIMPLE_ORGANIZATION_SUMMARY.md`
+- `reports/STYLING_IMPROVEMENTS_SUMMARY.md`
+- `reports/Unified_Creative_Automation_Workspace_-_Professional_Analysis_&_Implementation_Guide.md`
+- `reports/Unified_Creative_Automation_Workspace_Analysis.md`
+- `reports/WEBSITE_ANALYSIS_REPORT.md`
+- `reports/WEBSITE_DEPLOYMENT_SUMMARY.md`
+- `reports/executive_summary.md`
+- `reports/organized-multimedia-analysis.md`
+- `reports/pricing_summary.md`
+- `scripts/automation/daily_dashboard.sh`
+- `scripts/automation/launch.sh`
+- `steven-chaplinski-website/content/resources/CONTENT_AWARE_CHAT_ANALYSIS/01_Projects/ simila_ comma_ds fo_ 02_Audio, 03_Images, 04_D/ simila_ comma_ds fo_truncated_ANALYSIS.md`
+- `steven-chaplinski-website/content/resources/CONTENT_AWARE_CHAT_ANALYSIS/01_Projects/ simila_ comma_ds fo_ 02_Audio, 03_Images, 04_D/ simila_ comma_ds fo_truncated_ANALYSIS.md.seo_backup`
+- `steven-chaplinski-website/content/resources/CONTENT_AWARE_CHAT_ANALYSIS/01_Projects/!_us__bi__e_v pytho_3__________AvaTa_A_Ts P_oject /!_us__bi__e_v pytho__truncated_ANALYSIS.md`
+- `steven-chaplinski-website/content/resources/CONTENT_AWARE_CHAT_ANALYSIS/01_Projects/!_us__bi__e_v pytho_3__________AvaTa_A_Ts P_oject /!_us__bi__e_v pytho__truncated_ANALYSIS.md.seo_backup`
+- `steven-chaplinski-website/content/resources/CONTENT_AWARE_CHAT_ANALYSIS/01_Projects/SEO optimizatio_ a_d ma_keti_g st_ategies__,__    /SEO optimizatio_ a_d_truncated_ANALYSIS.md`
+- `steven-chaplinski-website/content/resources/CONTENT_AWARE_CHAT_ANALYSIS/01_Projects/SEO optimizatio_ a_d ma_keti_g st_ategies__,__    /SEO optimizatio_ a_d_truncated_ANALYSIS.md.seo_backup`
+- `steven-chaplinski-website/content/services/02_Business_and_Finance/Business/AvatarArts_Portfolio_AutoBuilder/.github/workflows/portfolio.yml`
+- `steven-chaplinski-website/content/services/02_Business_and_Finance/business_setup/.git/hooks/post-update.sample`
+- `steven-chaplinski-website/content/services/02_Business_and_Finance/business_setup/.git/hooks/update.sample`
+- `steven-chaplinski-website/content/services/02_Business_and_Finance/business_setup/.git/index`
+- `steven-chaplinski-website/package.json`
+- `steven-chaplinski-website/src/pages/index.tsx`
+- `steven-chaplinski-website/tsconfig.json`
+- `strategies/30-day-launch-plan.md`
+- `strategies/COMPREHENSIVE_ORGANIZATION_PLAN.md`
+- `strategies/Integration_Strategy_Two_Sites,_One_Universe.md`
+- `strategies/MASTER_IMPLEMENTATION_PLAN.md`
+- `strategies/Project-Centric-Reorganization-Plan.md`
+- `strategies/SEO_CONTINUOUS_IMPROVEMENT_PLAN.md`
+- `strategies/avatararts-content-plan.md`
+- `strategies/behance-strategy.md`
+- `strategies/brand-integration-strategy.md`
+- `strategies/connection-strategy.md`
+- `strategies/content-strategy-overview.md`
+- `strategies/dribbble-strategy.md`
+- `strategies/dual-domain-seo-strategy.md`
+- `strategies/facebook-strategy.md`
+- `strategies/gainesville-content-strategy.md`
+- `strategies/gainesville-fl-strategy.md`
+- `strategies/linkedin_strategy.md`
+- `strategies/marketing_strategy.md`
+- `strategies/upwork-strategy.md`
+- `strategies/youtube_strategy.md`
+- `templates/contract-templates.md`
+- `templates/hipaa-templates.md`
+- `templates/invoice-templates.md`
+- `templates/invoice_template.md`
+- `templates/post-templates.md`
+- `templates/project_proposal_template.md`
+- `templates/proposal-templates.md`
+- `templates/service_agreement_template.md`
+- `templates/weekly-review-template.md`

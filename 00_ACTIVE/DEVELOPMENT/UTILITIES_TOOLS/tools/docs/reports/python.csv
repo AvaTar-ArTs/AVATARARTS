@@ -1,0 +1,24 @@
+Section,Topic,Guidance,Examples
+Project Structure,Source code,Place Python packages in `src/` and use absolute imports,"src/package/__init__.py; from package.module import Foo"
+Project Structure,Tests,Mirror `src/` layout in `tests/` with `test_*.py` files,"tests/package/test_module.py"
+Project Structure,Scripts/CLI,Put executable scripts in `bin/` and mark runnable,"bin/tool; chmod +x bin/tool"
+Project Structure,Config,Keep configuration at repo root; load env from `.env`,"pyproject.toml; pytest.ini; ruff.toml; .env"
+Project Structure,Assets,Store data and examples separately,"assets/sample.json; examples/demo.ipynb"
+Dev Setup,Virtual env,Use a local venv for isolation,"python -m venv .venv && source .venv/bin/activate"
+Dev Setup,Install deps,Editable install with dev extras,"pip install -U pip && pip install -e .[dev]"
+Quality,Lint & format,Use Ruff for linting and Black-compatible formatting,"ruff check .; ruff format ."
+Quality,Type checking,Run MyPy on `src/` with strictness for changed code,"mypy src"
+Testing,Framework,Use pytest; write focused, deterministic tests,"pytest -q; pytest tests/package/test_module.py::test_case"
+Testing,Naming,Name files `test_*.py` and functions `test_*`,"def test_parses_config(): ..."
+Testing,Coverage,Target ≥90% coverage on changed lines/paths,Use `pytest --cov=src --cov-report=term-missing`
+Run,Module execution,Support `python -m <package>` for entry points,"python -m package --help"
+CLI,Codex usage,Use Codex CLI; `.env` auto-loads via dotenv/config,"codex --provider openai"
+Providers,Alternate providers,Switch with `--provider` and set API key in env or config,"--provider openrouter|azure|ollama|mistral|groq|deepseek|xai|gemini|arceeai"
+Security,Secrets,Do not commit secrets; use `.env` locally and real env in CI,"export OPENAI_API_KEY=...; echo "OPENAI_API_KEY=..." > .env"
+Style,Python version,Target Python ≥3.10; prefer type hints and `annotations` future,"from __future__ import annotations"
+Style,Indent/width,Indent 4 spaces; max line length 100,Configure in `ruff.toml`
+Style,Naming,Modules/functions `snake_case`, classes `PascalCase`, constants `UPPER_SNAKE`,"def parse_config(); class ConfigLoader; MAX_RETRIES = 3"
+Style,Imports,Order stdlib → third-party → local; avoid relative imports,Use `ruff` import rules
+Git,Commits,Use conventional prefixes and imperative mood,"feat(api): add async client"
+Git,PRs,Include summary, rationale, linked issues, and proof (logs/screens),"Closes #123; before/after output"
+Safety,Idempotency,Make scripts safe for repeated runs and sandboxed environments,Use temp dirs; guard destructive ops

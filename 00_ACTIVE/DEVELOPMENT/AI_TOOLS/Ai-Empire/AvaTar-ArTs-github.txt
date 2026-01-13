@@ -1,0 +1,66 @@
+# GitHub SSH Key Setup for AvaTar-ArTs
+
+## SSH Key Information
+
+- **Username**: AvaTar-ArTs
+- **Email**: me@avatararts.org
+- **Repository**: https://github.com/AvaTar-ArTs/AvaTar-ArTs.github.io.git
+
+## Generated SSH Key Details
+
+- **Key Type**: ed25519
+- **Key Location**: /Users/steven/.ssh/id_ed25519_avatararts
+- **Public Key Fingerprint**: SHA256:g5fJ5N6rp5v4PxwFdaZOjaDSxXEvphhmi58gRa95gao
+- **Public Key Content**:
+  ```
+  ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICBnYw9sXbdRScqX9qRivS0SZBvkORmDHS1fyo1CKbr3 me@avatararts.org
+  ```
+
+## Steps to Add SSH Key to GitHub
+
+1. Copy the public key content shown above
+2. Go to GitHub Settings > SSH and GPG keys
+3. Click "New SSH key"
+4. Paste the public key content
+5. Save the key
+
+## Repository Clone Command (after SSH key is added)
+
+```bash
+git clone git@github.com:AvaTar-ArTs/AvaTar-ArTs.github.io.git
+```
+
+## Verification Command
+
+To verify your SSH connection to GitHub:
+
+```bash
+ssh -T git@github.com
+```
+## Cloning the Repository
+
+Once your SSH key is set up and added to your GitHub account, you can clone the repository using:
+
+```bash
+git clone git@github.com:AvaTar-ArTs/AvaTar-ArTs.github.io.git
+```
+
+## Verifying Your SSH Connection
+
+To verify that your SSH key is properly set up and working with GitHub, run:
+
+```bash
+ssh -T git@github.com
+```
+
+You should see a message confirming that you've successfully authenticated with your GitHub account.
+
+## Additional Git Configuration (Optional)
+
+You may also want to configure your Git username and email for this repository:
+
+```bash
+git config --global user.name "AvaTar-ArTs"
+git config --global user.email "me@avatararts.org"
+```
+

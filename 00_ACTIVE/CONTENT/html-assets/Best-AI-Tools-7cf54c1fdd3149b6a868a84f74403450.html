@@ -1,0 +1,677 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Best AI Tools</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="7cf54c1f-dd31-49b6-a868-a84f74403450" class="page mono"><header><div class="page-header-icon undefined"><img class="icon" src="Best%20AI%20Tools%207cf54c1fdd3149b6a868a84f74403450/AI_Tools_1700x1700px.png"/></div><h1 class="page-title"><strong><strong>Best AI Tools</strong></strong></h1><p class="page-description"></p></header><div class="page-body"><ul id="6b7238c8-f9b3-4109-9ff3-f745b852db5a" class="toggle"><li><details open=""><summary><strong>ChatGPT-4 FREE Alternatives</strong></summary><ol type="1" id="93f7233c-4534-47c0-a517-4c832bcb768f" class="numbered-list" start="1"><li><a href="https://t.co/L4IXh9VgF8">Forefront</a></li></ol><ol type="1" id="7d8a198a-fb89-4190-9db8-f7c094b305c0" class="numbered-list" start="2"><li><a href="https://monica.im/">Monica</a></li></ol><ol type="1" id="872005d7-dc07-48e6-95e3-51977842d4ca" class="numbered-list" start="3"><li><a href="http://bing.com/new">Bing</a></li></ol><ol type="1" id="7e783688-5d7e-4bba-9527-42e10523ad9b" class="numbered-list" start="4"><li><a href="https://wnr.ai/explore">WNR AI</a></li></ol><ol type="1" id="16f06be7-c564-4cdf-9fcb-baa05bff37ed" class="numbered-list" start="5"><li>Poe</li></ol><ol type="1" id="0b0cd9f9-6fa7-4735-959f-a3207a15b0a3" class="numbered-list" start="6"><li><a href="https://t.co/iw83cvBNUM">HuggingFace</a></li></ol><ol type="1" id="87b19d52-aa0d-405f-88b7-557680a5fad6" class="numbered-list" start="7"><li><a href="https://t.co/iw83cvBNUM">Nat Dev</a></li></ol><ol type="1" id="4d613f74-b2a5-4ab5-8d4a-7e9478325e4c" class="numbered-list" start="8"><li><a href="http://perplexity.ai/">Perplexity AI</a></li></ol><ol type="1" id="16dc5e03-f7b6-422f-9575-9b446dbde20a" class="numbered-list" start="9"><li><a href="https://t.co/GQm9qJdzER">AI Dungeon</a></li></ol></details></li></ul><ul id="7fa83161-45ed-4927-88eb-dbcaf88eeb84" class="toggle"><li><details open=""><summary><strong>AI Website Builders</strong></summary><ol type="1" id="26b89722-f712-4fa2-8ffb-7cc03f974497" class="numbered-list" start="1"><li><a href="https://durable.co/">Durable</a></li></ol><ol type="1" id="e2aa2637-67d0-4caf-aed1-d931780f0ae0" class="numbered-list" start="2"><li><a href="https://10web.io/ai-website-builder/">10Web</a></li></ol><ol type="1" id="e6eebb34-4a73-40ef-84fa-39f97e36f400" class="numbered-list" start="3"><li><a href="https://www.getresponse.com/features/website-builder">GetResponse</a></li></ol><ol type="1" id="7454b93c-a102-44cb-a3cd-d9b3a463d593" class="numbered-list" start="4"><li><a href="https://www.b12.io/website-editor/">B12</a></li></ol><ol type="1" id="319c75d8-186b-4a68-8903-b7036e5a7526" class="numbered-list" start="5"><li><a href="https://phonesites.com/">Phonesites</a></li></ol><ol type="1" id="8ec7ed94-15f2-469b-80b5-0aa1113d045c" class="numbered-list" start="6"><li><a href="https://teleporthq.io/ai-website-builder">TeleportHQ</a></li></ol><ol type="1" id="366a56db-5271-4f93-a9b8-5e0280652aa3" class="numbered-list" start="7"><li><a href="https://www.bookmark.com/ai-website-builder">AIDA</a></li></ol><ol type="1" id="b1fff106-9d99-4cca-8273-b406f6f3129e" class="numbered-list" start="8"><li><a href="https://www.jimdo.com/">Jimda</a></li></ol><ol type="1" id="2212b539-19aa-4a2d-8d5d-8a7a5712629d" class="numbered-list" start="9"><li><a href="https://www.wix.com/about/adi-get-access">Wix ADI</a></li></ol><ol type="1" id="1e98059e-c284-401a-869f-439e80da4fcd" class="numbered-list" start="10"><li><a href="https://www.hostinger.in/website-builder">Hostinger</a></li></ol></details></li></ul><ul id="ce82be74-fbac-4ab3-a2fe-e163a9b5905f" class="toggle"><li><details open=""><summary><strong>List of Programming AI Tools</strong></summary><ol type="1" id="9735df59-e72c-4e60-b9ac-43aa4a9cb4a2" class="numbered-list" start="1"><li>Tabnine: <a href="https://www.tabnine.com/">https://www.tabnine.com/</a></li></ol><ol type="1" id="70db05f2-b79a-40e4-a2eb-71ed28c41a77" class="numbered-list" start="2"><li>OpenAI Codex: <a href="https://openai.com/blog/openai-codex/">https://openai.com/blog/openai-codex/</a></li></ol><ol type="1" id="c7e3b121-9a65-448f-83d8-3324c34b9e0e" class="numbered-list" start="3"><li>GitHub Copilot: <a href="https://github.com/features/copilot">https://github.com/features/copilot</a></li></ol><ol type="1" id="201c0e41-4e46-48f5-9461-bf1f7152e98f" class="numbered-list" start="4"><li>AI Commit: <a href="https://github.com/abi/autocommit">https://github.com/abi/autocommit</a></li></ol><ol type="1" id="9cb46967-dd33-4c3b-a5ca-e4ea3573f44a" class="numbered-list" start="5"><li>DeepCode: <a href="https://www.deepcode.ai/">https://www.deepcode.ai/</a></li></ol><ol type="1" id="ffde2d54-165d-4a98-bfc8-fbef110c6e10" class="numbered-list" start="6"><li>AI2Sql: <a href="https://www.ai2sql.io/">https://www.ai2sql.io/</a></li></ol><ol type="1" id="abfe8390-d282-49bc-b0a6-876c6293e521" class="numbered-list" start="7"><li>Replit: <a href="https://replit.com/site/ghostwriter">https://replit.com/site/ghostwriter</a></li></ol><ol type="1" id="6e5ce80f-73c5-4d9f-9b80-a3916a5ba04d" class="numbered-list" start="8"><li>Akkio: <a href="https://www.akkio.com/">https://www.akkio.com/</a></li></ol><ol type="1" id="be45c117-1a27-4fa2-a979-29321585de28" class="numbered-list" start="9"><li>Httpie: <a href="https://httpie.io/blog/ai">https://httpie.io/blog/ai</a></li></ol><ol type="1" id="a4950c02-bcdd-4d7a-8e67-af4e50134906" class="numbered-list" start="10"><li>Mutable: <a href="https://mutable.ai/">https://mutable.ai/</a></li></ol><ol type="1" id="4cd468cd-93f3-4157-9438-a082a43724af" class="numbered-list" start="11"><li>Sheetplus: <a href="https://sheetplus.ai/">https://sheetplus.ai/</a></li></ol><ol type="1" id="f747976f-c1d7-4307-9220-eeeeae4b4eb5" class="numbered-list" start="12"><li>ExcelFormulaBot: <a href="https://excelformulabot.com/">https://excelformulabot.com/</a></li></ol></details></li></ul><ul id="9ddc7352-2a49-4b8b-bf32-a41bac61904a" class="toggle"><li><details open=""><summary><strong>List of Marketing Tools</strong></summary><ol type="1" id="9ea5b3b4-d03b-468a-9194-9d8770b7d1e5" class="numbered-list" start="1"><li>Frase: <a href="https://www.frase.io/">https://www.frase.io/</a></li></ol><ol type="1" id="5b27e006-33d2-407e-8a46-eb1f13382cfd" class="numbered-list" start="2"><li>Bertha: <a href="https://bertha.ai/">https://bertha.ai/</a></li></ol><ol type="1" id="290145bf-c5be-417e-a9aa-9bd0630c280e" class="numbered-list" start="3"><li>ContentEdge: <a href="https://www.contentedge.com/">https://www.contentedge.com/</a></li></ol><ol type="1" id="5649ee8b-925b-4a1c-9c18-f1ac1791736c" class="numbered-list" start="4"><li>ChatGPT3: <a href="https://chat.openai.com/">https://chat.openai.com/</a></li></ol><ol type="1" id="7943ce4a-76cf-422e-a8a1-9f05b58c8523" class="numbered-list" start="5"><li>Hemingwayapp: <a href="https://hemingwayapp.com/">https://hemingwayapp.com/</a></li></ol><ol type="1" id="4316dab3-3e80-4053-b742-ac45f3367600" class="numbered-list" start="6"><li>Surfer SEO: <a href="https://surferseo.com/">https://surferseo.com/</a></li></ol><ol type="1" id="aeb4bc3c-3ee4-42a6-a37d-5530624f3a74" class="numbered-list" start="7"><li>Ponzu: <a href="https://www.ponzu.ai/">https://www.ponzu.ai/</a></li></ol><ol type="1" id="5e757c59-55f3-404e-81af-d136ee6fac47" class="numbered-list" start="8"><li>Jasper: <a href="https://www.jasper.ai/">https://www.jasper.ai/</a></li></ol><ol type="1" id="da9181a8-f727-47da-b820-5807b220ab6c" class="numbered-list" start="9"><li>Copy Smith: <a href="https://copysmith.ai/">https://copysmith.ai/</a></li></ol><ol type="1" id="1f4858c0-e260-433d-a870-cc5c39aa58b7" class="numbered-list" start="10"><li>PepperType: <a href="https://peppertype.ai/">https://peppertype.ai/</a></li></ol><ol type="1" id="642d9129-0ce3-426a-b5db-6938e8ac3988" class="numbered-list" start="11"><li>Scalenut: <a href="https://www.scalenut.com/">https://www.scalenut.com/</a></li></ol><ol type="1" id="a333c6a0-e752-42e4-bb53-7f457eba2167" class="numbered-list" start="12"><li>Mutiny: <a href="https://www.mutinyhq.com/">https://www.mutinyhq.com/</a></li></ol><ol type="1" id="c14d65f0-3cc4-4823-8f81-3596bcd6d647" class="numbered-list" start="13"><li>Simplified : <a href="https://simplified.com/ai-writer/">https://simplified.com/ai-writer/</a></li></ol><ol type="1" id="43302c9f-7141-45bb-82e2-04450b83ead6" class="numbered-list" start="14"><li>MoonBeam: <a href="https://www.gomoonbeam.com/">https://www.gomoonbeam.com/</a></li></ol><ol type="1" id="bffb3eec-6eb6-43a8-a621-e9bdcacc652b" class="numbered-list" start="15"><li>Smartly: <a href="https://www.smartly.io/">https://www.smartly.io/</a></li></ol><ol type="1" id="74c48cf3-8339-4609-9164-b97575a76763" class="numbered-list" start="16"><li>Seventh Sense: <a href="https://www.theseventhsense.com/">https://www.theseventhsense.com/</a></li></ol><ol type="1" id="cae5f343-4566-4038-b049-df4c58053ab0" class="numbered-list" start="17"><li>Copy AI : <a href="https://www.copy.ai/">https://www.copy.ai/</a></li></ol><ol type="1" id="bb038040-2ed6-4397-8b8e-ee583ace9fc2" class="numbered-list" start="18"><li>MarketMuse: <a href="https://www.marketmuse.com/">https://www.marketmuse.com/</a></li></ol><ol type="1" id="66fe48fd-e61c-499d-83a0-ed2862e1cbef" class="numbered-list" start="19"><li>WriteSonic: <a href="https://writesonic.com/">https://writesonic.com/</a></li></ol><ol type="1" id="88253298-b3b8-4c07-b329-3d68a0a9531f" class="numbered-list" start="20"><li>Phrasee: <a href="https://phrasee.co/">https://phrasee.co/</a></li></ol></details></li></ul><ul id="0277e297-017e-4263-8718-7c66e6f56082" class="toggle"><li><details open=""><summary><strong>List of Chatbots Tools</strong></summary><ol type="1" id="e3198ebb-15e4-488f-a937-9d8fac26c3c7" class="numbered-list" start="1"><li>Landbot: <a href="https://landbot.io/">https://landbot.io/</a></li></ol><ol type="1" id="bc2abb65-85fe-4c54-8c4a-cc93df68f7c0" class="numbered-list" start="2"><li>Cresta: <a href="https://cresta.com/">https://cresta.com/</a></li></ol><ol type="1" id="a4af61a8-9dc7-46d3-b043-b97c4f103c16" class="numbered-list" start="3"><li>Kaizan: <a href="https://kaizan.ai/">https://kaizan.ai/</a></li></ol><ol type="1" id="0859e7d5-7ca2-4789-bb40-6dacbd332c49" class="numbered-list" start="4"><li>WotNot: <a href="https://wotnot.io/">https://wotnot.io/</a></li></ol><ol type="1" id="a087c6e0-17b5-4da5-8d45-47b078954ed2" class="numbered-list" start="5"><li>Cohere: <a href="https://cohere.ai/">https://cohere.ai/</a></li></ol><ol type="1" id="6a7f8886-8a59-4c7e-af8a-b03ca7756123" class="numbered-list" start="6"><li>Tidio: <a href="https://www.tidio.com/">https://www.tidio.com/</a></li></ol><ol type="1" id="474b297b-7925-4020-97df-4a78a442b7c5" class="numbered-list" start="7"><li>Typewise: <a href="https://www.typewise.app/">https://www.typewise.app/</a></li></ol><ol type="1" id="c38f5ca0-0dc1-4c87-b5ec-ae5be6ef8f9e" class="numbered-list" start="8"><li>Quickchat: <a href="https://www.quickchat.ai/">https://www.quickchat.ai/</a></li></ol></details></li></ul><ul id="b301ae91-84c9-4443-9f99-da252308ceb1" class="toggle"><li><details open=""><summary>L<strong>ist of Design Tools</strong></summary><ol type="1" id="374d66ea-d0cd-4a39-a662-96dc4dfc3114" class="numbered-list" start="1"><li>Diagram: <a href="https://diagram.com/">https://diagram.com/</a></li></ol><ol type="1" id="44926bd6-cfae-4ac2-9572-a1fe71c1763f" class="numbered-list" start="2"><li>Vizcom: <a href="https://www.vizcom.ai/">https://www.vizcom.ai/</a></li></ol><ol type="1" id="1cb6d826-def1-40b2-a736-8e2783be4548" class="numbered-list" start="3"><li>Namelix: <a href="https://namelix.com/">https://namelix.com/</a></li></ol><ol type="1" id="2d56b82f-20ad-424b-927e-0c7ac954bd23" class="numbered-list" start="4"><li>Aragon: <a href="https://www.aragon.ai/">https://www.aragon.ai/</a></li></ol><ol type="1" id="8a1c9878-9b41-4864-b345-fba18977e100" class="numbered-list" start="5"><li>Interior Design: <a href="https://interiorai.com/">https://interiorai.com/</a></li></ol><ol type="1" id="54e9aba0-1d3f-44cd-9386-f55451aff61a" class="numbered-list" start="6"><li>Visualize: <a href="https://visualise.ai/">https://visualise.ai/</a></li></ol><ol type="1" id="6c202f1a-94f9-4c7a-a196-8e8992d816f1" class="numbered-list" start="7"><li>Lexica: <a href="https://lexica.art/">https://lexica.art/</a></li></ol><ol type="1" id="c9663be1-76f6-4925-b788-bb1e4d19e803" class="numbered-list" start="8"><li>Poly: <a href="https://poly.ai/">https://poly.ai/</a></li></ol><ol type="1" id="ffb377e2-082e-4031-9eff-43c95cc8fc55" class="numbered-list" start="9"><li>Looka: <a href="https://looka.com/">https://looka.com/</a></li></ol><ol type="1" id="83aaa4cc-4948-45f5-aa67-1c35c49dc036" class="numbered-list" start="10"><li>Stock AI: <a href="https://stockimg.ai/">https://stockimg.ai/</a></li></ol></details></li></ul><ul id="e4104c64-5a7d-4b2f-91a3-a34fe57fbbaf" class="toggle"><li><details open=""><summary><strong>List of Image Generating &amp; Processing Tools</strong></summary><ol type="1" id="5766b3d5-fb35-4002-aff3-e01b85ed4b17" class="numbered-list" start="1"><li>Profile Picture: <a href="https://www.profilepicture.ai/">https://www.profilepicture.ai/</a></li></ol><ol type="1" id="ca4ef00e-f782-4a29-a0ed-a14598db4f6c" class="numbered-list" start="2"><li>Photosonic: <a href="https://photosonic.writesonic.com/">https://photosonic.writesonic.com/</a></li></ol><ol type="1" id="f740d4e6-1493-478f-9165-d5d397dc012d" class="numbered-list" start="3"><li>Remove BG: <a href="https://www.remove.bg/">https://www.remove.bg/</a></li></ol><ol type="1" id="f64abf82-0160-44b4-94e0-956fdfed479e" class="numbered-list" start="4"><li>Artbreeder: <a href="https://www.artbreeder.com/">https://www.artbreeder.com/</a></li></ol><ol type="1" id="1de7129c-4009-4462-bd80-aa7a704f1025" class="numbered-list" start="5"><li>Magiceraser: <a href="https://magicstudio.com/magiceraser">https://magicstudio.com/magiceraser</a></li></ol><ol type="1" id="29fe8a4c-8261-4d06-a503-94783f0911a6" class="numbered-list" start="6"><li>Krea: <a href="https://www.krea.ai/">https://www.krea.ai/</a></li></ol><ol type="1" id="cc1eadcb-b9c6-4f12-9296-a067b682ebaa" class="numbered-list" start="7"><li>Lexica: <a href="https://lexica.art/">https://lexica.art/</a></li></ol><ol type="1" id="8cc0879d-dd87-45a3-8bd2-ad45831dc164" class="numbered-list" start="8"><li>Removal: <a href="https://removal.ai/">https://removal.ai/</a></li></ol><ol type="1" id="1c6d392c-4ed6-41f9-abb2-cc4a989e7b41" class="numbered-list" start="9"><li>Image Enlarger: <a href="https://imglarger.com/">https://imglarger.com/</a></li></ol><ol type="1" id="20476879-b739-4782-96a1-3c33fede4372" class="numbered-list" start="10"><li>Watermark Removal : <a href="https://www.watermarkremover.io/">https://www.watermarkremover.io/</a></li></ol><ol type="1" id="284c52a6-a84f-4bd7-96f9-8c0ce1cbdb4c" class="numbered-list" start="11"><li>Rodebudai: <a href="https://www.rosebudai.com/">https://www.rosebudai.com/</a></li></ol><ol type="1" id="dade45d7-778a-4c1f-a7fe-19b06adc0331" class="numbered-list" start="12"><li>Hypotenuse: <a href="https://www.hypotenuse.ai/">https://www.hypotenuse.ai/</a></li></ol><ol type="1" id="b76598bb-f764-48e8-895b-e2dda0fc0b3e" class="numbered-list" start="13"><li>Nyx: <a href="https://nyx.gallery/">https://nyx.gallery/</a></li></ol><ol type="1" id="b8c58952-d240-44ad-93f9-351f15c9e952" class="numbered-list" start="14"><li>AI Avatar: <a href="https://avatarai.me/">https://avatarai.me/</a></li></ol><ol type="1" id="06bb7990-e30b-40a5-a260-d2630920676e" class="numbered-list" start="15"><li>Cutout Pro: <a href="https://www.cutout.pro/">https://www.cutout.pro/</a></li></ol><ol type="1" id="bfe8bf8c-5a3a-4579-b51a-4291c2c281fd" class="numbered-list" start="16"><li>Passport Photo: <a href="https://passphoto.ai/">https://passphoto.ai/</a></li></ol><ol type="1" id="9a4b09e2-8a0e-4be5-bf24-5c25b1ffff28" class="numbered-list" start="17"><li>Picso: <a href="https://picso.ai/">https://picso.ai/</a></li></ol><ol type="1" id="c323a9c6-52f7-4be8-975f-ad0cc9ba5d4b" class="numbered-list" start="18"><li>Playground: <a href="https://www.playgroundai.com/">https://www.playgroundai.com/</a></li></ol><ol type="1" id="d0ebc3c1-5f7a-4f0e-bfe1-f67796bdb878" class="numbered-list" start="19"><li>Runway: <a href="https://runwayml.com/">https://runwayml.com/</a></li></ol><ol type="1" id="7517696a-4de8-412a-80fb-cff5e69c904b" class="numbered-list" start="20"><li>Profile Pic Maker: <a href="https://pfpmaker.com/">https://pfpmaker.com/</a></li></ol><ol type="1" id="0269f388-5502-4b19-a3b2-c5dfdbbf3177" class="numbered-list" start="21"><li>HotPot: <a href="https://hotpot.ai/">https://hotpot.ai/</a></li></ol><ol type="1" id="85866be8-5d8d-49ff-b526-c2c297586f8c" class="numbered-list" start="22"><li>Mage: <a href="https://www.mage.space/">https://www.mage.space/</a></li></ol></details></li></ul><ul id="98f77f2f-5095-45d2-ab93-10bd01121108" class="toggle"><li><details open=""><summary><strong>List of Daily Workplace Tools</strong></summary><ol type="1" id="be49e3a8-7ec6-40e4-8a77-57b6f0e7c94d" class="numbered-list" start="1"><li>Notion AI: <a href="https://www.notion.so/product/ai">https://www.notion.so/product/ai</a></li></ol><ol type="1" id="d1356377-d591-418d-ac19-78d508232314" class="numbered-list" start="2"><li>Craft: <a href="https://www.craft.do/">https://www.craft.do/</a></li></ol><ol type="1" id="ce4d8d48-a2dd-4f0c-95e1-ee78b4bd5a6d" class="numbered-list" start="3"><li>Mem: <a href="https://mem.ai/">https://mem.ai/</a></li></ol><ol type="1" id="b7c2ca22-810f-472e-92b5-afb1d635f16b" class="numbered-list" start="4"><li>Taskade: <a href="https://www.taskade.com/">https://www.taskade.com/</a></li></ol><ol type="1" id="dbbef2ee-7737-4f1a-aa38-96c622917ddd" class="numbered-list" start="5"><li>You: <a href="https://you.com/">https://you.com/</a></li></ol><ol type="1" id="dfd04c9f-6738-4643-9ccc-5c5de25b457b" class="numbered-list" start="6"><li>Todoist: <a href="https://todoist.com/integrations/apps/ai-assistant">https://todoist.com/integrations/apps/ai-assistant</a></li></ol></details></li></ul></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

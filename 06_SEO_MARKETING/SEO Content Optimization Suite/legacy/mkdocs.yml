@@ -1,0 +1,170 @@
+# MkDocs with Material Theme
+# Beautiful, modern documentation for the SEO Content Optimization Suite
+
+site_name: SEO Content Optimization Suite
+site_description: Hot trending content discovery, AEO/SEO optimization, and multi-platform content extraction
+site_author: Steven
+site_url: https://your-site.com/docs
+
+# Repository
+repo_name: seo-content-suite
+repo_url: https://github.com/your-repo/seo-content-suite
+
+# Theme
+theme:
+  name: material
+  language: en
+  
+  # Color palette
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  
+  # Features
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - toc.follow
+  
+  # Icons
+  icon:
+    repo: fontawesome/brands/github
+  
+  # Logo and favicon
+  logo: assets/logo.png
+  favicon: assets/favicon.png
+
+# Plugins
+plugins:
+  - search:
+      lang: en
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [../pythons]
+          options:
+            docstring_style: google
+            show_source: true
+            show_root_heading: true
+            members_order: source
+  - tags
+  - minify:
+      minify_html: true
+
+# Markdown extensions
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - admonition
+  - footnotes
+  - tables
+  - attr_list
+  - md_in_html
+  - def_list
+  - toc:
+      permalink: true
+      toc_depth: 4
+
+# Extra
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/your-repo
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/your-handle
+    - icon: fontawesome/brands/youtube
+      link: https://youtube.com/your-channel
+  
+  analytics:
+    provider: google
+    property: G-XXXXXXXXXX
+  
+  version:
+    provider: mike
+
+# Copyright
+copyright: Copyright &copy; 2025 Steven
+
+# Navigation
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Overview: overview.md
+    - Installation: installation.md
+    - Quick Start: quickstart.md
+  - Hot Trending Engine:
+    - Introduction: hot-trending/index.md
+    - Trend Discovery: hot-trending/discovery.md
+    - Content Generation: hot-trending/generation.md
+    - API Reference: hot-trending/api.md
+  - YouTube SEO:
+    - Introduction: youtube-seo/index.md
+    - Title Optimization: youtube-seo/titles.md
+    - Description Optimization: youtube-seo/descriptions.md
+    - Tags & Hashtags: youtube-seo/tags.md
+    - API Reference: youtube-seo/api.md
+  - Content Extraction:
+    - Introduction: extraction/index.md
+    - Ideogram.ai: extraction/ideogram.md
+    - Suno: extraction/suno.md
+    - Content Analysis: extraction/analysis.md
+    - API Reference: extraction/api.md
+  - AEO/SEO Guide:
+    - Overview: aeo-seo/index.md
+    - Keyword Strategy: aeo-seo/keywords.md
+    - Scoring System: aeo-seo/scoring.md
+    - Best Practices: aeo-seo/best-practices.md
+  - Strategies:
+    - Top 1-5% Strategy: strategies/top-content.md
+    - Daily Workflow: strategies/workflow.md
+    - Content Types: strategies/content-types.md
+    - Performance Tracking: strategies/tracking.md
+  - API Reference:
+    - Hot Trending Engine: api/hot-trending.md
+    - YouTube SEO: api/youtube-seo.md
+    - Content Extractor: api/extractor.md
+  - Examples:
+    - Basic Usage: examples/basic.md
+    - Advanced Workflows: examples/advanced.md
+    - Integration: examples/integration.md
+

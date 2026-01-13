@@ -1,0 +1,677 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>[🔗 link] — Leonardo.Ai</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="f844c620-a036-427b-a791-6c9366599a99" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/rijksmuseum_jan_lievens_1627.jpg" style="object-position:center 60%"/><h1 class="page-title"><a href="https://app.leonardo.ai/personal-feed/collections/6bc9e6c0-4927-48f7-9f98-a01b3d8a443a">[🔗 link]</a> — Leonardo.Ai</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-person"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesPerson"><path d="M10.9536 7.90088C12.217 7.90088 13.2559 6.79468 13.2559 5.38525C13.2559 4.01514 12.2114 2.92017 10.9536 2.92017C9.70142 2.92017 8.65137 4.02637 8.65698 5.39087C8.6626 6.79468 9.69019 7.90088 10.9536 7.90088ZM4.4231 8.03003C5.52368 8.03003 6.42212 7.05859 6.42212 5.83447C6.42212 4.63843 5.51245 3.68945 4.4231 3.68945C3.33374 3.68945 2.41846 4.64966 2.41846 5.84009C2.42407 7.05859 3.32251 8.03003 4.4231 8.03003ZM1.37964 13.168H5.49561C4.87231 12.292 5.43384 10.6074 6.78711 9.51807C6.18628 9.14746 5.37769 8.87231 4.4231 8.87231C1.95239 8.87231 0.262207 10.6917 0.262207 12.1628C0.262207 12.7974 0.548584 13.168 1.37964 13.168ZM7.50024 13.168H14.407C15.4009 13.168 15.7322 12.8423 15.7322 12.2864C15.7322 10.8489 13.8679 8.88354 10.9536 8.88354C8.04492 8.88354 6.17505 10.8489 6.17505 12.2864C6.17505 12.8423 6.50635 13.168 7.50024 13.168Z"></path></svg></span>Owner</th><td><span class="user"><img src="https://lh3.googleusercontent.com/a-/AOh14GhvZ5GVG3K8CPT0aGeg1opsFZpKxZbVCoEG3CCzLGo=s100" class="icon user-icon"/>AvaTar ArTs</span></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>Tags</th><td></td></tr></tbody></table></header><div class="page-body"><figure id="7e88c9c3-8555-494a-8131-3247d401a6a6" class="image"><a href="%5B%F0%9F%94%97%20link%5D%20%E2%80%94%20Leonardo%20Ai%20f844c620a036427ba7916c9366599a99/stn-Qy9ybpE3e6Caxu9q8UJK3ms7wObpA5tq1hvY9dFC.jpeg"><img src="%5B%F0%9F%94%97%20link%5D%20%E2%80%94%20Leonardo%20Ai%20f844c620a036427ba7916c9366599a99/stn-Qy9ybpE3e6Caxu9q8UJK3ms7wObpA5tq1hvY9dFC.jpeg"/></a></figure><ol type="1" id="7c9fb273-b60d-4f9b-bfef-0f1e5bddf10c" class="numbered-list" start="1"><li><a href="https://app.leonardo.ai/personal-feed/collections"><mark class="highlight-default">Collections</mark></a></li></ol><ol type="1" id="7487ebbf-7e7c-49d1-9343-75910b08c4fc" class="numbered-list" start="2"><li><mark class="highlight-default">boys</mark></li></ol><figure id="95aa12a4-9753-4891-83a9-381a7f0da894" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/09ee4358-c9c6-4e4f-b647-a191d09edcfc/09ee4358-c9c6-4e4f-b647-a191d09edcfc.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/09ee4358-c9c6-4e4f-b647-a191d09edcfc/09ee4358-c9c6-4e4f-b647-a191d09edcfc.jpg?w=512"/></a></figure><p id="4b2daf6d-842a-4acf-91ae-8ce283beac9d" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk Ha...</mark></p><h2 id="6eab890d-d9a7-43ec-a82b-88dac9b1dd07" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk Ha...</mark></h2><p id="ac290009-c006-4ecf-8024-7a8027fee3cc" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk Hacker Cyborg transhumanist the past looking directly at the camera, standing straight, hands relaxed,...</mark></p><figure id="8bea9f55-4266-4142-ab48-dc12346fb37c" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/211fa445-7dfc-4ff2-9f50-c9df313768de/211fa445-7dfc-4ff2-9f50-c9df313768de.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/211fa445-7dfc-4ff2-9f50-c9df313768de/211fa445-7dfc-4ff2-9f50-c9df313768de.jpg?w=512"/></a></figure><h2 id="d83da599-f4f4-4e07-9595-e6b5e52a9853" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk fu...</mark></h2><p id="608fed2c-1bcd-4625-a309-068ac3ab6705" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk future Cyborg Tranhumanist human hybrid the past looking directly at the camera, standing straight, ha...</mark></p><figure id="f54ec4e0-03f7-406f-90af-bf4ad6fdced7" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/e510efd1-cfbf-4b80-b458-80e73a845648/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_0.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/e510efd1-cfbf-4b80-b458-80e73a845648/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_0.jpg?w=512"/></a></figure><h2 id="0ad61c74-cb1d-40c5-9388-b181f8260727" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk fu...</mark></h2><p id="f87d24d2-b860-47de-bdf6-17ea7f00b532" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk future Cyborg Tranhumanist human hybrid the past looking directly at the camera, standing straight, ha...</mark></p><figure id="60761c8e-b858-4d1c-8dad-df1a392393e3" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/b8a963b5-0e66-4659-ac8b-39cb14c1d2e6/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_1.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/b8a963b5-0e66-4659-ac8b-39cb14c1d2e6/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_1.jpg?w=512"/></a></figure><h2 id="491eb6b5-cfa7-4551-9af8-4dba503ad109" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk fu...</mark></h2><p id="ac6c2e70-c610-44c6-b6f1-cc8919a91846" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk future Cyborg Tranhumanist human hybrid the past looking directly at the camera, standing straight, ha...</mark></p><figure id="9fd38a3e-42a7-42da-ba38-02dd62afb697" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/aad2f47e-430f-40b0-b578-a02b81d5edb0/variations/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_3_aad2f47e-430f-40b0-b578-a02b81d5edb0_0.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/aad2f47e-430f-40b0-b578-a02b81d5edb0/variations/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_3_aad2f47e-430f-40b0-b578-a02b81d5edb0_0.jpg?w=512"/></a></figure><figure id="0149fe9f-2419-476f-a51e-1c67641921e9" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/a267709d-e729-4592-9e09-2a9641447c09/a267709d-e729-4592-9e09-2a9641447c09.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/a267709d-e729-4592-9e09-2a9641447c09/a267709d-e729-4592-9e09-2a9641447c09.jpg?w=512"/></a></figure><figure id="5ce1d973-268f-4750-a53d-76561b2a6a4a" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/c5d73318-e4e0-4adf-b5ec-0283c77d19db/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_0.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/c5d73318-e4e0-4adf-b5ec-0283c77d19db/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_0.jpg?w=512"/></a></figure><figure id="eeb6dbe4-9e7b-4171-badb-b77c76a4c855" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/a28f2584-380d-4ef3-9ef3-b09215ee439b/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_3.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/a28f2584-380d-4ef3-9ef3-b09215ee439b/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_3.jpg?w=512"/></a></figure><figure id="556ac74f-1f60-4795-80bd-1b68143c7ac9" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/0b97f41e-1836-48f0-bbbd-bf661aed60ad/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_2.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/0b97f41e-1836-48f0-bbbd-bf661aed60ad/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_2.jpg?w=512"/></a></figure><figure id="8a064e0c-e1fa-4140-91cc-88986b0782ea" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/838330e4-a279-428d-9492-65f6d36644f9/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_1.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/838330e4-a279-428d-9492-65f6d36644f9/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_1.jpg?w=512"/></a></figure><figure id="68312954-bbc2-4249-925b-6e8a01f5beb5" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/440944ad-a6f3-46a0-bf8c-57adb735db88/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_1.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/440944ad-a6f3-46a0-bf8c-57adb735db88/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_1.jpg?w=512"/></a></figure><h2 id="7de76def-98d9-40c8-af01-0965b158ac64" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk Ha...</mark></h2><p id="fca48098-4595-4b61-9631-3ac7cb25eef6" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk Hacker Cyborg transhumanist the past looking directly at the camera, standing straight, hands relaxed,...</mark></p><figure id="f92e15ba-c51d-4e0d-97cd-5a09123ee4b7" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/e2565e49-c06f-4fc0-bf7d-9acc449f8fbe/e2565e49-c06f-4fc0-bf7d-9acc449f8fbe.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/e2565e49-c06f-4fc0-bf7d-9acc449f8fbe/e2565e49-c06f-4fc0-bf7d-9acc449f8fbe.jpg?w=512"/></a></figure><h2 id="c490b04e-b20b-41c7-a9a6-127d64ed46b1" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk fu...</mark></h2><p id="1f85fd06-bdde-4e44-8e4d-69ed2c7d49b6" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk future Cyborg Tranhumanist human hybrid the past looking directly at the camera, standing straight, ha...</mark></p><figure id="1a46d300-c5c4-4453-9273-200a0f923145" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/28070aa8-6849-4ad8-8375-8f488f0241f0/variations/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_1_28070aa8-6849-4ad8-8375-8f488f0241f0_0.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/28070aa8-6849-4ad8-8375-8f488f0241f0/variations/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_1_28070aa8-6849-4ad8-8375-8f488f0241f0_0.jpg?w=512"/></a></figure><h2 id="84388a96-99bd-401a-aa67-0975fc946412" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk fu...</mark></h2><p id="bdee8dc1-9151-400d-bee9-3914560df604" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk future Cyborg Tranhumanist human hybrid the past looking directly at the camera, standing straight, ha...</mark></p><figure id="b735c1cc-9385-40e6-9eda-3380cf672a42" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/b8a963b5-0e66-4659-ac8b-39cb14c1d2e6/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_0.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/b8a963b5-0e66-4659-ac8b-39cb14c1d2e6/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_0.jpg?w=512"/></a></figure><h2 id="e32bd1a0-abab-49f1-ad0e-6f9a376437fc" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk fu...</mark></h2><p id="319ce844-d54f-4887-a594-b87604a7e24a" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk future Cyborg Tranhumanist human hybrid the past looking directly at the camera, standing straight, ha...</mark></p><figure id="ea6b3e6a-ca21-488a-848f-cab4fa743f3a" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/7756f66d-628c-4769-a9bc-a7c2fa6d4f15/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_2.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/7756f66d-628c-4769-a9bc-a7c2fa6d4f15/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_2.jpg?w=512"/></a></figure><figure id="e9bcde74-b961-4f48-8e09-d7334e723efe" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/f58f3a76-450b-4b30-ba9d-7e696b2a00ce/f58f3a76-450b-4b30-ba9d-7e696b2a00ce.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/f58f3a76-450b-4b30-ba9d-7e696b2a00ce/f58f3a76-450b-4b30-ba9d-7e696b2a00ce.jpg?w=512"/></a></figure><figure id="244cd759-b4b3-47f3-8c9a-6226e14c8cc4" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/ca3aaa3f-d9c8-47f9-8a70-f42ca744584f/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_3.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/ca3aaa3f-d9c8-47f9-8a70-f42ca744584f/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_3.jpg?w=512"/></a></figure><figure id="184809f6-37cf-4984-a44b-3f1b2ed81a64" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/8e355189-5f8e-4b58-9328-51ddac529699/variations/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_2_8e355189-5f8e-4b58-9328-51ddac529699_0.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/8e355189-5f8e-4b58-9328-51ddac529699/variations/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_2_8e355189-5f8e-4b58-9328-51ddac529699_0.jpg?w=512"/></a></figure><figure id="5e1466f3-d7ee-49bf-8b1f-428f4557c138" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/0b97f41e-1836-48f0-bbbd-bf661aed60ad/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_1.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/0b97f41e-1836-48f0-bbbd-bf661aed60ad/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_1.jpg?w=512"/></a></figure><figure id="b6a04251-9fa0-4401-9164-797b1454ce3e" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/838330e4-a279-428d-9492-65f6d36644f9/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_0.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/838330e4-a279-428d-9492-65f6d36644f9/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_0.jpg?w=512"/></a></figure><figure id="178fbd26-23c6-4d41-9526-1ad0f7df7dfd" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/f2f45f1e-1df4-49ab-bc15-168ab91d2f20/variations/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_0_f2f45f1e-1df4-49ab-bc15-168ab91d2f20_0.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/f2f45f1e-1df4-49ab-bc15-168ab91d2f20/variations/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_0_f2f45f1e-1df4-49ab-bc15-168ab91d2f20_0.jpg?w=512"/></a></figure><h2 id="a0bcb4ce-875b-4500-8e93-45b39a81341b" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk Ha...</mark></h2><p id="88bb99af-d79c-48d8-b479-c20631746b4e" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk Hacker Cyborg transhumanist the past looking directly at the camera, standing straight, hands relaxed,...</mark></p><figure id="60fb49d0-069c-4f45-8b2e-737e83a6babc" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/f3feec4f-8f25-4507-9a58-1d0df513a559/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_1.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/f3feec4f-8f25-4507-9a58-1d0df513a559/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_1.jpg?w=512"/></a></figure><h2 id="037f5f90-a822-40e0-86cf-6b3f006d7f67" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk fu...</mark></h2><p id="ab7817d4-e16e-4e72-90d7-723701ee5209" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk future Cyborg Tranhumanist human hybrid the past looking directly at the camera, standing straight, ha...</mark></p><figure id="cc8f2364-28d7-4875-98ee-c517d75846c0" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/5dd3aaec-044e-48e5-9eba-ee307dddf62b/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_0.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/5dd3aaec-044e-48e5-9eba-ee307dddf62b/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_0.jpg?w=512"/></a></figure><h2 id="6a5e4237-0a11-439b-963f-dd19d7c52d23" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk fu...</mark></h2><p id="bb47875c-be23-4127-8323-7ce56891cd06" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk future Cyborg Tranhumanist human hybrid the past looking directly at the camera, standing straight, ha...</mark></p><figure id="bb0b13a6-1d16-4a0d-9139-73f198d0bcc0" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/6010279c-cac5-4c01-84e3-b07569336e1d/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_3.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/6010279c-cac5-4c01-84e3-b07569336e1d/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_3.jpg?w=512"/></a></figure><h2 id="e6c90e9b-d1a1-4951-a326-6f88ce9e5cfb" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk fu...</mark></h2><p id="bdf93f50-ed21-4975-8574-0b173a8cd69b" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk future Cyborg Tranhumanist human hybrid the past looking directly at the camera, standing straight, ha...</mark></p><figure id="c67db952-e337-4d0c-9475-e8312f935a9a" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/7756f66d-628c-4769-a9bc-a7c2fa6d4f15/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_0.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/7756f66d-628c-4769-a9bc-a7c2fa6d4f15/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_0.jpg?w=512"/></a></figure><figure id="e2a441c8-6749-45e1-be2b-dd566e0b75af" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/c5d73318-e4e0-4adf-b5ec-0283c77d19db/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_3.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/c5d73318-e4e0-4adf-b5ec-0283c77d19db/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_3.jpg?w=512"/></a></figure><figure id="fba91968-e20d-4a5c-9683-bc6d1335d448" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/34d08c53-2625-40b7-abb3-7c844f897b18/variations/UniversalUpscaler_34d08c53-2625-40b7-abb3-7c844f897b18.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/34d08c53-2625-40b7-abb3-7c844f897b18/variations/UniversalUpscaler_34d08c53-2625-40b7-abb3-7c844f897b18.jpg?w=512"/></a></figure><figure id="b36925e4-c659-4480-8910-b915d7bb588e" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/d46f1a54-3161-4d1c-9b75-3e4d557d8b3f/variations/UniversalUpscaler_d46f1a54-3161-4d1c-9b75-3e4d557d8b3f.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/d46f1a54-3161-4d1c-9b75-3e4d557d8b3f/variations/UniversalUpscaler_d46f1a54-3161-4d1c-9b75-3e4d557d8b3f.jpg?w=512"/></a></figure><figure id="9384edd2-1ff7-427a-a210-d3b373127160" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/0b97f41e-1836-48f0-bbbd-bf661aed60ad/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_0.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/0b97f41e-1836-48f0-bbbd-bf661aed60ad/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_0.jpg?w=512"/></a></figure><figure id="f73e5262-319f-4d62-b4d5-74e07f642b47" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/4e8f80e7-0d58-42b2-a5d3-1c8846831adf/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_3.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/4e8f80e7-0d58-42b2-a5d3-1c8846831adf/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_3.jpg?w=512"/></a></figure><figure id="fac1c8c2-4fc1-4806-afaf-1b718799e96b" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/3e28f91d-5ba1-4252-8725-8fa0fd9ee451/3e28f91d-5ba1-4252-8725-8fa0fd9ee451.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/3e28f91d-5ba1-4252-8725-8fa0fd9ee451/3e28f91d-5ba1-4252-8725-8fa0fd9ee451.jpg?w=512"/></a></figure><p id="16fdc7e5-137f-471e-a7d6-552b1576be6e" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk Ha...</mark></p><h2 id="b5654a02-2803-4c21-ba64-f13cd424c5db" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk Ha...</mark></h2><p id="fe02135a-1f06-429e-b43f-9decd627c126" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk Hacker Cyborg transhumanist the past looking directly at the camera, standing straight, hands relaxed,...</mark></p><figure id="52b9ca0c-10cb-4b4c-a8bf-c088e23167ff" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/f3feec4f-8f25-4507-9a58-1d0df513a559/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_0.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/f3feec4f-8f25-4507-9a58-1d0df513a559/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_0.jpg?w=512"/></a></figure><h2 id="fc405f0b-4ae4-43d3-8ecd-8066f15e52cf" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk fu...</mark></h2><p id="f303804c-e0bf-4483-a7d9-5f4461a3641d" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk future Cyborg Tranhumanist human hybrid the past looking directly at the camera, standing straight, ha...</mark></p><figure id="416d6152-956e-4da2-90df-3d98cb37a8bf" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/4f67b315-69a7-4225-9a27-b525531de3ea/variations/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_3_4f67b315-69a7-4225-9a27-b525531de3ea_0.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/4f67b315-69a7-4225-9a27-b525531de3ea/variations/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_3_4f67b315-69a7-4225-9a27-b525531de3ea_0.jpg?w=512"/></a></figure><h2 id="deaafa06-8102-4032-ab36-5c61b0ea5102" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk fu...</mark></h2><p id="4775fd17-cc52-40fb-b1d5-ef3285e926c2" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk future Cyborg Tranhumanist human hybrid the past looking directly at the camera, standing straight, ha...</mark></p><figure id="a53e8082-993d-4114-9124-d1264b4d31bc" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/6010279c-cac5-4c01-84e3-b07569336e1d/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_2.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/6010279c-cac5-4c01-84e3-b07569336e1d/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_2.jpg?w=512"/></a></figure><h2 id="00186851-41dc-46be-8ba1-b394ce7517b1" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk fu...</mark></h2><p id="d9b28d17-2555-4efc-be8f-eed4da07d9ba" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk future Cyborg Tranhumanist human hybrid the past looking directly at the camera, standing straight, ha...</mark></p><figure id="350d34bf-b5d9-4408-833b-0ed7f2fb1df8" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/063391db-9999-4ed3-b161-5a2d19cb3a42/063391db-9999-4ed3-b161-5a2d19cb3a42.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/063391db-9999-4ed3-b161-5a2d19cb3a42/063391db-9999-4ed3-b161-5a2d19cb3a42.jpg?w=512"/></a></figure><figure id="76bffb96-e6e8-4b04-8138-b3537f2c502f" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/c5d73318-e4e0-4adf-b5ec-0283c77d19db/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_2.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/c5d73318-e4e0-4adf-b5ec-0283c77d19db/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_2.jpg?w=512"/></a></figure><figure id="cc9e6673-a01f-43c2-afbe-a5e6938beee5" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/ca3aaa3f-d9c8-47f9-8a70-f42ca744584f/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_1.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/ca3aaa3f-d9c8-47f9-8a70-f42ca744584f/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_1.jpg?w=512"/></a></figure><figure id="8e06db68-883c-425c-a9c6-3a45f10484a2" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/a28f2584-380d-4ef3-9ef3-b09215ee439b/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_0.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/a28f2584-380d-4ef3-9ef3-b09215ee439b/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_0.jpg?w=512"/></a></figure><figure id="c93e6f0f-f857-4d00-b190-614a7551b316" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/838330e4-a279-428d-9492-65f6d36644f9/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_3.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/838330e4-a279-428d-9492-65f6d36644f9/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_3.jpg?w=512"/></a></figure><figure id="c6fce009-3eac-4337-9249-3ea823de67a9" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/4e8f80e7-0d58-42b2-a5d3-1c8846831adf/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_2.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/4e8f80e7-0d58-42b2-a5d3-1c8846831adf/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_2.jpg?w=512"/></a></figure><figure id="bc13b224-39a3-45a6-bdd1-12bd78a60fc2" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/7a52024e-eddb-444d-b67d-148b306b6f06/variations/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_0_7a52024e-eddb-444d-b67d-148b306b6f06_0.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/7a52024e-eddb-444d-b67d-148b306b6f06/variations/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_0_7a52024e-eddb-444d-b67d-148b306b6f06_0.jpg?w=512"/></a></figure><h2 id="e32879d0-d856-4093-9e8e-f70439337567" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk Ha...</mark></h2><p id="619e593f-5c14-4c4b-9339-3efce77fcd4f" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk Hacker Cyborg transhumanist the past looking directly at the camera, standing straight, hands relaxed,...</mark></p><figure id="d19cbfea-40ac-48c1-8026-5953b3780119" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/e510efd1-cfbf-4b80-b458-80e73a845648/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_1.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/e510efd1-cfbf-4b80-b458-80e73a845648/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_1.jpg?w=512"/></a></figure><h2 id="9e7ac21c-0aa5-4b44-baac-0f8ff4b90b6d" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk fu...</mark></h2><p id="2120832b-27d4-4ecb-99f5-f52afaa90f39" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk future Cyborg Tranhumanist human hybrid the past looking directly at the camera, standing straight, ha...</mark></p><figure id="a35cf69c-915d-4569-8803-125ed04f2b5b" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/2a028697-7920-4532-a45f-9628d6601972/variations/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_2_2a028697-7920-4532-a45f-9628d6601972_0.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/2a028697-7920-4532-a45f-9628d6601972/variations/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_2_2a028697-7920-4532-a45f-9628d6601972_0.jpg?w=512"/></a></figure><h2 id="cc0ffc65-3de3-4b58-a7aa-e90215fba73c" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk fu...</mark></h2><p id="2c55d244-d766-470f-a309-4de652e4e0b1" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk future Cyborg Tranhumanist human hybrid the past looking directly at the camera, standing straight, ha...</mark></p><figure id="4238180c-d2b2-43bd-9b14-87521e3901a6" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/6010279c-cac5-4c01-84e3-b07569336e1d/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_0.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/6010279c-cac5-4c01-84e3-b07569336e1d/Default_A_detailed_photograph_of_a_serious_cyberpunk_future_Cy_0.jpg?w=512"/></a></figure><h2 id="832df9f0-ec08-48ea-90b7-35a4dd137ed0" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk fu...</mark></h2><p id="b05c8c46-b248-43c2-80d8-a8de544939d3" class=""><mark class="highlight-default">A detailed photograph of a serious cyberpunk future Cyborg Tranhumanist human hybrid the past looking directly at the camera, standing straight, ha...</mark></p><figure id="57e13838-1b9a-4e8e-b72d-6b8037206fea" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/671fcf0e-a161-49e2-b9f6-0e6770e628e5/671fcf0e-a161-49e2-b9f6-0e6770e628e5.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/671fcf0e-a161-49e2-b9f6-0e6770e628e5/671fcf0e-a161-49e2-b9f6-0e6770e628e5.jpg?w=512"/></a></figure><figure id="a489640d-8303-435f-9135-7fcaf82bc9f1" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/c5d73318-e4e0-4adf-b5ec-0283c77d19db/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_1.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/c5d73318-e4e0-4adf-b5ec-0283c77d19db/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_1.jpg?w=512"/></a></figure><figure id="f689d8bc-217d-43cd-b848-0151d8e7db65" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/ca3aaa3f-d9c8-47f9-8a70-f42ca744584f/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_0.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/ca3aaa3f-d9c8-47f9-8a70-f42ca744584f/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_0.jpg?w=512"/></a></figure><figure id="b5410acb-1023-438e-8ded-bd3bd0f102f8" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/0b97f41e-1836-48f0-bbbd-bf661aed60ad/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_3.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/0b97f41e-1836-48f0-bbbd-bf661aed60ad/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_3.jpg?w=512"/></a></figure><figure id="6780f208-4f9b-4e6b-ad32-4547a35018d7" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/838330e4-a279-428d-9492-65f6d36644f9/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_2.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/838330e4-a279-428d-9492-65f6d36644f9/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_2.jpg?w=512"/></a></figure><figure id="7b616aa5-5dc3-4ed2-8b7c-02491f045408" class="image"><a href="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/4e8f80e7-0d58-42b2-a5d3-1c8846831adf/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_1.jpg?w=512"><img src="https://cdn.leonardo.ai/users/f7bb8476-e3f0-4f1f-9a06-4600866cc49c/generations/4e8f80e7-0d58-42b2-a5d3-1c8846831adf/Default_A_detailed_photograph_of_a_serious_cyberpunk_Hacker_Cy_1.jpg?w=512"/></a></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

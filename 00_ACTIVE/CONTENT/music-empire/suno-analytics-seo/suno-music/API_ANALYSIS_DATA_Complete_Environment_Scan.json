@@ -1,0 +1,1784 @@
+{
+  "analyzed_at": "2025-10-27T08:37:40.056336",
+  "apis_discovered": {
+    "openai": {
+      "name": "openai",
+      "category": "ai",
+      "configured_vars": [
+        {
+          "name": "OPENAI_API_KEY",
+          "file": "llm-apis.env",
+          "has_value": true
+        }
+      ],
+      "missing_vars": [
+        "OPENAI_ORG_ID",
+        "OPENAI_PROJECT"
+      ],
+      "mentioned_in_content": true,
+      "status": "configured"
+    },
+    "anthropic": {
+      "name": "anthropic",
+      "category": "ai",
+      "configured_vars": [
+        {
+          "name": "ANTHROPIC_API_KEY",
+          "file": "llm-apis.env",
+          "has_value": true
+        }
+      ],
+      "missing_vars": [
+        "CLAUDE_API_KEY"
+      ],
+      "mentioned_in_content": true,
+      "status": "configured"
+    },
+    "groq": {
+      "name": "groq",
+      "category": "ai",
+      "configured_vars": [
+        {
+          "name": "GROQ_API_KEY",
+          "file": "llm-apis.env",
+          "has_value": true
+        }
+      ],
+      "missing_vars": [],
+      "mentioned_in_content": true,
+      "status": "configured"
+    },
+    "deepseek": {
+      "name": "deepseek",
+      "category": "ai",
+      "configured_vars": [
+        {
+          "name": "DEEPSEEK_API_KEY",
+          "file": "llm-apis.env",
+          "has_value": true
+        }
+      ],
+      "missing_vars": [],
+      "mentioned_in_content": true,
+      "status": "configured"
+    },
+    "xai": {
+      "name": "xai",
+      "category": "ai",
+      "configured_vars": [
+        {
+          "name": "XAI_API_KEY",
+          "file": "llm-apis.env",
+          "has_value": true
+        }
+      ],
+      "missing_vars": [],
+      "mentioned_in_content": true,
+      "status": "configured"
+    },
+    "aws": {
+      "name": "aws",
+      "category": "cloud",
+      "configured_vars": [
+        {
+          "name": "AWS_ACCESS_KEY_ID",
+          "file": "heavenly-hands.env",
+          "has_value": true
+        },
+        {
+          "name": "AWS_SECRET_ACCESS_KEY",
+          "file": "heavenly-hands.env",
+          "has_value": true
+        },
+        {
+          "name": "AWS_REGION",
+          "file": "cloud-infrastructure.env",
+          "has_value": true
+        }
+      ],
+      "missing_vars": [],
+      "mentioned_in_content": true,
+      "status": "configured"
+    },
+    "google": {
+      "name": "google",
+      "category": "cloud",
+      "configured_vars": [],
+      "missing_vars": [
+        "GOOGLE_API_KEY",
+        "GOOGLE_APPLICATION_CREDENTIALS",
+        "GCP_PROJECT"
+      ],
+      "mentioned_in_content": true,
+      "status": "mentioned"
+    },
+    "azure": {
+      "name": "azure",
+      "category": "cloud",
+      "configured_vars": [],
+      "missing_vars": [
+        "AZURE_API_KEY",
+        "AZURE_SUBSCRIPTION_ID"
+      ],
+      "mentioned_in_content": true,
+      "status": "mentioned"
+    },
+    "stripe": {
+      "name": "stripe",
+      "category": "payment",
+      "configured_vars": [],
+      "missing_vars": [
+        "STRIPE_API_KEY",
+        "STRIPE_SECRET_KEY",
+        "STRIPE_PUBLISHABLE_KEY"
+      ],
+      "mentioned_in_content": true,
+      "status": "mentioned"
+    },
+    "twilio": {
+      "name": "twilio",
+      "category": "communication",
+      "configured_vars": [
+        {
+          "name": "TWILIO_ACCOUNT_SID",
+          "file": "notifications.env",
+          "has_value": true
+        },
+        {
+          "name": "TWILIO_AUTH_TOKEN",
+          "file": "heavenly-hands.env",
+          "has_value": true
+        },
+        {
+          "name": "TWILIO_PHONE_NUMBER",
+          "file": "heavenly-hands.env",
+          "has_value": true
+        }
+      ],
+      "missing_vars": [],
+      "mentioned_in_content": true,
+      "status": "configured"
+    },
+    "notion": {
+      "name": "notion",
+      "category": "productivity",
+      "configured_vars": [
+        {
+          "name": "NOTION_TOKEN",
+          "file": "documents.env",
+          "has_value": true
+        }
+      ],
+      "missing_vars": [
+        "NOTION_API_KEY"
+      ],
+      "mentioned_in_content": true,
+      "status": "configured"
+    },
+    "supabase": {
+      "name": "supabase",
+      "category": "database",
+      "configured_vars": [
+        {
+          "name": "SUPABASE_KEY",
+          "file": "automation-agents.env",
+          "has_value": true
+        }
+      ],
+      "missing_vars": [
+        "SUPABASE_URL",
+        "SUPABASE_ANON_KEY"
+      ],
+      "mentioned_in_content": true,
+      "status": "configured"
+    },
+    "replicate": {
+      "name": "replicate",
+      "category": "ai",
+      "configured_vars": [
+        {
+          "name": "REPLICATE_API_TOKEN",
+          "file": "art-vision.env",
+          "has_value": true
+        }
+      ],
+      "missing_vars": [],
+      "mentioned_in_content": true,
+      "status": "configured"
+    },
+    "huggingface": {
+      "name": "huggingface",
+      "category": "ai",
+      "configured_vars": [],
+      "missing_vars": [
+        "HUGGINGFACE_TOKEN",
+        "HF_TOKEN"
+      ],
+      "mentioned_in_content": true,
+      "status": "mentioned"
+    }
+  },
+  "security_issues": [
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "SERPAPI_KEY",
+      "file": "seo-analytics.env",
+      "message": "SERPAPI_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "SERPAPI_KEY",
+      "file": "seo-analytics.env",
+      "message": "SERPAPI_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "NEWSAPI_KEY",
+      "file": "seo-analytics.env",
+      "message": "NEWSAPI_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "NEWSAPI_KEY",
+      "file": "seo-analytics.env",
+      "message": "NEWSAPI_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "CHROMADB_API_KEY",
+      "file": "vector-memory.env",
+      "message": "CHROMADB_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "CHROMADB_API_KEY",
+      "file": "vector-memory.env",
+      "message": "CHROMADB_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "OPENAI_API_KEY",
+      "file": "llm-apis.env",
+      "message": "OPENAI_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "OPENAI_API_KEY",
+      "file": "llm-apis.env",
+      "message": "OPENAI_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "ANTHROPIC_API_KEY",
+      "file": "llm-apis.env",
+      "message": "ANTHROPIC_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "ANTHROPIC_API_KEY",
+      "file": "llm-apis.env",
+      "message": "ANTHROPIC_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "GROQ_API_KEY",
+      "file": "llm-apis.env",
+      "message": "GROQ_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "GROQ_API_KEY",
+      "file": "llm-apis.env",
+      "message": "GROQ_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "XAI_API_KEY",
+      "file": "llm-apis.env",
+      "message": "XAI_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "XAI_API_KEY",
+      "file": "llm-apis.env",
+      "message": "XAI_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "DEEPSEEK_API_KEY",
+      "file": "llm-apis.env",
+      "message": "DEEPSEEK_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "DEEPSEEK_API_KEY",
+      "file": "llm-apis.env",
+      "message": "DEEPSEEK_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "ZAPIER_API_KEY",
+      "file": "notifications.env",
+      "message": "ZAPIER_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "ZAPIER_API_KEY",
+      "file": "notifications.env",
+      "message": "ZAPIER_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "TWILIO_AUTH_TOKEN",
+      "file": "heavenly-hands.env",
+      "message": "TWILIO_AUTH_TOKEN appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "TWILIO_AUTH_TOKEN",
+      "file": "heavenly-hands.env",
+      "message": "TWILIO_AUTH_TOKEN appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "TWILIO_API_KEY_SID",
+      "file": "heavenly-hands.env",
+      "message": "TWILIO_API_KEY_SID appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "TWILIO_API_KEY_SID",
+      "file": "heavenly-hands.env",
+      "message": "TWILIO_API_KEY_SID appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "TWILIO_API_KEY_SECRET",
+      "file": "heavenly-hands.env",
+      "message": "TWILIO_API_KEY_SECRET appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "TWILIO_API_KEY_SECRET",
+      "file": "heavenly-hands.env",
+      "message": "TWILIO_API_KEY_SECRET appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "DJANGO_SECRET_KEY",
+      "file": "heavenly-hands.env",
+      "message": "DJANGO_SECRET_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "DJANGO_SECRET_KEY",
+      "file": "heavenly-hands.env",
+      "message": "DJANGO_SECRET_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "EMAIL_HOST_PASSWORD",
+      "file": "heavenly-hands.env",
+      "message": "EMAIL_HOST_PASSWORD appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "EMAIL_HOST_PASSWORD",
+      "file": "heavenly-hands.env",
+      "message": "EMAIL_HOST_PASSWORD appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "MIXPANEL_TOKEN",
+      "file": "heavenly-hands.env",
+      "message": "MIXPANEL_TOKEN appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "MIXPANEL_TOKEN",
+      "file": "heavenly-hands.env",
+      "message": "MIXPANEL_TOKEN appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "NEW_RELIC_LICENSE_KEY",
+      "file": "heavenly-hands.env",
+      "message": "NEW_RELIC_LICENSE_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "NEW_RELIC_LICENSE_KEY",
+      "file": "heavenly-hands.env",
+      "message": "NEW_RELIC_LICENSE_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "AWS_ACCESS_KEY_ID",
+      "file": "heavenly-hands.env",
+      "message": "AWS_ACCESS_KEY_ID appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "AWS_ACCESS_KEY_ID",
+      "file": "heavenly-hands.env",
+      "message": "AWS_ACCESS_KEY_ID appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "AWS_SECRET_ACCESS_KEY",
+      "file": "heavenly-hands.env",
+      "message": "AWS_SECRET_ACCESS_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "AWS_SECRET_ACCESS_KEY",
+      "file": "heavenly-hands.env",
+      "message": "AWS_SECRET_ACCESS_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "NOTION_TOKEN",
+      "file": "documents.env",
+      "message": "NOTION_TOKEN appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "NOTION_TOKEN",
+      "file": "documents.env",
+      "message": "NOTION_TOKEN appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "AZURE_OPENAI_KEY",
+      "file": "cloud-infrastructure.env",
+      "message": "AZURE_OPENAI_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "AZURE_OPENAI_KEY",
+      "file": "cloud-infrastructure.env",
+      "message": "AZURE_OPENAI_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "MOONVALLEY_API_KEY",
+      "file": "other-tools.env",
+      "message": "MOONVALLEY_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "MOONVALLEY_API_KEY",
+      "file": "other-tools.env",
+      "message": "MOONVALLEY_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "SUPERNORMAL_API_KEY",
+      "file": "other-tools.env",
+      "message": "SUPERNORMAL_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "SUPERNORMAL_API_KEY",
+      "file": "other-tools.env",
+      "message": "SUPERNORMAL_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "SONIX_API_KEY",
+      "file": "other-tools.env",
+      "message": "SONIX_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "SONIX_API_KEY",
+      "file": "other-tools.env",
+      "message": "SONIX_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "SPEECHMATICS_API_KEY",
+      "file": "other-tools.env",
+      "message": "SPEECHMATICS_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "SPEECHMATICS_API_KEY",
+      "file": "other-tools.env",
+      "message": "SPEECHMATICS_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "ELEVENLABS_API_KEY",
+      "file": "audio-music.env",
+      "message": "ELEVENLABS_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "ELEVENLABS_API_KEY",
+      "file": "audio-music.env",
+      "message": "ELEVENLABS_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "ASSEMBLYAI_API_KEY",
+      "file": "audio-music.env",
+      "message": "ASSEMBLYAI_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "ASSEMBLYAI_API_KEY",
+      "file": "audio-music.env",
+      "message": "ASSEMBLYAI_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "DEEPGRAM_API_KEY",
+      "file": "audio-music.env",
+      "message": "DEEPGRAM_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "DEEPGRAM_API_KEY",
+      "file": "audio-music.env",
+      "message": "DEEPGRAM_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "INVIDEO_API_KEY",
+      "file": "audio-music.env",
+      "message": "INVIDEO_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "INVIDEO_API_KEY",
+      "file": "audio-music.env",
+      "message": "INVIDEO_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "COHERE_API_KEY",
+      "file": "automation-agents.env",
+      "message": "COHERE_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "COHERE_API_KEY",
+      "file": "automation-agents.env",
+      "message": "COHERE_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "FIREWORKS_API_KEY",
+      "file": "automation-agents.env",
+      "message": "FIREWORKS_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "FIREWORKS_API_KEY",
+      "file": "automation-agents.env",
+      "message": "FIREWORKS_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "PINECONE_API_KEY",
+      "file": "automation-agents.env",
+      "message": "PINECONE_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "PINECONE_API_KEY",
+      "file": "automation-agents.env",
+      "message": "PINECONE_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "SUPABASE_KEY",
+      "file": "automation-agents.env",
+      "message": "SUPABASE_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "SUPABASE_KEY",
+      "file": "automation-agents.env",
+      "message": "SUPABASE_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "OPENROUTER_API_KEY",
+      "file": "automation-agents.env",
+      "message": "OPENROUTER_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "OPENROUTER_API_KEY",
+      "file": "automation-agents.env",
+      "message": "OPENROUTER_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "LANGSMITH_API_KEY",
+      "file": "automation-agents.env",
+      "message": "LANGSMITH_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "LANGSMITH_API_KEY",
+      "file": "automation-agents.env",
+      "message": "LANGSMITH_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "LEONARDO_API_KEY",
+      "file": "art-vision.env",
+      "message": "LEONARDO_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "LEONARDO_API_KEY",
+      "file": "art-vision.env",
+      "message": "LEONARDO_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "STABILITY_API_KEY",
+      "file": "art-vision.env",
+      "message": "STABILITY_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "STABILITY_API_KEY",
+      "file": "art-vision.env",
+      "message": "STABILITY_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "REPLICATE_API_TOKEN",
+      "file": "art-vision.env",
+      "message": "REPLICATE_API_TOKEN appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "REPLICATE_API_TOKEN",
+      "file": "art-vision.env",
+      "message": "REPLICATE_API_TOKEN appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "RUNWAY_API_KEY",
+      "file": "art-vision.env",
+      "message": "RUNWAY_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "medium",
+      "type": "plaintext_secret",
+      "variable": "RUNWAY_API_KEY",
+      "file": "art-vision.env",
+      "message": "RUNWAY_API_KEY appears to contain plaintext secret",
+      "recommendation": "Consider using secret management or at minimum source from secure location"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "RED",
+      "files": [
+        "validate.sh",
+        "loader.sh",
+        "validate.sh",
+        "loader.sh"
+      ],
+      "message": "RED defined in 4 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "GREEN",
+      "files": [
+        "validate.sh",
+        "loader.sh",
+        "validate.sh",
+        "loader.sh"
+      ],
+      "message": "GREEN defined in 4 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "YELLOW",
+      "files": [
+        "validate.sh",
+        "loader.sh",
+        "validate.sh",
+        "loader.sh"
+      ],
+      "message": "YELLOW defined in 4 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "BLUE",
+      "files": [
+        "validate.sh",
+        "loader.sh",
+        "validate.sh",
+        "loader.sh"
+      ],
+      "message": "BLUE defined in 4 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "PURPLE",
+      "files": [
+        "validate.sh",
+        "loader.sh",
+        "validate.sh",
+        "loader.sh"
+      ],
+      "message": "PURPLE defined in 4 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "CYAN",
+      "files": [
+        "validate.sh",
+        "loader.sh",
+        "validate.sh",
+        "loader.sh"
+      ],
+      "message": "CYAN defined in 4 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "NC",
+      "files": [
+        "validate.sh",
+        "loader.sh",
+        "validate.sh",
+        "loader.sh"
+      ],
+      "message": "NC defined in 4 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "ENV_DIR",
+      "files": [
+        "validate.sh",
+        "loader.sh",
+        "validate.sh",
+        "loader.sh"
+      ],
+      "message": "ENV_DIR defined in 4 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "MAIN_ENV",
+      "files": [
+        "validate.sh",
+        "validate.sh"
+      ],
+      "message": "MAIN_ENV defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "AI_SHELL_CONFIG",
+      "files": [
+        "loader.sh",
+        "loader.sh"
+      ],
+      "message": "AI_SHELL_CONFIG defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "SERPAPI_KEY",
+      "files": [
+        "seo-analytics.env",
+        "seo-analytics.env"
+      ],
+      "message": "SERPAPI_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "NEWSAPI_KEY",
+      "files": [
+        "seo-analytics.env",
+        "seo-analytics.env"
+      ],
+      "message": "NEWSAPI_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "CHROMADB_API_KEY",
+      "files": [
+        "vector-memory.env",
+        "vector-memory.env"
+      ],
+      "message": "CHROMADB_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "OPENAI_API_KEY",
+      "files": [
+        "llm-apis.env",
+        "llm-apis.env"
+      ],
+      "message": "OPENAI_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "OPENAI_MODEL",
+      "files": [
+        "llm-apis.env",
+        "llm-apis.env"
+      ],
+      "message": "OPENAI_MODEL defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "ANTHROPIC_API_KEY",
+      "files": [
+        "llm-apis.env",
+        "llm-apis.env"
+      ],
+      "message": "ANTHROPIC_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "GROQ_API_KEY",
+      "files": [
+        "llm-apis.env",
+        "llm-apis.env"
+      ],
+      "message": "GROQ_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "XAI_API_KEY",
+      "files": [
+        "llm-apis.env",
+        "llm-apis.env"
+      ],
+      "message": "XAI_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "DEEPSEEK_API_KEY",
+      "files": [
+        "llm-apis.env",
+        "llm-apis.env"
+      ],
+      "message": "DEEPSEEK_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "TWILIO_ACCOUNT_SID",
+      "files": [
+        "notifications.env",
+        "heavenly-hands.env",
+        "notifications.env",
+        "heavenly-hands.env"
+      ],
+      "message": "TWILIO_ACCOUNT_SID defined in 4 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "ZAPIER_API_KEY",
+      "files": [
+        "notifications.env",
+        "notifications.env"
+      ],
+      "message": "ZAPIER_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "TWILIO_AUTH_TOKEN",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "TWILIO_AUTH_TOKEN defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "TWILIO_PHONE_NUMBER",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "TWILIO_PHONE_NUMBER defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "TWILIO_API_KEY_SID",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "TWILIO_API_KEY_SID defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "TWILIO_API_KEY_SECRET",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "TWILIO_API_KEY_SECRET defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "DJANGO_SECRET_KEY",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "DJANGO_SECRET_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "DEBUG",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "DEBUG defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "WEBHOOK_BASE_URL",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "WEBHOOK_BASE_URL defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "HEAVENLY_HANDS_MAIN_NUMBER",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "HEAVENLY_HANDS_MAIN_NUMBER defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "HEAVENLY_HANDS_EMAIL",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "HEAVENLY_HANDS_EMAIL defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "HEAVENLY_HANDS_OWNER",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "HEAVENLY_HANDS_OWNER defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "SERVICE_AREAS",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "SERVICE_AREAS defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "DATABASE_URL",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "DATABASE_URL defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "LOG_LEVEL",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "LOG_LEVEL defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "LOG_FILE",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "LOG_FILE defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "ALLOWED_HOSTS",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "ALLOWED_HOSTS defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "STATIC_ROOT",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "STATIC_ROOT defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "MEDIA_ROOT",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "MEDIA_ROOT defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "SECURE_SSL_REDIRECT",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "SECURE_SSL_REDIRECT defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "SECURE_PROXY_SSL_HEADER",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "SECURE_PROXY_SSL_HEADER defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "SESSION_COOKIE_SECURE",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "SESSION_COOKIE_SECURE defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "CSRF_COOKIE_SECURE",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "CSRF_COOKIE_SECURE defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "CACHE_BACKEND",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "CACHE_BACKEND defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "CACHE_TIMEOUT",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "CACHE_TIMEOUT defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "EMAIL_BACKEND",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "EMAIL_BACKEND defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "EMAIL_HOST",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "EMAIL_HOST defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "EMAIL_PORT",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "EMAIL_PORT defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "EMAIL_USE_TLS",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "EMAIL_USE_TLS defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "EMAIL_HOST_USER",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "EMAIL_HOST_USER defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "EMAIL_HOST_PASSWORD",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "EMAIL_HOST_PASSWORD defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "GOOGLE_ANALYTICS_ID",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "GOOGLE_ANALYTICS_ID defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "MIXPANEL_TOKEN",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "MIXPANEL_TOKEN defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "SENTRY_DSN",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "SENTRY_DSN defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "NEW_RELIC_LICENSE_KEY",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "NEW_RELIC_LICENSE_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "BACKUP_S3_BUCKET",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "BACKUP_S3_BUCKET defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "AWS_ACCESS_KEY_ID",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "AWS_ACCESS_KEY_ID defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "AWS_SECRET_ACCESS_KEY",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "AWS_SECRET_ACCESS_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "AWS_DEFAULT_REGION",
+      "files": [
+        "heavenly-hands.env",
+        "heavenly-hands.env"
+      ],
+      "message": "AWS_DEFAULT_REGION defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "NOTION_TOKEN",
+      "files": [
+        "documents.env",
+        "documents.env"
+      ],
+      "message": "NOTION_TOKEN defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "SLITE_API_KEY",
+      "files": [
+        "documents.env",
+        "documents.env"
+      ],
+      "message": "SLITE_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "AWS_REGION",
+      "files": [
+        "cloud-infrastructure.env",
+        "cloud-infrastructure.env"
+      ],
+      "message": "AWS_REGION defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "AZURE_OPENAI_KEY",
+      "files": [
+        "cloud-infrastructure.env",
+        "cloud-infrastructure.env"
+      ],
+      "message": "AZURE_OPENAI_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "MOONVALLEY_API_KEY",
+      "files": [
+        "other-tools.env",
+        "other-tools.env"
+      ],
+      "message": "MOONVALLEY_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "SUPERNORMAL_API_KEY",
+      "files": [
+        "other-tools.env",
+        "other-tools.env"
+      ],
+      "message": "SUPERNORMAL_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "SONIX_API_KEY",
+      "files": [
+        "other-tools.env",
+        "other-tools.env"
+      ],
+      "message": "SONIX_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "SPEECHMATICS_API_KEY",
+      "files": [
+        "other-tools.env",
+        "other-tools.env"
+      ],
+      "message": "SPEECHMATICS_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "SUNO_COOKIE",
+      "files": [
+        "audio-music.env",
+        "audio-music.env"
+      ],
+      "message": "SUNO_COOKIE defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "ELEVENLABS_API_KEY",
+      "files": [
+        "audio-music.env",
+        "audio-music.env"
+      ],
+      "message": "ELEVENLABS_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "ASSEMBLYAI_API_KEY",
+      "files": [
+        "audio-music.env",
+        "audio-music.env"
+      ],
+      "message": "ASSEMBLYAI_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "DEEPGRAM_API_KEY",
+      "files": [
+        "audio-music.env",
+        "audio-music.env"
+      ],
+      "message": "DEEPGRAM_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "INVIDEO_API_KEY",
+      "files": [
+        "audio-music.env",
+        "audio-music.env"
+      ],
+      "message": "INVIDEO_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "COHERE_API_KEY",
+      "files": [
+        "automation-agents.env",
+        "automation-agents.env"
+      ],
+      "message": "COHERE_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "FIREWORKS_API_KEY",
+      "files": [
+        "automation-agents.env",
+        "automation-agents.env"
+      ],
+      "message": "FIREWORKS_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "PINECONE_API_KEY",
+      "files": [
+        "automation-agents.env",
+        "automation-agents.env"
+      ],
+      "message": "PINECONE_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "SUPABASE_KEY",
+      "files": [
+        "automation-agents.env",
+        "automation-agents.env"
+      ],
+      "message": "SUPABASE_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "OPENROUTER_API_KEY",
+      "files": [
+        "automation-agents.env",
+        "automation-agents.env"
+      ],
+      "message": "OPENROUTER_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "LANGSMITH_API_KEY",
+      "files": [
+        "automation-agents.env",
+        "automation-agents.env"
+      ],
+      "message": "LANGSMITH_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "LEONARDO_API_KEY",
+      "files": [
+        "art-vision.env",
+        "art-vision.env"
+      ],
+      "message": "LEONARDO_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "STABILITY_API_KEY",
+      "files": [
+        "art-vision.env",
+        "art-vision.env"
+      ],
+      "message": "STABILITY_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "REPLICATE_API_TOKEN",
+      "files": [
+        "art-vision.env",
+        "art-vision.env"
+      ],
+      "message": "REPLICATE_API_TOKEN defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    },
+    {
+      "severity": "low",
+      "type": "duplicate",
+      "variable": "RUNWAY_API_KEY",
+      "files": [
+        "art-vision.env",
+        "art-vision.env"
+      ],
+      "message": "RUNWAY_API_KEY defined in 2 files",
+      "recommendation": "Consolidate to single source to avoid conflicts"
+    }
+  ],
+  "configuration_status": {},
+  "recommendations": [
+    {
+      "type": "consolidation",
+      "priority": "low",
+      "title": "Multiple AI APIs Configured",
+      "message": "You have 7 AI APIs configured: openai, anthropic, groq, deepseek, xai, replicate, huggingface",
+      "action": "Consider standardizing on 1-2 primary APIs to reduce complexity"
+    },
+    {
+      "type": "suggestion",
+      "priority": "low",
+      "title": "Common APIs Not Configured",
+      "message": "These common APIs are not configured: github",
+      "action": "Add if you plan to use these services"
+    }
+  ],
+  "statistics": {
+    "total_apis": 14,
+    "by_category": {
+      "ai": 7,
+      "cloud": 3,
+      "payment": 1,
+      "communication": 1,
+      "productivity": 1,
+      "database": 1
+    },
+    "by_status": {
+      "configured": 10,
+      "mentioned": 4
+    },
+    "total_variables": 81,
+    "security_issues": {
+      "total": 157,
+      "by_severity": {
+        "medium": 76,
+        "low": 81
+      },
+      "by_type": {
+        "plaintext_secret": 76,
+        "duplicate": 81
+      }
+    }
+  }
+}

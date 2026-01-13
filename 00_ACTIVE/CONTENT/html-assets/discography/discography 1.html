@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discography with MP3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #050404;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 32px;
+            color: #333;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .album {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .album img {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+        .album h3 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .album p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .album a {
+            text-decoration: none;
+            color: #007BFF;
+            font-size: 14px;
+        }
+        .album a:hover {
+            text-decoration: underline;
+        }
+        .lyrics {
+            display: none;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #444;
+            text-align: left;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        .lyrics-btn {
+            margin-top: 5px;
+            background-color: #007BFF;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .lyrics-btn:hover {
+            background-color: #0056b3;
+        }
+        audio {
+            margin-top: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Discography</h1>
+    <div class="grid-container">
+        <!-- Album 1 -->
+        <div class="album">
+            <img src="https://via.placeholder.com/150" alt="Album Cover">
+            <h3>Whisper of the Willow</h3>
+            <p>Genre: Grunge Rock</p>
+            <a href="https://suno.com/song/8dd3a6d2-e9af-4675-9e8c-05ea053b2e13" target="_blank">Listen on Suno</a>
+            <audio controls>
+                <source src="/mnt/data/whisper-of-the-willow.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <button class="lyrics-btn" onclick="toggleLyrics(this)">Show Lyrics</button>
+            <div class="lyrics">
+                <p><strong>[Verse 1]</strong></p>
+                <p>In the shadows where the alley cats prowl...</p>
+                <p><strong>[Chorus]</strong></p>
+                <p>Love is rubbish, let's get trashy in the moonlight...</p>
+            </div>
+        </div>
+        
+        <!-- Album 2 -->
+        <div class="album">
+            <img src="https://via.placeholder.com/150" alt="Album Cover">
+            <h3>The Sound of Ancestors</h3>
+            <p>Genre: Indie-Folk</p>
+            <a href="https://suno.com/song/543fcfce-0d8d-4f8b-9798-469cee2e41fd" target="_blank">Listen on Suno</a>
+            <audio controls>
+                <source src="/mnt/data/The Sound of Ancestors2.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <button class="lyrics-btn" onclick="toggleLyrics(this)">Show Lyrics</button>
+            <div class="lyrics">
+                <p><strong>[Verse 1]</strong></p>
+                <p>By the fire's orange glow...</p>
+                <p><strong>[Chorus]</strong></p>
+                <p>With dumpsters for a throne...</p>
+            </div>
+        </div>
+
+        <!-- Album 3 -->
+        <div class="album">
+            <img src="https://via.placeholder.com/150" alt="Album Cover">
+            <h3>Song for the Witcher</h3>
+            <p>Genre: Acoustic Fantasy</p>
+            <a href="https://suno.com/song/11cec2fe-a872-4f8b-a190-4edbc15e56fc" target="_blank">Listen on Suno</a>
+            <audio controls>
+                <source src="/mnt/data/Song for the Witcher  by @killeen ｜ Suno (1) [d9782181-a1a3-4260-9a4e-dcf3b63c2694-1].mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <button class="lyrics-btn" onclick="toggleLyrics(this)">Show Lyrics</button>
+            <div class="lyrics">
+                <p><strong>[Verse 1]</strong></p>
+                <p>Her eyes are diamonds among the broken bottles...</p>
+                <p><strong>[Chorus]</strong></p>
+                <p>With dumpsters for a throne...</p>
+            </div>
+        </div>
+
+        <!-- Album 4 -->
+        <div class="album">
+            <img src="https://via.placeholder.com/150" alt="Album Cover">
+            <h3>Moonly Alley</h3>
+            <p>Genre: Ethereal Synth</p>
+            <a href="https://suno.com/song/79bf1d33-3abf-47f0-9b25-c3c5c8b37b65" target="_blank">Listen on Suno</a>
+            <audio controls>
+                <source src="/mnt/data/Moonly Alley3.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <button class="lyrics-btn" onclick="toggleLyrics(this)">Show Lyrics</button>
+            <div class="lyrics">
+                <p><strong>[Verse 1]</strong></p>
+                <p>The stray dogs bark a mournful tune...</p>
+                <p><strong>[Chorus]</strong></p>
+                <p>We find love burning bright by the polluted light...</p>
+            </div>
+        </div>
+
+        <!-- Add more albums as needed -->
+    </div>
+
+    <script>
+        function toggleLyrics(button) {
+            const lyricsDiv = button.nextElementSibling;
+            if (lyricsDiv.style.display === "none" || lyricsDiv.style.display === "") {
+                lyricsDiv.style.display = "block";
+                button.textContent = "Hide Lyrics";
+            } else {
+                lyricsDiv.style.display = "none";
+                button.textContent = "Show Lyrics";
+            }
+        }
+    </script>
+</body>
+</html>

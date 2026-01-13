@@ -1,0 +1,612 @@
+# Building SEO-Optimized YouTube Channel Strategy - DeepSeek
+
+**Platform:** DeepSeek
+**Exported:** 2025-11-07
+**Messages:** 101
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 🔍 DeepSeek
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+
+---
+
+## 👤 Human
+
+cursor-agent --resume=864d548c-2ffb-4f6d-979d-88ccf82d2d32
+

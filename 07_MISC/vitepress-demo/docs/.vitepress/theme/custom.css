@@ -1,0 +1,77 @@
+/**
+ * AVATARARTS Custom Theme for VitePress
+ */
+
+:root {
+  --vp-c-brand: #2980b9;
+  --vp-c-brand-light: #3498db;
+  --vp-c-brand-lighter: #5dade2;
+  --vp-c-brand-dark: #2472a8;
+  --vp-c-brand-darker: #1c5982;
+
+  --vp-c-brand-1: #2980b9;
+  --vp-c-brand-2: #3498db;
+  --vp-c-brand-3: #5dade2;
+}
+
+.dark {
+  --vp-c-brand: #3498db;
+  --vp-c-brand-light: #5dade2;
+  --vp-c-brand-lighter: #85c1e9;
+  --vp-c-brand-dark: #2980b9;
+  --vp-c-brand-darker: #2472a8;
+}
+
+/* Custom badge styles */
+.vp-doc .custom-block.tip {
+  border-color: var(--vp-c-brand);
+}
+
+/* Stats grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: var(--vp-c-bg-soft);
+  border-radius: 8px;
+  border: 2px solid var(--vp-c-brand);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--vp-c-brand);
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: var(--vp-c-text-2);
+  margin-top: 0.5rem;
+}
+
+/* Feature cards */
+.feature-card {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  transition: all 0.2s;
+}
+
+.feature-card:hover {
+  border-color: var(--vp-c-brand);
+  box-shadow: 0 4px 12px rgba(41, 128, 185, 0.1);
+}
+
+.feature-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--vp-c-brand);
+}
