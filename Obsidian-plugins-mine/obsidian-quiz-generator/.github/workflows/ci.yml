@@ -1,0 +1,129 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run linter
+        run: npm run lint
+      
+      - name: Check formatting
+        run: npm run format:check
+      
+      - name: Run tests
+        run: npm test
+      
+      - name: Build plugin
+        run: npm run build
+
+  build-release:
+    name: Build and Release
+    runs-on: ubuntu-latest
+    needs: test
+    if: startsWith(github.ref, 'refs/tags/v')
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build plugin
+        run: npm run build
+      
+      - name: Create release archive
+        run: |
+          mkdir quiz-generator-2026
+          cp main.js manifest.json styles.css README.md LICENSE quiz-generator-2026/
+          zip -r quiz-generator-2026.zip quiz-generator-2026
+      
+      - name: Extract version
+        id: extract_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+      
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Quiz Generator 2026 ${{ steps.extract_version.outputs.VERSION }}
+          body: |
+            ## Quiz Generator 2026 – AvaTarArTs Edition
+            
+            ### What's New
+            - See [CHANGELOG.md](https://github.com/AvaTar-ArTs/obsidian-quiz-generator/blob/main/CHANGELOG.md) for details
+            
+            ### Installation
+            1. Download `quiz-generator-2026.zip` below
+            2. Extract to your vault's `.obsidian/plugins/` folder
+            3. Enable the plugin in Obsidian settings
+            
+            ### Attribution
+            This is a fork of the original Quiz Generator by ECuiDev
+          draft: false
+          prerelease: false
+      
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./quiz-generator-2026.zip
+          asset_name: quiz-generator-2026.zip
+          asset_content_type: application/zip
+
+  code-quality:
+    name: Code Quality Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Check for security vulnerabilities
+        run: npm audit --audit-level=moderate
+        continue-on-error: true
+      
+      - name: Check bundle size
+        run: |
+          npm run build
+          echo "Bundle size:"
+          ls -lh main.js

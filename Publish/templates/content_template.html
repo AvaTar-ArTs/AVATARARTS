@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description }}">
+    <meta name="keywords" content="{{ keywords }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        header {
+            text-align: center;
+            border-bottom: 2px solid #333;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .author {
+            color: #666;
+            font-style: italic;
+        }
+        .tags {
+            margin-top: 10px;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #eee;
+            padding: 5px 10px;
+            margin: 5px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+        .license-info {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-left: 4px solid #007cba;
+            margin: 20px 0;
+        }
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>{{ title }}</h1>
+        <p class="author">By {{ author }} | {{ date }}</p>
+        <div class="tags">
+            {% for tag in tags %}
+            <span class="tag">{{ tag }}</span>
+            {% endfor %}
+        </div>
+    </header>
+    
+    <section class="license-info">
+        <h3>Licensing Information</h3>
+        <p><strong>Type:</strong> {{ license_type }}</p>
+        <p><strong>Price:</strong> ${{ price }}</p>
+    </section>
+    
+    <main>
+        {{ content_body }}
+    </main>
+    
+    <footer>
+        <p>&copy; {{ year }} {{ author }}. All rights reserved.</p>
+        <p>This content is licensed under {{ license_type }} terms.</p>
+    </footer>
+</body>
+</html>
