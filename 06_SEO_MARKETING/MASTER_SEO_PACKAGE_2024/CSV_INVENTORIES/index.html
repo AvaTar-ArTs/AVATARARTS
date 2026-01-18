@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV_INVENTORIES - AVATARARTS</title>
+    <meta name="description" content="Directory">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            opacity: 0.95;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .navigation {
+            background: #f8f9fa;
+            padding: 15px 30px;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: #667eea;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .directory-listing {
+            padding: 30px;
+        }
+
+        .directory-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .directory-header h2 {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .search-box {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        thead {
+            background: #667eea;
+            color: white;
+        }
+
+        th {
+            text-align: left;
+            padding: 15px;
+            font-weight: 600;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .icon {
+            width: 30px;
+            text-align: center;
+            font-size: 1.3em;
+        }
+
+        .name {
+            font-weight: 500;
+        }
+
+        .name a {
+            color: #667eea;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .name a:hover {
+            text-decoration: underline;
+            color: #764ba2;
+        }
+
+        .size {
+            color: #6c757d;
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .type {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .folder-icon {
+            color: #ffc107;
+        }
+
+        .file-icon {
+            color: #6c757d;
+        }
+
+        .parent-dir {
+            background: #e7f3ff;
+            font-weight: 600;
+        }
+
+        .parent-dir a {
+            color: #0066cc;
+        }
+
+        .stats {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px;
+            border-top: 3px solid #667eea;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stat-label {
+            font-size: 0.85em;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .subdirectories {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .subdirectories h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .subdir-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .subdir-card {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s;
+        }
+
+        .subdir-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .subdir-card a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .subdir-card a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📁 CSV_INVENTORIES</h1>
+            <p>Directory</p>
+            <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.9;">Base URL: avatararts.org/SEO-revenue/all/06_SEO_MARKETING/MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/ | Path: /Users/steven/AVATARARTS/06_SEO_MARKETING/MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/ | Updated: January 13, 2026 11:59 AM</p>
+        </header>
+
+        <div class="navigation">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> / <a href="06_SEO_MARKETING/index.html">06_SEO_MARKETING</a> / <a href="06_SEO_MARKETING/MASTER_SEO_PACKAGE_2024/index.html">MASTER_SEO_PACKAGE_2024</a> / <span>CSV_INVENTORIES</span>
+            </div>
+            <div class="nav-links">
+                <a href="../../../index.html">🏠 Home</a>
+                <a href="../index.html">⬆️ Parent</a>
+            </div>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Search files and folders..." autocomplete="off">
+        </div>
+
+        <div class="directory-listing">
+            <div class="directory-header">
+                <h2>📂 /Users/steven/AVATARARTS/06_SEO_MARKETING/MASTER_SEO_PACKAGE_2024/CSV_INVENTORIES/</h2>
+                <p>Directory</p>
+            </div>
+
+            
+
+            <table>
+                <thead>
+                    <tr>
+                        <th class="icon"></th>
+                        <th class="name">Name</th>
+                        <th class="size">Size</th>
+                        <th class="type">Type</th>
+                    </tr>
+                </thead>
+                <tbody id="fileTable">
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="01_20251126_095415.csv">01_20251126_095415.csv</a></td>
+            <td class="size">846.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="02_Conversations_20251126_095415.csv">02_Conversations_20251126_095415.csv</a></td>
+            <td class="size">250.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="04_Images_20251126_095409%202.csv">04_Images_20251126_095409 2.csv</a></td>
+            <td class="size">1.6 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="04_Images_20251126_095409.csv">04_Images_20251126_095409.csv</a></td>
+            <td class="size">2.1 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="06_Archives_20251126_095415.csv">06_Archives_20251126_095415.csv</a></td>
+            <td class="size">66.6 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="09_Technical_Resources_20251126_095409.csv">09_Technical_Resources_20251126_095409.csv</a></td>
+            <td class="size">348.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="13_JavaScript_Tools_20251126_095415.csv">13_JavaScript_Tools_20251126_095415.csv</a></td>
+            <td class="size">1.6 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="14_JSON_Configs_20251126_095415.csv">14_JSON_Configs_20251126_095415.csv</a></td>
+            <td class="size">935.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="15_Data_Exports_20251126_095409.csv">15_Data_Exports_20251126_095409.csv</a></td>
+            <td class="size">1.3 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="2025-09-04-conversations_20251126_095408.csv">2025-09-04-conversations_20251126_095408.csv</a></td>
+            <td class="size">48.2 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="2025-10-07-conversations_%281%29_20251126_095408.csv">2025-10-07-conversations_(1)_20251126_095408.csv</a></td>
+            <td class="size">302.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="20251126_095330%202.csv">20251126_095330 2.csv</a></td>
+            <td class="size">160.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="20251126_095330.csv">20251126_095330.csv</a></td>
+            <td class="size">4.7 MB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="20251126_095348.csv">20251126_095348.csv</a></td>
+            <td class="size">19.4 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="20251126_095415.csv">20251126_095415.csv</a></td>
+            <td class="size">699.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="979d5653-54c4-45a3-bef4-cda3b3ec70d2_Export-80036393-3266-4fc8-bef5-78b8048e0863_20251126_095415.csv">979d5653-54c4-45a3-bef4-cda3b3ec70d2_Export-80036393-3266-4fc8-bef5-78b8048e0863_20251126_095415.csv</a></td>
+            <td class="size">4.8 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AI_Art_Workflow_ASSETS.csv">AI_Art_Workflow_ASSETS.csv</a></td>
+            <td class="size">9.9 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AI_Content_Pipeline_ASSETS.csv">AI_Content_Pipeline_ASSETS.csv</a></td>
+            <td class="size">10.3 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AI_Workflow_Automation_ASSETS.csv">AI_Workflow_Automation_ASSETS.csv</a></td>
+            <td class="size">3.4 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Archives_20251126_095347.csv">Archives_20251126_095347.csv</a></td>
+            <td class="size">52.0 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Audiobooks_20251126_095346.csv">Audiobooks_20251126_095346.csv</a></td>
+            <td class="size">13.4 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Automated_SEO_ASSETS.csv">Automated_SEO_ASSETS.csv</a></td>
+            <td class="size">2.9 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Backups_20251126_095359.csv">Backups_20251126_095359.csv</a></td>
+            <td class="size">135.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPLETE_ECOSYSTEM_MASTER.csv">COMPLETE_ECOSYSTEM_MASTER.csv</a></td>
+            <td class="size">193.4 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="CSV_ANALYTICS_MASTER.csv">CSV_ANALYTICS_MASTER.csv</a></td>
+            <td class="size">63.2 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ChatGPT-export-Library_20251126_095410.csv">ChatGPT-export-Library_20251126_095410.csv</a></td>
+            <td class="size">1.1 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Compressed_20251126_095415.csv">Compressed_20251126_095415.csv</a></td>
+            <td class="size">1.9 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Creative_Automation_ASSETS.csv">Creative_Automation_ASSETS.csv</a></td>
+            <td class="size">42.7 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Creative_Automation_Portfolio_Strategy_export_2025-09-05T22-59_20251126_095410.csv">Creative_Automation_Portfolio_Strategy_export_2025-09-05T22-59_20251126_095410.csv</a></td>
+            <td class="size">492.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="CsV_20251126_095359.csv">CsV_20251126_095359.csv</a></td>
+            <td class="size">26.6 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Discorgraphy_archive_20251126_095348.csv">Discorgraphy_archive_20251126_095348.csv</a></td>
+            <td class="size">77.7 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Downloads_20251126_095359%202.csv">Downloads_20251126_095359 2.csv</a></td>
+            <td class="size">2.9 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Downloads_20251126_095359.csv">Downloads_20251126_095359.csv</a></td>
+            <td class="size">2.6 MB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ExportBlock-45e81a40-1567-4ee2-ac9a-3d8302eda264-Part-1_20251126_095416.csv">ExportBlock-45e81a40-1567-4ee2-ac9a-3d8302eda264-Part-1_20251126_095416.csv</a></td>
+            <td class="size">469.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Generative_Automation_ASSETS.csv">Generative_Automation_ASSETS.csv</a></td>
+            <td class="size">30.0 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="HIGH_VALUE_SEO_OPPORTUNITIES.csv">HIGH_VALUE_SEO_OPPORTUNITIES.csv</a></td>
+            <td class="size">17.0 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="HTML_20251126_095346.csv">HTML_20251126_095346.csv</a></td>
+            <td class="size">623.2 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="IMAGE_ASSETS_INVENTORY.csv">IMAGE_ASSETS_INVENTORY.csv</a></td>
+            <td class="size">135.6 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="INTELLIGENT_PYTHON_INVENTORY.csv">INTELLIGENT_PYTHON_INVENTORY.csv</a></td>
+            <td class="size">167.5 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Ideogram_copy_Juice_20251126_095415.csv">Ideogram_copy_Juice_20251126_095415.csv</a></td>
+            <td class="size">381.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Image_Prompt_Generator_ASSETS.csv">Image_Prompt_Generator_ASSETS.csv</a></td>
+            <td class="size">582.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="JOB_SEARCH_2025_20251126_095500.csv">JOB_SEARCH_2025_20251126_095500.csv</a></td>
+            <td class="size">1.7 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Key_Observations_export_2025-10-24T14-53_20251126_095415.csv">Key_Observations_export_2025-10-24T14-53_20251126_095415.csv</a></td>
+            <td class="size">291.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Listen_to_your_heart_20251126_095409.csv">Listen_to_your_heart_20251126_095409.csv</a></td>
+            <td class="size">886.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="MUSIC_CATALOG_MASTER.csv">MUSIC_CATALOG_MASTER.csv</a></td>
+            <td class="size">276.7 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Misc_20251126_095408.csv">Misc_20251126_095408.csv</a></td>
+            <td class="size">730.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Notion_20251126_095348.csv">Notion_20251126_095348.csv</a></td>
+            <td class="size">7.7 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Obsidian_Vault_20251126_095346.csv">Obsidian_Vault_20251126_095346.csv</a></td>
+            <td class="size">707.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="OrbStack_20251126_095346.csv">OrbStack_20251126_095346.csv</a></td>
+            <td class="size">120.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="PDFServicesAPI-Credentials_20251126_095415.csv">PDFServicesAPI-Credentials_20251126_095415.csv</a></td>
+            <td class="size">241.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="PDFs_20251126_095359.csv">PDFs_20251126_095359.csv</a></td>
+            <td class="size">146.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="PRESERVED_ARCHIVES_20251126_095346.csv">PRESERVED_ARCHIVES_20251126_095346.csv</a></td>
+            <td class="size">160.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="PSD_EXTENM_20251126_095415.csv">PSD_EXTENM_20251126_095415.csv</a></td>
+            <td class="size">3.6 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="SEO_FILES_INVENTORY.csv">SEO_FILES_INVENTORY.csv</a></td>
+            <td class="size">10.3 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="SEO_MASTER_INVENTORY.csv">SEO_MASTER_INVENTORY.csv</a></td>
+            <td class="size">68.7 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Superpower-ChatGPT-Gallery_20251126_095409.csv">Superpower-ChatGPT-Gallery_20251126_095409.csv</a></td>
+            <td class="size">492.6 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="TRANSCRIPT_SEARCH_20251104_202108_20251126_095346.csv">TRANSCRIPT_SEARCH_20251104_202108_20251126_095346.csv</a></td>
+            <td class="size">161.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Video_20251126_095409%202.csv">Video_20251126_095409 2.csv</a></td>
+            <td class="size">730.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="WalterRussell_20251126_095346.csv">WalterRussell_20251126_095346.csv</a></td>
+            <td class="size">4.2 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="__Strategy_Document_Received___export_2025-10-26T14-18_20251126_095410.csv">__Strategy_Document_Received___export_2025-10-26T14-18_20251126_095410.csv</a></td>
+            <td class="size">391.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="_build_20251126_095509.csv">_build_20251126_095509.csv</a></td>
+            <td class="size">7.1 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="_templates_20251126_095510.csv">_templates_20251126_095510.csv</a></td>
+            <td class="size">73.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="advanced_toolkit_20251126_095509.csv">advanced_toolkit_20251126_095509.csv</a></td>
+            <td class="size">4.4 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ai-voice-agents_20251126_095500.csv">ai-voice-agents_20251126_095500.csv</a></td>
+            <td class="size">1.0 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="analysis_reports_20251126_095509.csv">analysis_reports_20251126_095509.csv</a></td>
+            <td class="size">238.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="api-documentation_20251126_095348.csv">api-documentation_20251126_095348.csv</a></td>
+            <td class="size">137.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="archive_20251126_095441.csv">archive_20251126_095441.csv</a></td>
+            <td class="size">6.9 MB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="archive_20251126_095532.csv">archive_20251126_095532.csv</a></td>
+            <td class="size">5.6 MB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="avatararts-complete_20251126_095440.csv">avatararts-complete_20251126_095440.csv</a></td>
+            <td class="size">75.7 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="avatararts-complete_20251126_095532.csv">avatararts-complete_20251126_095532.csv</a></td>
+            <td class="size">4.0 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="build_20251126_095510.csv">build_20251126_095510.csv</a></td>
+            <td class="size">7.0 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="carbon-images_20251126_095346.csv">carbon-images_20251126_095346.csv</a></td>
+            <td class="size">685.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="categories_20251126_095415.csv">categories_20251126_095415.csv</a></td>
+            <td class="size">2.1 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="cleanconnect-complete_20251126_095500.csv">cleanconnect-complete_20251126_095500.csv</a></td>
+            <td class="size">1.8 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="css_20251126_095510.csv">css_20251126_095510.csv</a></td>
+            <td class="size">119.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="csv_outputs-scan-docs-2025-12-25.csv">csv_outputs-scan-docs-2025-12-25.csv</a></td>
+            <td class="size">18.8 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="csvs-consolidated_20251126_095600.csv">csvs-consolidated_20251126_095600.csv</a></td>
+            <td class="size">139.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="deep_analysis_20251126_095509.csv">deep_analysis_20251126_095509.csv</a></td>
+            <td class="size">431.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="docsify_20251126_095509.csv">docsify_20251126_095509.csv</a></td>
+            <td class="size">282.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="education_20251126_095600.csv">education_20251126_095600.csv</a></td>
+            <td class="size">199.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="google-cloud-sdk_20251126_095410.csv">google-cloud-sdk_20251126_095410.csv</a></td>
+            <td class="size">1.9 MB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="gpt_20251126_095409.csv">gpt_20251126_095409.csv</a></td>
+            <td class="size">484.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="heavenlyhands-complete_20251126_095500.csv">heavenlyhands-complete_20251126_095500.csv</a></td>
+            <td class="size">5.7 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ideo-notiojn_20251126_095415.csv">ideo-notiojn_20251126_095415.csv</a></td>
+            <td class="size">9.1 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="images_20251126_095346.csv">images_20251126_095346.csv</a></td>
+            <td class="size">162.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="intelligence_20251126_095509.csv">intelligence_20251126_095509.csv</a></td>
+            <td class="size">1.5 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="inventory_20251126_095359.csv">inventory_20251126_095359.csv</a></td>
+            <td class="size">205.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="js_20251126_095510.csv">js_20251126_095510.csv</a></td>
+            <td class="size">181.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="json_20251126_095356.csv">json_20251126_095356.csv</a></td>
+            <td class="size">116.9 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="knowledge-base_20251126_095357.csv">knowledge-base_20251126_095357.csv</a></td>
+            <td class="size">930.7 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="markD_20251126_095359.csv">markD_20251126_095359.csv</a></td>
+            <td class="size">136.3 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="marketplace_20251126_095600.csv">marketplace_20251126_095600.csv</a></td>
+            <td class="size">205.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="mk20251126_095509.csv">mk20251126_095509.csv</a></td>
+            <td class="size">176.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="music-analysis_20251126_095532.csv">music-analysis_20251126_095532.csv</a></td>
+            <td class="size">450.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="music-empire_20251126_095441.csv">music-empire_20251126_095441.csv</a></td>
+            <td class="size">1.5 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="mydesign-uplive_20251126_095415.csv">mydesign-uplive_20251126_095415.csv</a></td>
+            <td class="size">395.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="nano-large_%282%29_20251126_095409.csv">nano-large_(2)_20251126_095409.csv</a></td>
+            <td class="size">408.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="organize_20251126_095509.csv">organize_20251126_095509.csv</a></td>
+            <td class="size">689.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="organized_20251126_095359.csv">organized_20251126_095359.csv</a></td>
+            <td class="size">23.1 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="passive-income-empire_20251126_095500.csv">passive-income-empire_20251126_095500.csv</a></td>
+            <td class="size">4.2 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="pdoc_20251126_095509.csv">pdoc_20251126_095509.csv</a></td>
+            <td class="size">111.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="py20251126_095509.csv">py20251126_095509.csv</a></td>
+            <td class="size">7.1 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="qForge_20251126_095415.csv">qForge_20251126_095415.csv</a></td>
+            <td class="size">394.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="quantumforge-complete_20251126_095500.csv">quantumforge-complete_20251126_095500.csv</a></td>
+            <td class="size">1.3 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="retention-suite-complete_20251126_095500.csv">retention-suite-complete_20251126_095500.csv</a></td>
+            <td class="size">1.5 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="retention-suite-complete_20251126_095600.csv">retention-suite-complete_20251126_095600.csv</a></td>
+            <td class="size">45.8 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="scripts-to-remove_20251126_095415.csv">scripts-to-remove_20251126_095415.csv</a></td>
+            <td class="size">2.8 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="scripts_20251126_095500.csv">scripts_20251126_095500.csv</a></td>
+            <td class="size">1.3 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="seo_20251126_095509.csv">seo_20251126_095509.csv</a></td>
+            <td class="size">7.2 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="sites-navigator_20251126_095510.csv">sites-navigator_20251126_095510.csv</a></td>
+            <td class="size">476.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="source_20251126_095510.csv">source_20251126_095510.csv</a></td>
+            <td class="size">735.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="sphinx-20251126_095510.csv">sphinx-20251126_095510.csv</a></td>
+            <td class="size">7.8 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="static_20251126_095510%205.csv">static_20251126_095510 5.csv</a></td>
+            <td class="size">48.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="system-cleanup-reports_20251126_095346.csv">system-cleanup-reports_20251126_095346.csv</a></td>
+            <td class="size">1.6 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="whisper_20251126_095415%202.csv">whisper_20251126_095415 2.csv</a></td>
+            <td class="size">57.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="whisper_20251126_095415.csv">whisper_20251126_095415.csv</a></td>
+            <td class="size">178.0 B</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="workspace_20251126_095416%202.csv">workspace_20251126_095416 2.csv</a></td>
+            <td class="size">2.3 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="workspace_20251126_095416.csv">workspace_20251126_095416.csv</a></td>
+            <td class="size">7.3 MB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="workspace_20251126_095510.csv">workspace_20251126_095510.csv</a></td>
+            <td class="size">801.0 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-label">Total Items</div>
+                <div class="stat-value">119</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Directories</div>
+                <div class="stat-value">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Files</div>
+                <div class="stat-value">119</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#fileTable tr');
+            const cards = document.querySelectorAll('.subdir-card');
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
