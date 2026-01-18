@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVATARARTS Workspace Organization</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .search-box {
+            padding: 20px 40px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .category {
+            margin-bottom: 30px;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .category-header:hover {
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+        }
+
+        .category-header h2 {
+            font-size: 1.5em;
+            color: #495057;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-icon {
+            font-size: 1.2em;
+        }
+
+        .toggle-icon {
+            font-size: 1.2em;
+            transition: transform 0.3s;
+        }
+
+        .category-header.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        .category-content {
+            padding: 0;
+            max-height: 2000px;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .category-content.collapsed {
+            max-height: 0;
+            padding: 0;
+        }
+
+        .subcategory {
+            margin: 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .subcategory:last-child {
+            border-bottom: none;
+        }
+
+        .subcategory-header {
+            background: #f8f9fa;
+            padding: 15px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s;
+        }
+
+        .subcategory-header:hover {
+            background: #e9ecef;
+        }
+
+        .subcategory-header h3 {
+            font-size: 1.2em;
+            color: #6c757d;
+            font-weight: 600;
+        }
+
+        .subcategory-content {
+            padding: 20px 30px 20px 50px;
+            background: #fff;
+        }
+
+        .item-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .item {
+            padding: 12px 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            border-radius: 4px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .item-icon {
+            font-size: 1.1em;
+        }
+
+        .item-name {
+            flex: 1;
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #495057;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            padding: 20px 40px;
+            background: #f8f9fa;
+            border-top: 2px solid #e9ecef;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #6c757d;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .highlight {
+            background: #fff3cd !important;
+            border-left-color: #ffc107 !important;
+        }
+
+        .dependency-section {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #28a745;
+        }
+
+        .uses-section {
+            margin-top: 15px;
+            padding: 15px;
+            background: #fff3cd;
+            border-radius: 6px;
+            border-left: 4px solid #ffc107;
+        }
+
+        .dependency-section h4,
+        .uses-section h4 {
+            margin-bottom: 10px;
+            color: #495057;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dependency-list,
+        .uses-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .dependency-badge,
+        .uses-badge {
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .dependency-badge {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .uses-badge {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .dependency-section h4::before {
+            content: "📦";
+            font-size: 1.2em;
+        }
+
+        .uses-section h4::before {
+            content: "🔗";
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📁 AVATARARTS Workspace Organization</h1>
+            <p>Complete hierarchical structure of all folders and files</p>
+            <p style="font-size: 0.9em; margin-top: 10px; opacity: 0.9;">Last Updated: January 13, 2026 11:15 AM | Post-Cleanup Rescan</p>
+        </header>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Search folders and files..." autocomplete="off">
+        </div>
+
+        <div class="content" id="content">
+            <!-- Core Numbered Directories -->
+            <div class="category" data-category="core">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2><span class="category-icon">📂</span> Core Numbered Directories (00-07)</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="subcategory">
+                        <div class="subcategory-header" onclick="toggleSubcategory(this)">
+                            <h3>00_ACTIVE/ - Active Projects & Development</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="subcategory-content">
+                            <div class="item-list">
+                                <div class="item"><span class="item-icon">📁</span><span class="item-name">BUSINESS/</span></div>
+                                <div class="item"><span class="item-icon">📁</span><span class="item-name">CLIENT_PROJECTS/</span></div>
+                                <div class="item"><span class="item-icon">📁</span><span class="item-name">CONTENT/</span></div>
+                                <div class="item"><span class="item-icon">📁</span><span class="item-name">DEVELOPMENT/</span></div>
+                            </div>
+                            <div class="dependency-section">
+                                <h4>Dependencies</h4>
+                                <div class="dependency-list">
+                                    <span class="dependency-badge">Python 3.8+</span>
+                                    <span class="dependency-badge">Node.js 18+</span>
+                                    <span class="dependency-badge">~/.env.d/ API Keys</span>
+                                    <span class="dependency-badge">01_TOOLS/ scripts</span>
+                                    <span class="dependency-badge">02_DOCUMENTATION/</span>
+                                </div>
+                            </div>
+                            <div class="uses-section">
+                                <h4>Used By</h4>
+                                <div class="uses-list">
+                                    <span class="uses-badge">Revenue Dashboard</span>
+                                    <span class="uses-badge">Analysis Scripts</span>
+                                    <span class="uses-badge">Documentation Systems</span>
+                                    <span class="uses-badge">Business Systems</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subcategory">
+                        <div class="subcategory-header" onclick="toggleSubcategory(this)">
+                            <h3>01_TOOLS/ - Tools & Utilities</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="subcategory-content">
+                            <div class="item-list">
+                                <div class="item"><span class="item-icon">📁</span><span class="item-name">dashboards/</span></div>
+                                <div class="item"><span class="item-icon">📁</span><span class="item-name">scripts/</span></div>
+                                <div class="item"><span class="item-icon">📁</span><span class="item-name">data/</span></div>
+                            </div>
+                            <div class="dependency-section">
+                                <h4>Dependencies</h4>
+                                <div class="dependency-list">
+                                    <span class="dependency-badge">Python 3.8+</span>
+                                    <span class="dependency-badge">pandas</span>
+                                    <span class="dependency-badge">numpy</span>
+                                    <span class="dependency-badge">sqlite3</span>
+                                    <span class="dependency-badge">pathlib</span>
+                                    <span class="dependency-badge">05_DATA/ databases</span>
+                                </div>
+                            </div>
+                            <div class="uses-section">
+                                <h4>Used By</h4>
+                                <div class="uses-list">
+                                    <span class="uses-badge">00_ACTIVE/ projects</span>
+                                    <span class="uses-badge">Business Systems</span>
+                                    <span class="uses-badge">Analysis Reports</span>
+                                    <span class="uses-badge">Revenue Dashboard</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subcategory">
+                        <div class="subcategory-header" onclick="toggleSubcategory(this)">
+                            <h3>02_DOCUMENTATION/ - Documentation System</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="subcategory-content">
+                            <div class="item-list">
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">QUICK_START_GUIDE.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">SYSTEM_ARCHITECTURE_MAP.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">WORKFLOW_GUIDE.md</span></div>
+                            </div>
+                            <div class="dependency-section">
+                                <h4>Dependencies</h4>
+                                <div class="dependency-list">
+                                    <span class="dependency-badge">Markdown files</span>
+                                    <span class="dependency-badge">docs-docusaurus/</span>
+                                    <span class="dependency-badge">docs-mkdocs/</span>
+                                    <span class="dependency-badge">docs-sphinx/</span>
+                                </div>
+                            </div>
+                            <div class="uses-section">
+                                <h4>Used By</h4>
+                                <div class="uses-list">
+                                    <span class="uses-badge">Documentation Systems</span>
+                                    <span class="uses-badge">Setup Guides</span>
+                                    <span class="uses-badge">User References</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subcategory">
+                        <div class="subcategory-header" onclick="toggleSubcategory(this)">
+                            <h3>03_ARCHIVES/ - Archived Content</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="subcategory-content">
+                            <div class="item-list">
+                                <div class="item"><span class="item-icon">📦</span><span class="item-name">Old projects and archived files</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subcategory">
+                        <div class="subcategory-header" onclick="toggleSubcategory(this)">
+                            <h3>04_WEBSITES/ - Website Projects</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="subcategory-content">
+                            <div class="item-list">
+                                <div class="item"><span class="item-icon">🌐</span><span class="item-name">Website code and deployments</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subcategory">
+                        <div class="subcategory-header" onclick="toggleSubcategory(this)">
+                            <h3>05_DATA/ - Data Files & Databases</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="subcategory-content">
+                            <div class="item-list">
+                                <div class="item"><span class="item-icon">💾</span><span class="item-name">Data exports and analysis</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subcategory">
+                        <div class="subcategory-header" onclick="toggleSubcategory(this)">
+                            <h3>06_SEO_MARKETING/ - SEO & Marketing</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="subcategory-content">
+                            <div class="item-list">
+                                <div class="item"><span class="item-icon">📈</span><span class="item-name">SEO tools and content packages</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subcategory">
+                        <div class="subcategory-header" onclick="toggleSubcategory(this)">
+                            <h3>07_MISC/ - Miscellaneous</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="subcategory-content">
+                            <div class="item-list">
+                                <div class="item"><span class="item-icon">📦</span><span class="item-name">Various tools and projects</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documentation Systems -->
+            <div class="category" data-category="docs">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2><span class="category-icon">📚</span> Documentation Systems</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="item-list">
+                        <div class="item"><span class="item-icon">📁</span><span class="item-name">docs-docusaurus/</span></div>
+                        <div class="item"><span class="item-icon">📁</span><span class="item-name">docs-mkdocs/</span></div>
+                        <div class="item"><span class="item-icon">📁</span><span class="item-name">docs-sphinx/</span></div>
+                        <div class="item"><span class="item-icon">📁</span><span class="item-name">docs-vitepress/</span></div>
+                    </div>
+                    <div class="dependency-section">
+                        <h4>Dependencies</h4>
+                        <div class="dependency-list">
+                            <span class="dependency-badge">Node.js 18+ (Docusaurus, VitePress)</span>
+                            <span class="dependency-badge">Python 3.8+ (MkDocs, Sphinx)</span>
+                            <span class="dependency-badge">@docusaurus/core ^3.0.0</span>
+                            <span class="dependency-badge">React ^18.2.0</span>
+                            <span class="dependency-badge">mkdocs-material >=9.0.0</span>
+                            <span class="dependency-badge">mkdocs-minify-plugin</span>
+                            <span class="dependency-badge">02_DOCUMENTATION/ content</span>
+                        </div>
+                    </div>
+                    <div class="uses-section">
+                        <h4>Used By</h4>
+                        <div class="uses-list">
+                            <span class="uses-badge">Workspace Documentation</span>
+                            <span class="uses-badge">Project Guides</span>
+                            <span class="uses-badge">Setup Instructions</span>
+                            <span class="uses-badge">API References</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business & Revenue -->
+            <div class="category" data-category="business">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2><span class="category-icon">💼</span> Business & Revenue Systems</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="item-list">
+                        <div class="item"><span class="item-icon">📁</span><span class="item-name">BUSINESS/</span></div>
+                        <div class="item"><span class="item-icon">📁</span><span class="item-name">Revenue/</span></div>
+                        <div class="item"><span class="item-icon">📁</span><span class="item-name">heavenlyHands/</span></div>
+                        <div class="item"><span class="item-icon">📁</span><span class="item-name">gol-ia-newq/</span></div>
+                    </div>
+                    <div class="dependency-section">
+                        <h4>Dependencies</h4>
+                        <div class="dependency-list">
+                            <span class="dependency-badge">~/.env.d/ API Keys (OpenAI, Anthropic, etc.)</span>
+                            <span class="dependency-badge">Python 3.8+</span>
+                            <span class="dependency-badge">openai</span>
+                            <span class="dependency-badge">anthropic</span>
+                            <span class="dependency-badge">pandas</span>
+                            <span class="dependency-badge">sqlite3</span>
+                            <span class="dependency-badge">01_TOOLS/ scripts</span>
+                            <span class="dependency-badge">05_DATA/ databases</span>
+                            <span class="dependency-badge">n8n workflows</span>
+                        </div>
+                    </div>
+                    <div class="uses-section">
+                        <h4>Used By</h4>
+                        <div class="uses-list">
+                            <span class="uses-badge">Revenue Dashboard</span>
+                            <span class="uses-badge">Client Services</span>
+                            <span class="uses-badge">Automation Systems</span>
+                            <span class="uses-badge">Content Generation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data & Databases -->
+            <div class="category" data-category="data">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2><span class="category-icon">💾</span> Data & Databases</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="item-list">
+                        <div class="item"><span class="item-icon">📁</span><span class="item-name">DATABASES/</span></div>
+                        <div class="item"><span class="item-icon">📁</span><span class="item-name">INDEXES/</span></div>
+                        <div class="item"><span class="item-icon">📁</span><span class="item-name">ml_categorization_output/</span></div>
+                        <div class="item"><span class="item-icon">📁</span><span class="item-name">comparison_reports/</span></div>
+                    </div>
+                    <div class="dependency-section">
+                        <h4>Dependencies</h4>
+                        <div class="dependency-list">
+                            <span class="dependency-badge">SQLite3</span>
+                            <span class="dependency-badge">Python scripts (01_TOOLS/)</span>
+                            <span class="dependency-badge">Analysis tools</span>
+                        </div>
+                    </div>
+                    <div class="uses-section">
+                        <h4>Used By</h4>
+                        <div class="uses-list">
+                            <span class="uses-badge">Revenue Dashboard</span>
+                            <span class="uses-badge">Analysis Scripts</span>
+                            <span class="uses-badge">Business Systems</span>
+                            <span class="uses-badge">Search & Indexing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content & Assets -->
+            <div class="category" data-category="content">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2><span class="category-icon">🎨</span> Content & Assets</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="item-list">
+                        <div class="item"><span class="item-icon">📁</span><span class="item-name">content/</span></div>
+                        <div class="item"><span class="item-icon">📁</span><span class="item-name">assets/</span></div>
+                        <div class="item"><span class="item-icon">📁</span><span class="item-name">disco/</span></div>
+                    </div>
+                    <div class="dependency-section">
+                        <h4>Dependencies</h4>
+                        <div class="dependency-list">
+                            <span class="dependency-badge">00_ACTIVE/CONTENT/</span>
+                            <span class="dependency-badge">Content generation tools</span>
+                        </div>
+                    </div>
+                    <div class="uses-section">
+                        <h4>Used By</h4>
+                        <div class="uses-list">
+                            <span class="uses-badge">Websites</span>
+                            <span class="uses-badge">Documentation</span>
+                            <span class="uses-badge">Business Systems</span>
+                            <span class="uses-badge">Marketing Materials</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Automation & Tools -->
+            <div class="category" data-category="automation">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2><span class="category-icon">⚙️</span> Automation & Tools</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="item-list">
+                        <div class="item"><span class="item-icon">📁</span><span class="item-name">scripts/</span></div>
+                        <div class="item"><span class="item-icon">📁</span><span class="item-name">n8n/</span></div>
+                        <div class="item"><span class="item-icon">📁</span><span class="item-name">Obsidian-plugins-mine/</span></div>
+                        <div class="item"><span class="item-icon">📁</span><span class="item-name">pythons_reorganized/</span></div>
+                    </div>
+                    <div class="dependency-section">
+                        <h4>Dependencies</h4>
+                        <div class="dependency-list">
+                            <span class="dependency-badge">Python 3.8+</span>
+                            <span class="dependency-badge">Node.js (n8n)</span>
+                            <span class="dependency-badge">Bash/Zsh</span>
+                            <span class="dependency-badge">~/.env.d/ API Keys</span>
+                            <span class="dependency-badge">01_TOOLS/ utilities</span>
+                        </div>
+                    </div>
+                    <div class="uses-section">
+                        <h4>Used By</h4>
+                        <div class="uses-list">
+                            <span class="uses-badge">Business Automation</span>
+                            <span class="uses-badge">Workflow Management</span>
+                            <span class="uses-badge">Content Organization</span>
+                            <span class="uses-badge">System Setup</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Organization & Sorted -->
+            <div class="category" data-category="organization">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2><span class="category-icon">🗂️</span> Organization & Sorted</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="item-list">
+                        <div class="item"><span class="item-icon">📁</span><span class="item-name">Sorted/</span></div>
+                        <div class="item"><span class="item-icon">📁</span><span class="item-name">ORGANIZED/</span></div>
+                        <div class="item"><span class="item-icon">📁</span><span class="item-name">New_Folder_With_Items_3_ORGANIZED/</span></div>
+                    </div>
+                    <div class="dependency-section">
+                        <h4>Dependencies</h4>
+                        <div class="dependency-list">
+                            <span class="dependency-badge">Organization scripts</span>
+                            <span class="dependency-badge">01_TOOLS/ scripts</span>
+                        </div>
+                    </div>
+                    <div class="uses-section">
+                        <h4>Used By</h4>
+                        <div class="uses-list">
+                            <span class="uses-badge">Workspace Organization</span>
+                            <span class="uses-badge">File Management</span>
+                            <span class="uses-badge">Reference Documentation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analysis & Reports (Root Level Files) -->
+            <div class="category" data-category="reports">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2><span class="category-icon">📊</span> Analysis & Reports (Root Level)</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="subcategory">
+                        <div class="subcategory-header" onclick="toggleSubcategory(this)">
+                            <h3>Workspace Analysis</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="subcategory-content">
+                            <div class="item-list">
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">ANALYSIS_REPORT.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">ANALYSIS_SUMMARY_SAVED.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">COMPREHENSIVE_WORKSPACE_ANALYSIS.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">WORKSPACE_ANALYSIS.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">DIRECTORY_STRUCTURE_REPORT.md</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subcategory">
+                        <div class="subcategory-header" onclick="toggleSubcategory(this)">
+                            <h3>Declutter & Reorganization</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="subcategory-content">
+                            <div class="item-list">
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">DECLUTTER_ANALYSIS.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">DECLUTTER_COMPLETE.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">DECLUTTER_COMPLETE_REPORT.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">DECLUTTER_FINAL_REPORT.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">ADVANCED_DECLUTTER_ANALYSIS.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">INTELLIGENT_DECLUTTER_COMPLETE.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">INTELLIGENT_DECLUTTER_FINAL_REPORT.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">REORGANIZATION_COMPLETE.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">REORGANIZATION_SUMMARY.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">FINAL_REORGANIZATION_STATUS.md</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subcategory">
+                        <div class="subcategory-header" onclick="toggleSubcategory(this)">
+                            <h3>Handoff & Documentation</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="subcategory-content">
+                            <div class="item-list">
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">COMPLETE_HANDOFF_DOCUMENT.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">DETAILED_HANDOFF.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">Handoff_Summary.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">AVATARARTS_WORKSPACE_CONSOLIDATION_HANDOFF.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">COMPLETE_SETUP_GUIDE.md</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subcategory">
+                        <div class="subcategory-header" onclick="toggleSubcategory(this)">
+                            <h3>Indexes & References</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="subcategory-content">
+                            <div class="item-list">
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">AVATARARTS_COMPLETE_INDEX.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">AVATARARTS_DECLUTTERED_INDEX.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">AVATARARTS_FINAL_INDEX.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">QUICK_REFERENCE_INDEX.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">QUICK_REFERENCE.md</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scripts & Utilities (Root Level) -->
+            <div class="category" data-category="scripts">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2><span class="category-icon">🔧</span> Scripts & Utilities (Root Level)</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="subcategory">
+                        <div class="subcategory-header" onclick="toggleSubcategory(this)">
+                            <h3>Python Scripts</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="subcategory-content">
+                            <div class="item-list">
+                                <div class="item"><span class="item-icon">🐍</span><span class="item-name">advanced_content_aware_ml_categorizer.py</span></div>
+                                <div class="item"><span class="item-icon">🐍</span><span class="item-name">compare_before_after.py</span></div>
+                                <div class="item"><span class="item-icon">🐍</span><span class="item-name">create_efficient_docs.py</span></div>
+                                <div class="item"><span class="item-icon">🐍</span><span class="item-name">create_summary_docs.py</span></div>
+                                <div class="item"><span class="item-icon">🐍</span><span class="item-name">deep_dive_analysis.py</span></div>
+                                <div class="item"><span class="item-icon">🐍</span><span class="item-name">flatten_business_directory.py</span></div>
+                                <div class="item"><span class="item-icon">🐍</span><span class="item-name">generate_comparison_csv.py</span></div>
+                                <div class="item"><span class="item-icon">🐍</span><span class="item-name">open_csv_to_sheets.py</span></div>
+                                <div class="item"><span class="item-icon">🐍</span><span class="item-name">open_csv_to_sheets_direct.py</span></div>
+                                <div class="item"><span class="item-icon">🐍</span><span class="item-name">reindex_all_sorted.py</span></div>
+                                <div class="item"><span class="item-icon">🐍</span><span class="item-name">reindex_unlimited_depth.py</span></div>
+                                <div class="item"><span class="item-icon">🐍</span><span class="item-name">rename_files.py</span></div>
+                                <div class="item"><span class="item-icon">🐍</span><span class="item-name">reorganize_avatararts_complete.py</span></div>
+                                <div class="item"><span class="item-icon">🐍</span><span class="item-name">reorganize_by_categories.py</span></div>
+                                <div class="item"><span class="item-icon">🐍</span><span class="item-name">scan_and_add_to_avatararts.py</span></div>
+                                <div class="item"><span class="item-icon">🐍</span><span class="item-name">setup_avatararts_org.py</span></div>
+                                <div class="item"><span class="item-icon">🐍</span><span class="item-name">setup_avatararts_website.py</span></div>
+                            </div>
+                            <div class="dependency-section">
+                                <h4>Dependencies</h4>
+                                <div class="dependency-list">
+                                    <span class="dependency-badge">Python 3.8+</span>
+                                    <span class="dependency-badge">pathlib</span>
+                                    <span class="dependency-badge">os</span>
+                                    <span class="dependency-badge">json</span>
+                                    <span class="dependency-badge">csv</span>
+                                    <span class="dependency-badge">pandas (some scripts)</span>
+                                    <span class="dependency-badge">01_TOOLS/ data</span>
+                                </div>
+                            </div>
+                            <div class="uses-section">
+                                <h4>Used By</h4>
+                                <div class="uses-list">
+                                    <span class="uses-badge">Workspace Organization</span>
+                                    <span class="uses-badge">Analysis Reports</span>
+                                    <span class="uses-badge">Setup Scripts</span>
+                                    <span class="uses-badge">Documentation Generation</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subcategory">
+                        <div class="subcategory-header" onclick="toggleSubcategory(this)">
+                            <h3>Shell Scripts</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="subcategory-content">
+                            <div class="item-list">
+                                <div class="item"><span class="item-icon">💻</span><span class="item-name">avatararts_org_summary.sh</span></div>
+                                <div class="item"><span class="item-icon">💻</span><span class="item-name">declutter_avatararts.sh</span></div>
+                                <div class="item"><span class="item-icon">💻</span><span class="item-name">final_summary.sh</span></div>
+                                <div class="item"><span class="item-icon">💻</span><span class="item-name">init.sh</span></div>
+                                <div class="item"><span class="item-icon">💻</span><span class="item-name">organize_files.sh</span></div>
+                                <div class="item"><span class="item-icon">💻</span><span class="item-name">QUICK_REORGANIZE.sh</span></div>
+                                <div class="item"><span class="item-icon">💻</span><span class="item-name">reorganize_avatararts.sh</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subcategory">
+                        <div class="subcategory-header" onclick="toggleSubcategory(this)">
+                            <h3>JavaScript Files</h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="subcategory-content">
+                            <div class="item-list">
+                                <div class="item"><span class="item-icon">📜</span><span class="item-name">application.js</span></div>
+                                <div class="item"><span class="item-icon">📜</span><span class="item-name">enhanced_script.js</span></div>
+                                <div class="item"><span class="item-icon">📜</span><span class="item-name">final_script.js</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guides & Documentation (Root Level) -->
+            <div class="category" data-category="guides">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2><span class="category-icon">📖</span> Guides & Documentation (Root Level)</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="category-content">
+                            <div class="item-list">
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">README.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">QUICK_START.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">START_HERE.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">WORKFLOW_GUIDE.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">DAILY_ACTION_CHECKLIST.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">EVOLUTION_ROADMAP.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">RENAME_GUIDE.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">AI_CLI_TOOLS_RECOMMENDATIONS.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">AI_CLI_TOOLS_USAGE_GUIDE.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">TERMINAL_AI_TOOLS_ANALYSIS.md</span></div>
+                                <div class="item"><span class="item-icon">📄</span><span class="item-name">ZSH_ENV_SYSTEM_RECOMMENDATIONS.md</span></div>
+                            </div>
+                            <div class="dependency-section">
+                                <h4>Dependencies</h4>
+                                <div class="dependency-list">
+                                    <span class="dependency-badge">Markdown format</span>
+                                    <span class="dependency-badge">Workspace knowledge</span>
+                                </div>
+                            </div>
+                            <div class="uses-section">
+                                <h4>Used By</h4>
+                                <div class="uses-list">
+                                    <span class="uses-badge">New Users</span>
+                                    <span class="uses-badge">Setup Process</span>
+                                    <span class="uses-badge">Documentation Systems</span>
+                                    <span class="uses-badge">Reference Guides</span>
+                                </div>
+                            </div>
+                </div>
+            </div>
+
+            <!-- Revenue & Business Analysis -->
+            <div class="category" data-category="revenue">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2><span class="category-icon">💰</span> Revenue & Business Analysis</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="item-list">
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">COMPREHENSIVE_REVENUE_SAAS_SCAN_COMPLETE.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">REVENUE_SAAS_SCAN_REPORT.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">Revenue_Strategy_Handoff_Simple.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">cursor_revenue_trend_pulse_analysis.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">COMPLETE_ECOSYSTEM_ANALYSIS.md</span></div>
+                    </div>
+                    <div class="dependency-section">
+                        <h4>Dependencies</h4>
+                        <div class="dependency-list">
+                            <span class="dependency-badge">Revenue/ systems</span>
+                            <span class="dependency-badge">Business analysis</span>
+                            <span class="dependency-badge">01_TOOLS/ analysis scripts</span>
+                        </div>
+                    </div>
+                    <div class="uses-section">
+                        <h4>Used By</h4>
+                        <div class="uses-list">
+                            <span class="uses-badge">Business Strategy</span>
+                            <span class="uses-badge">Revenue Planning</span>
+                            <span class="uses-badge">Decision Making</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Files (CSV, JSON, etc.) -->
+            <div class="category" data-category="datafiles">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2><span class="category-icon">📋</span> Data Files (CSV, JSON, Logs)</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="item-list">
+                        <div class="item"><span class="item-icon">📊</span><span class="item-name">COMPARISON_REPORT.json</span></div>
+                        <div class="item"><span class="item-icon">📊</span><span class="item-name">DEEP_ANALYSIS_20260104_130847.json</span></div>
+                        <div class="item"><span class="item-icon">📊</span><span class="item-name">MERGE_PLAN.json</span></div>
+                        <div class="item"><span class="item-icon">📊</span><span class="item-name">MERGE_TO_AVATARARTS_PLAN.json</span></div>
+                        <div class="item"><span class="item-icon">📊</span><span class="item-name">reorganization_report_20260103_193953.json</span></div>
+                        <div class="item"><span class="item-icon">📊</span><span class="item-name">intelligent_declutter_plan.json</span></div>
+                        <div class="item"><span class="item-icon">📊</span><span class="item-name">INTELLIGENT_DECLUTTER_ARCHIVED_FILES.csv</span></div>
+                        <div class="item"><span class="item-icon">📊</span><span class="item-name">INTELLIGENT_DECLUTTER_DETAILED.csv</span></div>
+                        <div class="item"><span class="item-icon">📊</span><span class="item-name">INTELLIGENT_DECLUTTER_SUMMARY.csv</span></div>
+                        <div class="item"><span class="item-icon">📊</span><span class="item-name">merge_execution.log</span></div>
+                        <div class="item"><span class="item-icon">📊</span><span class="item-name">merge_to_avatararts_execution.log</span></div>
+                        <div class="item"><span class="item-icon">📊</span><span class="item-name">reindex_analysis.log</span></div>
+                        <div class="item"><span class="item-icon">📊</span><span class="item-name">git status --porcelain.txt</span></div>
+                        <div class="item"><span class="item-icon">📊</span><span class="item-name">git-node-pytest.txt</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HTML & Web Files -->
+            <div class="category" data-category="web">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2><span class="category-icon">🌐</span> HTML & Web Files</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="item-list">
+                        <div class="item"><span class="item-icon">🌐</span><span class="item-name">AI_Alchemy_Portfolio.html</span></div>
+                        <div class="item"><span class="item-icon">🌐</span><span class="item-name">comprehensive_improvements_suggestions.html</span></div>
+                        <div class="item"><span class="item-icon">🌐</span><span class="item-name">docs_system.html</span></div>
+                        <div class="item"><span class="item-icon">🌐</span><span class="item-name">styles.css</span></div>
+                        <div class="item"><span class="item-icon">🌐</span><span class="item-name">robots.txt</span></div>
+                        <div class="item"><span class="item-icon">🌐</span><span class="item-name">sitemap.xml</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Miscellaneous Files -->
+            <div class="category" data-category="misc">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2><span class="category-icon">📦</span> Miscellaneous Files</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="item-list">
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">EXECUTIVE_SUMMARY.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">COMPLETE_WORK_SUMMARY.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">ENHANCED_PROFILE_CONTEXT.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">GROK.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">steven-bio.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">python-automation-repo.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">PYTHONS_SCRIPTS_REVIEW.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">PYTHONS_SCRIPTS_REVIEW_ADVANCED.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">pythons_duplicates_report.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">LARGE_FILES_REPORT_20260113_092650.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">UNLIMITED_DEPTH_ANALYSIS_REPORT.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">EXPORT_CHECKLIST.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">EXPORT_INSTRUCTIONS.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">EXPORT_PACKAGE_README.txt</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">SETUP_SUMMARY.txt</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">INTELLIGENT_DECLUTTER_CSV_README.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">2025-12-24 13-26-11-AEO_SEO_Content_Optimization.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">SEO_AEO_Strategy_2026_Deep_Dive.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">CONTENT_AWARENESS_IMPLEMENTATION_GUIDE.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">DOCUMENTATION_VARIATIONS.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">MCP_API_KEYS_ANALYSIS.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">MCP_COMPLETE_ANALYSIS_2026.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">MCP_CONFIG_SCAN.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">MCP_FIXES_APPLIED.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">MCP_TEST_RESULTS.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">MERGE_SUMMARY.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">REORGANIZATION_EXECUTION_GUIDE.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">REORGANIZATION_FINAL_CHECKLIST.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">REORGANIZATION_MASTER_SUMMARY.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">REORGANIZATION_PLAN.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">REORGANIZATION_READY.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">RESCAN_SUMMARY.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">DECLUTTER_PLAN.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">INTELLIGENT_DECLUTTER_CONTINUED.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">INTELLIGENT_DECLUTTER_COMPLETE_FINAL.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">INTELLIGENT_DECLUTTER_FINAL_SUMMARY.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">INTELLIGENT_DECLUTTER_HANDOFF.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">INTELLIGENT_DECLUTTER_IMPROVEMENTS_AND_SUGGESTIONS.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">DECLUTTER_COMPLETE_SUMMARY.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">DECLUTTER_FINAL_COMPLETE.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">QWEN_CURSOR_AGENT_ANALYSIS.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">QWEN_CURSOR_IMPROVEMENTS.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">MANUAL_FILE_CATEGORIZATION.md</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">top-trending.png</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">Revenue.zip</span></div>
+                        <div class="item"><span class="item-icon">📄</span><span class="item-name">heavenlyHands.zip</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">30</div>
+                <div class="stat-label">Top-Level Directories</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">138</div>
+                <div class="stat-label">Root-Level Files</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">68,808</div>
+                <div class="stat-label">Total Files</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">6.9 GB</div>
+                <div class="stat-label">Total Size</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleCategory(header) {
+            const category = header.parentElement;
+            const content = category.querySelector('.category-content');
+            const icon = header.querySelector('.toggle-icon');
+
+            content.classList.toggle('collapsed');
+            header.classList.toggle('collapsed');
+        }
+
+        function toggleSubcategory(header) {
+            const subcategory = header.parentElement;
+            const content = subcategory.querySelector('.subcategory-content');
+            const icon = header.querySelector('.toggle-icon');
+
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                icon.textContent = '▼';
+            } else {
+                content.style.display = 'none';
+                icon.textContent = '▶';
+            }
+        }
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const items = document.querySelectorAll('.item');
+
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    item.classList.remove('hidden');
+                    item.classList.add('highlight');
+                    // Expand parent categories
+                    let parent = item.closest('.category');
+                    if (parent) {
+                        const content = parent.querySelector('.category-content');
+                        content.classList.remove('collapsed');
+                        parent.querySelector('.category-header').classList.remove('collapsed');
+                    }
+                } else {
+                    item.classList.remove('highlight');
+                    if (searchTerm) {
+                        item.classList.add('hidden');
+                    } else {
+                        item.classList.remove('hidden');
+                    }
+                }
+            });
+
+            // Remove highlight after 2 seconds
+            setTimeout(() => {
+                items.forEach(item => item.classList.remove('highlight'));
+            }, 2000);
+        });
+
+        // Initialize all subcategories as expanded
+        document.querySelectorAll('.subcategory-content').forEach(content => {
+            content.style.display = 'block';
+        });
+    </script>
+</body>
+</html>

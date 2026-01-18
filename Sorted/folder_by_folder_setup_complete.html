@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVATARARTS Complete Folder-by-Folder Setup Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .search-box {
+            padding: 20px 40px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .root-group {
+            margin-bottom: 40px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .root-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .root-header:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        .root-header h2 {
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .root-icon {
+            font-size: 1.5em;
+        }
+
+        .toggle-icon {
+            font-size: 1.3em;
+            transition: transform 0.3s;
+        }
+
+        .root-header.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        .root-content {
+            padding: 0;
+            max-height: 10000px;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .root-content.collapsed {
+            max-height: 0;
+            padding: 0;
+        }
+
+        .folder-group {
+            margin: 20px;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #f8f9fa;
+        }
+
+        .folder-header {
+            background: #e9ecef;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s;
+        }
+
+        .folder-header:hover {
+            background: #dee2e6;
+        }
+
+        .folder-header h3 {
+            font-size: 1.3em;
+            color: #495057;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .folder-path {
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 0.85em;
+            color: #6c757d;
+            margin-left: 10px;
+        }
+
+        .folder-content {
+            padding: 20px;
+            background: white;
+        }
+
+        .setup-section {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #28a745;
+            border-radius: 4px;
+        }
+
+        .setup-section h4 {
+            color: #28a745;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .purpose-box {
+            background: #e7f3ff;
+            border-left: 4px solid #0066cc;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+        .purpose-box strong {
+            color: #004085;
+        }
+
+        .setup-steps {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+        .setup-steps ol {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        .setup-steps li {
+            margin: 5px 0;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .code-block code {
+            color: #f8f8f2;
+        }
+
+        .dependencies-box {
+            background: #d1ecf1;
+            border-left: 4px solid #0c5460;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+        .dependencies-box strong {
+            color: #0c5460;
+        }
+
+        .subfolder-section {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            border-radius: 4px;
+        }
+
+        .subfolder-title {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .file-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .file-item {
+            padding: 10px 12px;
+            background: white;
+            border-left: 3px solid #667eea;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 0.9em;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .file-item:hover {
+            background: #e7f3ff;
+            transform: translateX(3px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .file-icon {
+            font-size: 1em;
+        }
+
+        .access-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+        .access-box strong {
+            color: #155724;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            padding: 20px 40px;
+            background: #f8f9fa;
+            border-top: 2px solid #e9ecef;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #6c757d;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .highlight {
+            background: #fff3cd !important;
+            border-left-color: #ffc107 !important;
+        }
+
+        .group-description {
+            padding: 15px 20px;
+            background: #e7f3ff;
+            border-left: 4px solid #0066cc;
+            margin: 15px 20px;
+            border-radius: 4px;
+            color: #004085;
+            font-size: 0.95em;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+        .warning-box strong {
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📁 AVATARARTS Complete Folder-by-Folder Setup Guide</h1>
+            <p>Hierarchical structure with setup instructions for every folder and file</p>
+            <p style="font-size: 0.9em; margin-top: 10px; opacity: 0.9;">Last Updated: January 13, 2026 11:25 AM</p>
+        </header>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Search folders, setup instructions, dependencies..." autocomplete="off">
+        </div>
+
+        <div class="content" id="content">
+            <!-- PREREQUISITES -->
+            <div class="root-group" data-group="prerequisites">
+                <div class="root-header" onclick="toggleRoot(this)">
+                    <h2><span class="root-icon">🔧</span> Prerequisites & Initial Setup</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="root-content">
+                    <div class="group-description">
+                        <strong>Before setting up any folder:</strong> Ensure you have the required software and API keys configured.
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>🔑 API Keys Setup <span class="folder-path">~/.env.d/</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="purpose-box">
+                                <strong>Purpose:</strong> Centralized API key management. All API keys are stored in <code>~/.env.d/</code> directory.
+                            </div>
+
+                            <div class="setup-section">
+                                <h4>📋 Setup Steps</h4>
+                                <div class="setup-steps">
+                                    <ol>
+                                        <li>Verify API keys directory exists:
+                                            <div class="code-block">ls -la ~/.env.d/</div>
+                                        </li>
+                                        <li>Load API keys before running any system:
+                                            <div class="code-block">source ~/.env.d/loader.sh llm-apis</div>
+                                        </li>
+                                        <li>For AI content creation:
+                                            <div class="code-block">source ~/.env.d/loader.sh llm-apis art-vision audio-music</div>
+                                        </li>
+                                        <li>For automation systems:
+                                            <div class="code-block">source ~/.env.d/loader.sh automation-agents</div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="dependencies-box">
+                                <strong>Required:</strong> API keys for OpenAI, Anthropic, and other services configured in <code>~/.env.d/</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>🛠️ System Requirements <span class="folder-path">System Level</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="setup-section">
+                                <h4>📋 Required Software</h4>
+                                <div class="code-block"># Check Python (3.8+)
+python3 --version
+
+# Check Node.js (18+)
+node --version
+npm --version
+
+# Check Git
+git --version
+
+# Install Homebrew (macOS)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</div>
+                            </div>
+
+                            <div class="dependencies-box">
+                                <strong>Required:</strong> Python 3.8+, Node.js 18+, Git, Homebrew (macOS)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROOT: Core Numbered Directories -->
+            <div class="root-group" data-group="core">
+                <div class="root-header" onclick="toggleRoot(this)">
+                    <h2><span class="root-icon">📂</span> ROOT: Core Numbered Directories (00-07)</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="root-content">
+                    <div class="group-description">
+                        <strong>Purpose:</strong> Main organizational structure using numbered system for logical grouping and easy navigation.
+                    </div>
+
+                    <!-- 00_ACTIVE -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 00_ACTIVE/ <span class="folder-path">Active Projects & Development</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="purpose-box">
+                                <strong>Purpose:</strong> Contains all currently active development projects, business applications, client work, and content creation systems.
+                            </div>
+
+                            <div class="setup-section">
+                                <h4>📋 Setup Steps</h4>
+                                <div class="setup-steps">
+                                    <ol>
+                                        <li>Navigate to directory:
+                                            <div class="code-block">cd /Users/steven/AVATARARTS/00_ACTIVE</div>
+                                        </li>
+                                        <li>Load API keys:
+                                            <div class="code-block">source ~/.env.d/loader.sh llm-apis</div>
+                                        </li>
+                                        <li>Verify subdirectories exist:
+                                            <div class="code-block">ls -la</div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📁 BUSINESS/ - Business Projects</div>
+                                <div class="setup-section">
+                                    <h4>📋 Business Projects Setup</h4>
+                                    <div class="setup-steps">
+                                        <ol>
+                                            <li>Navigate to business directory:
+                                                <div class="code-block">cd 00_ACTIVE/BUSINESS</div>
+                                            </li>
+                                            <li>Each project has its own setup:
+                                                <div class="code-block">cd passive-income-empire
+./setup_environment.sh</div>
+                                            </li>
+                                        </ol>
+                                    </div>
+                                </div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">💼</span>ai-voice-agents/</div>
+                                    <div class="file-item"><span class="file-icon">💼</span>business-activation/</div>
+                                    <div class="file-item"><span class="file-icon">💼</span>cleanconnect-complete/</div>
+                                    <div class="file-item"><span class="file-icon">💼</span>passive-income-empire/</div>
+                                    <div class="file-item"><span class="file-icon">💼</span>quantumforge-complete/</div>
+                                    <div class="file-item"><span class="file-icon">💼</span>retention-suite-complete/</div>
+                                    <div class="file-item"><span class="file-icon">💼</span>revenue-dashboard/</div>
+                                </div>
+                            </div>
+
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📁 CLIENT_PROJECTS/ - Client Work</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">👤</span>Dr_Adu_GainesvillePFS_SEO_Project/</div>
+                                    <div class="file-item"><span class="file-icon">👤</span>josephrosadomd/</div>
+                                </div>
+                            </div>
+
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📁 CONTENT/ - Content Creation</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">🎨</span>ai-ml-notes/</div>
+                                    <div class="file-item"><span class="file-icon">🎨</span>html-assets/</div>
+                                    <div class="file-item"><span class="file-icon">🎨</span>music-empire/</div>
+                                </div>
+                            </div>
+
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📁 DEVELOPMENT/ - Development Tools</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">⚙️</span>AI_TOOLS/</div>
+                                    <div class="file-item"><span class="file-icon">⚙️</span>code-projects/</div>
+                                    <div class="file-item"><span class="file-icon">⚙️</span>UTILITIES_TOOLS/</div>
+                                </div>
+                            </div>
+
+                            <div class="dependencies-box">
+                                <strong>Dependencies:</strong> Python 3.8+, Node.js 18+, API keys loaded from ~/.env.d/
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 01_TOOLS -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 01_TOOLS/ <span class="folder-path">Tools & Utilities</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="purpose-box">
+                                <strong>Purpose:</strong> Utility scripts, analysis tools, dashboards, and helper applications for workspace management.
+                            </div>
+
+                            <div class="setup-section">
+                                <h4>📋 Setup Steps</h4>
+                                <div class="setup-steps">
+                                    <ol>
+                                        <li>Navigate to directory:
+                                            <div class="code-block">cd /Users/steven/AVATARARTS/01_TOOLS</div>
+                                        </li>
+                                        <li>Make scripts executable:
+                                            <div class="code-block">chmod +x scripts/*.sh</div>
+                                        </li>
+                                        <li>Install Python dependencies (if needed):
+                                            <div class="code-block">pip3 install -r requirements.txt</div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📁 dashboards/ - Analytics Dashboards</div>
+                                <div class="setup-section">
+                                    <h4>📋 Dashboard Setup</h4>
+                                    <div class="code-block">cd dashboards
+python3 master_revenue_dashboard.py</div>
+                                </div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📊</span>master_revenue_dashboard.py</div>
+                                </div>
+                            </div>
+
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📁 scripts/ - Analysis & Utility Scripts</div>
+                                <div class="setup-section">
+                                    <h4>📋 Script Usage</h4>
+                                    <div class="code-block"># Analyze workspace structure
+python3 scripts/analyze_structure.py
+
+# Find large files
+python3 scripts/find_large_files.py
+
+# Generate documentation
+python3 scripts/generate_docs.py
+
+# Index all folders
+python3 scripts/index_all_folders.py</div>
+                                </div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">🐍</span>analyze_income_opportunities.py</div>
+                                    <div class="file-item"><span class="file-icon">🐍</span>find_large_files.py</div>
+                                    <div class="file-item"><span class="file-icon">🐍</span>generate_docs.py</div>
+                                    <div class="file-item"><span class="file-icon">🐍</span>index_all_folders.py</div>
+                                </div>
+                            </div>
+
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📁 data/ - Generated Data Files</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📊</span>all_folders_files.csv</div>
+                                    <div class="file-item"><span class="file-icon">📊</span>directory_index.csv</div>
+                                    <div class="file-item"><span class="file-icon">📊</span>INCOME_OPPORTUNITIES.csv</div>
+                                </div>
+                            </div>
+
+                            <div class="dependencies-box">
+                                <strong>Dependencies:</strong> Python 3.8+, pandas, numpy (for analysis scripts)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 02_DOCUMENTATION -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 02_DOCUMENTATION/ <span class="folder-path">Documentation & Guides</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="purpose-box">
+                                <strong>Purpose:</strong> Comprehensive documentation, guides, reports, and knowledge base for the workspace.
+                            </div>
+
+                            <div class="setup-section">
+                                <h4>📋 Setup Steps</h4>
+                                <div class="setup-steps">
+                                    <ol>
+                                        <li>Navigate to directory:
+                                            <div class="code-block">cd /Users/steven/AVATARARTS/02_DOCUMENTATION</div>
+                                        </li>
+                                        <li>View key documentation:
+                                            <div class="code-block">cat QUICK_START_GUIDE.md
+cat SYSTEM_ARCHITECTURE_MAP.md</div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📁 Subdirectories</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📁</span>analysis/</div>
+                                    <div class="file-item"><span class="file-icon">📁</span>business-plans/</div>
+                                    <div class="file-item"><span class="file-icon">📁</span>docs/</div>
+                                    <div class="file-item"><span class="file-icon">📁</span>guides/</div>
+                                    <div class="file-item"><span class="file-icon">📁</span>reports/</div>
+                                </div>
+                            </div>
+
+                            <div class="dependencies-box">
+                                <strong>Dependencies:</strong> Markdown viewer, text editor
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 03_ARCHIVES -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 03_ARCHIVES/ <span class="folder-path">Archived Content</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="purpose-box">
+                                <strong>Purpose:</strong> Archived projects, backups, old analysis reports, and historical data.
+                            </div>
+
+                            <div class="setup-section">
+                                <h4>📋 Setup Steps</h4>
+                                <div class="setup-steps">
+                                    <ol>
+                                        <li>Navigate to directory:
+                                            <div class="code-block">cd /Users/steven/AVATARARTS/03_ARCHIVES</div>
+                                        </li>
+                                        <li>View archive structure:
+                                            <div class="code-block">ls -la</div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📦 Archive Subdirectories</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📦</span>backups/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>archive/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>large-csv-files/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>intelligent-declutter/</div>
+                                </div>
+                            </div>
+
+                            <div class="warning-box">
+                                <strong>Note:</strong> Archives are read-only. Do not modify archived content.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 04_WEBSITES -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 04_WEBSITES/ <span class="folder-path">Website Projects</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="purpose-box">
+                                <strong>Purpose:</strong> Website projects, static sites, and web applications.
+                            </div>
+
+                            <div class="setup-section">
+                                <h4>📋 Setup Steps</h4>
+                                <div class="setup-steps">
+                                    <ol>
+                                        <li>Navigate to directory:
+                                            <div class="code-block">cd /Users/steven/AVATARARTS/04_WEBSITES</div>
+                                        </li>
+                                        <li>For Node.js projects:
+                                            <div class="code-block">cd ai-sites/active/[project]
+npm install
+npm run dev</div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">🌐 Website Projects</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">🌐</span>AvaTar-ArTs.github.io/</div>
+                                    <div class="file-item"><span class="file-icon">🌐</span>ai-sites/</div>
+                                </div>
+                            </div>
+
+                            <div class="dependencies-box">
+                                <strong>Dependencies:</strong> Node.js 18+, npm, web server (for local development)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 05_DATA -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 05_DATA/ <span class="folder-path">Data Files & Databases</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="purpose-box">
+                                <strong>Purpose:</strong> Data exports, CSV files, database files, analysis results, and JSON data.
+                            </div>
+
+                            <div class="setup-section">
+                                <h4>📋 Setup Steps</h4>
+                                <div class="setup-steps">
+                                    <ol>
+                                        <li>Navigate to directory:
+                                            <div class="code-block">cd /Users/steven/AVATARARTS/05_DATA</div>
+                                        </li>
+                                        <li>View data structure:
+                                            <div class="code-block">ls -la</div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">💾 Data Subdirectories</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📊</span>Data-Analysis/</div>
+                                    <div class="file-item"><span class="file-icon">📊</span>csvs-consolidated/</div>
+                                    <div class="file-item"><span class="file-icon">💾</span>databases/</div>
+                                    <div class="file-item"><span class="file-icon">📊</span>json/</div>
+                                </div>
+                            </div>
+
+                            <div class="dependencies-box">
+                                <strong>Dependencies:</strong> CSV viewer, database tools (SQLite), JSON parser
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 06_SEO_MARKETING -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 06_SEO_MARKETING/ <span class="folder-path">SEO & Marketing</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="purpose-box">
+                                <strong>Purpose:</strong> SEO tools, content packages, marketing automation, and SEO strategies.
+                            </div>
+
+                            <div class="setup-section">
+                                <h4>📋 Setup Steps</h4>
+                                <div class="setup-steps">
+                                    <ol>
+                                        <li>Navigate to directory:
+                                            <div class="code-block">cd /Users/steven/AVATARARTS/06_SEO_MARKETING</div>
+                                        </li>
+                                        <li>Load API keys for SEO tools:
+                                            <div class="code-block">source ~/.env.d/loader.sh llm-apis</div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📈 SEO Subdirectories</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📦</span>MASTER_SEO_PACKAGE_2024/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>SEO Content Optimization Suite/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>seo-domination-engine/</div>
+                                </div>
+                            </div>
+
+                            <div class="dependencies-box">
+                                <strong>Dependencies:</strong> Python 3.8+, API keys for SEO tools, content generation APIs
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 07_MISC -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 07_MISC/ <span class="folder-path">Miscellaneous</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="purpose-box">
+                                <strong>Purpose:</strong> Miscellaneous tools, demos, portfolio items, and various projects.
+                            </div>
+
+                            <div class="setup-section">
+                                <h4>📋 Setup Steps</h4>
+                                <div class="setup-steps">
+                                    <ol>
+                                        <li>Navigate to directory:
+                                            <div class="code-block">cd /Users/steven/AVATARARTS/07_MISC</div>
+                                        </li>
+                                        <li>Each subdirectory may have its own setup:
+                                            <div class="code-block">cd [subdirectory]
+cat README.md</div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📦 Misc Subdirectories</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📦</span>Portfolio/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>ai-tools/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>docusaurus-demo/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>mkdocs-demo/</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROOT: Documentation Systems -->
+            <div class="root-group" data-group="docs">
+                <div class="root-header" onclick="toggleRoot(this)">
+                    <h2><span class="root-icon">📚</span> ROOT: Documentation Systems</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="root-content">
+                    <div class="group-description">
+                        <strong>Purpose:</strong> Multiple documentation systems for different use cases and deployment options.
+                    </div>
+
+                    <!-- docs-docusaurus -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 docs-docusaurus/ <span class="folder-path">Docusaurus Site</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="purpose-box">
+                                <strong>Purpose:</strong> Modern static website generator for documentation using React.
+                            </div>
+
+                            <div class="setup-section">
+                                <h4>📋 Setup Steps</h4>
+                                <div class="setup-steps">
+                                    <ol>
+                                        <li>Navigate to directory:
+                                            <div class="code-block">cd /Users/steven/AVATARARTS/docs-docusaurus</div>
+                                        </li>
+                                        <li>Install dependencies:
+                                            <div class="code-block">npm install</div>
+                                        </li>
+                                        <li>Start development server:
+                                            <div class="code-block">npm start</div>
+                                        </li>
+                                        <li>Build for production:
+                                            <div class="code-block">npm run build</div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="access-box">
+                                <strong>Access:</strong> Development server runs at <code>http://localhost:3000</code>
+                            </div>
+
+                            <div class="dependencies-box">
+                                <strong>Dependencies:</strong> Node.js 18+, npm, React
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- docs-mkdocs -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 docs-mkdocs/ <span class="folder-path">MkDocs Site</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="purpose-box">
+                                <strong>Purpose:</strong> Fast, simple static site generator geared towards building project documentation.
+                            </div>
+
+                            <div class="setup-section">
+                                <h4>📋 Setup Steps</h4>
+                                <div class="setup-steps">
+                                    <ol>
+                                        <li>Navigate to directory:
+                                            <div class="code-block">cd /Users/steven/AVATARARTS/docs-mkdocs</div>
+                                        </li>
+                                        <li>Create virtual environment (optional):
+                                            <div class="code-block">python3 -m venv .venv
+source .venv/bin/activate</div>
+                                        </li>
+                                        <li>Install dependencies:
+                                            <div class="code-block">pip install -r requirements.txt</div>
+                                        </li>
+                                        <li>Start development server:
+                                            <div class="code-block">mkdocs serve</div>
+                                        </li>
+                                        <li>Build for production:
+                                            <div class="code-block">mkdocs build</div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="access-box">
+                                <strong>Access:</strong> Development server runs at <code>http://127.0.0.1:8000</code>
+                            </div>
+
+                            <div class="dependencies-box">
+                                <strong>Dependencies:</strong> Python 3.8+, mkdocs, mkdocs-material, mkdocs-minify-plugin
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- docs-sphinx -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 docs-sphinx/ <span class="folder-path">Sphinx Site</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="purpose-box">
+                                <strong>Purpose:</strong> Documentation generator using reStructuredText and Sphinx.
+                            </div>
+
+                            <div class="setup-section">
+                                <h4>📋 Setup Steps</h4>
+                                <div class="setup-steps">
+                                    <ol>
+                                        <li>Navigate to directory:
+                                            <div class="code-block">cd /Users/steven/AVATARARTS/docs-sphinx</div>
+                                        </li>
+                                        <li>Install dependencies:
+                                            <div class="code-block">pip install sphinx sphinx-rtd-theme</div>
+                                        </li>
+                                        <li>Build documentation:
+                                            <div class="code-block">make html</div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="dependencies-box">
+                                <strong>Dependencies:</strong> Python 3.8+, Sphinx, sphinx-rtd-theme
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- docs-vitepress -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 docs-vitepress/ <span class="folder-path">VitePress Site</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="purpose-box">
+                                <strong>Purpose:</strong> Vite-powered static site generator for documentation.
+                            </div>
+
+                            <div class="setup-section">
+                                <h4>📋 Setup Steps</h4>
+                                <div class="setup-steps">
+                                    <ol>
+                                        <li>Navigate to directory:
+                                            <div class="code-block">cd /Users/steven/AVATARARTS/docs-vitepress</div>
+                                        </li>
+                                        <li>Install dependencies:
+                                            <div class="code-block">npm install</div>
+                                        </li>
+                                        <li>Start development server:
+                                            <div class="code-block">npm run dev</div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="dependencies-box">
+                                <strong>Dependencies:</strong> Node.js 18+, npm, Vite
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROOT: Business & Revenue -->
+            <div class="root-group" data-group="business">
+                <div class="root-header" onclick="toggleRoot(this)">
+                    <h2><span class="root-icon">💼</span> ROOT: Business & Revenue Systems</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="root-content">
+                    <div class="group-description">
+                        <strong>Purpose:</strong> Business projects, revenue generation systems, and monetization platforms.
+                    </div>
+
+                    <!-- BUSINESS -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 BUSINESS/ <span class="folder-path">Business Projects</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="purpose-box">
+                                <strong>Purpose:</strong> Business applications, revenue systems, and commercial projects.
+                            </div>
+
+                            <div class="setup-section">
+                                <h4>📋 Setup Steps</h4>
+                                <div class="setup-steps">
+                                    <ol>
+                                        <li>Navigate to directory:
+                                            <div class="code-block">cd /Users/steven/AVATARARTS/BUSINESS</div>
+                                        </li>
+                                        <li>Load API keys:
+                                            <div class="code-block">source ~/.env.d/loader.sh llm-apis</div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="dependencies-box">
+                                <strong>Dependencies:</strong> Python 3.8+, API keys, business-specific dependencies
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Revenue -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 Revenue/ <span class="folder-path">Revenue Generation</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="purpose-box">
+                                <strong>Purpose:</strong> Revenue generation systems, monetization platforms, and income automation.
+                            </div>
+
+                            <div class="setup-section">
+                                <h4>📋 Setup Steps</h4>
+                                <div class="setup-steps">
+                                    <ol>
+                                        <li>Navigate to directory:
+                                            <div class="code-block">cd /Users/steven/AVATARARTS/Revenue</div>
+                                        </li>
+                                        <li>Load API keys:
+                                            <div class="code-block">source ~/.env.d/loader.sh llm-apis automation-agents</div>
+                                        </li>
+                                        <li>Setup revenue systems:
+                                            <div class="code-block">cd MONETIZATION
+./setup.sh</div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">💰 Revenue Subdirectories</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">💰</span>trend-pulse-os/</div>
+                                    <div class="file-item"><span class="file-icon">💰</span>MONETIZATION/</div>
+                                    <div class="file-item"><span class="file-icon">💰</span>AUTOMATION/</div>
+                                </div>
+                            </div>
+
+                            <div class="dependencies-box">
+                                <strong>Dependencies:</strong> Python 3.8+, API keys, automation tools
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROOT: Data & Databases -->
+            <div class="root-group" data-group="data">
+                <div class="root-header" onclick="toggleRoot(this)">
+                    <h2><span class="root-icon">💾</span> ROOT: Data & Databases</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="root-content">
+                    <div class="group-description">
+                        <strong>Purpose:</strong> Database files, indexes, data exports, and analysis results.
+                    </div>
+
+                    <!-- DATABASES -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 DATABASES/ <span class="folder-path">Database Files</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="purpose-box">
+                                <strong>Purpose:</strong> SQLite databases, CSV exports, and database backups.
+                            </div>
+
+                            <div class="setup-section">
+                                <h4>📋 Setup Steps</h4>
+                                <div class="setup-steps">
+                                    <ol>
+                                        <li>Navigate to directory:
+                                            <div class="code-block">cd /Users/steven/AVATARARTS/DATABASES</div>
+                                        </li>
+                                        <li>View databases:
+                                            <div class="code-block">ls -lh *.db *.sqlite</div>
+                                        </li>
+                                        <li>Access SQLite database:
+                                            <div class="code-block">sqlite3 database.db</div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="dependencies-box">
+                                <strong>Dependencies:</strong> SQLite3, database viewer tools
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- INDEXES -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 INDEXES/ <span class="folder-path">Generated Indexes</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="purpose-box">
+                                <strong>Purpose:</strong> Search indexes, file catalogs, and generated index files.
+                            </div>
+
+                            <div class="setup-section">
+                                <h4>📋 Setup Steps</h4>
+                                <div class="setup-steps">
+                                    <ol>
+                                        <li>Navigate to directory:
+                                            <div class="code-block">cd /Users/steven/AVATARARTS/INDEXES</div>
+                                        </li>
+                                        <li>View indexes:
+                                            <div class="code-block">ls -la</div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="dependencies-box">
+                                <strong>Dependencies:</strong> Index files are generated by scripts in 01_TOOLS/scripts/
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROOT: Content & Assets -->
+            <div class="root-group" data-group="content">
+                <div class="root-header" onclick="toggleRoot(this)">
+                    <h2><span class="root-icon">🎨</span> ROOT: Content & Assets</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="root-content">
+                    <div class="group-description">
+                        <strong>Purpose:</strong> Content files, static assets, media, and creative materials.
+                    </div>
+
+                    <!-- content -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 content/ <span class="folder-path">Content Files</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="purpose-box">
+                                <strong>Purpose:</strong> Imported content, documents, and content files.
+                            </div>
+
+                            <div class="setup-section">
+                                <h4>📋 Setup Steps</h4>
+                                <div class="setup-steps">
+                                    <ol>
+                                        <li>Navigate to directory:
+                                            <div class="code-block">cd /Users/steven/AVATARARTS/content</div>
+                                        </li>
+                                        <li>View content:
+                                            <div class="code-block">ls -la</div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- assets -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 assets/ <span class="folder-path">Static Assets</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="purpose-box">
+                                <strong>Purpose:</strong> Images, CSS files, JavaScript files, and static web assets.
+                            </div>
+
+                            <div class="setup-section">
+                                <h4>📋 Setup Steps</h4>
+                                <div class="setup-steps">
+                                    <ol>
+                                        <li>Navigate to directory:
+                                            <div class="code-block">cd /Users/steven/AVATARARTS/assets</div>
+                                        </li>
+                                        <li>View assets:
+                                            <div class="code-block">ls -la</div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROOT: Automation & Tools -->
+            <div class="root-group" data-group="automation">
+                <div class="root-header" onclick="toggleRoot(this)">
+                    <h2><span class="root-icon">⚙️</span> ROOT: Automation & Tools</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="root-content">
+                    <div class="group-description">
+                        <strong>Purpose:</strong> Automation scripts, workflow tools, and utility systems.
+                    </div>
+
+                    <!-- scripts -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 scripts/ <span class="folder-path">Root-Level Scripts</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="purpose-box">
+                                <strong>Purpose:</strong> Root-level automation scripts and utility scripts.
+                            </div>
+
+                            <div class="setup-section">
+                                <h4>📋 Setup Steps</h4>
+                                <div class="setup-steps">
+                                    <ol>
+                                        <li>Navigate to directory:
+                                            <div class="code-block">cd /Users/steven/AVATARARTS/scripts</div>
+                                        </li>
+                                        <li>Make scripts executable:
+                                            <div class="code-block">chmod +x *.sh</div>
+                                        </li>
+                                        <li>Run scripts:
+                                            <div class="code-block">./script_name.sh</div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="dependencies-box">
+                                <strong>Dependencies:</strong> Bash, Python 3.8+ (for Python scripts)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- n8n -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 n8n/ <span class="folder-path">n8n Workflows</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="purpose-box">
+                                <strong>Purpose:</strong> n8n workflow automation files and configurations.
+                            </div>
+
+                            <div class="setup-section">
+                                <h4>📋 Setup Steps</h4>
+                                <div class="setup-steps">
+                                    <ol>
+                                        <li>Navigate to directory:
+                                            <div class="code-block">cd /Users/steven/AVATARARTS/n8n</div>
+                                        </li>
+                                        <li>Install n8n (if not installed):
+                                            <div class="code-block">npm install -g n8n</div>
+                                        </li>
+                                        <li>Start n8n:
+                                            <div class="code-block">n8n start</div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="dependencies-box">
+                                <strong>Dependencies:</strong> Node.js 18+, npm, n8n
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROOT: Root-Level Files -->
+            <div class="root-group" data-group="rootfiles">
+                <div class="root-header" onclick="toggleRoot(this)">
+                    <h2><span class="root-icon">📄</span> ROOT: Root-Level Files</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="root-content">
+                    <div class="group-description">
+                        <strong>Purpose:</strong> Important root-level files including setup guides, analysis reports, and configuration files.
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📄 Key Root Files <span class="folder-path">/Users/steven/AVATARARTS/</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="setup-section">
+                                <h4>📋 Important Files</h4>
+                                <div class="setup-steps">
+                                    <ol>
+                                        <li><strong>README.md</strong> - Main workspace documentation</li>
+                                        <li><strong>COMPLETE_SETUP_GUIDE.md</strong> - Complete setup instructions</li>
+                                        <li><strong>QUICK_START.md</strong> - Quick start guide</li>
+                                        <li><strong>START_HERE.md</strong> - Entry point for new users</li>
+                                        <li><strong>init.sh</strong> - Initialization script</li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📄 Setup & Guides</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📄</span>README.md</div>
+                                    <div class="file-item"><span class="file-icon">📄</span>COMPLETE_SETUP_GUIDE.md</div>
+                                    <div class="file-item"><span class="file-icon">📄</span>QUICK_START.md</div>
+                                    <div class="file-item"><span class="file-icon">📄</span>START_HERE.md</div>
+                                </div>
+                            </div>
+
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">🐍 Python Scripts</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">🐍</span>setup_avatararts_org.py</div>
+                                    <div class="file-item"><span class="file-icon">🐍</span>reorganize_avatararts_complete.py</div>
+                                </div>
+                            </div>
+
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">💻 Shell Scripts</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">💻</span>init.sh</div>
+                                    <div class="file-item"><span class="file-icon">💻</span>organize_files.sh</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">30</div>
+                <div class="stat-label">Top-Level Directories</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">138</div>
+                <div class="stat-label">Root-Level Files</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">68,808</div>
+                <div class="stat-label">Total Files</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">6.9 GB</div>
+                <div class="stat-label">Total Size</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleRoot(header) {
+            const root = header.parentElement;
+            const content = root.querySelector('.root-content');
+            const icon = header.querySelector('.toggle-icon');
+
+            content.classList.toggle('collapsed');
+            header.classList.toggle('collapsed');
+        }
+
+        function toggleFolder(header) {
+            const folder = header.parentElement;
+            const content = folder.querySelector('.folder-content');
+            const icon = header.querySelector('.toggle-icon');
+
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                icon.textContent = '▼';
+            } else {
+                content.style.display = 'none';
+                icon.textContent = '▶';
+            }
+        }
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const items = document.querySelectorAll('.file-item, .folder-header, .subfolder-title, .setup-section, .purpose-box, .dependencies-box');
+
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    item.classList.remove('hidden');
+                    item.classList.add('highlight');
+                    // Expand parent groups
+                    let parent = item.closest('.root-group');
+                    if (parent) {
+                        const content = parent.querySelector('.root-content');
+                        content.classList.remove('collapsed');
+                        parent.querySelector('.root-header').classList.remove('collapsed');
+                    }
+                    let folder = item.closest('.folder-group');
+                    if (folder) {
+                        const content = folder.querySelector('.folder-content');
+                        content.style.display = 'block';
+                    }
+                } else {
+                    item.classList.remove('highlight');
+                    if (searchTerm) {
+                        item.classList.add('hidden');
+                    } else {
+                        item.classList.remove('hidden');
+                    }
+                }
+            });
+
+            // Remove highlight after 2 seconds
+            setTimeout(() => {
+                items.forEach(item => item.classList.remove('highlight'));
+            }, 2000);
+        });
+
+        // Initialize all folders as expanded
+        document.querySelectorAll('.folder-content').forEach(content => {
+            content.style.display = 'block';
+        });
+    </script>
+</body>
+</html>

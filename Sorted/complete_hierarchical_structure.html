@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVATARARTS Complete Hierarchical Structure</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .search-box {
+            padding: 20px 40px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .root-group {
+            margin-bottom: 40px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .root-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .root-header:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        .root-header h2 {
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .root-icon {
+            font-size: 1.5em;
+        }
+
+        .toggle-icon {
+            font-size: 1.3em;
+            transition: transform 0.3s;
+        }
+
+        .root-header.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        .root-content {
+            padding: 0;
+            max-height: 10000px;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .root-content.collapsed {
+            max-height: 0;
+            padding: 0;
+        }
+
+        .folder-group {
+            margin: 20px;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #f8f9fa;
+        }
+
+        .folder-header {
+            background: #e9ecef;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s;
+        }
+
+        .folder-header:hover {
+            background: #dee2e6;
+        }
+
+        .folder-header h3 {
+            font-size: 1.3em;
+            color: #495057;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .folder-path {
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 0.85em;
+            color: #6c757d;
+            margin-left: 10px;
+        }
+
+        .folder-content {
+            padding: 20px;
+            background: white;
+        }
+
+        .subfolder-section {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            border-radius: 4px;
+        }
+
+        .subfolder-title {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .file-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .file-item {
+            padding: 10px 12px;
+            background: white;
+            border-left: 3px solid #667eea;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 0.9em;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .file-item:hover {
+            background: #e7f3ff;
+            transform: translateX(3px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .file-icon {
+            font-size: 1em;
+        }
+
+        .root-files-section {
+            margin: 20px;
+            padding: 20px;
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            border-radius: 6px;
+        }
+
+        .root-files-section h3 {
+            color: #856404;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .file-category {
+            margin: 15px 0;
+            padding: 12px;
+            background: white;
+            border-radius: 4px;
+        }
+
+        .file-category-title {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            padding: 20px 40px;
+            background: #f8f9fa;
+            border-top: 2px solid #e9ecef;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #6c757d;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .highlight {
+            background: #fff3cd !important;
+            border-left-color: #ffc107 !important;
+        }
+
+        .group-description {
+            padding: 15px 20px;
+            background: #e7f3ff;
+            border-left: 4px solid #0066cc;
+            margin: 15px 20px;
+            border-radius: 4px;
+            color: #004085;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📁 AVATARARTS Complete Hierarchical Structure</h1>
+            <p>Root → Subfolder → Files organization with logical groupings</p>
+            <p style="font-size: 0.9em; margin-top: 10px; opacity: 0.9;">Last Updated: January 13, 2026 11:15 AM</p>
+        </header>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Search folders, subfolders, and files..." autocomplete="off">
+        </div>
+
+        <div class="content" id="content">
+            <!-- ROOT: Core Numbered Directories -->
+            <div class="root-group" data-group="core">
+                <div class="root-header" onclick="toggleRoot(this)">
+                    <h2><span class="root-icon">📂</span> ROOT: Core Numbered Directories (00-07)</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="root-content">
+                    <div class="group-description">
+                        <strong>Purpose:</strong> Main organizational structure using numbered system for logical grouping and easy navigation.
+                    </div>
+
+                    <!-- 00_ACTIVE -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 00_ACTIVE/ <span class="folder-path">Active Projects & Development</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📁 BUSINESS/ - Business Projects</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">💼</span>ai-voice-agents/</div>
+                                    <div class="file-item"><span class="file-icon">💼</span>business-activation/</div>
+                                    <div class="file-item"><span class="file-icon">💼</span>cleanconnect-complete/</div>
+                                    <div class="file-item"><span class="file-icon">💼</span>cleanconnect-pro/</div>
+                                    <div class="file-item"><span class="file-icon">💼</span>creative-ai-agency/</div>
+                                    <div class="file-item"><span class="file-icon">💼</span>creative-ai-marketplace/</div>
+                                    <div class="file-item"><span class="file-icon">💼</span>education/</div>
+                                    <div class="file-item"><span class="file-icon">💼</span>heavenlyHands/</div>
+                                    <div class="file-item"><span class="file-icon">💼</span>marketplace/</div>
+                                    <div class="file-item"><span class="file-icon">💼</span>passive-income-empire/</div>
+                                    <div class="file-item"><span class="file-icon">💼</span>quantumforge-complete/</div>
+                                    <div class="file-item"><span class="file-icon">💼</span>quantumforge-labs/</div>
+                                    <div class="file-item"><span class="file-icon">💼</span>retention-suite-complete/</div>
+                                    <div class="file-item"><span class="file-icon">💼</span>revenue-dashboard/</div>
+                                </div>
+                            </div>
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📁 CLIENT_PROJECTS/ - Client Work</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">👤</span>Dr_Adu_GainesvillePFS_SEO_Project/</div>
+                                    <div class="file-item"><span class="file-icon">👤</span>josephrosadomd/</div>
+                                </div>
+                            </div>
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📁 CONTENT/ - Content Creation</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">🎨</span>ai-ml-notes/</div>
+                                    <div class="file-item"><span class="file-icon">🎨</span>audio-content/</div>
+                                    <div class="file-item"><span class="file-icon">🎨</span>content/</div>
+                                    <div class="file-item"><span class="file-icon">🎨</span>html-assets/</div>
+                                    <div class="file-item"><span class="file-icon">🎨</span>images/</div>
+                                    <div class="file-item"><span class="file-icon">🎨</span>music-analysis/</div>
+                                    <div class="file-item"><span class="file-icon">🎨</span>music-empire/</div>
+                                    <div class="file-item"><span class="file-icon">🎨</span>narratives/</div>
+                                </div>
+                            </div>
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📁 DEVELOPMENT/ - Development Tools</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">⚙️</span>AI_TOOLS/</div>
+                                    <div class="file-item"><span class="file-icon">⚙️</span>code-projects/</div>
+                                    <div class="file-item"><span class="file-icon">⚙️</span>DNA_COLD_CASE_AI/</div>
+                                    <div class="file-item"><span class="file-icon">⚙️</span>UTILITIES_TOOLS/</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 01_TOOLS -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 01_TOOLS/ <span class="folder-path">Tools & Utilities</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📁 dashboards/ - Analytics Dashboards</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📊</span>master_revenue_dashboard.py</div>
+                                </div>
+                            </div>
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📁 data/ - Generated Data Files</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📊</span>all_folders_files.csv</div>
+                                    <div class="file-item"><span class="file-icon">📊</span>all_folders_files.json</div>
+                                    <div class="file-item"><span class="file-icon">📊</span>directory_index.csv</div>
+                                    <div class="file-item"><span class="file-icon">📊</span>INCOME_OPPORTUNITIES.csv</div>
+                                    <div class="file-item"><span class="file-icon">📊</span>READY_TO_IMPLEMENT.csv</div>
+                                    <div class="file-item"><span class="file-icon">📊</span>SORTED_BY_REVENUE.csv</div>
+                                    <div class="file-item"><span class="file-icon">📊</span>SORTED_BY_ROI.csv</div>
+                                    <div class="file-item"><span class="file-icon">📊</span>SUMMARY_BY_CATEGORY.csv</div>
+                                </div>
+                            </div>
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📁 scripts/ - Analysis & Utility Scripts</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">🐍</span>analyze_income_opportunities.py</div>
+                                    <div class="file-item"><span class="file-icon">🐍</span>analyze_structure.py</div>
+                                    <div class="file-item"><span class="file-icon">🐍</span>deep_comprehensive_analysis.py</div>
+                                    <div class="file-item"><span class="file-icon">🐍</span>deep_comprehensive_analysis_home.py</div>
+                                    <div class="file-item"><span class="file-icon">🐍</span>find_large_files.py</div>
+                                    <div class="file-item"><span class="file-icon">🐍</span>generate_docs.py</div>
+                                    <div class="file-item"><span class="file-icon">🐍</span>index_all_folders.py</div>
+                                    <div class="file-item"><span class="file-icon">🐍</span>list_all_folders_files.py</div>
+                                    <div class="file-item"><span class="file-icon">🐍</span>reorganize_project.py</div>
+                                    <div class="file-item"><span class="file-icon">🐍</span>unlimited_depth_search.py</div>
+                                    <div class="file-item"><span class="file-icon">🐍</span>merge_and_combine.py</div>
+                                    <div class="file-item"><span class="file-icon">🐍</span>remove_duplicates_safe.py</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 02_DOCUMENTATION -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 02_DOCUMENTATION/ <span class="folder-path">Documentation & Guides</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📁 Subdirectories</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📁</span>analysis/</div>
+                                    <div class="file-item"><span class="file-icon">📁</span>business-plans/</div>
+                                    <div class="file-item"><span class="file-icon">📁</span>docs/</div>
+                                    <div class="file-item"><span class="file-icon">📁</span>guides/</div>
+                                    <div class="file-item"><span class="file-icon">📁</span>migration/</div>
+                                    <div class="file-item"><span class="file-icon">📁</span>organization/</div>
+                                    <div class="file-item"><span class="file-icon">📁</span>reports/</div>
+                                    <div class="file-item"><span class="file-icon">📁</span>research/</div>
+                                    <div class="file-item"><span class="file-icon">📁</span>sphinx/</div>
+                                    <div class="file-item"><span class="file-icon">📁</span>summaries/</div>
+                                    <div class="file-item"><span class="file-icon">📁</span>tools/</div>
+                                    <div class="file-item"><span class="file-icon">📁</span>volumes-scan/</div>
+                                </div>
+                            </div>
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📄 Key Documentation Files</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📄</span>QUICK_START_GUIDE.md</div>
+                                    <div class="file-item"><span class="file-icon">📄</span>SYSTEM_ARCHITECTURE_MAP.md</div>
+                                    <div class="file-item"><span class="file-icon">📄</span>WORKFLOW_GUIDE.md</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 03_ARCHIVES -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 03_ARCHIVES/ <span class="folder-path">Archived Content</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📦 Archive Subdirectories</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📦</span>archive/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>archives/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>backups/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>disco/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>documents/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>duplicates/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>exports/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>intelligent-declutter/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>large-analysis-reports/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>large-csv-files/</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 04_WEBSITES -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 04_WEBSITES/ <span class="folder-path">Website Projects</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">🌐 Website Projects</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">🌐</span>AvaTar-ArTs.github.io/</div>
+                                    <div class="file-item"><span class="file-icon">🌐</span>ai-sites/
+                                        <div style="margin-left: 20px; margin-top: 5px; font-size: 0.85em; color: #6c757d;">
+                                            ├─ active/ (heavenlyHands, n8n, etc.)<br>
+                                            └─ archived/
+                                        </div>
+                                    </div>
+                                    <div class="file-item"><span class="file-icon">🌐</span>assets/</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 05_DATA -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 05_DATA/ <span class="folder-path">Data Files & Databases</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">💾 Data Subdirectories</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📊</span>Data-Analysis/</div>
+                                    <div class="file-item"><span class="file-icon">📊</span>analysis/</div>
+                                    <div class="file-item"><span class="file-icon">📊</span>analytics/</div>
+                                    <div class="file-item"><span class="file-icon">📊</span>csvs-consolidated/</div>
+                                    <div class="file-item"><span class="file-icon">💾</span>databases/</div>
+                                    <div class="file-item"><span class="file-icon">📊</span>json/</div>
+                                    <div class="file-item"><span class="file-icon">📊</span>organization/</div>
+                                    <div class="file-item"><span class="file-icon">📊</span>reports/</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 06_SEO_MARKETING -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 06_SEO_MARKETING/ <span class="folder-path">SEO & Marketing</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📈 SEO Subdirectories</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📦</span>CONTENT_PACKAGES/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>MASTER_SEO_PACKAGE_2024/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>SEO Content Optimization Suite/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>SEO_CONTENT_STRATEGY/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>SEO_YouTube_2025_Dataset/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>aeo-seo/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>analysis/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>documentation/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>keyword-research/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>marketplace-seo/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>seo-domination-engine/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>social-media-seo/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>strategies/</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 07_MISC -->
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 07_MISC/ <span class="folder-path">Miscellaneous</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📦 Misc Subdirectories</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📦</span>JOB_SEARCH_2025/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>Portfolio/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>TOP_TRENDS_AVATARARTS_QUANTUMFORGE/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>ai-tools/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>api/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>assets/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>business/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>clients/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>code/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>content/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>data/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>docusaurus-demo/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>guides/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>mkdocs-demo/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>nextra-demo/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>strategies/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>utilities/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>vitepress-demo/</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROOT: Documentation Systems -->
+            <div class="root-group" data-group="docs">
+                <div class="root-header" onclick="toggleRoot(this)">
+                    <h2><span class="root-icon">📚</span> ROOT: Documentation Systems</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="root-content">
+                    <div class="group-description">
+                        <strong>Purpose:</strong> Multiple documentation systems for different use cases and deployment options.
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 docs-docusaurus/ <span class="folder-path">Docusaurus Site</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📁 docs/ - Documentation Content</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📄</span>intro.md</div>
+                                    <div class="file-item"><span class="file-icon">📁</span>getting-started/
+                                        <div style="margin-left: 20px; margin-top: 5px; font-size: 0.85em; color: #6c757d;">
+                                            ├─ introduction.md<br>
+                                            ├─ workspace-overview.md<br>
+                                            └─ directory-structure.md
+                                        </div>
+                                    </div>
+                                    <div class="file-item"><span class="file-icon">📁</span>projects/
+                                        <div style="margin-left: 20px; margin-top: 5px; font-size: 0.85em; color: #6c757d;">
+                                            ├─ active-projects.md<br>
+                                            └─ directory-structure.md
+                                        </div>
+                                    </div>
+                                    <div class="file-item"><span class="file-icon">📁</span>tools/
+                                        <div style="margin-left: 20px; margin-top: 5px; font-size: 0.85em; color: #6c757d;">
+                                            └─ tools-utilities.md
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📁 src/ - Source Files</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📁</span>css/</div>
+                                    <div class="file-item"><span class="file-icon">📁</span>components/</div>
+                                </div>
+                            </div>
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📁 static/ - Static Assets</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">🖼️</span>img/</div>
+                                </div>
+                            </div>
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📄 Configuration Files</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">⚙️</span>docusaurus.config.js</div>
+                                    <div class="file-item"><span class="file-icon">⚙️</span>sidebars.js</div>
+                                    <div class="file-item"><span class="file-icon">⚙️</span>package.json</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 docs-mkdocs/ <span class="folder-path">MkDocs Site</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📄 Configuration</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">⚙️</span>mkdocs.yml</div>
+                                    <div class="file-item"><span class="file-icon">⚙️</span>requirements.txt</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 docs-sphinx/ <span class="folder-path">Sphinx Site</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📁 source/ - Source Documentation</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📄</span>*.rst files</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 docs-vitepress/ <span class="folder-path">VitePress Site</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📄 Configuration</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">⚙️</span>package.json</div>
+                                    <div class="file-item"><span class="file-icon">⚙️</span>vitepress.config.js</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROOT: Business & Revenue -->
+            <div class="root-group" data-group="business">
+                <div class="root-header" onclick="toggleRoot(this)">
+                    <h2><span class="root-icon">💼</span> ROOT: Business & Revenue Systems</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="root-content">
+                    <div class="group-description">
+                        <strong>Purpose:</strong> Business projects, revenue generation systems, and monetization platforms.
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 BUSINESS/ <span class="folder-path">Business Projects</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">💼 Business Systems</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">💼</span>passive-income-empire/</div>
+                                    <div class="file-item"><span class="file-icon">💼</span>retention-suite-complete/</div>
+                                    <div class="file-item"><span class="file-icon">💼</span>cleanconnect-complete/</div>
+                                    <div class="file-item"><span class="file-icon">💼</span>quantumforge-complete/</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 Revenue/ <span class="folder-path">Revenue Generation</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">💰 Revenue Subdirectories</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">💰</span>trend-pulse-os/</div>
+                                    <div class="file-item"><span class="file-icon">💰</span>MONETIZATION/
+                                        <div style="margin-left: 20px; margin-top: 5px; font-size: 0.85em; color: #6c757d;">
+                                            ├─ apify/ (enterprise AI agents)<br>
+                                            └─ product_packages/
+                                        </div>
+                                    </div>
+                                    <div class="file-item"><span class="file-icon">💰</span>AUTOMATION/
+                                        <div style="margin-left: 20px; margin-top: 5px; font-size: 0.85em; color: #6c757d;">
+                                            └─ enterprise_ai_agents/
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 heavenlyHands/ <span class="folder-path">Heavenly Hands Business</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">🏢 Business System</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">🏢</span>intelligent-organization-system/</div>
+                                    <div class="file-item"><span class="file-icon">🏢</span>Business files</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 gol-ia-newq/ <span class="folder-path">AI Project</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">🤖 AI Project Files</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">🤖</span>AI project files</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROOT: Data & Databases -->
+            <div class="root-group" data-group="data">
+                <div class="root-header" onclick="toggleRoot(this)">
+                    <h2><span class="root-icon">💾</span> ROOT: Data & Databases</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="root-content">
+                    <div class="group-description">
+                        <strong>Purpose:</strong> Database files, indexes, data exports, and analysis results.
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 DATABASES/ <span class="folder-path">Database Files</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">💾 Database Subdirectories</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📊</span>CSV_FILES/</div>
+                                    <div class="file-item"><span class="file-icon">💾</span>*.db files</div>
+                                    <div class="file-item"><span class="file-icon">💾</span>*.sqlite files</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 INDEXES/ <span class="folder-path">Generated Indexes</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📇 Index Subdirectories</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📇</span>unlimited_depth/</div>
+                                    <div class="file-item"><span class="file-icon">📇</span>Index files</div>
+                                    <div class="file-item"><span class="file-icon">📇</span>Search data</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 ml_categorization_output/ <span class="folder-path">ML Categorization</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">🤖 ML Analysis Results</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">🤖</span>Categorization results</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 comparison_reports/ <span class="folder-path">Comparison Reports</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📊 Analysis Reports</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📊</span>Comparison data</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROOT: Content & Assets -->
+            <div class="root-group" data-group="content">
+                <div class="root-header" onclick="toggleRoot(this)">
+                    <h2><span class="root-icon">🎨</span> ROOT: Content & Assets</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="root-content">
+                    <div class="group-description">
+                        <strong>Purpose:</strong> Content files, static assets, media, and creative materials.
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 content/ <span class="folder-path">Content Files</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📄 Content Files</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📄</span>Imported content</div>
+                                    <div class="file-item"><span class="file-icon">📄</span>Documents</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 assets/ <span class="folder-path">Static Assets</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">🖼️ Assets</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">🖼️</span>Images</div>
+                                    <div class="file-item"><span class="file-icon">🎨</span>CSS files</div>
+                                    <div class="file-item"><span class="file-icon">📜</span>JavaScript files</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 disco/ <span class="folder-path">Disco Content</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">🎵 Music & Media</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">🎵</span>mp3.zip (684 MB)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROOT: Automation & Tools -->
+            <div class="root-group" data-group="automation">
+                <div class="root-header" onclick="toggleRoot(this)">
+                    <h2><span class="root-icon">⚙️</span> ROOT: Automation & Tools</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="root-content">
+                    <div class="group-description">
+                        <strong>Purpose:</strong> Automation scripts, workflow tools, and utility systems.
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 scripts/ <span class="folder-path">Root-Level Scripts</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">💻 Automation Scripts</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">💻</span>*.sh scripts</div>
+                                    <div class="file-item"><span class="file-icon">💻</span>*.py scripts</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 n8n/ <span class="folder-path">n8n Workflows</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">🔄 Workflow Automation</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">🔄</span>Workflow files</div>
+                                    <div class="file-item"><span class="file-icon">🔄</span>n8n configurations</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 Obsidian-plugins-mine/ <span class="folder-path">Obsidian Plugins</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">🔌 Plugin Subdirectories</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">🔌</span>obsidian-quiz-generator/</div>
+                                    <div class="file-item"><span class="file-icon">🔌</span>obsidian_top_plugins_2026_pack/</div>
+                                    <div class="file-item"><span class="file-icon">🔌</span>steven_low_comp_obsidian_seo_pack/</div>
+                                    <div class="file-item"><span class="file-icon">🔌</span>vault-ops-revenue/</div>
+                                    <div class="file-item"><span class="file-icon">🔌</span>vault-ops-toolkit/</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 pythons_reorganized/ <span class="folder-path">Reorganized Python Scripts</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">🐍 Python Scripts</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">🐍</span>Reorganized scripts</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROOT: Organization & Sorted -->
+            <div class="root-group" data-group="organization">
+                <div class="root-header" onclick="toggleRoot(this)">
+                    <h2><span class="root-icon">🗂️</span> ROOT: Organization & Sorted</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="root-content">
+                    <div class="group-description">
+                        <strong>Purpose:</strong> Organized and sorted content, reorganization outputs, and structured data.
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 Sorted/ <span class="folder-path">Sorted Documentation</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📄 Documentation Files</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📄</span>workspace_organization.html</div>
+                                    <div class="file-item"><span class="file-icon">📄</span>folder_by_folder_setup.html</div>
+                                    <div class="file-item"><span class="file-icon">📄</span>FOLDER_BY_FOLDER_SETUP.md</div>
+                                    <div class="file-item"><span class="file-icon">📄</span>RESCAN_REPORT.md</div>
+                                    <div class="file-item"><span class="file-icon">📄</span>LARGEST_FILES_REPORT.md</div>
+                                    <div class="file-item"><span class="file-icon">📄</span>POST_CLEANUP_RESCAN.md</div>
+                                    <div class="file-item"><span class="file-icon">📄</span>FILE_OPERATIONS_LOG.md</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 ORGANIZED/ <span class="folder-path">Organized Content</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📦 Organized Files</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📦</span>Organized content</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="folder-group">
+                        <div class="folder-header" onclick="toggleFolder(this)">
+                            <h3>📁 New_Folder_With_Items_3_ORGANIZED/ <span class="folder-path">New Organized Items</span></h3>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="folder-content">
+                            <div class="subfolder-section">
+                                <div class="subfolder-title">📦 New Organized Content</div>
+                                <div class="file-list">
+                                    <div class="file-item"><span class="file-icon">📦</span>html_files/</div>
+                                    <div class="file-item"><span class="file-icon">📦</span>Organized items</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROOT: Root-Level Files -->
+            <div class="root-group" data-group="rootfiles">
+                <div class="root-header" onclick="toggleRoot(this)">
+                    <h2><span class="root-icon">📄</span> ROOT: Root-Level Files</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="root-content">
+                    <div class="root-files-section">
+                        <h3>📄 Root-Level Files (138 files)</h3>
+
+                        <div class="file-category">
+                            <div class="file-category-title">📊 Analysis & Reports</div>
+                            <div class="file-list">
+                                <div class="file-item"><span class="file-icon">📄</span>ANALYSIS_REPORT.md</div>
+                                <div class="file-item"><span class="file-icon">📄</span>ANALYSIS_SUMMARY_SAVED.md</div>
+                                <div class="file-item"><span class="file-icon">📄</span>COMPREHENSIVE_WORKSPACE_ANALYSIS.md</div>
+                                <div class="file-item"><span class="file-icon">📄</span>WORKSPACE_ANALYSIS.md</div>
+                                <div class="file-item"><span class="file-icon">📄</span>DIRECTORY_STRUCTURE_REPORT.md</div>
+                            </div>
+                        </div>
+
+                        <div class="file-category">
+                            <div class="file-category-title">🗑️ Declutter & Reorganization</div>
+                            <div class="file-list">
+                                <div class="file-item"><span class="file-icon">📄</span>DECLUTTER_ANALYSIS.md</div>
+                                <div class="file-item"><span class="file-icon">📄</span>DECLUTTER_COMPLETE.md</div>
+                                <div class="file-item"><span class="file-icon">📄</span>DECLUTTER_FINAL_REPORT.md</div>
+                                <div class="file-item"><span class="file-icon">📄</span>ADVANCED_DECLUTTER_ANALYSIS.md</div>
+                                <div class="file-item"><span class="file-icon">📄</span>INTELLIGENT_DECLUTTER_COMPLETE.md</div>
+                                <div class="file-item"><span class="file-icon">📄</span>REORGANIZATION_COMPLETE.md</div>
+                                <div class="file-item"><span class="file-icon">📄</span>REORGANIZATION_SUMMARY.md</div>
+                                <div class="file-item"><span class="file-icon">📄</span>FINAL_REORGANIZATION_STATUS.md</div>
+                            </div>
+                        </div>
+
+                        <div class="file-category">
+                            <div class="file-category-title">📚 Guides & Documentation</div>
+                            <div class="file-list">
+                                <div class="file-item"><span class="file-icon">📄</span>README.md</div>
+                                <div class="file-item"><span class="file-icon">📄</span>QUICK_START.md</div>
+                                <div class="file-item"><span class="file-icon">📄</span>START_HERE.md</div>
+                                <div class="file-item"><span class="file-icon">📄</span>WORKFLOW_GUIDE.md</div>
+                                <div class="file-item"><span class="file-icon">📄</span>COMPLETE_SETUP_GUIDE.md</div>
+                                <div class="file-item"><span class="file-icon">📄</span>DAILY_ACTION_CHECKLIST.md</div>
+                                <div class="file-item"><span class="file-icon">📄</span>EVOLUTION_ROADMAP.md</div>
+                            </div>
+                        </div>
+
+                        <div class="file-category">
+                            <div class="file-category-title">📑 Indexes & References</div>
+                            <div class="file-list">
+                                <div class="file-item"><span class="file-icon">📄</span>AVATARARTS_COMPLETE_INDEX.md</div>
+                                <div class="file-item"><span class="file-icon">📄</span>AVATARARTS_DECLUTTERED_INDEX.md</div>
+                                <div class="file-item"><span class="file-icon">📄</span>AVATARARTS_FINAL_INDEX.md</div>
+                                <div class="file-item"><span class="file-icon">📄</span>QUICK_REFERENCE_INDEX.md</div>
+                                <div class="file-item"><span class="file-icon">📄</span>QUICK_REFERENCE.md</div>
+                            </div>
+                        </div>
+
+                        <div class="file-category">
+                            <div class="file-category-title">🐍 Python Scripts</div>
+                            <div class="file-list">
+                                <div class="file-item"><span class="file-icon">🐍</span>advanced_content_aware_ml_categorizer.py</div>
+                                <div class="file-item"><span class="file-icon">🐍</span>compare_before_after.py</div>
+                                <div class="file-item"><span class="file-icon">🐍</span>create_efficient_docs.py</div>
+                                <div class="file-item"><span class="file-icon">🐍</span>deep_dive_analysis.py</div>
+                                <div class="file-item"><span class="file-icon">🐍</span>reorganize_avatararts_complete.py</div>
+                                <div class="file-item"><span class="file-icon">🐍</span>setup_avatararts_org.py</div>
+                            </div>
+                        </div>
+
+                        <div class="file-category">
+                            <div class="file-category-title">💻 Shell Scripts</div>
+                            <div class="file-list">
+                                <div class="file-item"><span class="file-icon">💻</span>avatararts_org_summary.sh</div>
+                                <div class="file-item"><span class="file-icon">💻</span>declutter_avatararts.sh</div>
+                                <div class="file-item"><span class="file-icon">💻</span>init.sh</div>
+                                <div class="file-item"><span class="file-icon">💻</span>organize_files.sh</div>
+                                <div class="file-item"><span class="file-icon">💻</span>QUICK_REORGANIZE.sh</div>
+                            </div>
+                        </div>
+
+                        <div class="file-category">
+                            <div class="file-category-title">📊 Data Files</div>
+                            <div class="file-list">
+                                <div class="file-item"><span class="file-icon">📊</span>COMPARISON_REPORT.json</div>
+                                <div class="file-item"><span class="file-icon">📊</span>DEEP_ANALYSIS_20260104_130847.json</div>
+                                <div class="file-item"><span class="file-icon">📊</span>MERGE_PLAN.json</div>
+                                <div class="file-item"><span class="file-icon">📊</span>INTELLIGENT_DECLUTTER_DETAILED.csv</div>
+                                <div class="file-item"><span class="file-icon">📊</span>merge_execution.log</div>
+                            </div>
+                        </div>
+
+                        <div class="file-category">
+                            <div class="file-category-title">🌐 Web Files</div>
+                            <div class="file-list">
+                                <div class="file-item"><span class="file-icon">🌐</span>AI_Alchemy_Portfolio.html</div>
+                                <div class="file-item"><span class="file-icon">🌐</span>docs_system.html</div>
+                                <div class="file-item"><span class="file-icon">🌐</span>styles.css</div>
+                                <div class="file-item"><span class="file-icon">🌐</span>robots.txt</div>
+                                <div class="file-item"><span class="file-icon">🌐</span>sitemap.xml</div>
+                            </div>
+                        </div>
+
+                        <div class="file-category">
+                            <div class="file-category-title">💰 Revenue & Business</div>
+                            <div class="file-list">
+                                <div class="file-item"><span class="file-icon">💰</span>COMPREHENSIVE_REVENUE_SAAS_SCAN_COMPLETE.md</div>
+                                <div class="file-item"><span class="file-icon">💰</span>REVENUE_SAAS_SCAN_REPORT.md</div>
+                                <div class="file-item"><span class="file-icon">💰</span>Revenue_Strategy_Handoff_Simple.md</div>
+                                <div class="file-item"><span class="file-icon">💰</span>cursor_revenue_trend_pulse_analysis.md</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">30</div>
+                <div class="stat-label">Top-Level Directories</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">138</div>
+                <div class="stat-label">Root-Level Files</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">68,808</div>
+                <div class="stat-label">Total Files</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">6.9 GB</div>
+                <div class="stat-label">Total Size</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleRoot(header) {
+            const root = header.parentElement;
+            const content = root.querySelector('.root-content');
+            const icon = header.querySelector('.toggle-icon');
+
+            content.classList.toggle('collapsed');
+            header.classList.toggle('collapsed');
+        }
+
+        function toggleFolder(header) {
+            const folder = header.parentElement;
+            const content = folder.querySelector('.folder-content');
+            const icon = header.querySelector('.toggle-icon');
+
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                icon.textContent = '▼';
+            } else {
+                content.style.display = 'none';
+                icon.textContent = '▶';
+            }
+        }
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const items = document.querySelectorAll('.file-item, .folder-header, .subfolder-title');
+
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    item.classList.remove('hidden');
+                    item.classList.add('highlight');
+                    // Expand parent groups
+                    let parent = item.closest('.root-group');
+                    if (parent) {
+                        const content = parent.querySelector('.root-content');
+                        content.classList.remove('collapsed');
+                        parent.querySelector('.root-header').classList.remove('collapsed');
+                    }
+                    let folder = item.closest('.folder-group');
+                    if (folder) {
+                        const content = folder.querySelector('.folder-content');
+                        content.style.display = 'block';
+                    }
+                } else {
+                    item.classList.remove('highlight');
+                    if (searchTerm) {
+                        item.classList.add('hidden');
+                    } else {
+                        item.classList.remove('hidden');
+                    }
+                }
+            });
+
+            // Remove highlight after 2 seconds
+            setTimeout(() => {
+                items.forEach(item => item.classList.remove('highlight'));
+            }, 2000);
+        });
+
+        // Initialize all folders as expanded
+        document.querySelectorAll('.folder-content').forEach(content => {
+            content.style.display = 'block';
+        });
+    </script>
+</body>
+</html>

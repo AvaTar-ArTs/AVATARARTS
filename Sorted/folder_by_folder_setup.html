@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVATARARTS Folder-by-Folder Setup Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .search-box {
+            padding: 20px 40px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .category {
+            margin-bottom: 30px;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .category-header:hover {
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+        }
+
+        .category-header h2 {
+            font-size: 1.5em;
+            color: #495057;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toggle-icon {
+            font-size: 1.2em;
+            transition: transform 0.3s;
+        }
+
+        .category-header.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        .category-content {
+            padding: 0;
+            max-height: 5000px;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .category-content.collapsed {
+            max-height: 0;
+            padding: 0;
+        }
+
+        .folder-section {
+            padding: 30px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .folder-section:last-child {
+            border-bottom: none;
+        }
+
+        .folder-title {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .folder-path {
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            background: #f8f9fa;
+            padding: 8px 12px;
+            border-radius: 4px;
+            color: #6c757d;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .setup-steps {
+            margin: 20px 0;
+        }
+
+        .step {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 10px;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 10px 0;
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .code-block code {
+            color: #f8f8f2;
+        }
+
+        .dependencies-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .dependencies-box h4 {
+            color: #155724;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dependencies-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .dependency-badge {
+            background: #c3e6cb;
+            color: #155724;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .commands-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .commands-box h4 {
+            color: #856404;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .command-item {
+            background: #ffeaa7;
+            padding: 8px 12px;
+            margin: 5px 0;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .purpose-box {
+            background: #e7f3ff;
+            border-left: 4px solid #0066cc;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .purpose-box h4 {
+            color: #004085;
+            margin-bottom: 10px;
+        }
+
+        .access-box {
+            background: #f0e6ff;
+            border-left: 4px solid #9b59b6;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .access-box h4 {
+            color: #6a1b9a;
+            margin-bottom: 10px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            padding: 20px 40px;
+            background: #f8f9fa;
+            border-top: 2px solid #e9ecef;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #6c757d;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .highlight {
+            background: #fff3cd !important;
+            border-left-color: #ffc107 !important;
+        }
+
+        .checklist {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        .checklist-item {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📁 AVATARARTS Folder-by-Folder Setup Guide</h1>
+            <p>Complete step-by-step setup instructions for every folder</p>
+            <p style="font-size: 0.9em; margin-top: 10px; opacity: 0.9;">Last Updated: January 13, 2026 11:15 AM | Post-Cleanup Rescan</p>
+        </header>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Search folders and setup steps..." autocomplete="off">
+        </div>
+
+        <div class="content" id="content">
+            <!-- Prerequisites -->
+            <div class="category" data-category="prerequisites">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2><span class="category-icon">⚙️</span> Prerequisites</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="folder-section">
+                        <div class="purpose-box">
+                            <h4>Essential Requirements</h4>
+                            <p>Before setting up any folder, ensure you have these installed:</p>
+                        </div>
+
+                        <div class="setup-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                <div class="step-title">Check Python Installation</div>
+                                <div class="code-block">
+<code>python3 --version  # Should be 3.8+</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                <div class="step-title">Check Node.js Installation</div>
+                                <div class="code-block">
+<code>node --version     # Should be 18+</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                <div class="step-title">Check Git Installation</div>
+                                <div class="code-block">
+<code>git --version</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">4</span>
+                                <div class="step-title">Load API Keys (CRITICAL)</div>
+                                <div class="code-block">
+<code>source ~/.env.d/loader.sh llm-apis</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dependencies-box">
+                            <h4>📦 API Keys Setup</h4>
+                            <p>All API keys are in <code>~/.env.d/</code>. Load them before running any system:</p>
+                            <div class="code-block">
+<code># Load LLM APIs (most common)
+source ~/.env.d/loader.sh llm-apis
+
+# Load for AI content creation
+source ~/.env.d/loader.sh llm-apis art-vision audio-music
+
+# Load for automation
+source ~/.env.d/loader.sh automation-agents</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Numbered Directories -->
+            <div class="category" data-category="core">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2><span class="category-icon">📂</span> Core Numbered Directories (00-07)</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <!-- 00_ACTIVE -->
+                    <div class="folder-section">
+                        <div class="folder-title">📁 00_ACTIVE/</div>
+                        <div class="folder-path">/Users/steven/AVATARARTS/00_ACTIVE/</div>
+
+                        <div class="purpose-box">
+                            <h4>Purpose</h4>
+                            <p>Active projects and development work</p>
+                        </div>
+
+                        <div class="setup-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                <div class="step-title">Navigate to directory</div>
+                                <div class="code-block">
+<code>cd /Users/steven/AVATARARTS/00_ACTIVE</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                <div class="step-title">Load API keys</div>
+                                <div class="code-block">
+<code>source ~/.env.d/loader.sh llm-apis</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                <div class="step-title">Setup Business Projects</div>
+                                <div class="code-block">
+<code>cd BUSINESS/passive-income-empire
+./setup_environment.sh</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">4</span>
+                                <div class="step-title">Setup Development Tools</div>
+                                <div class="code-block">
+<code>cd DEVELOPMENT/UTILITIES_TOOLS
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dependencies-box">
+                            <h4>📦 Dependencies</h4>
+                            <div class="dependencies-list">
+                                <span class="dependency-badge">Python 3.8+</span>
+                                <span class="dependency-badge">Node.js 18+</span>
+                                <span class="dependency-badge">~/.env.d/ API keys</span>
+                                <span class="dependency-badge">01_TOOLS/ scripts</span>
+                                <span class="dependency-badge">05_DATA/ databases</span>
+                            </div>
+                        </div>
+
+                        <div class="commands-box">
+                            <h4>🔧 Common Commands</h4>
+                            <div class="command-item">cd BUSINESS/passive-income-empire && ./launch_empire.sh</div>
+                            <div class="command-item">cd DEVELOPMENT/UTILITIES_TOOLS && python3 tools/scripts/analyze_project.py</div>
+                        </div>
+                    </div>
+
+                    <!-- 01_TOOLS -->
+                    <div class="folder-section">
+                        <div class="folder-title">📁 01_TOOLS/</div>
+                        <div class="folder-path">/Users/steven/AVATARARTS/01_TOOLS/</div>
+
+                        <div class="purpose-box">
+                            <h4>Purpose</h4>
+                            <p>Tools, utilities, and analysis scripts</p>
+                        </div>
+
+                        <div class="setup-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                <div class="step-title">Navigate to directory</div>
+                                <div class="code-block">
+<code>cd /Users/steven/AVATARARTS/01_TOOLS</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                <div class="step-title">Create virtual environment (optional but recommended)</div>
+                                <div class="code-block">
+<code>python3 -m venv venv
+source venv/bin/activate</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                <div class="step-title">Install dependencies</div>
+                                <div class="code-block">
+<code>pip install pandas numpy sqlite3
+# Or install from requirements if available
+pip install -r requirements.txt</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">4</span>
+                                <div class="step-title">Setup dashboards</div>
+                                <div class="code-block">
+<code>cd dashboards
+python3 master_revenue_dashboard.py --setup</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dependencies-box">
+                            <h4>📦 Dependencies</h4>
+                            <div class="dependencies-list">
+                                <span class="dependency-badge">Python 3.8+</span>
+                                <span class="dependency-badge">pandas</span>
+                                <span class="dependency-badge">numpy</span>
+                                <span class="dependency-badge">sqlite3</span>
+                                <span class="dependency-badge">05_DATA/ databases</span>
+                            </div>
+                        </div>
+
+                        <div class="commands-box">
+                            <h4>🔧 Common Scripts</h4>
+                            <div class="command-item">python3 scripts/analyze_structure.py</div>
+                            <div class="command-item">python3 scripts/deep_comprehensive_analysis.py</div>
+                            <div class="command-item">python3 scripts/find_large_files.py . 10</div>
+                            <div class="command-item">python3 dashboards/master_revenue_dashboard.py</div>
+                        </div>
+                    </div>
+
+                    <!-- 02_DOCUMENTATION -->
+                    <div class="folder-section">
+                        <div class="folder-title">📁 02_DOCUMENTATION/</div>
+                        <div class="folder-path">/Users/steven/AVATARARTS/02_DOCUMENTATION/</div>
+
+                        <div class="purpose-box">
+                            <h4>Purpose</h4>
+                            <p>Documentation and guides</p>
+                        </div>
+
+                        <div class="setup-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                <div class="step-title">Navigate to directory</div>
+                                <div class="code-block">
+<code>cd /Users/steven/AVATARARTS/02_DOCUMENTATION</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                <div class="step-title">Review key files</div>
+                                <div class="code-block">
+<code># Quick start guide
+cat QUICK_START_GUIDE.md
+
+# Workflow guide
+cat WORKFLOW_GUIDE.md
+
+# System architecture
+cat SYSTEM_ARCHITECTURE_MAP.md</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                <div class="step-title">No special setup required</div>
+                                <p>These are markdown files for reference</p>
+                            </div>
+                        </div>
+
+                        <div class="dependencies-box">
+                            <h4>📦 Dependencies</h4>
+                            <div class="dependencies-list">
+                                <span class="dependency-badge">Markdown viewer</span>
+                                <span class="dependency-badge">Documentation systems</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 04_WEBSITES -->
+                    <div class="folder-section">
+                        <div class="folder-title">📁 04_WEBSITES/</div>
+                        <div class="folder-path">/Users/steven/AVATARARTS/04_WEBSITES/</div>
+
+                        <div class="purpose-box">
+                            <h4>Purpose</h4>
+                            <p>Website projects and deployments</p>
+                        </div>
+
+                        <div class="setup-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                <div class="step-title">Navigate to directory</div>
+                                <div class="code-block">
+<code>cd /Users/steven/AVATARARTS/04_WEBSITES</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                <div class="step-title">Check for setup scripts</div>
+                                <div class="code-block">
+<code>find . -name "setup*.sh" -o -name "setup*.py"</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                <div class="step-title">Setup specific website</div>
+                                <div class="code-block">
+<code>cd ai-sites/active/heavenlyHands
+./setup_environment.sh  # If available</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">4</span>
+                                <div class="step-title">Install dependencies</div>
+                                <div class="code-block">
+<code># For Node.js projects
+npm install
+
+# For Python projects
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dependencies-box">
+                            <h4>📦 Dependencies</h4>
+                            <div class="dependencies-list">
+                                <span class="dependency-badge">Node.js 18+</span>
+                                <span class="dependency-badge">Python 3.8+</span>
+                                <span class="dependency-badge">~/.env.d/ API keys</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 05_DATA -->
+                    <div class="folder-section">
+                        <div class="folder-title">📁 05_DATA/</div>
+                        <div class="folder-path">/Users/steven/AVATARARTS/05_DATA/</div>
+
+                        <div class="purpose-box">
+                            <h4>Purpose</h4>
+                            <p>Data files, databases, and exports</p>
+                        </div>
+
+                        <div class="setup-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                <div class="step-title">Navigate to directory</div>
+                                <div class="code-block">
+<code>cd /Users/steven/AVATARARTS/05_DATA</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                <div class="step-title">Check database files</div>
+                                <div class="code-block">
+<code>find . -name "*.db" -o -name "*.sqlite"</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                <div class="step-title">Initialize databases (if needed)</div>
+                                <div class="code-block">
+<code># SQLite databases are ready to use
+sqlite3 database.db ".tables"</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">4</span>
+                                <div class="step-title">No special setup required</div>
+                                <p>Data files are ready to use</p>
+                            </div>
+                        </div>
+
+                        <div class="dependencies-box">
+                            <h4>📦 Dependencies</h4>
+                            <div class="dependencies-list">
+                                <span class="dependency-badge">SQLite3</span>
+                                <span class="dependency-badge">Python scripts</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 06_SEO_MARKETING -->
+                    <div class="folder-section">
+                        <div class="folder-title">📁 06_SEO_MARKETING/</div>
+                        <div class="folder-path">/Users/steven/AVATARARTS/06_SEO_MARKETING/</div>
+
+                        <div class="purpose-box">
+                            <h4>Purpose</h4>
+                            <p>SEO tools and marketing content</p>
+                        </div>
+
+                        <div class="setup-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                <div class="step-title">Navigate to directory</div>
+                                <div class="code-block">
+<code>cd /Users/steven/AVATARARTS/06_SEO_MARKETING</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                <div class="step-title">Load API keys</div>
+                                <div class="code-block">
+<code>source ~/.env.d/loader.sh llm-apis</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                <div class="step-title">Setup SEO tools</div>
+                                <div class="code-block">
+<code># Check for setup scripts
+find . -name "setup*.sh" -o -name "setup*.py"
+
+# Install Python dependencies
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt  # If available</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">4</span>
+                                <div class="step-title">Run SEO analysis</div>
+                                <div class="code-block">
+<code># Example - adjust based on available scripts
+python3 scripts/seo_analyzer.py</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dependencies-box">
+                            <h4>📦 Dependencies</h4>
+                            <div class="dependencies-list">
+                                <span class="dependency-badge">Python 3.8+</span>
+                                <span class="dependency-badge">~/.env.d/ API keys</span>
+                                <span class="dependency-badge">SEO content packages</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documentation Systems -->
+            <div class="category" data-category="docs">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2><span class="category-icon">📚</span> Documentation Systems</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <!-- docs-docusaurus -->
+                    <div class="folder-section">
+                        <div class="folder-title">📁 docs-docusaurus/</div>
+                        <div class="folder-path">/Users/steven/AVATARARTS/docs-docusaurus/</div>
+
+                        <div class="purpose-box">
+                            <h4>Purpose</h4>
+                            <p>Docusaurus documentation site</p>
+                        </div>
+
+                        <div class="setup-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                <div class="step-title">Navigate to directory</div>
+                                <div class="code-block">
+<code>cd /Users/steven/AVATARARTS/docs-docusaurus</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                <div class="step-title">Install dependencies</div>
+                                <div class="code-block">
+<code>npm install</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                <div class="step-title">Start development server</div>
+                                <div class="code-block">
+<code>npm start</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">4</span>
+                                <div class="step-title">Build for production</div>
+                                <div class="code-block">
+<code>npm run build
+npm run serve</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dependencies-box">
+                            <h4>📦 Dependencies</h4>
+                            <div class="dependencies-list">
+                                <span class="dependency-badge">Node.js 18+</span>
+                                <span class="dependency-badge">npm</span>
+                                <span class="dependency-badge">@docusaurus/core ^3.0.0</span>
+                                <span class="dependency-badge">React ^18.2.0</span>
+                            </div>
+                        </div>
+
+                        <div class="access-box">
+                            <h4>🌐 Access</h4>
+                            <p><strong>Development:</strong> <code>http://localhost:3000</code></p>
+                            <p><strong>Production:</strong> After build, served locally</p>
+                        </div>
+                    </div>
+
+                    <!-- docs-mkdocs -->
+                    <div class="folder-section">
+                        <div class="folder-title">📁 docs-mkdocs/</div>
+                        <div class="folder-path">/Users/steven/AVATARARTS/docs-mkdocs/</div>
+
+                        <div class="purpose-box">
+                            <h4>Purpose</h4>
+                            <p>MkDocs documentation site</p>
+                        </div>
+
+                        <div class="setup-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                <div class="step-title">Navigate to directory</div>
+                                <div class="code-block">
+<code>cd /Users/steven/AVATARARTS/docs-mkdocs</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                <div class="step-title">Create virtual environment</div>
+                                <div class="code-block">
+<code>python3 -m venv .venv
+source .venv/bin/activate</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                <div class="step-title">Install dependencies</div>
+                                <div class="code-block">
+<code>pip install -r requirements.txt</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">4</span>
+                                <div class="step-title">Start development server</div>
+                                <div class="code-block">
+<code>mkdocs serve</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">5</span>
+                                <div class="step-title">Build for production</div>
+                                <div class="code-block">
+<code>mkdocs build</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dependencies-box">
+                            <h4>📦 Dependencies</h4>
+                            <div class="dependencies-list">
+                                <span class="dependency-badge">Python 3.8+</span>
+                                <span class="dependency-badge">mkdocs >=1.5.0</span>
+                                <span class="dependency-badge">mkdocs-material >=9.0.0</span>
+                                <span class="dependency-badge">mkdocs-minify-plugin >=0.7.0</span>
+                            </div>
+                        </div>
+
+                        <div class="access-box">
+                            <h4>🌐 Access</h4>
+                            <p><strong>Development:</strong> <code>http://127.0.0.1:8000</code></p>
+                            <p><strong>Production:</strong> <code>site/</code> directory after build</p>
+                        </div>
+                    </div>
+
+                    <!-- docs-sphinx -->
+                    <div class="folder-section">
+                        <div class="folder-title">📁 docs-sphinx/</div>
+                        <div class="folder-path">/Users/steven/AVATARARTS/docs-sphinx/</div>
+
+                        <div class="purpose-box">
+                            <h4>Purpose</h4>
+                            <p>Sphinx documentation site</p>
+                        </div>
+
+                        <div class="setup-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                <div class="step-title">Navigate to directory</div>
+                                <div class="code-block">
+<code>cd /Users/steven/AVATARARTS/docs-sphinx</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                <div class="step-title">Create virtual environment</div>
+                                <div class="code-block">
+<code>python3 -m venv .venv
+source .venv/bin/activate</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                <div class="step-title">Install dependencies</div>
+                                <div class="code-block">
+<code>pip install -r source/requirements.txt
+# Or
+pip install sphinx sphinx-rtd-theme</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">4</span>
+                                <div class="step-title">Build documentation</div>
+                                <div class="code-block">
+<code>make html
+# Or
+sphinx-build -b html source build</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">5</span>
+                                <div class="step-title">View documentation</div>
+                                <div class="code-block">
+<code>open build/html/index.html</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dependencies-box">
+                            <h4>📦 Dependencies</h4>
+                            <div class="dependencies-list">
+                                <span class="dependency-badge">Python 3.8+</span>
+                                <span class="dependency-badge">Sphinx</span>
+                                <span class="dependency-badge">sphinx-rtd-theme</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- docs-vitepress -->
+                    <div class="folder-section">
+                        <div class="folder-title">📁 docs-vitepress/</div>
+                        <div class="folder-path">/Users/steven/AVATARARTS/docs-vitepress/</div>
+
+                        <div class="purpose-box">
+                            <h4>Purpose</h4>
+                            <p>VitePress documentation site</p>
+                        </div>
+
+                        <div class="setup-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                <div class="step-title">Navigate to directory</div>
+                                <div class="code-block">
+<code>cd /Users/steven/AVATARARTS/docs-vitepress</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                <div class="step-title">Install dependencies</div>
+                                <div class="code-block">
+<code>npm install</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                <div class="step-title">Start development server</div>
+                                <div class="code-block">
+<code>npm run dev</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">4</span>
+                                <div class="step-title">Build for production</div>
+                                <div class="code-block">
+<code>npm run build
+npm run preview</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dependencies-box">
+                            <h4>📦 Dependencies</h4>
+                            <div class="dependencies-list">
+                                <span class="dependency-badge">Node.js 18+</span>
+                                <span class="dependency-badge">npm</span>
+                                <span class="dependency-badge">vitepress ^1.6.4</span>
+                            </div>
+                        </div>
+
+                        <div class="access-box">
+                            <h4>🌐 Access</h4>
+                            <p><strong>Development:</strong> <code>http://localhost:5173</code></p>
+                            <p><strong>Production:</strong> After build, preview locally</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business & Revenue -->
+            <div class="category" data-category="business">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2><span class="category-icon">💼</span> Business & Revenue</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <!-- BUSINESS -->
+                    <div class="folder-section">
+                        <div class="folder-title">📁 BUSINESS/</div>
+                        <div class="folder-path">/Users/steven/AVATARARTS/BUSINESS/</div>
+
+                        <div class="purpose-box">
+                            <h4>Purpose</h4>
+                            <p>Business projects and revenue systems</p>
+                        </div>
+
+                        <div class="setup-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                <div class="step-title">Navigate to directory</div>
+                                <div class="code-block">
+<code>cd /Users/steven/AVATARARTS/BUSINESS</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                <div class="step-title">Load API keys</div>
+                                <div class="code-block">
+<code>source ~/.env.d/loader.sh llm-apis</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                <div class="step-title">Check available projects</div>
+                                <div class="code-block">
+<code>ls -la</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">4</span>
+                                <div class="step-title">Setup specific project</div>
+                                <div class="code-block">
+<code>cd passive-income-empire
+./setup_environment.sh</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dependencies-box">
+                            <h4>📦 Dependencies</h4>
+                            <div class="dependencies-list">
+                                <span class="dependency-badge">Python 3.8+</span>
+                                <span class="dependency-badge">~/.env.d/ API keys</span>
+                                <span class="dependency-badge">01_TOOLS/ scripts</span>
+                                <span class="dependency-badge">05_DATA/ databases</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Revenue -->
+                    <div class="folder-section">
+                        <div class="folder-title">📁 Revenue/</div>
+                        <div class="folder-path">/Users/steven/AVATARARTS/Revenue/</div>
+
+                        <div class="purpose-box">
+                            <h4>Purpose</h4>
+                            <p>Revenue generation systems and monetization</p>
+                        </div>
+
+                        <div class="setup-steps">
+                            <div class="step">
+                                <span class="step-number">1</span>
+                                <div class="step-title">Navigate to directory</div>
+                                <div class="code-block">
+<code>cd /Users/steven/AVATARARTS/Revenue</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">2</span>
+                                <div class="step-title">Load API keys</div>
+                                <div class="code-block">
+<code>source ~/.env.d/loader.sh llm-apis automation-agents</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">3</span>
+                                <div class="step-title">Check structure</div>
+                                <div class="code-block">
+<code>ls -la</code>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-number">4</span>
+                                <div class="step-title">Setup Trend Pulse OS</div>
+                                <div class="code-block">
+<code>cd trend-pulse-os
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dependencies-box">
+                            <h4>📦 Dependencies</h4>
+                            <div class="dependencies-list">
+                                <span class="dependency-badge">Python 3.8+</span>
+                                <span class="dependency-badge">~/.env.d/ API keys</span>
+                                <span class="dependency-badge">Various Python packages</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Setup Checklist -->
+            <div class="category" data-category="checklist">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2><span class="category-icon">✅</span> Quick Setup Checklist</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="folder-section">
+                        <div class="checklist">
+                            <h3 style="margin-bottom: 20px;">Initial Setup (Do Once)</h3>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check1">
+                                <label for="check1">Install Python 3.8+</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check2">
+                                <label for="check2">Install Node.js 18+</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check3">
+                                <label for="check3">Install Git</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check4">
+                                <label for="check4">Setup ~/.env.d/ API keys</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check5">
+                                <label for="check5">Load API keys: source ~/.env.d/loader.sh llm-apis</label>
+                            </div>
+                        </div>
+
+                        <div class="checklist" style="margin-top: 30px;">
+                            <h3 style="margin-bottom: 20px;">Per-Folder Setup</h3>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check6">
+                                <label for="check6"><strong>00_ACTIVE:</strong> Run ./setup_environment.sh in business projects</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check7">
+                                <label for="check7"><strong>01_TOOLS:</strong> Create venv and install dependencies</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check8">
+                                <label for="check8"><strong>docs-docusaurus:</strong> Run npm install</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check9">
+                                <label for="check9"><strong>docs-mkdocs:</strong> Create venv and pip install -r requirements.txt</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check10">
+                                <label for="check10"><strong>docs-sphinx:</strong> Create venv and install Sphinx</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check11">
+                                <label for="check11"><strong>docs-vitepress:</strong> Run npm install</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check12">
+                                <label for="check12"><strong>Business systems:</strong> Load API keys and run setup scripts</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check13">
+                                <label for="check13"><strong>n8n:</strong> Install globally or use npx</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Reference -->
+            <div class="category" data-category="reference">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2><span class="category-icon">📖</span> Quick Reference</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="folder-section">
+                        <div class="commands-box">
+                            <h4>🔑 Load API Keys</h4>
+                            <div class="command-item">source ~/.env.d/loader.sh llm-apis</div>
+                            <div class="command-item">source ~/.env.d/loader.sh llm-apis art-vision audio-music</div>
+                            <div class="command-item">source ~/.env.d/loader.sh all</div>
+                        </div>
+
+                        <div class="commands-box">
+                            <h4>🚀 Start Documentation Sites</h4>
+                            <div class="command-item">cd docs-docusaurus && npm start</div>
+                            <div class="command-item">cd docs-mkdocs && mkdocs serve</div>
+                            <div class="command-item">cd docs-sphinx && make html</div>
+                            <div class="command-item">cd docs-vitepress && npm run dev</div>
+                        </div>
+
+                        <div class="commands-box">
+                            <h4>🔧 Run Analysis Tools</h4>
+                            <div class="command-item">cd 01_TOOLS/scripts && python3 analyze_structure.py</div>
+                            <div class="command-item">cd 01_TOOLS/scripts && python3 deep_comprehensive_analysis.py</div>
+                        </div>
+
+                        <div class="commands-box">
+                            <h4>💼 Start Business Systems</h4>
+                            <div class="command-item">cd 00_ACTIVE/BUSINESS/passive-income-empire && ./launch_empire.sh</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">30+</div>
+                <div class="stat-label">Folders Documented</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Setup Steps</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Documentation Systems</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">8</div>
+                <div class="stat-label">Core Directories</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleCategory(header) {
+            const category = header.parentElement;
+            const content = category.querySelector('.category-content');
+            const icon = header.querySelector('.toggle-icon');
+
+            content.classList.toggle('collapsed');
+            header.classList.toggle('collapsed');
+        }
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const sections = document.querySelectorAll('.folder-section, .step, .command-item');
+
+            sections.forEach(section => {
+                const text = section.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    section.classList.remove('hidden');
+                    section.classList.add('highlight');
+                    // Expand parent categories
+                    let parent = section.closest('.category');
+                    if (parent) {
+                        const content = parent.querySelector('.category-content');
+                        content.classList.remove('collapsed');
+                        parent.querySelector('.category-header').classList.remove('collapsed');
+                    }
+                } else {
+                    section.classList.remove('highlight');
+                    if (searchTerm) {
+                        section.classList.add('hidden');
+                    } else {
+                        section.classList.remove('hidden');
+                    }
+                }
+            });
+
+            // Remove highlight after 2 seconds
+            setTimeout(() => {
+                sections.forEach(section => section.classList.remove('highlight'));
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
