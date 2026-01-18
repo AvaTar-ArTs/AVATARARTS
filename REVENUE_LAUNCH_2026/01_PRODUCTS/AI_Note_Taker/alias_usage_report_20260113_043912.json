@@ -1,0 +1,544 @@
+{
+  "timestamp": "2026-01-13T04:39:12.014845",
+  "summary": {
+    "total_aliases": 122,
+    "used_aliases": 19,
+    "unused_aliases": 103,
+    "total_functions": 38,
+    "used_functions": 6,
+    "unused_functions": 32
+  },
+  "unused_aliases": {
+    "python3.11": {
+      "line": 91,
+      "definition": "alias python3.11='/usr/local/opt/python@3.11/bin/python3.11'"
+    },
+    "python3.12": {
+      "line": 94,
+      "definition": "alias python3.12='/usr/local/opt/python@3.12/bin/python3.12'"
+    },
+    "pip3.11": {
+      "line": 103,
+      "definition": "alias pip3.11='python3.11 -m pip'"
+    },
+    "pip3.12": {
+      "line": 106,
+      "definition": "alias pip3.12='python3.12 -m pip'"
+    },
+    "pip3": {
+      "line": 110,
+      "definition": "alias pip3='python3.12 -m pip'"
+    },
+    "env-load": {
+      "line": 187,
+      "definition": "alias env-load='source ~/.env.d/loader.sh'"
+    },
+    "env-load-all": {
+      "line": 188,
+      "definition": "alias env-load-all='source ~/.env.d/loader.sh'"
+    },
+    "env-load-llm": {
+      "line": 189,
+      "definition": "alias env-load-llm='source ~/.env.d/loader.sh llm-apis'"
+    },
+    "env-load-audio": {
+      "line": 190,
+      "definition": "alias env-load-audio='source ~/.env.d/loader.sh audio-music'"
+    },
+    "env-rebuild": {
+      "line": 192,
+      "definition": "alias env-rebuild='python3 ~/.env.d/envctl.py build --force'"
+    },
+    "env-validate": {
+      "line": 194,
+      "definition": "alias env-validate='python3 ~/.env.d/envctl.py validate'"
+    },
+    "env-status": {
+      "line": 195,
+      "definition": "alias env-status='source ~/.env.d/loader.sh --status'"
+    },
+    "env-help": {
+      "line": 197,
+      "definition": "alias env-help='cat ~/.env.d/CHEATSHEET.txt'"
+    },
+    "env-quick": {
+      "line": 198,
+      "definition": "alias env-quick='cat ~/.env.d/QUICKSTART.md'"
+    },
+    "env-edit": {
+      "line": 199,
+      "definition": "alias env-edit='cd ~/.env.d && ls -la *.env'"
+    },
+    "env-llm": {
+      "line": 203,
+      "definition": "alias env-llm='${EDITOR:-open -e} ~/.env.d/llm-apis.env'"
+    },
+    "env-audio": {
+      "line": 204,
+      "definition": "alias env-audio='${EDITOR:-open -e} ~/.env.d/audio-music.env'"
+    },
+    "env-docs": {
+      "line": 205,
+      "definition": "alias env-docs='${EDITOR:-open -e} ~/.env.d/documents.env'"
+    },
+    "env-notify": {
+      "line": 206,
+      "definition": "alias env-notify='${EDITOR:-open -e} ~/.env.d/notifications.env'"
+    },
+    "env-cloud": {
+      "line": 207,
+      "definition": "alias env-cloud='${EDITOR:-open -e} ~/.env.d/cloud-infrastructure.env'"
+    },
+    "..": {
+      "line": 330,
+      "definition": "alias ..='cd ..'"
+    },
+    "...": {
+      "line": 331,
+      "definition": "alias ...='cd ../..'"
+    },
+    "....": {
+      "line": 332,
+      "definition": "alias ....='cd ../../..'"
+    },
+    ".....": {
+      "line": 333,
+      "definition": "alias .....='cd ../../../..'"
+    },
+    "gs": {
+      "line": 342,
+      "definition": "alias gs='git status'"
+    },
+    "ga": {
+      "line": 343,
+      "definition": "alias ga='git add'"
+    },
+    "gc": {
+      "line": 344,
+      "definition": "alias gc='git commit'"
+    },
+    "gp": {
+      "line": 345,
+      "definition": "alias gp='git push'"
+    },
+    "gl": {
+      "line": 346,
+      "definition": "alias gl='git pull'"
+    },
+    "gd": {
+      "line": 347,
+      "definition": "alias gd='git diff'"
+    },
+    "c": {
+      "line": 350,
+      "definition": "alias c='clear'"
+    },
+    "h": {
+      "line": 351,
+      "definition": "alias h='history'"
+    },
+    "path": {
+      "line": 352,
+      "definition": "alias path='echo -e ${PATH//:/\\\\n}'"
+    },
+    "now": {
+      "line": 353,
+      "definition": "alias now='date +\"%T\"'"
+    },
+    "nowdate": {
+      "line": 354,
+      "definition": "alias nowdate='date +\"%d-%m-%Y\"'"
+    },
+    "pip-list": {
+      "line": 357,
+      "definition": "alias pip-list='pip list'"
+    },
+    "pip-outdated": {
+      "line": 358,
+      "definition": "alias pip-outdated='pip list --outdated'"
+    },
+    "pip-upgrade": {
+      "line": 359,
+      "definition": "alias pip-upgrade='pip install --upgrade'"
+    },
+    "py-check": {
+      "line": 360,
+      "definition": "alias py-check='python3 -m py_compile'"
+    },
+    "py-serve": {
+      "line": 361,
+      "definition": "alias py-serve='python3 -m http.server 8000'"
+    },
+    "nb": {
+      "line": 372,
+      "definition": "alias nb='echo \"\u26a0\ufe0f  nanobanana directory not found at $HOME/nanobanana/nanobanan"
+    },
+    "nb-test": {
+      "line": 373,
+      "definition": "alias nb-test='echo \"\u26a0\ufe0f  nanobanana directory not found\"'"
+    },
+    "nb-run": {
+      "line": 374,
+      "definition": "alias nb-run='echo \"\u26a0\ufe0f  nanobanana directory not found\"'"
+    },
+    "nb-install": {
+      "line": 375,
+      "definition": "alias nb-install='echo \"\u26a0\ufe0f  nanobanana directory not found\"'"
+    },
+    "z": {
+      "line": 386,
+      "definition": "alias z='cd'  # Simple fallback"
+    },
+    "ll": {
+      "line": 397,
+      "definition": "alias ll='ls -alF'"
+    },
+    "lt": {
+      "line": 400,
+      "definition": "alias lt='ls -altr'"
+    },
+    "la": {
+      "line": 398,
+      "definition": "alias la='ls -A'"
+    },
+    "l": {
+      "line": 399,
+      "definition": "alias l='ls -CF'"
+    },
+    "bcat": {
+      "line": 409,
+      "definition": "alias bcat=\"/bin/cat\"  # Keep bcat as original cat"
+    },
+    "ai-menu": {
+      "line": 521,
+      "definition": "alias ai-menu='echo \"\u26a0\ufe0f  ai_unified_menu.sh not found (checked ~/scripts/sh, ~/D"
+    },
+    "ask-grok": {
+      "line": 526,
+      "definition": "alias ask-grok=\"grok\""
+    },
+    "ask-ollama": {
+      "line": 527,
+      "definition": "alias ask-ollama=\"ollama run llama3.1:8b\""
+    },
+    "py-env": {
+      "line": 827,
+      "definition": "alias py-env='echo \"\u26a0\ufe0f  Python directory not found (checked ~/pythons and ~/Docu"
+    },
+    "py-analyze": {
+      "line": 828,
+      "definition": "alias py-analyze='echo \"\u26a0\ufe0f  Python scripts directory not found\"'"
+    },
+    "py-ai": {
+      "line": 829,
+      "definition": "alias py-ai='echo \"\u26a0\ufe0f  Python directory not found\"'"
+    },
+    "py-verify": {
+      "line": 830,
+      "definition": "alias py-verify='echo \"\u26a0\ufe0f  Python directory not found\"'"
+    },
+    "py-format": {
+      "line": 835,
+      "definition": "alias py-format=\"black --line-length 120\""
+    },
+    "py-flake": {
+      "line": 836,
+      "definition": "alias py-flake=\"flake8 --max-line-length 120\""
+    },
+    "cd-py": {
+      "line": 853,
+      "definition": "alias cd-py='echo \"\u26a0\ufe0f  Python directory not found (checked ~/pythons and ~/Docum"
+    },
+    "cd-yt": {
+      "line": 854,
+      "definition": "alias cd-yt='echo \"\u26a0\ufe0f  Python directory not found\"'"
+    },
+    "cd-insta": {
+      "line": 855,
+      "definition": "alias cd-insta='echo \"\u26a0\ufe0f  Python directory not found\"'"
+    },
+    "cd-ai": {
+      "line": 856,
+      "definition": "alias cd-ai='echo \"\u26a0\ufe0f  Python directory not found\"'"
+    },
+    "pyanalyze": {
+      "line": 863,
+      "definition": "alias pyanalyze=\"py-analyze\""
+    },
+    "pyai": {
+      "line": 864,
+      "definition": "alias pyai=\"py-ai\""
+    },
+    "pyverify": {
+      "line": 865,
+      "definition": "alias pyverify=\"py-verify\""
+    },
+    "pyformat": {
+      "line": 866,
+      "definition": "alias pyformat=\"py-format\""
+    },
+    "pyflake": {
+      "line": 867,
+      "definition": "alias pyflake=\"py-flake\""
+    },
+    "cdpy": {
+      "line": 868,
+      "definition": "alias cdpy=\"cd-py\""
+    },
+    "cdyt": {
+      "line": 869,
+      "definition": "alias cdyt=\"cd-yt\""
+    },
+    "cdinsta": {
+      "line": 870,
+      "definition": "alias cdinsta=\"cd-insta\""
+    },
+    "cdai": {
+      "line": 871,
+      "definition": "alias cdai=\"cd-ai\""
+    },
+    "suno-summary": {
+      "line": 915,
+      "definition": "alias suno-summary='echo \"\u26a0\ufe0f  SUNO_COLLECTION_SUMMARY.md not found\"'"
+    },
+    "suno-browser": {
+      "line": 921,
+      "definition": "alias suno-browser='echo \"\u26a0\ufe0f  SUNO_ULTIMATE_EXTRACTOR.js not found\"'"
+    },
+    "suno-master": {
+      "line": 927,
+      "definition": "alias suno-master='echo \"\u26a0\ufe0f  suno_ultimate_master.csv not found\"'"
+    },
+    "suno-extract": {
+      "line": 942,
+      "definition": "alias suno-extract='echo \"\u26a0\ufe0f  pythons directory not found (checked ~/pythons and"
+    },
+    "suno-merge": {
+      "line": 943,
+      "definition": "alias suno-merge='echo \"\u26a0\ufe0f  pythons directory not found\"'"
+    },
+    "venv-setup": {
+      "line": 1217,
+      "definition": "alias venv-setup='venvsetup'"
+    },
+    "psetup": {
+      "line": 1253,
+      "definition": "alias psetup='setup-project'"
+    },
+    "preq": {
+      "line": 1254,
+      "definition": "alias preq='reqs'"
+    },
+    "pinit": {
+      "line": 1255,
+      "definition": "alias pinit='init-project'"
+    },
+    "env-check": {
+      "line": 1307,
+      "definition": "alias env-check='pyenv-status'  # Check Python environment status"
+    },
+    "d2m": {
+      "line": 1673,
+      "definition": "alias d2m='dir2md'"
+    },
+    "d2m-security": {
+      "line": 1675,
+      "definition": "alias d2m-security='dir2md --masking advanced --spicy-strict'"
+    },
+    "filesearch": {
+      "line": 1694,
+      "definition": "alias filesearch='echo \"\u26a0\ufe0f  flamehaven-api not found. Install it first.\"'"
+    },
+    "grok-help": {
+      "line": 1706,
+      "definition": "alias grok-help=\"grok --help\""
+    },
+    "grok-version": {
+      "line": 1707,
+      "definition": "alias grok-version=\"grok --version\""
+    },
+    "grok-config": {
+      "line": 1708,
+      "definition": "alias grok-config=\"cat ~/.grok/user-settings.json | jq .\""
+    },
+    "grok-edit": {
+      "line": 1709,
+      "definition": "alias grok-edit=\"nano ~/.grok/user-settings.json\""
+    },
+    "grok-test": {
+      "line": 1710,
+      "definition": "alias grok-test=\"grok 'Write a simple hello world program in Python'\""
+    },
+    "grok-code": {
+      "line": 1711,
+      "definition": "alias grok-code=\"grok 'Write clean, well-documented code for: '\""
+    },
+    "grok-debug": {
+      "line": 1712,
+      "definition": "alias grok-debug=\"grok 'Help debug this code: '\""
+    },
+    "grok-explain": {
+      "line": 1713,
+      "definition": "alias grok-explain=\"grok 'Explain this concept in simple terms: '\""
+    },
+    "grok-refactor": {
+      "line": 1714,
+      "definition": "alias grok-refactor=\"grok 'Refactor this code to improve it: '\""
+    },
+    "ca-chat": {
+      "line": 1743,
+      "definition": "alias ca-chat=\"cursor-agent chat\""
+    },
+    "ca-cloud": {
+      "line": 1744,
+      "definition": "alias ca-cloud=\"cursor-agent --cloud\""
+    },
+    "ca-models": {
+      "line": 1745,
+      "definition": "alias ca-models=\"cursor-agent --list-models\""
+    },
+    "ca-resume": {
+      "line": 1746,
+      "definition": "alias ca-resume=\"cursor-agent --resume\""
+    },
+    "ca-code": {
+      "line": 1747,
+      "definition": "alias ca-code=\"cursor-agent --print\""
+    },
+    "qwen-help": {
+      "line": 1783,
+      "definition": "alias qwen-help=\"qwen --help\""
+    },
+    "qwen-version": {
+      "line": 1784,
+      "definition": "alias qwen-version=\"qwen --version\""
+    },
+    "qwen-mcp": {
+      "line": 1785,
+      "definition": "alias qwen-mcp=\"qwen mcp\""
+    },
+    "qwen-ext": {
+      "line": 1786,
+      "definition": "alias qwen-ext=\"qwen extensions\""
+    }
+  },
+  "unused_functions": {
+    "ngrok": {
+      "line": 141
+    },
+    "summon": {
+      "line": 222
+    },
+    "ua": {
+      "line": 278
+    },
+    "web-dev": {
+      "line": 288
+    },
+    "sites-commit-all": {
+      "line": 312
+    },
+    "env-fzf": {
+      "line": 421
+    },
+    "fh": {
+      "line": 435
+    },
+    "proj": {
+      "line": 440
+    },
+    "grok-ai": {
+      "line": 481
+    },
+    "_zsh_usage_flush": {
+      "line": 633
+    },
+    "preexec": {
+      "line": 644
+    },
+    "zshexit": {
+      "line": 659
+    },
+    "alias-stats": {
+      "line": 667
+    },
+    "alias-report": {
+      "line": 677
+    },
+    "alias-cleanup": {
+      "line": 713
+    },
+    "_find_venv": {
+      "line": 958
+    },
+    "_auto_venv": {
+      "line": 971
+    },
+    "setup-project": {
+      "line": 999
+    },
+    "reqs": {
+      "line": 1035
+    },
+    "cleanup-project": {
+      "line": 1097
+    },
+    "tobase": {
+      "line": 1148
+    },
+    "venvsetup": {
+      "line": 1200
+    },
+    "cleanup-conda-configs": {
+      "line": 1310
+    },
+    "_zsh_track_alias": {
+      "line": 1350
+    },
+    "organize-files": {
+      "line": 1627
+    },
+    "scan-home": {
+      "line": 1641
+    },
+    "scan-home-all": {
+      "line": 1649
+    },
+    "filesearch-start": {
+      "line": 1695
+    },
+    "grok-quick": {
+      "line": 1717
+    },
+    "grok-file": {
+      "line": 1725
+    },
+    "ca": {
+      "line": 1750
+    },
+    "qw": {
+      "line": 1789
+    }
+  },
+  "top_used": {
+    "pip": 106,
+    "ls": 30,
+    "python3": 26,
+    "cat": 10,
+    "scan-docs": 8,
+    "scan-audio": 4,
+    "scan-images": 4,
+    "envctl": 3,
+    "tree": 3,
+    "base": 3,
+    "d2m-ai": 3,
+    "pyenv": 2,
+    "scan-other": 2,
+    "env-collect": 1,
+    "env-list": 1,
+    "pclean": 1,
+    "scan-videos": 1,
+    "dir2md": 1,
+    "d2m-fast": 1
+  }
+}

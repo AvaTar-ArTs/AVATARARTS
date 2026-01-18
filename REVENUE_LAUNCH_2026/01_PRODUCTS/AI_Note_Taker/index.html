@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trend Pulse Pro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
+      50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.6); }
+    }
+    
+    @keyframes slide-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    
+    .trend-card {
+      animation: slide-up 0.5s ease-out forwards;
+      opacity: 0;
+    }
+    
+    .trend-card:nth-child(1) { animation-delay: 0.1s; }
+    .trend-card:nth-child(2) { animation-delay: 0.2s; }
+    .trend-card:nth-child(3) { animation-delay: 0.3s; }
+    .trend-card:nth-child(4) { animation-delay: 0.4s; }
+    .trend-card:nth-child(5) { animation-delay: 0.5s; }
+    
+    .hot-badge {
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+    
+    .score-ring {
+      transition: stroke-dashoffset 1s ease-out;
+    }
+    
+    .category-pill:hover {
+      transform: scale(1.05);
+      transition: transform 0.2s ease;
+    }
+    
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #1a1a2e; }
+    ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 3px; }
+  </style>
+</head>
+<body class="h-full bg-slate-950 text-slate-100 overflow-auto">
+  <div id="app-wrapper" class="min-h-full w-full bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950">
+    <!-- Decorative Grid Background -->
+    <div class="fixed inset-0 opacity-5 pointer-events-none" style="background-image: linear-gradient(rgba(16,185,129,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.3) 1px, transparent 1px); background-size: 50px 50px;"></div>
+    
+    <div class="relative z-10 p-4 md:p-8 max-w-7xl mx-auto">
+      <!-- Header -->
+      <header class="mb-8">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+            </svg>
+          </div>
+          <h1 id="main-title" class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">Trend Pulse Pro</h1>
+        </div>
+        <p id="subtitle-text" class="text-slate-400 ml-13">Discover top 1-5% trending content with SEO/AEO optimization scores</p>
+      </header>
+      
+      <!-- Filters & Controls -->
+      <div class="flex flex-wrap gap-3 mb-6">
+        <div class="flex gap-2 bg-slate-800/50 rounded-xl p-1 backdrop-blur">
+          <button onclick="setTimeframe('1h')" class="timeframe-btn px-4 py-2 rounded-lg text-sm font-medium transition-all" data-time="1h">1H</button>
+          <button onclick="setTimeframe('24h')" class="timeframe-btn px-4 py-2 rounded-lg text-sm font-medium transition-all active" data-time="24h">24H</button>
+          <button onclick="setTimeframe('7d')" class="timeframe-btn px-4 py-2 rounded-lg text-sm font-medium transition-all" data-time="7d">7D</button>
+          <button onclick="setTimeframe('30d')" class="timeframe-btn px-4 py-2 rounded-lg text-sm font-medium transition-all" data-time="30d">30D</button>
+        </div>
+        
+        <select id="category-filter" onchange="filterCategory(this.value)" class="bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-emerald-500 backdrop-blur cursor-pointer">
+          <option value="all">All Categories</option>
+          <option value="tech">Technology</option>
+          <option value="ai">AI & Machine Learning</option>
+          <option value="business">Business</option>
+          <option value="health">Health & Wellness</option>
+          <option value="finance">Finance</option>
+        </select>
+        
+        <button onclick="refreshData()" class="ml-auto bg-emerald-600 hover:bg-emerald-500 px-4 py-2 rounded-xl text-sm font-medium flex items-center gap-2 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+          </svg>
+          Refresh
+        </button>
+      </div>
+      
+      <!-- Stats Overview -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="bg-slate-800/40 backdrop-blur rounded-2xl p-4 border border-slate-700/50">
+          <div class="flex items-center gap-2 text-slate-400 text-sm mb-1">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            Hot Topics
+          </div>
+          <div class="text-2xl font-bold text-emerald-400 mono">247</div>
+          <div class="text-xs text-emerald-400/70">+18% from yesterday</div>
+        </div>
+        
+        <div class="bg-slate-800/40 backdrop-blur rounded-2xl p-4 border border-slate-700/50">
+          <div class="flex items-center gap-2 text-slate-400 text-sm mb-1">
+            <span class="w-2 h-2 rounded-full bg-orange-400"></span>
+            Rising Fast
+          </div>
+          <div class="text-2xl font-bold text-orange-400 mono">89</div>
+          <div class="text-xs text-orange-400/70">Top 5% velocity</div>
+        </div>
+        
+        <div class="bg-slate-800/40 backdrop-blur rounded-2xl p-4 border border-slate-700/50">
+          <div class="flex items-center gap-2 text-slate-400 text-sm mb-1">
+            <span class="w-2 h-2 rounded-full bg-violet-400"></span>
+            Avg SEO Score
+          </div>
+          <div class="text-2xl font-bold text-violet-400 mono">94.2</div>
+          <div class="text-xs text-violet-400/70">Elite tier content</div>
+        </div>
+        
+        <div class="bg-slate-800/40 backdrop-blur rounded-2xl p-4 border border-slate-700/50">
+          <div class="flex items-center gap-2 text-slate-400 text-sm mb-1">
+            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+            AEO Ready
+          </div>
+          <div class="text-2xl font-bold text-cyan-400 mono">156</div>
+          <div class="text-xs text-cyan-400/70">AI-optimized queries</div>
+        </div>
+      </div>
+      
+      <!-- Main Content Grid -->
+      <div class="grid lg:grid-cols-3 gap-6">
+        <!-- Trending Topics List -->
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-lg font-semibold flex items-center gap-2">
+              <span class="text-2xl">🔥</span> Top Trending Topics
+            </h2>
+            <span class="text-xs text-slate-500 mono">Updated 2 min ago</span>
+          </div>
+          <div id="trends-container" class="space-y-3">
+            <!-- Trend cards will be rendered here -->
+          </div>
+        </div>
+        
+        <!-- Right Sidebar -->
+        <div class="space-y-6">
+          <!-- SEO/AEO Score Panel -->
+          <div class="bg-slate-800/40 backdrop-blur rounded-2xl p-5 border border-slate-700/50">
+            <h3 class="text-sm font-semibold text-slate-300 mb-4 flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+              SEO/AEO Score Breakdown
+            </h3>
+            
+            <div class="flex justify-center mb-6">
+              <div class="relative w-32 h-32">
+                <svg class="w-full h-full transform -rotate-90">
+                  <circle cx="64" cy="64" r="56" fill="none" stroke="#1e293b" stroke-width="12" />
+                  <circle id="score-ring" cx="64" cy="64" r="56" fill="none" stroke="url(#scoreGradient)" stroke-width="12" stroke-linecap="round" stroke-dasharray="352" stroke-dashoffset="35" class="score-ring" />
+                  <defs>
+                    <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#10b981" />
+                      <stop offset="100%" stop-color="#14b8a6" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                  <span class="text-3xl font-bold text-emerald-400 mono">96</span>
+                  <span class="text-xs text-slate-500">Top 1%</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-slate-400">Keyword Density</span>
+                <div class="flex items-center gap-2">
+                  <div class="w-20 h-2 bg-slate-700 rounded-full overflow-hidden">
+                    <div class="h-full bg-emerald-400 rounded-full" style="width: 92%"></div>
+                  </div>
+                  <span class="text-xs mono text-emerald-400">92%</span>
+                </div>
+              </div>
+              
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-slate-400">Search Intent Match</span>
+                <div class="flex items-center gap-2">
+                  <div class="w-20 h-2 bg-slate-700 rounded-full overflow-hidden">
+                    <div class="h-full bg-teal-400 rounded-full" style="width: 98%"></div>
+                  </div>
+                  <span class="text-xs mono text-teal-400">98%</span>
+                </div>
+              </div>
+              
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-slate-400">AEO Compatibility</span>
+                <div class="flex items-center gap-2">
+                  <div class="w-20 h-2 bg-slate-700 rounded-full overflow-hidden">
+                    <div class="h-full bg-cyan-400 rounded-full" style="width: 95%"></div>
+                  </div>
+                  <span class="text-xs mono text-cyan-400">95%</span>
+                </div>
+              </div>
+              
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-slate-400">Featured Snippet Ready</span>
+                <div class="flex items-center gap-2">
+                  <div class="w-20 h-2 bg-slate-700 rounded-full overflow-hidden">
+                    <div class="h-full bg-violet-400 rounded-full" style="width: 89%"></div>
+                  </div>
+                  <span class="text-xs mono text-violet-400">89%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Rising Keywords -->
+          <div class="bg-slate-800/40 backdrop-blur rounded-2xl p-5 border border-slate-700/50">
+            <h3 class="text-sm font-semibold text-slate-300 mb-4 flex items-center gap-2">
+              <span class="text-lg">📈</span> Rising Keywords
+            </h3>
+            <div class="space-y-2" id="keywords-container">
+              <!-- Keywords will be rendered here -->
+            </div>
+          </div>
+          
+          <!-- Quick Actions -->
+          <div class="bg-gradient-to-br from-emerald-900/40 to-teal-900/40 backdrop-blur rounded-2xl p-5 border border-emerald-700/30">
+            <h3 class="text-sm font-semibold text-emerald-300 mb-3">Quick Actions</h3>
+            <div class="space-y-2">
+              <button onclick="exportReport()" class="w-full bg-emerald-600/30 hover:bg-emerald-600/50 text-emerald-300 px-4 py-2.5 rounded-xl text-sm font-medium flex items-center justify-center gap-2 transition-colors border border-emerald-600/30">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                Export Report
+              </button>
+              <button onclick="setAlerts()" class="w-full bg-slate-700/50 hover:bg-slate-700 text-slate-300 px-4 py-2.5 rounded-xl text-sm font-medium flex items-center justify-center gap-2 transition-colors border border-slate-600/30">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                </svg>
+                Set Trend Alerts
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Toast Notification -->
+      <div id="toast" class="fixed bottom-6 right-6 bg-emerald-600 text-white px-6 py-3 rounded-xl shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+        <span id="toast-message">Action completed</span>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Default configuration
+    const defaultConfig = {
+      main_title: 'Trend Pulse Pro',
+      subtitle_text: 'Discover top 1-5% trending content with SEO/AEO optimization scores',
+      background_color: '#020617',
+      surface_color: '#1e293b',
+      text_color: '#f1f5f9',
+      primary_action: '#10b981',
+      secondary_action: '#14b8a6',
+      font_family: 'Space Grotesk',
+      font_size: 16
+    };
+
+    let config = { ...defaultConfig };
+    let currentTimeframe = '24h';
+    let currentCategory = 'all';
+
+    // Trend data
+    const trendData = [
+      {
+        id: 1,
+        title: 'AI Agents for Enterprise Automation',
+        category: 'ai',
+        categoryLabel: 'AI & ML',
+        velocity: 2847,
+        velocityChange: '+342%',
+        seoScore: 98,
+        aeoScore: 96,
+        status: 'hot',
+        searchVolume: '1.2M',
+        competition: 'Low',
+        cpc: '$4.82'
+      },
+      {
+        id: 2,
+        title: 'Sustainable Tech Investment Strategies',
+        category: 'finance',
+        categoryLabel: 'Finance',
+        velocity: 1923,
+        velocityChange: '+189%',
+        seoScore: 95,
+        aeoScore: 92,
+        status: 'rising',
+        searchVolume: '890K',
+        competition: 'Medium',
+        cpc: '$3.21'
+      },
+      {
+        id: 3,
+        title: 'Remote Work Productivity Tools 2025',
+        category: 'tech',
+        categoryLabel: 'Technology',
+        velocity: 1654,
+        velocityChange: '+156%',
+        seoScore: 97,
+        aeoScore: 94,
+        status: 'hot',
+        searchVolume: '2.1M',
+        competition: 'High',
+        cpc: '$2.89'
+      },
+      {
+        id: 4,
+        title: 'Mental Health Apps & Digital Wellness',
+        category: 'health',
+        categoryLabel: 'Health',
+        velocity: 1432,
+        velocityChange: '+127%',
+        seoScore: 94,
+        aeoScore: 91,
+        status: 'rising',
+        searchVolume: '670K',
+        competition: 'Low',
+        cpc: '$1.95'
+      },
+      {
+        id: 5,
+        title: 'Small Business AI Integration Guide',
+        category: 'business',
+        categoryLabel: 'Business',
+        velocity: 1289,
+        velocityChange: '+98%',
+        seoScore: 96,
+        aeoScore: 95,
+        status: 'hot',
+        searchVolume: '540K',
+        competition: 'Medium',
+        cpc: '$5.12'
+      }
+    ];
+
+    const risingKeywords = [
+      { keyword: 'ai agent automation', change: '+892%', volume: '450K' },
+      { keyword: 'sustainable investing 2025', change: '+654%', volume: '320K' },
+      { keyword: 'remote productivity tools', change: '+543%', volume: '890K' },
+      { keyword: 'digital wellness apps', change: '+421%', volume: '210K' },
+      { keyword: 'small business ai tools', change: '+387%', volume: '180K' },
+      { keyword: 'enterprise automation', change: '+312%', volume: '290K' }
+    ];
+
+    function renderTrends() {
+      const container = document.getElementById('trends-container');
+      const filteredData = currentCategory === 'all' 
+        ? trendData 
+        : trendData.filter(t => t.category === currentCategory);
+      
+      container.innerHTML = filteredData.map((trend, index) => `
+        <div class="trend-card bg-slate-800/40 backdrop-blur rounded-2xl p-4 border border-slate-700/50 hover:border-emerald-500/50 transition-all cursor-pointer group">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br ${trend.status === 'hot' ? 'from-orange-500 to-red-600' : 'from-emerald-500 to-teal-600'} flex items-center justify-center text-white font-bold text-lg ${trend.status === 'hot' ? 'hot-badge' : ''}">
+              ${index + 1}
+            </div>
+            <div class="flex-grow min-w-0">
+              <div class="flex items-center gap-2 mb-1 flex-wrap">
+                <h3 class="font-semibold text-slate-100 group-hover:text-emerald-400 transition-colors">${trend.title}</h3>
+                ${trend.status === 'hot' ? '<span class="px-2 py-0.5 bg-orange-500/20 text-orange-400 text-xs rounded-full font-medium">🔥 HOT</span>' : '<span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-xs rounded-full font-medium">📈 Rising</span>'}
+              </div>
+              <div class="flex items-center gap-3 text-sm mb-3 flex-wrap">
+                <span class="category-pill px-2 py-1 bg-slate-700/50 rounded-lg text-slate-400 text-xs">${trend.categoryLabel}</span>
+                <span class="text-slate-500">•</span>
+                <span class="text-emerald-400 font-medium mono">${trend.velocityChange}</span>
+                <span class="text-slate-500">velocity</span>
+              </div>
+              <div class="grid grid-cols-3 gap-3 text-center">
+                <div class="bg-slate-900/50 rounded-lg p-2">
+                  <div class="text-xs text-slate-500 mb-1">SEO Score</div>
+                  <div class="text-lg font-bold text-violet-400 mono">${trend.seoScore}</div>
+                </div>
+                <div class="bg-slate-900/50 rounded-lg p-2">
+                  <div class="text-xs text-slate-500 mb-1">AEO Score</div>
+                  <div class="text-lg font-bold text-cyan-400 mono">${trend.aeoScore}</div>
+                </div>
+                <div class="bg-slate-900/50 rounded-lg p-2">
+                  <div class="text-xs text-slate-500 mb-1">Search Vol</div>
+                  <div class="text-lg font-bold text-slate-300 mono">${trend.searchVolume}</div>
+                </div>
+              </div>
+              <div class="mt-3 flex items-center gap-4 text-xs text-slate-500">
+                <span>Competition: <span class="${trend.competition === 'Low' ? 'text-emerald-400' : trend.competition === 'Medium' ? 'text-yellow-400' : 'text-red-400'}">${trend.competition}</span></span>
+                <span>Est. CPC: <span class="text-emerald-400">${trend.cpc}</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderKeywords() {
+      const container = document.getElementById('keywords-container');
+      container.innerHTML = risingKeywords.map(kw => `
+        <div class="flex items-center justify-between py-2 px-3 bg-slate-900/30 rounded-lg hover:bg-slate-900/50 transition-colors cursor-pointer group">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="text-emerald-400 text-xs">↗</span>
+            <span class="text-sm text-slate-300 truncate group-hover:text-emerald-400 transition-colors">${kw.keyword}</span>
+          </div>
+          <div class="flex items-center gap-2 flex-shrink-0">
+            <span class="text-xs text-emerald-400 font-medium mono">${kw.change}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function setTimeframe(time) {
+      currentTimeframe = time;
+      document.querySelectorAll('.timeframe-btn').forEach(btn => {
+        btn.classList.remove('active', 'bg-emerald-600', 'text-white');
+        btn.classList.add('text-slate-400', 'hover:text-slate-200');
+      });
+      const activeBtn = document.querySelector(`[data-time="${time}"]`);
+      activeBtn.classList.add('active', 'bg-emerald-600', 'text-white');
+      activeBtn.classList.remove('text-slate-400', 'hover:text-slate-200');
+      showToast(`Showing ${time} trends`);
+      renderTrends();
+    }
+
+    function filterCategory(category) {
+      currentCategory = category;
+      renderTrends();
+      showToast(category === 'all' ? 'Showing all categories' : `Filtered to ${category}`);
+    }
+
+    function refreshData() {
+      showToast('Refreshing trend data...');
+      const container = document.getElementById('trends-container');
+      container.innerHTML = '<div class="text-center py-12 text-slate-500"><div class="w-8 h-8 border-2 border-emerald-400 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>Loading fresh trends...</div>';
+      setTimeout(() => {
+        renderTrends();
+        showToast('Trends updated successfully!');
+      }, 1500);
+    }
+
+    function exportReport() {
+      showToast('Generating SEO/AEO report...');
+      setTimeout(() => {
+        showToast('Report ready for download!');
+      }, 1000);
+    }
+
+    function setAlerts() {
+      showToast('Trend alerts configured!');
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toast-message');
+      toastMessage.textContent = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3000);
+    }
+
+    // Initialize timeframe button styles
+    document.querySelectorAll('.timeframe-btn').forEach(btn => {
+      if (btn.classList.contains('active')) {
+        btn.classList.add('bg-emerald-600', 'text-white');
+      } else {
+        btn.classList.add('text-slate-400', 'hover:text-slate-200');
+      }
+    });
+
+    // Initial render
+    renderTrends();
+    renderKeywords();
+  </script>
+</body>
+</html>

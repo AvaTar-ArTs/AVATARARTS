@@ -1,0 +1,758 @@
+{
+  "name": "AI Content Generation Agent",
+  "nodes": [
+    {
+      "id": "trigger",
+      "name": "Content Request Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        240,
+        300
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "content-request",
+        "responseMode": "responseNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "request_analyzer",
+      "name": "Request Analyzer",
+      "type": "n8n-nodes-base.openAi",
+      "position": [
+        460,
+        300
+      ],
+      "parameters": {
+        "resource": "chat",
+        "operation": "create",
+        "model": "gpt-4",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are an AI content strategy analyst. Analyze the incoming content request and determine the optimal workflow, required AI services, estimated processing time, and resource allocation. Return a structured JSON response with your analysis."
+            },
+            {
+              "role": "user",
+              "content": "Content Request Analysis:\nTitle: {{ $json.title }}\nType: {{ $json.content_type }}\nDescription: {{ $json.description }}\nTone: {{ $json.tone }}\nWord Count: {{ $json.word_count }}\nKeywords: {{ $json.keywords }}\nPriority: {{ $json.priority }}\n\nAnalyze this request and provide:\n1. Content complexity score (1-10)\n2. Required AI services\n3. Estimated processing time\n4. Recommended workflow steps\n5. Quality requirements\n6. Cost estimation"
+            }
+          ]
+        },
+        "options": {
+          "responseFormat": "json"
+        }
+      }
+    },
+    {
+      "id": "workflow_planner",
+      "name": "Workflow Planner",
+      "type": "n8n-nodes-base.openAi",
+      "position": [
+        680,
+        300
+      ],
+      "parameters": {
+        "resource": "chat",
+        "operation": "create",
+        "model": "gpt-4",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are a workflow optimization expert. Based on the content analysis, create an optimized execution plan that balances quality, speed, and cost. Consider parallel processing opportunities and quality checkpoints."
+            },
+            {
+              "role": "user",
+              "content": "Content Analysis: {{ $json.choices[0].message.content }}\n\nCreate an optimized workflow plan with:\n1. Sequential steps\n2. Parallel processing opportunities\n3. Quality checkpoints\n4. Fallback strategies\n5. Resource allocation\n6. Estimated timeline"
+            }
+          ]
+        },
+        "options": {
+          "responseFormat": "json"
+        }
+      }
+    },
+    {
+      "id": "research_router",
+      "name": "Research Router",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        900,
+        200
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "research_required",
+              "leftValue": "{{ $json.workflow_plan.requires_research }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equal"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      }
+    },
+    {
+      "id": "web_research",
+      "name": "Web Research",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1120,
+        100
+      ],
+      "parameters": {
+        "method": "GET",
+        "url": "https://serpapi.com/search",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "serpApiApi",
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "{{ $('trigger').item.json.title }} {{ $('trigger').item.json.keywords }}"
+            },
+            {
+              "name": "num",
+              "value": "10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "news_research",
+      "name": "News Research",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1120,
+        200
+      ],
+      "parameters": {
+        "method": "GET",
+        "url": "https://newsapi.org/v2/everything",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "newsApiApi",
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "{{ $('trigger').item.json.title }}"
+            },
+            {
+              "name": "sortBy",
+              "value": "publishedAt"
+            },
+            {
+              "name": "pageSize",
+              "value": "5"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "content_generation_router",
+      "name": "Content Generation Router",
+      "type": "n8n-nodes-base.switch",
+      "position": [
+        900,
+        400
+      ],
+      "parameters": {
+        "dataType": "string",
+        "value1": "{{ $('trigger').item.json.content_type }}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "equal",
+              "value2": "Blog Post"
+            },
+            {
+              "operation": "equal",
+              "value2": "Audio Book"
+            },
+            {
+              "operation": "equal",
+              "value2": "Social Media"
+            },
+            {
+              "operation": "equal",
+              "value2": "Video Script"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "blog_content_generator",
+      "name": "Blog Content Generator",
+      "type": "n8n-nodes-base.openAi",
+      "position": [
+        1120,
+        300
+      ],
+      "parameters": {
+        "resource": "chat",
+        "operation": "create",
+        "model": "gpt-4",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are a professional content writer. Create high-quality, engaging blog content that meets all the specified requirements. Use the research data provided to enhance the content with current, relevant information."
+            },
+            {
+              "role": "user",
+              "content": "Create a blog post with the following requirements:\nTitle: {{ $('trigger').item.json.title }}\nTone: {{ $('trigger').item.json.tone }}\nWord Count: {{ $('trigger').item.json.word_count }}\nKeywords: {{ $('trigger').item.json.keywords }}\n\nResearch Data:\nSearch Results: {{ $('web_research').item.json.organic_results }}\nNews Articles: {{ $('news_research').item.json.articles }}\n\nRequirements:\n- Include all keywords naturally\n- Maintain consistent tone\n- Use research data to add value\n- Structure with clear headings\n- Include a compelling conclusion"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "audiobook_generator",
+      "name": "Audiobook Generator",
+      "type": "n8n-nodes-base.openAi",
+      "position": [
+        1120,
+        400
+      ],
+      "parameters": {
+        "resource": "chat",
+        "operation": "create",
+        "model": "gpt-4",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are an audiobook script writer. Create engaging, well-structured content optimized for audio narration. Include natural pauses, clear chapter breaks, and engaging storytelling elements."
+            },
+            {
+              "role": "user",
+              "content": "Create an audiobook script for:\nTitle: {{ $('trigger').item.json.title }}\nDescription: {{ $('trigger').item.json.description }}\nTone: {{ $('trigger').item.json.tone }}\nTarget Length: {{ $('trigger').item.json.word_count }} words\n\nRequirements:\n- Break into clear chapters\n- Include natural pauses for narration\n- Use engaging storytelling techniques\n- Optimize for audio listening\n- Include chapter summaries"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "social_media_generator",
+      "name": "Social Media Generator",
+      "type": "n8n-nodes-base.openAi",
+      "position": [
+        1120,
+        500
+      ],
+      "parameters": {
+        "resource": "chat",
+        "operation": "create",
+        "model": "gpt-4",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are a social media content creator. Create engaging, platform-optimized content that drives engagement and aligns with the brand voice."
+            },
+            {
+              "role": "user",
+              "content": "Create social media content for:\nTitle: {{ $('trigger').item.json.title }}\nPlatform: {{ $('trigger').item.json.platform }}\nTone: {{ $('trigger').item.json.tone }}\nTarget Audience: {{ $('trigger').item.json.target_audience }}\n\nRequirements:\n- Platform-appropriate length\n- Include relevant hashtags\n- Create engagement hooks\n- Align with brand voice\n- Include call-to-action"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "voice_synthesis_router",
+      "name": "Voice Synthesis Router",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        1340,
+        300
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "audio_required",
+              "leftValue": "{{ $('trigger').item.json.content_type }}",
+              "rightValue": "Audio Book",
+              "operator": {
+                "type": "string",
+                "operation": "equal"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      }
+    },
+    {
+      "id": "voice_synthesis",
+      "name": "Voice Synthesis",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1560,
+        300
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "{{ $('trigger').item.json.webhook_url }}/webhooks/voice-synthesis",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "{{ $('audiobook_generator').item.json.choices[0].message.content }}"
+            },
+            {
+              "name": "voice",
+              "value": "alloy"
+            },
+            {
+              "name": "model",
+              "value": "tts-1"
+            },
+            {
+              "name": "speed",
+              "value": "1.0"
+            },
+            {
+              "name": "format",
+              "value": "mp3"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "image_generation_router",
+      "name": "Image Generation Router",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        1340,
+        500
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "images_required",
+              "leftValue": "{{ $('workflow_planner').item.json.workflow_plan.requires_images }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equal"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      }
+    },
+    {
+      "id": "image_generation",
+      "name": "Image Generation",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1560,
+        500
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "{{ $('trigger').item.json.webhook_url }}/webhooks/image-generation",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "prompt",
+              "value": "{{ $('trigger').item.json.title }} - {{ $('trigger').item.json.description }}"
+            },
+            {
+              "name": "style",
+              "value": "photorealistic"
+            },
+            {
+              "name": "size",
+              "value": "1024x1024"
+            },
+            {
+              "name": "count",
+              "value": "2"
+            },
+            {
+              "name": "service",
+              "value": "stability_ai"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "quality_control",
+      "name": "Quality Control",
+      "type": "n8n-nodes-base.openAi",
+      "position": [
+        1780,
+        400
+      ],
+      "parameters": {
+        "resource": "chat",
+        "operation": "create",
+        "model": "gpt-4",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are a content quality reviewer. Analyze the generated content and provide a comprehensive quality assessment with specific feedback and improvement suggestions."
+            },
+            {
+              "role": "user",
+              "content": "Quality Review Request:\n\nOriginal Requirements:\nTitle: {{ $('trigger').item.json.title }}\nType: {{ $('trigger').item.json.content_type }}\nTone: {{ $('trigger').item.json.tone }}\nWord Count: {{ $('trigger').item.json.word_count }}\nKeywords: {{ $('trigger').item.json.keywords }}\n\nGenerated Content:\n{{ $('blog_content_generator').item.json.choices[0].message.content }}\n\nPlease provide:\n1. Overall quality score (1-10)\n2. Content analysis\n3. Keyword integration assessment\n4. Tone consistency check\n5. Specific improvement suggestions\n6. Recommendation: Approve, Revise, or Regenerate"
+            }
+          ]
+        },
+        "options": {
+          "responseFormat": "json"
+        }
+      }
+    },
+    {
+      "id": "content_optimizer",
+      "name": "Content Optimizer",
+      "type": "n8n-nodes-base.openAi",
+      "position": [
+        2000,
+        400
+      ],
+      "parameters": {
+        "resource": "chat",
+        "operation": "create",
+        "model": "gpt-4",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are a content editor. Revise the provided content based on the quality feedback to improve it while maintaining the original requirements."
+            },
+            {
+              "role": "user",
+              "content": "Content Revision Request:\n\nOriginal Content:\n{{ $('blog_content_generator').item.json.choices[0].message.content }}\n\nQuality Feedback:\n{{ $('quality_control').item.json.improvement_suggestions }}\n\nRequirements:\n- Maintain original tone and style\n- Address all feedback points\n- Keep word count within target range\n- Ensure keyword integration\n- Improve overall quality"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "asset_manager",
+      "name": "Asset Manager",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        2220,
+        400
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "{{ $('trigger').item.json.airtable_webhook_url }}",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "Asset Name",
+              "value": "{{ $('trigger').item.json.title }}_content"
+            },
+            {
+              "name": "Asset Type",
+              "value": "Text"
+            },
+            {
+              "name": "Source Content",
+              "value": "{{ $('trigger').item.json.id }}"
+            },
+            {
+              "name": "File Size",
+              "value": "{{ $('content_optimizer').item.json.choices[0].message.content.length }}"
+            },
+            {
+              "name": "Quality",
+              "value": "{{ $('quality_control').item.json.quality_score }}"
+            },
+            {
+              "name": "AI Model Used",
+              "value": "OpenAI GPT-4"
+            },
+            {
+              "name": "Created Date",
+              "value": "{{ $now }}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "final_update",
+      "name": "Final Update",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        2440,
+        400
+      ],
+      "parameters": {
+        "method": "PATCH",
+        "url": "{{ $('trigger').item.json.airtable_webhook_url }}/{{ $('trigger').item.json.id }}",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "Status",
+              "value": "Complete"
+            },
+            {
+              "name": "Generated Content",
+              "value": "{{ $('content_optimizer').item.json.choices[0].message.content }}"
+            },
+            {
+              "name": "Quality Score",
+              "value": "{{ $('quality_control').item.json.quality_score }}"
+            },
+            {
+              "name": "AI Models Used",
+              "value": "OpenAI, Stability AI, ElevenLabs"
+            },
+            {
+              "name": "Notes",
+              "value": "{{ $('quality_control').item.json.content_analysis }}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "response",
+      "name": "Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [
+        2660,
+        400
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": {
+          "status": "success",
+          "workflow_id": "{{ $('trigger').item.json.id }}",
+          "generated_content": "{{ $('content_optimizer').item.json.choices[0].message.content }}",
+          "quality_score": "{{ $('quality_control').item.json.quality_score }}",
+          "processing_time": "{{ $now - $('trigger').item.json.timestamp }}",
+          "assets_created": "{{ $('asset_manager').item.json.id }}"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "trigger": {
+      "main": [
+        [
+          {
+            "node": "request_analyzer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "request_analyzer": {
+      "main": [
+        [
+          {
+            "node": "workflow_planner",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "workflow_planner": {
+      "main": [
+        [
+          {
+            "node": "research_router",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "content_generation_router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "research_router": {
+      "main": [
+        [
+          {
+            "node": "web_research",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "news_research",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "content_generation_router": {
+      "main": [
+        [
+          {
+            "node": "blog_content_generator",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "audiobook_generator",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "social_media_generator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "voice_synthesis_router": {
+      "main": [
+        [
+          {
+            "node": "voice_synthesis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "image_generation_router": {
+      "main": [
+        [
+          {
+            "node": "image_generation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "blog_content_generator": {
+      "main": [
+        [
+          {
+            "node": "quality_control",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "audiobook_generator": {
+      "main": [
+        [
+          {
+            "node": "voice_synthesis_router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "social_media_generator": {
+      "main": [
+        [
+          {
+            "node": "image_generation_router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "quality_control": {
+      "main": [
+        [
+          {
+            "node": "content_optimizer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "content_optimizer": {
+      "main": [
+        [
+          {
+            "node": "asset_manager",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "asset_manager": {
+      "main": [
+        [
+          {
+            "node": "final_update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "final_update": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": null,
+  "versionId": "1"
+}

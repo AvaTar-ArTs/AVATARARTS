@@ -1,0 +1,80 @@
+{
+  "name": "Content Repurposing Pro - Multi-Platform",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "webhook-trigger",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "content-repurposing-pro"
+    },
+    {
+      "parameters": {
+        "model": "gpt-4",
+        "options": {
+          "temperature": 0.8
+        },
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are a content repurposing expert. Transform long-form content into:\n1. YouTube Shorts scripts\n2. TikTok video ideas\n3. Instagram Reels concepts\n4. Twitter threads\n5. LinkedIn posts\n\nOptimize for each platform's format and audience."
+            },
+            {
+              "role": "user",
+              "content": "Repurpose this content for multiple platforms:\n\n{{ $json.original_content }}\n\nTarget platforms: {{ $json.platforms || 'all' }}\n\nCreate platform-specific versions with hooks, CTAs, and optimization."
+            }
+          ]
+        }
+      },
+      "id": "repurpose-content",
+      "name": "Repurpose Content",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Process repurposed content\nconst repurposed = $('Repurpose Content').item.json.choices[0].message.content;\nconst original = $('Webhook').item.json.original_content;\n\n// Parse platforms\nconst platforms = {\n  youtube_shorts: extractSection(repurposed, 'YouTube Shorts'),\n  tiktok: extractSection(repurposed, 'TikTok'),\n  instagram_reels: extractSection(repurposed, 'Instagram Reels'),\n  twitter: extractSection(repurposed, 'Twitter'),\n  linkedin: extractSection(repurposed, 'LinkedIn')\n};\n\nconst result = {\n  original_content: original,\n  repurposed_content: repurposed,\n  platforms: platforms,\n  timestamp: new Date().toISOString(),\n  version: 'pro',\n  features: [\n    'multi-platform',\n    'ai-optimization',\n    'batch-processing',\n    'custom-templates'\n  ]\n};\n\nfunction extractSection(text, platform) {\n  const regex = new RegExp(`${platform}[\\s\\S]*?(?=\\n\\n[A-Z]|$)`, 'i');\n  const match = text.match(regex);\n  return match ? match[0].trim() : null;\n}\n\nreturn result;"
+      },
+      "id": "process-repurposed",
+      "name": "Process Repurposed",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}"
+      },
+      "id": "respond-webhook",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [850, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "Repurpose Content", "type": "main", "index": 0 }]]
+    },
+    "Repurpose Content": {
+      "main": [[{ "node": "Process Repurposed", "type": "main", "index": 0 }]]
+    },
+    "Process Repurposed": {
+      "main": [[{ "node": "Respond to Webhook", "type": "main", "index": 0 }]]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": ["content", "repurposing", "multi-platform", "social-media"],
+  "triggerCount": 1,
+  "updatedAt": "2026-01-13T00:00:00.000Z",
+  "versionId": "1"
+}

@@ -1,0 +1,177 @@
+{
+  "name": "AI Optimization Agent",
+  "nodes": [
+    {
+      "id": "trigger",
+      "name": "Optimization Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [
+        240,
+        300
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "value": 24
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "performance_analyzer",
+      "name": "Performance Analyzer",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        460,
+        300
+      ],
+      "parameters": {
+        "method": "GET",
+        "url": "{{ $('trigger').item.json.webhook_url }}/ai-agent/optimize",
+        "options": {}
+      }
+    },
+    {
+      "id": "optimization_planner",
+      "name": "Optimization Planner",
+      "type": "n8n-nodes-base.openAi",
+      "position": [
+        680,
+        300
+      ],
+      "parameters": {
+        "resource": "chat",
+        "operation": "create",
+        "model": "gpt-4",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are an AI optimization expert. Analyze performance data and create specific, actionable optimization recommendations."
+            },
+            {
+              "role": "user",
+              "content": "Performance Data: {{ $('performance_analyzer').item.json }}\n\nCreate optimization recommendations for:\n1. Workflow efficiency improvements\n2. Quality enhancement strategies\n3. Cost optimization opportunities\n4. Error reduction techniques\n5. Learning and adaptation improvements"
+            }
+          ]
+        },
+        "options": {
+          "responseFormat": "json"
+        }
+      }
+    },
+    {
+      "id": "workflow_updater",
+      "name": "Workflow Updater",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        900,
+        300
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "{{ $('trigger').item.json.webhook_url }}/ai-agent/update-workflows",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "optimizations",
+              "value": "{{ $('optimization_planner').item.json.optimizations }}"
+            },
+            {
+              "name": "performance_metrics",
+              "value": "{{ $('performance_analyzer').item.json.metrics }}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "notification",
+      "name": "Notification",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1120,
+        300
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "{{ $('trigger').item.json.notification_webhook }}",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "title",
+              "value": "AI Agent Optimization Complete"
+            },
+            {
+              "name": "message",
+              "value": "{{ $('optimization_planner').item.json.summary }}"
+            },
+            {
+              "name": "recommendations",
+              "value": "{{ $('optimization_planner').item.json.recommendations }}"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "connections": {
+    "trigger": {
+      "main": [
+        [
+          {
+            "node": "performance_analyzer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "performance_analyzer": {
+      "main": [
+        [
+          {
+            "node": "optimization_planner",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "optimization_planner": {
+      "main": [
+        [
+          {
+            "node": "workflow_updater",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "workflow_updater": {
+      "main": [
+        [
+          {
+            "node": "notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": null,
+  "versionId": "1"
+}

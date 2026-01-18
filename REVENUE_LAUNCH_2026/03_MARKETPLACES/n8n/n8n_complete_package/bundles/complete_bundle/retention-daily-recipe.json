@@ -1,0 +1,10 @@
+{
+  "name": "Retention: Daily Recipe",
+  "active": false,
+  "nodes": [
+    {"parameters": {"triggerTimes": {"item": [{"mode": "everyDay", "hour": 7}]}}, "id": "Cron1", "name": "Cron", "type": "n8n-nodes-base.cron", "typeVersion": 2, "position": [300, 300]},
+    {"parameters": {"command": "python3", "arguments": ["/Users/steven/ai-sites/content-management/retention-hub/recipes/generate_recipe.py"]}, "id": "ExecGen", "name": "Generate Recipe", "type": "n8n-nodes-base.executeCommand", "typeVersion": 1, "position": [560, 300]},
+    {"parameters": {"command": "/Users/steven/ai-sites/content-management/retention-hub/publish/publish_recipe.sh"}, "id": "ExecPub", "name": "Publish Recipe", "type": "n8n-nodes-base.executeCommand", "typeVersion": 1, "position": [820, 300]}
+  ],
+  "connections": {"Cron": {"main": [[{"node": "Generate Recipe", "type": "main", "index": 0}]]}, "Generate Recipe": {"main": [[{"node": "Publish Recipe", "type": "main", "index": 0}]]}}
+}

@@ -1,0 +1,84 @@
+{
+  "name": "Trend Analyzer Free",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "webhook-trigger",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "trend-analyzer-free"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Free version: Basic trend analysis\n// Limit: 10 trends/day\n\nconst input = $input.item.json;\nconst keyword = input.keyword || input.data?.keyword;\n\nif (!keyword) {\n  return { error: 'Keyword required' };\n}\n\n// Basic trend scoring (simplified)\nconst growth = input.growth || Math.random() * 100;\nconst difficulty = input.difficulty || Math.random() * 10;\nconst score = growth / Math.max(difficulty, 1);\n\n// Simple analysis\nconst analysis = {\n  keyword: keyword,\n  growth: Math.round(growth * 100) / 100,\n  difficulty: Math.round(difficulty * 100) / 100,\n  score: Math.round(score * 100) / 100,\n  recommendation: score > 50 ? 'High Potential' : 'Low Potential',\n  version: 'free',\n  limit: '10 trends/day'\n};\n\nreturn analysis;"
+      },
+      "id": "code-processor",
+      "name": "Process Trend",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "mode": "id",
+          "value": "your-sheet-id"
+        },
+        "sheetName": {
+          "mode": "list",
+          "value": "Trends"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "keyword": "={{ $json.keyword }}",
+            "growth": "={{ $json.growth }}",
+            "difficulty": "={{ $json.difficulty }}",
+            "score": "={{ $json.score }}",
+            "recommendation": "={{ $json.recommendation }}"
+          }
+        }
+      },
+      "id": "google-sheets",
+      "name": "Save Results",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [650, 300],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}"
+      },
+      "id": "respond-webhook",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [850, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "Process Trend", "type": "main", "index": 0 }]]
+    },
+    "Process Trend": {
+      "main": [[{ "node": "Save Results", "type": "main", "index": 0 }, { "node": "Respond to Webhook", "type": "main", "index": 0 }]]
+    },
+    "Save Results": {
+      "main": [[{ "node": "Respond to Webhook", "type": "main", "index": 0 }]]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-01-13T00:00:00.000Z",
+  "versionId": "1"
+}

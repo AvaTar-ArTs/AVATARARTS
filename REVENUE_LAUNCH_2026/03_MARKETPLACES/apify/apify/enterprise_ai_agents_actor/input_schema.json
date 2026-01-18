@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "title": "Enterprise AI Agents Input Schema",
+  "type": "object",
+  "properties": {
+    "workflow_type": {
+      "type": "string",
+      "enum": ["research", "content", "automation", "analytics", "integration", "multi"],
+      "default": "research",
+      "description": "Type of workflow to execute"
+    },
+    "tasks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "agent": {
+            "type": "string",
+            "enum": ["research", "content", "automation", "analytics", "integration"],
+            "description": "Agent type to execute"
+          },
+          "query": {
+            "type": "string",
+            "description": "Query string for research agent"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["trend_analysis", "competitor_analysis", "market_research", "general"],
+            "description": "Research type"
+          },
+          "topic": {
+            "type": "string",
+            "description": "Topic for content generation"
+          },
+          "format": {
+            "type": "string",
+            "enum": ["article", "blog", "social", "email", "script"],
+            "description": "Content format"
+          },
+          "target_keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Target keywords for SEO/AEO optimization"
+          },
+          "seo_optimize": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable SEO optimization"
+          },
+          "aeo_optimize": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable AEO optimization"
+          },
+          "workflow_type": {
+            "type": "string",
+            "description": "Workflow type for automation agent"
+          },
+          "steps": {
+            "type": "array",
+            "description": "Workflow steps for automation agent"
+          },
+          "integrations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Integrations for automation agent"
+          },
+          "data_source": {
+            "type": "string",
+            "description": "Data source for analytics agent"
+          },
+          "metrics": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Metrics for analytics agent"
+          },
+          "timeframe": {
+            "type": "string",
+            "description": "Timeframe for analytics (e.g., '30d', '7d')"
+          },
+          "integration_type": {
+            "type": "string",
+            "description": "Integration type for integration agent"
+          },
+          "api_config": {
+            "type": "object",
+            "description": "API configuration for integration agent"
+          },
+          "endpoints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "API endpoints for integration agent"
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Step dependencies (step IDs)"
+          }
+        },
+        "required": ["agent"]
+      },
+      "description": "List of tasks to execute"
+    },
+    "parallel": {
+      "type": "boolean",
+      "default": true,
+      "description": "Execute independent steps in parallel"
+    },
+    "max_retries": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5,
+      "default": 3,
+      "description": "Maximum retry attempts per task"
+    },
+    "timeout": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 3600,
+      "default": 300,
+      "description": "Timeout in seconds for workflow execution"
+    }
+  },
+  "required": ["tasks"]
+}

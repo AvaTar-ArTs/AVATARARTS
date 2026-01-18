@@ -1,0 +1,12 @@
+{
+  "name": "Lead Router (CleanConnect)",
+  "active": false,
+  "nodes": [
+    {"parameters": {"path": "cleanconnect/lead", "options": {"responseData": "json"}}, "id": "Webhook1", "name": "Webhook", "type": "n8n-nodes-base.webhook", "typeVersion": 1, "position": [300, 300]},
+    {"parameters": {"conditions": {"boolean": [], "string": [{"value1": "={{$json.service_type}}", "operation": "equal", "value2": "residential"}]}}, "id": "IF1", "name": "If Residential", "type": "n8n-nodes-base.if", "typeVersion": 1, "position": [520, 240]},
+    {"parameters": {"conditions": {"boolean": [], "string": [{"value1": "={{$json.service_type}}", "operation": "equal", "value2": "commercial"}]}}, "id": "IF2", "name": "If Commercial", "type": "n8n-nodes-base.if", "typeVersion": 1, "position": [520, 360]},
+    {"parameters": {"requestMethod": "POST", "url": "=https://api.twilio.com/2010-04-01/Accounts/{{$env.TWILIO_SID}}/Messages.json", "jsonParameters": true, "options": {}, "sendBody": true, "bodyParametersJson": "={to: $json.partner_phone, from: $env.TWILIO_FROM, body: 'New lead: ' + $json.customer_name}"}, "id": "SMS1", "name": "Notify Partner (SMS)", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4, "position": [820, 300]},
+    {"parameters": {"fromEmail": "leads@cleanconnect.local", "toEmail": "={{$json.partner_email}}", "subject": "New Qualified Lead", "text": "Lead details attached.", "options": {}}, "id": "Email1", "name": "Email Partner", "type": "n8n-nodes-base.emailSend", "typeVersion": 2, "position": [1020, 300]}
+  ],
+  "connections": {"Webhook": {"main": [[{"node": "If Residential", "type": "main", "index": 0}, {"node": "If Commercial", "type": "main", "index": 0}]]}, "If Residential": {"main": [[{"node": "Notify Partner (SMS)", "type": "main", "index": 0}]]}, "If Commercial": {"main": [[{"node": "Notify Partner (SMS)", "type": "main", "index": 0}]]}, "Notify Partner (SMS)": {"main": [[{"node": "Email Partner", "type": "main", "index": 0}]]}}
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Analytics Daily Report",
+  "active": false,
+  "nodes": [
+    {"parameters": {"triggerTimes": {"item": [{"mode": "everyDay", "hour": 8}]}}, "id": "Cron1", "name": "Cron", "type": "n8n-nodes-base.cron", "typeVersion": 2, "position": [300, 300]},
+    {"parameters": {"url": "https://analyticsreporting.googleapis.com/v4/reports:batchGet", "requestMethod": "POST", "jsonParameters": true, "sendBody": true, "options": {}, "bodyParametersJson": "={reportRequests: [{viewId: $env.GA4_VIEW_ID, dateRanges: [{startDate: '7daysAgo', endDate: 'today'}]}]}"}, "id": "HTTP1", "name": "Fetch GA4 (placeholder)", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4, "position": [520, 300]},
+    {"parameters": {"fromEmail": "reports@avatararts.org", "toEmail": "steven@avatararts.org", "subject": "Daily Analytics Report", "text": "Attached metrics.", "options": {}}, "id": "Email1", "name": "Send Email", "type": "n8n-nodes-base.emailSend", "typeVersion": 2, "position": [740, 300]}
+  ],
+  "connections": {"Cron": {"main": [[{"node": "Fetch GA4 (placeholder)", "type": "main", "index": 0}]]}, "Fetch GA4 (placeholder)": {"main": [[{"node": "Send Email", "type": "main", "index": 0}]]}}
+}

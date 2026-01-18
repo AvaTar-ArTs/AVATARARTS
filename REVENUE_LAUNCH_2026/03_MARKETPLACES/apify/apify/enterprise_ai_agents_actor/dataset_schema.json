@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Enterprise AI Agents Output Schema",
+  "type": "object",
+  "properties": {
+    "workflow_id": {
+      "type": "string",
+      "description": "Unique workflow identifier"
+    },
+    "step_id": {
+      "type": "string",
+      "description": "Step identifier"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["success", "failed", "unknown"],
+      "description": "Execution status"
+    },
+    "agent": {
+      "type": "string",
+      "description": "Agent type that executed the step"
+    },
+    "result": {
+      "type": "object",
+      "description": "Agent execution result"
+    },
+    "duration": {
+      "type": "number",
+      "description": "Execution duration in seconds"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Execution timestamp"
+    },
+    "seo_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "SEO optimization score"
+    },
+    "aeo_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "AEO optimization score"
+    },
+    "error": {
+      "type": "string",
+      "description": "Error message if execution failed"
+    },
+    "error_code": {
+      "type": "string",
+      "description": "Error code for categorization"
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "workflow_id": {"type": "string"},
+        "total_steps": {"type": "integer"},
+        "results_count": {"type": "integer"},
+        "success_count": {"type": "integer"},
+        "success_rate": {"type": "number"},
+        "execution_time": {"type": "number"},
+        "total_time": {"type": "number"},
+        "parallel_execution": {"type": "boolean"}
+      }
+    }
+  }
+}

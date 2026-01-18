@@ -1,0 +1,11 @@
+{
+  "name": "Music Promotion Pipeline",
+  "active": false,
+  "nodes": [
+    {"parameters": {"triggerTimes": {"item": [{"mode": "everyDay", "hour": 10}]}}, "id": "Cron1", "name": "Cron", "type": "n8n-nodes-base.cron", "typeVersion": 2, "position": [300, 300]},
+    {"parameters": {"filePath": "~/ai-sites/passive-income-empire/music-licensing/selected-tracks/audiojungle-metadata.json"}, "id": "ReadFile1", "name": "Read Metadata", "type": "n8n-nodes-base.readBinaryFile", "typeVersion": 1, "position": [520, 300]},
+    {"parameters": {"functionCode": "// Create YouTube description & tags placeholders\nreturn items;"}, "id": "Func1", "name": "Build YouTube Desc", "type": "n8n-nodes-base.function", "typeVersion": 2, "position": [740, 300]},
+    {"parameters": {"authentication": "genericCredentialType", "requestMethod": "POST", "url": "https://www.googleapis.com/youtube/v3/videos"}, "id": "HTTP1", "name": "Upload to YouTube (placeholder)", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4, "position": [980, 300]}
+  ],
+  "connections": {"Cron": {"main": [[{"node": "Read Metadata", "type": "main", "index": 0}]]}, "Read Metadata": {"main": [[{"node": "Build YouTube Desc", "type": "main", "index": 0}]]}, "Build YouTube Desc": {"main": [[{"node": "Upload to YouTube (placeholder)", "type": "main", "index": 0}]]}}
+}

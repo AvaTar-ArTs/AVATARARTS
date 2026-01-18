@@ -1,0 +1,149 @@
+{
+  "name": "Enterprise AI Agents Free",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "webhook-trigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "enterprise-ai-agents-free"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse input\nconst query = $input.item.json.query || 'AI automation';\nconst taskType = $input.item.json.type || 'general';\n\nreturn {\n  query: query,\n  type: taskType,\n  limit: 5\n};"
+      },
+      "id": "parse-input",
+      "name": "Parse Input",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://api.openai.com/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "gpt-3.5-turbo"
+            },
+            {
+              "name": "messages",
+              "value": "={{ JSON.stringify([{role: 'system', content: 'You are a research assistant.'}, {role: 'user', content: `Research: ${$json.query}`}]) }}"
+            },
+            {
+              "name": "max_tokens",
+              "value": "500"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "research-agent",
+      "name": "Research Agent (Free)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [650, 300],
+      "disabled": false,
+      "notes": "Free version - limited to 5 results/day"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Format result\nconst result = $input.item.json;\n\nreturn {\n  status: 'success',\n  agent: 'ResearchAgent',\n  result: result,\n  limit: '5 results/day (free version)',\n  upgrade: 'Get unlimited with Enterprise AI Agents Pro',\n  timestamp: new Date().toISOString()\n};"
+      },
+      "id": "format-result",
+      "name": "Format Result",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "id": "respond",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1050, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Parse Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Input": {
+      "main": [
+        [
+          {
+            "node": "Research Agent (Free)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Research Agent (Free)": {
+      "main": [
+        [
+          {
+            "node": "Format Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Result": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2026-01-13T12:00:00.000Z",
+      "updatedAt": "2026-01-13T12:00:00.000Z",
+      "id": "enterprise-automation",
+      "name": "Enterprise Automation"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-01-13T12:00:00.000Z",
+  "versionId": "1"
+}
