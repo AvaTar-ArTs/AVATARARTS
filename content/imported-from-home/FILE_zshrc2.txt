@@ -1,0 +1,172 @@
+# ====================================================================
+# .zshrc - MINIMAL VERSION (Uncomment only what you use)
+# ====================================================================
+
+# ===============================================
+#  🔧 CORE (REQUIRED)
+# ===============================================
+
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE="$HOME/.zsh_history"
+
+setopt AUTO_CD CORRECT NO_CASE_GLOB NO_CASE_MATCH
+setopt HIST_VERIFY SHARE_HISTORY APPEND_HISTORY INC_APPEND_HISTORY
+setopt HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS HIST_REDUCE_BLANKS HIST_IGNORE_SPACE
+
+bindkey -v
+
+# ===============================================
+#  🎨 OH-MY-ZSH (REQUIRED)
+# ===============================================
+
+export ZSH="$HOME/.oh-my-zsh"
+export ZSH_CUSTOM="$ZSH/custom"
+export ZSH_CACHE_DIR="$ZSH/cache"
+
+ZSH_THEME="adben"
+plugins=(
+    git
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+)
+
+if [[ -z "${ZSH_LOADED:-}" ]]; then
+    source "$ZSH/oh-my-zsh.sh"
+    export ZSH_LOADED=1
+fi
+
+# ===============================================
+#  🛠️ PATH (REQUIRED)
+# ===============================================
+
+typeset -U path
+
+path=(
+    "/usr/local/bin"
+    "/usr/bin"
+    "/bin"
+    "/usr/sbin"
+    "/sbin"
+    "$path[@]"
+)
+
+# UNCOMMENT tools you use:
+# path=("$HOME/.local/bin" $path)         # pipx
+# path=("$HOME/.bun/bin" $path)           # Bun
+# path=("$HOME/Documents/python" $path)   # Personal scripts
+# path=("$HOME/go/bin" $path)             # Go
+# path=("$HOME/.cargo/bin" $path)         # Rust
+
+path=(${path:#$HOME/Library/Python/3.11/bin})
+export PATH
+
+# ===============================================
+#  🐍 PYTHON (UNCOMMENT IF USING)
+# ===============================================
+
+# Option 1: Global Python environment
+# alias pip='~/global_python_env/bin/python -m pip'
+# alias python='~/global_python_env/bin/python'
+# alias python3='~/global_python_env/bin/python'
+# alias py='~/global_python_env/bin/python'
+# export VIRTUAL_ENV="$HOME/global_python_env"
+# export PATH="$HOME/global_python_env/bin:$PATH"
+# export PYTHONUNBUFFERED=1
+# export PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# Option 2: System Python (alternative)
+# alias pip='python3 -m pip'
+# alias python='python3'
+# alias py='python3'
+
+# ===============================================
+#  📦 LAZY LOADING (UNCOMMENT IF USING)
+# ===============================================
+
+# Homebrew
+# brew() {
+#     unset -f brew
+#     eval "$(/usr/local/bin/brew shellenv)"
+#     brew "$@"
+# }
+
+# NVM
+# export NVM_DIR="$HOME/.nvm"
+# nvm() {
+#     unset -f nvm
+#     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+#     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+#     nvm "$@"
+# }
+
+# ngrok
+# if command -v ngrok &>/dev/null; then
+#     ngrok() {
+#         unset -f ngrok
+#         eval "$(command ngrok completion)"
+#         ngrok "$@"
+#     }
+# fi
+
+# ===============================================
+#  🔐 ENVIRONMENT SYSTEM (UNCOMMENT IF USING)
+# ===============================================
+
+# if [[ -f "$HOME/.env.d/aliases.sh" ]]; then
+#     source "$HOME/.env.d/aliases.sh"
+# fi
+
+# if [[ -f "$HOME/ai_aliases.sh" ]]; then
+#     source "$HOME/ai_aliases.sh"
+# fi
+
+# ===============================================
+#  🔑 API KEYS (UNCOMMENT IF USING)
+# ===============================================
+
+# chmod 600 ~/.env 2>/dev/null
+# 
+# if [[ -f "$HOME/.env.d/llm-apis.env" ]]; then
+#     if [[ $(stat -f %A "$HOME/.env.d/llm-apis.env" 2>/dev/null) == "600" ]]; then
+#         set -o allexport
+#         source "$HOME/.env.d/llm-apis.env"
+#         set +o allexport
+#         
+#         if [[ -n "$OPENAI_API_KEY" ]]; then
+#             mkdir -p ~/.config/ai-shell
+#             cat > ~/.config/ai-shell/config.json <<EOF
+# {
+#   "OPENAI_KEY": "$OPENAI_API_KEY",
+#   "ANTHROPIC_KEY": "$ANTHROPIC_API_KEY",
+#   "GEMINI_KEY": "$GEMINI_API_KEY",
+#   "GROQ_API_KEY": "$GROQ_API_KEY"
+# }
+# EOF
+#         fi
+#     fi
+# fi
+
+# ===============================================
+#  🎯 CUSTOM ALIASES (UNCOMMENT IF USING)
+# ===============================================
+
+# alias apisetup='source /Users/steven/api-setup'
+# alias multimodal='python /Users/steven/Documents/python/Multi-Modal.py'
+
+# ===============================================
+#  🐍 MAMBA (UNCOMMENT IF USING - MUST BE LAST)
+# ===============================================
+
+# >>> mamba initialize >>>
+# export MAMBA_EXE='/Users/steven/miniforge3/bin/mamba'
+# export MAMBA_ROOT_PREFIX='/Users/steven/miniforge3'
+# __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__mamba_setup"
+# else
+#     alias mamba="$MAMBA_EXE"
+# fi
+# unset __mamba_setup
+# <<< mamba initialize <<
