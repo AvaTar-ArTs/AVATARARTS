@@ -1,0 +1,107 @@
+{
+  "name": "notebooklm-kit",
+  "version": "2.2.0",
+  "description": "TypeScript SDK for NotebookLM API",
+  "keywords": [
+    "notebooklm",
+    "google",
+    "notebook",
+    "ai",
+    "research",
+    "sdk",
+    "typescript",
+    "artifacts",
+    "audio-overview",
+    "podcast",
+    "study-guide",
+    "flashcards",
+    "quiz",
+    "mind-map",
+    "report",
+    "infographic",
+    "slide-deck",
+    "slides",
+    "presentation",
+    "video-overview",
+    "video",
+    "generation",
+    "chat",
+    "sources",
+    "notes",
+    "automation",
+    "api-client"
+  ],
+  "author": "photon-hq",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/photon-hq/notebooklm-kit.git"
+  },
+  "homepage": "https://github.com/photon-hq/notebooklm-kit#readme",
+  "bugs": {
+    "url": "https://github.com/photon-hq/notebooklm-kit/issues"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/src/index.d.ts",
+        "default": "./dist/src/index.js"
+      },
+      "require": {
+        "types": "./dist/src/index.d.ts",
+        "default": "./dist/src/index.js"
+      }
+    }
+  },
+  "sideEffects": false,
+  "type": "module",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "postinstall": "npx playwright install chromium",
+    "setup": "npm install && npx playwright install chromium && npm run build",
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit",
+    "prepublishOnly": "npm run clean && npm run type-check && npm run build",
+    "commit": "cz",
+    "install-hook": "node scripts/install-hook.cjs",
+    "release": "standard-version",
+    "release:minor": "standard-version --release-as minor",
+    "release:major": "standard-version --release-as major",
+    "release:patch": "standard-version --release-as patch"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "playwright": "^1.57.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.7.0",
+    "commitizen": "^4.3.0",
+    "cz-customizable": "^7.0.0",
+    "standard-version": "^9.5.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-customizable"
+    },
+    "cz-customizable": {
+      "config": ".cz-config.cjs"
+    }
+  }
+}

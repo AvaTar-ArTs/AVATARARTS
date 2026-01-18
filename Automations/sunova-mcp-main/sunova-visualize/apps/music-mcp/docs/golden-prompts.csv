@@ -1,0 +1,10 @@
+prompt,label,expectedTool,notes
+"Ask Sunova to transcribe this vocal take.",call,music.transcribe_lyrics,Direct naming of connector.
+"Create a full storyboard for this pop song.",call,music.generate_storyboard,User references storyboard outcomes.
+"Render the music video with Sora at 4K.",call,music.render_video,Explicit render request specifies quality.
+"Break my song into shots aligned to the beatmap.",call,music.plan_shot_timing,Indirect prompt referencing beats.
+"Show me the timeline of scenes we planned.",call,music.present_timeline,Indirect prompt referencing timeline.
+"I need visuals for each verse before rendering.",call,music.generate_keyframes,Indirect prompt describing need for keyframes.
+"Set a reminder to practice guitar tomorrow.",donotcall,,Should be handled by reminders tool.
+"Search YouTube for music video references.",alternate,,Browser/search connector is more appropriate.
+"Explain how Sora works internally.",donotcall,,Knowledge question; no tool call expected.

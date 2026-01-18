@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 4 - Source Management & RAG Search</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Microsoft JhengHei', 'Segoe UI', Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; overflow: hidden; color: #333; }
+        .nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 60px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(12px); display: flex; justify-content: space-between; align-items: center; padding: 0 30px; z-index: 10000; }
+        .nav-title { font-size: 22px; font-weight: 700; color: #fff; }
+        .nav-buttons { display: flex; gap: 12px; }
+        .nav-btn { background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 6px 16px; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: 600; text-decoration: none; }
+        .nav-btn:hover { background: rgba(255, 255, 255, 0.4); }
+        .nav-arrow { position: fixed; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.25); color: white; width: 60px; height: 60px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.4); font-size: 24px; cursor: pointer; z-index: 9000; display: flex; align-items: center; justify-content: center; }
+        .prev-arrow { left: 30px; }
+        .next-arrow { right: 30px; }
+        .nav-arrow:disabled { opacity: 0.3; }
+        .slide { position: absolute; top: 60px; left: 0; width: 100%; height: calc(100vh - 60px); display: none; align-items: center; justify-content: center; padding: 40px; opacity: 0; transition: opacity 0.4s; }
+        .slide.active { display: flex; opacity: 1; }
+        .content-card { background: rgba(255, 255, 255, 0.98); border-radius: 24px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); padding: 60px; max-width: 1400px; width: 95%; max-height: 88vh; overflow-y: auto; }
+        h1 { color: #667eea; font-size: 56px; margin-bottom: 24px; text-align: center; }
+        h2 { color: #764ba2; font-size: 38px; margin-bottom: 35px; border-bottom: 3px solid #667eea; padding-bottom: 12px; }
+        h3 { color: #667eea; font-size: 26px; margin: 25px 0 15px 0; }
+        p, li { font-size: 20px; line-height: 1.8; color: #444; margin-bottom: 15px; }
+        code { background: #f0f2f5; padding: 3px 8px; border-radius: 6px; font-family: monospace; color: #d63384; }
+        pre { background: #282c34; color: #abb2bf; padding: 25px; border-radius: 12px; margin: 25px 0; font-size: 16px; overflow-x: auto; }
+        .box { padding: 25px; border-radius: 12px; margin: 25px 0; border-left: 6px solid; font-size: 18px; }
+        .info { background: #e3f2fd; border-color: #2196f3; color: #0d47a1; }
+        .warning { background: #fff3cd; border-color: #ffc107; color: #856404; }
+        .success { background: #d4edda; border-color: #28a745; color: #155724; }
+        .highlight { background: linear-gradient(120deg, #667eea 0%, #764ba2 100%); padding: 4px 12px; border-radius: 6px; color: white; }
+        .concept-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
+        .concept-card { background: #f8f9fa; padding: 25px; border-radius: 15px; border: 2px solid #e9ecef; }
+        .concept-card h3 { margin-top: 0; }
+        .feature-table { width: 100%; border-collapse: collapse; margin: 25px 0; }
+        .feature-table th, .feature-table td { padding: 15px; text-align: left; border-bottom: 1px solid #e9ecef; font-size: 18px; }
+        .feature-table th { background: #667eea; color: white; }
+        .indicators { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 4000; padding: 10px 25px; background: rgba(0,0,0,0.3); border-radius: 30px; }
+        .dot { width: 12px; height: 12px; background: rgba(255,255,255,0.4); border-radius: 50%; cursor: pointer; }
+        .dot.active { background: #667eea; transform: scale(1.3); }
+        .icon-large { font-size: 64px; text-align: center; margin-bottom: 20px; }
+        .flow-diagram { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 30px 0; }
+        .flow-step { background: #667eea; color: white; padding: 20px 30px; border-radius: 15px; text-align: center; font-weight: 600; }
+        .flow-arrow { font-size: 30px; color: #667eea; }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-title">📁 Part 4 - Source Management & RAG Search</div>
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-btn">🏠 Home</a>
+            <button class="nav-btn" onclick="toggleFullscreen()">🖥️ Fullscreen</button>
+            <a href="https://www.facebook.com/?locale=zh_TW" target="_blank" class="nav-btn">📘 FB</a>
+            <a href="https://www.youtube.com/@Liang-yt02" target="_blank" class="nav-btn">🎥 YT</a>
+        </div>
+    </div>
+
+    <div class="slide-container">
+        <div class="slide active">
+            <div class="content-card" style="text-align: center;">
+                <div class="icon-large">📁</div>
+                <h4 style="color: #667eea;">Open NotebookLLM Tutorial Series</h4>
+                <h1>Part 4: Source Management & RAG Search</h1>
+                <h2 style="border: none; font-weight: normal; font-size: 28px; color: #666;">
+                    Upload files, build a knowledge base, and search intelligently
+                </h2>
+                <div style="margin-top: 40px; display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+                    <span class="highlight">Multi-format Support</span>
+                    <span class="highlight">Vector Embeddings</span>
+                    <span class="highlight">Hybrid Search</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>📄 Supported Source Types</h2>
+                <table class="feature-table">
+                    <tr><th>Type</th><th>Description</th><th>Formats</th></tr>
+                    <tr><td>📄 PDF</td><td>PDF parsing</td><td>.pdf</td></tr>
+                    <tr><td>📝 Text</td><td>Plain text files</td><td>.txt, .md</td></tr>
+                    <tr><td>📋 Word</td><td>Word documents</td><td>.docx, .doc</td></tr>
+                    <tr><td>📊 Excel</td><td>Spreadsheets</td><td>.xlsx, .xls, .csv</td></tr>
+                    <tr><td>🌐 Web</td><td>Web content extraction</td><td>URL</td></tr>
+                    <tr><td>🎬 YouTube</td><td>Captions</td><td>YouTube URL</td></tr>
+                    <tr><td>🎤 Audio</td><td>Speech-to-text</td><td>.mp3, .wav, .m4a</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>🔄 RAG Processing Flow</h2>
+                <div class="flow-diagram">
+                    <div class="flow-step">1. Upload files</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">2. Parse content</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">3. Split into chunks</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">4. Create embeddings</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">5. Store in database</div>
+                </div>
+                <div class="box info">
+                    <strong>Chunking:</strong> Split long documents into smaller pieces (about 500-1000 chars) for retrieval and LLM prompts.
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>🔍 Three Search Modes</h2>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>Full-text search</h3>
+                        <p>SQLite FTS5 index</p>
+                        <p>Fast, precise keyword matching</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Vector search</h3>
+                        <p>Semantic similarity</p>
+                        <p>Finds related content by meaning</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Hybrid search (recommended)</h3>
+                        <p>Full-text + vector</p>
+                        <p>RRF fusion algorithm</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>🚀 Advanced RAG Techniques</h2>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>RRF Fusion</h3>
+                        <p>Reciprocal Rank Fusion combines rankings from multiple search methods.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Query Expansion</h3>
+                        <p>LLM expands queries with synonyms and related terms.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>LLM Reranking</h3>
+                        <p>LLM reranks results to improve relevance.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Deduplication</h3>
+                        <p>Automatically merges duplicate results.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>💬 RAG Chat Flow</h2>
+                <div class="flow-diagram">
+                    <div class="flow-step">User question</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">Vectorize question</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">Retrieve relevant content</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">Compose prompt</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">LLM answer</div>
+                </div>
+                <div class="box success">
+                    <strong>Result:</strong> Answers are grounded in your data, reducing hallucinations and providing citations.
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>🎤 Audio Processing (STT)</h2>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>OpenAI Whisper</h3>
+                        <p>High quality, multilingual</p>
+                        <p>Requires OpenAI API Key</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Groq Whisper (Recommended)</h3>
+                        <p>Ultra-fast, free quota</p>
+                        <p>Apply: console.groq.com</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Local Whisper</h3>
+                        <p>Fully offline</p>
+                        <p>Requires 3GB download</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>🎯 Part 4 Summary</h2>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>Multi-format support</h3>
+                        <p>PDF, Word, Excel, web, YouTube, audio</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>RAG flow</h3>
+                        <p>Upload -> parse -> split -> embed -> store</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Hybrid search</h3>
+                        <p>Full-text + vector + RRF fusion</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Grounded answers</h3>
+                        <p>Source-based responses with fewer hallucinations</p>
+                    </div>
+                </div>
+                <div class="box info" style="margin-top: 30px;">
+                    <strong>Next:</strong> Part 5 explains the studio output features.
+                </div>
+                <div style="margin-top: 30px; text-align: center;">
+                    <a href="Part5_%E5%B7%A5%E4%BD%9C%E5%AE%A4%E5%8A%9F%E8%83%BD%E8%A9%B3%E8%A7%A3.html" class="nav-btn" style="display: inline-block; padding: 15px 40px; font-size: 18px; background: linear-gradient(120deg, #667eea 0%, #764ba2 100%); border: none;">
+                        ➡️ Go to Part 5: Studio Features Deep Dive
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="nav-arrow prev-arrow" id="prevBtn" onclick="changeSlide(-1)">❮</button>
+    <button class="nav-arrow next-arrow" id="nextBtn" onclick="changeSlide(1)">❯</button>
+    <div class="indicators" id="indicatorContainer"></div>
+
+    <script>
+        let currentSlide = 0; const slides = document.querySelectorAll('.slide'); const totalSlides = slides.length;
+        function init() { createIndicators(); showSlide(0); document.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') changeSlide(-1); if (e.key === 'ArrowRight') changeSlide(1); }); }
+        function createIndicators() { const c = document.getElementById('indicatorContainer'); for (let i = 0; i < totalSlides; i++) { const d = document.createElement('div'); d.className = 'dot'; d.onclick = () => goToSlide(i); c.appendChild(d); } }
+        function showSlide(i) { if (i < 0) i = 0; if (i >= totalSlides) i = totalSlides - 1; slides.forEach(s => s.classList.remove('active')); slides[i].classList.add('active'); currentSlide = i; document.querySelectorAll('.dot').forEach((d, idx) => d.classList.toggle('active', idx === i)); document.getElementById('prevBtn').disabled = i === 0; document.getElementById('nextBtn').disabled = i === totalSlides - 1; }
+        function changeSlide(d) { showSlide(currentSlide + d); } function goToSlide(i) { showSlide(i); }
+        function toggleFullscreen() { if (!document.fullscreenElement) document.documentElement.requestFullscreen(); else document.exitFullscreen(); }
+        init();
+    </script>
+</body>
+</html>

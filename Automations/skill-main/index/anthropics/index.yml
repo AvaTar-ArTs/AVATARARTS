@@ -1,0 +1,327 @@
+# review
+
+- id: anthropics/skill-creator
+  url: x-cmd-skill-data:anthropics/skill-creator
+  reference: https://github.com/anthropics/skills
+  tag:
+    - development
+    - skill-creation
+    - workflow
+    - tool-integration
+  license: Apache-2.0
+  name: skill-creator
+  description: Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.
+  author: Anthropic
+  avatar: https://avatars.githubusercontent.com/u/76263028
+  path: /anthropics/skill-creator
+  installation:
+    claude_plugin:
+      registry: /plugin marketplace add anthropics/skills
+      install: /plugin install example-skills@anthropic-agent-skills
+    npx: npx claude-code-templates@latest --skill=development/skill-creator --yes
+    zipball:
+      codeberg: https://codeberg.org/x-cmd/skill/releases/download/latest/skill-creator.zip
+      github: https://github.com/x-cmd/skill/releases/latest/download/skill-creator.zip
+- id: anthropics/frontend-design
+  url: x-cmd-skill-data:anthropics/frontend-design
+  reference: https://github.com/anthropics/skills
+  tag:
+    - frontend
+    - web-development
+    - ui-design
+    - creative
+  license: Apache-2.0
+  name: frontend-design
+  description: Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, or applications. Generates creative, polished code that avoids generic AI aesthetics.
+  author: Anthropic
+  avatar: https://avatars.githubusercontent.com/u/76263028
+  path: /anthropics/frontend-design
+  installation:
+    claude_plugin:
+      registry: /plugin marketplace add anthropics/skills
+      install: /plugin install example-skills@anthropic-agent-skills
+    zipball:
+      codeberg: https://codeberg.org/x-cmd/skill/releases/download/latest/frontend-design.zip
+      github: https://github.com/x-cmd/skill/releases/latest/download/frontend-design.zip
+- id: anthropics/canvas-design
+  url: x-cmd-skill-data:anthropics/canvas-design
+  reference: https://github.com/anthropics/skills
+  tag:
+    - design
+    - visual-art
+    - graphics
+    - creative
+  license: Apache-2.0
+  name: canvas-design
+  description: Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, design, or other static piece. Create original visual designs, never copying existing artists' work to avoid copyright violations.
+  author: Anthropic
+  avatar: https://avatars.githubusercontent.com/u/76263028
+  path: /anthropics/canvas-design
+  installation:
+    claude_plugin:
+      registry: /plugin marketplace add anthropics/skills
+      install: /plugin install example-skills@anthropic-agent-skills
+    npx: npx claude-code-templates@latest --skill=creative-design/canvas-design --yes
+    zipball:
+      codeberg: https://codeberg.org/x-cmd/skill/releases/download/latest/canvas-design.zip
+      github: https://github.com/x-cmd/skill/releases/latest/download/canvas-design.zip
+- id: anthropics/slack-gif-creator
+  url: x-cmd-skill-data:anthropics/slack-gif-creator
+  reference: https://github.com/anthropics/skills
+  tag:
+    - animation
+    - communication
+    - graphics
+    - social-media
+  license: Apache-2.0
+  name: slack-gif-creator
+  description: Knowledge and utilities for creating animated GIFs optimized for Slack. Provides constraints, validation tools, and animation concepts. Use when users request animated GIFs for Slack like "make me a GIF of X doing Y for Slack."
+  author: Anthropic
+  avatar: https://avatars.githubusercontent.com/u/76263028
+  path: /anthropics/slack-gif-creator
+  installation:
+    claude_plugin:
+      registry: /plugin marketplace add anthropics/skills
+      install: /plugin install example-skills@anthropic-agent-skills
+    npx: npx claude-code-templates@latest --skill=creative-design/slack-gif-creator --yes
+    zipball:
+      codeberg: https://codeberg.org/x-cmd/skill/releases/download/latest/slack-gif-creator.zip
+      github: https://github.com/x-cmd/skill/releases/latest/download/slack-gif-creator.zip
+- id: anthropics/web-artifacts-builder
+  url: x-cmd-skill-data:anthropics/web-artifacts-builder
+  reference: https://github.com/anthropics/skills
+  tag:
+    - web-development
+    - frontend
+    - react
+    - ui-components
+  license: Apache-2.0
+  name: web-artifacts-builder
+  description: Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use for complex artifacts requiring state management, routing, or shadcn/ui components - not for simple single-file HTML/JSX artifacts.
+  author: Anthropic
+  avatar: https://avatars.githubusercontent.com/u/76263028
+  path: /anthropics/web-artifacts-builder
+  installation:
+    claude_plugin:
+      registry: /plugin marketplace add anthropics/skills
+      install: /plugin install example-skills@anthropic-agent-skills
+    zipball:
+      codeberg: https://codeberg.org/x-cmd/skill/releases/download/latest/web-artifacts-builder.zip
+      github: https://github.com/x-cmd/skill/releases/latest/download/web-artifacts-builder.zip
+- id: anthropics/webapp-testing
+  url: x-cmd-skill-data:anthropics/webapp-testing
+  reference: https://github.com/anthropics/skills
+  tag:
+    - testing
+    - automation
+    - web-development
+    - debugging
+  license: Apache-2.0
+  name: webapp-testing
+  description: Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.
+  author: Anthropic
+  avatar: https://avatars.githubusercontent.com/u/76263028
+  path: /anthropics/webapp-testing
+  installation:
+    claude_plugin:
+      registry: /plugin marketplace add anthropics/skills
+      install: /plugin install example-skills@anthropic-agent-skills
+    npx: npx claude-code-templates@latest --skill=development/webapp-testing --yes
+    zipball:
+      codeberg: https://codeberg.org/x-cmd/skill/releases/download/latest/webapp-testing.zip
+      github: https://github.com/x-cmd/skill/releases/latest/download/webapp-testing.zip
+- id: anthropics/mcp-builder
+  url: x-cmd-skill-data:anthropics/mcp-builder
+  reference: https://github.com/anthropics/skills
+  tag:
+    - api-integration
+    - protocol
+    - development
+    - external-services
+  license: Apache-2.0
+  name: mcp-builder
+  description: Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).
+  author: Anthropic
+  avatar: https://avatars.githubusercontent.com/u/76263028
+  path: /anthropics/mcp-builder
+  installation:
+    claude_plugin:
+      registry: /plugin marketplace add anthropics/skills
+      install: /plugin install example-skills@anthropic-agent-skills
+    npx: npx claude-code-templates@latest --skill=development/mcp-builder --yes
+    zipball:
+      codeberg: https://codeberg.org/x-cmd/skill/releases/download/latest/mcp-builder.zip
+      github: https://github.com/x-cmd/skill/releases/latest/download/mcp-builder.zip
+- id: anthropics/brand-guidelines
+  url: x-cmd-skill-data:anthropics/brand-guidelines
+  reference: https://github.com/anthropics/skills
+  tag:
+    - branding
+    - design-system
+    - corporate
+    - visual-identity
+  license: Apache-2.0
+  name: brand-guidelines
+  description: Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from having Anthropic's look-and-feel. Use it when brand colors or style guidelines, visual formatting, or company design standards apply.
+  author: Anthropic
+  avatar: https://avatars.githubusercontent.com/u/76263028
+  path: /anthropics/brand-guidelines
+  installation:
+    claude_plugin:
+      registry: /plugin marketplace add anthropics/skills
+      install: /plugin install example-skills@anthropic-agent-skills
+    npx: npx claude-code-templates@latest --skill=enterprise-communication/brand-guidelines --yes
+    zipball:
+      codeberg: https://codeberg.org/x-cmd/skill/releases/download/latest/brand-guidelines.zip
+      github: https://github.com/x-cmd/skill/releases/latest/download/brand-guidelines.zip
+# - id: anthropics/template-skill
+#   url: x-cmd-skill-data:anthropics/template-skill
+#   reference: https://github.com/anthropics/skills
+#   license: no license
+#   name: template-skill
+#   description: Replace with description of the skill and when Claude should use it.
+#   author: Anthropic
+#   avatar: https://avatars.githubusercontent.com/u/76263028
+#   path: /anthropics/template-skill
+- id: anthropics/theme-factory
+  url: x-cmd-skill-data:anthropics/theme-factory
+  reference: https://github.com/anthropics/skills
+  tag:
+    - styling
+    - themes
+    - design
+    - presentation
+  license: Apache-2.0
+  name: theme-factory
+  description: Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing pages, etc. There are 10 pre-set themes with colors/fonts that you can apply to any artifact that has been creating, or can generate a new theme on-the-fly.
+  author: Anthropic
+  avatar: https://avatars.githubusercontent.com/u/76263028
+  path: /anthropics/theme-factory
+  installation:
+    claude_plugin:
+      registry: /plugin marketplace add anthropics/skills
+      install: /plugin install example-skills@anthropic-agent-skills
+    npx: npx claude-code-templates@latest --skill=creative-design/theme-factory --yes
+    zipball:
+      codeberg: https://codeberg.org/x-cmd/skill/releases/download/latest/theme-factory.zip
+      github: https://github.com/x-cmd/skill/releases/latest/download/theme-factory.zip
+- id: anthropics/algorithmic-art
+  url: x-cmd-skill-data:anthropics/algorithmic-art
+  reference: https://github.com/anthropics/skills
+  tag:
+    - generative-art
+    - creative-coding
+    - p5js
+    - interactive
+  license: Apache-2.0
+  name: algorithmic-art
+  description: Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use this when users request creating art using code, generative art, algorithmic art, flow fields, or particle systems. Create original algorithmic art rather than copying existing artists' work to avoid copyright violations.
+  author: Anthropic
+  avatar: https://avatars.githubusercontent.com/u/76263028
+  path: /anthropics/algorithmic-art
+  installation:
+    claude_plugin:
+      registry: /plugin marketplace add anthropics/skills
+      install: /plugin install example-skills@anthropic-agent-skills
+    npx: npx claude-code-templates@latest --skill=creative-design/algorithmic-art --yes
+    zipball:
+      codeberg: https://codeberg.org/x-cmd/skill/releases/download/latest/algorithmic-art.zip
+      github: https://github.com/x-cmd/skill/releases/latest/download/algorithmic-art.zip
+- id: anthropics/internal-comms
+  url: x-cmd-skill-data:anthropics/internal-comms
+  reference: https://github.com/anthropics/skills
+  tag:
+    - business
+    - communication
+    - corporate
+    - documentation
+  license: Apache-2.0
+  name: internal-comms
+  description: A set of resources to help me write all kinds of internal communications, using the formats that my company likes to use. Claude should use this skill whenever asked to write some sort of internal communications (status reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, project updates, etc.).
+  author: Anthropic
+  avatar: https://avatars.githubusercontent.com/u/76263028
+  path: /anthropics/internal-comms
+  installation:
+    claude_plugin:
+      registry: /plugin marketplace add anthropics/skills
+      install: /plugin install example-skills@anthropic-agent-skills
+    npx: npx claude-code-templates@latest --skill=enterprise-communication/internal-comms --yes
+    zipball:
+      codeberg: https://codeberg.org/x-cmd/skill/releases/download/latest/internal-comms.zip
+      github: https://github.com/x-cmd/skill/releases/latest/download/internal-comms.zip
+- id: anthropics/document/docx
+  url: gh:anthropics/skills:document-skills/docx
+  reference: https://github.com/anthropics/skills
+  tag:
+    - office
+    - word-processing
+    - document-editing
+    - collaboration
+  license: https://github.com/anthropics/skills/blob/main/document-skills/docx/LICENSE.txt
+  name: docx
+  description: "Comprehensive document creation, editing, and analysis with support for tracked changes, comments, formatting preservation, and text extraction. When Claude needs to work with professional documents (.docx files) for: (1) Creating new documents, (2) Modifying or editing content, (3) Working with tracked changes, (4) Adding comments, or any other document tasks"
+  author: Anthropic
+  avatar: https://avatars.githubusercontent.com/u/76263028
+  path: /
+  installation:
+    claude_plugin:
+      registry: /plugin marketplace add anthropics/skills
+      install: /plugin install document-skills@anthropic-agent-skills
+    npx: npx claude-code-templates@latest --skill=document-processing/docx --yes
+- id: anthropics/document/xlsx
+  url: gh:anthropics/skills:document-skills/xlsx
+  reference: https://github.com/anthropics/skills
+  tag:
+    - office
+    - spreadsheet
+    - data-analysis
+    - formulas
+  license: https://github.com/anthropics/skills/blob/main/document-skills/xlsx/LICENSE.txt
+  name: xlsx
+  description: "Comprehensive spreadsheet creation, editing, and analysis with support for formulas, formatting, data analysis, and visualization. When Claude needs to work with spreadsheets (.xlsx, .xlsm, .csv, .tsv, etc) for: (1) Creating new spreadsheets with formulas and formatting, (2) Reading or analyzing data, (3) Modify existing spreadsheets while preserving formulas, (4) Data analysis and visualization in spreadsheets, or (5) Recalculating formulas"
+  author: Anthropic
+  avatar: https://avatars.githubusercontent.com/u/76263028
+  path: /
+  installation:
+    claude_plugin:
+      registry: /plugin marketplace add anthropics/skills
+      install: /plugin install document-skills@anthropic-agent-skills
+    npx: npx claude-code-templates@latest --skill=document-processing/xlsx --yes
+- id: anthropics/document/pptx
+  url: gh:anthropics/skills:document-skills/pptx
+  reference: https://github.com/anthropics/skills
+  tag:
+    - office
+    - presentation
+    - slides
+    - visual-design
+  license: https://github.com/anthropics/skills/blob/main/document-skills/pptx/LICENSE.txt
+  name: pptx
+  description: "Presentation creation, editing, and analysis. When Claude needs to work with presentations (.pptx files) for: (1) Creating new presentations, (2) Modifying or editing content, (3) Working with layouts, (4) Adding comments or speaker notes, or any other presentation tasks"
+  author: Anthropic
+  avatar: https://avatars.githubusercontent.com/u/76263028
+  path: /
+  installation:
+    claude_plugin:
+      registry: /plugin marketplace add anthropics/skills
+      install: /plugin install document-skills@anthropic-agent-skills
+    npx: npx claude-code-templates@latest --skill=document-processing/pptx --yes
+- id: anthropics/document/pdf
+  url: gh:anthropics/skills:document-skills/pdf
+  reference: https://github.com/anthropics/skills
+  tag:
+    - office
+    - document-processing
+    - forms
+    - text-extraction
+  license: https://github.com/anthropics/skills/blob/main/document-skills/pdf/LICENSE.txt
+  name: pdf
+  description: Comprehensive PDF manipulation toolkit for extracting text and tables, creating new PDFs, merging/splitting documents, and handling forms. When Claude needs to fill in a PDF form or programmatically process, generate, or analyze PDF documents at scale.
+  author: Anthropic
+  avatar: https://avatars.githubusercontent.com/u/76263028
+  path: /
+  installation:
+    claude_plugin:
+      registry: /plugin marketplace add anthropics/skills
+      install: /plugin install document-skills@anthropic-agent-skills
+    npx: npx claude-code-templates@latest --skill=document-processing/pdf-anthropic --yes

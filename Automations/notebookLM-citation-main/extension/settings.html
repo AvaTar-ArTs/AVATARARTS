@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>NotebookLM Citation Mapper - Settings</title>
+  <style>
+    /* CSS Variables for theming - FLAT PREMIUM DESIGN */
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #fafafa;
+      --bg-tertiary: #f5f5f5;
+      --bg-card: #f8f8f8;
+      --text-primary: #1a1a1a;
+      --text-secondary: #666666;
+      --text-tertiary: #333333;
+      --border-color: #e0e0e0;
+      --border-light: #eeeeee;
+      --border-card: #e5e5e5;
+      --border-accent: #4285f4;
+      --accent-blue: #4285f4;
+      --accent-blue-hover: #1a73e8;
+      --accent-blue-light: #e8f0fe;
+      --accent-blue-shadow: rgba(66, 133, 244, 0.15);
+      --accent-green: #34a853;
+      --accent-green-hover: #2e8b45;
+      --accent-green-bg: #e6f4ea;
+      --accent-green-text: #137333;
+      --accent-green-border: #34a853;
+      --accent-info-bg: #e8f0fe;
+      --accent-info-text: #1a73e8;
+      --accent-info-border: #4285f4;
+      --shadow-flat: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-premium: 0 0 0 1px rgba(66, 133, 244, 0.1);
+      --shadow-hover: 0 0 0 2px rgba(66, 133, 244, 0.2);
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #1a1a1a;
+      --bg-secondary: #0d0d0d;
+      --bg-tertiary: #1e1e1e;
+      --bg-card: #242424;
+      --text-primary: #f0f0f0;
+      --text-secondary: #a0a0a0;
+      --text-tertiary: #d0d0d0;
+      --border-color: #333333;
+      --border-light: #2a2a2a;
+      --border-card: #303030;
+      --border-accent: #5a9cff;
+      --accent-blue: #5a9cff;
+      --accent-blue-hover: #7db3ff;
+      --accent-blue-light: #1a2e4a;
+      --accent-blue-shadow: rgba(90, 156, 255, 0.15);
+      --accent-green: #4caf50;
+      --accent-green-hover: #66bb6a;
+      --accent-green-bg: #1a3a1f;
+      --accent-green-text: #a5d6a7;
+      --accent-green-border: #4caf50;
+      --accent-info-bg: #1a2e4a;
+      --accent-info-text: #7db3ff;
+      --accent-info-border: #5a9cff;
+      --shadow-flat: 0 1px 3px rgba(0,0,0,0.4);
+      --shadow-premium: 0 0 0 1px rgba(90, 156, 255, 0.2);
+      --shadow-hover: 0 0 0 2px rgba(90, 156, 255, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px;
+    }
+
+    header {
+      background: var(--bg-primary);
+      padding: 14px 16px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      color: var(--accent-blue);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .back-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      padding: 8px 18px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      transition: all 0.15s ease;
+    }
+
+    .back-btn:hover {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+      box-shadow: var(--shadow-premium);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 8px;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+    }
+
+    .tab {
+      padding: 10px 20px;
+      border: none;
+      border-right: 1px solid var(--border-light);
+      background: transparent;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.15s ease;
+      color: var(--text-secondary);
+      position: relative;
+    }
+
+    .tab:last-child {
+      border-right: none;
+    }
+
+    .tab:hover {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+    }
+
+    .tab.active {
+      background: var(--accent-blue);
+      color: white;
+      box-shadow: var(--shadow-premium);
+    }
+
+    .tab-content {
+      display: none;
+      background: var(--bg-primary);
+      padding: 16px;
+      border: 1px solid var(--border-color);
+      min-height: 400px;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .section {
+      margin-bottom: 14px;
+    }
+
+    .section h2 {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+      padding-bottom: 4px;
+    }
+
+    .section p {
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-tertiary);
+    }
+
+    .form-group input[type="text"],
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid var(--border-color);
+      font-size: 13px;
+      font-family: inherit;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      transition: all 0.15s ease;
+    }
+
+    .form-group input[type="text"]:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+      box-shadow: var(--shadow-premium);
+    }
+
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+      font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 2px 0;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin: 2px 0 0 0;
+    }
+
+    .checkbox-group label {
+      margin: 0;
+      font-weight: normal;
+      text-transform: none;
+      letter-spacing: normal;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .btn {
+      padding: 9px 20px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent-blue);
+      color: white;
+      border-color: var(--accent-blue);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-blue-hover);
+      border-color: var(--accent-blue-hover);
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-success {
+      background: var(--accent-green);
+      color: white;
+      border-color: var(--accent-green);
+    }
+
+    .btn-success:hover {
+      background: var(--accent-green-hover);
+      border-color: var(--accent-green-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border-color: var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+      box-shadow: var(--shadow-premium);
+    }
+
+    .btn-danger {
+      background: #ea4335;
+      color: white;
+      border-color: #ea4335;
+    }
+
+    .btn-danger:hover {
+      background: #d33426;
+      border-color: #d33426;
+      transform: translateY(-1px);
+    }
+
+    .card {
+      background: var(--bg-tertiary);
+      padding: 12px;
+      border: 1px solid var(--border-card);
+      margin-bottom: 10px;
+      transition: all 0.15s ease;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-premium);
+    }
+
+    .card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--accent-blue);
+      letter-spacing: -0.2px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .stat-card {
+      background: var(--accent-blue);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid var(--accent-blue);
+      border-bottom: 3px solid var(--accent-blue-hover);
+      transition: all 0.15s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .stat-card h3 {
+      font-size: 11px;
+      opacity: 0.9;
+      margin-bottom: 8px;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-weight: 600;
+    }
+
+    .stat-card .stat-value {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -2px;
+    }
+
+    .history-item {
+      padding: 10px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-primary);
+      margin-bottom: 5px;
+      transition: all 0.15s ease;
+    }
+
+    .history-item:hover {
+      box-shadow: var(--shadow-premium);
+      transform: translateX(4px);
+    }
+
+    .history-item .timestamp {
+      font-size: 10px;
+      color: var(--text-secondary);
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+
+    .history-item .preview {
+      font-size: 13px;
+      color: var(--text-primary);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .theme-selector {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .theme-option {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s ease;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 13px;
+    }
+
+    .theme-option:hover {
+      border-color: var(--accent-blue);
+      box-shadow: var(--shadow-premium);
+    }
+
+    .theme-option.selected {
+      border-color: var(--accent-blue);
+      border-width: 2px;
+      background: var(--accent-blue-light);
+      color: var(--accent-blue);
+      font-weight: 600;
+    }
+
+    .alert {
+      padding: 12px 16px;
+      margin-bottom: 12px;
+      border-left: 3px solid;
+      font-weight: 500;
+      font-size: 13px;
+    }
+
+    .alert-success {
+      background: var(--accent-green-bg);
+      color: var(--accent-green-text);
+      border-color: var(--accent-green-border);
+    }
+
+    .alert-info {
+      background: var(--accent-info-bg);
+      color: var(--accent-info-text);
+      border-color: var(--accent-info-border);
+    }
+
+    .export-area {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .export-area textarea {
+      flex: 1;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>⚙️ Settings & Advanced Features</h1>
+      <button class="back-btn" id="back-btn">← Back to Popup</button>
+    </header>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="general">🎨 General</button>
+      <button class="tab" data-tab="format">📝 Format Options</button>
+      <button class="tab" data-tab="export">💾 Export/Import</button>
+      <button class="tab" data-tab="history">📜 History</button>
+      <button class="tab" data-tab="stats">📊 Statistics</button>
+      <button class="tab" data-tab="about">ℹ️ About</button>
+    </div>
+
+    <!-- General Tab -->
+    <div class="tab-content active" id="general">
+      <div class="section">
+        <h2>Theme Settings</h2>
+        <p>Choose your preferred theme for the extension interface</p>
+        <div class="theme-selector">
+          <div class="theme-option selected" data-theme="light">
+            <div style="font-size: 24px;">☀️</div>
+            <div>Light</div>
+          </div>
+          <div class="theme-option" data-theme="dark">
+            <div style="font-size: 24px;">🌙</div>
+            <div>Dark</div>
+          </div>
+          <div class="theme-option" data-theme="auto">
+            <div style="font-size: 24px;">🔄</div>
+            <div>Auto</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Auto-Features</h2>
+        <div class="form-group">
+          <div class="checkbox-group">
+            <input type="checkbox" id="auto-rescan" checked>
+            <label for="auto-rescan">Automatically rescan page when new content is detected</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="checkbox-group">
+            <input type="checkbox" id="auto-expand">
+            <label for="auto-expand">Auto-expand citation ellipses (...)</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="checkbox-group">
+            <input type="checkbox" id="show-notifications">
+            <label for="show-notifications">Show notifications on successful copy</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <button class="btn btn-primary" id="save-general">💾 Save Settings</button>
+      </div>
+    </div>
+
+    <!-- Format Options Tab -->
+    <div class="tab-content" id="format">
+      <div class="section">
+        <h2>Citation Format</h2>
+        <p>Customize how citations appear in the copied text</p>
+
+        <div class="form-group">
+          <label>Citation Style</label>
+          <select id="citation-style">
+            <option value="brackets">[N] - Brackets (default)</option>
+            <option value="parens">(N) - Parentheses</option>
+            <option value="superscript">^N - Superscript style</option>
+            <option value="footnote">N. - Footnote style</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Source List Header</label>
+          <input type="text" id="source-header" value="Sources:" placeholder="Sources:">
+        </div>
+
+        <div class="form-group">
+          <label>Source List Format</label>
+          <select id="source-format">
+            <option value="arrow">[N] → Filename</option>
+            <option value="colon">[N]: Filename</option>
+            <option value="dash">[N] - Filename</option>
+            <option value="numbered">N. Filename</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Separator Line</label>
+          <input type="text" id="separator" value="─────────────────────" placeholder="Custom separator">
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Preview</h2>
+        <div class="card">
+          <div id="format-preview" style="white-space: pre-wrap; font-family: monospace; font-size: 13px;"></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <button class="btn btn-primary" id="save-format">💾 Save Format Settings</button>
+        <button class="btn btn-secondary" id="reset-format">🔄 Reset to Defaults</button>
+      </div>
+    </div>
+
+    <!-- Export/Import Tab -->
+    <div class="tab-content" id="export">
+      <div class="section">
+        <h2>Export Citation Mappings</h2>
+        <p>Export your current citation mappings to save or share them</p>
+        <div class="export-area">
+          <textarea id="export-data" readonly placeholder="Citation data will appear here..."></textarea>
+          <div class="btn-group" style="flex-direction: column;">
+            <button class="btn btn-primary" id="export-json">📥 Export as JSON</button>
+            <button class="btn btn-success" id="copy-export">📋 Copy to Clipboard</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Import Citation Mappings</h2>
+        <p>Import previously exported citation mappings</p>
+        <div class="form-group">
+          <textarea id="import-data" placeholder="Paste JSON data here..."></textarea>
+        </div>
+        <button class="btn btn-primary" id="import-json">📤 Import Data</button>
+      </div>
+
+      <div class="section">
+        <h2>Backup & Restore</h2>
+        <div class="btn-group">
+          <button class="btn btn-success" id="backup-settings">💾 Backup All Settings</button>
+          <button class="btn btn-primary" id="restore-settings">🔄 Restore Settings</button>
+          <button class="btn btn-danger" id="clear-all">🗑️ Clear All Data</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- History Tab -->
+    <div class="tab-content" id="history">
+      <div class="section">
+        <h2>Copy History</h2>
+        <p>Recent citations you've copied (stored locally)</p>
+        <div class="btn-group" style="margin-bottom: 16px;">
+          <button class="btn btn-secondary" id="clear-history">🗑️ Clear History</button>
+          <button class="btn btn-primary" id="refresh-history">🔄 Refresh</button>
+        </div>
+        <div id="history-list">
+          <div class="alert alert-info">
+            No history available yet. Start copying citations to see them here!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Statistics Tab -->
+    <div class="tab-content" id="stats">
+      <div class="section">
+        <h2>Usage Statistics</h2>
+        <p>Overview of your NotebookLM citation mapping activity</p>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3>Total Citations Mapped</h3>
+            <div class="stat-value" id="stat-total">0</div>
+          </div>
+          <div class="stat-card" style="background: linear-gradient(135deg, #34a853 0%, #2d9247 100%);">
+            <h3>Times Copied</h3>
+            <div class="stat-value" id="stat-copies">0</div>
+          </div>
+          <div class="stat-card" style="background: linear-gradient(135deg, #fbbc04 0%, #f29900 100%);">
+            <h3>Documents Referenced</h3>
+            <div class="stat-value" id="stat-docs">0</div>
+          </div>
+          <div class="stat-card" style="background: linear-gradient(135deg, #ea4335 0%, #d33426 100%);">
+            <h3>Active Sessions</h3>
+            <div class="stat-value" id="stat-sessions">0</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Most Referenced Sources</h2>
+        <div id="top-sources">
+          <div class="card">
+            <p style="color: #666; text-align: center;">No data available yet</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <button class="btn btn-danger" id="reset-stats">🔄 Reset Statistics</button>
+      </div>
+    </div>
+
+    <!-- About Tab -->
+    <div class="tab-content" id="about">
+      <div class="section">
+        <h2>About NotebookLM Citation Mapper</h2>
+        <div class="card">
+          <h3>Version 1.0.0</h3>
+          <p>A Chrome extension that preserves citation references when copying chat text from Google NotebookLM.</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Features</h2>
+        <ul style="line-height: 2; color: #666;">
+          <li>📚 Automatically maps citations to source documents</li>
+          <li>📄 Copy chat text with citation references preserved</li>
+          <li>🔄 Real-time citation detection and updates</li>
+          <li>💾 Export and import citation mappings</li>
+          <li>⚙️ Customizable formatting options</li>
+          <li>📊 Usage statistics and history tracking</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>Privacy</h2>
+        <div class="alert alert-success">
+          <strong>✓ Privacy First:</strong> All citation processing happens locally in your browser. No data is sent to external servers.
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Support</h2>
+        <p>Need help or want to report an issue?</p>
+        <div class="btn-group">
+          <button class="btn btn-primary" id="view-readme">📖 View Documentation</button>
+          <button class="btn btn-secondary" id="report-issue">🐛 Report Issue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="settings.js"></script>
+</body>
+</html>

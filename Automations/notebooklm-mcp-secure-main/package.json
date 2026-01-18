@@ -1,0 +1,110 @@
+{
+  "name": "@pan-sec/notebooklm-mcp",
+  "version": "2026.1.1",
+  "description": "Security-hardened MCP server for NotebookLM API with enterprise compliance (GDPR, SOC2, CSSF)",
+  "type": "module",
+  "bin": {
+    "notebooklm-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "postbuild": "node -e \"if(process.platform!=='win32'){require('fs').chmodSync('dist/index.js',0o755)}\"",
+    "watch": "tsc --watch",
+    "dev": "tsx watch src/index.ts",
+    "prepare": "npm run build",
+    "test": "npx vitest run",
+    "test:watch": "npx vitest",
+    "security-check": "npm audit",
+    "security-scan": "medusa scan . --fail-on high"
+  },
+  "keywords": [
+    "mcp",
+    "notebooklm",
+    "gemini",
+    "ai",
+    "claude",
+    "security",
+    "hardened",
+    "gdpr",
+    "soc2",
+    "cssf",
+    "compliance",
+    "enterprise",
+    "audit-logging"
+  ],
+  "author": "Pantheon Security <support@pantheonsecurity.io> (https://pantheonsecurity.io)",
+  "contributors": [
+    "Gérôme Dexheimer <hello@geromedexheimer.de> (https://github.com/PleasePrompto) - Original Author"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pantheon-Security/notebooklm-mcp-secure.git"
+  },
+  "homepage": "https://github.com/Pantheon-Security/notebooklm-mcp-secure#readme",
+  "bugs": {
+    "url": "https://github.com/Pantheon-Security/notebooklm-mcp-secure/issues"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "SECURITY.md",
+    "LICENSE",
+    "docs"
+  ],
+  "dependencies": {
+    "@google/genai": "^1.34.0",
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "@noble/post-quantum": "^0.2.1",
+    "dotenv": "^16.4.0",
+    "env-paths": "^3.0.0",
+    "globby": "^14.1.0",
+    "patchright": "^1.48.2",
+    "pdf-lib": "^1.17.1",
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "securityHardening": {
+    "inputValidation": true,
+    "urlWhitelisting": true,
+    "rateLimiting": true,
+    "logSanitization": true,
+    "credentialMasking": true,
+    "auditLogging": true,
+    "sessionTimeout": true,
+    "mcpAuthentication": true,
+    "responseValidation": true,
+    "postQuantumEncryption": true,
+    "secretsScanning": true,
+    "certificatePinning": true,
+    "memoryScubbing": true,
+    "medusaIntegration": true
+  },
+  "enterpriseCompliance": {
+    "gdpr": {
+      "consentManagement": true,
+      "dataSubjectRights": true,
+      "dataPortability": true,
+      "rightToErasure": true,
+      "privacyNotice": true
+    },
+    "soc2": {
+      "hashChainedAuditLogs": true,
+      "changeManagement": true,
+      "incidentResponse": true,
+      "availabilityMonitoring": true
+    },
+    "cssf": {
+      "sevenYearRetention": true,
+      "siemIntegration": true,
+      "policyDocumentation": true
+    }
+  }
+}

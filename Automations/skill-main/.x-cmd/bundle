@@ -1,0 +1,110 @@
+# shellcheck shell=dash disable=2016
+___X_CMD_ZUZ_QUIET=true
+
+bundle_tmp2tgz()(
+    x cd "$(x wsroot)/.tmp"
+    x rmrf web_data/tmp
+    # x ws onemin_data
+    x z "skills.tar.gz"  * || return
+    x rmrf "${output}/skills.tar.gz"
+    x mkdirp "${output}"
+    x mv "skills.tar.gz" "${output}/skills.tar.gz"
+    x touch "${output}/skills_hash.txt"
+    x hash sha512 "${output}/skills.tar.gz" > "${output}/skills_hash.txt"
+
+    x:info "Generate skills.tar.gz file, size: $(du -h "${output}/skills.tar.gz" | awk '{print $1}')"
+)
+
+bundle_xcmd_skill_data()(
+    local tgtprefix=; tgtprefix="$(x wsroot)/.tmp"
+    x:info "BEGIN ==== > bundle x-cmd/skill data"
+
+    x mkdirp "$tgtprefix"
+    x cp -rf "data" "$tgtprefix/" || {
+        x:error "wrong: data"
+        return 1
+    }
+    x yq eval-all -o=tsv '[.[]
+        | del(.path,.tag,.avatar,.installation)
+        | (. as $item | with_entries(select(.key != "description")) + {"description": $item.description})
+      ]' index/**/index.yml  \
+    > "$tgtprefix/index.tsv" || {
+        x:error "wrong: index"
+        return 1
+    }
+    x:info "END ==== > bundle skill data"
+)
+
+bundle_xcmd_skill_packages(){
+    local tgtprefix=; tgtprefix="$(x wsroot)/.release"
+    x:info "BEGIN ==== > bundle x-cmd/skill ZIP file"
+
+    x mkdirp "$tgtprefix"
+    local skill_name; local skill_file; local skill_dir
+    x find data -name "SKILL.md" -type f | while read -r skill_file;do
+        skill_dir="${skill_file%/SKILL.md}"
+        skill_name="${skill_dir##*/}"
+        x rmrf "$tgtprefix/.tmp"
+        x cp -rf "$skill_dir" "$tgtprefix/.tmp/$skill_name"
+        case "$skill_dir" in
+            */k-dense-ai/*)   x cp -rf "data/k-dense-ai/LICENSE.md" "$tgtprefix/.tmp/$skill_name/";;
+            */superpowers)    x cp -rf "data/superpowers/LICENSE" "$tgtprefix/.tmp/$skill_name/";;
+            */x-cmd/*)        x cp -rf LICENSE "$tgtprefix/.tmp/$skill_name/";;
+        esac
+        x z "$tgtprefix/${skill_name}.zip" "$tgtprefix/.tmp/$skill_name"
+    done
+
+    x:info "END ==== > bundle skill ZIP file"
+}
+
+bundle()(
+    local x_cmd_skill_version="${___X_CMD_SKILL_RELEASE_VERSION:-"v0.0.9"}";
+
+    local root; root="$(x wsroot)"
+    local output; output="$root/dist"
+    local skip_version_sh
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            --version)   shift; x_cmd_skill_version="$1";              shift ;;
+            -o|--output) shift; output="$root/$1";                   shift ;;
+            --skip_version_sh)  skip_version_sh="--skip_version_sh"; shift ;;
+            *)           break ;;
+        esac
+    done
+
+    x:info "bundle $x_cmd_skill_version to $output, skip_version_sh=$skip_version_sh"
+
+    case "$1" in
+        "") ;;
+        *)
+            if ! command -v "bundle_$1" >/dev/null 2>&1; then
+                x:error "Unexisted bundle command: $1"
+                return 1
+            fi
+            local op="$1"; shift;
+            "bundle_$op" "$@" ; return
+    esac
+
+    x rmrf .tmp
+
+    if ! bundle_xcmd_skill_data ; then
+        x:error "bundle_xcmd_skill_data failed"
+        return 1
+    fi
+
+    if ! bundle_xcmd_skill_packages ; then
+        x:error "bundle_skill_zip_file failed"
+        return 1
+    fi
+
+    if ! bundle_tmp2tgz ; then
+        x:error "bundle_yml2tgz failed"
+        return 1
+    fi
+)
+
+
+(
+    x cd "$(x wsroot)"
+    bundle "$@"
+) || return

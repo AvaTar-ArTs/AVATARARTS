@@ -1,0 +1,116 @@
+import { ReactElement, useRef, useEffect } from 'react'
+import { FileText, Globe, FileUp, StickyNote, Trash2, Loader2 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
+import type { KnowledgeDocument } from '../../../../../shared/types/knowledge'
+import { Button } from '../../ui/button'
+
+interface DocumentListProps {
+  documents: KnowledgeDocument[]
+  onDeleteDocument: (documentId: string) => void
+  onSelectDocument: (document: KnowledgeDocument) => void
+}
+
+export default function DocumentList({
+  documents,
+  onDeleteDocument,
+  onSelectDocument
+}: DocumentListProps): ReactElement {
+  const { t } = useTranslation('ui')
+
+  if (documents.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full p-8 text-center gap-4">
+        <FileText className="w-12 h-12 text-muted-foreground" />
+        <div className="flex flex-col gap-2">
+          <p className="text-sm text-muted-foreground">{t('noDocuments')}</p>
+          <p className="text-xs text-muted-foreground">{t('noDocumentsDesc')}</p>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="p-2 space-y-1">
+      {documents.map((doc) => (
+        <DocumentItem
+          key={doc.id}
+          document={doc}
+          onDelete={onDeleteDocument}
+          onSelect={onSelectDocument}
+        />
+      ))}
+    </div>
+  )
+}
+
+// 文档项组件
+interface DocumentItemProps {
+  document: KnowledgeDocument
+  onDelete: (id: string) => void
+  onSelect: (document: KnowledgeDocument) => void
+}
+
+function DocumentItem({ document, onDelete, onSelect }: DocumentItemProps): ReactElement {
+  const { t } = useTranslation('ui')
+  const hasShownErrorRef = useRef(false)
+
+  const getTypeIcon = () => {
+    const iconClass = 'w-4 h-4 mt-0.5 text-muted-foreground'
+    switch (document.type) {
+      case 'file':
+        return <FileUp className={iconClass} />
+      case 'url':
+        return <Globe className={iconClass} />
+      case 'note':
+        return <StickyNote className={iconClass} />
+      default:
+        return <FileText className={iconClass} />
+    }
+  }
+
+  // 显示失败提示（仅一次）
+  useEffect(() => {
+    if (document.status === 'failed' && !hasShownErrorRef.current) {
+      hasShownErrorRef.current = true
+      alert(t('embeddingFailed', { title: document.title }))
+    }
+  }, [document.status, document.title, t])
+
+  return (
+    <div
+      onClick={() => onSelect(document)}
+      className="group grid grid-cols-[auto_1fr_auto] gap-2 items-start p-3 rounded-lg transition-colors cursor-pointer select-none hover:bg-muted"
+    >
+      {/* 图标列 - 固定宽度 */}
+      {getTypeIcon()}
+
+      {/* 内容列 - 可被压缩 */}
+      <div className="min-w-0 flex flex-col gap-1">
+        <h3 className="text-sm font-medium truncate">{document.title}</h3>
+        <p className="text-xs text-muted-foreground">{document.chunkCount} chunks</p>
+        {document.status === 'processing' && (
+          <p className="text-xs text-yellow-600 flex items-center gap-1">
+            <Loader2 className="w-3 h-3 animate-spin" />
+            {t('indexing')}
+          </p>
+        )}
+      </div>
+
+      {/* 删除按钮列 - 固定宽度 */}
+      <Button
+        onClick={(e) => {
+          e.stopPropagation()
+          if (confirm(t('confirmDeleteDocument'))) {
+            onDelete(document.id)
+          }
+        }}
+        variant="ghost"
+        size="icon"
+        className="opacity-0 group-hover:opacity-100 w-8 h-8 mt-0.5 text-destructive hover:bg-destructive/10 hover:text-destructive"
+        title={t('deleteDocument')}
+      >
+        <Trash2 className="w-4 h-4" />
+      </Button>
+    </div>
+  )
+}

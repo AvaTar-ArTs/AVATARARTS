@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Knowledge Generator</title>
+    <link rel="stylesheet" href="https://unpkg.com/chota@latest">
+    <style>
+      :root {
+        --bg-color: #DDD6B6;
+        --bg-secondary-color: #BDA38D;
+        --font-color: #593831;
+        --color-primary: #A62E2E;
+        --input-border-color: #8C5E54;
+        --color-lightGrey: #A62E2E;
+        --bg-output: #E0DABD;
+      }
+
+      body {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: var(--bg-color);
+      }
+
+      #topic-input {
+        height: 160px;
+        margin-bottom: 2em;
+        background-color: #F0EDE0;
+        border: 1px solid var(--input-border-color);
+        color: var(--font-color);
+        border-radius: 8px;
+        padding: 16px 16px;
+      }
+
+      #topic-input::placeholder {
+        color: var(--bg-secondary-color);
+      }
+
+      .button.primary.outline:hover {
+        background-color: var(--color-primary);
+        color: #FFF;
+      }
+
+      #output {
+        display: none;
+        margin-top: 40px;
+        border: 1px solid var(--bg-secondary-color);
+        border-radius: 8px;
+        background-color: var(--bg-output);
+        padding: 20px 30px;
+      }
+
+      #output.ready {
+        display: block;
+      }
+
+      #buttons-container {
+        display: flex;
+        flex-direction: column;
+
+        .button+.button {
+          margin-left: 0;
+          margin-top: 1rem;
+        }
+
+        > * {
+          width: 100%;
+        }
+
+        @media screen and (min-width: 600px) {
+          flex-direction: row;  
+          justify-content: space-between;
+
+          .button+.button {
+            margin-top: 0;
+          }
+
+          > * {
+            width: 180px;
+          }
+        }
+      }
+
+      .copy-btn {
+        display: none;
+      }
+
+      .copy-btn.ready {
+        display: inline-block;
+        width: 240px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Knowledge Generator</h2>
+
+    <textarea id="topic-input" placeholder="Enter the topic you want to learn about. Feel free to add any specific details that you want to make sure are covered."></textarea>
+    
+    <div id="buttons-container">
+      <button id="generate-btn" class="button primary">Generate</button>
+      <button id="copy-md-btn" class="copy-btn button primary outline">Copy</button>
+    </div>
+
+    <div id="output"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
+    <script>
+      const topicInput = document.getElementById("topic-input")
+      const generateBtn = document.getElementById("generate-btn")
+      const copyMdBtn = document.getElementById("copy-md-btn")
+      const copyMdBtnLabel = copyMdBtn.textContent
+      const output = document.getElementById("output")
+      const md = window.markdownit()
+      let rawContent = ""
+
+      generateBtn.addEventListener("click", generateKnowledge)
+      copyMdBtn.addEventListener("click", copyContent)
+
+      async function generateKnowledge() {
+        // Make sure we don't show any buttons or content that we shouldn't.
+        copyMdBtn.classList.remove("ready")
+        output.classList.remove("ready")
+
+        const topic = topicInput.value.trim()
+        
+        if (!topic) {
+          return
+        }
+
+        generateBtn.disabled = true
+        generateBtn.textContent = "Generating..."
+        output.innerHTML = ""
+        rawContent = ""
+
+        const requestBody = JSON.stringify({ topic })
+
+        try {
+          const response = await fetch('/api/generate', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: requestBody,
+          })
+
+          if (!response.ok) {
+            throw new Error("Failed to generate knowledge")
+          }
+
+          const data = await response.json()
+          rawContent = data.content
+          output.innerHTML = md.render(rawContent)
+          copyMdBtn.classList.add("ready")
+          output.classList.add("ready")
+        } catch (error) {
+          output.textContent = `Error: ${error.message}`
+        } finally {
+          generateBtn.disabled = false
+          generateBtn.textContent = "Generate"
+        }
+      }
+
+      function copyContent(event) {
+        const btn = event.target
+        const content = rawContent
+        navigator.clipboard
+          .writeText(content)
+          .then(() => {
+            btn.textContent = "Copied!"
+            btn.classList.remove("outline")
+            btn.classList.add("success")
+
+            setTimeout(() => {
+              btn.classList.add("outline")
+              btn.classList.remove("success")
+              btn.textContent = copyMdBtnLabel
+            }, 1000)
+          })
+          .catch((err) => {
+            console.error("Failed to copy: ", err)
+          })
+      }
+    </script>
+  </body>
+</html>

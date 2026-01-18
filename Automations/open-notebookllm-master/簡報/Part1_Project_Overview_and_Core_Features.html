@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 1 - Project Overview & Core Features</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft JhengHei', 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow: hidden;
+            color: #333;
+        }
+        .nav-bar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            z-index: 10000;
+        }
+        .nav-title { font-size: 22px; font-weight: 700; color: #fff; }
+        .nav-buttons { display: flex; gap: 12px; }
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .nav-btn:hover { background: rgba(255, 255, 255, 0.4); transform: translateY(-2px); }
+        .nav-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.25);
+            color: white;
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.4);
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 9000;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-arrow:hover { background: rgba(255,255,255,0.5); transform: translateY(-50%) scale(1.1); }
+        .prev-arrow { left: 30px; }
+        .next-arrow { right: 30px; }
+        .nav-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
+        .slide-container { width: 100%; height: 100vh; padding-top: 60px; position: relative; z-index: 1; }
+        .slide {
+            position: absolute;
+            top: 60px; left: 0;
+            width: 100%;
+            height: calc(100vh - 60px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 10;
+        }
+        .slide.active { display: flex; opacity: 1; z-index: 20; }
+        .content-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            padding: 60px;
+            max-width: 1400px;
+            width: 95%;
+            max-height: 88vh;
+            overflow-y: auto;
+        }
+        h1 { color: #667eea; font-size: 56px; margin-bottom: 24px; text-align: center; }
+        h2 { color: #764ba2; font-size: 38px; margin-bottom: 35px; border-bottom: 3px solid #667eea; padding-bottom: 12px; }
+        h3 { color: #667eea; font-size: 26px; margin: 30px 0 15px 0; }
+        p, li { font-size: 20px; line-height: 1.8; color: #444; margin-bottom: 15px; }
+        code { background: #f0f2f5; padding: 3px 8px; border-radius: 6px; font-family: monospace; color: #d63384; font-weight: 600; }
+        pre { background: #282c34; color: #abb2bf; padding: 25px; border-radius: 12px; overflow-x: auto; margin: 25px 0; font-size: 16px; line-height: 1.6; }
+        .box { padding: 25px; border-radius: 12px; margin: 25px 0; border-left: 6px solid; font-size: 18px; }
+        .info { background: #e3f2fd; border-color: #2196f3; color: #0d47a1; }
+        .warning { background: #fff3cd; border-color: #ffc107; color: #856404; }
+        .success { background: #d4edda; border-color: #28a745; color: #155724; }
+        .highlight { background: linear-gradient(120deg, #667eea 0%, #764ba2 100%); padding: 4px 12px; border-radius: 6px; font-weight: bold; color: white; }
+        .concept-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
+        .concept-card { background: #f8f9fa; padding: 25px; border-radius: 15px; border: 2px solid #e9ecef; transition: transform 0.3s, border-color 0.3s; }
+        .concept-card:hover { transform: translateY(-5px); border-color: #667eea; }
+        .concept-card h3 { margin-top: 0; color: #667eea; }
+        .feature-table { width: 100%; border-collapse: collapse; margin: 25px 0; }
+        .feature-table th, .feature-table td { padding: 15px; text-align: left; border-bottom: 1px solid #e9ecef; }
+        .feature-table th { background: #667eea; color: white; font-weight: 600; }
+        .feature-table tr:hover { background: #f8f9fa; }
+        .indicators { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 4000; padding: 10px 25px; background: rgba(0,0,0,0.3); border-radius: 30px; }
+        .dot { width: 12px; height: 12px; background: rgba(255,255,255,0.4); border-radius: 50%; cursor: pointer; transition: all 0.3s; }
+        .dot.active { background: #667eea; transform: scale(1.3); }
+        .icon-large { font-size: 64px; text-align: center; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-title">📚 Part 1 - Project Overview & Core Features</div>
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-btn">🏠 Home</a>
+            <button class="nav-btn" onclick="toggleFullscreen()">🖥️ Fullscreen</button>
+            <a href="https://www.facebook.com/?locale=zh_TW" target="_blank" class="nav-btn">📘 FB</a>
+            <a href="https://www.youtube.com/@Liang-yt02" target="_blank" class="nav-btn">🎥 YT</a>
+        </div>
+    </div>
+
+    <div class="slide-container">
+        <!-- Slide 1: Cover -->
+        <div class="slide active">
+            <div class="content-card" style="text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <div class="icon-large">📚</div>
+                <h4 style="color: #667eea; letter-spacing: 2px; margin-bottom: 10px;">Open NotebookLLM Tutorial Series</h4>
+                <h1>Part 1: Project Overview & Core Features</h1>
+                <h2 style="border: none; font-weight: normal; font-size: 28px; color: #666; max-width: 800px;">
+                    Meet the open-source NotebookLM and its core features and use cases
+                </h2>
+                <div style="margin-top: 40px; display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+                    <span class="highlight">RAG Retrieval</span>
+                    <span class="highlight">Multiple AI Providers</span>
+                    <span class="highlight">Podcast Generation</span>
+                    <span class="highlight">Studio Outputs</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: What is NotebookLLM -->
+        <div class="slide">
+            <div class="content-card">
+                <h2>🤔 What is Open NotebookLLM?</h2>
+                <p>Open NotebookLLM is an open-source reimplementation of Google NotebookLM, so you can:</p>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>📄 Smart note management</h3>
+                        <p>Upload documents (PDF, Word, Excel), web pages, and YouTube videos to manage knowledge sources in one place.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>💬 RAG-based Q&A</h3>
+                        <p>Chat on top of your sources; AI answers are grounded in the uploaded content.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>🎙️ Podcast generation</h3>
+                        <p>Convert your content into multi-speaker podcasts with TTS synthesis.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>📊 Multiple output formats</h3>
+                        <p>Generate summaries, mind maps, flashcards, quizzes, slides, infographics, and more.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Why Open Source -->
+        <div class="slide">
+            <div class="content-card">
+                <h2>✨ Why choose the open-source version?</h2>
+                <table class="feature-table">
+                    <tr>
+                        <th>Feature</th>
+                        <th>Google NotebookLM</th>
+                        <th>Open NotebookLLM</th>
+                    </tr>
+                    <tr>
+                        <td>AI providers</td>
+                        <td>Gemini only</td>
+                        <td>6 providers available</td>
+                    </tr>
+                    <tr>
+                        <td>Data privacy</td>
+                        <td>Cloud storage</td>
+                        <td>Local deployment, full control</td>
+                    </tr>
+                    <tr>
+                        <td>Customization</td>
+                        <td>Fixed features</td>
+                        <td>Open source, extensible</td>
+                    </tr>
+                    <tr>
+                        <td>Cost</td>
+                        <td>Usage-based</td>
+                        <td>Choose APIs, use free models</td>
+                    </tr>
+                    <tr>
+                        <td>Offline use</td>
+                        <td>Internet required</td>
+                        <td>Supports local Ollama models</td>
+                    </tr>
+                </table>
+                <div class="box success">
+                    <strong>Core advantage:</strong> full control of your data, choose the best AI models, and customize without limits.
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Supported AI Providers -->
+        <div class="slide">
+            <div class="content-card">
+                <h2>🤖 Supported AI Providers</h2>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>🌟 Gemini</h3>
+                        <p>Google multimodal model with embeddings and image generation.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>🧠 OpenAI</h3>
+                        <p>GPT-4o/4.1 + DALL-E 3, industry standard.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>🎯 Anthropic</h3>
+                        <p>Claude Sonnet/Opus for long-context reasoning.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>🏠 Ollama</h3>
+                        <p>Local models, free and unlimited, fully offline.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>⚡ Groq</h3>
+                        <p>Ultra-fast inference with very low latency.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>🔮 DeepSeek</h3>
+                        <p>R1 reasoning model with deep thinking.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Supported Source Types -->
+        <div class="slide">
+            <div class="content-card">
+                <h2>📁 Supported Source Types</h2>
+                <table class="feature-table">
+                    <tr>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Supported Formats</th>
+                    </tr>
+                    <tr>
+                        <td>📄 PDF</td>
+                        <td>PDF parsing</td>
+                        <td>.pdf</td>
+                    </tr>
+                    <tr>
+                        <td>📝 Text</td>
+                        <td>Plain text files</td>
+                        <td>.txt, .md</td>
+                    </tr>
+                    <tr>
+                        <td>📋 Word</td>
+                        <td>Word documents</td>
+                        <td>.docx, .doc</td>
+                    </tr>
+                    <tr>
+                        <td>📊 Excel</td>
+                        <td>Spreadsheets</td>
+                        <td>.xlsx, .xls, .csv</td>
+                    </tr>
+                    <tr>
+                        <td>🌐 Web</td>
+                        <td>Web content extraction</td>
+                        <td>URL</td>
+                    </tr>
+                    <tr>
+                        <td>🎬 YouTube</td>
+                        <td>Captions/transcripts</td>
+                        <td>YouTube URL</td>
+                    </tr>
+                    <tr>
+                        <td>🎤 Audio</td>
+                        <td>Speech-to-text (STT)</td>
+                        <td>.mp3, .wav, .m4a, .ogg</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Slide 6: Studio Output Types -->
+        <div class="slide">
+            <div class="content-card">
+                <h2>🎨 Studio Output Types</h2>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>📝 Summary</h3>
+                        <p>Auto-generate concise summaries of your sources.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>🧠 Mind map</h3>
+                        <p>Mermaid visualization with SVG export.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>📊 Flowchart/Architecture</h3>
+                        <p>Draw.io format with editable export.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>🃏 Flashcards</h3>
+                        <p>Bloom taxonomy + difficulty levels.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>❓ Quizzes</h3>
+                        <p>5 question types: multiple choice, true/false, fill-in, matching, short answer.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>📈 Infographics</h3>
+                        <p>Chart.js with 7 chart types.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>📽️ Slides</h3>
+                        <p>Auto images + PPTX export.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>🎙️ Podcast</h3>
+                        <p>Multi-speaker chat + TTS synthesis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Tech Stack Overview -->
+        <div class="slide">
+            <div class="content-card">
+                <h2>🛠️ Tech Stack Overview</h2>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>Backend</h3>
+                        <ul>
+                            <li><code>Flask 3.0</code> - Web framework</li>
+                            <li><code>SQLite + FTS5</code> - Database</li>
+                            <li><code>SQLAlchemy</code> - ORM</li>
+                        </ul>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Frontend</h3>
+                        <ul>
+                            <li><code>React 18</code> - UI framework</li>
+                            <li><code>TypeScript</code> - Type safety</li>
+                            <li><code>TailwindCSS</code> - Styling</li>
+                            <li><code>Zustand</code> - State management</li>
+                        </ul>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Visualization</h3>
+                        <ul>
+                            <li><code>Chart.js</code> - Infographics</li>
+                            <li><code>Mermaid.js</code> - Mind maps</li>
+                            <li><code>react-drawio</code> - Flowcharts</li>
+                        </ul>
+                    </div>
+                    <div class="concept-card">
+                        <h3>AI Integration</h3>
+                        <ul>
+                            <li><code>RAG</code> - Retrieval-augmented generation</li>
+                            <li><code>Whisper</code> - Speech-to-text</li>
+                            <li><code>TTS</code> - Text-to-speech</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Project Structure -->
+        <div class="slide">
+            <div class="content-card">
+                <h2>📂 Project Structure</h2>
+                <pre>
+open-notebookllm/
+├── backend/                    # Flask backend (Python)
+│   ├── app.py                 # App entry
+│   ├── config.py              # Configuration
+│   ├── models/                # Database models
+│   ├── services/              # Business logic services
+│   │   ├── ai_providers/      # AI provider abstraction
+│   │   ├── rag_service.py     # RAG retrieval
+│   │   ├── podcast_service.py # Podcast generation
+│   │   └── studio_service.py  # Studio outputs
+│   └── controllers/           # API endpoints
+│
+├── frontend/                   # React frontend (TypeScript)
+│   ├── src/
+│   │   ├── pages/             # Page components
+│   │   ├── components/        # UI components
+│   │   ├── store/             # State management
+│   │   └── api/               # API client
+│   └── package.json
+│
+└── uploads/                    # Upload storage
+                </pre>
+            </div>
+        </div>
+
+        <!-- Slide 9: Summary -->
+        <div class="slide">
+            <div class="content-card">
+                <h2>🎯 Part 1 Summary</h2>
+                <p>In this section, we covered:</p>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>Positioning</h3>
+                        <p>Open-source NotebookLM with full control over data and AI choices.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Core features</h3>
+                        <p>RAG Q&A, multiple sources, studio outputs, and podcast generation.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Tech stack</h3>
+                        <p>Flask + React + multi-provider AI integration.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Advantages</h3>
+                        <p>Privacy, customization, offline support, open-source.</p>
+                    </div>
+                </div>
+                <div class="box info" style="margin-top: 30px;">
+                    <strong>Next:</strong> Part 2 dives into the architecture and detailed AI provider setup.
+                </div>
+                <div style="margin-top: 30px; text-align: center;">
+                    <a href="Part2_%E6%8A%80%E8%A1%93%E6%9E%B6%E6%A7%8B%E8%88%87AI%E6%8F%90%E4%BE%9B%E5%95%86.html" class="nav-btn" style="display: inline-block; padding: 15px 40px; font-size: 18px; background: linear-gradient(120deg, #667eea 0%, #764ba2 100%); border: none;">
+                        ➡️ Go to Part 2: Architecture & AI Providers
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="nav-arrow prev-arrow" id="prevBtn" onclick="changeSlide(-1)">❮</button>
+    <button class="nav-arrow next-arrow" id="nextBtn" onclick="changeSlide(1)">❯</button>
+    <div class="indicators" id="indicatorContainer"></div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function init() {
+            createIndicators();
+            showSlide(0);
+            document.addEventListener('keydown', handleKeydown);
+        }
+
+        function handleKeydown(e) {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        }
+
+        function createIndicators() {
+            const container = document.getElementById('indicatorContainer');
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                dot.onclick = () => goToSlide(i);
+                container.appendChild(dot);
+            }
+        }
+
+        function showSlide(index) {
+            if (index < 0) index = 0;
+            if (index >= totalSlides) index = totalSlides - 1;
+            slides.forEach(s => s.classList.remove('active'));
+            slides[index].classList.add('active');
+            currentSlide = index;
+            document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === index));
+            document.getElementById('prevBtn').disabled = index === 0;
+            document.getElementById('nextBtn').disabled = index === totalSlides - 1;
+        }
+
+        function changeSlide(dir) { showSlide(currentSlide + dir); }
+        function goToSlide(index) { showSlide(index); }
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+            else if (document.exitFullscreen) document.exitFullscreen();
+        }
+
+        init();
+    </script>
+</body>
+</html>

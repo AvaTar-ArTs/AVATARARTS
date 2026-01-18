@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 7 - Deployment & Hands-on Practice</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Microsoft JhengHei', 'Segoe UI', Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; overflow: hidden; color: #333; }
+        .nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 60px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(12px); display: flex; justify-content: space-between; align-items: center; padding: 0 30px; z-index: 10000; }
+        .nav-title { font-size: 22px; font-weight: 700; color: #fff; }
+        .nav-buttons { display: flex; gap: 12px; }
+        .nav-btn { background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.4); color: white; padding: 6px 16px; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: 600; text-decoration: none; }
+        .nav-btn:hover { background: rgba(255, 255, 255, 0.4); }
+        .nav-arrow { position: fixed; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.25); color: white; width: 60px; height: 60px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.4); font-size: 24px; cursor: pointer; z-index: 9000; display: flex; align-items: center; justify-content: center; }
+        .prev-arrow { left: 30px; }
+        .next-arrow { right: 30px; }
+        .nav-arrow:disabled { opacity: 0.3; }
+        .slide { position: absolute; top: 60px; left: 0; width: 100%; height: calc(100vh - 60px); display: none; align-items: center; justify-content: center; padding: 40px; opacity: 0; transition: opacity 0.4s; }
+        .slide.active { display: flex; opacity: 1; }
+        .content-card { background: rgba(255, 255, 255, 0.98); border-radius: 24px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); padding: 60px; max-width: 1400px; width: 95%; max-height: 88vh; overflow-y: auto; }
+        h1 { color: #667eea; font-size: 56px; margin-bottom: 24px; text-align: center; }
+        h2 { color: #764ba2; font-size: 38px; margin-bottom: 35px; border-bottom: 3px solid #667eea; padding-bottom: 12px; }
+        h3 { color: #667eea; font-size: 26px; margin: 25px 0 15px 0; }
+        p, li { font-size: 20px; line-height: 1.8; color: #444; margin-bottom: 15px; }
+        code { background: #f0f2f5; padding: 3px 8px; border-radius: 6px; font-family: monospace; color: #d63384; }
+        pre { background: #282c34; color: #abb2bf; padding: 25px; border-radius: 12px; margin: 25px 0; font-size: 16px; overflow-x: auto; white-space: pre-wrap; }
+        .box { padding: 25px; border-radius: 12px; margin: 25px 0; border-left: 6px solid; font-size: 18px; }
+        .info { background: #e3f2fd; border-color: #2196f3; color: #0d47a1; }
+        .warning { background: #fff3cd; border-color: #ffc107; color: #856404; }
+        .success { background: #d4edda; border-color: #28a745; color: #155724; }
+        .highlight { background: linear-gradient(120deg, #667eea 0%, #764ba2 100%); padding: 4px 12px; border-radius: 6px; color: white; }
+        .concept-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
+        .concept-card { background: #f8f9fa; padding: 25px; border-radius: 15px; border: 2px solid #e9ecef; }
+        .concept-card h3 { margin-top: 0; }
+        .feature-table { width: 100%; border-collapse: collapse; margin: 25px 0; }
+        .feature-table th, .feature-table td { padding: 15px; text-align: left; border-bottom: 1px solid #e9ecef; font-size: 18px; }
+        .feature-table th { background: #667eea; color: white; }
+        .indicators { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 4000; padding: 10px 25px; background: rgba(0,0,0,0.3); border-radius: 30px; }
+        .dot { width: 12px; height: 12px; background: rgba(255,255,255,0.4); border-radius: 50%; cursor: pointer; }
+        .dot.active { background: #667eea; transform: scale(1.3); }
+        .icon-large { font-size: 64px; text-align: center; margin-bottom: 20px; }
+        .flow-diagram { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 30px 0; }
+        .flow-step { background: #667eea; color: white; padding: 20px 30px; border-radius: 15px; text-align: center; font-weight: 600; }
+        .flow-arrow { font-size: 30px; color: #667eea; }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-title">🚀 Part 7 - Deployment & Hands-on Practice</div>
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-btn">🏠 Home</a>
+            <button class="nav-btn" onclick="toggleFullscreen()">🖥️ Fullscreen</button>
+            <a href="https://www.facebook.com/?locale=zh_TW" target="_blank" class="nav-btn">📘 FB</a>
+            <a href="https://www.youtube.com/@Liang-yt02" target="_blank" class="nav-btn">🎥 YT</a>
+        </div>
+    </div>
+
+    <div class="slide-container">
+        <div class="slide active">
+            <div class="content-card" style="text-align: center;">
+                <div class="icon-large">🚀</div>
+                <h4 style="color: #667eea;">Open NotebookLLM Tutorial Series</h4>
+                <h1>Part 7: Deployment & Hands-on Practice</h1>
+                <h2 style="border: none; font-weight: normal; font-size: 28px; color: #666;">
+                    Local deployment, cloud deployment, hands-on workflow
+                </h2>
+                <div style="margin-top: 40px; display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+                    <span class="highlight">Python Backend</span>
+                    <span class="highlight">React Frontend</span>
+                    <span class="highlight">Hands-on</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>🖥️ Local Development Setup</h2>
+                <h3>Step 1: Clone the project</h3>
+                <pre>git clone https://github.com/ChatGPT3a01/open-notebookllm.git
+cd open-notebookllm</pre>
+                <h3>Step 2: Start backend (Terminal 1)</h3>
+                <pre>cd backend
+python -m venv venv
+venv\Scripts\activate  # Windows
+# source venv/bin/activate  # macOS/Linux
+pip install -r requirements.txt
+python app.py</pre>
+                <h3>Step 3: Start frontend (Terminal 2)</h3>
+                <pre>cd frontend
+npm install
+npm run dev</pre>
+                <div class="box success">
+                    <strong>Done!</strong> Backend runs at http://localhost:5000 and frontend runs at http://localhost:3000
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>⚙️ Environment Variables</h2>
+                <h3>backend/.env example</h3>
+                <pre># AI provider API keys
+OPENAI_API_KEY=sk-xxx
+GEMINI_API_KEY=xxx
+ANTHROPIC_API_KEY=xxx
+GROQ_API_KEY=xxx
+
+# Voice services
+ELEVENLABS_API_KEY=xxx
+
+# Image generation
+OPENAI_IMAGE_API_KEY=sk-xxx</pre>
+                <div class="box warning">
+                    <strong>Security note:</strong> Never commit your .env file to Git.
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>📱 Hands-on: Create a notebook</h2>
+                <div class="flow-diagram">
+                    <div class="flow-step">1. Create notebook</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">2. Upload sources</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">3. Wait for processing</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">4. Start chat</div>
+                </div>
+                <div class="box success">
+                    <strong>Tip:</strong> You can upload multiple sources and the system will merge them automatically.
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>🎨 Hands-on: Studio Outputs</h2>
+                <table class="feature-table">
+                    <tr><th>Feature</th><th>Steps</th><th>Output</th></tr>
+                    <tr><td>Summary</td><td>Click "Generate Summary"</td><td>Markdown</td></tr>
+                    <tr><td>Mind map</td><td>Click "Mind map" -> choose sources</td><td>Mermaid / SVG</td></tr>
+                    <tr><td>Flashcards</td><td>Set count + difficulty -> generate</td><td>Card interaction</td></tr>
+                    <tr><td>Quiz</td><td>Select types + count -> generate</td><td>Interactive quiz</td></tr>
+                    <tr><td>Slides</td><td>Set pages -> generate -> download PPTX</td><td>PPTX</td></tr>
+                    <tr><td>Podcast</td><td>Select voices -> generate -> download MP3</td><td>MP3</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>🔧 Troubleshooting</h2>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>API key error</h3>
+                        <p>Check .env is configured correctly</p>
+                        <p>Verify the key is active and has quota</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Frontend can't reach backend</h3>
+                        <p>Confirm backend is running</p>
+                        <p>Check CORS settings</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Upload failed</h3>
+                        <p>Check supported file formats</p>
+                        <p>Check file size limits</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Generation is slow</h3>
+                        <p>Use a faster AI model</p>
+                        <p>Reduce source content length</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>☁️ Cloud Deployment Options</h2>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>Railway</h3>
+                        <p>Easy deployment, auto CI/CD</p>
+                        <p>Great for small projects</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Render</h3>
+                        <p>Free tier available</p>
+                        <p>Supports Python deployments</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>AWS / GCP</h3>
+                        <p>Enterprise scalability</p>
+                        <p>More setup required</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Self-hosted VPS</h3>
+                        <p>Full control</p>
+                        <p>Requires ops skills</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>🤖 AI-assisted Development: Full Project Prompt (1/4)</h2>
+                <p>Want to build a similar project from scratch? Here is a complete prompt example:</p>
+                <pre style="font-size: 13px; line-height: 1.5; max-height: 60vh; overflow-y: auto;">I want to build an open-source knowledge base app similar to Google NotebookLM. Please plan and implement it end-to-end.
+
+[Project Name] Open NotebookLLM
+
+[Core Feature Requirements]
+1. Notebook management system
+   - Create/edit/delete notebooks
+   - Folder-based organization
+   - Notebook search
+
+2. Multi-format source support
+   - PDF parsing (PyPDF2 or pdfplumber)
+   - Word parsing (python-docx)
+   - Excel/CSV parsing (pandas + openpyxl)
+   - Web content scraping (BeautifulSoup + requests)
+   - YouTube captions (youtube-transcript-api)
+   - Audio speech-to-text (OpenAI Whisper API or Groq Whisper)
+
+3. RAG (Retrieval-Augmented Generation)
+   - Split content into chunks (500-1000 chars, overlap 100)
+   - Generate embeddings (support multiple embedding models)
+   - SQLite FTS5 full-text index
+   - Vector similarity search (cosine similarity)
+   - RRF (Reciprocal Rank Fusion) hybrid search
+   - Query Expansion
+   - LLM reranking</pre>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>🤖 AI-assisted Development: Full Project Prompt (2/4)</h2>
+                <pre style="font-size: 13px; line-height: 1.5; max-height: 65vh; overflow-y: auto;">4. Multi-AI provider support (Strategy pattern abstraction)
+   - Gemini (Google): gemini-2.0-flash, gemini-2.5-pro
+     * Text generation, embeddings, image generation (Imagen)
+   - OpenAI: gpt-4o, gpt-4.1
+     * Text generation, embeddings (text-embedding-3-small), DALL-E 3 images
+   - Anthropic: claude-sonnet-4, claude-opus-4
+     * Text generation (embeddings via fallback)
+   - Ollama: local models (llama3.2, mistral)
+     * Fully offline, unlimited use
+   - Groq: ultra-fast inference
+     * llama-3.3-70b-versatile
+   - DeepSeek: deep reasoning model
+
+   Each provider must implement a unified interface:
+   - generate(prompt, system_prompt) -> str
+   - generate_stream(prompt, system_prompt) -> Generator
+   - generate_embedding(text) -> List[float]
+   - generate_image(prompt) -> str (base64)
+
+5. Intelligent chat features
+   - RAG Q&A grounded in sources
+   - SSE (Server-Sent Events) streaming responses
+   - Chat history
+   - Source citations
+   - Multi-turn conversation context</pre>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>🤖 AI-assisted Development: Full Project Prompt (3/4)</h2>
+                <pre style="font-size: 13px; line-height: 1.5; max-height: 65vh; overflow-y: auto;">6. Studio output features
+   - Summaries: auto-summarize source content
+   - Mind maps: Mermaid mindmap format, SVG export
+   - Flowcharts/Architecture: Draw.io XML format, live editing
+     * 6 diagram types: architecture/sequence/class/er/network/auto
+   - Flashcards:
+     * Bloom taxonomy (remember/understand/apply/analyze/evaluate/create)
+     * Difficulty levels (easy/medium/hard)
+     * Card flip UI
+   - Quiz system:
+     * 5 question types: choice/true-false/fill-blank/matching/short answer
+     * Auto grading and explanations
+   - Infographics: Chart.js rendering
+     * 7 charts: Bar/Line/Pie/Doughnut/Radar/Scatter/PolarArea
+     * AI analyzes data and selects the best chart type
+   - Slides:
+     * Auto outline
+     * AI images (Gemini Imagen / DALL-E 3)
+     * PPTX export (python-pptx)
+
+7. Podcast generation
+   - AI-written dual-host scripts (Host A / Host B)
+   - Pro prompts: natural dialogue, interactive questions, examples/analogies
+   - TTS synthesis:
+     * Edge TTS (free, recommended): multilingual, many voices
+     * OpenAI TTS: high quality
+     * Google Cloud TTS
+   - Merge and export audio (MP3)</pre>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>🤖 AI-assisted Development: Full Project Prompt (4/4)</h2>
+                <pre style="font-size: 13px; line-height: 1.5; max-height: 50vh; overflow-y: auto;">[Tech Stack]
+Backend:
+- Python 3.10+ / Flask 3.0 / Flask-CORS
+- SQLite + SQLAlchemy ORM + FTS5 full-text search
+- Vector storage: serialize NumPy arrays into SQLite
+
+Frontend:
+- React 18 + TypeScript + Vite
+- TailwindCSS styling
+- Zustand state management
+- React Router routing
+- Chart.js + react-chartjs-2 charts
+- Mermaid.js mind maps
+- react-drawio flowchart editor
+
+[Database Schema]
+- Notebook (id, title, created_at, folder_id)
+- Source (id, notebook_id, type, title, content, url, status)
+- SourceChunk (id, source_id, content, embedding, chunk_index)
+- Chat (id, notebook_id, role, content, sources, created_at)
+- StudioOutput (id, notebook_id, type, title, data, created_at)
+- Folder (id, name, emoji, order)
+
+[API Endpoints]
+- GET/POST/DELETE /api/notebooks
+- POST /api/notebooks/:id/sources/upload
+- POST /api/notebooks/:id/sources/url
+- POST /api/notebooks/:id/chat/stream (SSE)
+- POST /api/notebooks/:id/studio/summary|mindmap|flashcards|quiz|...
+- GET/PUT /api/settings
+
+Please implement the full project step by step according to this spec.</pre>
+                <div class="box success">
+                    <strong>How to use:</strong> Paste this prompt into an AI tool (Claude, ChatGPT) to start building the project.
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>🔧 Phase 1: Backend Foundation Prompt</h2>
+                <pre style="font-size: 12px; line-height: 1.4; max-height: 70vh; overflow-y: auto;">Please build the Open NotebookLLM backend foundation.
+
+[Directory Structure]
+backend/
+├── app.py                 # Flask app entry
+├── config.py              # Environment configuration
+├── requirements.txt       # Python dependencies
+├── models/
+│   ├── __init__.py
+│   ├── database.py        # SQLAlchemy initialization
+│   ├── notebook.py        # Notebook model
+│   ├── source.py          # Source + SourceChunk models
+│   ├── chat.py            # Chat model
+│   └── studio_output.py   # StudioOutput model
+├── services/
+│   ├── ai_providers/
+│   │   ├── __init__.py
+│   │   ├── base_provider.py    # Abstract base class
+│   │   ├── gemini_provider.py
+│   │   ├── openai_provider.py
+│   │   ├── anthropic_provider.py
+│   │   ├── ollama_provider.py
+│   │   ├── groq_provider.py
+│   │   └── provider_factory.py # Factory pattern to build providers
+│   ├── rag_service.py
+│   ├── studio_service.py
+│   └── podcast_service.py
+└── controllers/
+    ├── notebook_controller.py
+    ├── source_controller.py
+    ├── chat_controller.py
+    └── studio_controller.py
+
+[app.py Requirements]
+- Initialize Flask app
+- Configure CORS for frontend access
+- Register all blueprints
+- Initialize database
+- Error handling middleware
+
+[config.py Requirements]
+- Load environment variables from .env
+- AI_PROVIDER selection (gemini/openai/anthropic/ollama/groq/deepseek)
+- Provider API_KEY and MODEL settings
+- Database path configuration
+- Upload path configuration
+
+[database.py Requirements]
+- Initialize SQLAlchemy
+- Create db instance
+- init_app() binds to Flask app
+
+Generate complete code with all imports and detailed comments.</pre>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>🔧 Phase 1 (cont.): AI Provider Abstraction Prompt</h2>
+                <pre style="font-size: 12px; line-height: 1.4; max-height: 70vh; overflow-y: auto;">Implement the AI Provider abstraction layer using the Strategy pattern.
+
+[base_provider.py]
+from abc import ABC, abstractmethod
+from typing import Generator, List, Optional
+
+class BaseAIProvider(ABC):
+    """Abstract base class for AI providers"""
+
+    @abstractmethod
+    def generate(self, prompt: str, system_prompt: Optional[str] = None) -> str:
+        """Synchronous text generation"""
+        pass
+
+    @abstractmethod
+    def generate_stream(self, prompt: str, system_prompt: Optional[str] = None) -> Generator[str, None, None]:
+        """Streaming generation for SSE"""
+        pass
+
+    @abstractmethod
+    def generate_embedding(self, text: str) -> List[float]:
+        """Generate embeddings for RAG search"""
+        pass
+
+    def generate_image(self, prompt: str) -> Optional[str]:
+        """Generate image, return base64 (optional)"""
+        return None
+
+    def supports_embedding(self) -> bool:
+        """Whether embeddings are supported"""
+        return True
+
+    def supports_image(self) -> bool:
+        """Whether image generation is supported"""
+        return False
+
+[gemini_provider.py requirements]
+- Use google-generativeai
+- generate(): call model.generate_content()
+- generate_stream(): call model.generate_content(stream=True)
+- generate_embedding(): use embedding-001 model
+- generate_image(): use Imagen model
+- Error handling and retries
+
+[openai_provider.py requirements]
+- Use openai SDK
+- generate(): client.chat.completions.create()
+- generate_stream(): stream=True
+- generate_embedding(): text-embedding-3-small
+- generate_image(): DALL-E 3
+
+[ollama_provider.py requirements]
+- Use requests to call local Ollama API (http://localhost:11434)
+- generate(): POST /api/generate
+- generate_stream(): POST /api/generate with stream=True
+- generate_embedding(): POST /api/embeddings
+
+[provider_factory.py]
+def get_provider(provider_name: str = None) -> BaseAIProvider:
+    """Create provider instance based on config"""
+    # Load from config, allow dynamic switching
+
+Generate complete implementations for each provider.</pre>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>🔧 Phase 2: RAG Service Prompt</h2>
+                <pre style="font-size: 12px; line-height: 1.4; max-height: 70vh; overflow-y: auto;">Implement a complete RAG (Retrieval-Augmented Generation) service.
+
+[rag_service.py class structure]
+class RAGService:
+    def __init__(self, ai_provider: BaseAIProvider):
+        self.provider = ai_provider
+
+    # ===== File parsing =====
+    def parse_pdf(self, file_path: str) -> str:
+        """Parse PDF with pdfplumber and preserve structure"""
+
+    def parse_docx(self, file_path: str) -> str:
+        """Parse Word with python-docx"""
+
+    def parse_excel(self, file_path: str) -> str:
+        """Parse Excel/CSV with pandas and render as table text"""
+
+    def fetch_webpage(self, url: str) -> str:
+        """Fetch web content with BeautifulSoup, remove nav/ads"""
+
+    def fetch_youtube(self, url: str) -> str:
+        """Get captions using youtube-transcript-api"""
+
+    def transcribe_audio(self, file_path: str) -> str:
+        """Transcribe audio with Whisper API"""
+
+    # ===== Chunking =====
+    def split_into_chunks(self, text: str, chunk_size: int = 800, overlap: int = 100) -> List[str]:
+        """
+        Smart chunking:
+        1. Prefer paragraph boundaries
+        2. Then sentence boundaries
+        3. Keep overlap to preserve context
+        """
+
+    # ===== Embeddings =====
+    def generate_embeddings(self, chunks: List[str]) -> List[List[float]]:
+        """Batch-generate embeddings"""
+
+    def store_chunks(self, source_id: int, chunks: List[str], embeddings: List[List[float]]):
+        """Store chunks and embeddings in the database"""
+
+    # ===== Search =====
+    def fulltext_search(self, query: str, notebook_id: int, limit: int = 10) -> List[SourceChunk]:
+        """SQLite FTS5 full-text search"""
+
+    def vector_search(self, query: str, notebook_id: int, limit: int = 10) -> List[SourceChunk]:
+        """Vector similarity search (cosine)"""
+
+    def hybrid_search(self, query: str, notebook_id: int, limit: int = 10) -> List[SourceChunk]:
+        """
+        Hybrid search + RRF fusion:
+        1. Run full-text search, get ranks
+        2. Run vector search, get ranks
+        3. RRF score: score = Σ 1/(k + rank), k=60
+        4. Deduplicate results
+        """
+
+    def expand_query(self, query: str) -> str:
+        """Use LLM to expand query with synonyms and related terms"""
+
+    def rerank_results(self, query: str, chunks: List[SourceChunk]) -> List[SourceChunk]:
+        """Use LLM to rerank results"""
+
+[Cosine similarity]
+def cosine_similarity(vec1: List[float], vec2: List[float]) -> float:
+    dot_product = sum(a * b for a, b in zip(vec1, vec2))
+    norm1 = sum(a * a for a in vec1) ** 0.5
+    norm2 = sum(b * b for b in vec2) ** 0.5
+    return dot_product / (norm1 * norm2) if norm1 and norm2 else 0
+
+Generate a complete RAG service implementation with all methods.</pre>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>🔧 Phase 3: Studio Service Prompt (1/2)</h2>
+                <pre style="font-size: 12px; line-height: 1.4; max-height: 70vh; overflow-y: auto;">Implement the studio service in studio_service.py.
+
+[Summary generation]
+def generate_summary(self, sources: List[Source]) -> str:
+    prompt = f"""
+Generate a structured summary based on the content below:
+
+{combined_content}
+
+Requirements:
+1. Use Markdown format
+2. Include: overview, key points (bullets), important details, conclusion
+3. Stay objective, do not add information not in the source
+4. Length around 500-800 words
+"""
+
+[Mind map generation]
+def generate_mindmap(self, sources: List[Source]) -> str:
+    prompt = f"""
+Generate a Mermaid mind map from the content below:
+
+{combined_content}
+
+Requirements:
+1. Use Mermaid mindmap syntax
+2. Put the main topic at the root node
+3. 3-5 primary branches
+4. 2-4 child nodes per primary branch
+5. Keep node text concise (5-15 words)
+
+Example format:
+mindmap
+  root((Topic))
+    Concept A
+      Detail A1
+      Detail A2
+    Concept B
+      Detail B1
+"""
+
+[Flashcard generation]
+def generate_flashcards(self, sources: List[Source], count: int, difficulty: str) -> List[dict]:
+    prompt = f"""
+Generate {count} flashcards from the content below:
+
+{combined_content}
+
+Difficulty: {difficulty} (easy=remember/understand, medium=apply/analyze, hard=evaluate/create)
+
+Return JSON:
+[
+  {{
+    "question": "Question text",
+    "answer": "Answer text",
+    "hint": "Hint (optional)",
+    "bloom_level": "Remember|Understand|Apply|Analyze|Evaluate|Create",
+    "difficulty": "Easy|Medium|Hard"
+  }}
+]
+
+Requirements:
+1. Questions are clear and specific
+2. Answers are complete but concise
+3. Cover different aspects of the content
+4. Match Bloom's taxonomy
+"""</pre>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>🔧 Phase 3: Studio Service Prompt (2/2)</h2>
+                <pre style="font-size: 12px; line-height: 1.4; max-height: 70vh; overflow-y: auto;">[Quiz generation]
+def generate_quiz(self, sources: List[Source], question_types: List[str], count: int) -> List[dict]:
+    prompt = f"""
+Generate quiz questions from the content below:
+
+{combined_content}
+
+Question types: {question_types} (choice/true-false/fill-blank/matching/short answer)
+Question count: {count}
+
+Return JSON:
+[
+  {{
+    "type": "choice",
+    "question": "Question",
+    "options": ["Option A", "Option B", "Option C", "Option D"],
+    "answer": "A",
+    "explanation": "Explanation"
+  }},
+  {{
+    "type": "true_false",
+    "question": "Statement",
+    "answer": true,
+    "explanation": "Explanation"
+  }},
+  {{
+    "type": "fill_blank",
+    "question": "_____ is a ...",
+    "answer": "Correct answer",
+    "explanation": "Explanation"
+  }},
+  {{
+    "type": "matching",
+    "pairs": [["Left 1", "Right 1"], ["Left 2", "Right 2"]],
+    "explanation": "Explanation"
+  }},
+  {{
+    "type": "short_answer",
+    "question": "Question",
+    "answer": "Reference answer",
+    "key_points": ["Key point 1", "Key point 2"]
+  }}
+]
+"""
+
+[Infographic generation]
+def generate_infographic(self, sources: List[Source]) -> dict:
+    prompt = f"""
+Analyze the content below and extract data suitable for visualization:
+
+{combined_content}
+
+Return JSON:
+{{
+  "chart_type": "bar|line|pie|doughnut|radar|scatter|polarArea",
+  "title": "Chart title",
+  "data": {{
+    "labels": ["Label 1", "Label 2"],
+    "datasets": [{{
+      "label": "Dataset name",
+      "data": [Value 1, Value 2]
+    }}]
+  }},
+  "insights": ["Insight 1", "Insight 2", "Insight 3"],
+  "recommendation": "Reason for chart type choice"
+}}
+
+Chart selection guidance:
+- Category comparison: bar
+- Trend analysis: line
+- Proportion: pie/doughnut
+- Multi-dimensional comparison: radar
+- Correlation: scatter
+"""
+
+Generate the complete studio service implementation.</pre>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>🔧 Phase 4: Frontend Component Prompt</h2>
+                <pre style="font-size: 12px; line-height: 1.4; max-height: 70vh; overflow-y: auto;">Implement the React + TypeScript frontend.
+
+[Directory Structure]
+frontend/src/
+├── api/
+│   └── client.ts          # Axios wrapper + API methods
+├── store/
+│   └── useStore.ts        # Zustand global state
+├── pages/
+│   ├── HomePage.tsx       # Notebook list
+│   └── NotebookPage.tsx   # Notebook detail (sources + chat + studio)
+├── components/
+│   ├── Sidebar.tsx            # Left notebook list
+│   ├── SourcePanel.tsx        # Source management panel
+│   ├── ChatPanel.tsx          # Chat panel (SSE streaming)
+│   ├── StudioPanel.tsx        # Studio panel
+│   ├── MindmapRenderer.tsx    # Mermaid mind map renderer
+│   ├── FlashcardRenderer.tsx  # Flashcard component
+│   ├── QuizRenderer.tsx       # Quiz component
+│   └── ChartRenderer.tsx      # Chart.js renderer
+└── types/
+    └── index.ts           # TypeScript types
+
+[ChatPanel.tsx SSE streaming]
+const handleSendMessage = async (message: string) => {
+  // 1. Add user message to chat list
+  // 2. Create EventSource connection
+  const eventSource = new EventSource(
+    `/api/notebooks/${notebookId}/chat/stream?message=${encodeURIComponent(message)}`
+  );
+
+  // 3. Listen to streaming events
+  eventSource.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    if (data.type === 'content') {
+      // Append response content
+      setCurrentResponse(prev => prev + data.content);
+    } else if (data.type === 'sources') {
+      // Set source citations
+      setSources(data.sources);
+    } else if (data.type === 'done') {
+      // Completed, close connection
+      eventSource.close();
+    }
+  };
+
+  eventSource.onerror = () => {
+    eventSource.close();
+  };
+};
+
+[FlashcardRenderer.tsx]
+- Show question on front of card
+- Click to flip and show answer
+- Show Bloom level and difficulty
+- Previous/next navigation
+
+[ChartRenderer.tsx]
+- Use react-chartjs-2
+- Select chart component based on chart_type
+- Support 7 chart types
+- Display insight highlights
+
+Generate the complete frontend code.</pre>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>🔧 Phase 5: Podcast Generation Prompt</h2>
+                <pre style="font-size: 12px; line-height: 1.4; max-height: 70vh; overflow-y: auto;">Implement the podcast generation service in podcast_service.py.
+
+[Script generation prompt]
+def generate_script(self, sources: List[Source], duration: str, style: str) -> List[dict]:
+    prompt = f"""
+You are a professional podcast script writer. Based on the content below, write a two-host dialogue script.
+
+[Source content]
+{combined_content}
+
+[Show settings]
+- Duration: {duration} (short=3-5 min / medium=8-12 min / long=15-20 min)
+- Style: {style} (casual / professional / educational)
+- Hosts: Host A (lead), Host B (questions + support)
+
+[Script requirements]
+1. Opening: greeting + intro to topic (30 seconds)
+2. Body: deep discussion (adjust to duration)
+   - Host A explains core concepts
+   - Host B asks questions, adds examples, and supplements
+   - Use everyday analogies
+   - Natural fillers (e.g., "yeah", "right")
+3. Closing: summarize, tease next episode, say goodbye (30 seconds)
+
+[Dialogue style]
+- Avoid monotone reading
+- Include host interaction
+- Add light humor
+- Explain technical terms
+
+Return JSON:
+[
+  {"speaker": "A", "text": "Hello everyone, welcome to..."},
+  {"speaker": "B", "text": "Hi, today's topic is super interesting..."},
+  ...
+]
+"""
+
+[TTS - Edge TTS]
+import edge_tts
+import asyncio
+
+async def synthesize_speech(self, text: str, voice: str, output_path: str):
+    """
+    Edge TTS synthesis
+
+    Recommended voices:
+    - Chinese (Taiwan): zh-TW-HsiaoChenNeural (F), zh-TW-YunJheNeural (M)
+    - Chinese (China): zh-CN-XiaoxiaoNeural (F), zh-CN-YunxiNeural (M)
+    - English: en-US-JennyNeural (F), en-US-GuyNeural (M)
+    """
+    communicate = edge_tts.Communicate(text, voice)
+    await communicate.save(output_path)
+
+[Audio merge]
+from pydub import AudioSegment
+
+def merge_audio_files(self, audio_files: List[str], output_path: str):
+    """Merge multiple audio files with pauses"""
+    combined = AudioSegment.empty()
+    pause = AudioSegment.silent(duration=500)  # 500ms pause
+
+    for file in audio_files:
+        audio = AudioSegment.from_mp3(file)
+        combined += audio + pause
+
+    combined.export(output_path, format="mp3")
+
+[Full generation flow]
+def generate_podcast(self, notebook_id: int, settings: dict) -> str:
+    # 1. Get source content
+    # 2. Generate dialogue script
+    # 3. Synthesize audio per line (Host A/B with different voices)
+    # 4. Merge all audio
+    # 5. Save and return path
+
+Generate complete podcast service code.</pre>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>💡 AI-assisted Development Best Practices</h2>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>1. Build in phases</h3>
+                        <p>Don't ask AI to generate the entire project at once. Implement and test step by step.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>2. Provide context</h3>
+                        <p>Tell AI what is already built so it can align new features with the architecture.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>3. Ask for complete code</h3>
+                        <p>Explicitly request complete, runnable code with all imports.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>4. Debug with errors</h3>
+                        <p>When errors happen, paste the full error message so AI can help debug.</p>
+                    </div>
+                </div>
+                <div class="box info" style="margin-top: 20px;">
+                    <strong>Recommended tools:</strong> Claude Code CLI / Cursor / GitHub Copilot for in-editor AI collaboration.
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card">
+                <h2>🎯 Course Summary</h2>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>Part 1-2</h3>
+                        <p>Project overview, architecture</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Part 3</h3>
+                        <p>Environment setup and installation</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Part 4-5</h3>
+                        <p>RAG search, studio features</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Part 6-7</h3>
+                        <p>Podcast generation, deployment</p>
+                    </div>
+                </div>
+                <div class="box success" style="margin-top: 30px; text-align: center;">
+                    <strong>🎉 Congrats on completing the Open NotebookLLM tutorial!</strong>
+                    <p style="margin-top: 10px;">You can now build your own AI knowledge base app.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content-card" style="text-align: center;">
+                <div class="icon-large">🙏</div>
+                <h1>Thanks for learning!</h1>
+                <h2 style="border: none; font-weight: normal; font-size: 28px; color: #666;">
+                    © 2026 Open NotebookLLM Tutorial
+                </h2>
+                <div style="margin-top: 40px;">
+                    <p style="font-size: 24px;">Instructor: Teacher Liang (A-Liang)</p>
+                </div>
+                <div style="margin-top: 30px; display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+                    <a href="https://www.facebook.com/?locale=zh_TW" target="_blank" class="highlight" style="text-decoration: none;">📘 Facebook</a>
+                    <a href="https://www.youtube.com/@Liang-yt02" target="_blank" class="highlight" style="text-decoration: none;">🎥 YouTube</a>
+                    <a href="https://www.facebook.com/groups/2754139931432955?locale=zh_TW" target="_blank" class="highlight" style="text-decoration: none;">👥 3A Tech Community</a>
+                </div>
+                <div style="margin-top: 40px;">
+                    <a href="index.html" class="nav-btn" style="display: inline-block; padding: 15px 40px; font-size: 18px; background: linear-gradient(120deg, #667eea 0%, #764ba2 100%); border: none;">
+                        🏠 Back to Course Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="nav-arrow prev-arrow" id="prevBtn" onclick="changeSlide(-1)">❮</button>
+    <button class="nav-arrow next-arrow" id="nextBtn" onclick="changeSlide(1)">❯</button>
+    <div class="indicators" id="indicatorContainer"></div>
+
+    <script>
+        let currentSlide = 0; const slides = document.querySelectorAll('.slide'); const totalSlides = slides.length;
+        function init() { createIndicators(); showSlide(0); document.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') changeSlide(-1); if (e.key === 'ArrowRight') changeSlide(1); }); }
+        function createIndicators() { const c = document.getElementById('indicatorContainer'); for (let i = 0; i < totalSlides; i++) { const d = document.createElement('div'); d.className = 'dot'; d.onclick = () => goToSlide(i); c.appendChild(d); } }
+        function showSlide(i) { if (i < 0) i = 0; if (i >= totalSlides) i = totalSlides - 1; slides.forEach(s => s.classList.remove('active')); slides[i].classList.add('active'); currentSlide = i; document.querySelectorAll('.dot').forEach((d, idx) => d.classList.toggle('active', idx === i)); document.getElementById('prevBtn').disabled = i === 0; document.getElementById('nextBtn').disabled = i === totalSlides - 1; }
+        function changeSlide(d) { showSlide(currentSlide + d); } function goToSlide(i) { showSlide(i); }
+        function toggleFullscreen() { if (!document.fullscreenElement) document.documentElement.requestFullscreen(); else document.exitFullscreen(); }
+        init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+import { ReactElement, useEffect, useRef, useState } from 'react'
+import { MessageSquare } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
+import type { ChatMessage } from '../../../../../shared/types/chat'
+import MessageItem from './MessageItem'
+import { ScrollArea } from '../../ui/scroll-area'
+import './messageList.css'
+
+interface MessageListProps {
+  messages: ChatMessage[]
+}
+
+export default function MessageList({ messages }: MessageListProps): ReactElement {
+  const bottomRef = useRef<HTMLDivElement>(null)
+  const scrollViewportRef = useRef<HTMLDivElement>(null)
+  const { t } = useTranslation()
+  const [autoScroll, setAutoScroll] = useState(true)
+
+  // 检查是否在底部附近（距离底部20px内）
+  const checkIfNearBottom = (element: HTMLElement): boolean => {
+    const threshold = 20
+    return element.scrollHeight - element.scrollTop - element.clientHeight < threshold
+  }
+
+  // 监听滚动事件
+  const handleScroll = (element: HTMLElement) => {
+    const isNearBottom = checkIfNearBottom(element)
+    setAutoScroll(isNearBottom)
+  }
+
+  // 自动滚动到底部（仅在启用自动滚动时）
+  useEffect(() => {
+    if (autoScroll && bottomRef.current) {
+      bottomRef.current.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [messages, autoScroll])
+
+  // 空状态
+  if (messages.length === 0) {
+    return (
+      <ScrollArea className="h-full" viewportClassName="h-full">
+        <div className="flex min-h-full flex-col items-center justify-center p-8">
+          <div className="flex flex-col items-center gap-4 text-muted-foreground">
+            <MessageSquare className="w-16 h-16 opacity-20" />
+            <div className="text-center flex flex-col gap-1">
+              <p className="text-lg font-medium">{t('ui:newChat')}</p>
+              <p className="text-sm">{t('ui:noMessages')}</p>
+            </div>
+          </div>
+        </div>
+      </ScrollArea>
+    )
+  }
+
+  // 消息列表
+  return (
+    <ScrollArea
+      className="h-full"
+      viewportClassName="message-list-fade"
+      viewportRef={scrollViewportRef}
+      onScrollChange={handleScroll}
+    >
+      <div className="px-4 py-6 pb-32">
+        <div className="space-y-4">
+          {messages.map((message) => (
+            <MessageItem key={message.id} message={message} />
+          ))}
+          {/* 滚动锚点 */}
+          <div ref={bottomRef} />
+        </div>
+      </div>
+    </ScrollArea>
+  )
+}

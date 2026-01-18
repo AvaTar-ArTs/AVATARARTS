@@ -1,0 +1,45 @@
+# shellcheck shell=dash
+
+release()(
+    local x_cmd_skill_version="${1:-"v0.0.9"}"
+    local root_path="$(x wsroot)"
+    local release_id; local skill_zip
+    x:info "run cmd -> x cd $root_path"
+
+    x cd "$root_path"
+    x ws bundle --version "$x_cmd_skill_version"
+
+    x:info "Release on github."
+    (
+        x gh --cfg token="$XGITHUB_TOKEN"
+        x gh repo release create -r x-cmd/skill --tag "$x_cmd_skill_version"
+        sleep 2
+        release_id="$(x gh repo release ls -r x-cmd/skill --csv | x awk -F, -v tag="$x_cmd_skill_version" 'NR>1 && $3 == tag {print $1}')"
+        [ -n "$release_id" ] || exit
+        x gh repo release attachment upload --repo x-cmd/skill --release_id "$release_id" "dist/skills.tar.gz"
+        x gh repo release attachment upload --repo x-cmd/skill --release_id "$release_id" "dist/skills_hash.txt"
+        x find ".release" -maxdepth 1 -type f -name "*.zip" | while read -r skill_zip; do
+           x gh repo release attachment upload --repo x-cmd/skill --release_id "$release_id" "$skill_zip"
+        done
+        x:info "release github"
+    ) || return $?
+
+    x:info "Release on codeberg."
+    (
+        x cb --cfg token="$CODEBERG_TOKEN"
+        x cb repo release create -r x-cmd/skill --tag "$x_cmd_skill_version"
+        sleep 2
+        release_id="$(x cb repo release ls -r x-cmd/skill --csv | x awk -F, -v tag="$x_cmd_skill_version" 'NR>1 && $3 == tag {print $1}')"
+        [ -n "$release_id" ] || exit
+        x cb repo release attachment upload --repo x-cmd/skill --release_id "$release_id" "dist/skills.tar.gz"
+        x cb repo release attachment upload --repo x-cmd/skill --release_id "$release_id" "dist/skills_hash.txt"
+        x find ".release" -maxdepth 1 -type f -name "*.zip" | while read -r skill_zip; do
+           x cb repo release attachment upload --repo x-cmd/skill --release_id "$release_id" "$skill_zip"
+        done
+        x:info "release codeberg"
+    ) || return $?
+
+    x:info "Finish"
+)
+
+release "$___X_CMD_SKILL_RELEASE_VERSION"
