@@ -1,0 +1,1312 @@
+{
+  "n8n_workflows": {
+    "web_scraping_automation": {
+      "name": "Advanced Web Scraping Automation",
+      "description": "Comprehensive web scraping workflow with data processing and storage",
+      "nodes": [
+        {
+          "id": "trigger_schedule",
+          "type": "n8n-nodes-base.cron",
+          "name": "Schedule Trigger",
+          "parameters": {
+            "rule": {
+              "interval": [
+                {
+                  "field": "hours",
+                  "hoursInterval": 6
+                }
+              ]
+            }
+          },
+          "position": [240, 300]
+        },
+        {
+          "id": "webhook_trigger",
+          "type": "n8n-nodes-base.webhook",
+          "name": "Webhook Trigger",
+          "parameters": {
+            "path": "scrape",
+            "httpMethod": "POST",
+            "responseMode": "responseNode"
+          },
+          "position": [240, 500]
+        },
+        {
+          "id": "scraper_selector",
+          "type": "n8n-nodes-base.switch",
+          "name": "Scraper Type Selector",
+          "parameters": {
+            "rules": {
+              "rules": [
+                {
+                  "conditions": {
+                    "string": [
+                      {
+                        "value1": "={{ $json.scraper_type }}",
+                        "operation": "equal",
+                        "value2": "selenium"
+                      }
+                    ]
+                  },
+                  "renameOutput": true,
+                  "outputKey": "selenium"
+                },
+                {
+                  "conditions": {
+                    "string": [
+                      {
+                        "value1": "={{ $json.scraper_type }}",
+                        "operation": "equal",
+                        "value2": "beautifulsoup"
+                      }
+                    ]
+                  },
+                  "renameOutput": true,
+                  "outputKey": "beautifulsoup"
+                },
+                {
+                  "conditions": {
+                    "string": [
+                      {
+                        "value1": "={{ $json.scraper_type }}",
+                        "operation": "equal",
+                        "value2": "api"
+                      }
+                    ]
+                  },
+                  "renameOutput": true,
+                  "outputKey": "api"
+                }
+              ]
+            }
+          },
+          "position": [460, 400]
+        },
+        {
+          "id": "selenium_scraper",
+          "type": "n8n-nodes-base.httpRequest",
+          "name": "Selenium Scraper",
+          "parameters": {
+            "url": "http://localhost:5000/scrape/selenium",
+            "method": "POST",
+            "bodyParameters": {
+              "parameters": [
+                {
+                  "name": "url",
+                  "value": "={{ $json.target_url }}"
+                },
+                {
+                  "name": "selectors",
+                  "value": "={{ $json.selectors }}"
+                },
+                {
+                  "name": "wait_time",
+                  "value": "={{ $json.wait_time || 10 }}"
+                },
+                {
+                  "name": "headless",
+                  "value": "={{ $json.headless || true }}"
+                }
+              ]
+            },
+            "options": {
+              "timeout": 300000
+            }
+          },
+          "position": [680, 200]
+        },
+        {
+          "id": "beautifulsoup_scraper",
+          "type": "n8n-nodes-base.httpRequest",
+          "name": "BeautifulSoup Scraper",
+          "parameters": {
+            "url": "http://localhost:5000/scrape/beautifulsoup",
+            "method": "POST",
+            "bodyParameters": {
+              "parameters": [
+                {
+                  "name": "url",
+                  "value": "={{ $json.target_url }}"
+                },
+                {
+                  "name": "selectors",
+                  "value": "={{ $json.selectors }}"
+                },
+                {
+                  "name": "delay_range",
+                  "value": "={{ $json.delay_range || [1, 3] }}"
+                }
+              ]
+            }
+          },
+          "position": [680, 400]
+        },
+        {
+          "id": "api_scraper",
+          "type": "n8n-nodes-base.httpRequest",
+          "name": "API Scraper",
+          "parameters": {
+            "url": "http://localhost:5000/scrape/api",
+            "method": "POST",
+            "bodyParameters": {
+              "parameters": [
+                {
+                  "name": "api_url",
+                  "value": "={{ $json.api_url }}"
+                },
+                {
+                  "name": "headers",
+                  "value": "={{ $json.headers || {} }}"
+                },
+                {
+                  "name": "pagination",
+                  "value": "={{ $json.pagination || true }}"
+                }
+              ]
+            }
+          },
+          "position": [680, 600]
+        },
+        {
+          "id": "data_processor",
+          "type": "n8n-nodes-base.function",
+          "name": "Data Processor",
+          "parameters": {
+            "functionCode": "// Data processing and cleaning\nconst items = $input.all();\nconst processedItems = [];\n\nfor (const item of items) {\n  const data = item.json;\n  \n  // Clean and validate data\n  const processedData = {\n    id: data.id || Math.random().toString(36).substr(2, 9),\n    title: data.title ? data.title.trim() : 'No Title',\n    content: data.content ? data.content.trim() : '',\n    url: data.url || data.source_url,\n    timestamp: new Date().toISOString(),\n    source: data.source || 'unknown',\n    category: data.category || 'general',\n    tags: data.tags || [],\n    metadata: {\n      scraped_at: new Date().toISOString(),\n      processor: 'n8n_automation',\n      version: '1.0'\n    }\n  };\n  \n  // Validate required fields\n  if (processedData.title && processedData.content) {\n    processedItems.push(processedData);\n  }\n}\n\nreturn processedItems.map(item => ({ json: item }));"
+          },
+          "position": [900, 400]
+        },
+        {
+          "id": "duplicate_checker",
+          "type": "n8n-nodes-base.function",
+          "name": "Duplicate Checker",
+          "parameters": {
+            "functionCode": "// Check for duplicates based on URL and title\nconst items = $input.all();\nconst seen = new Set();\nconst uniqueItems = [];\n\nfor (const item of items) {\n  const data = item.json;\n  const key = `${data.url}_${data.title}`;\n  \n  if (!seen.has(key)) {\n    seen.add(key);\n    uniqueItems.push(item);\n  }\n}\n\nreturn uniqueItems;"
+          },
+          "position": [1120, 400]
+        },
+        {
+          "id": "database_storage",
+          "type": "n8n-nodes-base.postgres",
+          "name": "Database Storage",
+          "parameters": {
+            "operation": "insert",
+            "schema": "public",
+            "table": "scraped_data",
+            "columns": "id, title, content, url, timestamp, source, category, tags, metadata",
+            "additionalFields": {}
+          },
+          "position": [1340, 400]
+        },
+        {
+          "id": "file_storage",
+          "type": "n8n-nodes-base.writeFile",
+          "name": "File Storage",
+          "parameters": {
+            "fileName": "scraped_data_{{ $now.format('yyyy-MM-dd_HH-mm-ss') }}.json",
+            "filePath": "/data/scraped/",
+            "fileContent": "={{ JSON.stringify($input.all(), null, 2) }}"
+          },
+          "position": [1340, 600]
+        },
+        {
+          "id": "email_notification",
+          "type": "n8n-nodes-base.emailSend",
+          "name": "Email Notification",
+          "parameters": {
+            "toEmail": "admin@quantumforgelabs.com",
+            "subject": "Scraping Complete - {{ $json.length }} items processed",
+            "message": "Scraping operation completed successfully.\n\nItems processed: {{ $json.length }}\nTimestamp: {{ $now.format('yyyy-MM-dd HH:mm:ss') }}\nSource: {{ $json.source || 'Unknown' }}"
+          },
+          "position": [1560, 400]
+        },
+        {
+          "id": "error_handler",
+          "type": "n8n-nodes-base.function",
+          "name": "Error Handler",
+          "parameters": {
+            "functionCode": "// Error handling and logging\nconst error = $input.first().json;\n\nconst errorReport = {\n  timestamp: new Date().toISOString(),\n  error_type: error.error_type || 'Unknown',\n  message: error.message || 'An error occurred',\n  stack_trace: error.stack || '',\n  context: {\n    node: error.node || 'Unknown',\n    workflow: 'web_scraping_automation',\n    data: error.data || {}\n  },\n  severity: error.severity || 'medium'\n};\n\nreturn [{ json: errorReport }];"
+          },
+          "position": [900, 600]
+        }
+      ],
+      "connections": {
+        "trigger_schedule": {
+          "main": [
+            [
+              {
+                "node": "scraper_selector",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "webhook_trigger": {
+          "main": [
+            [
+              {
+                "node": "scraper_selector",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "scraper_selector": {
+          "main": [
+            [
+              {
+                "node": "selenium_scraper",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "beautifulsoup_scraper",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "api_scraper",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "selenium_scraper": {
+          "main": [
+            [
+              {
+                "node": "data_processor",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "beautifulsoup_scraper": {
+          "main": [
+            [
+              {
+                "node": "data_processor",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "api_scraper": {
+          "main": [
+            [
+              {
+                "node": "data_processor",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "data_processor": {
+          "main": [
+            [
+              {
+                "node": "duplicate_checker",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "duplicate_checker": {
+          "main": [
+            [
+              {
+                "node": "database_storage",
+                "type": "main",
+                "index": 0
+              },
+              {
+                "node": "file_storage",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "database_storage": {
+          "main": [
+            [
+              {
+                "node": "email_notification",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "ai_art_generation_workflow": {
+      "name": "AI Art Generation Workflow",
+      "description": "Automated AI art generation with style transfer and enhancement",
+      "nodes": [
+        {
+          "id": "art_request_trigger",
+          "type": "n8n-nodes-base.webhook",
+          "name": "Art Request Trigger",
+          "parameters": {
+            "path": "generate-art",
+            "httpMethod": "POST",
+            "responseMode": "responseNode"
+          },
+          "position": [240, 300]
+        },
+        {
+          "id": "prompt_processor",
+          "type": "n8n-nodes-base.function",
+          "name": "Prompt Processor",
+          "parameters": {
+            "functionCode": "// Process and enhance art generation prompts\nconst input = $input.first().json;\n\n// Extract parameters\nconst prompt = input.prompt || '';\nconst style = input.style || 'realistic';\nconst quality = input.quality || 'high';\nconst size = input.size || '512x512';\n\n// Style enhancement mapping\nconst styleEnhancements = {\n  'realistic': 'photorealistic, high detail, sharp focus',\n  'abstract': 'abstract art, geometric shapes, colorful',\n  'cyberpunk': 'neon lights, futuristic, dark atmosphere',\n  'fantasy': 'magical, mystical, fantasy art',\n  'minimalist': 'simple, clean, minimal design',\n  'vintage': 'vintage style, retro, aged look',\n  'digital': 'digital art, computer generated',\n  'watercolor': 'watercolor painting, soft edges, artistic'\n};\n\n// Quality modifiers\nconst qualityModifiers = {\n  'standard': 'good quality',\n  'high': 'high quality, detailed, professional',\n  'ultra': 'ultra high quality, masterpiece, award winning'\n};\n\n// Enhanced prompt\nconst enhancedPrompt = `${prompt}, ${styleEnhancements[style]}, ${qualityModifiers[quality]}`;\n\n// Parse size\nconst [width, height] = size.split('x').map(Number);\n\nreturn [{\n  json: {\n    original_prompt: prompt,\n    enhanced_prompt: enhancedPrompt,\n    style: style,\n    quality: quality,\n    width: width,\n    height: height,\n    request_id: Math.random().toString(36).substr(2, 9),\n    timestamp: new Date().toISOString()\n  }\n}];"
+          },
+          "position": [460, 300]
+        },
+        {
+          "id": "ai_art_generator",
+          "type": "n8n-nodes-base.httpRequest",
+          "name": "AI Art Generator",
+          "parameters": {
+            "url": "http://localhost:5000/generate-art",
+            "method": "POST",
+            "bodyParameters": {
+              "parameters": [
+                {
+                  "name": "prompt",
+                  "value": "={{ $json.enhanced_prompt }}"
+                },
+                {
+                  "name": "width",
+                  "value": "={{ $json.width }}"
+                },
+                {
+                  "name": "height",
+                  "value": "={{ $json.height }}"
+                },
+                {
+                  "name": "num_inference_steps",
+                  "value": "={{ $json.quality === 'ultra' ? 50 : 30 }}"
+                },
+                {
+                  "name": "guidance_scale",
+                  "value": "7.5"
+                }
+              ]
+            },
+            "options": {
+              "timeout": 300000
+            }
+          },
+          "position": [680, 300]
+        },
+        {
+          "id": "image_enhancer",
+          "type": "n8n-nodes-base.httpRequest",
+          "name": "Image Enhancer",
+          "parameters": {
+            "url": "http://localhost:5000/enhance-image",
+            "method": "POST",
+            "bodyParameters": {
+              "parameters": [
+                {
+                  "name": "image_data",
+                  "value": "={{ $json.image_data }}"
+                },
+                {
+                  "name": "enhancement_type",
+                  "value": "{{ $json.quality }}"
+                },
+                {
+                  "name": "brightness",
+                  "value": "1.2"
+                },
+                {
+                  "name": "contrast",
+                  "value": "1.3"
+                },
+                {
+                  "name": "saturation",
+                  "value": "1.4"
+                },
+                {
+                  "name": "sharpness",
+                  "value": "1.5"
+                }
+              ]
+            }
+          },
+          "position": [900, 300]
+        },
+        {
+          "id": "style_transfer",
+          "type": "n8n-nodes-base.httpRequest",
+          "name": "Style Transfer",
+          "parameters": {
+            "url": "http://localhost:5000/style-transfer",
+            "method": "POST",
+            "bodyParameters": {
+              "parameters": [
+                {
+                  "name": "content_image",
+                  "value": "={{ $json.enhanced_image }}"
+                },
+                {
+                  "name": "style_image",
+                  "value": "={{ $json.style_reference }}"
+                },
+                {
+                  "name": "iterations",
+                  "value": "1000"
+                },
+                {
+                  "name": "style_weight",
+                  "value": "1000000"
+                }
+              ]
+            }
+          },
+          "position": [1120, 300]
+        },
+        {
+          "id": "image_storage",
+          "type": "n8n-nodes-base.writeFile",
+          "name": "Image Storage",
+          "parameters": {
+            "fileName": "ai_art_{{ $json.request_id }}_{{ $now.format('yyyy-MM-dd_HH-mm-ss') }}.png",
+            "filePath": "/data/ai_art/",
+            "fileContent": "={{ $json.final_image }}",
+            "options": {
+              "encoding": "base64"
+            }
+          },
+          "position": [1340, 200]
+        },
+        {
+          "id": "metadata_storage",
+          "type": "n8n-nodes-base.postgres",
+          "name": "Metadata Storage",
+          "parameters": {
+            "operation": "insert",
+            "schema": "public",
+            "table": "ai_art_gallery",
+            "columns": "request_id, original_prompt, enhanced_prompt, style, quality, dimensions, file_path, created_at, metadata",
+            "additionalFields": {}
+          },
+          "position": [1340, 400]
+        },
+        {
+          "id": "gallery_update",
+          "type": "n8n-nodes-base.httpRequest",
+          "name": "Gallery Update",
+          "parameters": {
+            "url": "http://localhost:5000/update-gallery",
+            "method": "POST",
+            "bodyParameters": {
+              "parameters": [
+                {
+                  "name": "artwork_data",
+                  "value": "={{ $json }}"
+                }
+              ]
+            }
+          },
+          "position": [1560, 300]
+        },
+        {
+          "id": "notification_sender",
+          "type": "n8n-nodes-base.emailSend",
+          "name": "Notification Sender",
+          "parameters": {
+            "toEmail": "={{ $json.user_email || 'admin@quantumforgelabs.com' }}",
+            "subject": "Your AI Art is Ready!",
+            "message": "Your AI-generated artwork has been created successfully!\n\nRequest ID: {{ $json.request_id }}\nStyle: {{ $json.style }}\nQuality: {{ $json.quality }}\nDimensions: {{ $json.width }}x{{ $json.height }}\n\nYou can view your artwork at: https://avatararts.org/gallery/{{ $json.request_id }}"
+          },
+          "position": [1780, 300]
+        },
+        {
+          "id": "response_formatter",
+          "type": "n8n-nodes-base.function",
+          "name": "Response Formatter",
+          "parameters": {
+            "functionCode": "// Format response for API\nconst data = $input.first().json;\n\nconst response = {\n  success: true,\n  request_id: data.request_id,\n  artwork: {\n    id: data.request_id,\n    prompt: data.original_prompt,\n    style: data.style,\n    quality: data.quality,\n    dimensions: `${data.width}x${data.height}`,\n    file_url: `https://avatararts.org/images/ai_art_${data.request_id}.png`,\n    gallery_url: `https://avatararts.org/gallery/${data.request_id}`,\n    created_at: data.timestamp\n  },\n  metadata: {\n    processing_time: data.processing_time || 'Unknown',\n    model_version: '1.0',\n    api_version: '1.0'\n  }\n};\n\nreturn [{ json: response }];"
+          },
+          "position": [1780, 500]
+        }
+      ],
+      "connections": {
+        "art_request_trigger": {
+          "main": [
+            [
+              {
+                "node": "prompt_processor",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "prompt_processor": {
+          "main": [
+            [
+              {
+                "node": "ai_art_generator",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "ai_art_generator": {
+          "main": [
+            [
+              {
+                "node": "image_enhancer",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "image_enhancer": {
+          "main": [
+            [
+              {
+                "node": "style_transfer",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "style_transfer": {
+          "main": [
+            [
+              {
+                "node": "image_storage",
+                "type": "main",
+                "index": 0
+              },
+              {
+                "node": "metadata_storage",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "metadata_storage": {
+          "main": [
+            [
+              {
+                "node": "gallery_update",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "gallery_update": {
+          "main": [
+            [
+              {
+                "node": "notification_sender",
+                "type": "main",
+                "index": 0
+              },
+              {
+                "node": "response_formatter",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "data_pipeline_automation": {
+      "name": "Advanced Data Pipeline Automation",
+      "description": "End-to-end data processing pipeline with ETL, validation, and monitoring",
+      "nodes": [
+        {
+          "id": "data_source_trigger",
+          "type": "n8n-nodes-base.webhook",
+          "name": "Data Source Trigger",
+          "parameters": {
+            "path": "data-pipeline",
+            "httpMethod": "POST",
+            "responseMode": "responseNode"
+          },
+          "position": [240, 300]
+        },
+        {
+          "id": "data_validator",
+          "type": "n8n-nodes-base.function",
+          "name": "Data Validator",
+          "parameters": {
+            "functionCode": "// Validate incoming data\nconst input = $input.first().json;\nconst validationRules = input.validation_rules || {};\nconst data = input.data || [];\n\nconst validationResults = {\n  valid: true,\n  errors: [],\n  warnings: [],\n  stats: {\n    total_records: data.length,\n    valid_records: 0,\n    invalid_records: 0\n  }\n};\n\n// Validate each record\nfor (let i = 0; i < data.length; i++) {\n  const record = data[i];\n  const recordErrors = [];\n  \n  // Check required fields\n  if (validationRules.required_fields) {\n    for (const field of validationRules.required_fields) {\n      if (!record[field] || record[field] === '') {\n        recordErrors.push(`Missing required field: ${field}`);\n      }\n    }\n  }\n  \n  // Check data types\n  if (validationRules.field_types) {\n    for (const [field, expectedType] of Object.entries(validationRules.field_types)) {\n      if (record[field] !== undefined) {\n        const actualType = typeof record[field];\n        if (actualType !== expectedType) {\n          recordErrors.push(`Field ${field} should be ${expectedType}, got ${actualType}`);\n        }\n      }\n    }\n  }\n  \n  // Check value ranges\n  if (validationRules.value_ranges) {\n    for (const [field, range] of Object.entries(validationRules.value_ranges)) {\n      if (record[field] !== undefined) {\n        const value = record[field];\n        if (value < range.min || value > range.max) {\n          recordErrors.push(`Field ${field} value ${value} is outside range [${range.min}, ${range.max}]`);\n        }\n      }\n    }\n  }\n  \n  if (recordErrors.length === 0) {\n    validationResults.stats.valid_records++;\n  } else {\n    validationResults.stats.invalid_records++;\n    validationResults.errors.push({\n      record_index: i,\n      record_id: record.id || `record_${i}`,\n      errors: recordErrors\n    });\n  }\n}\n\nif (validationResults.stats.invalid_records > 0) {\n  validationResults.valid = false;\n}\n\nreturn [{\n  json: {\n    ...input,\n    validation_results: validationResults,\n    valid_data: data.filter((record, index) => {\n      return !validationResults.errors.some(error => error.record_index === index);\n    })\n  }\n}];"
+          },
+          "position": [460, 300]
+        },
+        {
+          "id": "data_transformer",
+          "type": "n8n-nodes-base.function",
+          "name": "Data Transformer",
+          "parameters": {
+            "functionCode": "// Transform and clean data\nconst input = $input.first().json;\nconst validData = input.valid_data || [];\nconst transformationRules = input.transformation_rules || {};\n\nconst transformedData = validData.map(record => {\n  const transformed = { ...record };\n  \n  // Apply field transformations\n  if (transformationRules.field_mappings) {\n    for (const [oldField, newField] of Object.entries(transformationRules.field_mappings)) {\n      if (transformed[oldField] !== undefined) {\n        transformed[newField] = transformed[oldField];\n        delete transformed[oldField];\n      }\n    }\n  }\n  \n  // Apply data cleaning\n  if (transformationRules.clean_text_fields) {\n    for (const field of transformationRules.clean_text_fields) {\n      if (transformed[field] && typeof transformed[field] === 'string') {\n        transformed[field] = transformed[field]\n          .trim()\n          .replace(/\\s+/g, ' ')\n          .toLowerCase();\n      }\n    }\n  }\n  \n  // Apply data type conversions\n  if (transformationRules.type_conversions) {\n    for (const [field, targetType] of Object.entries(transformationRules.type_conversions)) {\n      if (transformed[field] !== undefined) {\n        try {\n          switch (targetType) {\n            case 'number':\n              transformed[field] = Number(transformed[field]);\n              break;\n            case 'date':\n              transformed[field] = new Date(transformed[field]).toISOString();\n              break;\n            case 'boolean':\n              transformed[field] = Boolean(transformed[field]);\n              break;\n          }\n        } catch (error) {\n          console.log(`Error converting field ${field} to ${targetType}:`, error);\n        }\n      }\n    }\n  }\n  \n  // Add metadata\n  transformed._metadata = {\n    processed_at: new Date().toISOString(),\n    pipeline_version: '1.0',\n    source: input.source || 'unknown'\n  };\n  \n  return transformed;\n});\n\nreturn [{\n  json: {\n    ...input,\n    transformed_data: transformedData,\n    transformation_stats: {\n      total_records: validData.length,\n      transformed_records: transformedData.length,\n      transformation_time: new Date().toISOString()\n    }\n  }\n}];"
+          },
+          "position": [680, 300]
+        },
+        {
+          "id": "data_enricher",
+          "type": "n8n-nodes-base.httpRequest",
+          "name": "Data Enricher",
+          "parameters": {
+            "url": "http://localhost:5000/enrich-data",
+            "method": "POST",
+            "bodyParameters": {
+              "parameters": [
+                {
+                  "name": "data",
+                  "value": "={{ $json.transformed_data }}"
+                },
+                {
+                  "name": "enrichment_rules",
+                  "value": "={{ $json.enrichment_rules || {} }}"
+                }
+              ]
+            }
+          },
+          "position": [900, 300]
+        },
+        {
+          "id": "quality_checker",
+          "type": "n8n-nodes-base.function",
+          "name": "Quality Checker",
+          "parameters": {
+            "functionCode": "// Perform data quality checks\nconst input = $input.first().json;\nconst data = input.enriched_data || input.transformed_data || [];\n\nconst qualityChecks = {\n  completeness: 0,\n  accuracy: 0,\n  consistency: 0,\n  validity: 0,\n  uniqueness: 0\n};\n\n// Completeness check\nconst totalFields = data.length > 0 ? Object.keys(data[0]).length : 0;\nlet completeRecords = 0;\nfor (const record of data) {\n  const filledFields = Object.values(record).filter(value => \n    value !== null && value !== undefined && value !== ''\n  ).length;\n  if (filledFields / totalFields >= 0.8) {\n    completeRecords++;\n  }\n}\nqualityChecks.completeness = (completeRecords / data.length) * 100;\n\n// Uniqueness check\nconst uniqueKeys = new Set(data.map(record => record.id || JSON.stringify(record)));\nqualityChecks.uniqueness = (uniqueKeys.size / data.length) * 100;\n\n// Calculate overall quality score\nconst overallScore = Object.values(qualityChecks).reduce((sum, score) => sum + score, 0) / Object.keys(qualityChecks).length;\n\nconst qualityReport = {\n  overall_score: overallScore,\n  individual_scores: qualityChecks,\n  recommendations: [],\n  data_summary: {\n    total_records: data.length,\n    total_fields: totalFields,\n    complete_records: completeRecords,\n    unique_records: uniqueKeys.size\n  }\n};\n\n// Add recommendations based on scores\nif (qualityChecks.completeness < 80) {\n  qualityReport.recommendations.push('Improve data completeness - consider data collection improvements');\n}\nif (qualityChecks.uniqueness < 95) {\n  qualityReport.recommendations.push('Address duplicate records - implement deduplication');\n}\nif (overallScore < 70) {\n  qualityReport.recommendations.push('Overall data quality needs improvement');\n}\n\nreturn [{\n  json: {\n    ...input,\n    quality_report: qualityReport,\n    quality_score: overallScore\n  }\n}];"
+          },
+          "position": [1120, 300]
+        },
+        {
+          "id": "database_loader",
+          "type": "n8n-nodes-base.postgres",
+          "name": "Database Loader",
+          "parameters": {
+            "operation": "insert",
+            "schema": "public",
+            "table": "processed_data",
+            "columns": "id, data, metadata, quality_score, created_at",
+            "additionalFields": {}
+          },
+          "position": [1340, 200]
+        },
+        {
+          "id": "file_exporter",
+          "type": "n8n-nodes-base.writeFile",
+          "name": "File Exporter",
+          "parameters": {
+            "fileName": "processed_data_{{ $now.format('yyyy-MM-dd_HH-mm-ss') }}.json",
+            "filePath": "/data/processed/",
+            "fileContent": "={{ JSON.stringify($json, null, 2) }}"
+          },
+          "position": [1340, 400]
+        },
+        {
+          "id": "api_publisher",
+          "type": "n8n-nodes-base.httpRequest",
+          "name": "API Publisher",
+          "parameters": {
+            "url": "http://localhost:5000/publish-data",
+            "method": "POST",
+            "bodyParameters": {
+              "parameters": [
+                {
+                  "name": "data",
+                  "value": "={{ $json.enriched_data }}"
+                },
+                {
+                  "name": "quality_report",
+                  "value": "={{ $json.quality_report }}"
+                },
+                {
+                  "name": "pipeline_id",
+                  "value": "={{ $json.pipeline_id || 'default' }}"
+                }
+              ]
+            }
+          },
+          "position": [1340, 600]
+        },
+        {
+          "id": "monitoring_dashboard",
+          "type": "n8n-nodes-base.httpRequest",
+          "name": "Monitoring Dashboard",
+          "parameters": {
+            "url": "http://localhost:5000/update-dashboard",
+            "method": "POST",
+            "bodyParameters": {
+              "parameters": [
+                {
+                  "name": "pipeline_stats",
+                  "value": "={{ $json }}"
+                }
+              ]
+            }
+          },
+          "position": [1560, 300]
+        },
+        {
+          "id": "alert_system",
+          "type": "n8n-nodes-base.function",
+          "name": "Alert System",
+          "parameters": {
+            "functionCode": "// Check for alerts and send notifications\nconst input = $input.first().json;\nconst qualityScore = input.quality_score || 0;\nconst validationResults = input.validation_results || {};\nconst stats = input.transformation_stats || {};\n\nconst alerts = [];\n\n// Quality score alert\nif (qualityScore < 70) {\n  alerts.push({\n    type: 'quality_warning',\n    message: `Data quality score is low: ${qualityScore.toFixed(2)}%`,\n    severity: 'warning'\n  });\n}\n\n// Validation errors alert\nif (validationResults.stats && validationResults.stats.invalid_records > 0) {\n  alerts.push({\n    type: 'validation_error',\n    message: `${validationResults.stats.invalid_records} records failed validation`,\n    severity: 'error'\n  });\n}\n\n// Processing time alert\nif (stats.processing_time && stats.processing_time > 300000) { // 5 minutes\n  alerts.push({\n    type: 'performance_warning',\n    message: `Pipeline processing time exceeded 5 minutes: ${stats.processing_time}ms`,\n    severity: 'warning'\n  });\n}\n\nif (alerts.length > 0) {\n  return [{\n    json: {\n      ...input,\n      alerts: alerts,\n      alert_count: alerts.length\n    }\n  }];\n}\n\nreturn [{ json: input }];"
+          },
+          "position": [1560, 500]
+        },
+        {
+          "id": "email_alerts",
+          "type": "n8n-nodes-base.emailSend",
+          "name": "Email Alerts",
+          "parameters": {
+            "toEmail": "admin@quantumforgelabs.com",
+            "subject": "Data Pipeline Alert - {{ $json.alert_count || 0 }} issues detected",
+            "message": "Data pipeline processing completed with alerts:\n\n{{ $json.alerts ? $json.alerts.map(alert => `- ${alert.type}: ${alert.message}`).join('\\n') : 'No alerts' }}\n\nPipeline Stats:\n- Quality Score: {{ $json.quality_score || 'N/A' }}%\n- Total Records: {{ $json.transformation_stats ? $json.transformation_stats.total_records : 'N/A' }}\n- Processing Time: {{ $json.transformation_stats ? $json.transformation_stats.transformation_time : 'N/A' }}"
+          },
+          "position": [1780, 500]
+        }
+      ],
+      "connections": {
+        "data_source_trigger": {
+          "main": [
+            [
+              {
+                "node": "data_validator",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "data_validator": {
+          "main": [
+            [
+              {
+                "node": "data_transformer",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "data_transformer": {
+          "main": [
+            [
+              {
+                "node": "data_enricher",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "data_enricher": {
+          "main": [
+            [
+              {
+                "node": "quality_checker",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "quality_checker": {
+          "main": [
+            [
+              {
+                "node": "database_loader",
+                "type": "main",
+                "index": 0
+              },
+              {
+                "node": "file_exporter",
+                "type": "main",
+                "index": 0
+              },
+              {
+                "node": "api_publisher",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "database_loader": {
+          "main": [
+            [
+              {
+                "node": "monitoring_dashboard",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "monitoring_dashboard": {
+          "main": [
+            [
+              {
+                "node": "alert_system",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "alert_system": {
+          "main": [
+            [
+              {
+                "node": "email_alerts",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        }
+      }
+    },
+    "system_monitoring_workflow": {
+      "name": "System Monitoring and Alerting",
+      "description": "Comprehensive system monitoring with automated alerts and remediation",
+      "nodes": [
+        {
+          "id": "monitoring_trigger",
+          "type": "n8n-nodes-base.cron",
+          "name": "Monitoring Trigger",
+          "parameters": {
+            "rule": {
+              "interval": [
+                {
+                  "field": "minutes",
+                  "minutesInterval": 5
+                }
+              ]
+            }
+          },
+          "position": [240, 300]
+        },
+        {
+          "id": "system_metrics_collector",
+          "type": "n8n-nodes-base.httpRequest",
+          "name": "System Metrics Collector",
+          "parameters": {
+            "url": "http://localhost:5000/system-metrics",
+            "method": "GET",
+            "options": {
+              "timeout": 30000
+            }
+          },
+          "position": [460, 300]
+        },
+        {
+          "id": "metrics_analyzer",
+          "type": "n8n-nodes-base.function",
+          "name": "Metrics Analyzer",
+          "parameters": {
+            "functionCode": "// Analyze system metrics and detect issues\nconst metrics = $input.first().json;\nconst thresholds = {\n  cpu_percent: 80,\n  memory_percent: 85,\n  disk_percent: 90,\n  temperature: 80,\n  load_average: 4.0\n};\n\nconst analysis = {\n  timestamp: new Date().toISOString(),\n  overall_status: 'healthy',\n  alerts: [],\n  recommendations: [],\n  metrics: metrics\n};\n\n// CPU Analysis\nif (metrics.cpu && metrics.cpu.usage_percent > thresholds.cpu_percent) {\n  analysis.alerts.push({\n    type: 'cpu_high',\n    severity: 'warning',\n    message: `CPU usage is high: ${metrics.cpu.usage_percent}%`,\n    value: metrics.cpu.usage_percent,\n    threshold: thresholds.cpu_percent\n  });\n  analysis.overall_status = 'warning';\n}\n\n// Memory Analysis\nif (metrics.memory && metrics.memory.percent > thresholds.memory_percent) {\n  analysis.alerts.push({\n    type: 'memory_high',\n    severity: 'warning',\n    message: `Memory usage is high: ${metrics.memory.percent}%`,\n    value: metrics.memory.percent,\n    threshold: thresholds.memory_percent\n  });\n  analysis.overall_status = 'warning';\n}\n\n// Disk Analysis\nif (metrics.disk && metrics.disk.percent > thresholds.disk_percent) {\n  analysis.alerts.push({\n    type: 'disk_high',\n    severity: 'critical',\n    message: `Disk usage is critical: ${metrics.disk.percent}%`,\n    value: metrics.disk.percent,\n    threshold: thresholds.disk_percent\n  });\n  analysis.overall_status = 'critical';\n}\n\n// Temperature Analysis\nif (metrics.temperature && metrics.temperature.cpu_temperature > thresholds.temperature) {\n  analysis.alerts.push({\n    type: 'temperature_high',\n    severity: 'critical',\n    message: `CPU temperature is high: ${metrics.temperature.cpu_temperature}°C`,\n    value: metrics.temperature.cpu_temperature,\n    threshold: thresholds.temperature\n  });\n  analysis.overall_status = 'critical';\n}\n\n// Load Average Analysis\nif (metrics.cpu && metrics.cpu.load_avg && metrics.cpu.load_avg[0] > thresholds.load_average) {\n  analysis.alerts.push({\n    type: 'load_high',\n    severity: 'warning',\n    message: `System load is high: ${metrics.cpu.load_avg[0]}`,\n    value: metrics.cpu.load_avg[0],\n    threshold: thresholds.load_average\n  });\n  analysis.overall_status = 'warning';\n}\n\n// Generate recommendations\nif (analysis.alerts.length > 0) {\n  if (analysis.alerts.some(alert => alert.type === 'cpu_high')) {\n    analysis.recommendations.push('Consider optimizing CPU-intensive processes or scaling horizontally');\n  }\n  if (analysis.alerts.some(alert => alert.type === 'memory_high')) {\n    analysis.recommendations.push('Check for memory leaks or consider increasing RAM');\n  }\n  if (analysis.alerts.some(alert => alert.type === 'disk_high')) {\n    analysis.recommendations.push('Clean up disk space or expand storage capacity');\n  }\n  if (analysis.alerts.some(alert => alert.type === 'temperature_high')) {\n    analysis.recommendations.push('Check cooling system and clean dust from components');\n  }\n}\n\nreturn [{ json: analysis }];"
+          },
+          "position": [680, 300]
+        },
+        {
+          "id": "alert_router",
+          "type": "n8n-nodes-base.switch",
+          "name": "Alert Router",
+          "parameters": {
+            "rules": {
+              "rules": [
+                {
+                  "conditions": {
+                    "string": [
+                      {
+                        "value1": "={{ $json.overall_status }}",
+                        "operation": "equal",
+                        "value2": "critical"
+                      }
+                    ]
+                  },
+                  "renameOutput": true,
+                  "outputKey": "critical"
+                },
+                {
+                  "conditions": {
+                    "string": [
+                      {
+                        "value1": "={{ $json.overall_status }}",
+                        "operation": "equal",
+                        "value2": "warning"
+                      }
+                    ]
+                  },
+                  "renameOutput": true,
+                  "outputKey": "warning"
+                },
+                {
+                  "conditions": {
+                    "string": [
+                      {
+                        "value1": "={{ $json.overall_status }}",
+                        "operation": "equal",
+                        "value2": "healthy"
+                      }
+                    ]
+                  },
+                  "renameOutput": true,
+                  "outputKey": "healthy"
+                }
+              ]
+            }
+          },
+          "position": [900, 300]
+        },
+        {
+          "id": "critical_alerts",
+          "type": "n8n-nodes-base.emailSend",
+          "name": "Critical Alerts",
+          "parameters": {
+            "toEmail": "admin@quantumforgelabs.com,alerts@quantumforgelabs.com",
+            "subject": "🚨 CRITICAL SYSTEM ALERT - Immediate Action Required",
+            "message": "CRITICAL system issues detected:\n\n{{ $json.alerts.map(alert => `🚨 ${alert.message}`).join('\\n') }}\n\nRecommendations:\n{{ $json.recommendations.map(rec => `- ${rec}`).join('\\n') }}\n\nTimestamp: {{ $json.timestamp }}\n\nPlease investigate immediately!"
+          },
+          "position": [1120, 200]
+        },
+        {
+          "id": "warning_alerts",
+          "type": "n8n-nodes-base.emailSend",
+          "name": "Warning Alerts",
+          "parameters": {
+            "toEmail": "admin@quantumforgelabs.com",
+            "subject": "⚠️ System Warning - {{ $json.alerts.length }} issues detected",
+            "message": "System warnings detected:\n\n{{ $json.alerts.map(alert => `⚠️ ${alert.message}`).join('\\n') }}\n\nRecommendations:\n{{ $json.recommendations.map(rec => `- ${rec}`).join('\\n') }}\n\nTimestamp: {{ $json.timestamp }}"
+          },
+          "position": [1120, 400]
+        },
+        {
+          "id": "health_logger",
+          "type": "n8n-nodes-base.writeFile",
+          "name": "Health Logger",
+          "parameters": {
+            "fileName": "system_health_{{ $now.format('yyyy-MM-dd') }}.log",
+            "filePath": "/logs/system/",
+            "fileContent": "{{ $now.format('yyyy-MM-dd HH:mm:ss') }} - {{ $json.overall_status.toUpperCase() }} - {{ $json.alerts.length }} alerts\\n",
+            "options": {
+              "append": true
+            }
+          },
+          "position": [1120, 600]
+        },
+        {
+          "id": "metrics_database",
+          "type": "n8n-nodes-base.postgres",
+          "name": "Metrics Database",
+          "parameters": {
+            "operation": "insert",
+            "schema": "public",
+            "table": "system_metrics",
+            "columns": "timestamp, cpu_usage, memory_usage, disk_usage, temperature, load_avg, status, alerts_count",
+            "additionalFields": {}
+          },
+          "position": [1340, 300]
+        },
+        {
+          "id": "dashboard_update",
+          "type": "n8n-nodes-base.httpRequest",
+          "name": "Dashboard Update",
+          "parameters": {
+            "url": "http://localhost:5000/update-dashboard",
+            "method": "POST",
+            "bodyParameters": {
+              "parameters": [
+                {
+                  "name": "metrics_data",
+                  "value": "={{ $json }}"
+                }
+              ]
+            }
+          },
+          "position": [1340, 500]
+        },
+        {
+          "id": "auto_remediation",
+          "type": "n8n-nodes-base.function",
+          "name": "Auto Remediation",
+          "parameters": {
+            "functionCode": "// Attempt automatic remediation for common issues\nconst analysis = $input.first().json;\nconst remediationActions = [];\n\n// Auto-remediation for disk space issues\nif (analysis.alerts.some(alert => alert.type === 'disk_high')) {\n  remediationActions.push({\n    action: 'cleanup_temp_files',\n    description: 'Cleaning temporary files',\n    command: 'find /tmp -type f -mtime +7 -delete',\n    priority: 'high'\n  });\n  \n  remediationActions.push({\n    action: 'cleanup_logs',\n    description: 'Cleaning old log files',\n    command: 'find /var/log -name \"*.log\" -mtime +30 -delete',\n    priority: 'medium'\n  });\n}\n\n// Auto-remediation for memory issues\nif (analysis.alerts.some(alert => alert.type === 'memory_high')) {\n  remediationActions.push({\n    action: 'clear_cache',\n    description: 'Clearing system cache',\n    command: 'sync && echo 3 > /proc/sys/vm/drop_caches',\n    priority: 'high'\n  });\n}\n\n// Auto-remediation for high load\nif (analysis.alerts.some(alert => alert.type === 'load_high')) {\n  remediationActions.push({\n    action: 'restart_services',\n    description: 'Restarting non-critical services',\n    command: 'systemctl restart nginx',\n    priority: 'medium'\n  });\n}\n\nreturn [{\n  json: {\n    ...analysis,\n    remediation_actions: remediationActions,\n    auto_remediation_available: remediationActions.length > 0\n  }\n}];"
+          },
+          "position": [1560, 300]
+        },
+        {
+          "id": "remediation_executor",
+          "type": "n8n-nodes-base.httpRequest",
+          "name": "Remediation Executor",
+          "parameters": {
+            "url": "http://localhost:5000/execute-remediation",
+            "method": "POST",
+            "bodyParameters": {
+              "parameters": [
+                {
+                  "name": "actions",
+                  "value": "={{ $json.remediation_actions }}"
+                }
+              ]
+            }
+          },
+          "position": [1780, 300]
+        }
+      ],
+      "connections": {
+        "monitoring_trigger": {
+          "main": [
+            [
+              {
+                "node": "system_metrics_collector",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "system_metrics_collector": {
+          "main": [
+            [
+              {
+                "node": "metrics_analyzer",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "metrics_analyzer": {
+          "main": [
+            [
+              {
+                "node": "alert_router",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "alert_router": {
+          "main": [
+            [
+              {
+                "node": "critical_alerts",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "warning_alerts",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "health_logger",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "critical_alerts": {
+          "main": [
+            [
+              {
+                "node": "metrics_database",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "warning_alerts": {
+          "main": [
+            [
+              {
+                "node": "metrics_database",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "health_logger": {
+          "main": [
+            [
+              {
+                "node": "metrics_database",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "metrics_database": {
+          "main": [
+            [
+              {
+                "node": "dashboard_update",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "dashboard_update": {
+          "main": [
+            [
+              {
+                "node": "auto_remediation",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "auto_remediation": {
+          "main": [
+            [
+              {
+                "node": "remediation_executor",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "workflow_templates": {
+    "basic_automation": {
+      "name": "Basic Automation Template",
+      "description": "Simple automation workflow template",
+      "nodes": [
+        {
+          "id": "trigger",
+          "type": "n8n-nodes-base.webhook",
+          "name": "Webhook Trigger",
+          "parameters": {
+            "path": "automation",
+            "httpMethod": "POST"
+          }
+        },
+        {
+          "id": "processor",
+          "type": "n8n-nodes-base.function",
+          "name": "Data Processor",
+          "parameters": {
+            "functionCode": "// Process input data\nconst input = $input.first().json;\nreturn [{ json: { processed: true, data: input } }];"
+          }
+        },
+        {
+          "id": "output",
+          "type": "n8n-nodes-base.httpRequest",
+          "name": "Output",
+          "parameters": {
+            "url": "http://localhost:5000/process",
+            "method": "POST",
+            "bodyParameters": {
+              "parameters": [
+                {
+                  "name": "data",
+                  "value": "={{ $json }}"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "connections": {
+        "trigger": {
+          "main": [
+            [
+              {
+                "node": "processor",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "processor": {
+          "main": [
+            [
+              {
+                "node": "output",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "deployment_guide": {
+    "prerequisites": [
+      "n8n instance running (Docker or local installation)",
+      "Python backend services running on localhost:5000",
+      "PostgreSQL database configured",
+      "SMTP server configured for email notifications"
+    ],
+    "installation_steps": [
+      "1. Import workflow JSON files into n8n",
+      "2. Configure webhook URLs and API endpoints",
+      "3. Set up database connections",
+      "4. Configure email settings",
+      "5. Test workflows with sample data",
+      "6. Deploy to production environment"
+    ],
+    "configuration": {
+      "webhook_urls": {
+        "scraping_service": "http://localhost:5000/scrape",
+        "ai_art_service": "http://localhost:5000/generate-art",
+        "data_pipeline_service": "http://localhost:5000/process-data",
+        "monitoring_service": "http://localhost:5000/system-metrics"
+      },
+      "database_settings": {
+        "host": "localhost",
+        "port": 5432,
+        "database": "automation",
+        "username": "n8n_user",
+        "password": "secure_password"
+      },
+      "email_settings": {
+        "smtp_host": "smtp.gmail.com",
+        "smtp_port": 587,
+        "username": "your-email@gmail.com",
+        "password": "your-app-password"
+      }
+    }
+  }
+}
