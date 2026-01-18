@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Opportunities Dashboard - Interactive Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg: #ffffff;
+            --bg-secondary: #f9fafb;
+            --text: #111827;
+            --text-secondary: #6b7280;
+            --border: #e5e7eb;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg: #111827;
+            --bg-secondary: #1f2937;
+            --text: #f9fafb;
+            --text-secondary: #d1d5db;
+            --border: #374151;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px var(--shadow);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .control-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 4px var(--shadow);
+        }
+
+        .stat-card h3 {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .stat-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-card .change {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: var(--bg);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text);
+            border-bottom: 2px solid var(--border);
+            cursor: pointer;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        th:hover {
+            background: var(--bg-secondary);
+        }
+
+        th.sortable::after {
+            content: ' ↕';
+            opacity: 0.5;
+        }
+
+        th.sort-asc::after {
+            content: ' ↑';
+            opacity: 1;
+        }
+
+        th.sort-desc::after {
+            content: ' ↓';
+            opacity: 1;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        tr:hover {
+            background: var(--bg);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-ready {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        [data-theme="dark"] .badge-ready {
+            background: #064e3b;
+            color: #d1fae5;
+        }
+
+        .badge-development {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        [data-theme="dark"] .badge-development {
+            background: #1e3a8a;
+            color: #dbeafe;
+        }
+
+        .badge-not-found {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        [data-theme="dark"] .badge-not-found {
+            background: #7f1d1d;
+            color: #fee2e2;
+        }
+
+        .badge-active {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        [data-theme="dark"] .badge-active {
+            background: #14532d;
+            color: #dcfce7;
+        }
+
+        .badge-high {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        [data-theme="dark"] .badge-high {
+            background: #78350f;
+            color: #fef3c7;
+        }
+
+        .badge-medium {
+            background: #e0e7ff;
+            color: #3730a3;
+        }
+
+        [data-theme="dark"] .badge-medium {
+            background: #312e81;
+            color: #e0e7ff;
+        }
+
+        .badge-low {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        [data-theme="dark"] .badge-low {
+            background: #4b5563;
+            color: #f3f4f6;
+        }
+
+        .badge-passive {
+            background: #ecfdf5;
+            color: #047857;
+        }
+
+        [data-theme="dark"] .badge-passive {
+            background: #064e3b;
+            color: #ecfdf5;
+        }
+
+        .revenue {
+            font-weight: 600;
+            color: var(--success);
+        }
+
+        .currency {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .toggle-theme {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px var(--shadow);
+            font-size: 1.5rem;
+            z-index: 1000;
+            transition: transform 0.2s;
+        }
+
+        .toggle-theme:hover {
+            transform: scale(1.1);
+        }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .summary-card {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .summary-card h3 {
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .summary-card ul {
+            list-style: none;
+        }
+
+        .summary-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .summary-card li:last-child {
+            border-bottom: none;
+        }
+
+        .action-item {
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            background: var(--bg);
+            border-left: 4px solid var(--primary);
+            border-radius: 4px;
+        }
+
+        .action-item h4 {
+            margin-bottom: 0.25rem;
+        }
+
+        .action-item p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .filters-active {
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.875rem;
+            }
+
+            th, td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💰 Income Opportunities Dashboard</h1>
+            <p>Comprehensive Analysis of 60+ Revenue Streams | Total Potential: $15.7M+ Year 3</p>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Opportunities</h3>
+                <div class="value" id="total-opportunities">60</div>
+                <div class="change">Revenue streams identified</div>
+            </div>
+            <div class="stat-card">
+                <h3>Year 3 Potential</h3>
+                <div class="value" id="year3-total">$15.7M</div>
+                <div class="change">Conservative projection</div>
+            </div>
+            <div class="stat-card">
+                <h3>Ready to Launch</h3>
+                <div class="value" id="ready-count">0</div>
+                <div class="change">Immediate implementation</div>
+            </div>
+            <div class="stat-card">
+                <h3>Passive Income</h3>
+                <div class="value" id="passive-percent">87%</div>
+                <div class="change">Of total potential</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <label for="search">🔍 Search</label>
+                <input type="text" id="search" placeholder="Search opportunities...">
+            </div>
+            <div class="control-group">
+                <label for="category-filter">Category</label>
+                <select id="category-filter">
+                    <option value="">All Categories</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="status-filter">Status</label>
+                <select id="status-filter">
+                    <option value="">All Status</option>
+                    <option value="Ready">Ready</option>
+                    <option value="In Development">In Development</option>
+                    <option value="Active">Active</option>
+                    <option value="Not Found">Not Found</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="priority-filter">Priority</label>
+                <select id="priority-filter">
+                    <option value="">All Priorities</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="type-filter">Type</label>
+                <select id="type-filter">
+                    <option value="">All Types</option>
+                    <option value="Passive">Passive</option>
+                    <option value="Active">Active</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="filters-active" class="filters-active hidden"></div>
+
+        <div class="table-container">
+            <table id="opportunities-table">
+                <thead>
+                    <tr>
+                        <th class="sortable" data-sort="name">Revenue Stream</th>
+                        <th class="sortable" data-sort="category">Category</th>
+                        <th class="sortable" data-sort="type">Type</th>
+                        <th class="sortable" data-sort="status">Status</th>
+                        <th class="sortable" data-sort="year1">Year 1</th>
+                        <th class="sortable" data-sort="year2">Year 2</th>
+                        <th class="sortable" data-sort="year3">Year 3</th>
+                        <th class="sortable" data-sort="priority">Priority</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">📊 Summary by Category</h2>
+            <div class="summary-cards" id="category-summary"></div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">🎯 Top 10 Opportunities</h2>
+            <div class="summary-cards" id="top-opportunities"></div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">✅ Immediate Action Items</h2>
+            <div id="action-items"></div>
+        </div>
+    </div>
+
+    <button class="toggle-theme" onclick="toggleTheme()" title="Toggle Dark Mode">🌓</button>
+
+    <script>
+        const opportunities = [
+            {name: "DNA Cold Case AI - Per Case Licensing", category: "SaaS", type: "Passive", status: "Ready", year1: 1250000, year2: 4000000, year3: 6000000, priority: "High", notes: "500 cases/year target. 70-80% margin", location: "DNA_COLD_CASE_AI/", model: "Per-case: $2500-$8000"},
+            {name: "DNA Cold Case AI - Agency Subscriptions", category: "SaaS", type: "Passive", status: "Ready", year1: 2500000, year2: 5000000, year3: 7500000, priority: "High", notes: "50 agencies target. Recurring revenue", location: "DNA_COLD_CASE_AI/", model: "Tier 1: $10K/year, Tier 2: $35K/year, Tier 3: $100K/year"},
+            {name: "DNA Cold Case AI - API Access", category: "SaaS", type: "Passive", status: "Ready", year1: 500000, year2: 1000000, year3: 2000000, priority: "High", notes: "20 integrations target", location: "DNA_COLD_CASE_AI/", model: "Setup: $25K + Per-query: $100-$500"},
+            {name: "DNA Cold Case AI - Training & Consulting", category: "Service", type: "Active", status: "Ready", year1: 500000, year2: 750000, year3: 1000000, priority: "Medium", notes: "High margin service", location: "DNA_COLD_CASE_AI/", model: "Training: $5K/detective, Consulting: $300/hr, Expert: $5K/day"},
+            {name: "Hookmark Pro - Pro Tier", category: "SaaS", type: "Passive", status: "In Development", year1: 67000, year2: 157000, year3: 250000, priority: "High", notes: "Stripe integration complete", location: "BUSINESS_PROJECTS/marketplace/products/hookmark-pro/", model: "Subscription: $9.99/month"},
+            {name: "Hookmark Pro - Teams Tier", category: "SaaS", type: "Passive", status: "In Development", year1: 30000, year2: 75000, year3: 150000, priority: "Medium", notes: "Enterprise features", location: "BUSINESS_PROJECTS/marketplace/products/hookmark-pro/", model: "Subscription: $29.99/month"},
+            {name: "Retention Suite - SaaS Subscription", category: "SaaS", type: "Passive", status: "Ready", year1: 50000, year2: 150000, year3: 300000, priority: "Medium", notes: "Email marketing automation", location: "BUSINESS_PROJECTS/retention-suite-complete/", model: "Subscription: $29-$99/month"},
+            {name: "Retention Suite - Template Sales", category: "Digital", type: "Passive", status: "Ready", year1: 20000, year2: 50000, year3: 100000, priority: "Low", notes: "Digital product sales", location: "BUSINESS_PROJECTS/retention-suite-complete/", model: "One-time: $10-$50/template"},
+            {name: "Retention Suite - White-label", category: "Service", type: "Active", status: "Ready", year1: 30000, year2: 100000, year3: 200000, priority: "Medium", notes: "Reseller program", location: "BUSINESS_PROJECTS/retention-suite-complete/", model: "Agency: $500-$2000/month"},
+            {name: "QuantumForge Labs - SaaS", category: "SaaS", type: "Passive", status: "Ready", year1: 30000, year2: 75000, year3: 150000, priority: "Low", notes: "Media processing SaaS", location: "BUSINESS_PROJECTS/quantumforge-complete/", model: "Pay-per-use or subscription"},
+            {name: "QuantumForge Labs - API Access", category: "SaaS", type: "Passive", status: "Ready", year1: 10000, year2: 30000, year3: 60000, priority: "Low", notes: "API monetization", location: "BUSINESS_PROJECTS/quantumforge-complete/", model: "Per-request pricing"},
+            {name: "QuantumForge Labs - Enterprise", category: "SaaS", type: "Passive", status: "Ready", year1: 20000, year2: 50000, year3: 100000, priority: "Low", notes: "Custom licensing", location: "BUSINESS_PROJECTS/quantumforge-complete/", model: "Custom contracts"},
+            {name: "Heavenly Hands Cleaning - Services", category: "Service", type: "Active", status: "Active", year1: 50000, year2: 100000, year3: 150000, priority: "Medium", notes: "Active business with automation", location: "heavenlyHands/", model: "Residential/Commercial cleaning"},
+            {name: "Heavenly Hands - Automation System", category: "SaaS", type: "Passive", status: "Ready", year1: 20000, year2: 50000, year3: 100000, priority: "Low", notes: "AI-powered lead management", location: "heavenlyHands/intelligent-organization-system/", model: "White-label or SaaS"},
+            {name: "CleanConnect Variations", category: "Service", type: "Active", status: "In Development", year1: 25000, year2: 75000, year3: 150000, priority: "Low", notes: "Multiple variations possible", location: "BUSINESS_PROJECTS/", model: "Service business automation"},
+            {name: "Digital Marketplace - Products", category: "Digital", type: "Passive", status: "Active", year1: 20000, year2: 50000, year3: 100000, priority: "Low", notes: "Digital products", location: "BUSINESS_PROJECTS/marketplace/", model: "One-time purchases"},
+            {name: "Digital Marketplace - Subscriptions", category: "Digital", type: "Passive", status: "Active", year1: 10000, year2: 30000, year3: 60000, priority: "Low", notes: "Recurring revenue", location: "BUSINESS_PROJECTS/marketplace/", model: "Subscription products"},
+            {name: "Education Platform - Course Sales", category: "Digital", type: "Passive", status: "In Development", year1: 30000, year2: 100000, year3: 200000, priority: "Medium", notes: "Passive income potential", location: "BUSINESS_PROJECTS/education/", model: "One-time or subscription"},
+            {name: "Education Platform - Membership", category: "Digital", type: "Passive", status: "In Development", year1: 20000, year2: 75000, year3: 150000, priority: "Medium", notes: "Recurring revenue", location: "BUSINESS_PROJECTS/education/", model: "Monthly/annual fees"},
+            {name: "Education Platform - Certification", category: "Digital", type: "Passive", status: "In Development", year1: 10000, year2: 30000, year3: 60000, priority: "Low", notes: "Certification programs", location: "BUSINESS_PROJECTS/education/", model: "Premium pricing"},
+            {name: "SEO & Marketing Services", category: "Service", type: "Active", status: "Active", year1: 100000, year2: 250000, year3: 500000, priority: "Medium", notes: "Active client work", location: "SEO_MARKETING/ CLIENT_PROJECTS/", model: "Retainer: $1K-$5K/month or Project: $5K-$50K"},
+            {name: "Web Development Services", category: "Service", type: "Active", status: "Active", year1: 75000, year2: 200000, year3: 400000, priority: "Medium", notes: "Custom development", location: "CLIENT_PROJECTS/ BUSINESS_PROJECTS/", model: "Project: $5K-$50K or Maintenance: $500-$2K/month"},
+            {name: "Professional Consulting - General", category: "Service", type: "Active", status: "Available", year1: 50000, year2: 125000, year3: 250000, priority: "Medium", notes: "Technical consulting", location: "Various", model: "Hourly: $100-$200/hr or Daily: $1K-$2.5K/day"},
+            {name: "Professional Consulting - DNA Cold Case", category: "Service", type: "Active", status: "Ready", year1: 25000, year2: 75000, year3: 150000, priority: "Medium", notes: "Specialized consulting", location: "DNA_COLD_CASE_AI/", model: "Hourly: $300/hr"},
+            {name: "Music & Audio Assets - Licensing", category: "Content", type: "Passive", status: "Available", year1: 10000, year2: 25000, year3: 50000, priority: "Low", notes: "Stock music sites", location: "CONTENT_ASSETS/", model: "Licensing: $50-$500 per use"},
+            {name: "Music & Audio Assets - Subscription", category: "Content", type: "Passive", status: "Available", year1: 5000, year2: 15000, year3: 30000, priority: "Low", notes: "Recurring revenue", location: "CONTENT_ASSETS/", model: "Stock music subscription"},
+            {name: "AI-Generated Assets - Stock Sites", category: "Content", type: "Passive", status: "Available", year1: 10000, year2: 25000, year3: 50000, priority: "Low", notes: "Template marketplaces", location: "CONTENT_ASSETS/", model: "Stock photo sites"},
+            {name: "AI-Generated Assets - Direct Licensing", category: "Content", type: "Passive", status: "Available", year1: 5000, year2: 15000, year3: 30000, priority: "Low", notes: "Personal website sales", location: "CONTENT_ASSETS/", model: "Direct licensing"},
+            {name: "Workspace Organization Suite - SaaS", category: "SaaS", type: "Passive", status: "Ready", year1: 50000, year2: 150000, year3: 300000, priority: "Low", notes: "Unique automation capabilities", location: "UTILITIES_TOOLS/", model: "Subscription: $19-$99/month"},
+            {name: "Workspace Organization Suite - Enterprise", category: "SaaS", type: "Passive", status: "Ready", year1: 25000, year2: 75000, year3: 150000, priority: "Low", notes: "Enterprise licensing", location: "UTILITIES_TOOLS/", model: "Custom pricing"},
+            {name: "Data Analytics Tools - SaaS", category: "SaaS", type: "Passive", status: "Ready", year1: 30000, year2: 75000, year3: 150000, priority: "Low", notes: "Analytics platform", location: "DATA_ANALYTICS/", model: "SaaS subscription"},
+            {name: "Data Analytics Tools - API", category: "SaaS", type: "Passive", status: "Ready", year1: 15000, year2: 40000, year3: 80000, priority: "Low", notes: "API monetization", location: "DATA_ANALYTICS/", model: "API access"},
+            {name: "Affiliate Marketing - Software Tools", category: "Affiliate", type: "Passive", status: "Not Found", year1: 0, year2: 25000, year3: 50000, priority: "Medium", notes: "Not implemented - High potential", location: "N/A", model: "Commission-based"},
+            {name: "Affiliate Marketing - Business Services", category: "Affiliate", type: "Passive", status: "Not Found", year1: 0, year2: 15000, year3: 30000, priority: "Low", notes: "Not implemented", location: "N/A", model: "Commission-based"},
+            {name: "Affiliate Marketing - Educational Resources", category: "Affiliate", type: "Passive", status: "Not Found", year1: 0, year2: 10000, year3: 20000, priority: "Low", notes: "Not implemented", location: "N/A", model: "Commission-based"},
+            {name: "Subscription Box/Service", category: "Digital", type: "Passive", status: "Not Found", year1: 0, year2: 20000, year3: 50000, priority: "Low", notes: "Not explored", location: "N/A", model: "Monthly subscription"},
+            {name: "Licensing & IP - DNA Algorithms", category: "Licensing", type: "Passive", status: "Partially Explored", year1: 0, year2: 500000, year3: 2000000, priority: "High", notes: "Patents pending", location: "DNA_COLD_CASE_AI/", model: "Patent licensing"},
+            {name: "Licensing & IP - Automation Workflows", category: "Licensing", type: "Passive", status: "Not Found", year1: 0, year2: 50000, year3: 150000, priority: "Low", notes: "Not explored", location: "N/A", model: "Workflow licensing"},
+            {name: "Licensing & IP - Software Architectures", category: "Licensing", type: "Passive", status: "Not Found", year1: 0, year2: 25000, year3: 75000, priority: "Low", notes: "Not explored", location: "N/A", model: "Architecture licensing"},
+            {name: "E-commerce Expansion - Physical Products", category: "E-commerce", type: "Passive", status: "Not Found", year1: 0, year2: 30000, year3: 75000, priority: "Low", notes: "Not explored", location: "N/A", model: "Product sales"},
+            {name: "E-commerce Expansion - Print-on-Demand", category: "E-commerce", type: "Passive", status: "Not Found", year1: 0, year2: 20000, year3: 50000, priority: "Low", notes: "Not explored", location: "N/A", model: "Print-on-demand"},
+            {name: "E-commerce Expansion - Dropshipping", category: "E-commerce", type: "Passive", status: "Not Found", year1: 0, year2: 25000, year3: 60000, priority: "Low", notes: "Not explored", location: "N/A", model: "Dropshipping"},
+            {name: "Advertising Revenue - Website Ads", category: "Advertising", type: "Passive", status: "Not Found", year1: 0, year2: 15000, year3: 30000, priority: "Low", notes: "Not explored", location: "N/A", model: "Ad placements"},
+            {name: "Advertising Revenue - Sponsored Content", category: "Advertising", type: "Passive", status: "Not Found", year1: 0, year2: 10000, year3: 20000, priority: "Low", notes: "Not explored", location: "N/A", model: "Sponsored posts"},
+            {name: "Advertising Revenue - Email List", category: "Advertising", type: "Passive", status: "Not Found", year1: 0, year2: 5000, year3: 15000, priority: "Low", notes: "Not explored", location: "N/A", model: "Email monetization"},
+            {name: "Suno AI Music - Streaming Revenue", category: "Content", type: "Passive", status: "Ready", year1: 800, year2: 2360, year3: 5000, priority: "High", notes: "590 songs created. 4 albums ready. Conservative projection", location: "~/Music/nocTurneMeLoDieS/", model: "Spotify/Apple Music/YouTube: $0.003-$0.013/stream"},
+            {name: "Suno AI Music - YouTube Ad Revenue", category: "Content", type: "Passive", status: "Ready", year1: 0, year2: 6000, year3: 24000, priority: "High", notes: "Content ID protection. Potential $500-$2K/month with 50K subscribers", location: "~/Music/nocTurneMeLoDieS/", model: "Ad revenue: $1-$3 per 1K views"},
+            {name: "Suno AI Music - Direct Sales (Bandcamp)", category: "Content", type: "Passive", status: "Ready", year1: 0, year2: 280, year3: 1120, priority: "Medium", notes: "Keep 82% after fees. Premium pricing for collections", location: "~/Music/nocTurneMeLoDieS/", model: "Album sales: $7-$15 per album"},
+            {name: "Suno AI Music - Commercial Licensing", category: "Content", type: "Passive", status: "Ready", year1: 0, year2: 2000, year3: 10000, priority: "High", notes: "High-value licensing opportunities", location: "~/Music/nocTurneMeLoDieS/", model: "Background: $50-$200, Podcast: $100-$500, Ads: $500-$5K+"},
+            {name: "Suno AI Music - Playlist Placements", category: "Content", type: "Passive", status: "Ready", year1: 0, year2: 500, year3: 2000, priority: "Medium", notes: "Playlist success drives discovery", location: "~/Music/nocTurneMeLoDieS/", model: "Editorial/user playlists: Stream boost, Paid: $50-$300"},
+            {name: "Hookmark Pro - Advanced Content Linker", category: "SaaS", type: "Passive", status: "Ready", year1: 0, year2: 50000, year3: 150000, priority: "High", notes: "Advanced content-aware linking system complete", location: "~/Documents/Hookmark/", model: "AST-based code analysis tool"},
+            {name: "Passive Income Empire - Structure", category: "Digital", type: "Passive", status: "Not Found", year1: 0, year2: 0, year3: 0, priority: "Medium", notes: "Structure exists but needs assessment", location: "~/AVATARARTS/CONTENT_ASSETS/ai-sites/passive-income-empire/", model: "Unknown - needs exploration"},
+            {name: "Music Revenue Tracking System", category: "SaaS", type: "Passive", status: "Not Found", year1: 0, year2: 25000, year3: 75000, priority: "Low", notes: "Could be SaaS product for music creators", location: "~/AVATARARTS/CONTENT_ASSETS/music-empire/revenue-tracking/", model: "SaaS subscription for revenue tracking"},
+            {name: "Podcast-to-Video Automation Toolkit", category: "Digital", type: "Passive", status: "Ready", year1: 5000, year2: 15000, year3: 30000, priority: "High", notes: "Complete monetization plan exists. Python scripts ready. 4-6 week launch timeline", location: "/Volumes/DeVonDaTa/PDF/", model: "Digital product: $49 one-time, $99 agency license"},
+            {name: "Podcast-to-Video - Coaching Sprint", category: "Service", type: "Active", status: "Ready", year1: 0, year2: 10000, year3: 25000, priority: "Medium", notes: "Upsell path from toolkit. One-on-one coaching", location: "/Volumes/DeVonDaTa/PDF/", model: "Upsell: $300-$500 per 2-week sprint"},
+            {name: "Podcast-to-Video - Template Packs", category: "Digital", type: "Passive", status: "Ready", year1: 0, year2: 3000, year3: 8000, priority: "Low", notes: "Thumbnail designs, audiogram styles", location: "/Volumes/DeVonDaTa/PDF/", model: "Upsell: $15-$20 per pack"},
+            {name: "Python Automation Projects - Tactical Income", category: "Service", type: "Active", status: "Not Found", year1: 0, year2: 0, year3: 0, priority: "Medium", notes: "PDF contains Python automation monetization strategies", location: "/Volumes/DeVonDaTa/PDF/", model: "Unknown - needs review"},
+            {name: "Freelance/Contract - Upwork/Fiverr", category: "Service", type: "Active", status: "Not Found", year1: 0, year2: 25000, year3: 50000, priority: "Low", notes: "Not set up", location: "N/A", model: "Hourly/project rates"},
+            {name: "Freelance/Contract - Specialized Niches", category: "Service", type: "Active", status: "Not Found", year1: 0, year2: 30000, year3: 75000, priority: "Medium", notes: "Not explored", location: "N/A", model: "Specialized consulting"},
+            {name: "Freelance/Contract - Agency Partnerships", category: "Service", type: "Active", status: "Not Found", year1: 0, year2: 40000, year3: 100000, priority: "Medium", notes: "Not explored", location: "N/A", model: "Partnership revenue"}
+        ];
+
+        let filteredData = [...opportunities];
+        let sortColumn = null;
+        let sortDirection = 'asc';
+
+        function formatCurrency(value) {
+            if (value === 0) return '-';
+            if (value >= 1000000) return `$${(value / 1000000).toFixed(2)}M`;
+            if (value >= 1000) return `$${(value / 1000).toFixed(1)}K`;
+            return `$${value.toLocaleString()}`;
+        }
+
+        function getBadgeClass(type, value) {
+            if (type === 'status') {
+                const statusMap = {
+                    'Ready': 'badge-ready',
+                    'In Development': 'badge-development',
+                    'Active': 'badge-active',
+                    'Not Found': 'badge-not-found',
+                    'Available': 'badge-ready',
+                    'Partially Explored': 'badge-development'
+                };
+                return statusMap[value] || 'badge-not-found';
+            }
+            if (type === 'priority') {
+                return `badge-${value.toLowerCase()}`;
+            }
+            if (type === 'type') {
+                return value === 'Passive' ? 'badge-passive' : 'badge-active';
+            }
+            return '';
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('table-body');
+            tbody.innerHTML = '';
+
+            if (filteredData.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; padding: 2rem;">No opportunities match your filters</td></tr>';
+                return;
+            }
+
+            filteredData.forEach(opp => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><strong>${opp.name}</strong></td>
+                    <td>${opp.category}</td>
+                    <td><span class="badge ${getBadgeClass('type', opp.type)}">${opp.type}</span></td>
+                    <td><span class="badge ${getBadgeClass('status', opp.status)}">${opp.status}</span></td>
+                    <td class="revenue">${formatCurrency(opp.year1)}</td>
+                    <td class="revenue">${formatCurrency(opp.year2)}</td>
+                    <td class="revenue">${formatCurrency(opp.year3)}</td>
+                    <td><span class="badge ${getBadgeClass('priority', opp.priority)}">${opp.priority}</span></td>
+                    <td><small>${opp.notes}</small></td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            updateStats();
+        }
+
+        function updateStats() {
+            const total = filteredData.length;
+            const year3Total = filteredData.reduce((sum, opp) => sum + opp.year3, 0);
+            const ready = filteredData.filter(opp => opp.status === 'Ready').length;
+            const passive = filteredData.filter(opp => opp.type === 'Passive');
+            const passivePercent = total > 0 ? Math.round((passive.length / total) * 100) : 0;
+
+            document.getElementById('total-opportunities').textContent = total;
+            document.getElementById('year3-total').textContent = formatCurrency(year3Total);
+            document.getElementById('ready-count').textContent = ready;
+            document.getElementById('passive-percent').textContent = passivePercent + '%';
+        }
+
+        function filterData() {
+            const search = document.getElementById('search').value.toLowerCase();
+            const category = document.getElementById('category-filter').value;
+            const status = document.getElementById('status-filter').value;
+            const priority = document.getElementById('priority-filter').value;
+            const type = document.getElementById('type-filter').value;
+
+            filteredData = opportunities.filter(opp => {
+                const matchSearch = !search || opp.name.toLowerCase().includes(search) || opp.notes.toLowerCase().includes(search);
+                const matchCategory = !category || opp.category === category;
+                const matchStatus = !status || opp.status === status;
+                const matchPriority = !priority || opp.priority === priority;
+                const matchType = !type || opp.type === type;
+                return matchSearch && matchCategory && matchStatus && matchPriority && matchType;
+            });
+
+            const activeFilters = [category, status, priority, type].filter(f => f).length;
+            const filtersActiveEl = document.getElementById('filters-active');
+            if (activeFilters > 0 || search) {
+                filtersActiveEl.textContent = `${activeFilters + (search ? 1 : 0)} filter(s) active`;
+                filtersActiveEl.classList.remove('hidden');
+            } else {
+                filtersActiveEl.classList.add('hidden');
+            }
+
+            if (sortColumn) {
+                sortData(sortColumn, sortDirection, false);
+            } else {
+                renderTable();
+            }
+        }
+
+        function sortData(column, direction, updateHeader = true) {
+            sortColumn = column;
+            sortDirection = direction;
+
+            filteredData.sort((a, b) => {
+                let aVal = a[column];
+                let bVal = b[column];
+
+                if (column === 'name') {
+                    aVal = a.name.toLowerCase();
+                    bVal = b.name.toLowerCase();
+                } else if (['year1', 'year2', 'year3'].includes(column)) {
+                    aVal = a[column];
+                    bVal = b[column];
+                } else {
+                    aVal = String(aVal).toLowerCase();
+                    bVal = String(bVal).toLowerCase();
+                }
+
+                if (direction === 'asc') {
+                    return aVal > bVal ? 1 : aVal < bVal ? -1 : 0;
+                } else {
+                    return aVal < bVal ? 1 : aVal > bVal ? -1 : 0;
+                }
+            });
+
+            if (updateHeader) {
+                document.querySelectorAll('th').forEach(th => {
+                    th.classList.remove('sort-asc', 'sort-desc');
+                    if (th.dataset.sort === column) {
+                        th.classList.add(`sort-${direction}`);
+                    }
+                });
+            }
+
+            renderTable();
+        }
+
+        function populateFilters() {
+            const categories = [...new Set(opportunities.map(opp => opp.category))].sort();
+            const categorySelect = document.getElementById('category-filter');
+            categories.forEach(cat => {
+                const option = document.createElement('option');
+                option.value = cat;
+                option.textContent = cat;
+                categorySelect.appendChild(option);
+            });
+        }
+
+        function generateSummaries() {
+            const categorySummary = {};
+            opportunities.forEach(opp => {
+                if (!categorySummary[opp.category]) {
+                    categorySummary[opp.category] = { count: 0, year3: 0, ready: 0 };
+                }
+                categorySummary[opp.category].count++;
+                categorySummary[opp.category].year3 += opp.year3;
+                if (opp.status === 'Ready') categorySummary[opp.category].ready++;
+            });
+
+            const categoryDiv = document.getElementById('category-summary');
+            categoryDiv.innerHTML = '';
+            Object.entries(categorySummary).sort((a, b) => b[1].year3 - a[1].year3).forEach(([cat, data]) => {
+                const card = document.createElement('div');
+                card.className = 'summary-card';
+                card.innerHTML = `
+                    <h3>${cat}</h3>
+                    <ul>
+                        <li><strong>${data.count}</strong> opportunities</li>
+                        <li><strong>${formatCurrency(data.year3)}</strong> Year 3 potential</li>
+                        <li><strong>${data.ready}</strong> ready to launch</li>
+                    </ul>
+                `;
+                categoryDiv.appendChild(card);
+            });
+
+            const topOpps = [...opportunities].sort((a, b) => b.year3 - a.year3).slice(0, 10);
+            const topDiv = document.getElementById('top-opportunities');
+            topDiv.innerHTML = '';
+            topOpps.forEach((opp, idx) => {
+                const card = document.createElement('div');
+                card.className = 'summary-card';
+                card.innerHTML = `
+                    <h3>#${idx + 1} ${opp.name}</h3>
+                    <ul>
+                        <li><strong>${formatCurrency(opp.year3)}</strong> Year 3 potential</li>
+                        <li><span class="badge ${getBadgeClass('status', opp.status)}">${opp.status}</span></li>
+                        <li><span class="badge ${getBadgeClass('priority', opp.priority)}">${opp.priority}</span></li>
+                        <li><small>${opp.notes}</small></li>
+                    </ul>
+                `;
+                topDiv.appendChild(card);
+            });
+
+            const readyHigh = opportunities.filter(opp => opp.status === 'Ready' && opp.priority === 'High').slice(0, 5);
+            const actionDiv = document.getElementById('action-items');
+            actionDiv.innerHTML = '';
+            readyHigh.forEach(opp => {
+                const item = document.createElement('div');
+                item.className = 'action-item';
+                item.innerHTML = `
+                    <h4>${opp.name}</h4>
+                    <p><strong>Potential:</strong> ${formatCurrency(opp.year3)} Year 3 | <strong>Type:</strong> ${opp.type} | ${opp.notes}</p>
+                `;
+                actionDiv.appendChild(item);
+            });
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            populateFilters();
+            renderTable();
+            generateSummaries();
+
+            document.getElementById('search').addEventListener('input', filterData);
+            document.getElementById('category-filter').addEventListener('change', filterData);
+            document.getElementById('status-filter').addEventListener('change', filterData);
+            document.getElementById('priority-filter').addEventListener('change', filterData);
+            document.getElementById('type-filter').addEventListener('change', filterData);
+
+            document.querySelectorAll('.sortable').forEach(th => {
+                th.addEventListener('click', () => {
+                    const column = th.dataset.sort;
+                    const newDirection = sortColumn === column && sortDirection === 'asc' ? 'desc' : 'asc';
+                    sortData(column, newDirection);
+                });
+            });
+
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        });
+    </script>
+</body>
+</html>

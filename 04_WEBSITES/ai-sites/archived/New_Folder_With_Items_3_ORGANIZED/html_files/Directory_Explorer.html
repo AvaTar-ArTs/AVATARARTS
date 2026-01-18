@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directory Explorer - File Browser</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .breadcrumb {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-bottom: 30px;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .explorer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .directory-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .directory-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .directory-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .directory-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .directory-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-right: 12px;
+            color: white;
+        }
+
+        .directory-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .directory-path {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .file-list {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.9rem;
+        }
+
+        .file-item:last-child {
+            border-bottom: none;
+        }
+
+        .file-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .file-name {
+            color: #333;
+            flex: 1;
+        }
+
+        .file-size {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .directory-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .file-preview {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #333;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .search-container {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .search-box {
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 25px;
+            width: 500px;
+            max-width: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn.active {
+            background: white;
+            color: #667eea;
+        }
+
+        .filter-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .explorer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📁 Directory Explorer</h1>
+            <p>Browse your organized files with visual previews</p>
+        </div>
+
+        <div class="breadcrumb">
+            📍 /Users/steven/Downloads/Compressed/
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="🔍 Search directories, files, or file types..." id="searchInput">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="ai">AI Tools</button>
+                <button class="filter-btn" data-filter="dev">Development</button>
+                <button class="filter-btn" data-filter="data">Data</button>
+                <button class="filter-btn" data-filter="media">Media</button>
+                <button class="filter-btn" data-filter="design">Design</button>
+            </div>
+        </div>
+
+        <div class="explorer-grid" id="explorerGrid">
+            <!-- 00_CLEANUP_BACKUP -->
+            <div class="directory-card" data-category="backup" data-keywords="backup development documentation ai frameworks">
+                <div class="directory-header">
+                    <div class="directory-icon" style="background: linear-gradient(135deg, #ff6b6b, #ee5a24);">🗂️</div>
+                    <div class="directory-name">00_CLEANUP_BACKUP</div>
+                </div>
+                <div class="directory-path">/Users/steven/Downloads/Compressed/00_CLEANUP_BACKUP/</div>
+                <div class="file-list">
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">01_Development_Tools</div>
+                        <div class="file-size">1 file</div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">02_Documentation_Tools</div>
+                        <div class="file-size">1 file</div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">03_AI_Frameworks</div>
+                        <div class="file-size">1 file</div>
+                    </div>
+                </div>
+                <div class="directory-stats">
+                    <div class="stat">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Files</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Categories</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 01_AI_Tools_and_Frameworks -->
+            <div class="directory-card" data-category="ai" data-keywords="ai tools frameworks youtube automation media analysis content generation">
+                <div class="directory-header">
+                    <div class="directory-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">🤖</div>
+                    <div class="directory-name">01_AI_Tools_and_Frameworks</div>
+                </div>
+                <div class="directory-path">/Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/</div>
+                <div class="file-list">
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">01_YouTube_Automation</div>
+                        <div class="file-size">1 project</div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">02_Media_Analysis</div>
+                        <div class="file-size">3 tools</div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">03_Content_Generation</div>
+                        <div class="file-size">1 tool</div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">04_Data_Processing</div>
+                        <div class="file-size">2 tools</div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">05_Development_Tools</div>
+                        <div class="file-size">3 tools</div>
+                    </div>
+                </div>
+                <div class="directory-stats">
+                    <div class="stat">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Projects</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Categories</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 02_Development_Projects -->
+            <div class="directory-card" data-category="dev" data-keywords="development projects api audio processing documentation">
+                <div class="directory-header">
+                    <div class="directory-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">💻</div>
+                    <div class="directory-name">02_Development_Projects</div>
+                </div>
+                <div class="directory-path">/Users/steven/Downloads/Compressed/02_Development_Projects/</div>
+                <div class="file-list">
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">01_API_Projects</div>
+                        <div class="file-size">1 project</div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">02_Documentation_Tools</div>
+                        <div class="file-size">1 tool</div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">03_Audio_Processing</div>
+                        <div class="file-size">1 project</div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">04_Archive_Files</div>
+                        <div class="file-size">2 archives</div>
+                    </div>
+                </div>
+                <div class="directory-stats">
+                    <div class="stat">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Projects</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Categories</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 07_Data_and_Exports -->
+            <div class="directory-card" data-category="data" data-keywords="data exports seo packs thumbnails manifests">
+                <div class="directory-header">
+                    <div class="directory-icon" style="background: linear-gradient(135deg, #fa709a, #fee140);">📊</div>
+                    <div class="directory-name">07_Data_and_Exports</div>
+                </div>
+                <div class="directory-path">/Users/steven/Downloads/Compressed/07_Data_and_Exports/</div>
+                <div class="file-list">
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">01_SEO_Packs</div>
+                        <div class="file-size">5 packs</div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">02_Thumbnail_Assets</div>
+                        <div class="file-size">1 file</div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">03_Manifest_Files</div>
+                        <div class="file-size">Empty</div>
+                    </div>
+                </div>
+                <div class="directory-stats">
+                    <div class="stat">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">SEO Packs</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Categories</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10_Uncategorized -->
+            <div class="directory-card" data-category="uncategorized" data-keywords="uncategorized ai tools development media processing design assets">
+                <div class="directory-header">
+                    <div class="directory-icon" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">📁</div>
+                    <div class="directory-name">10_Uncategorized</div>
+                </div>
+                <div class="directory-path">/Users/steven/Downloads/Compressed/10_Uncategorized/</div>
+                <div class="file-list">
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">01_AI_Tools</div>
+                        <div class="file-size">Multiple</div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">02_Development_Projects</div>
+                        <div class="file-size">Multiple</div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">03_Media_Processing</div>
+                        <div class="file-size">Multiple</div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">04_Content_Creation</div>
+                        <div class="file-size">Multiple</div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">05_Data_Analysis</div>
+                        <div class="file-size">Multiple</div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">06_Export_Archives</div>
+                        <div class="file-size">Multiple</div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">07_Design_Assets</div>
+                        <div class="file-size">Multiple</div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">08_System_Tools</div>
+                        <div class="file-size">Multiple</div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">09_Documentation</div>
+                        <div class="file-size">Multiple</div>
+                    </div>
+                    <div class="file-item">
+                        <div class="file-icon">📁</div>
+                        <div class="file-name">10_Archive_Files</div>
+                        <div class="file-size">85+ files</div>
+                    </div>
+                </div>
+                <div class="directory-stats">
+                    <div class="stat">
+                        <div class="stat-number">85+</div>
+                        <div class="stat-label">Files</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">10</div>
+                        <div class="stat-label">Categories</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Master Organization Summary -->
+            <div class="directory-card" data-category="documentation" data-keywords="documentation summary organization master">
+                <div class="directory-header">
+                    <div class="directory-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">📋</div>
+                    <div class="directory-name">Master Organization Summary</div>
+                </div>
+                <div class="directory-path">/Users/steven/Downloads/Compressed/MASTER_ORGANIZATION_SUMMARY.md</div>
+                <div class="file-preview">
+# Master Organization Summary - Compressed Directory
+
+**Date:** October 17, 2025  
+**Total Directories Processed:** 5 major directories  
+**Organization Status:** ✅ COMPLETED
+
+## Overview
+
+Successfully analyzed, organized, and categorized all files across 5 major directories in the Compressed folder. Each directory has been systematically organized with clear thematic categories and proper naming conventions.
+
+## Directory-by-Directory Summary
+
+### 00_CLEANUP_BACKUP/ (3 files organized)
+**Purpose:** Backup files from cleanup operations
+**Structure:**
+- **01_Development_Tools/** - deepwiki-open-main.zip
+- **02_Documentation_Tools/** - pyrepo_doc_organizer_pkg.zip  
+- **03_AI_Frameworks/** - digital_dive_framework_v2.zip
+                </div>
+                <div class="directory-stats">
+                    <div class="stat">
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">Document</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Directories</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.directory-card');
+            
+            cards.forEach(card => {
+                const keywords = card.getAttribute('data-keywords').toLowerCase();
+                const title = card.querySelector('.directory-name').textContent.toLowerCase();
+                const path = card.querySelector('.directory-path').textContent.toLowerCase();
+                
+                if (keywords.includes(searchTerm) || title.includes(searchTerm) || path.includes(searchTerm)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        });
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                const cards = document.querySelectorAll('.directory-card');
+                
+                cards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // Add click animation to cards
+        document.querySelectorAll('.directory-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>

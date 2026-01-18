@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 AvatarArts - Static HTML Projects</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .projects-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+        .project-link {
+            padding: 2rem;
+            background: var(--accent-light);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--page-text);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .project-link:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-4px);
+        }
+        .project-link h3 {
+            margin-top: 0;
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <h1>🌟 AvatarArts Projects</h1>
+            <button class="theme-switcher" onclick="toggleTheme()" title="Toggle dark mode">🌙</button>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <h2 style="text-align: center; margin: 2rem 0;">Static HTML/CSS/JS Projects</h2>
+            <p style="text-align: center; color: var(--secondary-text);">
+                Fast, simple, no build tools required. Just HTML, CSS, and JavaScript.
+            </p>
+        </section>
+
+        <div class="projects-nav">
+            <a href="main/" class="project-link">
+                <h3>🌍 Main Site</h3>
+                <p>Primary AvatarArts website - AI Agent Builder landing page</p>
+            </a>
+            <a href="gallery/" class="project-link">
+                <h3>🖼️ Gallery</h3>
+                <p>Responsive image gallery with theme support</p>
+            </a>
+            <a href="hub/" class="project-link">
+                <h3>🌐 Hub</h3>
+                <p>Central hub connecting all projects</p>
+            </a>
+            <a href="portfolio/" class="project-link">
+                <h3>💼 Portfolio</h3>
+                <p>Professional portfolio showcase</p>
+            </a>
+            <a href="tools/" class="project-link">
+                <h3>🛠️ Tools</h3>
+                <p>Developer tools and utilities</p>
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 AvatarArts - Static HTML Projects</p>
+    </footer>
+
+    <script src="theme.js"></script>
+</body>
+</html>

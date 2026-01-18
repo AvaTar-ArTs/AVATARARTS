@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process & Techniques - Steven Chaplinski | Creative Workflow</title>
+    <meta name="description" content="Discover Steven Chaplinski's creative process, techniques, and workflow for digital art, photomanipulation, and multimedia projects.">
+    <meta name="keywords" content="creative process, digital art techniques, photomanipulation workflow, video editing process, Steven Chaplinski">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .process-hero {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="processGrid" width="15" height="15" patternUnits="userSpaceOnUse"><path d="M 15 0 L 0 0 0 15" fill="none" stroke="rgba(255,107,107,0.3)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23processGrid)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .process-timeline {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #ff6b6b, #4ecdc4, #45b7d1);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 2rem 0;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 2rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 2rem;
+        }
+
+        .timeline-content {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border: 15px solid transparent;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -30px;
+            border-left-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -30px;
+            border-right-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.4);
+        }
+
+        .timeline-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .timeline-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #4ecdc4;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timeline-description {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        .tools-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tool-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            border-color: #4ecdc4;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .tool-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.4);
+        }
+
+        .tool-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .tool-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .tool-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        .tool-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tool-features li {
+            color: #4ecdc4;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .tool-features li::before {
+            content: '✓ ';
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+
+        .techniques-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .technique-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.4s ease;
+        }
+
+        .technique-card:hover {
+            transform: translateY(-5px);
+            border-color: #4ecdc4;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .technique-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .technique-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.4);
+        }
+
+        .technique-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .technique-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            color: #4ecdc4;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .technique-description {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .technique-steps {
+            list-style: none;
+            padding: 0;
+        }
+
+        .technique-steps li {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.8rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .technique-steps li::before {
+            content: counter(step-counter);
+            counter-increment: step-counter;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .technique-steps {
+            counter-reset: step-counter;
+        }
+
+        .inspiration-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .inspiration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .inspiration-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.4s ease;
+        }
+
+        .inspiration-item:hover {
+            transform: translateY(-5px);
+            border-color: #4ecdc4;
+        }
+
+        .inspiration-icon {
+            font-size: 3rem;
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+        }
+
+        .inspiration-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .inspiration-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 3rem;
+                padding-right: 0;
+            }
+
+            .timeline-icon {
+                left: 20px;
+                transform: translateX(-50%);
+            }
+
+            .timeline-content::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Steven</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="process.html" class="nav-link active">Process</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Process Hero -->
+    <section class="process-hero">
+        <div class="container">
+            <h1 class="gradient-text">Creative Process</h1>
+            <p>Discover the methods, techniques, and workflow behind my digital art and creative projects. From initial concept to final delivery, explore how I bring ideas to life.</p>
+        </div>
+    </section>
+
+    <!-- Process Timeline -->
+    <section class="process-timeline">
+        <div class="container">
+            <h2 class="section-title">My Creative Workflow</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">1. Inspiration & Concept</h3>
+                        <p class="timeline-description">Every project begins with inspiration. I gather references, explore different concepts, and sketch initial ideas. This phase involves research, mood boards, and brainstorming to establish the creative direction.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-pencil-ruler"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">2. Planning & Design</h3>
+                        <p class="timeline-description">I create detailed sketches, wireframes, and design mockups. This includes color palettes, composition studies, and technical planning to ensure the final piece meets both aesthetic and functional requirements.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">3. Creation & Development</h3>
+                        <p class="timeline-description">The main creation phase where I bring the concept to life using various digital tools and techniques. This involves digital painting, photo manipulation, video editing, or coding depending on the project type.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">4. Refinement & Polish</h3>
+                        <p class="timeline-description">I refine details, adjust colors, enhance effects, and polish the work to perfection. This includes color grading, final adjustments, and quality assurance to ensure the highest standard.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">5. Delivery & Presentation</h3>
+                        <p class="timeline-description">Final delivery includes proper formatting, optimization for different platforms, and presentation materials. I ensure the work is ready for its intended use and exceeds client expectations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section class="tools-section">
+        <div class="container">
+            <h2 class="section-title">Tools & Software</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fab fa-adobe"></i>
+                    </div>
+                    <h3 class="tool-title">Adobe Creative Suite</h3>
+                    <p class="tool-description">My primary creative toolkit for professional digital art and design work.</p>
+                    <ul class="tool-features">
+                        <li>Photoshop for digital painting</li>
+                        <li>After Effects for motion graphics</li>
+                        <li>Premiere Pro for video editing</li>
+                        <li>Illustrator for vector graphics</li>
+                    </ul>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="tool-title">Development Tools</h3>
+                    <p class="tool-description">Modern web development and programming tools for interactive projects.</p>
+                    <ul class="tool-features">
+                        <li>VS Code for coding</li>
+                        <li>Git for version control</li>
+                        <li>Node.js for backend</li>
+                        <li>React for frontend</li>
+                    </ul>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3 class="tool-title">Photography & Media</h3>
+                    <p class="tool-description">Equipment and software for capturing and processing visual content.</p>
+                    <ul class="tool-features">
+                        <li>DSLR photography</li>
+                        <li>Lightroom for editing</li>
+                        <li>DaVinci Resolve for color grading</li>
+                        <li>Procreate for mobile art</li>
+                    </ul>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="tool-title">Digital Art Tools</h3>
+                    <p class="tool-description">Specialized software and hardware for digital art creation.</p>
+                    <ul class="tool-features">
+                        <li>Wacom tablet for drawing</li>
+                        <li>Blender for 3D modeling</li>
+                        <li>Corel Painter for traditional media</li>
+                        <li>Custom brush sets</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Techniques Section -->
+    <section class="techniques-section">
+        <div class="container">
+            <h2 class="section-title">Key Techniques</h2>
+            
+            <div class="technique-card">
+                <div class="technique-header">
+                    <div class="technique-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="technique-title">Digital Painting</h3>
+                </div>
+                <p class="technique-description">Creating original artwork using digital brushes, layers, and advanced painting techniques to achieve traditional art effects in a digital medium.</p>
+                <ol class="technique-steps">
+                    <li>Start with rough sketches and composition planning</li>
+                    <li>Block in basic shapes and values using large brushes</li>
+                    <li>Add details and textures with smaller, specialized brushes</li>
+                    <li>Refine colors and lighting for maximum impact</li>
+                    <li>Apply final touches and effects for polish</li>
+                </ol>
+            </div>
+
+            <div class="technique-card">
+                <div class="technique-header">
+                    <div class="technique-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <h3 class="technique-title">Photo Manipulation</h3>
+                </div>
+                <p class="technique-description">Combining multiple images, adjusting colors, and creating surreal compositions that blend reality with imagination.</p>
+                <ol class="technique-steps">
+                    <li>Source and select high-quality base images</li>
+                    <li>Use advanced selection tools for precise masking</li>
+                    <li>Blend elements seamlessly with layer modes</li>
+                    <li>Adjust color grading for consistent atmosphere</li>
+                    <li>Add realistic shadows and lighting effects</li>
+                </ol>
+            </div>
+
+            <div class="technique-card">
+                <div class="technique-header">
+                    <div class="technique-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="technique-title">Video Editing & Motion Graphics</h3>
+                </div>
+                <p class="technique-description">Creating dynamic video content with smooth transitions, visual effects, and engaging motion graphics.</p>
+                <ol class="technique-steps">
+                    <li>Plan the video structure and storyboard</li>
+                    <li>Import and organize footage and assets</li>
+                    <li>Edit timing and create smooth transitions</li>
+                    <li>Add motion graphics and visual effects</li>
+                    <li>Color grade and export in optimal formats</li>
+                </ol>
+            </div>
+
+            <div class="technique-card">
+                <div class="technique-header">
+                    <div class="technique-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="technique-title">Interactive Web Design</h3>
+                </div>
+                <p class="technique-description">Combining artistic vision with modern web technologies to create engaging, interactive digital experiences.</p>
+                <ol class="technique-steps">
+                    <li>Design user interface and user experience</li>
+                    <li>Create responsive layouts and prototypes</li>
+                    <li>Implement interactive features with JavaScript</li>
+                    <li>Optimize performance and accessibility</li>
+                    <li>Test across devices and browsers</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inspiration Section -->
+    <section class="inspiration-section">
+        <div class="container">
+            <h2 class="section-title">Sources of Inspiration</h2>
+            <div class="inspiration-grid">
+                <div class="inspiration-item">
+                    <div class="inspiration-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3 class="inspiration-title">Music & Sound</h3>
+                    <p class="inspiration-description">Rhythms, melodies, and soundscapes often inspire visual compositions and color choices in my work.</p>
+                </div>
+
+                <div class="inspiration-item">
+                    <div class="inspiration-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3 class="inspiration-title">Urban Environments</h3>
+                    <p class="inspiration-description">Cityscapes, architecture, and urban life provide endless inspiration for textures, lighting, and compositions.</p>
+                </div>
+
+                <div class="inspiration-item">
+                    <div class="inspiration-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="inspiration-title">Nature & Science</h3>
+                    <p class="inspiration-description">Natural patterns, scientific concepts, and organic forms influence my abstract and conceptual work.</p>
+                </div>
+
+                <div class="inspiration-item">
+                    <div class="inspiration-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3 class="inspiration-title">Cinema & Media</h3>
+                    <p class="inspiration-description">Film, television, and digital media shape my understanding of storytelling and visual narrative.</p>
+                </div>
+
+                <div class="inspiration-item">
+                    <div class="inspiration-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="inspiration-title">Human Experience</h3>
+                    <p class="inspiration-description">Emotions, relationships, and human stories drive the conceptual depth of my artistic work.</p>
+                </div>
+
+                <div class="inspiration-item">
+                    <div class="inspiration-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3 class="inspiration-title">Gaming & Technology</h3>
+                    <p class="inspiration-description">Interactive media, gaming aesthetics, and technological innovation inspire my digital art and web projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Steven Chaplinski</h3>
+                    <p>Digital Artist & Creative Developer</p>
+                    <p>Transforming ideas into visual reality through innovative digital art and creative solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="process.html">Process</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Me</h4>
+                    <div class="social-links">
+                        <a href="https://behance.net/ichoake" class="social-link"><i class="fab fa-behance"></i></a>
+                        <a href="https://bit.ly/iChoake" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="https://aiavatar.etsy.com/" class="social-link"><i class="fas fa-store"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Steven Chaplinski. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

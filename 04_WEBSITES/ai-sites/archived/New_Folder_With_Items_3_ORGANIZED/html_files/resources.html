@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources & Tools - Steven Chaplinski | Free Downloads & Creative Assets</title>
+    <meta name="description" content="Download free creative resources from Steven Chaplinski including brushes, templates, tutorials, and tools for digital artists and designers.">
+    <meta name="keywords" content="free resources, digital art tools, Photoshop brushes, templates, tutorials, Steven Chaplinski resources">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .resources-hero {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="resourceGrid" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M 25 0 L 0 0 0 25" fill="none" stroke="rgba(78,205,196,0.3)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23resourceGrid)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .resource-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 12px 24px;
+            border: 2px solid #4ecdc4;
+            background: transparent;
+            color: #4ecdc4;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: #4ecdc4;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .resource-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: #4ecdc4;
+        }
+
+        .resource-preview {
+            height: 200px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.8), rgba(78, 205, 196, 0.8));
+            animation: resourceShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes resourceShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .resource-icon {
+            color: white;
+            font-size: 3rem;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .resource-content {
+            padding: 2rem;
+            color: #fff;
+        }
+
+        .resource-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem;
+            color: #4ecdc4;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .resource-category {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .resource-description {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .resource-specs {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .resource-specs li {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .resource-specs li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+
+        .resource-download {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .download-count {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .download-btn {
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.4);
+        }
+
+        .tutorial-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .tutorial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tutorial-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .tutorial-card:hover {
+            transform: translateY(-5px);
+            border-color: #4ecdc4;
+        }
+
+        .tutorial-icon {
+            font-size: 3rem;
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .tutorial-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+        }
+
+        .tutorial-duration {
+            color: #4ecdc4;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-btn {
+            padding: 10px 20px;
+            background: transparent;
+            border: 2px solid #4ecdc4;
+            color: #4ecdc4;
+            border-radius: 20px;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .tutorial-btn:hover {
+            background: #4ecdc4;
+            color: #000;
+        }
+
+        .tools-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tool-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: #4ecdc4;
+        }
+
+        .tool-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.4);
+        }
+
+        .tool-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .tool-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .tool-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .tool-link {
+            color: #4ecdc4;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .tool-link:hover {
+            color: #45b7d1;
+        }
+
+        .newsletter-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 2rem auto;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px;
+            border: 2px solid #4ecdc4;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 25px;
+            font-size: 1rem;
+        }
+
+        .newsletter-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .newsletter-btn {
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.4);
+        }
+
+        .featured-resource {
+            grid-column: span 2;
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(255, 107, 107, 0.1));
+            border: 2px solid #4ecdc4;
+        }
+
+        .featured-resource .resource-preview {
+            height: 300px;
+        }
+
+        .featured-resource .resource-title {
+            font-size: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-resource {
+                grid-column: span 1;
+            }
+            
+            .resource-categories {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category-btn {
+                width: 200px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-input {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Steven</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="process.html" class="nav-link">Process</a>
+                <a href="case-studies.html" class="nav-link">Case Studies</a>
+                <a href="services-detailed.html" class="nav-link">Services</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="testimonials.html" class="nav-link">Testimonials</a>
+                <a href="store.html" class="nav-link">Store</a>
+                <a href="challenges.html" class="nav-link">Challenges</a>
+                <a href="resources.html" class="nav-link active">Resources</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Resources Hero -->
+    <section class="resources-hero">
+        <div class="container">
+            <h1 class="gradient-text">Resources & Tools</h1>
+            <p>Free creative resources, tools, and assets to help you grow as an artist. Download brushes, templates, tutorials, and more to enhance your creative workflow.</p>
+        </div>
+    </section>
+
+    <!-- Resource Categories -->
+    <section class="container">
+        <div class="resource-categories">
+            <button class="category-btn active" data-category="all">All Resources</button>
+            <button class="category-btn" data-category="brushes">Brushes</button>
+            <button class="category-btn" data-category="templates">Templates</button>
+            <button class="category-btn" data-category="tutorials">Tutorials</button>
+            <button class="category-btn" data-category="textures">Textures</button>
+            <button class="category-btn" data-category="fonts">Fonts</button>
+            <button class="category-btn" data-category="tools">Tools</button>
+        </div>
+
+        <!-- Resources Grid -->
+        <div class="resources-grid" id="resources-grid">
+            <!-- Featured Resource -->
+            <div class="resource-card featured" data-category="brushes">
+                <div class="resource-preview">
+                    <i class="resource-icon fas fa-paint-brush"></i>
+                </div>
+                <div class="resource-content">
+                    <h3 class="resource-title">Neon Glow Brush Pack</h3>
+                    <div class="resource-category">Brushes</div>
+                    <p class="resource-description">A comprehensive collection of 50 custom Photoshop brushes designed for creating stunning neon effects and glowing artwork. Perfect for cyberpunk and futuristic designs.</p>
+                    <ul class="resource-specs">
+                        <li>50 custom brushes</li>
+                        <li>Photoshop compatible</li>
+                        <li>High-resolution tips</li>
+                        <li>Installation guide included</li>
+                        <li>Commercial use allowed</li>
+                    </ul>
+                    <div class="resource-download">
+                        <span class="download-count">2,847 downloads</span>
+                        <a href="#" class="download-btn" onclick="downloadResource('neon-brush-pack')">Download Free</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Regular Resources -->
+            <div class="resource-card" data-category="templates">
+                <div class="resource-preview">
+                    <i class="resource-icon fas fa-file-image"></i>
+                </div>
+                <div class="resource-content">
+                    <h3 class="resource-title">Album Cover Templates</h3>
+                    <div class="resource-category">Templates</div>
+                    <p class="resource-description">Professional album cover templates with customizable elements for musicians and artists. Includes PSD and AI formats.</p>
+                    <ul class="resource-specs">
+                        <li>10 unique designs</li>
+                        <li>3000x3000px resolution</li>
+                        <li>PSD & AI formats</li>
+                        <li>Fully customizable</li>
+                        <li>Commercial license</li>
+                    </ul>
+                    <div class="resource-download">
+                        <span class="download-count">1,523 downloads</span>
+                        <a href="#" class="download-btn" onclick="downloadResource('album-templates')">Download Free</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resource-card" data-category="textures">
+                <div class="resource-preview">
+                    <i class="resource-icon fas fa-th"></i>
+                </div>
+                <div class="resource-content">
+                    <h3 class="resource-title">Abstract Texture Pack</h3>
+                    <div class="resource-category">Textures</div>
+                    <p class="resource-description">High-resolution abstract textures perfect for digital art backgrounds and overlays. Seamless and tileable patterns included.</p>
+                    <ul class="resource-specs">
+                        <li>25 texture files</li>
+                        <li>4096x4096px resolution</li>
+                        <li>PNG & JPG formats</li>
+                        <li>Seamless patterns</li>
+                        <li>Commercial use</li>
+                    </ul>
+                    <div class="resource-download">
+                        <span class="download-count">3,156 downloads</span>
+                        <a href="#" class="download-btn" onclick="downloadResource('abstract-textures')">Download Free</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resource-card" data-category="fonts">
+                <div class="resource-preview">
+                    <i class="resource-icon fas fa-font"></i>
+                </div>
+                <div class="resource-content">
+                    <h3 class="resource-title">Cyberpunk Font Collection</h3>
+                    <div class="resource-category">Fonts</div>
+                    <p class="resource-description">A curated collection of futuristic and cyberpunk-inspired fonts perfect for sci-fi designs and modern artwork.</p>
+                    <ul class="resource-specs">
+                        <li>15 font families</li>
+                        <li>Multiple weights</li>
+                        <li>OTF & TTF formats</li>
+                        <li>Commercial license</li>
+                        <li>Installation guide</li>
+                    </ul>
+                    <div class="resource-download">
+                        <span class="download-count">4,892 downloads</span>
+                        <a href="#" class="download-btn" onclick="downloadResource('cyberpunk-fonts')">Download Free</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resource-card" data-category="tutorials">
+                <div class="resource-preview">
+                    <i class="resource-icon fas fa-play-circle"></i>
+                </div>
+                <div class="resource-content">
+                    <h3 class="resource-title">Digital Painting Guide</h3>
+                    <div class="resource-category">Tutorials</div>
+                    <p class="resource-description">Comprehensive PDF guide covering digital painting techniques, color theory, and professional workflows for artists of all levels.</p>
+                    <ul class="resource-specs">
+                        <li>50+ page guide</li>
+                        <li>Step-by-step tutorials</li>
+                        <li>Color theory basics</li>
+                        <li>Professional tips</li>
+                        <li>PDF format</li>
+                    </ul>
+                    <div class="resource-download">
+                        <span class="download-count">6,234 downloads</span>
+                        <a href="#" class="download-btn" onclick="downloadResource('painting-guide')">Download Free</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resource-card" data-category="brushes">
+                <div class="resource-preview">
+                    <i class="resource-icon fas fa-magic"></i>
+                </div>
+                <div class="resource-content">
+                    <h3 class="resource-title">Watercolor Brush Set</h3>
+                    <div class="resource-category">Brushes</div>
+                    <p class="resource-description">Realistic watercolor brushes that mimic traditional painting techniques. Perfect for creating organic, flowing artwork.</p>
+                    <ul class="resource-specs">
+                        <li>30 watercolor brushes</li>
+                        <li>Photoshop compatible</li>
+                        <li>Realistic textures</li>
+                        <li>Blending modes included</li>
+                        <li>Commercial license</li>
+                    </ul>
+                    <div class="resource-download">
+                        <span class="download-count">2,178 downloads</span>
+                        <a href="#" class="download-btn" onclick="downloadResource('watercolor-brushes')">Download Free</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resource-card" data-category="templates">
+                <div class="resource-preview">
+                    <i class="resource-icon fas fa-mobile-alt"></i>
+                </div>
+                <div class="resource-content">
+                    <h3 class="resource-title">Social Media Templates</h3>
+                    <div class="resource-category">Templates</div>
+                    <p class="resource-description">Ready-to-use templates for Instagram posts, stories, and other social media platforms. Fully customizable and modern designs.</p>
+                    <ul class="resource-specs">
+                        <li>20 template designs</li>
+                        <li>Multiple social formats</li>
+                        <li>PSD & Figma files</li>
+                        <li>Customizable layers</li>
+                        <li>Commercial use</li>
+                    </ul>
+                    <div class="resource-download">
+                        <span class="download-count">5,467 downloads</span>
+                        <a href="#" class="download-btn" onclick="downloadResource('social-templates')">Download Free</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resource-card" data-category="tools">
+                <div class="resource-preview">
+                    <i class="resource-icon fas fa-cogs"></i>
+                </div>
+                <div class="resource-content">
+                    <h3 class="resource-title">Color Palette Generator</h3>
+                    <div class="resource-category">Tools</div>
+                    <p class="resource-description">A simple web-based tool for generating harmonious color palettes. Perfect for artists and designers looking for inspiration.</p>
+                    <ul class="resource-specs">
+                        <li>Web-based tool</li>
+                        <li>Multiple algorithms</li>
+                        <li>Export to various formats</li>
+                        <li>Color theory based</li>
+                        <li>Free to use</li>
+                    </ul>
+                    <div class="resource-download">
+                        <span class="download-count">8,901 downloads</span>
+                        <a href="#" class="download-btn" onclick="downloadResource('color-generator')">Use Tool</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tutorial Section -->
+    <section class="tutorial-section">
+        <div class="container">
+            <h2 class="section-title">Video Tutorials</h2>
+            <div class="tutorial-grid">
+                <div class="tutorial-card">
+                    <div class="tutorial-icon">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <h3 class="tutorial-title">Photoshop Basics</h3>
+                    <p class="tutorial-description">Learn the fundamentals of Photoshop for digital art creation.</p>
+                    <div class="tutorial-duration">45 min video</div>
+                    <a href="#" class="tutorial-btn">Watch Now</a>
+                </div>
+
+                <div class="tutorial-card">
+                    <div class="tutorial-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="tutorial-title">Color Theory</h3>
+                    <p class="tutorial-description">Master color theory and create harmonious color schemes.</p>
+                    <div class="tutorial-duration">30 min video</div>
+                    <a href="#" class="tutorial-btn">Watch Now</a>
+                </div>
+
+                <div class="tutorial-card">
+                    <div class="tutorial-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3 class="tutorial-title">Digital Painting</h3>
+                    <p class="tutorial-description">Advanced techniques for digital painting and illustration.</p>
+                    <div class="tutorial-duration">60 min video</div>
+                    <a href="#" class="tutorial-btn">Watch Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section class="tools-section">
+        <div class="container">
+            <h2 class="section-title">Online Tools</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="tool-title">Color Palette Generator</h3>
+                    <p class="tool-description">Generate beautiful color palettes for your projects.</p>
+                    <a href="#" class="tool-link">Use Tool →</a>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-font"></i>
+                    </div>
+                    <h3 class="tool-title">Font Pairing Tool</h3>
+                    <p class="tool-description">Find perfect font combinations for your designs.</p>
+                    <a href="#" class="tool-link">Use Tool →</a>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-ruler"></i>
+                    </div>
+                    <h3 class="tool-title">Aspect Ratio Calculator</h3>
+                    <p class="tool-description">Calculate aspect ratios for different screen sizes.</p>
+                    <a href="#" class="tool-link">Use Tool →</a>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3 class="tool-title">Image Resizer</h3>
+                    <p class="tool-description">Resize images while maintaining quality.</p>
+                    <a href="#" class="tool-link">Use Tool →</a>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-compress"></i>
+                    </div>
+                    <h3 class="tool-title">Image Compressor</h3>
+                    <p class="tool-description">Compress images without losing quality.</p>
+                    <a href="#" class="tool-link">Use Tool →</a>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3 class="tool-title">Gradient Generator</h3>
+                    <p class="tool-description">Create beautiful CSS gradients for your projects.</p>
+                    <a href="#" class="tool-link">Use Tool →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <h2 class="section-title">Stay Updated</h2>
+            <p>Subscribe to get notified about new resources, tutorials, and free downloads delivered straight to your inbox.</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+            <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin-top: 1rem;">
+                No spam, unsubscribe at any time. We respect your privacy.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Steven Chaplinski</h3>
+                    <p>Digital Artist & Creative Developer</p>
+                    <p>Transforming ideas into visual reality through innovative digital art and creative solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="tutorials.html">Tutorials</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Me</h4>
+                    <div class="social-links">
+                        <a href="https://behance.net/ichoake" class="social-link"><i class="fab fa-behance"></i></a>
+                        <a href="https://bit.ly/iChoake" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="https://aiavatar.etsy.com/" class="social-link"><i class="fas fa-store"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Steven Chaplinski. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Resource filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const resourceCards = document.querySelectorAll('.resource-card');
+
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+
+                    const category = this.getAttribute('data-category');
+
+                    resourceCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                            card.style.animation = 'fadeIn 0.5s ease-in-out';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+
+        function downloadResource(resourceId) {
+            // In a real implementation, this would trigger a download
+            alert(`Downloading ${resourceId}... This is a demo.`);
+        }
+
+        // Newsletter form
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('.newsletter-input').value;
+            if (email) {
+                alert('Thank you for subscribing! You\'ll receive our latest resources soon.');
+                this.querySelector('.newsletter-input').value = '';
+            }
+        });
+
+        // Add fadeIn animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

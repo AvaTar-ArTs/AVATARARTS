@@ -1,0 +1,130 @@
+# Song Lyrics Visual Storytelling Framework Docker Compose
+
+version: '3.8'
+
+services:
+  # Main application service
+  app:
+    build: .
+    container_name: song-lyrics-visual
+    environment:
+      - PYTHONPATH=/app
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - .:/app
+      - ./output:/app/output
+      - ./logs:/app/logs
+    ports:
+      - "8000:8000"
+    command: python -m song_lyrics_visual.cli
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import song_lyrics_visual; print('OK')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Development service with hot reload
+  dev:
+    build: .
+    container_name: song-lyrics-visual-dev
+    environment:
+      - PYTHONPATH=/app
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
+    volumes:
+      - .:/app
+      - ./output:/app/output
+      - ./logs:/app/logs
+    ports:
+      - "8000:8000"
+      - "5678:5678"  # Debug port
+    command: python -m song_lyrics_visual.cli --dev
+    restart: unless-stopped
+    profiles:
+      - dev
+
+  # Jupyter notebook service
+  jupyter:
+    build: .
+    container_name: song-lyrics-visual-jupyter
+    environment:
+      - PYTHONPATH=/app
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - JUPYTER_ENABLE_LAB=yes
+    volumes:
+      - .:/app
+      - ./notebooks:/app/notebooks
+      - ./output:/app/output
+    ports:
+      - "8888:8888"
+    command: jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root
+    restart: unless-stopped
+    profiles:
+      - jupyter
+
+  # Testing service
+  test:
+    build: .
+    container_name: song-lyrics-visual-test
+    environment:
+      - PYTHONPATH=/app
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - .:/app
+    command: pytest tests/ -v --cov=src/song_lyrics_visual
+    profiles:
+      - test
+
+  # Linting service
+  lint:
+    build: .
+    container_name: song-lyrics-visual-lint
+    environment:
+      - PYTHONPATH=/app
+    volumes:
+      - .:/app
+    command: |
+      sh -c "
+        flake8 src/ tests/ &&
+        black --check src/ tests/ &&
+        isort --check-only src/ tests/ &&
+        mypy src/
+      "
+    profiles:
+      - lint
+
+  # Documentation service
+  docs:
+    build: .
+    container_name: song-lyrics-visual-docs
+    environment:
+      - PYTHONPATH=/app
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    command: |
+      sh -c "
+        cd docs &&
+        make html &&
+        python -m http.server 8080
+      "
+    profiles:
+      - docs
+
+# Networks
+networks:
+  default:
+    name: song-lyrics-visual-network
+
+# Volumes
+volumes:
+  output:
+    driver: local
+  logs:
+    driver: local
+  notebooks:
+    driver: local

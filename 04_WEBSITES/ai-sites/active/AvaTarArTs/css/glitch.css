@@ -1,0 +1,78 @@
+@import url(https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap);
+.decode-text {
+    width: 100%;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    font-size: 150px;
+    text-align: center;
+    font-variant: small-caps;
+}
+/* h1 {
+color: white;
+text-shadow: 2px 2px 4px #000000;
+} */
+.space {
+    display: inline-block;
+    width: 10px;
+}
+
+.text-animation {
+    display: inline-block;
+    position: relative;
+    color: transparent;
+    text-transform: uppercase;
+}
+
+.text-animation:before {
+    content: "";
+    color: rgb(255, 255, 255);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: #000000;
+    width: 0;
+    height: 1.2em;
+    -webkit-transform: translate(-50%, -55%);
+    -ms-transform: translate(-50%, -55%);
+    transform: translate(-50%, -55%);
+}
+
+.text-animation.state-1:before {
+    width: 1px;
+}
+
+.text-animation.state-2:before {
+    width: 0.9em;
+}
+
+.text-animation.state-3 {
+    color: rgb(0, 0, 0);
+}
+
+.text-animation.state-3:before {
+    width: 0;
+}
+
+#refresh {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+}
+
+div {
+    font-family: 'Rubik Glitch', cursive;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+body,
+html {
+    background: radial-gradient(circle, #a200ff 0%, #17ccf0 100%);
+    height: 100%;
+}

@@ -1,0 +1,126 @@
+h1 {
+            text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, .1), 0 0 5px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .2), 0 5px 10px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .2), 0 20px 20px rgba(0, 0, 0, .15);
+        }*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+ul,
+ol {
+    list-style-type: none;
+}
+
+a,
+a:visited,
+a:focus {
+    text-decoration: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+.outer {
+    background: rgb(0, 0, 0);
+    background: url("https://i.imgur.com/XWrFAsJ.jpg");
+    background-position: center center;
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    background-size: cover;
+    display: table;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.overlay {
+    background: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    background-repeat: repeat;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 7em;
+    font-size: 8vw;
+    text-transform: uppercase;
+    position: relative;
+}
+
+h2 {
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1.1em;
+    font-size: 1.5vw;
+}
+
+.inner {
+    position: relative;
+    z-index: 3;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+button {
+    background: transparent;
+    border: 2px solid #AA1111;
+    margin: 5px;
+    font-size: 0.8em;
+    font-size: 1.5vw;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: 400;
+    cursor: pointer;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+button:hover {
+    background: white;
+    color: black;
+}
+
+ul#images li {
+    display: inline-block;
+    margin: 10px;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+ul#images li:hover {
+    opacity: 1;
+}
+
+ul#images li.active {
+    opacity: 1;
+}
+
+ul#images li img {
+    width: 100px;
+    height: 50px;
+    display: block;
+    border-radius: 5px;
+}

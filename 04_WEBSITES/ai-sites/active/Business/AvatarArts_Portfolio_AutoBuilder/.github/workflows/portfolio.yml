@@ -1,0 +1,38 @@
+name: Rebuild Portfolio Pages
+
+on:
+  push:
+    branches: [ main, master ]
+    paths-ignore:
+      - "README.md"
+      - "**/*.md"
+      - ".github/**"
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate portfolio CSV + MD
+        run: |
+          python scripts/build_portfolio.py .
+
+      - name: Commit & push changes
+        run: |
+          git config user.name "Portfolio Bot"
+          git config user.email "actions@github.com"
+          git add portfolio/ content/
+          if git diff --cached --quiet; then
+            echo "No changes."
+          else
+            git commit -m "chore(portfolio): auto-regenerate CSV/MD from repo folders"
+            git push
+          fi

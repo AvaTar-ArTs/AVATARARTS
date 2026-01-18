@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>active - AVATARARTS</title>
+    <meta name="description" content="Directory">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            opacity: 0.95;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .navigation {
+            background: #f8f9fa;
+            padding: 15px 30px;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: #667eea;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .directory-listing {
+            padding: 30px;
+        }
+
+        .directory-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .directory-header h2 {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .search-box {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        thead {
+            background: #667eea;
+            color: white;
+        }
+
+        th {
+            text-align: left;
+            padding: 15px;
+            font-weight: 600;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .icon {
+            width: 30px;
+            text-align: center;
+            font-size: 1.3em;
+        }
+
+        .name {
+            font-weight: 500;
+        }
+
+        .name a {
+            color: #667eea;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .name a:hover {
+            text-decoration: underline;
+            color: #764ba2;
+        }
+
+        .size {
+            color: #6c757d;
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .type {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .folder-icon {
+            color: #ffc107;
+        }
+
+        .file-icon {
+            color: #6c757d;
+        }
+
+        .parent-dir {
+            background: #e7f3ff;
+            font-weight: 600;
+        }
+
+        .parent-dir a {
+            color: #0066cc;
+        }
+
+        .stats {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px;
+            border-top: 3px solid #667eea;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stat-label {
+            font-size: 0.85em;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .subdirectories {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .subdirectories h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .subdir-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .subdir-card {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s;
+        }
+
+        .subdir-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .subdir-card a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .subdir-card a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📁 active</h1>
+            <p>Directory</p>
+            <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.9;">Base URL: avatararts.org/SEO-revenue/all/04_WEBSITES/ai-sites/active/ | Path: /Users/steven/AVATARARTS/04_WEBSITES/ai-sites/active/ | Updated: January 13, 2026 11:59 AM</p>
+        </header>
+
+        <div class="navigation">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> / <a href="04_WEBSITES/index.html">04_WEBSITES</a> / <a href="04_WEBSITES/ai-sites/index.html">ai-sites</a> / <span>active</span>
+            </div>
+            <div class="nav-links">
+                <a href="../../../index.html">🏠 Home</a>
+                <a href="../index.html">⬆️ Parent</a>
+            </div>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Search files and folders..." autocomplete="off">
+        </div>
+
+        <div class="directory-listing">
+            <div class="directory-header">
+                <h2>📂 /Users/steven/AVATARARTS/04_WEBSITES/ai-sites/active/</h2>
+                <p>Directory</p>
+            </div>
+
+            <div class="subdirectories">
+            <h3>📁 Subdirectories</h3>
+            <div class="subdir-grid">
+                <div class="subdir-card">
+            <a href="00_SEO_Master_Index.md/index.html">📁 00_SEO_Master_Index.md/</a>
+        </div><div class="subdir-card">
+            <a href="10k-web/index.html">📁 10k-web/</a>
+        </div><div class="subdir-card">
+            <a href="AI_Outputs_Hub/index.html">📁 AI_Outputs_Hub/</a>
+        </div><div class="subdir-card">
+            <a href="AvaTarArTs/index.html">📁 AvaTarArTs/</a>
+        </div><div class="subdir-card">
+            <a href="Business/index.html">📁 Business/</a>
+        </div><div class="subdir-card">
+            <a href="Gallery%20Generator/index.html">📁 Gallery Generator/</a>
+        </div><div class="subdir-card">
+            <a href="Gallery_Code_Project/index.html">📁 Gallery_Code_Project/</a>
+        </div><div class="subdir-card">
+            <a href="ORGANIZED/index.html">📁 ORGANIZED/</a>
+        </div><div class="subdir-card">
+            <a href="Song%20Lyrics%20Visual%20Storytelling%20Framework/index.html">📁 Song Lyrics Visual Storytelling Framework/</a>
+        </div><div class="subdir-card">
+            <a href="Steven%20Chaplinski%20-%20Comprehensive%20Digital%20Ecosystem%20Analysis/index.html">📁 Steven Chaplinski - Comprehensive Digital Ecosystem Analysis/</a>
+        </div><div class="subdir-card">
+            <a href="Steven%20Chaplinski%27s%20Unified%20Tech-Art%20Personal%20Brand%20Strategy/index.html">📁 Steven Chaplinski's Unified Tech-Art Personal Brand Strategy/</a>
+        </div><div class="subdir-card">
+            <a href="Steven%27s%20Multi-Domain%20Site%20Architecture/index.html">📁 Steven's Multi-Domain Site Architecture/</a>
+        </div><div class="subdir-card">
+            <a href="Unified%20Creative%20Automation%20Workspace%20-%20Professional%20Analysis/index.html">📁 Unified Creative Automation Workspace - Professional Analysis/</a>
+        </div><div class="subdir-card">
+            <a href="ai-content-studio/index.html">📁 ai-content-studio/</a>
+        </div><div class="subdir-card">
+            <a href="ai-video-pipeline/index.html">📁 ai-video-pipeline/</a>
+        </div><div class="subdir-card">
+            <a href="automation/index.html">📁 automation/</a>
+        </div><div class="subdir-card">
+            <a href="content-management/index.html">📁 content-management/</a>
+        </div><div class="subdir-card">
+            <a href="creative-ai-agency/index.html">📁 creative-ai-agency/</a>
+        </div><div class="subdir-card">
+            <a href="creative-ai-education/index.html">📁 creative-ai-education/</a>
+        </div><div class="subdir-card">
+            <a href="creative-ai-marketplace/index.html">📁 creative-ai-marketplace/</a>
+        </div><div class="subdir-card">
+            <a href="dalle-fix/index.html">📁 dalle-fix/</a>
+        </div><div class="subdir-card">
+            <a href="docs/index.html">📁 docs/</a>
+        </div><div class="subdir-card">
+            <a href="environments/index.html">📁 environments/</a>
+        </div><div class="subdir-card">
+            <a href="form/index.html">📁 form/</a>
+        </div><div class="subdir-card">
+            <a href="gptjunkie_quantumforgelabs_landings/index.html">📁 gptjunkie_quantumforgelabs_landings/</a>
+        </div><div class="subdir-card">
+            <a href="heavenlyHands/index.html">📁 heavenlyHands/</a>
+        </div><div class="subdir-card">
+            <a href="marketing/index.html">📁 marketing/</a>
+        </div><div class="subdir-card">
+            <a href="mix-gallery/index.html">📁 mix-gallery/</a>
+        </div><div class="subdir-card">
+            <a href="monetization/index.html">📁 monetization/</a>
+        </div><div class="subdir-card">
+            <a href="n8n/index.html">📁 n8n/</a>
+        </div><div class="subdir-card">
+            <a href="passive-income-empire/index.html">📁 passive-income-empire/</a>
+        </div><div class="subdir-card">
+            <a href="public/index.html">📁 public/</a>
+        </div><div class="subdir-card">
+            <a href="quantumforgelabs/index.html">📁 quantumforgelabs/</a>
+        </div><div class="subdir-card">
+            <a href="reports/index.html">📁 reports/</a>
+        </div><div class="subdir-card">
+            <a href="retention-products-suite/index.html">📁 retention-products-suite/</a>
+        </div><div class="subdir-card">
+            <a href="seo-optimized-content/index.html">📁 seo-optimized-content/</a>
+        </div><div class="subdir-card">
+            <a href="setup-script/index.html">📁 setup-script/</a>
+        </div><div class="subdir-card">
+            <a href="steven-chaplinski-website/index.html">📁 steven-chaplinski-website/</a>
+        </div>
+            </div>
+        </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th class="icon"></th>
+                        <th class="name">Name</th>
+                        <th class="size">Size</th>
+                        <th class="type">Type</th>
+                    </tr>
+                </thead>
+                <tbody id="fileTable">
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="00_SEO_Master_Index.md/index.html">00_SEO_Master_Index.md/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="10k-web/index.html">10k-web/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="AI_Outputs_Hub/index.html">AI_Outputs_Hub/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="AvaTarArTs/index.html">AvaTarArTs/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="Business/index.html">Business/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="Gallery%20Generator/index.html">Gallery Generator/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="Gallery_Code_Project/index.html">Gallery_Code_Project/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="ORGANIZED/index.html">ORGANIZED/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="Song%20Lyrics%20Visual%20Storytelling%20Framework/index.html">Song Lyrics Visual Storytelling Framework/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="Steven%20Chaplinski%20-%20Comprehensive%20Digital%20Ecosystem%20Analysis/index.html">Steven Chaplinski - Comprehensive Digital Ecosystem Analysis/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="Steven%20Chaplinski%27s%20Unified%20Tech-Art%20Personal%20Brand%20Strategy/index.html">Steven Chaplinski's Unified Tech-Art Personal Brand Strategy/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="Steven%27s%20Multi-Domain%20Site%20Architecture/index.html">Steven's Multi-Domain Site Architecture/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="Unified%20Creative%20Automation%20Workspace%20-%20Professional%20Analysis/index.html">Unified Creative Automation Workspace - Professional Analysis/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="ai-content-studio/index.html">ai-content-studio/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="ai-video-pipeline/index.html">ai-video-pipeline/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="automation/index.html">automation/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="content-management/index.html">content-management/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="creative-ai-agency/index.html">creative-ai-agency/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="creative-ai-education/index.html">creative-ai-education/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="creative-ai-marketplace/index.html">creative-ai-marketplace/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="dalle-fix/index.html">dalle-fix/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="docs/index.html">docs/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="environments/index.html">environments/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="form/index.html">form/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="gptjunkie_quantumforgelabs_landings/index.html">gptjunkie_quantumforgelabs_landings/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="heavenlyHands/index.html">heavenlyHands/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="marketing/index.html">marketing/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="mix-gallery/index.html">mix-gallery/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="monetization/index.html">monetization/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="n8n/index.html">n8n/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="passive-income-empire/index.html">passive-income-empire/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="public/index.html">public/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="quantumforgelabs/index.html">quantumforgelabs/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="reports/index.html">reports/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="retention-products-suite/index.html">retention-products-suite/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="seo-optimized-content/index.html">seo-optimized-content/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="setup-script/index.html">setup-script/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="steven-chaplinski-website/index.html">steven-chaplinski-website/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="2025-10-24-conversations_%281%29.zip">2025-10-24-conversations_(1).zip</a></td>
+            <td class="size">35.9 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AUTOMATION_SUITE_COMPLETE.md">AUTOMATION_SUITE_COMPLETE.md</a></td>
+            <td class="size">8.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AutoMation-SEO-ORGANIZED.md">AutoMation-SEO-ORGANIZED.md</a></td>
+            <td class="size">19.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AutoMation-SEO.md">AutoMation-SEO.md</a></td>
+            <td class="size">793.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AvaTarArTs_html_Artistic_Bio_Creation.html">AvaTarArTs_html_Artistic_Bio_Creation.html</a></td>
+            <td class="size">88.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPLETE_AUTOMATION_EMPIRE.md">COMPLETE_AUTOMATION_EMPIRE.md</a></td>
+            <td class="size">11.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPLETE_CHAT_EXPORT.md">COMPLETE_CHAT_EXPORT.md</a></td>
+            <td class="size">17.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPLETE_ENVIRONMENT_INTEGRATION.sh">COMPLETE_ENVIRONMENT_INTEGRATION.sh</a></td>
+            <td class="size">18.1 KB</td>
+            <td class="type">Shell Script</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPREHENSIVE_IMPROVEMENTS_AND_AMENDMENTS.md">COMPREHENSIVE_IMPROVEMENTS_AND_AMENDMENTS.md</a></td>
+            <td class="size">9.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="CONTENT_AWARE_MERGE_REPORT.txt">CONTENT_AWARE_MERGE_REPORT.txt</a></td>
+            <td class="size">5.5 MB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="DEEP_CLEANUP_REPORT.txt">DEEP_CLEANUP_REPORT.txt</a></td>
+            <td class="size">880.6 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="DEEP_CONTENT_ANALYSIS_REPORT.txt">DEEP_CONTENT_ANALYSIS_REPORT.txt</a></td>
+            <td class="size">12.6 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Dr.%20Lawrence%20Adu%20-%20Professional%20Medical%20Practice%20Website.md">Dr. Lawrence Adu - Professional Medical Practice Website.md</a></td>
+            <td class="size">2.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="EMPIRE_AUTOMATION_MASTER.sh">EMPIRE_AUTOMATION_MASTER.sh</a></td>
+            <td class="size">4.0 KB</td>
+            <td class="type">Shell Script</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="EMPIRE_SETUP_COMPLETE.md">EMPIRE_SETUP_COMPLETE.md</a></td>
+            <td class="size">8.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="INTEGRATE_LEGACY_PROJECTS.sh">INTEGRATE_LEGACY_PROJECTS.sh</a></td>
+            <td class="size">1.6 KB</td>
+            <td class="type">Shell Script</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="INTELLIGENT_ENVIRONMENT_ANALYZER.py">INTELLIGENT_ENVIRONMENT_ANALYZER.py</a></td>
+            <td class="size">21.6 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="MASTER_CREATIVE_AI_EMPIRE_LAUNCHER.sh">MASTER_CREATIVE_AI_EMPIRE_LAUNCHER.sh</a></td>
+            <td class="size">4.3 KB</td>
+            <td class="type">Shell Script</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="MASTER_IMPROVEMENTS_SUMMARY.md">MASTER_IMPROVEMENTS_SUMMARY.md</a></td>
+            <td class="size">8.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="QFLabs.zip">QFLabs.zip</a></td>
+            <td class="size">492.0 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="QUICK_START_GUIDE.md">QUICK_START_GUIDE.md</a></td>
+            <td class="size">2.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="README.md">README.md</a></td>
+            <td class="size">2.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="SETUP_COMPLETE_EMPIRE.sh">SETUP_COMPLETE_EMPIRE.sh</a></td>
+            <td class="size">1.0 KB</td>
+            <td class="type">Shell Script</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="START_HERE.md">START_HERE.md</a></td>
+            <td class="size">9.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Static%20HTML%3ACSS%3AJS%20Project.md">Static HTML:CSS:JS Project.md</a></td>
+            <td class="size">2.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Steven%20Chaplinski%20-%20Digital%20Artist%20Portfolio.md">Steven Chaplinski - Digital Artist Portfolio.md</a></td>
+            <td class="size">11.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Top%2020%20EDU%20%26%20GOV%20Backlinks.docx">Top 20 EDU & GOV Backlinks.docx</a></td>
+            <td class="size">14.9 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="alchemy.html">alchemy.html</a></td>
+            <td class="size">46.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="avatararts-hub%20-%20Central%20Hub%20System.md">avatararts-hub - Central Hub System.md</a></td>
+            <td class="size">4.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="avatararts-portfolio%20-%20Portfolio%20Showcase.md">avatararts-portfolio - Portfolio Showcase.md</a></td>
+            <td class="size">5.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="avatararts-static-gall.html">avatararts-static-gall.html</a></td>
+            <td class="size">2.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="avatararts.org%20-%20Main%20Organization%20Website.md">avatararts.org - Main Organization Website.md</a></td>
+            <td class="size">6.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="content_management_system.py">content_management_system.py</a></td>
+            <td class="size">20.1 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="disco-test.html">disco-test.html</a></td>
+            <td class="size">12.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="gptjunkie_quantumforgelabs_landings.zip">gptjunkie_quantumforgelabs_landings.zip</a></td>
+            <td class="size">5.0 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="heavenly-hands-voice.md">heavenly-hands-voice.md</a></td>
+            <td class="size">192.7 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="master_launcher.sh">master_launcher.sh</a></td>
+            <td class="size">4.9 KB</td>
+            <td class="type">Shell Script</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="package.json">package.json</a></td>
+            <td class="size">3.1 KB</td>
+            <td class="type">JSON</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="python.html">python.html</a></td>
+            <td class="size">71.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="qForge.zip">qForge.zip</a></td>
+            <td class="size">500.6 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="quantumforge-portfolio-README.txt">quantumforge-portfolio-README.txt</a></td>
+            <td class="size">1.4 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="seo-local-geo.xlsx">seo-local-geo.xlsx</a></td>
+            <td class="size">25.4 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="setup.sh">setup.sh</a></td>
+            <td class="size">475.0 B</td>
+            <td class="type">Shell Script</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="setup_master_environment.sh">setup_master_environment.sh</a></td>
+            <td class="size">4.3 KB</td>
+            <td class="type">Shell Script</td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-label">Total Items</div>
+                <div class="stat-value">82</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Directories</div>
+                <div class="stat-value">38</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Files</div>
+                <div class="stat-value">44</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#fileTable tr');
+            const cards = document.querySelectorAll('.subdir-card');
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

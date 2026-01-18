@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <!-- Album 2 - Beautiful Mess -->
+        <article class="album">
+            <img src="https://via.placeholder.com/150" alt="Album Cover for Beautiful Mess" />
+            <h3>Beautiful Mess</h3>
+            <p>Genre: Grunge Rock</p>
+            <audio controls>
+              <source src="path/to/Beautiful_Mess.mp3" type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
+            <button class="toggle-btn" data-target="lyrics">Show Lyrics</button>
+            <div class="toggle-content lyrics">
+              <p><strong>Lyrics:</strong></p>
+              <p>Rusty chains tangled around a broken swing...</p>
+            </div>
+            <button class="toggle-btn" data-target="analysis">Show Analysis</button>
+            <div class="toggle-content analysis">
+              <p><strong>Analysis:</strong></p>
+              <p>This song delves into themes of embracing imperfections...</p>
+            </div>
+          </article>
+      
+          <!-- Album 3 - Blues in the Alley -->
+          <article class="album">
+            <img src="https://via.placeholder.com/150" alt="Album Cover for Blues in the Alley" />
+            <h3>Blues in the Alley</h3>
+            <p>Genre: Jazz Blues</p>
+            <audio controls>
+              <source src="path/to/Blues_in_the_Alley.mp3" type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
+            <button class="toggle-btn" data-target="lyrics">Show Lyrics</button>
+            <div class="toggle-content lyrics">
+              <p><strong>Lyrics:</strong></p>
+              <p>In an alley where shadows dance, whispers of lost romance...</p>
+            </div>
+            <button class="toggle-btn" data-target="analysis">Show Analysis</button>
+            <div class="toggle-content analysis">
+              <p><strong>Analysis:</strong></p>
+              <p>A haunting melody echoing through the alleyways...</p>
+            </div>
+          </article>
+      
+          <!-- You can add more albums in the same format -->
+        </section>
+      </main>
+      <script>
+        // Event delegation for toggling both lyrics and analysis sections
+        document.addEventListener('click', function (e) {
+          if (e.target && e.target.classList.contains("toggle-btn")) {
+            const contentDiv = e.target.nextElementSibling;
+            if (contentDiv.style.display === "block") {
+              contentDiv.style.display = "none";
+              if (e.target.dataset.target === "lyrics") {
+                e.target.textContent = "Show Lyrics";
+              } else if (e.target.dataset.target === "analysis") {
+                e.target.textContent = "Show Analysis";
+              }
+            } else {
+              contentDiv.style.display = "block";
+              if (e.target.dataset.target === "lyrics") {
+                e.target.textContent = "Hide Lyrics";
+              } else if (e.target.dataset.target === "analysis") {
+                e.target.textContent = "Hide Analysis";
+              }
+            }
+          }
+        });
+      </script>
+      
+</body>
+</html>

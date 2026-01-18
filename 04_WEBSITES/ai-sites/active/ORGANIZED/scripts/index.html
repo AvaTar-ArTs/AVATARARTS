@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scripts - AVATARARTS</title>
+    <meta name="description" content="Directory">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            opacity: 0.95;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .navigation {
+            background: #f8f9fa;
+            padding: 15px 30px;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: #667eea;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .directory-listing {
+            padding: 30px;
+        }
+
+        .directory-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .directory-header h2 {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .search-box {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        thead {
+            background: #667eea;
+            color: white;
+        }
+
+        th {
+            text-align: left;
+            padding: 15px;
+            font-weight: 600;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .icon {
+            width: 30px;
+            text-align: center;
+            font-size: 1.3em;
+        }
+
+        .name {
+            font-weight: 500;
+        }
+
+        .name a {
+            color: #667eea;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .name a:hover {
+            text-decoration: underline;
+            color: #764ba2;
+        }
+
+        .size {
+            color: #6c757d;
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .type {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .folder-icon {
+            color: #ffc107;
+        }
+
+        .file-icon {
+            color: #6c757d;
+        }
+
+        .parent-dir {
+            background: #e7f3ff;
+            font-weight: 600;
+        }
+
+        .parent-dir a {
+            color: #0066cc;
+        }
+
+        .stats {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px;
+            border-top: 3px solid #667eea;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stat-label {
+            font-size: 0.85em;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .subdirectories {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .subdirectories h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .subdir-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .subdir-card {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s;
+        }
+
+        .subdir-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .subdir-card a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .subdir-card a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📁 scripts</h1>
+            <p>Directory</p>
+            <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.9;">Base URL: avatararts.org/SEO-revenue/all/04_WEBSITES/ai-sites/active/ORGANIZED/scripts/ | Path: /Users/steven/AVATARARTS/04_WEBSITES/ai-sites/active/ORGANIZED/scripts/ | Updated: January 13, 2026 11:59 AM</p>
+        </header>
+
+        <div class="navigation">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> / <a href="04_WEBSITES/index.html">04_WEBSITES</a> / <a href="04_WEBSITES/ai-sites/index.html">ai-sites</a> / <a href="04_WEBSITES/ai-sites/active/index.html">active</a> / <a href="04_WEBSITES/ai-sites/active/ORGANIZED/index.html">ORGANIZED</a> / <span>scripts</span>
+            </div>
+            <div class="nav-links">
+                <a href="../../../../../index.html">🏠 Home</a>
+                <a href="../index.html">⬆️ Parent</a>
+            </div>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Search files and folders..." autocomplete="off">
+        </div>
+
+        <div class="directory-listing">
+            <div class="directory-header">
+                <h2>📂 /Users/steven/AVATARARTS/04_WEBSITES/ai-sites/active/ORGANIZED/scripts/</h2>
+                <p>Directory</p>
+            </div>
+
+            
+
+            <table>
+                <thead>
+                    <tr>
+                        <th class="icon"></th>
+                        <th class="name">Name</th>
+                        <th class="size">Size</th>
+                        <th class="type">Type</th>
+                    </tr>
+                </thead>
+                <tbody id="fileTable">
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="GUI.py">GUI.py</a></td>
+            <td class="size">3.0 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ReportBot.py">ReportBot.py</a></td>
+            <td class="size">14.4 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="YouTubeBot.py">YouTubeBot.py</a></td>
+            <td class="size">5.1 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="__init__.py">__init__.py</a></td>
+            <td class="size">121.0 B</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="about.py">about.py</a></td>
+            <td class="size">922.0 B</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="alphabet-html-gall.py">alphabet-html-gall.py</a></td>
+            <td class="size">4.1 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="analyze-mp3-transcript-prompts.py">analyze-mp3-transcript-prompts.py</a></td>
+            <td class="size">5.4 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="analyze.py">analyze.py</a></td>
+            <td class="size">1.4 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="askreddit.py">askreddit.py</a></td>
+            <td class="size">1.4 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="attack.py">attack.py</a></td>
+            <td class="size">13.8 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="aws_uploader.py">aws_uploader.py</a></td>
+            <td class="size">1.7 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="background.py">background.py</a></td>
+            <td class="size">1.7 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="base.py">base.py</a></td>
+            <td class="size">5.1 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="base_gallery_logic.py">base_gallery_logic.py</a></td>
+            <td class="size">3.8 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="bot.py">bot.py</a></td>
+            <td class="size">454.0 B</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="cache.py">cache.py</a></td>
+            <td class="size">1.9 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="check.py">check.py</a></td>
+            <td class="size">1.7 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="config.py">config.py</a></td>
+            <td class="size">118.0 B</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="console.py">console.py</a></td>
+            <td class="size">596.0 B</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="convert-loop2.py">convert-loop2.py</a></td>
+            <td class="size">5.6 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="curld.py">curld.py</a></td>
+            <td class="size">1.8 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="files_gallery_logic.py">files_gallery_logic.py</a></td>
+            <td class="size">5.8 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="final_video.py">final_video.py</a></td>
+            <td class="size">3.0 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="gallery_logic.py">gallery_logic.py</a></td>
+            <td class="size">2.2 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="generate_speech.py">generate_speech.py</a></td>
+            <td class="size">1.3 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="google_gallery_logic.py">google_gallery_logic.py</a></td>
+            <td class="size">3.7 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="help.py">help.py</a></td>
+            <td class="size">2.8 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="helpers.py">helpers.py</a></td>
+            <td class="size">2.5 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index.py">index.py</a></td>
+            <td class="size">1.0 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="leocsv.py">leocsv.py</a></td>
+            <td class="size">6.1 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="logo.py">logo.py</a></td>
+            <td class="size">3.6 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="main.py">main.py</a></td>
+            <td class="size">1.4 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="markers.py">markers.py</a></td>
+            <td class="size">8.3 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="media.py">media.py</a></td>
+            <td class="size">8.1 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="mp4-trans.py">mp4-trans.py</a></td>
+            <td class="size">5.1 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="mp4-transcript.py">mp4-transcript.py</a></td>
+            <td class="size">6.8 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="netlify_uploader.py">netlify_uploader.py</a></td>
+            <td class="size">8.2 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="onedrive_gallery_logic.py">onedrive_gallery_logic.py</a></td>
+            <td class="size">3.8 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="organize.py">organize.py</a></td>
+            <td class="size">1.1 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="organize_csv.py">organize_csv.py</a></td>
+            <td class="size">4.4 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="organize_files.py">organize_files.py</a></td>
+            <td class="size">3.2 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="process_music.sh">process_music.sh</a></td>
+            <td class="size">1.0 KB</td>
+            <td class="type">Shell Script</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="requirements.py">requirements.py</a></td>
+            <td class="size">5.6 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="resize-skip-8below.py">resize-skip-8below.py</a></td>
+            <td class="size">4.4 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="run.py">run.py</a></td>
+            <td class="size">3.2 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="sagemaker.py">sagemaker.py</a></td>
+            <td class="size">2.5 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="scriptwrapper.py">scriptwrapper.py</a></td>
+            <td class="size">8.1 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="settings.py">settings.py</a></td>
+            <td class="size">3.7 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="speak.py">speak.py</a></td>
+            <td class="size">1.7 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="speech.py">speech.py</a></td>
+            <td class="size">1.2 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="subreddit.py">subreddit.py</a></td>
+            <td class="size">4.2 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="test.py">test.py</a></td>
+            <td class="size">1.4 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="test_aws_uploader.py">test_aws_uploader.py</a></td>
+            <td class="size">2.1 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="test_file_gallery_logic.py">test_file_gallery_logic.py</a></td>
+            <td class="size">4.7 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="test_gallery_build.py">test_gallery_build.py</a></td>
+            <td class="size">4.0 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="test_gallery_init.py">test_gallery_init.py</a></td>
+            <td class="size">7.7 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="test_gallery_logic.py">test_gallery_logic.py</a></td>
+            <td class="size">2.3 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="test_gallery_upload.py">test_gallery_upload.py</a></td>
+            <td class="size">5.5 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="test_google_gallery_logic.py">test_google_gallery_logic.py</a></td>
+            <td class="size">2.3 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="test_netlify_uploader.py">test_netlify_uploader.py</a></td>
+            <td class="size">4.0 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="test_onedrive_gallery_logic.py">test_onedrive_gallery_logic.py</a></td>
+            <td class="size">2.1 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="textgenerator.py">textgenerator.py</a></td>
+            <td class="size">981.0 B</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="thumbnail.py">thumbnail.py</a></td>
+            <td class="size">4.9 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="tiktok.py">tiktok.py</a></td>
+            <td class="size">7.3 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="trek.py">trek.py</a></td>
+            <td class="size">2.5 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="upcreatmod.py">upcreatmod.py</a></td>
+            <td class="size">3.7 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="upload.py">upload.py</a></td>
+            <td class="size">7.7 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="upload_video.py">upload_video.py</a></td>
+            <td class="size">2.7 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="utils.py">utils.py</a></td>
+            <td class="size">1.6 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="vance.py">vance.py</a></td>
+            <td class="size">4.2 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="version.py">version.py</a></td>
+            <td class="size">87.0 B</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="videogenerator.py">videogenerator.py</a></td>
+            <td class="size">3.2 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="voice.py">voice.py</a></td>
+            <td class="size">1.4 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="voices.py">voices.py</a></td>
+            <td class="size">1.3 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="web-png-upscale.py">web-png-upscale.py</a></td>
+            <td class="size">2.0 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="youtube.py">youtube.py</a></td>
+            <td class="size">2.2 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="youtube2.py">youtube2.py</a></td>
+            <td class="size">2.6 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ytcsv.py">ytcsv.py</a></td>
+            <td class="size">936.0 B</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ytube.py">ytube.py</a></td>
+            <td class="size">2.2 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-label">Total Items</div>
+                <div class="stat-value">79</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Directories</div>
+                <div class="stat-value">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Files</div>
+                <div class="stat-value">79</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#fileTable tr');
+            const cards = document.querySelectorAll('.subdir-card');
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

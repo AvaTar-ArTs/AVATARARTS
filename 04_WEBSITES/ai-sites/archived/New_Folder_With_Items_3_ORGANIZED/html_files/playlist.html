@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Local Music Playlist — nocTurneMeLoDieS</title>
+    <style>
+         :root {
+            --bg: #0e0f12;
+            --card: #171920;
+            --muted: #9aa3b2;
+            --fg: #e9edf3;
+            --brand: #53c7ff;
+            --accent: #8cff98;
+            --danger: #ff6b6b;
+            --ring: rgba(83, 199, 255, .35);
+        }
+        
+        * {
+            box-sizing: border-box
+        }
+        
+        html,
+        body {
+            height: 100%
+        }
+        
+        body {
+            margin: 0;
+            font: 14px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Inter, Arial, sans-serif;
+            color: var(--fg);
+            background: radial-gradient(1200px 600px at 80% -10%, #24304822, transparent), var(--bg);
+        }
+        
+        .app {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            grid-template-rows: auto 1fr auto;
+            grid-template-areas: "header header" "sidebar main" "footer footer";
+            height: 100%;
+        }
+        
+        header {
+            grid-area: header;
+            padding: 14px 16px;
+            border-bottom: 1px solid #222733;
+            background: linear-gradient(180deg, #1e2431, #171b25 60%, #151922);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        header h1 {
+            font-size: 16px;
+            margin: 0;
+            font-weight: 600;
+            letter-spacing: .4px
+        }
+        
+        header .hint {
+            color: var(--muted);
+            font-size: 12px
+        }
+        
+        .sidebar {
+            grid-area: sidebar;
+            border-right: 1px solid #222733;
+            display: flex;
+            flex-direction: column;
+            min-width: 0
+        }
+        
+        .search {
+            padding: 10px;
+            border-bottom: 1px solid #222733;
+            background: #12141a;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .search input {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid #242a38;
+            background: #10131a;
+            color: var(--fg);
+            outline: none;
+            transition: .15s border-color, .15s box-shadow;
+        }
+        
+        .search input:focus {
+            border-color: #2e3a52;
+            box-shadow: 0 0 0 3px var(--ring)
+        }
+        
+        .filters {
+            display: flex;
+            gap: 6px;
+            margin-top: 8px;
+            flex-wrap: wrap
+        }
+        
+        .pill {
+            border: 1px solid #2a3142;
+            padding: 5px 8px;
+            font-size: 12px;
+            border-radius: 999px;
+            color: var(--muted);
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .pill.active {
+            background: #1c2331;
+            color: #cfe7ff;
+            border-color: #34506e
+        }
+        
+        .list {
+            overflow: auto;
+            padding: 6px
+        }
+        
+        .item {
+            border: 1px solid #242a38;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 8px;
+            background: linear-gradient(180deg, #12161f, #0f1219);
+            cursor: pointer;
+            transition: .12s transform, .12s border-color, .12s background;
+        }
+        
+        .item:hover {
+            transform: translateY(-1px);
+            border-color: #2b3550
+        }
+        
+        .item.active {
+            border-color: var(--brand);
+            box-shadow: 0 0 0 3px var(--ring)
+        }
+        
+        .name {
+            font-weight: 600;
+            word-break: break-word
+        }
+        
+        .path {
+            color: var(--muted);
+            font-size: 11px;
+            margin-top: 4px;
+            word-break: break-all
+        }
+        
+        .tags {
+            display: flex;
+            gap: 6px;
+            margin-top: 8px;
+            flex-wrap: wrap
+        }
+        
+        .tag {
+            font-size: 10px;
+            padding: 3px 6px;
+            border-radius: 6px;
+            background: #1b2030;
+            color: #b8c7de;
+            border: 1px solid #2b3550
+        }
+        
+        main {
+            grid-area: main;
+            display: grid;
+            grid-template-rows: auto 1fr;
+            min-width: 0
+        }
+        
+        .player {
+            padding: 14px;
+            border-bottom: 1px solid #222733;
+            background: linear-gradient(180deg, #151a24, #10131a);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        
+        .media-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            min-width: 280px
+        }
+        
+        .art {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            background: radial-gradient(20px 20px at 20% 25%, #5ac8fa44, transparent 40%), radial-gradient(20px 20px at 70% 75%, #badaff33, transparent 50%), linear-gradient(135deg, #1f2840, #131a2a);
+            border: 1px solid #2a3142;
+            display: grid;
+            place-items: center;
+            color: #b8d9ff;
+            font-weight: 700;
+            font-size: 11px;
+        }
+        
+        .title {
+            font-size: 15px;
+            font-weight: 700
+        }
+        
+        .subtitle {
+            color: var(--muted);
+            font-size: 12px
+        }
+        
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+        
+        button {
+            background: #182033;
+            color: #e6f0ff;
+            border: 1px solid #2f3e5a;
+            border-radius: 10px;
+            padding: 9px 12px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background: #1b2740
+        }
+        
+        button:active {
+            transform: translateY(1px)
+        }
+        
+        .danger {
+            border-color: #5a2f2f;
+            background: #2b1a1a;
+            color: #ffd6d6
+        }
+        
+        .wrap {
+            padding: 14px;
+            overflow: auto
+        }
+        
+        .columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            min-height: 0
+        }
+        
+        .panel {
+            border: 1px solid #242a38;
+            background: linear-gradient(180deg, #0f131b, #0b0e14);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            min-height: 0
+        }
+        
+        .panel h3 {
+            margin: 10px 12px;
+            font-size: 13px;
+            color: #cfe7ff
+        }
+        
+        .panel .body {
+            padding: 0 12px 12px;
+            overflow: auto
+        }
+        
+        .body details {
+            border: 1px dashed #2a3142;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 10px 0;
+            background: #0f1219
+        }
+        
+        .body pre,
+        .body textarea {
+            width: 100%;
+            min-height: 160px;
+            background: #0b0e14;
+            color: #eaeef7;
+            border: 1px solid #22293a;
+            border-radius: 8px;
+            padding: 10px;
+            font: 12px/1.45 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            resize: vertical;
+        }
+        
+        .links a {
+            color: #9ad1ff;
+            text-decoration: none
+        }
+        
+        .links a:hover {
+            text-decoration: underline
+        }
+        
+        footer {
+            grid-area: footer;
+            font-size: 12px;
+            color: #97a3b8;
+            padding: 10px 14px;
+            border-top: 1px solid #222733;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(180deg, #131722, #0f121a);
+        }
+        
+        @media (max-width: 980px) {
+            .app {
+                grid-template-columns: 1fr
+            }
+            .sidebar {
+                grid-area: main
+            }
+            main {
+                grid-area: sidebar
+            }
+            .columns {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <header>
+            <h1>nocTurneMeLoDieS — Local Playlist</h1>
+            <div class="hint">Tip: <kbd>Space</kbd> play/pause, <kbd>K/↑</kbd> prev, <kbd>J/↓</kbd> next</div>
+        </header>
+
+        <aside class="sidebar">
+            <div class="search">
+                <div style="flex:1">
+                    <input id="q" placeholder="Filter by name/type… (e.g. mp3, video, transcript)" />
+                    <div class="filters">
+                        <span class="pill" data-filter="all">All</span>
+                        <span class="pill" data-filter="audio">Audio</span>
+                        <span class="pill" data-filter="video">Video</span>
+                        <span class="pill" data-filter="text">Text</span>
+                        <span class="pill" data-filter="image">Images</span>
+                    </div>
+                </div>
+            </div>
+            <div id="list" class="list" role="listbox" aria-label="Playlist items"></div>
+        </aside>
+
+        <main>
+            <div class="player">
+                <div class="media-box">
+                    <div class="art" id="art">MP3</div>
+                    <div>
+                        <div class="title" id="title">Select a track</div>
+                        <div class="subtitle" id="subtitle">—</div>
+                    </div>
+                </div>
+                <div class="controls">
+                    <button id="prev" title="Previous (K/↑)">⏮︎</button>
+                    <button id="play" title="Play/Pause (Space)">▶︎</button>
+                    <button id="next" title="Next (J/↓)">⏭︎</button>
+                    <button id="openFile" class="danger" title="Open file directly">Open file</button>
+                </div>
+            </div>
+
+            <div class="wrap">
+                <div class="columns">
+                    <section class="panel">
+                        <h3>Player</h3>
+                        <div class="body" id="playerBody" style="padding:12px;">
+                            <!-- Dynamic audio/video element goes here -->
+                            <div id="mediaMount" style="display:grid;place-items:center;min-height:140px;color:#8aa0bd">
+                                nothing playing yet…
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="panel">
+                        <h3>Related Notes (analysis / transcript)</h3>
+                        <div class="body" id="notes">
+                            <p class="links" id="noteLinks" style="margin:10px 0;"></p>
+                            <div id="noteBlocks"></div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div>Keyboard: Space ▸ play/pause · J/↓ next · K/↑ previous</div>
+            <div>Built for local paths — file:// URLs ✔️</div>
+        </footer>
+    </div>
+
+    <script>
+        /* ==== 1) Raw file list (exactly what you gave me) ==== */
+        const RAW_INPUT = `
+'/Users/steven/Music/nocTurneMeLoDieS/MP3/All I Wanna Do-321_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/All I Wanna Do-321_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/All I Wanna Do-321.mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/All_I_Wanna_Do-321_(1)__audio.m4a' /Users/steven/Music/nocTurneMeLoDieS/MP3/AllIWannaDoDisco.mp4 /Users/steven/Music/nocTurneMeLoDieS/MP3/Chamber_of_Silence_by_.webm /Users/steven/Music/nocTurneMeLoDieS/MP3/Chamber_of_Silence.mp3 /Users/steven/Music/nocTurneMeLoDieS/MP3/ChamberOfSilenceAndStone-SsPCluBxqM.mp4 /Users/steven/Music/nocTurneMeLoDieS/MP3/ChamberOfSilenceAndStone.m4a /Users/steven/Music/nocTurneMeLoDieS/MP3/Descriptives-woodcarver-songs-322_analysis.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/Descriptives-woodcarver-songs-322_transcript.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/Descriptives-woodcarver-songs-322.mp3 '/Users/steven/Music/nocTurneMeLoDieS/MP3/Descriptives-woodcarver-songs-420_(1)__audio.m4a' /Users/steven/Music/nocTurneMeLoDieS/MP3/Descriptives-woodcarver-songs-420_analysis.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/Descriptives-woodcarver-songs-420_transcript.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/Descriptives-woodcarver-songs-420.mp3 '/Users/steven/Music/nocTurneMeLoDieS/MP3/Fall RooTs ReMain301_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Fall RooTs ReMain301_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Fall RooTs ReMain301.mp3' /Users/steven/Music/nocTurneMeLoDieS/MP3/Graves_Before_Throne_analysis.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/Graves_Before_Throne_transcript.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/Graves_Before_Throne.mp3 /Users/steven/Music/nocTurneMeLoDieS/MP3/Graves_Before_Throne.webm /Users/steven/Music/nocTurneMeLoDieS/MP3/GravesBeforeTheThrone__audio.m4a /Users/steven/Music/nocTurneMeLoDieS/MP3/GravesBeforeTheThrone_transcript.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/GravesBeforeTheThroneLyrics.mp4 '/Users/steven/Music/nocTurneMeLoDieS/MP3/in-this-alley-hide-309 rhythm guitar _analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/in-this-alley-hide-309 rhythm guitar _transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/in-this-alley-hide-309 rhythm guitar .mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/in-this-alley-hide-309_rhythm_guitar__(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/in-this-alley-hide-309_rhythm_guitar__(1)_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/in-this-alley-hide-309_rhythm_guitar__(1)_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/in-this-alley-hide-309_rhythm_guitar__(1).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/in-this-alley-where-i-hide-grunge259☠️_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/in-this-alley-where-i-hide-grunge259☠️_(1).mp4' /Users/steven/Music/nocTurneMeLoDieS/MP3/in-this-alley-where-i-hide-grunge259☠️_analysis.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/in-this-alley-where-i-hide-grunge259☠️_transcript.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/in-this-alley-where-i-hide-grunge259☠️.mp3 '/Users/steven/Music/nocTurneMeLoDieS/MP3/itchy-isle-8min_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/itchy-isle-8min_(1).mp4' /Users/steven/Music/nocTurneMeLoDieS/MP3/itchy-isle-8min_analysis.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/itchy-isle-8min_transcript.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/itchy-isle-8min.mp3 /Users/steven/Music/nocTurneMeLoDieS/MP3/Lament-for-the-loyal.mp3 /Users/steven/Music/nocTurneMeLoDieS/MP3/Lament-for-the-loyal.webm /Users/steven/Music/nocTurneMeLoDieS/MP3/LamentForTheLoyal__audio.m4a /Users/steven/Music/nocTurneMeLoDieS/MP3/LamentForTheLoyal.mp4 /Users/steven/Music/nocTurneMeLoDieS/MP3/Leave_a_Message_-_song_and_lyrics_by_The_Medicine_Box___Spotify__audio.m4a /Users/steven/Music/nocTurneMeLoDieS/MP3/Leave_a_Message_-_song_and_lyrics_by_The_Medicine_Box___Spotify.mp4 /Users/steven/Music/nocTurneMeLoDieS/MP3/Letters_ill_Never_Send.mp3 /Users/steven/Music/nocTurneMeLoDieS/MP3/Letters_ill_Never_Send.webm /Users/steven/Music/nocTurneMeLoDieS/MP3/LettersIllNeverSend__audio.m4a /Users/steven/Music/nocTurneMeLoDieS/MP3/LettersIllNeverSend.mp4 '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love in Imperfection -Bmess-Folk-Dark-323_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love in Imperfection -Bmess-Folk-Dark-323_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love in Imperfection -Bmess-Folk-Dark-323.mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love in Imperfection -indie-Folk-Dark-323_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love in Imperfection -indie-Folk-Dark-323_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love in Imperfection -indie-Folk-Dark-323.mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/LoVe is RuBBisH and RuBBiSh is LoVe2_47_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/LoVe is RuBBisH and RuBBiSh is LoVe2_47_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/LoVe is RuBBisH and RuBBiSh is LoVe2_47.mp3' /Users/steven/Music/nocTurneMeLoDieS/MP3/Love\ is\ rubbish\ Let\'s\ Get\ Trashy\ \(BanjoBandit\)238\(Remix\).mp3 /Users/steven/Music/nocTurneMeLoDieS/MP3/Love\ is\ rubbish\ Let\'s\ Get\ Trashy\ \(BanjoBandit\)308\ \(Remix\)\ \(1\).mp3 /Users/steven/Music/nocTurneMeLoDieS/MP3/Love\ is\ rubbish\ Let\'s\ Get\ Trashy\ \(BanjoBandit\)308\ \(Remix\)\ \(2\).mp3 /Users/steven/Music/nocTurneMeLoDieS/MP3/Love\ is\ rubbish\ Let\'s\ Get\ Trashy\ \(BanjoBandit\)308\ \(Remix\)\ \(3\).mp3 /Users/steven/Music/nocTurneMeLoDieS/MP3/Love\ is\ rubbish\ Let\'s\ Get\ Trashy\ \(BanjoBandit\)308\ \(Remix\)\ \(4\).mp3 /Users/steven/Music/nocTurneMeLoDieS/MP3/Love\ is\ rubbish\ Let\'s\ Get\ Trashy\ \(BanjoBandit\)308\ \(Remix\)\ \(5\).mp3 /Users/steven/Music/nocTurneMeLoDieS/MP3/Love\ is\ rubbish\ Let\'s\ Get\ Trashy\ \(BanjoBandit\)308\ \(Remix\)\ \(Edit\).mp3 /Users/steven/Music/nocTurneMeLoDieS/MP3/Love\ is\ rubbish\ Let\'s\ Get\ Trashy\ \(BanjoBandit\)308\ \(Remix\).mp3 /Users/steven/Music/nocTurneMeLoDieS/MP3/Love\ is\ rubbish\ Let\'s\ Get\ Trashy\ \(plucky\ indieRemix\)257_analysis.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/Love\ is\ rubbish\ Let\'s\ Get\ Trashy\ \(plucky\ indieRemix\)257_transcript.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/Love\ is\ rubbish\ Let\'s\ Get\ Trashy\ \(plucky\ indieRemix\)257.mp3 /Users/steven/Music/nocTurneMeLoDieS/MP3/Love\ is\ rubbish\ Let\'s\ Get\ Trashy\ \(Remastered\)-350_analysis.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/Love\ is\ rubbish\ Let\'s\ Get\ Trashy\ \(Remastered\)-350_transcript.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/Love\ is\ rubbish\ Let\'s\ Get\ Trashy\ \(Remastered\)-350.mp3 '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love is Rubbish, and Rubbish is Love-239_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love is Rubbish, and Rubbish is Love-239_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love is Rubbish, and Rubbish is Love-239.mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love is rubbishAnd rubbish is love-259-pluck_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love is rubbishAnd rubbish is love-259-pluck_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love is rubbishAnd rubbish is love-259-pluck.mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_in_Imperfection_-Bmess-Folk-Dark-323_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_in_Imperfection_-Bmess-Folk-Dark-323_(1).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_in_Imperfection_-indie-Folk-Dark-323_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_in_Imperfection_-indie-Folk-Dark-323_(1)_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_in_Imperfection_-indie-Folk-Dark-323_(1)_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_in_Imperfection_-indie-Folk-Dark-323_(1).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/LoVe_is_RuBBisH_and_RuBBiSh_is_LoVe2_47_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/LoVe_is_RuBBisH_and_RuBBiSh_is_LoVe2_47_(1).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(BanjoBandit)238(Remix)_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(BanjoBandit)238(Remix)_(1).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(BanjoBandit)308_(Remix)_(1)_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(BanjoBandit)308_(Remix)_(1)_(1).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(BanjoBandit)308_(Remix)_(2)_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(BanjoBandit)308_(Remix)_(2)_(1).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(BanjoBandit)308_(Remix)_(3)_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(BanjoBandit)308_(Remix)_(3)_(1).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(BanjoBandit)308_(Remix)_(4)_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(BanjoBandit)308_(Remix)_(4)_(1)_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(BanjoBandit)308_(Remix)_(4)_(1)_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(BanjoBandit)308_(Remix)_(4)_(1).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(BanjoBandit)308_(Remix)_(5)_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(BanjoBandit)308_(Remix)_(5)_(1)_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(BanjoBandit)308_(Remix)_(5)_(1)_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(BanjoBandit)308_(Remix)_(5)_(1).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(BanjoBandit)308_(Remix)_(Edit)_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(BanjoBandit)308_(Remix)_(Edit)_(1).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(plucky_indieRemix)257_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(plucky_indieRemix)257_(1).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(Remastered)-350_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(Remastered)-350_(1)_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(Remastered)-350_(1)_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbish_Lets_Get_Trashy_(Remastered)-350_(1).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_Rubbish,_and_Rubbish_is_Love-239_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_Rubbish,_and_Rubbish_is_Love-239_(1).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbishAnd_rubbish_is_love-259-pluck_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbishAnd_rubbish_is_love-259-pluck_(1)_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbishAnd_rubbish_is_love-259-pluck_(1)_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Love_is_rubbishAnd_rubbish_is_love-259-pluck_(1).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/love-is-rubbish-lets-get-trashy-plucky-245_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/love-is-rubbish-lets-get-trashy-plucky-245_(1).mp4' /Users/steven/Music/nocTurneMeLoDieS/MP3/love-is-rubbish-lets-get-trashy-plucky-245_analysis.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/love-is-rubbish-lets-get-trashy-plucky-245_transcript.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/love-is-rubbish-lets-get-trashy-plucky-245.mp3 /Users/steven/Music/nocTurneMeLoDieS/MP3/LoveIsRubbishLetsGetTrashyBanjoBandit308Remix__audio.m4a /Users/steven/Music/nocTurneMeLoDieS/MP3/LoveIsRubbishLetsGetTrashyBanjoBandit308Remix.mp4 '/Users/steven/Music/nocTurneMeLoDieS/MP3/Midnight Reckoning-317_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Midnight Reckoning-317_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Midnight Reckoning-317.mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Midnight_Reckoning-317_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Midnight_Reckoning-317_(1).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/moonly-alley--howling-banjo239 (1).mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/moonly-alley--howling-banjo239_(1)_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/moonly-alley--howling-banjo239_(1)_(1).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/moonly-alley--howling-banjo239_(2)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/moonly-alley--howling-banjo239_(2).mp4' /Users/steven/Music/nocTurneMeLoDieS/MP3/moonly-alley--howling-banjo239_analysis.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/moonly-alley--howling-banjo239_transcript.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/moonly-alley--howling-banjo239.mp3 '/Users/steven/Music/nocTurneMeLoDieS/MP3/MoonlyAlley-240 _ Suno (Remix)_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/MoonlyAlley-240 _ Suno (Remix)_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/MoonlyAlley-240 _ Suno (Remix).mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/MoonlyAlley-240___Suno_(Remix)_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/MoonlyAlley-240___Suno_(Remix)_(1).mp4' /Users/steven/Music/nocTurneMeLoDieS/MP3/mp3-bak.zip '/Users/steven/Music/nocTurneMeLoDieS/MP3/No More Love Songs - Encore (Remastered).mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/No_More_Love_Songs_-_Encore_(Remastered)_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/No_More_Love_Songs_-_Encore_(Remastered)_(1)_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/No_More_Love_Songs_-_Encore_(Remastered)_(1)_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/No_More_Love_Songs_-_Encore_(Remastered)_(1).mp4' /Users/steven/Music/nocTurneMeLoDieS/MP3/No_One’s_Home_by_.mp3 /Users/steven/Music/nocTurneMeLoDieS/MP3/No_One’s_Home_by.webm /Users/steven/Music/nocTurneMeLoDieS/MP3/NoOnesHomeEchoOfSelf__audio.m4a /Users/steven/Music/nocTurneMeLoDieS/MP3/NoOnesHomeEchoOfSelf.mp4 '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTal;s (1).mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTal;s (2).mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTal;s (3).mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTal;s (4).mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTal;s (5).mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTal;s_(1)_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTal;s_(1)_(1).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTal;s_(2)_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTal;s_(2)_(1).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTal;s_(3)_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTal;s_(3)_(1).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTal;s_(4)_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTal;s_(4)_(1).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTal;s_(5)_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTal;s_(5)_(1).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTal;s_(6)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTal;s_(6).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTal;s_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTal;s_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTal;s.mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTals FaLL (Tribal F;ute)430_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTals FaLL (Tribal F;ute)430_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTals FaLL (Tribal F;ute)430-2_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTals FaLL (Tribal F;ute)430-2_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTals FaLL (Tribal F;ute)430-2.mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTals FaLL (Tribal F;ute)430.mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTals_FaLL_(Tribal_F;ute)430_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTals_FaLL_(Tribal_F;ute)430_(1)_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTals_FaLL_(Tribal_F;ute)430_(1)_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTals_FaLL_(Tribal_F;ute)430_(1).mp4' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTals_FaLL_(Tribal_F;ute)430-2_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTals_FaLL_(Tribal_F;ute)430-2_(1).mp4' /Users/steven/Music/nocTurneMeLoDieS/MP3/Petals_Fall_RooTs_ReMain301.jpeg /Users/steven/Music/nocTurneMeLoDieS/MP3/Petals_Fall_RooTs_ReMain301.png /Users/steven/Music/nocTurneMeLoDieS/MP3/PetalsFallRootsRemain__audio.m4a /Users/steven/Music/nocTurneMeLoDieS/MP3/PetalsFallRootsRemain.mp4 '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTasLs_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/PeTasLs_(1).mp4' /Users/steven/Music/nocTurneMeLoDieS/MP3/PeTasLs_analysis.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/PeTasLs_transcript.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/PeTasLs.mp3 /Users/steven/Music/nocTurneMeLoDieS/MP3/psilocybin_vibes__audio.m4a /Users/steven/Music/nocTurneMeLoDieS/MP3/psilocybin_vibes.mp3 /Users/steven/Music/nocTurneMeLoDieS/MP3/psilocybin_vibes.mp4 /Users/steven/Music/nocTurneMeLoDieS/MP3/psilocybin_vibes.webm '/Users/steven/Music/nocTurneMeLoDieS/MP3/rubbish-love-disarray-244_(1)__audio.m4a' '/Users/steven/Music/nocTurneMeLoDieS/MP3/rubbish-love-disarray-244_(1).mp4' /Users/steven/Music/nocTurneMeLoDieS/MP3/rubbish-love-disarray-244_analysis.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/rubbish-love-disarray-244_transcript.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/rubbish-love-disarray-244.mp3 '/Users/steven/Music/nocTurneMeLoDieS/MP3/rubbish-love-disarray-309_(1).mp4' /Users/steven/Music/nocTurneMeLoDieS/MP3/rubbish-love-disarray-309_analysis.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/rubbish-love-disarray-309_transcript.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/rubbish-love-disarray-309.mp3 '/Users/steven/Music/nocTurneMeLoDieS/MP3/rubbish0 (3).mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/sammy Midnight Reckoning by DarkSoundEffect3495 _ Suno (Remix) (1)-346_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/sammy Midnight Reckoning by DarkSoundEffect3495 _ Suno (Remix) (1)-346_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/sammy Midnight Reckoning by DarkSoundEffect3495 _ Suno (Remix) (1)-346.mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/sammy Midnight Reckoning by DarkSoundEffect3495 _ Suno (Remix)-241_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/sammy Midnight Reckoning by DarkSoundEffect3495 _ Suno (Remix)-241_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/sammy Midnight Reckoning by DarkSoundEffect3495 _ Suno (Remix)-241.mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Stacie, the Wind Don’t Ask Why319_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Stacie, the Wind Don’t Ask Why319_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Stacie, the Wind Don’t Ask Why319.mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Stacie, the Wind Don’t Ask Why332_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Stacie, the Wind Don’t Ask Why332_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Stacie, the Wind Don’t Ask Why332.mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Stacie’s Dust and Flame254❤️_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Stacie’s Dust and Flame254❤️_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Stacie’s Dust and Flame254❤️.mp3' /Users/steven/Music/nocTurneMeLoDieS/MP3/stacie321_analysis.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/stacie321_transcript.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/stacie321.mp3 '/Users/steven/Music/nocTurneMeLoDieS/MP3/Summer Love-315_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/Summer Love-315_transcript.txt' /Users/steven/Music/nocTurneMeLoDieS/MP3/Summer_Love-315.mp3 '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Heartland Doesn’t Speak -tears and time352 -duo❤️_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Heartland Doesn’t Speak -tears and time352 -duo❤️_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Heartland Doesn’t Speak -tears and time352 -duo❤️.mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Heartland Doesn’t Speak (duo)349_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Heartland Doesn’t Speak (duo)349_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Heartland Doesn’t Speak (duo)349.mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Heartland Doesn’t Speak-duo355 (1).mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Heartland Doesn’t Speak-duo355 (2).mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Heartland Doesn’t Speak-duo355_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Heartland Doesn’t Speak-duo355_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Heartland Doesn’t Speak-duo355.mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Heartland Doesn’t Speak349 (1).mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Heartland Doesn’t Speak349 (Remastered) (1).mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Heartland Doesn’t Speak349 (Remastered).mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Heartland Doesn’t Speak349_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Heartland Doesn’t Speak349_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Heartland Doesn’t Speak349.mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Heartland Doesn’t Speak351_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Heartland Doesn’t Speak351_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Heartland Doesn’t Speak351.mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Plantagenets314_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Plantagenets314_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Plantagenets314.mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Plantagenets319_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Plantagenets319_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Plantagenets319.mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Plantagenets324 (Remix).mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Plantagenets350 (Remix) (1).mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/The Plantagenets420 (Remix) (2).mp3' /Users/steven/Music/nocTurneMeLoDieS/MP3/the-hourglass-shatters.mp3 /Users/steven/Music/nocTurneMeLoDieS/MP3/the-hourglass-shatters.webm /Users/steven/Music/nocTurneMeLoDieS/MP3/TheHourglassShatters__audio.m4a /Users/steven/Music/nocTurneMeLoDieS/MP3/TheHourglassShatters_analysis.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/TheHourglassShatters_transcript.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/TheHourglassShatters.mp4 /Users/steven/Music/nocTurneMeLoDieS/MP3/transcription_analysis_errors.log /Users/steven/Music/nocTurneMeLoDieS/MP3/wav /Users/steven/Music/nocTurneMeLoDieS/MP3/willow-whispers-indie-pluck-310_analysis.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/willow-whispers-indie-pluck-310_transcript.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/willow-whispers-indie-pluck-310.mp3 /Users/steven/Music/nocTurneMeLoDieS/MP3/Winds_of_Warning_by_.mp3 /Users/steven/Music/nocTurneMeLoDieS/MP3/Winds_of_Warning_by_.webm /Users/steven/Music/nocTurneMeLoDieS/MP3/WindsOfWarningLyrics__audio.m4a /Users/steven/Music/nocTurneMeLoDieS/MP3/WindsOfWarningLyrics_analysis.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/WindsOfWarningLyrics_transcript.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/WindsOfWarningLyrics.mp4 /Users/steven/Music/nocTurneMeLoDieS/MP3/WoodcarverSongVisuals.mp4 /Users/steven/Music/nocTurneMeLoDieS/MP3/WoodcarverSongVisuals__audio.m4a /Users/steven/Music/nocTurneMeLoDieS/MP3/WoodcarverSongVisuals_analysis.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/WoodcarverSongVisuals_transcript.txt /Users/steven/Music/nocTurneMeLoDieS/MP3/WoodcarverSongVisuals-FIa3xljTQD.mp4 '/Users/steven/Music/nocTurneMeLoDieS/MP3/WorkShop Worries-359_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/WorkShop Worries-359_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/WorkShop Worries-359.mp3' '/Users/steven/Music/nocTurneMeLoDieS/MP3/WorkShop Worries-duo-410_analysis.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/WorkShop Worries-duo-410_transcript.txt' '/Users/steven/Music/nocTurneMeLoDieS/MP3/WorkShop Worries-duo-410.mp3'
+`;
+
+        /* ==== 2) Helpers ==== */
+        const AUDIO_EXT = ['.mp3', '.m4a'];
+        const VIDEO_EXT = ['.mp4', '.webm'];
+        const TEXT_EXT = ['.txt', '.log'];
+        const IMG_EXT = ['.png', '.jpg', '.jpeg', '.gif', '.webp'];
+
+        const extOf = p => {
+            const m = p.match(/\.([a-z0-9]+)$/i);
+            return m ? '.' + m[1].toLowerCase() : '';
+        };
+        const baseName = p => p.split('/').pop();
+        const titleFrom = p => {
+            const name = baseName(p).replace(/\.[^.]+$/, '');
+            return decodeURIComponent(name).replace(/[_]+/g, ' ').trim();
+        };
+        const normalizeKey = p => titleFrom(p).toLowerCase().replace(/[^a-z0-9]+/g, '');
+        const toFileURL = p => {
+            // ensure absolute path becomes file:///
+            const abs = p.startsWith('/') ? p : '/' + p;
+            return 'file://' + encodeURI(abs);
+        };
+        const isDir = p => !extOf(p); // very rough
+
+        /* Split RAW_INPUT by spaces but keep quoted groups */
+        function splitPaths(raw) {
+            const parts = [];
+            const re = /'(.*?)'|(\S+)/g; // captures '...' or bare token
+            let m;
+            while ((m = re.exec(raw))) {
+                parts.push((m[1] ? ? m[2]));
+            }
+            return parts.filter(Boolean);
+        }
+
+        /* ==== 3) Parse and categorize ==== */
+        const allPaths = splitPaths(RAW_INPUT).filter(p => !isDir(p) && !p.endsWith('.zip'));
+        const items = allPaths.map(p => {
+            const ext = extOf(p);
+            const kind = AUDIO_EXT.includes(ext) ? 'audio' :
+                VIDEO_EXT.includes(ext) ? 'video' :
+                TEXT_EXT.includes(ext) ? 'text' :
+                IMG_EXT.includes(ext) ? 'image' : 'other';
+            return {
+                path: p,
+                url: toFileURL(p),
+                kind,
+                ext,
+                title: titleFrom(p),
+                key: normalizeKey(p)
+            };
+        });
+
+        const texts = items.filter(i => i.kind === 'text');
+        const media = items.filter(i => i.kind === 'audio' || i.kind === 'video');
+        const images = items.filter(i => i.kind === 'image');
+
+        /* Build a lookup from normalized key → related text files (analysis/transcript) */
+        const textByKey = new Map();
+        for (const t of texts) {
+            if (!textByKey.has(t.key)) textByKey.set(t.key, []);
+            textByKey.get(t.key).push(t);
+        }
+
+        /* For a given media item, try to find matching texts by similarity */
+        function relatedTextFor(m) {
+            const exact = textByKey.get(m.key) ? ? [];
+            if (exact.length) return exact;
+
+            // fallback: keys that are substrings either way.
+            const results = [];
+            for (const [k, list] of textByKey.entries()) {
+                if (k.includes(m.key) || m.key.includes(k)) results.push(...list);
+            }
+            // de-dup
+            const seen = new Set();
+            const uniq = [];
+            for (const x of results) {
+                if (!seen.has(x.path)) {
+                    seen.add(x.path);
+                    uniq.push(x);
+                }
+            }
+            return uniq;
+        }
+
+        /* ==== 4) UI rendering ==== */
+        const $ = sel => document.querySelector(sel);
+        const listEl = $('#list');
+        const qEl = $('#q');
+        const pills = document.querySelectorAll('.pill');
+        let filterKind = 'all';
+        let filtered = media.concat(images); // we list media + images; texts show as related
+
+        function renderList() {
+            listEl.innerHTML = '';
+            const q = qEl.value.trim().toLowerCase();
+            const pool = (filterKind === 'all' ? media.concat(images) : (filterKind === 'image' ? images : media.filter(i => i.kind === filterKind)));
+            filtered = pool.filter(i => {
+                const hay = (i.title + ' ' + i.kind + ' ' + i.ext).toLowerCase();
+                return !q || hay.includes(q);
+            }).sort((a, b) => a.title.localeCompare(b.title));
+            for (let idx = 0; idx < filtered.length; idx++) {
+                const it = filtered[idx];
+                const div = document.createElement('div');
+                div.className = 'item';
+                div.dataset.index = String(idx);
+                div.innerHTML = `
+      <div class="name">${escapeHtml(it.title)}</div>
+      <div class="path">${escapeHtml(it.path)}</div>
+      <div class="tags">
+        <span class="tag">${it.kind.toUpperCase()}</span>
+        <span class="tag">${it.ext}</span>
+        ${relatedTextFor(it).map(tx => `<span class="tag">has ${labelForText(tx)}</span>`).join('')}
+      </div>
+    `;
+    div.addEventListener('click', () => selectIndex(idx));
+    listEl.appendChild(div);
+  }
+}
+function labelForText(t){
+  const n = t.title.toLowerCase();
+  if(n.includes('transcript')) return 'transcript';
+  if(n.includes('analysis')) return 'analysis';
+  if(n.includes('log')) return 'log';
+  return 'text';
+}
+
+function escapeHtml(s){ return s.replace(/[&<>"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])); }
+
+let current = -1;
+
+function selectIndex(idx){
+  if(idx<0 || idx>=filtered.length) return;
+  current = idx;
+  document.querySelectorAll('.item').forEach(el => el.classList.remove('active'));
+  const active = document.querySelector(`.item[data-index="${idx}"]`);
+  if(active){ active.classList.add('active'); active.scrollIntoView({block:'nearest'}); }
+  playItem(filtered[idx]);
+}
+
+function playItem(it){
+  // header info
+  $('#title').textContent = it.title;
+  $('#subtitle').textContent = it.path;
+  $('#art').textContent = it.kind==='video' ? 'VID' : (it.kind==='image' ? 'IMG' : it.ext.replace('.','').toUpperCase());
+
+  // mount appropriate element
+  const mount = $('#mediaMount');
+  mount.innerHTML = '';
+  if(it.kind==='audio'){
+    const el = document.createElement('audio');
+    el.controls = true; el.autoplay = true; el.src = it.url; el.style.width = '100%';
+    mount.appendChild(el);
+    mediaEl = el;
+  }else if(it.kind==='video'){
+    const el = document.createElement('video');
+    el.controls = true; el.autoplay = true; el.src = it.url; el.style.width = '100%'; el.style.maxHeight='55vh';
+    mount.appendChild(el);
+    mediaEl = el;
+  }else if(it.kind==='image'){
+    const img = document.createElement('img');
+    img.src = it.url; img.alt = it.title; img.style.maxWidth='100%'; img.style.maxHeight='55vh';
+    mount.appendChild(img);
+    mediaEl = null;
+  }else{
+    mount.textContent = 'Unsupported item';
+    mediaEl = null;
+  }
+
+  // open-file button
+  const openBtn = $('#openFile');
+  openBtn.onclick = () => { window.location.href = it.url; };
+
+  // notes (analysis/transcript) panel
+  renderNotes(it);
+
+  // Media Session (if supported)
+  if('mediaSession' in navigator){
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: it.title, artist: 'nocTurneMeLoDieS', album: 'Local', artwork: []
+    });
+  }
+}
+
+function renderNotes(it){
+  const linksEl = $('#noteLinks');
+  const blocksEl = $('#noteBlocks');
+  linksEl.innerHTML = ''; blocksEl.innerHTML = '';
+
+  const related = relatedTextFor(it);
+  if(!related.length){
+    linksEl.innerHTML = `<em>No related analysis/transcript found for this file.</em>`;
+    return;
+  }
+
+  for(const t of related){
+    const a = document.createElement('a');
+    a.href = t.url; a.textContent = labelForText(t)+': '+t.title; a.target = '_blank'; a.rel='noopener';
+    linksEl.appendChild(a);
+    linksEl.appendChild(document.createElement('br'));
+
+    // Try to fetch and display inline (may fail under file:// security)
+    const details = document.createElement('details');
+    const sum = document.createElement('summary');
+    sum.textContent = 'Preview '+labelForText(t)+' — '+t.title;
+    details.appendChild(sum);
+    const pre = document.createElement('textarea'); pre.readOnly = true; pre.value = 'Loading preview…';
+    details.appendChild(pre);
+    blocksEl.appendChild(details);
+
+    fetch(t.url).then(r => {
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      return r.text();
+    }).then(text => {
+      pre.value = text;
+    }).catch(err => {
+      pre.value = `Preview unavailable (browser blocked file:// fetch or file unreadable).\n\nYou can open it directly:\n${t.path}`;
+    });
+  }
+}
+
+/* ==== 5) Controls & keyboard ==== */
+let mediaEl = null;
+$('#play').onclick = () => { if(!mediaEl){return} if(mediaEl.paused) mediaEl.play(); else mediaEl.pause(); };
+$('#prev').onclick = () => selectIndex(Math.max(0, current-1));
+$('#next').onclick = () => selectIndex(Math.min(filtered.length-1, current+1));
+
+window.addEventListener('keydown', e => {
+  if (['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return;
+  if(e.code==='Space'){ e.preventDefault(); if(mediaEl){ mediaEl.paused?mediaEl.play():mediaEl.pause(); } }
+  if(e.key==='j' || e.key==='ArrowDown'){ e.preventDefault(); selectIndex(Math.min((current<0?0:current)+1, filtered.length-1)); }
+  if(e.key==='k' || e.key==='ArrowUp'){ e.preventDefault(); selectIndex(Math.max((current<0?0:current)-1, 0)); }
+});
+
+/* Filter pills + search */
+pills.forEach(p=>{
+  p.addEventListener('click', ()=> {
+    pills.forEach(x=>x.classList.remove('active'));
+    p.classList.add('active');
+    filterKind = p.dataset.filter;
+    renderList();
+  });
+});
+document.querySelector('.pill[data-filter="all"]').classList.add('active');
+qEl.addEventListener('input', renderList);
+
+/* ==== 6) Kick off ==== */
+renderList();
+
+/* Auto-select the first playable item (if any) */
+if(filtered.length){ selectIndex(0); }
+    </script>
+</body>
+
+</html>

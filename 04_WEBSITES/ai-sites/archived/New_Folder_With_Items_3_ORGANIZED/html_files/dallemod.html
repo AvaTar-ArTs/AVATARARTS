@@ -1,0 +1,140 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <meta property="og:title" content="My Gallery">
+  <meta property="og:description" content=" ">
+  <meta property="og:image" content="/images/photos/ideogram - 2023-09-17T061843.215.jpeg">
+  <meta property="og:url" content="">
+  <meta property="og:site_name" content="My Gallery">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image:alt" content="My Gallery">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/photoswipe.css">
+  <link rel="stylesheet" href="css/default-skin.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+<title>Λ∀ʌ†ʌʀ 🦄 ∆ʀ†s</title>
+
+        <style>
+            body {
+                font-family: "Oswald", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+            }
+            h1 {
+                text-align: center;
+                color: #333;
+            }
+            .gallery {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+            .image-card {
+                margin: 15px;
+                padding: 15px;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                width: 300px;
+                text-align: center;
+            }
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+            .description {
+                margin-top: 10px;
+                font-size: 0.9em;
+                color: #555;
+                text-align: justify;
+            }
+            /* Back to top and jump down buttons */
+#myBtn, #jumpBtn {
+  display: none;
+  position: fixed;
+  right: 30px;
+  z-index: 99;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  background-color: black;
+  color: rgb(255, 0, 0);
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+#myBtn {
+  bottom: 20px;
+}
+
+#jumpBtn {
+  bottom: 60px;
+}
+
+#myBtn:hover, #jumpBtn:hover {
+  background-color: #555;
+}
+        </style>
+    </head>
+    <body>
+        <button onclick="topFunction()" id="myBtn" title="Go to top" aria-label="Go to top">Top</button>
+  <button onclick="jumpDown()" id="jumpBtn" title="Down" aria-label="Down">Jump Down</button>
+        <h1><Data>DaLLe Prompts</Data></h1>
+        <div class="gallery">
+    
+            <div class="image-card">
+                <img id="gallery-image-card-file-S1QnTL5z2QsWSRgpL6pHs5Z1" src="https://a0.wfh.team/media/public/gptx/gallery/file-S1QnTL5z2QsWSRgpL6pHs5Z1_1728518516_7135372.webp" alt="A symbolic cover image representing Witches Road depicting a dark forest path at night The road is winding and illuminated by glowing occult symbols and candlelight surrounded by dense trees In the distance a silhouette of a figure is walking forward holding a staff The colors are deep and mystical with dark blues and purples contrasting against the glowing symbols The typography for Witches Road is bold and jagged appearing as if carved into the bark of the trees The lighting is dramatic creating an ominous yet inviting mood">
+                <div class="description">A symbolic cover image representing Witches Road depicting a dark forest path at night The road is winding and illuminated by glowing occult symbols and candlelight surrounded by dense trees In the distance a silhouette of a figure is walking forward holding a staff The colors are deep and mystical with dark blues and purples contrasting against the glowing symbols The typography for Witches Road is bold and jagged appearing as if carved into the bark of the trees The lighting is dramatic creating an ominous yet inviting mood</div>
+            </div>
+            
+
+            <div class="image-card">
+                <img id="gallery-image-card-file-6XPeyraVYzXnOAvcUcAohxGE" src="https://a0.wfh.team/media/public/gptx/gallery/file-6XPeyraVYzXnOAvcUcAohxGE_1718659324_7062867.webp" alt="Create a typography cover image for Recycled Symphony featuring a grunge raccoon playing a guitar made from a broomstick The background should be a junkyard with piles of discarded items turned into musical instruments Use bold distressed fonts graffitistyle elements and a rustic earthy color palette The overall style should be folk percussive">
+                <div class="description">Create a typography cover image for Recycled Symphony featuring a grunge raccoon playing a guitar made from a broomstick The background should be a junkyard with piles of discarded items turned into musical instruments Use bold distressed fonts graffitistyle elements and a rustic earthy color palette The overall style should be folk percussive</div>
+            </div>
+            
+            <div class="image-card">
+                <img id="gallery-selected-image" src="https://a0.wfh.team/media/public/gptx/gallery/file-S1QnTL5z2QsWSRgpL6pHs5Z1_1728518516_7135372.webp" alt="None">
+                <div class="description">None</div>
+            </div>
+            
+        </div>
+        <script>// Get the button elements
+let myBtn = document.getElementById("myBtn");
+let jumpBtn = document.getElementById("jumpBtn");
+// When the user scrolls down 20px from the top of the document, show the buttons
+window.onscroll = function() { scrollFunction() };
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    myBtn.style.display = "block";  // Show "Top" button
+    jumpBtn.style.display = "block"; // Show "Jump Down" button
+  } else {
+    myBtn.style.display = "none"; // Hide buttons if not scrolled down
+    jumpBtn.style.display = "none";
+  }
+}
+// Scroll to the top when the "Top" button is clicked
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+}
+// Scroll down when the "Jump Down" button is clicked
+function jumpDown() {
+  window.scrollBy(0, window.innerHeight); // Scroll down by one viewport height
+}</script>
+    </body>
+    </html>
+    

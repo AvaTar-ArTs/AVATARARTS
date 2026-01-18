@@ -1,0 +1,2371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>documents - AVATARARTS</title>
+    <meta name="description" content="Directory">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            opacity: 0.95;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .navigation {
+            background: #f8f9fa;
+            padding: 15px 30px;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: #667eea;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .directory-listing {
+            padding: 30px;
+        }
+
+        .directory-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .directory-header h2 {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .search-box {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        thead {
+            background: #667eea;
+            color: white;
+        }
+
+        th {
+            text-align: left;
+            padding: 15px;
+            font-weight: 600;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .icon {
+            width: 30px;
+            text-align: center;
+            font-size: 1.3em;
+        }
+
+        .name {
+            font-weight: 500;
+        }
+
+        .name a {
+            color: #667eea;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .name a:hover {
+            text-decoration: underline;
+            color: #764ba2;
+        }
+
+        .size {
+            color: #6c757d;
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .type {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .folder-icon {
+            color: #ffc107;
+        }
+
+        .file-icon {
+            color: #6c757d;
+        }
+
+        .parent-dir {
+            background: #e7f3ff;
+            font-weight: 600;
+        }
+
+        .parent-dir a {
+            color: #0066cc;
+        }
+
+        .stats {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px;
+            border-top: 3px solid #667eea;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stat-label {
+            font-size: 0.85em;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .subdirectories {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .subdirectories h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .subdir-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .subdir-card {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s;
+        }
+
+        .subdir-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .subdir-card a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .subdir-card a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📁 documents</h1>
+            <p>Directory</p>
+            <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.9;">Base URL: avatararts.org/SEO-revenue/all/04_WEBSITES/ai-sites/archived/New_Folder_With_Items_3_ORGANIZED/documents/ | Path: /Users/steven/AVATARARTS/04_WEBSITES/ai-sites/archived/New_Folder_With_Items_3_ORGANIZED/documents/ | Updated: January 13, 2026 11:59 AM</p>
+        </header>
+
+        <div class="navigation">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> / <a href="04_WEBSITES/index.html">04_WEBSITES</a> / <a href="04_WEBSITES/ai-sites/index.html">ai-sites</a> / <a href="04_WEBSITES/ai-sites/archived/index.html">archived</a> / <a href="04_WEBSITES/ai-sites/archived/New_Folder_With_Items_3_ORGANIZED/index.html">New_Folder_With_Items_3_ORGANIZED</a> / <span>documents</span>
+            </div>
+            <div class="nav-links">
+                <a href="../../../../../index.html">🏠 Home</a>
+                <a href="../index.html">⬆️ Parent</a>
+            </div>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Search files and folders..." autocomplete="off">
+        </div>
+
+        <div class="directory-listing">
+            <div class="directory-header">
+                <h2>📂 /Users/steven/AVATARARTS/04_WEBSITES/ai-sites/archived/New_Folder_With_Items_3_ORGANIZED/documents/</h2>
+                <p>Directory</p>
+            </div>
+
+            
+
+            <table>
+                <thead>
+                    <tr>
+                        <th class="icon"></th>
+                        <th class="name">Name</th>
+                        <th class="size">Size</th>
+                        <th class="type">Type</th>
+                    </tr>
+                </thead>
+                <tbody id="fileTable">
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="1761270587662_pasted-content-1761270587662.txttxt.txt">1761270587662_pasted-content-1761270587662.txttxt.txt</a></td>
+            <td class="size">73.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="1761270757921_pasted-content-1761270757920.txttxt.txt">1761270757921_pasted-content-1761270757920.txttxt.txt</a></td>
+            <td class="size">73.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="1requirements.txt">1requirements.txt</a></td>
+            <td class="size">1.4 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="2-53-8-Comic_Trivia_Challenge.md">2-53-8-Comic_Trivia_Challenge.md</a></td>
+            <td class="size">92.7 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="2025_PROFESSIONAL_WEBSITE_SUMMARY.md">2025_PROFESSIONAL_WEBSITE_SUMMARY.md</a></td>
+            <td class="size">11.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="30-day-launch-plan.md">30-day-launch-plan.md</a></td>
+            <td class="size">58.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="5dcc43ce-4530-4fb1-bae1-39081659f019.txt">5dcc43ce-4530-4fb1-bae1-39081659f019.txt</a></td>
+            <td class="size">6.2 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ADVANCED_SEO_RESEARCH.md">ADVANCED_SEO_RESEARCH.md</a></td>
+            <td class="size">10.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AGENTS.md">AGENTS.md</a></td>
+            <td class="size">2.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AI-SETUP-README.md">AI-SETUP-README.md</a></td>
+            <td class="size">10.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AI_APIS_REFERENCE.md">AI_APIS_REFERENCE.md</a></td>
+            <td class="size">17.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AI_INTEGRATION_GUIDE.md">AI_INTEGRATION_GUIDE.md</a></td>
+            <td class="size">17.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AI_sora-img-Branding_Chaos.md">AI_sora-img-Branding_Chaos.md</a></td>
+            <td class="size">47.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AS_A_MAN_THINKETH.txt">AS_A_MAN_THINKETH.txt</a></td>
+            <td class="size">30.8 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AVATARARTS_HOW_TO_RUN.md">AVATARARTS_HOW_TO_RUN.md</a></td>
+            <td class="size">13.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AVATARARTS_INTEGRATION_GUIDE.md">AVATARARTS_INTEGRATION_GUIDE.md</a></td>
+            <td class="size">14.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AVATARARTS_RESTRUCTURING_COMPLETE.md">AVATARARTS_RESTRUCTURING_COMPLETE.md</a></td>
+            <td class="size">13.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AVATARARTS_RESTRUCTURING_INDEX.md">AVATARARTS_RESTRUCTURING_INDEX.md</a></td>
+            <td class="size">4.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="A_Complete_Creative_Framework_for_Your_Music_Colle_a70987248c9249cb8b6c8617d3e96a5f.md">A_Complete_Creative_Framework_for_Your_Music_Colle_a70987248c9249cb8b6c8617d3e96a5f.md</a></td>
+            <td class="size">8.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="All_I_Wanna_Do-321_analysis.txt">All_I_Wanna_Do-321_analysis.txt</a></td>
+            <td class="size">4.2 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="All_I_Wanna_Do-321_transcript.txt">All_I_Wanna_Do-321_transcript.txt</a></td>
+            <td class="size">1.1 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Analyze_and_organize_content.txt">Analyze_and_organize_content.txt</a></td>
+            <td class="size">7.6 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Analyze_job_and_skills.md">Analyze_job_and_skills.md</a></td>
+            <td class="size">7.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Analyze_job_and_skills.txt">Analyze_job_and_skills.txt</a></td>
+            <td class="size">5.0 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AnatarArts-Auto-Portfolio.txt">AnatarArts-Auto-Portfolio.txt</a></td>
+            <td class="size">1.3 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Best_Name_for_Your_AI_Platform.md">Best_Name_for_Your_AI_Platform.md</a></td>
+            <td class="size">20.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Business%20and%20Finance%20Portfolio%20-%20Professional%20Analysis.md">Business and Finance Portfolio - Professional Analysis.md</a></td>
+            <td class="size">180.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="CLEANUP_RESULTS_SUMMARY.md">CLEANUP_RESULTS_SUMMARY.md</a></td>
+            <td class="size">3.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="CLIENT_REPORT_NON_TECHNICAL.md">CLIENT_REPORT_NON_TECHNICAL.md</a></td>
+            <td class="size">8.7 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPLETE_DESIGN_OVERHAUL_SUMMARY.md">COMPLETE_DESIGN_OVERHAUL_SUMMARY.md</a></td>
+            <td class="size">10.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPLETE_DIRECTORY_ORGANIZATION.md">COMPLETE_DIRECTORY_ORGANIZATION.md</a></td>
+            <td class="size">9.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPLETE_MP3_GENERATION_SUMMARY.md">COMPLETE_MP3_GENERATION_SUMMARY.md</a></td>
+            <td class="size">9.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPLETE_ORGANIZATION_SUCCESS.md">COMPLETE_ORGANIZATION_SUCCESS.md</a></td>
+            <td class="size">9.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPLETE_PORTFOLIO_ANALYSIS_SYSTEM.md">COMPLETE_PORTFOLIO_ANALYSIS_SYSTEM.md</a></td>
+            <td class="size">2.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPLETE_PROJECT_REPORT.md">COMPLETE_PROJECT_REPORT.md</a></td>
+            <td class="size">16.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPREHENSIVE_ANALYSIS_COMPLETE.md">COMPREHENSIVE_ANALYSIS_COMPLETE.md</a></td>
+            <td class="size">1.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPREHENSIVE_ANALYSIS_SUMMARY.md">COMPREHENSIVE_ANALYSIS_SUMMARY.md</a></td>
+            <td class="size">13.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPREHENSIVE_CONVERSATION_ANALYSIS_DEEP_RESEARCH_TOPIC_SYNTHESIS.md">COMPREHENSIVE_CONVERSATION_ANALYSIS_DEEP_RESEARCH_TOPIC_SYNTHESIS.md</a></td>
+            <td class="size">13.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPREHENSIVE_CREATIVE_PORTFOLIO_ANALYSIS_THE_COMPLETE_ARTISTIC_ECOSYSTEM.md">COMPREHENSIVE_CREATIVE_PORTFOLIO_ANALYSIS_THE_COMPLETE_ARTISTIC_ECOSYSTEM.md</a></td>
+            <td class="size">15.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPREHENSIVE_DEEP_ANALYSIS_HTML_FILE_MANAGEMENT_ECOSYSTEM.md">COMPREHENSIVE_DEEP_ANALYSIS_HTML_FILE_MANAGEMENT_ECOSYSTEM.md</a></td>
+            <td class="size">16.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPREHENSIVE_DOCUMENTS_ANALYSIS_THE_COMPLETE_PROFESSIONAL_PORTFOLIO.md">COMPREHENSIVE_DOCUMENTS_ANALYSIS_THE_COMPLETE_PROFESSIONAL_PORTFOLIO.md</a></td>
+            <td class="size">14.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPREHENSIVE_MERGE_PLAN.md">COMPREHENSIVE_MERGE_PLAN.md</a></td>
+            <td class="size">14.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPREHENSIVE_MERGE_REPORT.md">COMPREHENSIVE_MERGE_REPORT.md</a></td>
+            <td class="size">20.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPREHENSIVE_ORGANIZATION_PLAN.md">COMPREHENSIVE_ORGANIZATION_PLAN.md</a></td>
+            <td class="size">7.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPREHENSIVE_ORIGINAL_ANALYSIS_REPORT.pdf">COMPREHENSIVE_ORIGINAL_ANALYSIS_REPORT.pdf</a></td>
+            <td class="size">113.8 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPREHENSIVE_PROFESSIONAL_ROLE_ANALYSIS.md">COMPREHENSIVE_PROFESSIONAL_ROLE_ANALYSIS.md</a></td>
+            <td class="size">5.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPREHENSIVE_SEO_AUDIT.md">COMPREHENSIVE_SEO_AUDIT.md</a></td>
+            <td class="size">30.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPREHENSIVE_TEHSITES_DEEP_ANALYSIS.md">COMPREHENSIVE_TEHSITES_DEEP_ANALYSIS.md</a></td>
+            <td class="size">7.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="CONTENT_AWARE_RENAMING_RESULTS.md">CONTENT_AWARE_RENAMING_RESULTS.md</a></td>
+            <td class="size">5.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="CONTENT_BASED_ORGANIZATION_SUMMARY.md">CONTENT_BASED_ORGANIZATION_SUMMARY.md</a></td>
+            <td class="size">11.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="CONVERSATION_EXPORT_SYSTEM.md">CONVERSATION_EXPORT_SYSTEM.md</a></td>
+            <td class="size">9.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="CREATIVE_ENHANCEMENT_SUMMARY.md">CREATIVE_ENHANCEMENT_SUMMARY.md</a></td>
+            <td class="size">10.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ChatGPT_Conversation.txt">ChatGPT_Conversation.txt</a></td>
+            <td class="size">28.5 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Comprehensive_Deepreach_Analysis_Complete.md">Comprehensive_Deepreach_Analysis_Complete.md</a></td>
+            <td class="size">6.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Comprehensive_Sort.txt_Analysis_Complete.md">Comprehensive_Sort.txt_Analysis_Complete.md</a></td>
+            <td class="size">2.7 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="DEEP_ANALYSIS_REPORT.md">DEEP_ANALYSIS_REPORT.md</a></td>
+            <td class="size">8.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="DEEP_DIVE_ADVANCED_PROFESSIONAL_ANALYSIS.md">DEEP_DIVE_ADVANCED_PROFESSIONAL_ANALYSIS.md</a></td>
+            <td class="size">6.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="DEEP_DIVE_POLITICAL_NARRATIVE_2025_VIRAL_VISUAL.md">DEEP_DIVE_POLITICAL_NARRATIVE_2025_VIRAL_VISUAL.md</a></td>
+            <td class="size">31.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="DEEP_FOLDER_ANALYSIS_REPORT.md">DEEP_FOLDER_ANALYSIS_REPORT.md</a></td>
+            <td class="size">12.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="DEEP_TECH_STARTUP_IPO_ANALYSIS_SUCCESS_PATTERNS_IMPLEMENTATION.md">DEEP_TECH_STARTUP_IPO_ANALYSIS_SUCCESS_PATTERNS_IMPLEMENTATION.md</a></td>
+            <td class="size">24.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="DNS_SETUP.md">DNS_SETUP.md</a></td>
+            <td class="size">6.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="DR_LAWRENCE_ADU_DETAILED_RESEARCH.md">DR_LAWRENCE_ADU_DETAILED_RESEARCH.md</a></td>
+            <td class="size">11.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="DR_LAWRENCE_ADU_RESEARCH_SUMMARY.md">DR_LAWRENCE_ADU_RESEARCH_SUMMARY.md</a></td>
+            <td class="size">9.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Descriptives-woodcarver-songs-322_analysis.txt">Descriptives-woodcarver-songs-322_analysis.txt</a></td>
+            <td class="size">4.0 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Descriptives-woodcarver-songs-322_transcript.txt">Descriptives-woodcarver-songs-322_transcript.txt</a></td>
+            <td class="size">1.5 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Descriptives-woodcarver-songs-420_analysis.txt">Descriptives-woodcarver-songs-420_analysis.txt</a></td>
+            <td class="size">3.3 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Descriptives-woodcarver-songs-420_transcript.txt">Descriptives-woodcarver-songs-420_transcript.txt</a></td>
+            <td class="size">1.5 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="EMOTIONAL_MP3_SUMMARY.md">EMOTIONAL_MP3_SUMMARY.md</a></td>
+            <td class="size">6.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Etsy_and_TikTok_Store_Naming_Suggestions.md">Etsy_and_TikTok_Store_Naming_Suggestions.md</a></td>
+            <td class="size">22.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="FILES_CREATED.txt">FILES_CREATED.txt</a></td>
+            <td class="size">3.7 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="FILE_07_experimental_libraries_Guide_to_Intro_Typography.pdf">FILE_07_experimental_libraries_Guide_to_Intro_Typography.pdf</a></td>
+            <td class="size">268.6 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="FILE_08_archived_backups_icon-chess.pdf">FILE_08_archived_backups_icon-chess.pdf</a></td>
+            <td class="size">4.0 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="FILE_08_archived_backups_icon-play.pdf">FILE_08_archived_backups_icon-play.pdf</a></td>
+            <td class="size">3.9 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="FILE_08_archived_backups_source_wrap_hint_dark.pdf">FILE_08_archived_backups_source_wrap_hint_dark.pdf</a></td>
+            <td class="size">39.8 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="FILE_gemini_storybook_downloader_gemini_share.pdf">FILE_gemini_storybook_downloader_gemini_share.pdf</a></td>
+            <td class="size">4.0 MB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="FINAL_DR_ADU_ORGANIZATION_SUMMARY.md">FINAL_DR_ADU_ORGANIZATION_SUMMARY.md</a></td>
+            <td class="size">7.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="FINAL_MERGE_REPORT.md">FINAL_MERGE_REPORT.md</a></td>
+            <td class="size">6.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="FINAL_ORGANIZATION_SUMMARY.md">FINAL_ORGANIZATION_SUMMARY.md</a></td>
+            <td class="size">11.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="FINAL_TOP_1_5_PERCENT_WEBSITE_ENHANCEMENT.md">FINAL_TOP_1_5_PERCENT_WEBSITE_ENHANCEMENT.md</a></td>
+            <td class="size">12.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="FINAL_WEBSITE_MAGIC_SUMMARY.md">FINAL_WEBSITE_MAGIC_SUMMARY.md</a></td>
+            <td class="size">6.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Fall_RooTs_ReMain301_analysis.txt">Fall_RooTs_ReMain301_analysis.txt</a></td>
+            <td class="size">4.5 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Fall_RooTs_ReMain301_transcript.txt">Fall_RooTs_ReMain301_transcript.txt</a></td>
+            <td class="size">1.3 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Final_domain_strategy-table.txt">Final_domain_strategy-table.txt</a></td>
+            <td class="size">352.7 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Final_domain_strategy_2.txt">Final_domain_strategy_2.txt</a></td>
+            <td class="size">44.7 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="GALLERY_GENERATOR_README.md">GALLERY_GENERATOR_README.md</a></td>
+            <td class="size">11.7 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="GOOGLE_ANALYTICS_SETUP.md">GOOGLE_ANALYTICS_SETUP.md</a></td>
+            <td class="size">10.7 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="GravesBeforeTheThrone_transcript.txt">GravesBeforeTheThrone_transcript.txt</a></td>
+            <td class="size">647.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Graves_Before_Throne_analysis.txt">Graves_Before_Throne_analysis.txt</a></td>
+            <td class="size">2.5 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="H_31353131.pdf">H_31353131.pdf</a></td>
+            <td class="size">28.0 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="H_31354664.pdf">H_31354664.pdf</a></td>
+            <td class="size">28.0 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="IMPLEMENTATION_COMPLETE_SUMMARY.md">IMPLEMENTATION_COMPLETE_SUMMARY.md</a></td>
+            <td class="size">11.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="IMPROVEMENTS_SUMMARY.md">IMPROVEMENTS_SUMMARY.md</a></td>
+            <td class="size">24.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="INSTALL-ai-apis.txt">INSTALL-ai-apis.txt</a></td>
+            <td class="size">10.1 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ISSUE_TEMPLATE.md">ISSUE_TEMPLATE.md</a></td>
+            <td class="size">649.0 B</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="InstallWithVenv.md">InstallWithVenv.md</a></td>
+            <td class="size">12.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Integration_Strategy_Two_Sites%2C_One_Universe.md">Integration_Strategy_Two_Sites,_One_Universe.md</a></td>
+            <td class="size">107.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="LLM-engineer-handbook.md">LLM-engineer-handbook.md</a></td>
+            <td class="size">30.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="LoVe_is_RuBBisH_and_RuBBiSh_is_LoVe2_47_analysis.txt">LoVe_is_RuBBisH_and_RuBBiSh_is_LoVe2_47_analysis.txt</a></td>
+            <td class="size">4.0 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="LoVe_is_RuBBisH_and_RuBBiSh_is_LoVe2_47_transcript.txt">LoVe_is_RuBBisH_and_RuBBiSh_is_LoVe2_47_transcript.txt</a></td>
+            <td class="size">1.5 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Love_in_Imperfection_-Bmess-Folk-Dark-323_analysis.txt">Love_in_Imperfection_-Bmess-Folk-Dark-323_analysis.txt</a></td>
+            <td class="size">3.8 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Love_in_Imperfection_-indie-Folk-Dark-323_analysis.txt">Love_in_Imperfection_-indie-Folk-Dark-323_analysis.txt</a></td>
+            <td class="size">4.3 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Love_in_Imperfection_-indie-Folk-Dark-323_transcript.txt">Love_in_Imperfection_-indie-Folk-Dark-323_transcript.txt</a></td>
+            <td class="size">1.5 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Love_is_Rubbish%2C_and_Rubbish_is_Love-239_analysis.txt">Love_is_Rubbish,_and_Rubbish_is_Love-239_analysis.txt</a></td>
+            <td class="size">3.7 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Love_is_Rubbish%2C_and_Rubbish_is_Love-239_transcript.txt">Love_is_Rubbish,_and_Rubbish_is_Love-239_transcript.txt</a></td>
+            <td class="size">1.7 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Love_is_rubbishAnd_rubbish_is_love-259-pluck_analysis.txt">Love_is_rubbishAnd_rubbish_is_love-259-pluck_analysis.txt</a></td>
+            <td class="size">2.1 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Love_is_rubbishAnd_rubbish_is_love-259-pluck_transcript.txt">Love_is_rubbishAnd_rubbish_is_love-259-pluck_transcript.txt</a></td>
+            <td class="size">1.5 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Love_is_rubbish_Let%27s_Get_Trashy_%28Remastered%29-350_analysis.txt">Love_is_rubbish_Let's_Get_Trashy_(Remastered)-350_analysis.txt</a></td>
+            <td class="size">2.5 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Love_is_rubbish_Let%27s_Get_Trashy_%28Remastered%29-350_transcript.txt">Love_is_rubbish_Let's_Get_Trashy_(Remastered)-350_transcript.txt</a></td>
+            <td class="size">1.6 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Love_is_rubbish_Let%27s_Get_Trashy_%28plucky_indieRemix%29257_analysis.txt">Love_is_rubbish_Let's_Get_Trashy_(plucky_indieRemix)257_analysis.txt</a></td>
+            <td class="size">4.1 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Love_is_rubbish_Let%27s_Get_Trashy_%28plucky_indieRemix%29257_transcript.txt">Love_is_rubbish_Let's_Get_Trashy_(plucky_indieRemix)257_transcript.txt</a></td>
+            <td class="size">1.6 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="MASTER_IMPLEMENTATION_PLAN.md">MASTER_IMPLEMENTATION_PLAN.md</a></td>
+            <td class="size">63.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="MASTER_INDEX.md">MASTER_INDEX.md</a></td>
+            <td class="size">9.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="MASTER_ORGANIZATION_SUMMARY.md">MASTER_ORGANIZATION_SUMMARY.md</a></td>
+            <td class="size">5.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="MAX_DEPTH_ANALYSIS_REPORT.md">MAX_DEPTH_ANALYSIS_REPORT.md</a></td>
+            <td class="size">14.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="MERGE_ANALYSIS_AND_PLAN.md">MERGE_ANALYSIS_AND_PLAN.md</a></td>
+            <td class="size">11.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="MERGE_COMPLETE_SUMMARY.md">MERGE_COMPLETE_SUMMARY.md</a></td>
+            <td class="size">17.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="MERGE_REPORT.md">MERGE_REPORT.md</a></td>
+            <td class="size">3.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="MOVE_MERGE_REMOVE_REPORT.md">MOVE_MERGE_REMOVE_REPORT.md</a></td>
+            <td class="size">9.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="MULTI_LAYER_CONNECTION_MAP.md">MULTI_LAYER_CONNECTION_MAP.md</a></td>
+            <td class="size">9.7 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Midnight_Reckoning-317_analysis.txt">Midnight_Reckoning-317_analysis.txt</a></td>
+            <td class="size">3.6 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Midnight_Reckoning-317_transcript.txt">Midnight_Reckoning-317_transcript.txt</a></td>
+            <td class="size">1.1 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="MoonlyAlley-240___Suno_%28Remix%29_analysis.txt">MoonlyAlley-240___Suno_(Remix)_analysis.txt</a></td>
+            <td class="size">3.9 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="NAVIGATION.md">NAVIGATION.md</a></td>
+            <td class="size">2.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="PROFESSIONAL_FORMAT_UPGRADE_FRAMEWORK.md">PROFESSIONAL_FORMAT_UPGRADE_FRAMEWORK.md</a></td>
+            <td class="size">33.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="PROFESSIONAL_MEDICAL_DESIGN_SUMMARY.md">PROFESSIONAL_MEDICAL_DESIGN_SUMMARY.md</a></td>
+            <td class="size">8.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="PROJECT_COMPILATION_README.md">PROJECT_COMPILATION_README.md</a></td>
+            <td class="size">15.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="PROJECT_OVERVIEW.md">PROJECT_OVERVIEW.md</a></td>
+            <td class="size">11.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="PULL_REQUEST_TEMPLATE.md">PULL_REQUEST_TEMPLATE.md</a></td>
+            <td class="size">1.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="PeTal%3Bs_analysis.txt">PeTal;s_analysis.txt</a></td>
+            <td class="size">4.3 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="PeTal%3Bs_transcript.txt">PeTal;s_transcript.txt</a></td>
+            <td class="size">1.1 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="PeTals_FaLL_%28Tribal_F%3Bute%29430-2_analysis.txt">PeTals_FaLL_(Tribal_F;ute)430-2_analysis.txt</a></td>
+            <td class="size">3.7 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="PeTals_FaLL_%28Tribal_F%3Bute%29430-2_transcript.txt">PeTals_FaLL_(Tribal_F;ute)430-2_transcript.txt</a></td>
+            <td class="size">1.3 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="PeTals_FaLL_%28Tribal_F%3Bute%29430_analysis.txt">PeTals_FaLL_(Tribal_F;ute)430_analysis.txt</a></td>
+            <td class="size">4.1 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="PeTasLs_analysis.txt">PeTasLs_analysis.txt</a></td>
+            <td class="size">3.8 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="PeTasLs_transcript.txt">PeTasLs_transcript.txt</a></td>
+            <td class="size">991.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Personal-GPT.txt">Personal-GPT.txt</a></td>
+            <td class="size">1.7 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Phi_and_Fibonacci_The_Divine_Duality_of_Creation_6492c6ec649049858643725d02cb53ff.md">Phi_and_Fibonacci_The_Divine_Duality_of_Creation_6492c6ec649049858643725d02cb53ff.md</a></td>
+            <td class="size">7.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Project-Centric-Reorganization-Plan.md">Project-Centric-Reorganization-Plan.md</a></td>
+            <td class="size">59.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Python_Prof_Skills_Gall.md">Python_Prof_Skills_Gall.md</a></td>
+            <td class="size">2.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="QUANTUMFORGELABS_DUPLICATE_REMOVAL_REPORT.md">QUANTUMFORGELABS_DUPLICATE_REMOVAL_REPORT.md</a></td>
+            <td class="size">11.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="QUANTUMFORGELABS_FINAL_CONSOLIDATION_REPORT.md">QUANTUMFORGELABS_FINAL_CONSOLIDATION_REPORT.md</a></td>
+            <td class="size">10.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="QUANTUMFORGELABS_SETUP.md">QUANTUMFORGELABS_SETUP.md</a></td>
+            <td class="size">5.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="QUANTUM_AI_AUTOMATION_BRAND_STRATEGY.md">QUANTUM_AI_AUTOMATION_BRAND_STRATEGY.md</a></td>
+            <td class="size">16.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="QUANTUM_AI_EMPIRE-_ADVANCED_IMPLEMENTATION_%26_SCALING_STRATEGY.md">QUANTUM_AI_EMPIRE-_ADVANCED_IMPLEMENTATION_&_SCALING_STRATEGY.md</a></td>
+            <td class="size">35.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="QUICK_START.md">QUICK_START.md</a></td>
+            <td class="size">1.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="QUICK_START_GUIDE.md">QUICK_START_GUIDE.md</a></td>
+            <td class="size">56.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="QuantumForgeLabs-SiteSetup.md">QuantumForgeLabs-SiteSetup.md</a></td>
+            <td class="size">9.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="README.txt">README.txt</a></td>
+            <td class="size">836.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="REVIEW_MANAGEMENT_SYSTEM.md">REVIEW_MANAGEMENT_SYSTEM.md</a></td>
+            <td class="size">15.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Research_cleaning_business_IMPROVED.md">Research_cleaning_business_IMPROVED.md</a></td>
+            <td class="size">10.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="SEO_CONTINUOUS_IMPROVEMENT_PLAN.md">SEO_CONTINUOUS_IMPROVEMENT_PLAN.md</a></td>
+            <td class="size">9.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="SEO_SUMMARY.md">SEO_SUMMARY.md</a></td>
+            <td class="size">1.7 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="SERVICES_101_GUIDE.md">SERVICES_101_GUIDE.md</a></td>
+            <td class="size">8.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="SERVICES_PROVIDED_BREAKDOWN.md">SERVICES_PROVIDED_BREAKDOWN.md</a></td>
+            <td class="size">10.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="SETUP_INSTRUCTIONS.md">SETUP_INSTRUCTIONS.md</a></td>
+            <td class="size">4.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="SIMPLE_ORGANIZATION_SUMMARY.md">SIMPLE_ORGANIZATION_SUMMARY.md</a></td>
+            <td class="size">3.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="SOCIAL_MEDIA_TEMPLATES.md">SOCIAL_MEDIA_TEMPLATES.md</a></td>
+            <td class="size">13.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="STEVEN_SKILLS_BREAKDOWN_DETAILED.md">STEVEN_SKILLS_BREAKDOWN_DETAILED.md</a></td>
+            <td class="size">11.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="STYLE_IMPROVEMENTS_GUIDE.md">STYLE_IMPROVEMENTS_GUIDE.md</a></td>
+            <td class="size">1.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="STYLING_IMPROVEMENTS_SUMMARY.md">STYLING_IMPROVEMENTS_SUMMARY.md</a></td>
+            <td class="size">7.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Site_Structure_for_QuantumForgeLabs.txt">Site_Structure_for_QuantumForgeLabs.txt</a></td>
+            <td class="size">6.0 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Stacie%2C_the_Wind_Don%E2%80%99t_Ask_Why319_analysis.txt">Stacie,_the_Wind_Don’t_Ask_Why319_analysis.txt</a></td>
+            <td class="size">4.1 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Stacie%2C_the_Wind_Don%E2%80%99t_Ask_Why319_transcript.txt">Stacie,_the_Wind_Don’t_Ask_Why319_transcript.txt</a></td>
+            <td class="size">2.1 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Stacie%2C_the_Wind_Don%E2%80%99t_Ask_Why332_analysis.txt">Stacie,_the_Wind_Don’t_Ask_Why332_analysis.txt</a></td>
+            <td class="size">1.9 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Stacie%2C_the_Wind_Don%E2%80%99t_Ask_Why332_transcript.txt">Stacie,_the_Wind_Don’t_Ask_Why332_transcript.txt</a></td>
+            <td class="size">2.3 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Stacie%E2%80%99s_Dust_and_Flame254%E2%9D%A4%EF%B8%8F_analysis.txt">Stacie’s_Dust_and_Flame254❤️_analysis.txt</a></td>
+            <td class="size">3.9 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Stacie%E2%80%99s_Dust_and_Flame254%E2%9D%A4%EF%B8%8F_transcript.txt">Stacie’s_Dust_and_Flame254❤️_transcript.txt</a></td>
+            <td class="size">1.6 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Steven_Chaplinski_-_Professional_Portfolio_Website-node-readme.md">Steven_Chaplinski_-_Professional_Portfolio_Website-node-readme.md</a></td>
+            <td class="size">2.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Steven_Chaplinski_-_Unified_Creative_Automation_WorkspaceREADME.md">Steven_Chaplinski_-_Unified_Creative_Automation_WorkspaceREADME.md</a></td>
+            <td class="size">14.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Steven%E2%80%99s_Digital_Ecosystem_-_Comprehensive_AnalysisREADME.md">Steven’s_Digital_Ecosystem_-_Comprehensive_AnalysisREADME.md</a></td>
+            <td class="size">6.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Summer_Love-315_analysis.txt">Summer_Love-315_analysis.txt</a></td>
+            <td class="size">4.5 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Summer_Love-315_transcript.txt">Summer_Love-315_transcript.txt</a></td>
+            <td class="size">2.5 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="THE_500000_BLUEPRINT_FROM_VISION_TO_REALITY.md">THE_500000_BLUEPRINT_FROM_VISION_TO_REALITY.md</a></td>
+            <td class="size">11.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="THE_NOVICES_GUIDE_TO_REVENUE_GENERATION_FROM_ZERO_TO_MILLIONAIRE.md">THE_NOVICES_GUIDE_TO_REVENUE_GENERATION_FROM_ZERO_TO_MILLIONAIRE.md</a></td>
+            <td class="size">11.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="THE_POLYMATH_MASTER-_YOUR_MULTI-DOMAIN_GENIUS_ADVANTAGE.md">THE_POLYMATH_MASTER-_YOUR_MULTI-DOMAIN_GENIUS_ADVANTAGE.md</a></td>
+            <td class="size">13.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="THE_PRODIGYS_PATH_FROM_SELF_TAUGHT_VISIONARY_TO_TECH_TITAN.md">THE_PRODIGYS_PATH_FROM_SELF_TAUGHT_VISIONARY_TO_TECH_TITAN.md</a></td>
+            <td class="size">12.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="TOP_1_5_PERCENT_IMPROVEMENTS_IMPLEMENTED.md">TOP_1_5_PERCENT_IMPROVEMENTS_IMPLEMENTED.md</a></td>
+            <td class="size">13.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="TheHourglassShatters_analysis.txt">TheHourglassShatters_analysis.txt</a></td>
+            <td class="size">2.4 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="TheHourglassShatters_transcript.txt">TheHourglassShatters_transcript.txt</a></td>
+            <td class="size">1.5 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="The_Heartland_Doesn%E2%80%99t_Speak-duo355_analysis.txt">The_Heartland_Doesn’t_Speak-duo355_analysis.txt</a></td>
+            <td class="size">4.5 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="The_Heartland_Doesn%E2%80%99t_Speak-duo355_transcript.txt">The_Heartland_Doesn’t_Speak-duo355_transcript.txt</a></td>
+            <td class="size">2.5 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="The_Heartland_Doesn%E2%80%99t_Speak349_analysis.txt">The_Heartland_Doesn’t_Speak349_analysis.txt</a></td>
+            <td class="size">3.9 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="The_Heartland_Doesn%E2%80%99t_Speak349_transcript.txt">The_Heartland_Doesn’t_Speak349_transcript.txt</a></td>
+            <td class="size">2.3 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="The_Heartland_Doesn%E2%80%99t_Speak351_analysis.txt">The_Heartland_Doesn’t_Speak351_analysis.txt</a></td>
+            <td class="size">4.0 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="The_Heartland_Doesn%E2%80%99t_Speak351_transcript.txt">The_Heartland_Doesn’t_Speak351_transcript.txt</a></td>
+            <td class="size">2.4 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="The_Heartland_Doesn%E2%80%99t_Speak_%28duo%29349_analysis.txt">The_Heartland_Doesn’t_Speak_(duo)349_analysis.txt</a></td>
+            <td class="size">4.3 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="The_Heartland_Doesn%E2%80%99t_Speak_%28duo%29349_transcript.txt">The_Heartland_Doesn’t_Speak_(duo)349_transcript.txt</a></td>
+            <td class="size">2.5 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="The_Heartland_Doesn%E2%80%99t_Speak_-tears_and_time352_-duo%E2%9D%A4%EF%B8%8F_analysis.txt">The_Heartland_Doesn’t_Speak_-tears_and_time352_-duo❤️_analysis.txt</a></td>
+            <td class="size">4.3 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="The_Heartland_Doesn%E2%80%99t_Speak_-tears_and_time352_-duo%E2%9D%A4%EF%B8%8F_transcript.txt">The_Heartland_Doesn’t_Speak_-tears_and_time352_-duo❤️_transcript.txt</a></td>
+            <td class="size">2.8 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="The_Plantagenets314_analysis.txt">The_Plantagenets314_analysis.txt</a></td>
+            <td class="size">3.2 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="The_Plantagenets314_transcript.txt">The_Plantagenets314_transcript.txt</a></td>
+            <td class="size">1.2 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="The_Plantagenets319_analysis.txt">The_Plantagenets319_analysis.txt</a></td>
+            <td class="size">2.6 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="The_Plantagenets319_transcript.txt">The_Plantagenets319_transcript.txt</a></td>
+            <td class="size">1.1 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Tone_instruction_Please_ignore_all_previous_tone_i_3205db1f526743e39f1d7850cc2178af.md">Tone_instruction_Please_ignore_all_previous_tone_i_3205db1f526743e39f1d7850cc2178af.md</a></td>
+            <td class="size">6.7 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Top_5_High_Performing_Concepts.md">Top_5_High_Performing_Concepts.md</a></td>
+            <td class="size">47.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ULTIMATE_COMPREHENSIVE_DEEP_REACH_ANALYSIS_COMPLETE.md">ULTIMATE_COMPREHENSIVE_DEEP_REACH_ANALYSIS_COMPLETE.md</a></td>
+            <td class="size">3.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ULTIMATE_DEEP_REACH_ANALYSIS_COMPLETES.md">ULTIMATE_DEEP_REACH_ANALYSIS_COMPLETES.md</a></td>
+            <td class="size">3.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ULTRA_COMPREHENSIVE_DEEP_ANALYSIS_THE_COMPLETE_ECOSYSTEM.md">ULTRA_COMPREHENSIVE_DEEP_ANALYSIS_THE_COMPLETE_ECOSYSTEM.md</a></td>
+            <td class="size">21.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ULTRA_DEEP_COMPREHENSIVE_INDEX.md">ULTRA_DEEP_COMPREHENSIVE_INDEX.md</a></td>
+            <td class="size">22.7 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ULTRA_DEEP_FOLDER_ANALYSIS_REPORT.md">ULTRA_DEEP_FOLDER_ANALYSIS_REPORT.md</a></td>
+            <td class="size">16.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Unified_Creative_Automation_Workspace_Analysis.md">Unified_Creative_Automation_Workspace_Analysis.md</a></td>
+            <td class="size">9.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="VISUAL_COVERS.md">VISUAL_COVERS.md</a></td>
+            <td class="size">5.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Vision.md">Vision.md</a></td>
+            <td class="size">12.7 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Visual_Dashboard_System_Created.md">Visual_Dashboard_System_Created.md</a></td>
+            <td class="size">2.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="WEBSITE_101_GUIDE.md">WEBSITE_101_GUIDE.md</a></td>
+            <td class="size">6.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="WEBSITE_ANALYSIS_REPORT.md">WEBSITE_ANALYSIS_REPORT.md</a></td>
+            <td class="size">7.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="WEBSITE_DEPLOYMENT_SUMMARY.md">WEBSITE_DEPLOYMENT_SUMMARY.md</a></td>
+            <td class="size">8.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="WEBSITE_STRUCTURE_DOCUMENTATION.md">WEBSITE_STRUCTURE_DOCUMENTATION.md</a></td>
+            <td class="size">28.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="WindsOfWarningLyrics_analysis.txt">WindsOfWarningLyrics_analysis.txt</a></td>
+            <td class="size">2.5 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="WindsOfWarningLyrics_transcript.txt">WindsOfWarningLyrics_transcript.txt</a></td>
+            <td class="size">2.0 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="WoodcarverSongVisuals_analysis.txt">WoodcarverSongVisuals_analysis.txt</a></td>
+            <td class="size">2.6 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="WoodcarverSongVisuals_transcript.txt">WoodcarverSongVisuals_transcript.txt</a></td>
+            <td class="size">1.5 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="WorkShop_Worries-359_analysis.txt">WorkShop_Worries-359_analysis.txt</a></td>
+            <td class="size">3.8 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="WorkShop_Worries-359_transcript.txt">WorkShop_Worries-359_transcript.txt</a></td>
+            <td class="size">1.7 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="WorkShop_Worries-duo-410_analysis.txt">WorkShop_Worries-duo-410_analysis.txt</a></td>
+            <td class="size">4.4 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="WorkShop_Worries-duo-410_transcript.txt">WorkShop_Worries-duo-410_transcript.txt</a></td>
+            <td class="size">1.9 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ai_art_packs.md">ai_art_packs.md</a></td>
+            <td class="size">5.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ai_consulting_packages.md">ai_consulting_packages.md</a></td>
+            <td class="size">3.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ai_fundamentals_course.md">ai_fundamentals_course.md</a></td>
+            <td class="size">11.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="alchemy_index.md">alchemy_index.md</a></td>
+            <td class="size">195.0 B</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="analysis_report.md">analysis_report.md</a></td>
+            <td class="size">6.7 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="analyze%20text%20for%20YouTube%20Shorts%20using%20OpenAI%20GPT.txt">analyze text for YouTube Shorts using OpenAI GPT.txt</a></td>
+            <td class="size">3.9 MB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="api-endpoints.md">api-endpoints.md</a></td>
+            <td class="size">8.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="auto-image-bulk-process-bg.pdf">auto-image-bulk-process-bg.pdf</a></td>
+            <td class="size">785.2 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="avatararts-content-plan.md">avatararts-content-plan.md</a></td>
+            <td class="size">66.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="behance-strategy.md">behance-strategy.md</a></td>
+            <td class="size">58.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="brand-integration-strategy.md">brand-integration-strategy.md</a></td>
+            <td class="size">63.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="bubble-top.txt">bubble-top.txt</a></td>
+            <td class="size">4.1 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="buggy.txt">buggy.txt</a></td>
+            <td class="size">649.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="bulk_image_processor.md">bulk_image_processor.md</a></td>
+            <td class="size">9.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="cat1.txt">cat1.txt</a></td>
+            <td class="size">23.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="cat2.txt">cat2.txt</a></td>
+            <td class="size">57.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="cat3.txt">cat3.txt</a></td>
+            <td class="size">113.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="cat4.txt">cat4.txt</a></td>
+            <td class="size">94.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="cat5.txt">cat5.txt</a></td>
+            <td class="size">59.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="cat6.txt">cat6.txt</a></td>
+            <td class="size">94.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="claude-txt-to-image.md">claude-txt-to-image.md</a></td>
+            <td class="size">401.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="connection-strategy.md">connection-strategy.md</a></td>
+            <td class="size">62.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="content-strategy-overview.md">content-strategy-overview.md</a></td>
+            <td class="size">57.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="contract-templates.md">contract-templates.md</a></td>
+            <td class="size">123.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="creative-resize-prompt-setup.pdf">creative-resize-prompt-setup.pdf</a></td>
+            <td class="size">1.2 MB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="daily-action-checklist.md">daily-action-checklist.md</a></td>
+            <td class="size">57.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="digital-products.md">digital-products.md</a></td>
+            <td class="size">28.7 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="directory_index.txt">directory_index.txt</a></td>
+            <td class="size">-</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="docs.txt">docs.txt</a></td>
+            <td class="size">13.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="dr-aduKey_Improvements_Made.md">dr-aduKey_Improvements_Made.md</a></td>
+            <td class="size">1003.0 B</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="dual-domain-seo-strategy.md">dual-domain-seo-strategy.md</a></td>
+            <td class="size">15.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="executive_summary.md">executive_summary.md</a></td>
+            <td class="size">32.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="fee_structures.md">fee_structures.md</a></td>
+            <td class="size">35.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="financial_projections.md">financial_projections.md</a></td>
+            <td class="size">35.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="gainesville-content-strategy.md">gainesville-content-strategy.md</a></td>
+            <td class="size">69.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="gainesville-fl-strategy.md">gainesville-fl-strategy.md</a></td>
+            <td class="size">65.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="gainesville-seo-tools.md">gainesville-seo-tools.md</a></td>
+            <td class="size">65.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="gptjunkie_formatted_content.md">gptjunkie_formatted_content.md</a></td>
+            <td class="size">61.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="grok_report.pdf">grok_report.pdf</a></td>
+            <td class="size">6.9 MB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="hipaa-compliance-guide.md">hipaa-compliance-guide.md</a></td>
+            <td class="size">68.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="hipaa-implementation-checklist.md">hipaa-implementation-checklist.md</a></td>
+            <td class="size">55.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="hipaa-templates.md">hipaa-templates.md</a></td>
+            <td class="size">67.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="homepage.md">homepage.md</a></td>
+            <td class="size">31.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="how_to_create_a_system_of_prices_for_services_invo.md">how_to_create_a_system_of_prices_for_services_invo.md</a></td>
+            <td class="size">32.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="image_data.txt">image_data.txt</a></td>
+            <td class="size">24.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="in-this-alley-hide-309_rhythm_guitar__analysis.txt">in-this-alley-hide-309_rhythm_guitar__analysis.txt</a></td>
+            <td class="size">4.1 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="in-this-alley-hide-309_rhythm_guitar__transcript.txt">in-this-alley-hide-309_rhythm_guitar__transcript.txt</a></td>
+            <td class="size">512.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="in-this-alley-where-i-hide-grunge259%E2%98%A0%EF%B8%8F_analysis.txt">in-this-alley-where-i-hide-grunge259☠️_analysis.txt</a></td>
+            <td class="size">4.0 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="in-this-alley-where-i-hide-grunge259%E2%98%A0%EF%B8%8F_transcript.txt">in-this-alley-where-i-hide-grunge259☠️_transcript.txt</a></td>
+            <td class="size">704.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index.md">index.md</a></td>
+            <td class="size">864.0 B</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="introductory_AI_courses.txt">introductory_AI_courses.txt</a></td>
+            <td class="size">33.8 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="invoice-templates.md">invoice-templates.md</a></td>
+            <td class="size">121.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="invoice_template.md">invoice_template.md</a></td>
+            <td class="size">30.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="itchy-isle-8min_analysis.txt">itchy-isle-8min_analysis.txt</a></td>
+            <td class="size">4.3 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="itchy-isle-8min_transcript.txt">itchy-isle-8min_transcript.txt</a></td>
+            <td class="size">5.3 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="linkedin_strategy.md">linkedin_strategy.md</a></td>
+            <td class="size">28.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="love-is-rubbish-lets-get-trashy-plucky-245_analysis.txt">love-is-rubbish-lets-get-trashy-plucky-245_analysis.txt</a></td>
+            <td class="size">3.7 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="love-is-rubbish-lets-get-trashy-plucky-245_transcript.txt">love-is-rubbish-lets-get-trashy-plucky-245_transcript.txt</a></td>
+            <td class="size">1.5 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="marketing_strategy.md">marketing_strategy.md</a></td>
+            <td class="size">37.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="moonly-alley--howling-banjo239_analysis.txt">moonly-alley--howling-banjo239_analysis.txt</a></td>
+            <td class="size">3.6 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="moonly-alley--howling-banjo239_transcript.txt">moonly-alley--howling-banjo239_transcript.txt</a></td>
+            <td class="size">959.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="organized-multimedia-analysis.md">organized-multimedia-analysis.md</a></td>
+            <td class="size">49.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="package-manager-setup.md">package-manager-setup.md</a></td>
+            <td class="size">8.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="packages.txt">packages.txt</a></td>
+            <td class="size">6.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="pics.txt">pics.txt</a></td>
+            <td class="size">50.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="post-templates.md">post-templates.md</a></td>
+            <td class="size">75.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="pricing_summary.md">pricing_summary.md</a></td>
+            <td class="size">31.7 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="profile-optimization.md">profile-optimization.md</a></td>
+            <td class="size">43.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="project_analysis_report.md">project_analysis_report.md</a></td>
+            <td class="size">6.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="project_proposal_template.md">project_proposal_template.md</a></td>
+            <td class="size">30.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="prompts.txt">prompts.txt</a></td>
+            <td class="size">107.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="proposal-templates.md">proposal-templates.md</a></td>
+            <td class="size">142.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="proxys.txt">proxys.txt</a></td>
+            <td class="size">774.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="python-audit.md">python-audit.md</a></td>
+            <td class="size">18.7 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="python-detailed-info.md">python-detailed-info.md</a></td>
+            <td class="size">40.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="python-project-template.md">python-project-template.md</a></td>
+            <td class="size">3.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="python-%F0%9F%93%9A_TABLE_OF_CONTENTS.md">python-📚_TABLE_OF_CONTENTS.md</a></td>
+            <td class="size">5.7 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="python_scripts.md">python_scripts.md</a></td>
+            <td class="size">7.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="quantumforgelabs-content-plan.md">quantumforgelabs-content-plan.md</a></td>
+            <td class="size">62.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ranking_usernames2-5.txt">ranking_usernames2-5.txt</a></td>
+            <td class="size">8.2 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="requirements--.txt">requirements--.txt</a></td>
+            <td class="size">191.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="rubbish-love-disarray-244_analysis.txt">rubbish-love-disarray-244_analysis.txt</a></td>
+            <td class="size">4.4 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="rubbish-love-disarray-244_transcript.txt">rubbish-love-disarray-244_transcript.txt</a></td>
+            <td class="size">1.7 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="rubbish-love-disarray-309_analysis.txt">rubbish-love-disarray-309_analysis.txt</a></td>
+            <td class="size">4.6 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="rubbish-love-disarray-309_transcript.txt">rubbish-love-disarray-309_transcript.txt</a></td>
+            <td class="size">1.7 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="sammy_Midnight_Reckoning_by_DarkSoundEffect3495___Suno_%28Remix%29-241_analysis.txt">sammy_Midnight_Reckoning_by_DarkSoundEffect3495___Suno_(Remix)-241_analysis.txt</a></td>
+            <td class="size">4.1 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="sammy_Midnight_Reckoning_by_DarkSoundEffect3495___Suno_%28Remix%29-241_transcript.txt">sammy_Midnight_Reckoning_by_DarkSoundEffect3495___Suno_(Remix)-241_transcript.txt</a></td>
+            <td class="size">1.1 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="service-agreements.md">service-agreements.md</a></td>
+            <td class="size">150.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="service_agreement_template.md">service_agreement_template.md</a></td>
+            <td class="size">29.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="service_packages.md">service_packages.md</a></td>
+            <td class="size">51.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="shorts-01-9mb-rule.md">shorts-01-9mb-rule.md</a></td>
+            <td class="size">1000.0 B</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="shorts-02-youtube-to-csv.md">shorts-02-youtube-to-csv.md</a></td>
+            <td class="size">736.0 B</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="simple_summary_report.md">simple_summary_report.md</a></td>
+            <td class="size">944.0 B</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="social_media_and_content_analysis_expert_gpt.txt">social_media_and_content_analysis_expert_gpt.txt</a></td>
+            <td class="size">1.2 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="song-title-aspect-template.txt">song-title-aspect-template.txt</a></td>
+            <td class="size">493.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="stacie321_analysis.txt">stacie321_analysis.txt</a></td>
+            <td class="size">2.2 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="stacie321_transcript.txt">stacie321_transcript.txt</a></td>
+            <td class="size">1.7 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="suno.txt">suno.txt</a></td>
+            <td class="size">395.5 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="terms_of_service.md">terms_of_service.md</a></td>
+            <td class="size">28.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="top_2_5-usernames.md">top_2_5-usernames.md</a></td>
+            <td class="size">75.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="transcriber.md">transcriber.md</a></td>
+            <td class="size">10.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="typography_cover_image.txt">typography_cover_image.txt</a></td>
+            <td class="size">2.0 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="unified-creative-auto-workspace.txt">unified-creative-auto-workspace.txt</a></td>
+            <td class="size">8.9 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="unifies-creative-automation.txt">unifies-creative-automation.txt</a></td>
+            <td class="size">8.9 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="updated-positioning.md">updated-positioning.md</a></td>
+            <td class="size">56.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="upwork-strategy.md">upwork-strategy.md</a></td>
+            <td class="size">53.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="version.txt">version.txt</a></td>
+            <td class="size">1.2 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="waLL-art.md">waLL-art.md</a></td>
+            <td class="size">18.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="website_generation_log.txt">website_generation_log.txt</a></td>
+            <td class="size">1.7 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="weekly-review-template.md">weekly-review-template.md</a></td>
+            <td class="size">70.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="welcome-to-astro.md">welcome-to-astro.md</a></td>
+            <td class="size">1.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="welcome-to-gatsby.md">welcome-to-gatsby.md</a></td>
+            <td class="size">1.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="welcome-to-hugo.md">welcome-to-hugo.md</a></td>
+            <td class="size">1001.0 B</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="willow-whispers-indie-pluck-310_analysis.txt">willow-whispers-indie-pluck-310_analysis.txt</a></td>
+            <td class="size">3.7 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="willow-whispers-indie-pluck-310_transcript.txt">willow-whispers-indie-pluck-310_transcript.txt</a></td>
+            <td class="size">926.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="youtube_strategy.md">youtube_strategy.md</a></td>
+            <td class="size">10.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="yt-dlp.md">yt-dlp.md</a></td>
+            <td class="size">4.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-label">Total Items</div>
+                <div class="stat-value">333</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Directories</div>
+                <div class="stat-value">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Files</div>
+                <div class="stat-value">333</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#fileTable tr');
+            const cards = document.querySelectorAll('.subdir-card');
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

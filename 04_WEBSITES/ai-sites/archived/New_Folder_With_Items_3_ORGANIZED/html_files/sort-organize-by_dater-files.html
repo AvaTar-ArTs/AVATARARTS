@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="https://chat.openai.com/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sort-organize-by dater-files</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>
+        hljs.highlightAll()
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.3/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.3/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.3/contrib/auto-render.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "\\(", right: "\\)", display: false }
+                ],
+                throwOnError: false,
+                ignoredClasses: ["no-katex"],
+                preProcess: function(math) {
+                    return `\\displaystyle \\Large ${math}`;
+                }
+            });
+            document.querySelectorAll('.katex').forEach(function(el) {
+                const parent = el.parentNode;
+                const grandparent = parent.parentNode;
+                if (grandparent.tagName === 'P' && isOnlyContent(grandparent, parent)) {
+                    el.style.width = '100%';
+                    el.style.display = 'block';
+                    el.style.textAlign = 'center';
+                    parent.style.textAlign = 'center';
+                } else {
+                    el.style.display = 'inline-block';
+                    el.style.width = 'fit-content';
+                }
+            });
+            function isOnlyContent(parent, element) {
+                let onlyKaTeX = true;
+                parent.childNodes.forEach(function(child) {
+                    console.log(child.textContent);
+                    if (child !== element) {
+                        if (child.nodeType === Node.TEXT_NODE) {
+                            if (child.textContent.trim().length > 0) {
+                                onlyKaTeX = false;
+                            }
+                        } else if (child.nodeType === Node.ELEMENT_NODE) {
+                            onlyKaTeX = false;
+                        }
+                    }
+                });
+                return onlyKaTeX;
+            }
+        });
+    </script>
+
+    <style>
+        :root {
+            --page-text: #0d0d0d;
+            --page-bg: #fff;
+            --td-borders: #374151;
+            --th-borders: #4b5563;
+            --tw-prose-code: var(--page-text);
+            --tw-prose-counters: #9b9b9b;
+            --tw-prose-headings: var(--page-text);
+            --tw-prose-hr: rgba(0,0,0,.25);
+            --tw-prose-links: var(--page-text);
+            --tw-prose-quotes: var(--page-text);
+            --meta-title: #616c77;
+        }
+
+        [data-theme="dark"] {
+            --page-text: #ececec;
+            --page-bg: #212121;
+            --tw-prose-code: var(--page-text);
+            --tw-prose-counters: #9b9b9b;
+            --tw-prose-headings: var(--page-text);
+            --tw-prose-hr: hsla(0,0%,100%,.25);
+            --tw-prose-links: var(--page-text);
+            --tw-prose-quotes: var(--page-text);
+            --meta-title: #959faa;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        ::-webkit-scrollbar {
+            height: 1rem;
+            width: .5rem
+        }
+
+        ::-webkit-scrollbar:horizontal {
+            height: .5rem;
+            width: 1rem
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: transparent;
+            border-radius: 9999px
+        }
+
+        ::-webkit-scrollbar-thumb {
+            --tw-border-opacity: 1;
+            background-color: rgba(217,217,227,.8);
+            border-color: rgba(255,255,255,var(--tw-border-opacity));
+            border-radius: 9999px;
+            border-width: 1px
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            --tw-bg-opacity: 1;
+            background-color: rgba(236,236,241,var(--tw-bg-opacity))
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            --tw-bg-opacity: 1;
+            background-color: rgba(86,88,105,var(--tw-bg-opacity))
+        }
+
+        .dark ::-webkit-scrollbar-thumb:hover {
+            --tw-bg-opacity: 1;
+            background-color: rgba(172,172,190,var(--tw-bg-opacity))
+        }
+
+        @media (min-width: 768px) {
+            .scrollbar-trigger ::-webkit-scrollbar-thumb {
+                visibility:hidden
+            }
+
+            .scrollbar-trigger:hover ::-webkit-scrollbar-thumb {
+                visibility: visible
+            }
+        }
+
+        body {
+            font-family: Söhne,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,Helvetica Neue,Arial,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--page-text);
+            background-color: var(--page-bg);
+            margin: 0;
+            padding: 0;
+        }
+
+        [data-theme="light"] .sun {
+            display: none;
+        }
+
+        [data-theme="dark"] .moon {
+            display: none;
+        }
+
+        .toggle {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            background-color: #fff;
+            border: 1px solid #e2e8f0;
+        }
+
+        [data-width="narrow"] .width-toggle .expand {
+            display: block;
+        }
+
+        [data-width="wide"] .width-toggle .narrow {
+            display: block;
+        }
+
+        .width-toggle {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            background-color: #fff;
+            border: 1px solid #e2e8f0;
+            margin-left: 8px;
+            cursor: pointer;
+        }
+
+        .width-toggle svg {
+            display: none;
+        }
+
+        .metadata_container {
+            display: flex;
+            flex-direction: column;
+            margin-top: 8px;
+            padding-left: 1rem;
+        }
+
+        .metadata_item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            border-radius: 16px;
+            padding: 4px 0.5rem;
+        }
+
+        .metadata_item:hover {
+            background-color: rgba(0,0,0,.1);
+        }
+
+        .metadata_item > div:first-child {
+            flex: 0 1 100px;
+            color: var(--meta-title);
+        }
+
+        .metadata_item > div:last-child {
+            flex: 1;
+        }
+
+        a {
+            color: var(--tw-prose-links);
+            font-size: 0.8rem;
+            text-decoration-line: underline;
+            text-underline-offset: 2px;
+        }
+
+        .conversation-content > p:first-child,
+        ol:first-child {
+            margin-top: 0;
+        }
+
+        p>code, li>code {
+            color: var(--tw-prose-code);
+            font-weight: 600;
+            font-size: .875em;
+        }
+
+        p>code::before,
+        p>code::after,
+        li>code::before,
+        li>code::after {
+            content: "`";
+        }
+
+        hr {
+            width: 100%;
+            height: 0;
+            border: 1px solid var(--tw-prose-hr);
+            margin-bottom: 1em;
+            margin-top: 1em;
+        }
+
+        pre {
+            color: #ffffff;
+            background-color: #000000;
+            overflow-x: auto;
+            margin: 0 0 1rem 0;
+            border-radius: 0.375rem;
+        }
+
+        pre>code {
+            font-family: Söhne Mono, Monaco, Andale Mono, Ubuntu Mono, monospace !important;
+            font-weight: 400;
+            font-size: .875em;
+            line-height: 1.7142857;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--tw-prose-headings);
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 2.25em;
+            font-weight: 600;
+            line-height: 1.1111111;
+            margin-bottom: 0.8888889em;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            font-weight: 700;
+            line-height: 1.3333333;
+            margin-bottom: 1em;
+            margin-top: 2em;
+        }
+
+        h3 {
+            font-size: 1.25em;
+            font-weight: 600;
+            line-height: 1.6;
+            margin-bottom: .6em;
+            margin-top: 1.6em;
+        }
+
+        h4 {
+            font-weight: 400;
+            line-height: 1.5;
+            margin-bottom: .5em;
+            margin-top: 1.5em
+        }
+
+        h3,h4 {
+            margin-bottom: .5rem;
+            margin-top: 1rem;
+        }
+
+        h5 {
+            font-weight: 600;
+        }
+
+        blockquote {
+            border-left: 2px solid rgba(142,142,160,1);
+            color: var(--tw-prose-quotes);
+            font-style: italic;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 1rem;
+            margin: 1.6em 0;
+            padding-left: 1em;
+            quotes: "\201C""\201D""\2018""\2019";
+        }
+
+        blockquote p:first-of-type:before {
+            content: open-quote;
+        }
+
+        blockquote p:last-of-type:after {
+            content: close-quote;
+        }
+
+        ol, ul {
+            padding-left: 1.1rem;
+        }
+
+        ::marker {
+            color: var(--tw-prose-counters);
+            font-weight: 400;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 0;
+            table-layout: auto;
+            text-align: left;
+            font-size: .875em;
+            line-height: 1.7142857;
+        }
+
+        table * {
+            box-sizing: border-box;
+            border-width: 0;
+            border-style: solid;
+            border-color: #d9d9e3;
+        }
+
+        table thead {
+            border-bottom-color: var(--th-borders);
+            border-bottom-width: 1px;
+        }
+
+        table th {
+            background-color: rgba(236,236,241,.2);
+            border-bottom-width: 1px;
+            border-left-width: 1px;
+            border-top-width: 1px;
+            padding: 0.25rem 0.75rem;
+        }
+
+        table th:first-child {
+            border-top-left-radius: 0.375rem;
+        }
+
+        table th:last-child {
+            border-right-width: 1px;
+            border-top-right-radius: 0.375rem;
+        }
+
+        table tbody tr {
+            border-bottom-color: var(--td-borders);
+            border-bottom-width: 1px;
+        }
+
+        table tbody tr:last-child {
+            border-bottom-width: 0;
+        }
+
+        table tbody tr:last-child td:first-child {
+            border-bottom-left-radius: 0.375rem;
+        }
+
+        table tbody tr:last-child td:last-child {
+            border-bottom-right-radius: 0.375rem;
+        }
+
+        table td {
+            border-bottom-width: 1px;
+            border-left-width: 1px;
+            padding: 0.25rem 0.75rem;
+        }
+
+        table td:last-child {
+            border-right-width: 1px;
+        }
+
+        [type=checkbox], [type=radio] {
+            accent-color: #2563eb;
+        }
+
+        .conversation {
+            margin: 0 auto;
+            padding: 1rem;
+            max-width: 64rem;
+        }
+
+        [data-width="narrow"] .conversation {
+            max-width: 64rem;
+        }
+
+        [data-width="wide"] .conversation {
+            max-width: 90%;
+        }
+
+        @media (min-width: 1280px) {
+            .conversation {
+                max-width: 48rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .conversation {
+                max-width: 40rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .conversation {
+                max-width: 48rem;
+            }
+        }
+
+        .conversation-header {
+            margin-bottom: 1rem;
+        }
+
+        .conversation-header h1 {
+            margin: 0;
+        }
+
+        .conversation-header h1 a {
+            font-size: 1.5rem;
+        }
+
+        .conversation-header .conversation-export {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .conversation-header p {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .conversation-item {
+            display: flex;
+            position: relative;
+            padding: 1rem;
+            border-left: 1px solid rgba(0,0,0,.1);
+            border-right: 1px solid rgba(0,0,0,.1);
+            border-bottom: 1px solid rgba(0,0,0,.1);
+        }
+
+        .conversation-item:first-of-type {
+            border-top: 1px solid rgba(0,0,0,.1);
+        }
+
+        .author {
+            display: flex;
+            flex: 0 0 30px;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 0.125rem;
+            margin-right: 1rem;
+            overflow: hidden;
+        }
+
+        .author svg {
+            color: #fff;
+            width: 22px;
+            height: 22px;
+        }
+
+        .author img {
+            content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAAAXNSR0IArs4c6QAAIABJREFUeF7EvQeYXWd1LvzuXk8/Z6pGGnXJDVmWGzYGG7AdMJhOgEBCuRAghUvInwsXCNchAQI/3AuEEgIhECAhEOMABmMDxnaQjWxLsrpGdaTpp5fdy5+19oxtwAab5D7/9jOekXTmlG993yrvete7BVkUUgAQBIB+UmUZAgSESQxVlqDIMmRJgCCkkCUJsixDhABVVQGkkGQRuqZBVhQIggBJUpCmMWRZgkTPJYiQJIleAmma8p/pcaIoAqIEIfEQOHUoRg2GWUCSxMvPJSFII5imBdd1oBsKDEPn50jDAPSmRUlCmiYQ6c3TXyT0FSNJE/45iRM4Th+6bsBzXBi2CXfgIEkS/qz0PsIwQBRF/Lz0nhzHQRzHy+8XCMIArh/wn0HrEob8ewkE+L4PUaC/FpGkKYIgexz9nKRAnKSI4wRhnGY/J/T3KdI0Wwt6ywIZgD4AfQZJEKEpEr+ROIqhKAokQYCiSqCXVGUFpmGwEeiSRBGKJsIyLV6EVBBg6DaiOGLDqDoZiwwoQaDFFkSIooA4iSFKChvA683B7y9BEHUMjW+FZlj8PF3XQb5Q4AXTNAXFkgmkCZIkRRT4vPgCPVccQVNUiIII33MhRCmCOKKHIgwjRFHIm0oSgJD/PmFj0ULSxgh9D0kU82NpDQYDhxdSVRV4ns+L7Hgebyh6z37g83PSIpIhyCgBvU4c82LHSfLwRvPDAHEC+Pw+gChJ+IsMsWIEQZXElHeuIEClHU4GEATIIqAoMi+yLNEuFqErGr8o7URN03inyIoAyzSgqSpkVUcUJ7CMPKIkgmYIEOl34gSKqkMSyXC0TVMIsgpRUdCeeRBFM4ee04dojGJk9VYMfAeCYUKRBISeh1otx++HFlhVdQSBA1lWEdLiqhptOV6IOAqBGBi4AXpkODU7mVJCpyRCGAS8yYLAhShKkCQBvucj8AMkUYTID/gEkJFpkwS+D8/z+ItOPO/ghIwVIgYtPthYfhBl50MU+bFsyTT7pH4YIwhDBGTkCPyd1ihePgmCKoupLIhQRBnkKXRFgSjGfLRyls27lxZfkuTMMLLMJ8M0zcwNCSks24CQJjAtE6JIjzPIQUA2JRiWjCSIkSYibDuXuQ5BhKzp6Acewpn7kCQCer6PMBSx5oJrEBk6iqUSmo061oyVIQgRYj+EQu4tiRGntFvp1GaLIIkqgoB2ZYLAT9EbkNtwkKf3hYRPiUjuT8wWhU5O6oeIQo+flxaaDCHSwkQh+t0W4lREFMXsrvgkhSHIaZBbo11Oz+F4LsIoQhDSycy+yJ3R6aTH0ULT6SB3RacoiAT4ywYIl40g6LKUZn4/4V1sqiLI4aRCioKdY3ckKRJ0w+AFF8hXQoRhmnwsc7kcLwT9G50G28ohSsjVqPw4qyKykdJQYRemKQogyYBqoNWrwzvxQ0DPo9sZoN/t4bwrb0BhcgOiKEApTzs/gec48HwHtVwVceQjllL+4LQR6MPFYYIwiCCkOgL2+z4UNYGtaUiTEGEUsHuAKiENQ0RBhMD14Q9cGLIAd0BxQkO3vgQ/SIA44jjS7Q34lNOupoWlz0k7nl1XGMIL/GUXE/Lj2D2Sr+GYSq6WjJ/yotNjKZSQO6I/kwHIQIKtKRwDJFHgxbG1zO3Q5iLXQkdcVRRohg5JkXnB0+V4IcQp7HwOhm4gESXomgrd0KHqKiJfhJSIMEoiDIt2kwxd1jmoR6kIWTdwZmEa/tHbYVeG0OkPcPZsHVu378C2a56f+cjE5103c/YsJkZXQUlFCHKCUAhBrlyWNKSpiIHjIk1VxJEIhYM/nbgYvjeAmCRQZAWxkMINPHiuh9gLkcYpdFEBYheh58LrdeE6ASQRcD0fjuOi0WxwQuJRnIgT5At5NgC5KQ7G5GKimF0QbYhUFOE6HuI45LWgkyUpKlw/5EDOix8m8ILMDQVxDMFU5VSRJCiSCEOVkDMNdjt00YmgDMfO2RDFFKppIZVEaJoBTTdoQ8HUTciSDpncUSLAti2ougbV0OF1HBiGhtxQDKQSxMSAqVoIaUdIIk4vnEI69ROUq8OIJBm77n8I69eN4ZIbfweaYbP/XlxagqbqKJs2pQ7QLAlh4kNMKbAaGPg+ojBFlKRQNTKwCN8dIIh86JqeBd0khRN4cB2XXY4maoijAEIUQ0oDjlGDdhNhQG7JR7/vwPFDDDgeZG6l2+3Ctm3e2c1mi/+eXV4So9PpUeiBJKlsRFFKodDBF4EwSuG4Hr8/igeuT6eBDBHBzwygpIamQBZS9v+FfI6zDZl2tE6pn8b+XpZFSORC8jmIkgFFM2AYKjRFg67TB00hCxTwADNvQ9FNJG4MnR5XczmNBO06OQ9B0NALfcw3Z9HYdQtGx9bArpZx2/dvx+bNW1CaGMVTn/s7mJudQ6PTwobJ9fBbPdRqNSQIECUhJFigo+iFIdzYgarlEAQ9zmooE9MlnXcuLZ4T+uyCJFAQSKGlKWLfQULBNArZAIHncBDt91pw+w4vuBel6PV60HQFva7DC0vRtdFo8OnL3E6CXn+AIEnRdWMErgdNE2GqMiCmCMk9xgmfKpc2nkeua/kkUOZlqUqqqSIMRYWuZgZIYh+mQQE15bQzn89zUCa/n0oKRF2DYeRh5wt8SiinJX8sigo0UUISysiXChyww7YHq6LCrAzYtelyCZqa48TlzNkpeGd2w7JtrN9yLg4eOozO4hyCwMM51z0fAQzkbBuWasBIddhFC0kccnCEqHLK2XQaEHTKrkSIUQxTL0ASJV5413WRUOBDCt/p8yZTKfvgbInyeYl3PGLKeDxE/gAxJDjdJuqtLhKIGLQbCOKUExDKrOhzzs3NsSum5ycDFQp5tPoD3LNvFroqYd2IjUrBRpJE7B7jhIKwDz9K2BU5XsA/e35AMUBOqeAydQ2WrsOyVArB7HryFAQFoFwqsqULhSKVXhx4zHIBpl2CQsF3uS4wDJt3mina7GfL5Qpai10YBRl6zYdmJCjoNRh6kWPL8cO7Mb3/+9hywTa0O100W23s3XsQmzeuR3loHMPnXopSoQiv5WL9uo38gdLIQwqFCxovGCBQIipmoAgGxICKO0onAHfgIYoFKIoG27Iw6HSgSllGlIpAFCZcYFL+HjgtBL0OfNdlPx73+jg+O8PvkWKGP+hyQKXFUzUD8/NzXCB2Oh0MBgNYponF9gAHp1uIogSbxm2UigZvlCgI4ZP/54woxsAL+IvigBuEEHK6mqpUzaoqbFOFbZuc6ZAvrZUrMHUVhUKBMwEKuFzdQoaZy8HKFyBSkFY1KKqGJBUQQYIUyLAUA6qgIPTAwai2UQH0DkrGEHK5Kgfu/XvuxenDP8zSV1lGp+vg+NQMJteMYXxsBFplE9asPxfwAkxMTCChRJoLdwmu30MsxYjpaTUTsScidNOsOqb/Ykq0TD5pVM8kiKGaBUCx2Q0l/BjK9yl9DBB0ltCvn4Tfb8DvDVBvNBHGHqe1ge+i3ahzjBwECTr9Lr8mFWl0CiguzDV6uHf/GZRsFeeuH4EsxlnRRe85AbquyzWA40d8AgZeFpgzAygSbNOAbWrQVKpeqQYwMVQtQ1ckFEplfjEKQuT3VN3gn227BJF8XZpCNXKQdA1BKEGTLTitASp2EWGQwu0lyFcFWGMhTFVFOV9BLp/HA/feiSP7fozKUCXL+5tN7LpvP8oFAxdeeCFErYza2FNQtnIYqZWRypTeynDdAaBQzA8hKAp08v99Ad22i1LFhh+EvOhUa0iaCkExIKo2p5YMBSzn7I/8TBBBVmWHgwbO7PkBb5pOu8s7mmKiIsScCc3Vm2i1u/xYxxmwZ6C1ESQZ+4/NMgIwMVSCoQjLr5UiiCL0XA9eEKLvuIgSAd2Bh77rQ8gbWmYAQ0chb/GxlEXa/SXkDA2GqcG0LAhJyoagnUq7naxeLg8jptKKsBNBgmbnIWkmgkCEpeWROCFMxcbSbA8EOY1sUmEXBZiajFK5gvvvvh1HDu2EYeo454JzOVM6OnUatUoeAh13qwLJ3IKJcg1DQzkYuTyc0EUUeRQCoCk2G52SglP7GtAtFfkq1QI+DDvHMUfLF5AoWWJBi0aZC+MwhNesGGL5O/0dwwSxg5O7vovG/CL6/QEvvu97nBm6QYpOt4t+v8/egAo0igOu50HRDRw8fBKGYWDNaJGLVzqBfhBwoKZMiNJtP6Zi0eNTIORNLdVkOXM1eYtjAb3Z0UoVhZwBQ1c5FtAL2cUig1embQKShmp1DJZFRpPgJzHSVGKIAamGfl/AUKGMQdNH6klYPNvE5JY8SkN0GjSYho7v/PPXsHpDtrhmvsw7s9drYerwFLrNLkbXXgDBnMREqmB0rArFNCAZMmRDhmoa8L0QkqLj1JTLRZ5V0GHlqZynDD3h2GDXJpcXnAyQYTgEJ9BiA/JyOkmgWZbRZOkl4PXncfiubyLwgSTKYI1ut4NWL4Mmur0+NEngHU0njuoDSkimpme4mMsbCgo5k1Npx/Hg+pQKCOgMXLhhhG7ffeQEaIqMYsGGqRLEoPGCjlbLKBdsLpwkIUV+aBwja8+FVRnlwBs5HbTPnkDg9mHnCjAKRSiWDZWgCFmD44jotmNETgw1NNCc7aJQ1DCySsbIGgmmreOWm29FlHQwNKTCDzocQAkCOHF8EXEQYfPTnouR0gjkqSWs37gO+bIN3dah5W1AlNFspTh9og2rYKNcNWHkVGglDbIugtAaw6xCkChLy3L2NKUqVXh4kdN05efsNPAJWK5oCVQ6ft+3cOKhB1DOFSFrCuYbdc7zY4Il0pR3Pe3uKAwQpuQeRbRbbdTbHa4paPNmoKHEhVd/4MClFDSmOOKiM3AoBmipbeko2Ca7ISGNkctZqJUKKBdyMA0Vq85/GkrDk1xsybLG/pUrZF1B1GtibmoPfD+EXRlFUTMhKCJEw8LZ2QCNGRdqpCDpC/D6A4ytzmFygwYrL+LHd92FYyf3wMzL2H7ROXwCT50+hSMHT0GQctj47JdhNOggODGHzZu2w84ZMAt5dPsyjkw58AYpxtYVsHbTCFy/j+p4HnpBp42NKE2gWZVHoN+HYeBsh2du6PHcEcWECM1ju3Bg562QofLpbHW7CMOY3bGmqeh2enDjEIkfIqGcP/ARxjFCqk9cF44XsYEY3hYlxoW6fQdhAjS7PfTJBRVMLaUAnLd0WIYGESm7o5GhGkqWgVXn7MDQugugawqnYLJCBlAe+VJVrvras1Po9gfQhAxXGkQxdKOKqdMOemc9oEVAWYR8Tsa522vI5UTs2XcvPMzj/vt3YsfFF+GiHVtxbPo0WvUu4g3PhlYoQ9t3D+xIwvo158PWbcw2ZJw4kkK3ZAwPWVi1rgjNkmGXVZTHcxA1SqIjCKoBSc1x4ZS5m+xa2ekrceDR3x8dE6in0Ti2C3t+cgsM2eBsh+AGKqzJ/1NmRJ6AMB7a7WSgMPRh2jbD2JRdddwAgwFBEzEvOmVBFAO8MEar00ffDyEUbT0tWCZUWUDeNkHuiOJAtVJE2dBwwbWvhGraMMwcFEVl0O3RBlhBR+nvnc4CTk8dBiXaqSgjkXNo9WTMTncRLEXoLThIhQhbLhxCJSdg6uh9qI4MMDK2irGV8YkyEnItgo2d6VroZ06ic8+PMFwuY9P685GzhnHgoIDWYoCcqWD96iKGx2jXy1iztcDfZUNCHPuQjCIEmbCibPH5/ys/LwfhlUD8y0agIxJievcPcHT3TnbNAiScnj7NyDD1SijxoCwqTglUyyBqnzApAVCXoXoqtBwnQt8PEItAfxAwdEL+vztwMXjEABbjOkXOgkTkbQtrV41BlERsv/5V0I08ww3Z4hM0TQUO/Uxfeta4kSSoiopOYwYHDxyCH0nohCr6kYlBL4TfCtA83uLfH99agej0cGzfbVCNPirjeViGjU1bx9EetHBq7Y0MFzfvvBP50AV6HWzZ8lS06jbOLmYAoa2pmBy1Ucil2HRBEePrcrCqOYSRx+9PMAoQROrOPbL7HzbGrzEEp6dBG/fc/FnU5+Zg0YmXZZyZmYMkKlypy2LW3aPdTkZpdTsM3FF9kYGZAhRJRnfQx2AQwEsTtHsDdAchBn5WjHUGHoRyzkgJgGMgzjIYlKsUCxgdqjJEsO3aV8Aw89yAyXa+lOXYy30BenGqNik2EDxNBcjszAyOHD6K1Chg/6yAxWYMIRXgdDyk8y1YE2WIfQeLR25H3T2NrRtXo1wp4fyLVmHensQhezP0/buQlwFv94MQvBiV0iWYXsgBiglNpi6ciRoVPefouOTpq2HYCpSiiUSkzRtA1gi1pYrm568nYgQBMWYO34edt38ToePBpnpCBJbqS4gTEc1+DwYZmXsby42ZKHy4KMvWRM3gEM9jYM/xQgxcH/VOB34qodke8N8LlbyRFm0LJrkeU+PdM1opIWdbAEJc+5o/g2HkePc/lvuhFyNjUC+YDMCtS0XEwQP70e730ZdKuGVXE4cXB1B0DUOmwTs6RxDu/Ax892fYffAotm2ZxHkXbkFjx/XoGwWYd38LY5vOh3/ffdCEEupLVfSSGrq9Hlfq6ydXozN/HC9/5RZcdc12SJYGydb43wgXWrkedQAe0xiPNkjWp00RtM/inu//E84cP8kZTyGfh9fvod1pQtI0LDZ6sHWV8SRRSNj/k5+PowjFQhE9gi7ilFNQgiG85WZTd+Cg5Tro9D20+h66jgehmjfSPFXBhsq4Px214VoROUNH4C7hRW/+MKxiOfu3X/git0OLnxmAOmfZVxITEObh+KlpqKU8jnZT/P3983hg1mVvfM3aKjpTZxGfbmIy72P7Fg/TZ+dRHhvHic2X4yEYuKR+GH7XhxzJMB86jZP1Ama7AQxFx+oqJQgarr92Atc993wkQsLZT8od8se/HssYP38iEni9Or7zlY9hYXaJM0JqV5qM7bvcdSO3vLDUQblowxn02GCWqsCnQozatqqOgedBlClTMrhGJRi81e1zEedGERZbHTS7fXTdCEKtYKYF00DO1LiJQL1SU5dRztsoWBrOe8YLsfXCp7Gf+8Xgu7LwK0bg7tmyEVw/wlyriU7gYdpNcayn4MMHZoEzLayaKKNoKDi8cwrV6R5G1EVctiVEZNewd/Ic7DIqKPseKgd2Y2JiLcROAudYiGbLxXCxhiFRwNZVRbzyFeegNqJCtRUIyjIz4leaIPvHxzwVQorEa+PuW7+CH91+G0zVRppEkFVCvmQoInXIeigWi5ibX2Qk2O13ICYCEAfcJpVlBYaqcHOL6hCqiRgu9yN0ew4joO2ug1bfRaM3QI/S0OGileYJbuAUVIChasjldMaFRmtDiLwOXvq2D0M18uxiyAiP+P/sBDx69xPrgSpNKrvPtrs448VoBsDpvo8jgxTfmloiegKQMyFQZ2rPaahzDWxMjuPcay7EyfFNOF0oYzFIoCzNw+oMUDGraLYEDM66uKpUwlbbwpXnmbjq8iryZZ0QjN/oYkNwdy/F2ZMHcevXPoO5s3PwQh8lO8duhXe9IiD2B0ijhGFo6hUoqsyUFV0kt0cUFUJfPe7I5S0NoiBxc37guYCkotnuoTdwGYxbbHfQd2M0uw6E0aKVFm2TozcVF0XLgiKDCzHbNGHbBkYnNuDpL30zL/TKbl/JfH7RACucH6qmaXOc6rr46XQdjThBPUzQihQcW2zjge4AkSADpglqG59raagpMeoQMZ3IWIIIMwHKUQApUaDECsLFABvDFFcWgGt2FLFxQ4WLvt/0SpMAod+H013CmeNT+PtPfgxWjjYatVNTbq867gD5nIUkDdFaasGUNXSIKREEsGmxcwb6vT5MU+dclzpxVMBSWkrXgFxXmKA7GLAB/FBCq99HZ+AzrCGsquZSmwAt4u1AgGVl8YCwDNsyuS+QhA6eet2LcMmzX85l9aNdz8/v/qwcX2Es9OMI830P/VjAmUGIA60e5p0QgqagHcU47aYYxDGOuX3eim9aPYRNtRzaEXCwlWDKjeDECYqiiC2GhtiPsD6MceOYjE1rCpB1SjN/0+WnqixCEvWZ+kL942P7d+PvPvEx7v2SP6dFJZ8PIeTPFTgx84aonUi731zuoacJNeBddkFUyObyOvq9DlTVQt9zmfVB5KxO30HfCdHo9tHqOWgPfAgTlVxqsO+X+ThyU8ZQUMob0GVqS+pQVBHFnImt26/CVTe+FqlAbmcl+8kC78rC089kAGbBEQYipmh4EQ43u2j5ITdKB2GEZhzjpOvji/MNXGrbuHKogg0VkyFbgsB1xUKUSrh7bgBTALZYGs7NpRhJIozldegGYTz/icV/pDbOqDKI0Zo7jj9++cWoTlwG2zBgWjp/Fs/vLbP5ZDQbncwtiVTwhSjnDG78U7Mob+XYkNzUkgWkkYi+m6Ge1F0j7lOnHzAU3aY40B1AGCvbmQEEiamImqrwsSrSE6cxR/XxVUOYnV1AtWTgKZc+A8940ZsgqRafGGaMLQdf+r5iCP4OoBcGaPshwpTw9JjJUYudHk55HgaSgRZU7HNDbMoZuGTEAnUXFfKfENEPBXRcARUV2GxIWGPKkEWBMXqmNv4XXQQ70IZRVRk/+/Gt+ORNb8eqyU3LRDAFMjFpJJFZcYFHwB0ynx9FnJrbugSNCzNy4zqTwGhdoiBFvd0CBIUb8tSI6XseWj0fze4AXTeAMFq2U9r11ISnKpg4QqWCjZwmQdUyWiFBzoSTUG94aLiGVWvXYsczX4byyFqmf6ws/MruX3FBlB/7lFsLGdOMaXvEOktFfuOiREcXWIoTdIlPI0YoyCI0kSJSxrfMixosQYK+XPAwBZSYbk/QAPRr9NBluufjmox2MPe9dRkfu+kd2P/gA1lvJE1hWgYSYk9AYTCOoGdafPLzhAcZRHMSZCaDjQwVGJqg/j25r8VmG5pqMvgWp8Bio4OW46NHcLQfkQHyKaVOfAIUYjmIyNkGcpqIYoH4mEIWYCCgVhviYK2qIqq1GnZc8yJOUWlBiXtJrIKVxV9hrdHuipjJRngKPYgaihkXlS76RvhJxFQ+6vZmjxEJjlleLn7Mo5YuI/lmT0DG0HXyvNzG+Dm3RO671Sa+0TTOP38rqBfPLMbHuAgZpSKSKtv20gxecdkaTFx4FQpUcCErqqjHS27HGXiUOnFLU1EBVRS4fqL2I60fQRCEeVFDptelwJuw203jGN2+z92xRs9BxwkgrKoUU2qjKcRoILhZovYkNRNUVHImd5GKJZvbbqpClENgYvUYVNnAwOli1fpJPO23Xo3axDnczH80ZTD7nMSYyWiETOB9vDx8xRhPwq0QF+A73/0eXvKC5+CDH/nf2Lp5K2pDQwyhkKs7fvw4Xv6StwM4hm/efCsuv/IKVCp57tEuJyk//2psQeKbSvj7//MhfOvrX0WpUoJGbA5NZsIBfQ5nECBADHfgY3Q4j/5ggEreYpIv9TEU2ogStT5ThLGAHjVs4hRJEKDveHCCCI2+gyZlQeOVAlMTiXdJ1a5pKGxRy1RRyRP8TLRzsrTKOe5KPyCfL2TwhCYiP7oWr3rze7j8XtmZK59sZadTanv67By368rF4n9JAKXnpoB46bOei6M/u/2xTSduBnQRcA7xvz9lx9Pxu696Kd781rc+jluiFquLxvw0Xn/DlahOnseZjUoYU8YO5a1CXTDKfiyN+FISZ1QGfY+IN0rxKYUXU69YQ6vvIElFhL6DwIvRJkiCuEcex4BcaqqUhsowiO+jilAVGboioFq0H0YTiR1HnByinpD/q1TKCII+FMS44sY34OobfvuXDLCy+ERgPnT0BJ6yZT0WGn2mifzXZDCZf5+emcMb3vJ2xm+AAqCNgvg0opK5JpGp4yngULo7g4cOHMXGjRsf1wBUAauph0984H34/m0/ZEhB12lzLc9QKCrCOGSmtZAEDAzS2RaJKRck0LSsGA2iBEScJnY0vTyx8ejUEAxd7/QwCOLsBBChitjR1Iih6F0p6nwKSgUDg74LXVd559KiFYsFRv0oMHNw8+fx+nd+Dmu3bv+5RV0JfpTd3vytb+MVL34+7ntgPy44/9xfGxCfhBfK4ogA9HoObv3+bbh/91586ivfAeoeEE9lBsESP25o8nL88NtfwNjYKHSr8LibgFn/aYgTh3fjvO2X4tlPvQTVAqGbMb9WEgsMQxPYSpQei47HcpxShGxohXroBEkQWYGgCKLM66KKjtNjHIgWn06BMFEtpikxGiTCMXTomoBiUYNM9G+qQSDA1jI6OpXmTM5d3r45mwo1Ge/8+DcQUkN+eeXIMOSfp8/M4h+/9hWsX7MWz3nu82BbGg8q/F+5sm47++NjJ07g9Ows6ktLTD0kism6tauxcXI9hkeHUCyWQETFX3XRZ5HEEJ//xEfw6c98BqtGRqDLlFrHnJJSu5HYIwQ85kyRs0jOiiiVJx5SQoTniGshP8gIvJ4bcl3Qc1wMggjN3gDC6lopJVIpZUGUFlZyGnebaGCDuj3EDSXfRkMZ1N3P520ejjA0mal8v/2H78W2K66lyaCHd2O9sYRjU0ewfsMmjI0O8U6jNPC/yu087sKxEUI+8oO+w81yYnTLkgxVUzk7kWlxeEzq1wNIHGMGDVy6pYrR9TtQMkQklK5ByFhyBFlIAgxNhMrHJqOk0+vQh1WkzP1QEUbtyB6zIyiLcuFFMZbaPXJBlAUpfAIo+7HY3dAT0LyADKKsGKrKx4oGFcgQ9Fo5U+UP8oEvfB8x9YGXtz/5T7r4g/5CWvh/Zec/TkqZRFmuTlfGW112E+QVCIN6+Lz+6ndFRPETh/bi3Kdsw0uvvZwx/zAQuJ9Li29TEJayIE2kvRVohl7Pdx0YusIFGHW/iJTregGvI/WFHz4BtKOpCMsR21mVYekKVEngyphiAs0JUFFEGQ51xrjp7TXxmj/5KLZddT13i4jb2ViYx+p1G3gC5v//iwoIxVNMAAAgAElEQVSJlWNH713i2TMKjnRR3HuiF82U/Pi7t+AVN74AV19zMRuvMfCRVwiLSqBr5IKI9Evu6RFYhlw2EdKIDTFwQ+4TRDH9mWYFYjQIDV07XE4pBaUhBmL2WjpB09TPpBYlTSVmViW/T7hQhvMEqFYreO8nvgmoOn6286fMdNu8dTMNlzypi2xF8YKMSLn5r6tYn9STc82RTXNxoUVxbfkJKJkkuIP6uk/konrsi5/5KL726b+GVV6zPP0Sc++NDEBYUjbCRQ2pmBnadBEfiGoongdgWjoNjyTouT6aPTZAheZVIMoiipbGWMtwmeDXjJ5CyCdZkvLeYj7HPHevfQp/9pGv4LzLr+NCjXoAPJf2JMEx8gqziwvYMDHCb/anD+zFtvMveDiePN7CrKAQ5OKe8JXSREtGxOJNxDNm2bTnE7nIcMp/DD+87x1vwr133wPDyjPhlhBRQxeYckO1DqPjYgqZ6n2KCcuzYERNJCNQOhoEMbMi+lQHrK6WU9uknQ3kTRq0EFApZC6JmjQ8E0tEVD/k1lx7EKBqRvjUzf+OVKGJEfL/j0ALT+TDrDyGXtOPQuz4rRfgxN234n/+r7/Eu9/9LmowPe5FG3ZhcRGDfh8b1q97EieGAhKRAzJYg4oloto/qUsAvPY8rhwZxeTlF8ILUvb/tBE0hUa8iLySsAE0MZuRpo3dpAmaOIbj+nwivDDhgExfwppaNSX4mY4jB1uB2pEUeCkrItegcHTxQhpSkJiSccUVl+O/f/AzCKMM/aRrJQg/qQ+0/HsULI8cO4qJidXIW1T8Pf6zEPX03X9+Ez7y/j/H6bNLqNWqvABP7MrYcDTRuTJs/USyoUc/N5HBb//2P+N/vOlVGNuwHXFK/jyFLqWwDBUmFX80PE7nTUyZCUE7nU5CRHNrNCAYxOiwAXwIY5VKamnKMhQhQ1OBok0NejpE4CFpClw9j6wtIXZ6ePWb/hAveN0fIY4fGRX9TQ2wYjza2b8Ipj3WotKm2PXgbjz9su04c2YB5aEh/r0nemUxgWiyGUolPgk3tPIaFA9e+IwNqHd05E3izoqgjSGlKfeECSFm0hfxR3maMlt4OnuZAUI0aQ6NXNBYpZrqlG4qMiN6hiqgnNPY3UAgugUFFgFumHKx0Znbg4/8413YfOEVzIDjBcwGU7JSffnPK+oBj4Y0KQEh+PnnoM0nunKPehylhlT0EFWeEMZsF/86RgQdK3qsnAVm4oU+yTiw8hYY/jh2AM869zxsuWQb0+2pKa9K2e6nL8omeRjRI38qos/UFBqnzWiL1JDhGDBeraZMORGzCo4sWswpyFsGE0upqCA6Na0ywauzex7E90+1IeuFDDZGAr8xi3BhBvMz01h0Yuw+MYN6q4l8qYix8VX8BjqtFm773vdwy3dveWwk8kkaYiXoE+U8c4O/2p9n9MNsLoxTUp4wpuuJZUG/+PZoKPTf/uWreMlvvwrPf9pFjDUp3ASgLDHhYY4sCEfcjqQCzPdpPCqBQ5P8jss1QWYAmQoumjShQkyATf1gxsETZsHFkcBTgI2ze/Chz38f2668jnH1tL+Exd3/jsHCHGJRwZG5RbziHf9z+b3SB/tl3zAz3+RpmCfjNn6lbRLqNaRIV/L6X5WJUV1A72m54/Ykbf5LD6dRii988qP45If/EiOj4+y2VzIfSlwkOZM2IC9Ci86aEmn08KAeNemF1UPVlGoAIqBS4aWrIgq2CoWm33Vuj3BQdAMaOY3wD7fuQUR07d4CZnfeDmdpkWfFjFwRf3vrj/BXf/PPEOTSL71ZDnrhMXzj5u/ihhue81+CCZEroUZQZ3EWZrHKFEnKOuhA0GTRCjzyyJuhjhzP9DypQuzxDMWNodTHjVduRJgWQZNGrDogUq6feUVKMCjo0mvS3HGUUhygvoAPJwggrBseSql4oF9UJYKkaVib2oXZEaKgIqQSzhzYjfd/6V9x6TUvRBIO0DpwLzqHdzMLulSsIje0Ctf+/jtx/0OzEKiJ+gvXigHe8+6b8N6b3gPf/8/uP4YsIYcu3vnWt+DAzr0QbRV+DFz9whvxghe/GFvO2cxpKp/W5ZNB7mHlZD6ZOuCx3i0rpojA/Jlj2LBxI67asS1rPFEHcJnmSHUHvTi5qCAKee6gT5A0cUVptmxNbSjlAEyEK56CF5HXqfmSnVRdVjNxjLCPf7jjADeYo+4i5u75HmSP5rUi5KvDsKqjqFzx2mxelxoTj4rCVCdSkKYxTeAE82FUhajjv7kRMuwrxslDe/HGV7wRerkCy9IhpgJ2HTmFmTN78fo3vBV//JY3Y+3G9dB0nTn6Waa1rNjycBX8qwP4r3qXPCMtC/jZv9+Bq65+Np5xyXauhGnh1YcLsYCVUpgGI2TTMeT/XToBE7VaaioktEGjnOCInjMkRjsJbiUQrtucxave/C687PV/jMTvo33qANq77oZhWjycoNtFWLUhXPcHf4G9B+ayUVb6XcaPuOBHyqJPgOMcxYc+/DH8yTveBlJ2+c2uDOeREOOtv/8WfOFLt0MqF0AZJb1WpWgxDbB5osntSLre996b8Lo3vAHDY6MPJwEUlLlD/QThiF98r4+cqph1lv7PB96Dr33xCyhURpCQaBVPZWbqKiStw9oShAs5mRSCQ2Oqq2tDqakpLL9Cc74FQ4ehEr5BrAjCNYD6kQP42Ld+jHMuvgJwOjh7z22I6rPQbRuqpDLcapbKeP/n/wWf+qcfQpAzASeDRH5MhVkC5YLFGDg56M7Mbhw5dhITE5NPooh61MdPKI0McejAQ9hx6aUwjQ0QKBUkloUoQDc0hNQaJNqmT8EvBToOgGnceeedeOoVT88wGS7Inhg0/fhxYGXcKUDke7hhRxGwz2dMSJNoMoZSeUpN6fSTdlCMgUMuiGYEiJhVq6W6rDAzQefBB5ndEDVkNF3iYDx9737ctrAAVc/BWTiO+s4fQaZ54UIehkbiGxHsQglf/M6deMf/+zkIcpWZD5RIFYZsTJRMGLKCe6fbUJDCEVKsLSjYf+CBJ52S0qAdvbbv9vC7v/c63HLrXp5jo6InJDDMVCAExEiQIFg6aP7NYFoMkNdS7N//Mxzctx9rN53D7ztLS3+zVJSMsnIKmNYiAlP7d2P7JZfgygsvRCIEkFPiE9FJi7jHQjoXfZoRdoIsCK/iOiDTiSPgrWzTIAbxg0hBRUAUeDh/23a895P/iDRw0Jk+is6uuxkZNYolRlGprtR1C3ftOYQXvP0dgLwecgqMjNu4dE0JYRri9JKPwzM98LhtRMXJKdz2vTtw9XXX8CjoE7mILi4igt/r4YPvezc+/40foifpQJiyyxweKeHovtMswkHD5EQzyQ8XmakwUTOxulxAc24Rf/XJv8LFVzyDsSDqBv66Iu5Xx4DsX3n2LCFRKeAj73k7vvVvP2DREnrPJNBBVEdZyiRrmBnhRkzSEsYrlZRo6WRJyvlL1GCWYk5LyRDt2QP4fz7wRVx948sAb4DGsX0Y7NsF27RhVipcTdLgNqlWHTp9Blf83pvYAMTMveS8MratquBUvYn9sw5mGy5++0VXYcOmLbjrxz/BXXd+Fz/duQsXXbqDbfK4QZmyHcSInT4O7b4fn/jox/CdnUd42t7UJAz8CM95zjVotLr4+te+ite/6b/h85/9Bi/M29/+u2gv1XH7nTvRCWNs1Hz8+QduwrOe/yIkjHPR7v/PBOHMANm8GcWmAGdPHMJ527bjaRdeyG6OG/gpnUpKQWlSJsgCMWkOkQGokiRiKbXYcqT1oxIskULTZZy67yC+/sD9WL1+E1K3i/n9u4BTx2DaeZRGR9FtdZArVxiWmK8vYetLXg2I63gs87rtVawr05hSA/P9CFdeci42PWUbfviTnbjj+/cBoGLvBL737W9j+0WXIl+pceZFmVs2ag1ISQyvMY+dd9yKm7/8eezdO4WWNY5iTsNIyUKr46BkG7j2RS9Eahj4w7f8PoAqYFeAvo+Pf+iPMHvyBHbtfghJHEBJAjzjmqvxx+9+L1LN/o0r4ZVT8YgLWh55TUgEJMHH//Kd+NJn/wHDaya4i0bKX8QOJO7rwKXpGB8BaRaRAYiMRXAEGYKAOcr9qQtENL377zuA/XPzkDQLSW8RrYfuRbwwj3y5jMLwCNoLSyjURpicSoNqa5/3Z5xZkGzAjduHMFLQMAhSLHV7uPCSHRhZswm//yd/gfENG3Dt1Zfj7z/3NbzyRU/H8666DItHDmFk0zqMrRqFapcwUq2iO30cO3/wHZw6u4B6KGO266LthDhn7RB0mlapd6AaBs69eAd2XHkl9h06hi999RYUbAMvvu4a+N0G9u/eC8ftwTZkVG0T9blZvPBNf4BrX/Yanun9TbGpR5/YlfHXbNQ1he928YaXPhvtls/FLQVhKmbjhAY2Qk7FA5LMIQPQmD9lLTR0YJK8C8HTQoTE6+Klr3kTXvMHf8oaClHjLNyDu5DUF2ENjcKuDaM+Owu7SNpAOhqtOta/gHbgEMpFFS+5qIqJUh6uF6EfhiiNDOHy667DX33qK7jrHiJKUSyo44uf/BvklRRH//1e5HImfx07egTbtmxAQdfZVzY6DhY6Hew5O8/c+uFKgWcZiD4/N7/EbDOST9h0zmaYORtuf4BWYwlBl8ixAgfcsiWjwqQCGXMnT+Gyl7wKL37tWxDxWNUTiUI//5jHMgDPinFbT8Dc9BG88MJtmNh2PrwohE/8oDjmGoDiAMloChPVakogG1VKlkJsh0y4j8SaZvYdxT/fey/GNpxDqgron96PZOYEpGYX5kgNuaEJzJM7ytkwzRzu/Om9uOFPP0Ete2xaZeKGbcNYVbJ5QpD4kYViEec99UrkRsdx209+ivlGG1ddfhEMAdj3ozuQeB5Wr1mNIAnRbDSwY9M6FFRKEIBBGOPU0hIemDqNsx0S0JCYMh+SKNIgADWVCL8iTdEIEad+lqEjb5koWBYWGk1UizqGczmuFTpehOmzZxCrNt78vg9iw4XbMu7okyASPFIHPCL+saI5Qbk/DfB9/fMfx6c/+hHky2Nc+dJnC0KSuQk5Pec0lDU0CY6QJE4XLV3m0aRn3fAC/NF73o+IJlTECM2D98Fo1yF1e7An1sCoDGPm6GHGjEhV8S8/8Tl89LYpwIlwySYLV28dwuR/9I6JO9MaZMMJI+NjGNu6FaZd4PYmuYPF41MIiPpN0/WqCs0yUdJUnDNRQ4mGJIjWkQLz7T7uPTSFE0tNalSzjqltGdxlarU6sEwNZVNCuVRgaJ0a4gSGkVqVrRLVsoAa0SKjGO1+F20vxImlDk48+CAmrrwaL/v9P8D5T9nOswc0i/3rTsVjGYBc0MopICPMnjyI515+OSa2bOFMiUaWaOcTsYugiSwIkyaoSB0xhQ1gqDL2HD6CH999D8Y3bM4kKP022ofuQ46UALt95NZvglYo4dT+PVA0FdNnZ/Cuj3wWC7GNo9MDPHVrHldtqmDDcBWGomDgumgNfMbFFxp11pojxZR8Ls+dI2dAOgvA6okRuIMe1ozUsGVsGAUe/RGYR3O21cT9h05gpt5maWX6fcsyuQHOHyhwuKtH2Rvrn0oZ7GDrOiaqNQxXS5kOKIlldAeod3voBRFmW30cW2jh63fenVXNf/5+vPDG52HzeRdkc8dErvgFYPfR7ufRE/cEzawYgTVEEeED7/pD3HbHXayy5fikXxfxiBNlRMJIuZxmu4WQUJKt1IDYwwXbn4K/+PjnmTZOKGPanUX/1CEYpEjreyhuOAeKbePofT+FqMn42y//C04vdXCmn+C+A01cMGnghm2j2DRWQ46kjSWBdzzFAmJhk0QmH0FRQLvtwPdd2JbNr+/0uhiqFrBt00aYVGcQsCXL2HvsGB44eBwuaYN6DgxNQ7GQQ6WQQ6fT56l0WRWRN3PImSaIuYfYQbVQgk4n5j9OKc0qE3uuRQMS/RBzzRZ6UYhTTRfffWgeM7NdJEEGX2wH8L+/fQs2nbcNhaFRJExDWc7QHtVYekTmJlNbWfliieMkwOG9u/CK592I4bVrs8G/KIOmCRUVRsqVlDpLNF5v8bCBjNkTx/G5b34D51/8dFatJYGOpHka/vw05OYSTFFCcd1WCLKMI/f9OzqOg5s+8QWM1KoYpMC+WQcLDQ+vvXIMl25ag9FyDoZJiiOECISImbxFDRGRtTO77R5XrkzapcV1ByB4ZPs5W1C2bAShh1TRcfvdO3FsrsFyyKRKQiw46tytHqqw+yGJMAq2RB0kw5L6Cw0gEkBnUJzTaFklFhVZaHZopBxtr4+ZZhen6i5uO7yA+oILgSSTDQWvPH8EI5qIi3dsw+q1a2EOD6E4PgmJtDPKw1DMPGJKoiKi0zyy81ekLqPQZfdLCr0vfeZGuMIkYmFZ+piDsQ9huFxJCTyjE2BpBElL6J48iduPHocg68tylSrS1jSCxhzUhVnWCi2s3sgLOXX/vXjw4FH8210/5RkpkjA704lx+64ZvO231uHyTaNYPz7EgkrkquI4YCyENDPpi6wi0lS5pDIBrNlpceUoJAnOW7cW46MjvJiLSy3cs+chnFhcYskvTTU4bshairFcAcPlEkaHh2ARFVtKkFBWlGZ9bNq1RLNPFQGO76Hd7aPvEhgWoRO4qPc9HJ3v45sPnoHTcBg4NCwNb716Ky7fsR1r1q1FuVJhBrkz6KDZbDBCQFPzWmkYo+dtg1Qc5XyfvlYMEJI0chywSuPXv/x3+Ou//Aiq42OsCpxlQz6EWqmcEneSMiFdkXHs7DS+8sUvYvtTn8nYBmlDkOiQ6ncxmD0OdfYMzFwB1ugqHt+fOrgXX/3Gd9AckFqsglwhj1MNF/9693G89Znrcc0FE1g3WuO5W5IwoCkYUjd3A5+VDWnugHy8Zho80r+01OB0TUxSbBwfw+TqVewGG/UmHjx6EsdmF+HFMUMhmYi2h/FCCcPFPNZNroZFSYRhZiwN5qDQkARNpnRZRLUb+MxIIACx5fpo9wfoBiGOzLTwpftnoLjZGM3ATfA3b3s+rrrsYpRrFVaMIRUUVtn1HKbq+5RYdDuoDtWgmSbENVsQG2VeXGJHk4p8GLiIQw/Tx4/i+hueh7UTa5gwTJM2LFs5VKZCLONKajI13Wdw+wMPQTXzPCNFAY01glIfwZlDwIljyA2NQCmU0KsvYc+e3fj293/IZb2qKRgdGUHT8fEPPzyCG86t4gWXrMdQ0cTEyDCKNk2fs+476/kP3D4oAdANi1WkGo0W6+mQvJcQxtg0Pow169axq1ucn8fu49OYmp1D1yF5/Iz4RDPpq0p5rBquomLlUS0XuaInbIpkBkh6v9VpcRwhvn7b8dHyfEydmYEHksn34EPF4bkGbn5wDjnS+ydJTEj4xFueh+c+/SrkKgUopp31OUhLetBnA1DOSqrwpJVHeFjgdBHT7IBdRajTPEV2T4EwdBEHDv71a1/GTR/6CFaPjrKrZANUimUuxMgAi/V5vOud78QLXv57DE3Q4pPqBw0uk4xlOL0fyfFDyNVGIMoK+p0W7vjRT7Dv0FG4KVDO5TE+NsHj+D+dOo1Oc4B3vXgHKjkZa4ZHOTOhXaRLMkIaWSU5EIGykhi9QcgSwO1Bn1NEWzGwfryGkeFhaJaBxYVF7Dt2Bgdm59HsuGwAIrmSMPeGkQLGq1WsH5/gCX+q7FkvOs504ijtIzGlRJLQ7Ls4MVfHYj/CQqfBTZq6F+DE0gA/OVSHRcQpwvEtAx991fV47jVPQ2moAiWX5/m1RMzUsGLXI/FqFrOlYfNUoMZVgtjtI+p2EHgBgmIZoVniYEunptNawgdveg/uuvs+pnYSc1ooFkopdacyA8zhX75xM1ZPbsrwINr9bAga1ZSBmUMIjh9mRULafa1mC9+4+Ra4NDnoR1i1agyFfImbDQdmlvDZb9+Pr7ztWkyU85islfn5DNKmjmjQL1PcZTdCBqAbJbghFupNTE2fwurREWycGMNQpQbFMtFYWsSRU/PYd3Iai/3BMt4voDnoY3U5h+0bJjFeHWI+K2mSErTiuH0mklEazfPJrof5Xhe7p6bRjWIESXZjhXoQ49BcD/cdbcKmplGUYu1EAf/9JdfhuVddgtLwGFQrU9/KBjRihKSIG4XQ7AISQ0ecEp0/0yHlVNT3EHSbGLTriGur4Io6qytSdf6xD78f+/YchkTMw0K+yAZoNHq47tor8D/e8/7sWBGfnnWBSB8i0xONp+5HvDjDwt2CJOHw0WPY+dN7eTEor924cRNLHpOi+f6T0/jg1+/H+15+Pi47Zx0myhY0UUDBtBiqpgWi4Ei8UjcKWYmQ9DVPzzSx//hRnLN+LTaMjWFoqAotV8LC9GkcPX0G+6bncLbVZooHVbkkGUbB7OqLtmJVqQxS/7JypH9n879RBtIn9oEoYabZQjsgaLyBthuwjP50vQ0nSLF/toepJQeyH6Pvp3j+FRvwR695CbasnURleJjV3qnnQEUri/v5DhtBpoFAg8Z4U/b7ZBxiwFEjhuaZk24T/cU5eKUa+mGKVruFpYUFfPgDN6HeHkDI58gACurNJXzkr/8a2y5+OrPhaA4gcz8SG0T1OvAP3MPDDpphsBD37bffgXq9zVYnf7Z+3ToeZfVdH9OLddy+5zBGixqeumGIpwhXlcsYJnHwOObGDOXl3LUizj2dAs/FvsMn0eh0MF6r4bwNkygVClBzBcydOo3FTheH5xex7+RZ/r2xAs3khpiaW8D6sSo2jQ5jlIxQKcAkzThZ5rtlUOfp+JmzCCQV880WumGAM/UeZN1E03Wx0PLQ8IDj810EJK0QiXjd9U/BW17+QqxdNwmrVIKkZGLdnFUJIvfJw8EAoiIjNPLwqV7xQ6SBx3AIxRFK8qhLRqDbwBkwEYs0phuNJg7u24O/+fSnIBRy5TQIIqweLuADH/80TKvI82CZRMGySJMUQzi2F4Lbh5GzWZypuTCLH/zbdyEbFg+xkYrs6lVrMDY+hk67h1iUsffkabzns9/BF95+LWM1nXYHWybGMayTKLfOQZ/8NR1ZKsq6vS4eOnyc5ZA1ScS5a1ejXCyzHGa/0cFit4UDZ2dw4NRZltIZLeb5JEwttRD6Pi5YM4pS3sZQucrqX5S90XwK6TXQMETLCTBTX0I/FVHv+aj3fR6UWOwFaA4iLNHi9zyU8yau374Wf/KG12JobBRWqQiB3BhNSfINfIjYS/7e4UAcmHl4qookTHgqJwpcvlEEMePoVAdQWTnL7Syi0e6g1e7w+NSX/+7TEPJ2Ke32W/gf7/gTbLvsKuTsAgzDZCPwGKosQJ47AtlzuJRmjegkwv6f3Yt9e/chXyDfrqDf6uG8bU9hoQsawaGOVD8I8fI//yxe98y1WDdSZlG7yfFRnoZfxT0EDyWDyLgZll6vN1hHgeDlQb+H8VoZQ0OjkK08wm4b8zMzODQ7j9ONOiu5DJXLPPQwNbOEdqeH89ePYahQzGAVTWUqpajT0DQYLV3sDjDdaOLEQhtL/RBtL+GqmmDiQUg8zhgVQ8NYsYC1oyW85bWvwvia1VAtmwVpM3YdTfBnI6tUfCEMEGgmPCI1xHQHjYAznzig4E+pKI0npexiHUowlubR6rawVK9j7677Mt7VK3/7ZXj6NdfDzpdB87902yfD0qE7TSidOaam6IUaRBLuI+ngQR8//M63WI6rVqlyv7XX6WL7hTt42j6hfjLBABDxuX+7Hffcdy9+6/LNMLna1ZEGATaNjWHYUlAxTTYgnQJSIu8OSPHQBo0YUXqZHx6GQCqEnQ4WZmaw9zgFUJ8XZIFUCEkAtTdg0Yy8raFSKvGQSZDGPM1DY0IEtVDft93t4VS7i1PNARb6IRa6JLya8GgWBe+9pxt46RUXwxs4zHJ+2xtfi+HJCdZAJZYHydA/rLBILfaYCFghXFVHKKpc9VK2xSeaR5lChInMiQZNltLtuNqtOtqtJur1OqYOH4Cwaf269NW/9wYUyzUUimXk8jnYqghzUIfiO8w4U+08VFnNVLPiEI0TR/Gzu36InJVHsVrlYmd+fgEXbb+UqSpUnhukbpsKeHD/FG740w/hD567HQVLBEnjkODdmqEato4Po0hzyTLdHop4Mj6WGh387MBBPPOyK7ButPKwND4tCh3pg6dncLbbxgMzbfz1tx7C2FgeV00WMEwiSTSnRaTYFBj0XKyfHGIVY6fdwebJSQbh9pOgYNNBox/DiRJ2gzmSQhZl7Dm9hNc+79nwuz0g8PC2t74RldUTSFiOObt32IrIN30nt0knwZc1RALN0BHQlt3OijQlWFeCbqtFI0kk5Oq6LPbUatXRbCzh6P69EF7/uv+Wrlq9BsVyGfliGWVDhtVZgEm0ikIZKrsYmjCUiJAImoPdf8etaDfrKFWr0G0LiRei1Whz894qFFlHQSLZA2JTdwZ42R+/Ezu2rsHIkI1Op4ltmzcxe2yNbWNyuASVUkS+yQ2pC8Y4OH2GgblnbzuX71+wPJyOZn+AIwtNfPVne/G3uxYxoguo6iImyiZL21OAXCKYI0nghAlsUcT6moWxnIbzV1V4PPXwwhJ+dHgeZ1s+RoskUEWqMJReyjgys4SXPOtp2LhuEkunT+N3Xv1yVFZv4PyeImosyQ/fJ4wRT8p0KPcnRXe+hxwtPt22JEZMrml5SJtcErmg7IYPXXTaTbQadfzgW/8C4Y1vfEtK+gplEsIjwWmvx6JNVq7I5beiW5kBqF8gpkg6S3joju9xPMhVK5B0HW67y0Fw47kX8M3X6IZnJOdOvjIcePjyLTfjjvsewIaxMixLg6XQfWAiPG3zBmwdr2LgOZifX8R8x0UQC9x8uevAEVy9fRuuPm8jN7NJPeX0YgOf//GD+Mpd09i+tcIMBIXanyLdXCFC1w84drVcj5shmiShomvoeREuW21g6+pxzHT7+NHUIp+AiRYVfboAABU+SURBVIqJnKbwPWhmO33YkPDqF1+PzVs2YnH6LJ59/bOgjU7yTJfoD5DIlO9neD9BKpT7U08v4pFeurMTgYEZ2JapqRCNPosJKwbo98kAbZw8egD/9DefgPC6178xrdWGUcsZyMV9VEpVmMUya4WSP5epP7wMH5MBlg7cj6WpKeSrFRSqVW6nEtXD0jRMbDyHJeZpNpeaKPQmKPBSrHjPxz4Mge43oxH5K3NnW0drOHdylAGuesfD0bkmC+MVyjUcPDOHA7NdPHCqgxsvXgdTEXB0ro0+0wtT1HJEbRQgkbY/3YJLEzHf9XlAumASzymFQLcO8UPm7W8eUXHZeZvx4KGT2Hm2D0URUDGJlKwzLH2y2cdThgt43StfhI3r1qE1P4ftT7sScXGIY5o0aCMV1YxotazuwieAuD40vk3FWZRmU5B8t72syKSvRwzg8GgV3afmS5/9FBYX5yD87mtem1aqZYxaOnJCitLQMMxcBZpB7Ah1WaRDZtKWGg0w/+BO9LpdpmMbhRwXIPNnplGrDqE2shpWocx0RlIOCfj+WyF0y8LXb7kZt959DybGh7lOKOR01AwJa0eH0el0MdfpY65Ld10imS8f9R4xByLOYJpeipn2AFtHiihZOnafXsREtYAgDlCkY8DVacRHnsRGiGjWHpDWs4BSUWaYPS8GOGfNOObaLr6x5ywsQ8Yw3aZLENAJAn6tqzZP4OUvej7WTa5Ft1PHxgsuQmDmEIkSlEGHRVtZqpgkGoQs6AZkjIREpMgA2ZB4FoSzIRJa/EcbwHO6mD51Eh98//+CTPLKr3rla9KhoRpqUsztv/zwOKRCiW/eQ/doZMo6vQFFhhEMcHbXPXxPsdroKk7PSIJl7sQUypVhlEdWwaTbmtAoE+XDdD8t00bkefje7d/HV773A5y3YR2Ozy5iqGSy9ufqoRLmlxbRdChfltBxaHzTy6briSwmyjjbHEDXZawumxirlnDnvmkINESoytDFFLYmsSshaJuGdtoDujlnlt2Q9AxVsFvHynwTH8r5f3y4Di9OMFaw2VXN1PsoWDqes+Mc3Hj9tZhct45ZDPmJSQSKyfcgE30vk62nKWmimNNd/VgpnfAmgfP9iLGpX178hw3gdBEFAW799r/irtvvQpvuovTyV/xOSlBuJQ1QGRmDXh3hu04QyMT3AyPlFJH8P6B3W5jfuxMja9YhX6pBVCQE/T4WTkxheGgEudoqGIR4MiYSQTdMrkbPHp3ihfnMl/8Z/cCBQGJ79F/oY8vaURw/fQaRoLGKyMqNLklxkfTViMGw1PNQsmSM2iou2bweB0/P44FDZ7B1NW0UjZODWrGEfhBgeqmDobzGkz4Uy850HEydXcKzdmxlpPXYXAcnGsEyHytzHSfmujhvvIj/r6prjZXjPMvPzM7szOxlZu+7536Oz/GxHezYzsWO4zhxSEIJaVLVkXr5iQQ/Wgmh9g9CIIQEEiCBUKIIQSsRiKC0QlHaBqE2DUhuQ3PDTXLsOknjY/v4XPfsnr3P7s7uzg4875yTwg/rRFZk2fPNvN/7Pu9z+Y2zp/D0rz+B6bk5RJJJIOYIY0JyKoeDkPW83/2M6BPhjeQAuB5lKy6aYBnGQjetEAkNQ3wYu0K7GiqFvvb130EykUXP60N59tkvBEVDFbpGenIO0UwGMbLe6KjO2s+oWkYcMlvx5++IlaNdmIBBNeOwi0GzgfLNVSlBqdIUosTFmU1JCDuWgNdqora1AadUwM3VNfzhXz+PwlROEEoSqiaztsDQY3YYfoCMHUej2YCTTOLWTk2WJhlLx4NL8zhUyCOXS4mcisYX25xqvTHWKru4uV3DdrWJxSkHMxMZqfuaZeL6ZhmjgDYMUazvNtDxgVt7fXT7AQw9gNsn9t/HxSMTeOzcGTxx8SHkSiVpvbkGJQebFy63bRLyKfWeD54dxgge3RR5CExL5SVMHRgDHT4tPzyAnpj50UTqw6sreOn5v0LbSEkToVx66qkgFwXypWkkSjMwU47YVXIaljvAMGCxoK1/FGrIMiVE01kRc/huHb1aBfU7d5DL5uHkiojatribm2ZSnANbu2UoNPymbUvHxTe//yrevHpVeD2R8RClbAyDoYpg5CGbdoTSnknEkDRNVOi3pmtYKhQwR6QzkRCp1OZ2Be+uXMVutS7JFQOJK4nAZAlNGHDScWlJ+UW9f3sbUTMhXwf5RN1Aw2q5Ix4YfLC7rTbOTORwz/IUji0ewqMXH0a2WELEtEJ3LyrfgzDqhG86v1w+fOq+2IIOiAt9GlnLizcsQ3zYB/WfSxkOhDyUF//mOaze2UCPODh1ZJ+7+HCQd5JITc4inivKRouhPQJFGCYsrwe1fBNJJyu5YRHGBfLyIirYrqFb2UB9q4xijiqZSZj8/+JJKJYFv9PCwO8J8VcZjiUb+P3VVXz9hW/h1GIG2niAh04fxm6tiXq9LVNlUteQddKSUsFCRWoiW1mPrlMjX8BAqs0zuSwKWUe6jb1+F3W3A9VkGJ0KwzTE/bY9VHBte0/EGZ7ny+J9l/jPQJESxeWMDRVP3XMI+VQSM7MzuHDuLLLTM7J3DjQdzOyTL4Clh47AhJ0R5o9xpRquHxlTSC5SGBD9fy9fvv0Mi6NlDqGU5/74D+AlciLWEGrik+cfCAq5HFKFScSzeSRTjvT4pHxYXh+R+jbi6TzidkrwHXHP5VDGzqNTQ39nA42dXZQmJ+BMzCCeKghEy1Z06HYQMEyBY3yXsVBN3NjexZ9/5/soN9tIRxU8++CSRIPQmbAYjyNGiHh9C+1OH8rYx2TKxlJxUjxMidqyNeZivc+IWiZg93vY6TSF2dAadKFqCjKpNMp7dXy4XcfNxhCmRTgAuFklk0JD0x1J5CLXggvpGB67e0GW+kcOLeLsubOIp3NQ+AVw6YMoRkp48fJ+Guz/ZDsaDl68fCEpruH0+8vaz3aUdf/g9773nW/hg/d+hsaQSU08PB/Kr507E+SlfOQl1ZQ0w7hlwfFcGdN5B0g3ZMWh8WKmswrVkwMX8Lro7WyhXathbmkRdnFWwtLUmCmHxL1uMHTRb7axeXMN//Kjy3jxh1dR90ewCwkcLVo4PZuGbaoSInpivoicZaHb6QrNZMBY2iCC+Xwe2aQje2sOPAMfaHXaqHTbqLodtIOhZBOTe8QHya/3VrWNlTtNrOx6QjK2LQ2VVl98nnMJS/z7F7Imuu0+jk46OH98GfeePiG41F3nLmAUNeEP+uIX7asqhkoEQ6n3YVS55AHz4Us+sCrCi4O3/9NDGPQk25IlaXN9Hc//yR9hkMiEsev7F7ryq/fdE+RYPvj2Z/NIODZS/R7iti27WiZryF1A47pYHFErIXCE0qwgGvhob67JoRQPH4ORysvD54OK0sCPGjJJNh3hg/dX8Myf/h0AS5QzWiKKfDaGxZyFmZQJXRnhyGQeh0t5kfwLp4Z11h3CCDToUjIDlD0PG+0WbtY62JKF9wCJSAS5hI6ikxBmHb2d373TwI36CNU2N260lGGWsYqeOxD1D8Obj+Yt7DV6oHP2o8cP4eLDZ+EPfZz9/CW4Brs5AkkdAkuiqh8qKrpMDWc54sFIZgDzgjkH/HLoohJesuoHYTw69x2/99XfhpXOSa4MlfocJse8ux4+eTzI5gqwecml0nAMHXYsDjMek7efYJZ8+swJIMKYSUNXNKjldUQJelW2kJteQLw0DZUHRL8J+iXXq7KXHcdjqO3s4o0rV/DVv/0uLJ1OLKzTCsa6JodwOG/CUHxMpUwsl2zMZfIwogpcb4ytWhPbdRfrLRf9MXB7r4VhoMkKdN6JIW4EcDhU2RblFtBIi6n18Oa6i606g511uK4HTRljciKFdovhCQMcK+iYShooV3s4PV9EQh1idnIKp+45iROPPYmOGaMBjVDK+e8Juh2hovQSKQw4DfOilWBmTb6CAzNXbuAYDPrpIYx8rF67gk+u/RQf/GITO/WBdIDEuAhxKA8ePxakc3nYacYLOnAScdiEo2OhcTffmigtLRnjMejCdBxReyiVLYybDVmyZ+eXoMdSYYTJwMO410EsPyUhBoE/wubNG/jnV3+I536wAl0jTB3AVEYIaJGQtJC2aRI4wpG8jdm0jpOLU9CDEZqtDm7X2ljdaWKnMxDaZIf1duiLTVg+GUXKiGA6Z8OgzkKLYK3SxmZriNWWj0qzL5CwWGkq1D9TRQmowx4uzOfR7/dQbbn47AOnMOoxL3IXn//yFzF/5hH0+PIIJzVku0U6DSEP962k0GIkc54brxEv3gPsh/X/4NKlY5ePZq2C/3j5Bah6XBAE0uH3Wh7Wd1yZjZT7ji0HxH+YlJpMpSTAJ7G/kCH1j5Mw4WJSTmhRKYp6Glfv3IEy8uAUp2Bl82IUwAU+p2imSEfZYvHDHfWFE/8XL/w9vvn6VWgRRqMAWjBCYcoWpxFV/ClMyfWdSetYyFmYzzuIcdAj1FGpi1MhH3Cj7iJh27Jct+nyazHxyUGlWpNQaHY676ztZ3Tx70mxHtOuJV5FhTsa4dKRNDJGBI22h7QTw/nTd6NVb6DbbOBzX/oSEsvH0VeY/O1jSG0O9V9sKHpd9MyYkIjZDQ19MjPCrodQtByElJ4Q2e132/jP770k0SedTh+GxjI6DhWSBAD3+lBOLx8OMk5GMnHpDS35vWxDTTooGuHbr/Me4FhvQfc9GMM+xtWypGanSzPidqXEktAyBWhRQ+SZhnQpgNduoLq9g/fWNvG15/8BWqQQSnr8IU4czUr4wofrHWRsQ+CBlBVBQldwYTmHuXQ8NOuWRTf9P5nybQixa3WHjogBFmcnsVGpYrXcghm3sNMN8PGWKwtysqDDt59WBlz+A8/clcG8zf2Dj63dNi6cPYlDM1OyUOKO94lLlzAukiJPkG2MIUHF4QBKj7HmQ7jMSya/k90Rp15RwrPT8fb95MIuiNuxdy5/F59cv4KmSyO/0IGAswWZeW1a8/d9KMcXF/YPwEEimZRIcq774kLtoIdcaF0TTsQ6TFbGvTJUtwErmUQsmYaRKQJONqSvUCY68ARjUWh5o+nY+Pgj/Otrl/GN19+DFkkCSmibsjSbwH3LRbx5o4ydjgLVH0omgKYFuH8uicP5FFSftCmijGMkzXDK5stC99lKrSUvBlkSFTfAL6oeAjUiIXL+gJEkA7GSIaLHf/D5Y0mcX8gIdE0mBffJT3/mcWFPU49AJsi9T3wGo1hG6jwnXF6ZitdDwLhzqOhx5UgO0JgLGIJvxIjCMLcD9JNdT3XrFt567Z+wXhmG4jclwEQhLXxWekRQcOIyQ+auhUNBynFgJxlPm5Cc4HAOCBfz8vAZGcsypOsw2P9v3YbiNuRLcWYWoeVKMrgQNrGo+vBHEmnOoY0PkHHh337lVfzlKz+GptlSh1meyFT+8tkJ+Qpev17G7b0xYqaKqGkiYyso2bpkB8ym4khGaYqtYzyiIWogfzZJtpZhoex2sbrbw42Ghz45u7S358A0DOTv4no+Hj9u497prHhkux4t5JtYml/CmVMnZbgrVyrIF3KYPn0WA90Su31+Yfyp9KlmCeAJDkQ01ILHC3gQPvww6uRgABti6Ln4r397Sb7MZocMafqLepifKQggyCCHvVoLLX4By3NzAdWGNGRNEQG17TCc0zSErm7SQ0IOgGr6CEyqy3c2JAI9lk4LX4alJ8LDYXDNeCz/rTLMRtT55Px08dZ7H+D3v/Ey9EhG2jDOlz0feOZMCXMZQ97cd2828PYnTcSSoU1myo4ibUUwZUcx4zCIeQCbE7Zg70N0uOymyCGiY22vixtV1t4AQUTFqNsPW8RhgCdPpHD/fKhdpoKeLlbl8jaefvKzWFxalF1tp91GdmoSyZnDGAXsfgKBOGT5QrM9PnxiPxEdwzFt7D3ZW4dL+P23XxbxPm5fewcfvX8ZG3td2Q9IJLE/wuJ0TqCVRruDeqODujuAsjA9HfDhs/Y7hilhmcz3JQOaOwCKK8gsJr+eDAl9PITWacGKJ2Fmi4hSQso0PZWSHLKQDeiWCVXn0oVlZSQUlo2tLXzluRcR0Yry8CMMvvGBB38ljSOFGBilxaSOV362g092+0jGdZFNpeI6SkkVU9IpAckoDZfozxCReJOay/hADd0BcG2HnE0ldCjsDhC1InjqWAHTdgTZeBhG3fYGEiPLi/A3v/gF2VUQKKtVdzG7fBxIZUOoYUyvvHDxzoMYsWRpEXgB3X/Dy1Za0f2lS/hzhIHbwBv//o+oNTzJCeCBh2y5MY7O52S1SSxpb6+JWodeERMTAXn5VKokdVXe/phpIWaSHWfA0MgN4hADGHSeJWOagZ9MTY1ZsvYjtZe+mXRWZ9Q34qZ0QixJ+miEbqOKlZUV/NnLb6LZCaP/RPk1BtLpGB45kkLRDj1Leem9urKB1aovZSeZoI1ygMlUFNOOJdM5DWMbnS4KqbiEoe15Pmod/hqKqSC9eWYcA48s28jHuVjivsASiSiTiyq1Gh44/xDuP3G33Fvtxh7cTgvTy8cxojk5XShIPyHhjDn2PFBKClUrxPv3mQ8H7edB+eFkvPnRW7j18XXc2qzIgogtKwc6Ou2eXp6QBTdVkrV6Cw2XCplCQaIMmR5ka3SCTYj/vsl4Q8sMYQguZLhk530QJYNAgcE3n6oTliYOaWRM0IXdjEKx+LbuH4CiCkfyrZ/+BJevr+MnP9+WhQ2tECiW6wcqHr0ri/msjjR9qRGg0mzhjdst3N7ykMsRFFQxl7IQiwawDR31Lk1QBwI5s9zt9cbY63ho8DOgriBn4vRcSnbFxIvYWPBhdrtduF0fN9a28btf+S1ks1kpNc1qRbwmcjNLGDF6xKcFcWhvIIsW6nt1K8T8peyEmM//+8UXrb6D21d/jHqjjdWNiiC1VETyxiN18+RSUfYjbbeLaq0J1wug5DPZQLRWlPRYFhIMdTZjiNpJyRQTRjMXMqK9CtP2+EYRjGPZ4bTLYYxlig9DyLyksETZEQXCA1UHLt7+73fx9sdreO3KulDSxRyc4/14jKOzDo6V4kjHdAnPEeg3GOPGrov37zThjYFShjEr9K1Txcua+Dx1A+T1NMhE9kaYShm4dyaNtMmXgaWK3FNVwED69rf6XTSafcwvLuDxhy5AM6IYM9lucxNOoQirNCV/Ji9alhdJSR0r8MhbYtu5DzccxJeEG7B9CKLnolndRLvZRKW8hvXNLew13JC2TsOmYIi7l6fQ94bodHqoNV10/rcG/w+NYE1uetZ25wAAAABJRU5ErkJggg==);
+            width: 100%;
+            height: 100%;
+        }
+
+        .author.GPT-3 {
+            background-color: rgb(16, 163, 127);
+        }
+
+        .author.GPT-4 {
+            background-color: black;
+        }
+
+        .conversation-content-wrapper {
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            flex: 1 1 auto;
+            flex-direction: column;
+        }
+
+        .conversation-content {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .conversation-content p {
+            white-space: pre-wrap;
+            line-height: 28px;
+        }
+
+        .conversation-content img, .conversation-content video {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 2em;
+            margin-top: 2em;
+        }
+
+        .time {
+            position: absolute;
+            right: 8px;
+            bottom: 0;
+            font-size: 0.8rem;
+            color: #acacbe
+        }
+
+    </style>
+</head>
+
+<body>
+    <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <symbol id="chatgpt" viewBox="0 0 41 41">
+            <path d="M37.5324 16.8707C37.9808 15.5241 38.1363 14.0974 37.9886 12.6859C37.8409 11.2744 37.3934 9.91076 36.676 8.68622C35.6126 6.83404 33.9882 5.3676 32.0373 4.4985C30.0864 3.62941 27.9098 3.40259 25.8215 3.85078C24.8796 2.7893 23.7219 1.94125 22.4257 1.36341C21.1295 0.785575 19.7249 0.491269 18.3058 0.500197C16.1708 0.495044 14.0893 1.16803 12.3614 2.42214C10.6335 3.67624 9.34853 5.44666 8.6917 7.47815C7.30085 7.76286 5.98686 8.3414 4.8377 9.17505C3.68854 10.0087 2.73073 11.0782 2.02839 12.312C0.956464 14.1591 0.498905 16.2988 0.721698 18.4228C0.944492 20.5467 1.83612 22.5449 3.268 24.1293C2.81966 25.4759 2.66413 26.9026 2.81182 28.3141C2.95951 29.7256 3.40701 31.0892 4.12437 32.3138C5.18791 34.1659 6.8123 35.6322 8.76321 36.5013C10.7141 37.3704 12.8907 37.5973 14.9789 37.1492C15.9208 38.2107 17.0786 39.0587 18.3747 39.6366C19.6709 40.2144 21.0755 40.5087 22.4946 40.4998C24.6307 40.5054 26.7133 39.8321 28.4418 38.5772C30.1704 37.3223 31.4556 35.5506 32.1119 33.5179C33.5027 33.2332 34.8167 32.6547 35.9659 31.821C37.115 30.9874 38.0728 29.9178 38.7752 28.684C39.8458 26.8371 40.3023 24.6979 40.0789 22.5748C39.8556 20.4517 38.9639 18.4544 37.5324 16.8707ZM22.4978 37.8849C20.7443 37.8874 19.0459 37.2733 17.6994 36.1501C17.7601 36.117 17.8666 36.0586 17.936 36.0161L25.9004 31.4156C26.1003 31.3019 26.2663 31.137 26.3813 30.9378C26.4964 30.7386 26.5563 30.5124 26.5549 30.2825V19.0542L29.9213 20.998C29.9389 21.0068 29.9541 21.0198 29.9656 21.0359C29.977 21.052 29.9842 21.0707 29.9867 21.0902V30.3889C29.9842 32.375 29.1946 34.2791 27.7909 35.6841C26.3872 37.0892 24.4838 37.8806 22.4978 37.8849ZM6.39227 31.0064C5.51397 29.4888 5.19742 27.7107 5.49804 25.9832C5.55718 26.0187 5.66048 26.0818 5.73461 26.1244L13.699 30.7248C13.8975 30.8408 14.1233 30.902 14.3532 30.902C14.583 30.902 14.8088 30.8408 15.0073 30.7248L24.731 25.1103V28.9979C24.7321 29.0177 24.7283 29.0376 24.7199 29.0556C24.7115 29.0736 24.6988 29.0893 24.6829 29.1012L16.6317 33.7497C14.9096 34.7416 12.8643 35.0097 10.9447 34.4954C9.02506 33.9811 7.38785 32.7263 6.39227 31.0064ZM4.29707 13.6194C5.17156 12.0998 6.55279 10.9364 8.19885 10.3327C8.19885 10.4013 8.19491 10.5228 8.19491 10.6071V19.808C8.19351 20.0378 8.25334 20.2638 8.36823 20.4629C8.48312 20.6619 8.64893 20.8267 8.84863 20.9404L18.5723 26.5542L15.206 28.4979C15.1894 28.5089 15.1703 28.5155 15.1505 28.5173C15.1307 28.5191 15.1107 28.516 15.0924 28.5082L7.04046 23.8557C5.32135 22.8601 4.06716 21.2235 3.55289 19.3046C3.03862 17.3858 3.30624 15.3413 4.29707 13.6194ZM31.955 20.0556L22.2312 14.4411L25.5976 12.4981C25.6142 12.4872 25.6333 12.4805 25.6531 12.4787C25.6729 12.4769 25.6928 12.4801 25.7111 12.4879L33.7631 17.1364C34.9967 17.849 36.0017 18.8982 36.6606 20.1613C37.3194 21.4244 37.6047 22.849 37.4832 24.2684C37.3617 25.6878 36.8382 27.0432 35.9743 28.1759C35.1103 29.3086 33.9415 30.1717 32.6047 30.6641C32.6047 30.5947 32.6047 30.4733 32.6047 30.3889V21.188C32.6066 20.9586 32.5474 20.7328 32.4332 20.5338C32.319 20.3348 32.154 20.1698 31.955 20.0556ZM35.3055 15.0128C35.2464 14.9765 35.1431 14.9142 35.069 14.8717L27.1045 10.2712C26.906 10.1554 26.6803 10.0943 26.4504 10.0943C26.2206 10.0943 25.9948 10.1554 25.7963 10.2712L16.0726 15.8858V11.9982C16.0715 11.9783 16.0753 11.9585 16.0837 11.9405C16.0921 11.9225 16.1048 11.9068 16.1207 11.8949L24.1719 7.25025C25.4053 6.53903 26.8158 6.19376 28.2383 6.25482C29.6608 6.31589 31.0364 6.78077 32.2044 7.59508C33.3723 8.40939 34.2842 9.53945 34.8334 10.8531C35.3826 12.1667 35.5464 13.6095 35.3055 15.0128ZM14.2424 21.9419L10.8752 19.9981C10.8576 19.9893 10.8423 19.9763 10.8309 19.9602C10.8195 19.9441 10.8122 19.9254 10.8098 19.9058V10.6071C10.8107 9.18295 11.2173 7.78848 11.9819 6.58696C12.7466 5.38544 13.8377 4.42659 15.1275 3.82264C16.4173 3.21869 17.8524 2.99464 19.2649 3.1767C20.6775 3.35876 22.0089 3.93941 23.1034 4.85067C23.0427 4.88379 22.937 4.94215 22.8668 4.98473L14.9024 9.58517C14.7025 9.69878 14.5366 9.86356 14.4215 10.0626C14.3065 10.2616 14.2466 10.4877 14.2479 10.7175L14.2424 21.9419ZM16.071 17.9991L20.4018 15.4978L24.7325 17.9975V22.9985L20.4018 25.4983L16.071 22.9985V17.9991Z" fill="currentColor"></path>
+        </symbol>
+    </svg>
+    <div class="conversation">
+        <div class="conversation-header">
+            <h1>
+                <a href="https://chatgpt.com/c/f2d854bd-92bb-4d94-a052-bd8cb09eb9cc" target="_blank" rel="noopener noreferrer">sort-organize-by dater-files</a>
+                <button class="toggle">
+                    <svg class="sun" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+                <button class="toggle width-toggle">
+                    <svg class="expand" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="display: block;">
+                        <path d="M3 12h18M6 8l-4 4 4 4M18 8l4 4-4 4"></path>
+                    </svg>
+                    <svg class="narrow" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                        <path d="M3 12h7M14 12h7M6 16l4-4-4-4M18 16l-4-4 4-4"></path>
+                    </svg>
+                </button>
+            </h1>
+            <div class="conversation-export">
+                <p>Exported by
+                <a href="https://github.com/pionxzh/chatgpt-exporter.git">ChatGPT Exporter</a>
+                at 2025-01-04T15:16:42.429Z</p>
+            </div>
+            
+        </div>
+
+        
+<div class="conversation-item">
+    <div class="author user">
+        <img alt="You" />
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <p class="no-katex">how to sort and organize image files into folders based on their creation date /Volumes/iMac/4-4-2024</p>
+        </div>
+    </div>
+    
+</div>
+
+
+<div class="conversation-item">
+    <div class="author GPT-4">
+        <svg width="41" height="41"><use xlink:href="#chatgpt" /></svg>
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <p>To sort and organize your image files into folders based on their creation date on a macOS system, you can use a script written in the Terminal using shell commands. Here's a basic approach using a shell script that leverages <code>exiftool</code> to read metadata from image files and organize them accordingly:</p>
+<ol>
+<li>
+<p><strong>Install <code>exiftool</code>:</strong> If you don't have <code>exiftool</code> installed, you can install it using Homebrew by running:</p>
+<pre><code class="language-bash">brew install exiftool
+</code></pre>
+</li>
+<li>
+<p><strong>Create a Shell Script:</strong></p>
+<ul>
+<li>
+<p>Open Terminal.</p>
+</li>
+<li>
+<p>Use a text editor to create a new file. For instance, using <code>nano</code>:</p>
+<pre><code class="language-bash">nano sort_images.sh
+</code></pre>
+</li>
+<li>
+<p>Copy and paste the following script into your editor:</p>
+<pre><code class="language-bash">#!/bin/bash
+
+# Directory containing the images
+IMAGE_DIR="/Volumes/iMac/4-4-2024"
+
+# Directory where sorted images will be stored
+OUTPUT_DIR="/Volumes/iMac/Sorted_Images"
+
+# Create output directory if it doesn't exist
+mkdir -p "$OUTPUT_DIR"
+
+# Loop through all image files in the directory
+find "$IMAGE_DIR" -type f -name "*.jpg" -o -name "*.png" | while read FILE
+do
+    # Extract creation date
+    DATE=$(exiftool -DateTimeOriginal -d "%Y-%m-%d" "$FILE" | awk -F': ' '{print $2}')
+
+    # Create a directory for the date if it doesn't exist
+    if [ ! -d "$OUTPUT_DIR/$DATE" ]; then
+        mkdir -p "$OUTPUT_DIR/$DATE"
+    fi
+
+    # Move the file to the appropriate directory
+    mv "$FILE" "$OUTPUT_DIR/$DATE/"
+done
+</code></pre>
+</li>
+<li>
+<p>Adjust the <code>IMAGE_DIR</code> path to the directory where your images are stored.</p>
+</li>
+<li>
+<p>Save and close the editor (<code>Ctrl+X</code>, then <code>Y</code> to confirm, and <code>Enter</code> to exit).</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Make the Script Executable:</strong></p>
+<ul>
+<li>Run the following command in Terminal:
+<pre><code class="language-bash">chmod +x sort_images.sh
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Run the Script:</strong></p>
+<ul>
+<li>Execute the script by typing:
+<pre><code class="language-bash">./sort_images.sh
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<p>This script will go through all the image files in the specified directory, read their creation dates using <code>exiftool</code>, and organize them into subfolders within a specified output directory, each named after the image's creation date.</p>
+<p>Please note, this script assumes all images have a valid "DateTimeOriginal" metadata field, which is common in photographs but might not be present in all image types or might be differently named depending on how the image was created or edited. Adjustments might be necessary depending on the specific metadata of your image files.</p>
+        </div>
+    </div>
+    
+</div>
+
+
+<div class="conversation-item">
+    <div class="author user">
+        <img alt="You" />
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <p class="no-katex">is this going to move all</p>
+        </div>
+    </div>
+    
+</div>
+
+
+<div class="conversation-item">
+    <div class="author GPT-4">
+        <svg width="41" height="41"><use xlink:href="#chatgpt" /></svg>
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <p>Yes, the script provided will move all image files from the specified source directory to a new directory structure based on their creation dates. Each image file will be placed in a folder corresponding to its creation date. This means that the original images in your source directory will no longer be there after the script is run; they will all be relocated to the new, organized structure in the output directory.</p>
+<p>If you prefer to copy the files instead of moving them (to keep the original files in place), you can modify the script slightly. Replace the <code>mv</code> command with <code>cp</code> to copy the files instead of moving them. Here's the adjusted line in the script:</p>
+<pre><code class="language-bash"># Copy the file to the appropriate directory
+cp "$FILE" "$OUTPUT_DIR/$DATE/"
+</code></pre>
+<p>This change will preserve the original files in their original location and create duplicates in the organized directory structure based on their creation dates.</p>
+        </div>
+    </div>
+    
+</div>
+
+
+<div class="conversation-item">
+    <div class="author user">
+        <img alt="You" />
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <p class="no-katex">lets do a python to read all the image {png/jpg/tiff} files in multiple folders and move sorted into flders based on thier creation date</p>
+        </div>
+    </div>
+    
+</div>
+
+
+<div class="conversation-item">
+    <div class="author GPT-4">
+        <svg width="41" height="41"><use xlink:href="#chatgpt" /></svg>
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <p>To create a Python script that can read image files of types PNG, JPG, and TIFF from multiple folders and then move them into new folders sorted by their creation date, we can use the <code>os</code>, <code>shutil</code>, and <code>PIL</code> (Pillow) libraries. Here’s a step-by-step guide on how to accomplish this:</p>
+<ol>
+<li>
+<p><strong>Install Pillow:</strong> First, make sure you have the Pillow library installed for handling image metadata. If it's not installed, you can install it via pip:</p>
+<pre><code class="language-bash">pip install Pillow
+</code></pre>
+</li>
+<li>
+<p><strong>Create the Python Script:</strong></p>
+<ul>
+<li>
+<p>Open your favorite code editor.</p>
+</li>
+<li>
+<p>Create a new Python script file, e.g., <code>sort_images.py</code>.</p>
+</li>
+<li>
+<p>Copy and paste the following Python code into your script file:</p>
+<pre><code class="language-python">import os
+import shutil
+from PIL import Image
+from datetime import datetime
+
+def sort_images(source_dir, target_dir):
+    # Create the target directory if it doesn't exist
+    os.makedirs(target_dir, exist_ok=True)
+
+    # Supported image formats
+    extensions = ('.png', '.jpg', '.jpeg', '.tiff')
+
+    # Walk through the directory
+    for root, dirs, files in os.walk(source_dir):
+        for file in files:
+            if file.lower().endswith(extensions):
+                try:
+                    # Construct the full file path
+                    file_path = os.path.join(root, file)
+                    
+                    # Open the image file
+                    with Image.open(file_path) as img:
+                        # Extract EXIF data
+                        exif_data = img._getexif()
+
+                    # Find the creation time (this is platform-dependent)
+                    if exif_data:
+                        # Convert the timestamp to a datetime object (adjust tag as necessary)
+                        creation_time = exif_data.get(36867)
+                        if creation_time:
+                            creation_date = datetime.strptime(creation_time, '%Y:%m:%d %H:%M:%S').date()
+                        else:
+                            # Fallback to last modified time if EXIF data is missing
+                            creation_date = datetime.fromtimestamp(os.path.getmtime(file_path)).date()
+                    else:
+                        creation_date = datetime.fromtimestamp(os.path.getmtime(file_path)).date()
+
+                    # Create a new directory for this date if it doesn't exist
+                    date_dir = os.path.join(target_dir, str(creation_date))
+                    os.makedirs(date_dir, exist_ok=True)
+
+                    # Move the file
+                    shutil.move(file_path, os.path.join(date_dir, file))
+                    print(f"Moved: {file_path} -> {os.path.join(date_dir, file)}")
+
+                except Exception as e:
+                    print(f"Error processing {file}: {e}")
+
+# Define the source and target directories
+source_directory = '/path/to/your/images'
+target_directory = '/path/to/sorted/images'
+
+sort_images(source_directory, target_directory)
+</code></pre>
+</li>
+<li>
+<p>Replace <code>/path/to/your/images</code> with the path to your image files and <code>/path/to/sorted/images</code> with the path where you want the sorted images to go.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Run the Script:</strong></p>
+<ul>
+<li>
+<p>Save your script.</p>
+</li>
+<li>
+<p>Run it from the terminal or command prompt:</p>
+<pre><code class="language-bash">python sort_images.py
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<p>This script will recursively search for image files in the specified source directory, read their creation dates either from EXIF metadata or from the file system (if EXIF is not available), and move them into new folders based on these dates in the target directory.</p>
+        </div>
+    </div>
+    
+</div>
+
+
+<div class="conversation-item">
+    <div class="author user">
+        <img alt="You" />
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <p class="no-katex">have the source and destination as prompts</p>
+        </div>
+    </div>
+    
+</div>
+
+
+<div class="conversation-item">
+    <div class="author GPT-4">
+        <svg width="41" height="41"><use xlink:href="#chatgpt" /></svg>
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <p>To modify the script so that the source and destination directories are input by the user via prompts, you can use the <code>input()</code> function in Python. This will allow the user to specify the paths interactively when the script is run. Below is the updated version of the script with user prompts for the source and target directories:</p>
+<pre><code class="language-python">import os
+import shutil
+from PIL import Image
+from datetime import datetime
+
+def sort_images(source_dir, target_dir):
+    # Create the target directory if it doesn't exist
+    os.makedirs(target_dir, exist_ok=True)
+
+    # Supported image formats
+    extensions = ('.png', '.jpg', '.jpeg', '.tiff')
+
+    # Walk through the directory
+    for root, dirs, files in os.walk(source_dir):
+        for file in files:
+            if file.lower().endswith(extensions):
+                try:
+                    # Construct the full file path
+                    file_path = os.path.join(root, file)
+                    
+                    # Open the image file
+                    with Image.open(file_path) as img:
+                        # Extract EXIF data
+                        exif_data = img._getexif()
+
+                    # Find the creation time (this is platform-dependent)
+                    if exif_data:
+                        # Convert the timestamp to a datetime object (adjust tag as necessary)
+                        creation_time = exif_data.get(36867)
+                        if creation_time:
+                            creation_date = datetime.strptime(creation_time, '%Y:%m:%d %H:%M:%S').date()
+                        else:
+                            # Fallback to last modified time if EXIF data is missing
+                            creation_date = datetime.fromtimestamp(os.path.getmtime(file_path)).date()
+                    else:
+                        creation_date = datetime.fromtimestamp(os.path.getmtime(file_path)).date()
+
+                    # Create a new directory for this date if it doesn't exist
+                    date_dir = os.path.join(target_dir, str(creation_date))
+                    os.makedirs(date_dir, exist_ok=True)
+
+                    # Move the file
+                    shutil.move(file_path, os.path.join(date_dir, file))
+                    print(f"Moved: {file_path} -> {os.path.join(date_dir, file)}")
+
+                except Exception as e:
+                    print(f"Error processing {file}: {e}")
+
+# Get user input for the source and target directories
+source_directory = input("Enter the source directory path: ")
+target_directory = input("Enter the target directory path: ")
+
+sort_images(source_directory, target_directory)
+</code></pre>
+<h3>Instructions for Use:</h3>
+<ol>
+<li><strong>Save this script</strong> in a file named <code>sort_images.py</code>.</li>
+<li><strong>Run the script</strong> in a terminal or command prompt. When prompted, enter the full paths to the source and destination directories.</li>
+<li>The script will then process all image files found in the source directory, organizing them into the destination directory based on their creation dates.</li>
+</ol>
+<p>This script gives you a flexible and interactive way to manage your image files, making it suitable for various use cases where the directories might change frequently.</p>
+        </div>
+    </div>
+    
+</div>
+
+
+<div class="conversation-item">
+    <div class="author user">
+        <img alt="You" />
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <p class="no-katex">Rsync /Volumes/4t/zipBak
+/Volumes/4t/MyDeSiGnS
+/Volumes/4t/og
+/Volumes/4t/steven
+/Volumes/4t/UniCornie TO /Volumes/iMac</p>
+        </div>
+    </div>
+    
+</div>
+
+
+<div class="conversation-item">
+    <div class="author GPT-4">
+        <svg width="41" height="41"><use xlink:href="#chatgpt" /></svg>
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <p>To use <code>rsync</code> to synchronize multiple source directories to a destination directory on your Mac, you can create a shell script or simply run the <code>rsync</code> command directly in the Terminal. The command you've mentioned is for syncing multiple folders from one volume to another. Below, I’ll outline how you can execute this using <code>rsync</code>.</p>
+<h3>Option 1: Direct Terminal Command</h3>
+<p>If you prefer to run the commands directly in the terminal, you can do so by executing individual <code>rsync</code> commands for each folder you wish to synchronize. Here's how you can structure these commands:</p>
+<pre><code class="language-bash">rsync -avh /Volumes/4t/zipBak/ /Volumes/iMac/zipBak/
+rsync -avh /Volumes/4t/MyDeSiGnS/ /Volumes/iMac/MyDeSiGnS/
+rsync -avh /Volumes/4t/og/ /Volumes/iMac/og/
+rsync -avh /Volumes/4t/steven/ /Volumes/iMac/steven/
+rsync -avh /Volumes/4t/UniCornie/ /Volumes/iMac/UniCornie/
+</code></pre>
+<h3>Explanation of the <code>rsync</code> Command Options:</h3>
+<ul>
+<li><strong><code>-a</code></strong> (archive): This option preserves the structure and attributes of files but excludes hard links.</li>
+<li><strong><code>-v</code></strong> (verbose): Gives detailed output of what <code>rsync</code> is doing.</li>
+<li><strong><code>-h</code></strong> (human-readable): Outputs numbers in a human-readable format.</li>
+</ul>
+<h3>Option 2: Using a Shell Script</h3>
+<p>If you often need to run these commands, you might find it convenient to save them in a shell script:</p>
+<ol>
+<li>
+<p><strong>Create the Script:</strong></p>
+<ul>
+<li>Open Terminal.</li>
+<li>Type <code>nano sync_script.sh</code> to create a new script file in the nano text editor.</li>
+</ul>
+</li>
+<li>
+<p><strong>Script Content:</strong></p>
+<ul>
+<li>Copy and paste the commands from above into the nano editor.</li>
+</ul>
+</li>
+<li>
+<p><strong>Make the Script Executable:</strong></p>
+<ul>
+<li>Save the file by pressing <code>Ctrl+X</code>, then <code>Y</code> to confirm, and <code>Enter</code> to exit.</li>
+<li>Make the script executable with the command <code>chmod +x sync_script.sh</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Run the Script:</strong></p>
+<ul>
+<li>Execute the script by typing <code>./sync_script.sh</code> in the terminal.</li>
+</ul>
+</li>
+</ol>
+<p>This script will synchronize each specified directory from your <code>4t</code> volume to corresponding directories on your <code>iMac</code> volume, ensuring that all changes in the source directories are mirrored in the destination.</p>
+<p>Remember to ensure you have adequate permissions to read the source and write to the destination directories. If you encounter permission issues, you might need to prepend <code>sudo</code> to the <code>rsync</code> commands or the script execution, like <code>sudo ./sync_script.sh</code>.</p>
+        </div>
+    </div>
+    
+</div>
+
+
+<div class="conversation-item">
+    <div class="author user">
+        <img alt="You" />
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <p class="no-katex">S</p>
+        </div>
+    </div>
+    
+</div>
+
+
+<div class="conversation-item">
+    <div class="author GPT-3">
+        <svg width="41" height="41"><use xlink:href="#chatgpt" /></svg>
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <p>It seems like your message got cut off. Could you clarify or provide more details about your request? I'm here to help! 😊</p>
+        </div>
+    </div>
+    
+</div>
+    </div>
+
+
+    <script>
+        function toggleDarkMode(mode) {
+            const html = document.querySelector('html');
+            const isDarkMode = html.getAttribute('data-theme') === 'dark';
+            const newMode = mode || (isDarkMode ? 'light' : 'dark');
+            if (newMode !== 'dark' && newMode !== 'light') return;
+            html.setAttribute('data-theme', newMode);
+
+            const url = new URL(window.location);
+            url.searchParams.set('theme', newMode);
+            window.history.replaceState({}, '', url);
+        }
+        function toggleWidthMode(mode) {
+            const body = document.querySelector('body');
+            const widthToggleButton = document.querySelector('.width-toggle');
+            const isWide = body.getAttribute('data-width') === 'wide';
+            const newWidthMode = mode || (isWide ? 'narrow' : 'wide');
+            if (newWidthMode !== 'narrow' && newWidthMode !== 'wide') return;
+            body.setAttribute('data-width', newWidthMode);
+
+            const url = new URL(window.location);
+            url.searchParams.set('width', newWidthMode);
+            window.history.replaceState({}, '', url);
+
+            // Update the icon based on the current mode
+            const narrowIcon = widthToggleButton.querySelector('.narrow');
+            const expandIcon = widthToggleButton.querySelector('.expand');
+
+            if (newWidthMode === 'wide') {
+                expandIcon.style.display = "none";
+                narrowIcon.style.display = "block";
+            } else {
+                expandIcon.style.display = "block";
+                narrowIcon.style.display = "none";
+            }
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const theme = urlParams.get('theme');
+        const width = urlParams.get('width');
+
+        if (theme) toggleDarkMode(theme);
+        if (width) toggleWidthMode(width);
+
+        document.querySelector('.toggle').addEventListener('click', () => toggleDarkMode());
+        document.querySelector('.width-toggle').addEventListener('click', () => toggleWidthMode());
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics & Achievements - Steven Chaplinski | Growth Metrics & Milestones</title>
+    <meta name="description" content="View Steven Chaplinski's professional statistics, achievements, and growth metrics. Track progress and milestones in digital art and creative development.">
+    <meta name="keywords" content="Steven Chaplinski statistics, achievements, growth metrics, digital art milestones, professional stats">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .stats-hero {
+            background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(0,0,0,0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="statsGrid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(78,205,196,0.3)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23statsGrid)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .overview-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .overview-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .overview-card:hover {
+            transform: translateY(-10px);
+            border-color: #4ecdc4;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .overview-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        }
+
+        .overview-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.4);
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .overview-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .overview-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #4ecdc4;
+            text-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .overview-label {
+            color: #fff;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .overview-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .achievements-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .achievement-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            border-color: #4ecdc4;
+        }
+
+        .achievement-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .achievement-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem;
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .achievement-date {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .achievement-description {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .achievement-metrics {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1rem;
+        }
+
+        .achievement-metric {
+            text-align: center;
+        }
+
+        .achievement-metric-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            display: block;
+        }
+
+        .achievement-metric-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+        }
+
+        .growth-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .growth-chart {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            border-radius: 20px;
+            margin: 3rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .growth-chart::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.8), rgba(78, 205, 196, 0.8));
+            animation: chartShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes chartShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .chart-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+        }
+
+        .chart-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .chart-description {
+            font-size: 1.1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .milestones-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .milestones-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto;
+        }
+
+        .milestones-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #ff6b6b, #4ecdc4, #45b7d1);
+            transform: translateX(-50%);
+        }
+
+        .milestone-item {
+            position: relative;
+            margin: 3rem 0;
+            width: 50%;
+        }
+
+        .milestone-item:nth-child(odd) {
+            left: 0;
+            padding-right: 3rem;
+        }
+
+        .milestone-item:nth-child(even) {
+            left: 50%;
+            padding-left: 3rem;
+        }
+
+        .milestone-content {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .milestone-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border: 15px solid transparent;
+        }
+
+        .milestone-item:nth-child(odd) .milestone-content::before {
+            right: -30px;
+            border-left-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .milestone-item:nth-child(even) .milestone-content::before {
+            left: -30px;
+            border-right-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .milestone-icon {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.4);
+        }
+
+        .milestone-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .milestone-year {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            color: #4ecdc4;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .milestone-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .milestone-description {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        .comparison-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .comparison-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .comparison-period {
+            color: #4ecdc4;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .comparison-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1.5rem;
+        }
+
+        .comparison-stat {
+            text-align: center;
+        }
+
+        .comparison-stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            display: block;
+        }
+
+        .comparison-stat-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+        }
+
+        .comparison-change {
+            color: #4ecdc4;
+            font-weight: 600;
+        }
+
+        .comparison-change.positive {
+            color: #4ecdc4;
+        }
+
+        .comparison-change.negative {
+            color: #ff6b6b;
+        }
+
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="ctaDots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23ctaDots)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 15px 30px;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            border-radius: 25px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            background: white;
+            color: #ff6b6b;
+            transform: translateY(-2px);
+        }
+
+        .cta-btn.primary {
+            background: white;
+            color: #ff6b6b;
+        }
+
+        .cta-btn.primary:hover {
+            background: transparent;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .overview-grid,
+            .achievements-grid,
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .milestones-timeline::before {
+                left: 20px;
+            }
+
+            .milestone-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 3rem;
+                padding-right: 0;
+            }
+
+            .milestone-icon {
+                left: 20px;
+                transform: translateX(-50%);
+            }
+
+            .milestone-content::before {
+                display: none;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Steven</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="process.html" class="nav-link">Process</a>
+                <a href="case-studies.html" class="nav-link">Case Studies</a>
+                <a href="services-detailed.html" class="nav-link">Services</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="testimonials.html" class="nav-link">Testimonials</a>
+                <a href="store.html" class="nav-link">Store</a>
+                <a href="challenges.html" class="nav-link">Challenges</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="live-portfolio.html" class="nav-link">Live Portfolio</a>
+                <a href="collaboration.html" class="nav-link">Collaboration</a>
+                <a href="artist-story.html" class="nav-link">Artist Story</a>
+                <a href="interactive.html" class="nav-link">Interactive</a>
+                <a href="community.html" class="nav-link">Community</a>
+                <a href="statistics.html" class="nav-link active">Statistics</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Stats Hero -->
+    <section class="stats-hero">
+        <div class="container">
+            <h1 class="gradient-text">Statistics & Achievements</h1>
+            <p>Track my professional growth, creative milestones, and the impact of my work in the digital art community. Numbers tell a story of dedication, innovation, and continuous evolution.</p>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="overview-section">
+        <div class="container">
+            <h2 class="section-title">Key Metrics</h2>
+            <div class="overview-grid">
+                <div class="overview-card">
+                    <div class="overview-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <span class="overview-number">500+</span>
+                    <div class="overview-label">Artworks Created</div>
+                    <p class="overview-description">Digital paintings, illustrations, and creative projects completed over the years.</p>
+                </div>
+
+                <div class="overview-card">
+                    <div class="overview-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <span class="overview-number">150+</span>
+                    <div class="overview-label">Happy Clients</div>
+                    <p class="overview-description">Satisfied clients who have trusted me with their creative projects.</p>
+                </div>
+
+                <div class="overview-card">
+                    <div class="overview-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <span class="overview-number">25+</span>
+                    <div class="overview-label">Countries Reached</div>
+                    <p class="overview-description">Global reach with clients and collaborators from around the world.</p>
+                </div>
+
+                <div class="overview-card">
+                    <div class="overview-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <span class="overview-number">15+</span>
+                    <div class="overview-label">Awards & Recognition</div>
+                    <p class="overview-description">Industry recognition and awards for creative excellence.</p>
+                </div>
+
+                <div class="overview-card">
+                    <div class="overview-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <span class="overview-number">10+</span>
+                    <div class="overview-label">Years Experience</div>
+                    <p class="overview-description">Dedicated years to mastering digital art and creative development.</p>
+                </div>
+
+                <div class="overview-card">
+                    <div class="overview-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <span class="overview-number">98%</span>
+                    <div class="overview-label">Client Satisfaction</div>
+                    <p class="overview-description">Consistently high satisfaction rate from client feedback and reviews.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="achievements-section">
+        <div class="container">
+            <h2 class="section-title">Recent Achievements</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-badge">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="achievement-title">Digital Art Excellence Award</h3>
+                    <div class="achievement-date">December 2024</div>
+                    <p class="achievement-description">Recognized for outstanding contribution to digital art community and innovative creative techniques.</p>
+                    <div class="achievement-metrics">
+                        <div class="achievement-metric">
+                            <span class="achievement-metric-number">1st</span>
+                            <span class="achievement-metric-label">Place</span>
+                        </div>
+                        <div class="achievement-metric">
+                            <span class="achievement-metric-number">500+</span>
+                            <span class="achievement-metric-label">Votes</span>
+                        </div>
+                        <div class="achievement-metric">
+                            <span class="achievement-metric-number">25</span>
+                            <span class="achievement-metric-label">Judges</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-badge">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="achievement-title">Featured Artist of the Month</h3>
+                    <div class="achievement-date">November 2024</div>
+                    <p class="achievement-description">Selected as featured artist by major digital art platform for innovative approach to cyberpunk aesthetics.</p>
+                    <div class="achievement-metrics">
+                        <div class="achievement-metric">
+                            <span class="achievement-metric-number">50K+</span>
+                            <span class="achievement-metric-label">Views</span>
+                        </div>
+                        <div class="achievement-metric">
+                            <span class="achievement-metric-number">2.5K</span>
+                            <span class="achievement-metric-label">Likes</span>
+                        </div>
+                        <div class="achievement-metric">
+                            <span class="achievement-metric-number">300</span>
+                            <span class="achievement-metric-label">Comments</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-badge">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3 class="achievement-title">Client Project Milestone</h3>
+                    <div class="achievement-date">October 2024</div>
+                    <p class="achievement-description">Completed 100th client project with 100% satisfaction rate and zero missed deadlines.</p>
+                    <div class="achievement-metrics">
+                        <div class="achievement-metric">
+                            <span class="achievement-metric-number">100</span>
+                            <span class="achievement-metric-label">Projects</span>
+                        </div>
+                        <div class="achievement-metric">
+                            <span class="achievement-metric-number">100%</span>
+                            <span class="achievement-metric-label">Success</span>
+                        </div>
+                        <div class="achievement-metric">
+                            <span class="achievement-metric-number">0</span>
+                            <span class="achievement-metric-label">Delays</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-badge">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="achievement-title">Educational Impact</h3>
+                    <div class="achievement-date">September 2024</div>
+                    <p class="achievement-description">Tutorial series reached 1 million total views, helping aspiring artists learn digital techniques.</p>
+                    <div class="achievement-metrics">
+                        <div class="achievement-metric">
+                            <span class="achievement-metric-number">1M+</span>
+                            <span class="achievement-metric-label">Views</span>
+                        </div>
+                        <div class="achievement-metric">
+                            <span class="achievement-metric-number">25K</span>
+                            <span class="achievement-metric-label">Students</span>
+                        </div>
+                        <div class="achievement-metric">
+                            <span class="achievement-metric-number">50</span>
+                            <span class="achievement-metric-label">Tutorials</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Growth Section -->
+    <section class="growth-section">
+        <div class="container">
+            <h2 class="section-title">Growth Trajectory</h2>
+            <div class="growth-chart">
+                <div class="chart-content">
+                    <h3 class="chart-title">Professional Growth</h3>
+                    <p class="chart-description">Steady upward trajectory in client projects, revenue, and creative output over the past 5 years</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Milestones Section -->
+    <section class="milestones-section">
+        <div class="container">
+            <h2 class="section-title">Key Milestones</h2>
+            <div class="milestones-timeline">
+                <div class="milestone-item">
+                    <div class="milestone-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="milestone-content">
+                        <div class="milestone-year">2019</div>
+                        <h3 class="milestone-title">First Professional Project</h3>
+                        <p class="milestone-description">Completed first paid digital art commission, marking the beginning of my professional journey.</p>
+                    </div>
+                </div>
+
+                <div class="milestone-item">
+                    <div class="milestone-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="milestone-content">
+                        <div class="milestone-year">2020</div>
+                        <h3 class="milestone-title">Business Launch</h3>
+                        <p class="milestone-description">Officially launched freelance practice and established online presence with portfolio website.</p>
+                    </div>
+                </div>
+
+                <div class="milestone-item">
+                    <div class="milestone-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="milestone-content">
+                        <div class="milestone-year">2021</div>
+                        <h3 class="milestone-title">Community Building</h3>
+                        <p class="milestone-description">Started creating educational content and building a community of fellow artists and learners.</p>
+                    </div>
+                </div>
+
+                <div class="milestone-item">
+                    <div class="milestone-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="milestone-content">
+                        <div class="milestone-year">2022</div>
+                        <h3 class="milestone-title">Global Recognition</h3>
+                        <p class="milestone-description">First international client projects and recognition in digital art communities worldwide.</p>
+                    </div>
+                </div>
+
+                <div class="milestone-item">
+                    <div class="milestone-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="milestone-content">
+                        <div class="milestone-year">2023</div>
+                        <h3 class="milestone-title">Industry Awards</h3>
+                        <p class="milestone-description">Received first major industry recognition and awards for creative excellence and innovation.</p>
+                    </div>
+                </div>
+
+                <div class="milestone-item">
+                    <div class="milestone-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="milestone-content">
+                        <div class="milestone-year">2024</div>
+                        <h3 class="milestone-title">Peak Performance</h3>
+                        <p class="milestone-description">Achieved highest client satisfaction rates and expanded into new creative territories and technologies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section">
+        <div class="container">
+            <h2 class="section-title">Year-over-Year Growth</h2>
+            <div class="comparison-grid">
+                <div class="comparison-card">
+                    <div class="comparison-period">2023 vs 2024</div>
+                    <div class="comparison-stats">
+                        <div class="comparison-stat">
+                            <span class="comparison-stat-number">+45%</span>
+                            <span class="comparison-stat-label">Projects</span>
+                        </div>
+                        <div class="comparison-stat">
+                            <span class="comparison-stat-number">+60%</span>
+                            <span class="comparison-stat-label">Revenue</span>
+                        </div>
+                        <div class="comparison-stat">
+                            <span class="comparison-stat-number">+30%</span>
+                            <span class="comparison-stat-label">Clients</span>
+                        </div>
+                    </div>
+                    <p class="comparison-change positive">Significant growth across all metrics</p>
+                </div>
+
+                <div class="comparison-card">
+                    <div class="comparison-period">2022 vs 2023</div>
+                    <div class="comparison-stats">
+                        <div class="comparison-stat">
+                            <span class="comparison-stat-number">+25%</span>
+                            <span class="comparison-stat-label">Projects</span>
+                        </div>
+                        <div class="comparison-stat">
+                            <span class="comparison-stat-number">+40%</span>
+                            <span class="comparison-stat-label">Revenue</span>
+                        </div>
+                        <div class="comparison-stat">
+                            <span class="comparison-stat-number">+20%</span>
+                            <span class="comparison-stat-label">Clients</span>
+                        </div>
+                    </div>
+                    <p class="comparison-change positive">Steady growth trajectory</p>
+                </div>
+
+                <div class="comparison-card">
+                    <div class="comparison-period">2021 vs 2022</div>
+                    <div class="comparison-stats">
+                        <div class="comparison-stat">
+                            <span class="comparison-stat-number">+35%</span>
+                            <span class="comparison-stat-label">Projects</span>
+                        </div>
+                        <div class="comparison-stat">
+                            <span class="comparison-stat-number">+50%</span>
+                            <span class="comparison-stat-label">Revenue</span>
+                        </div>
+                        <div class="comparison-stat">
+                            <span class="comparison-stat-number">+45%</span>
+                            <span class="comparison-stat-label">Clients</span>
+                        </div>
+                    </div>
+                    <p class="comparison-change positive">Rapid expansion phase</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Work Together?</h2>
+                <p class="cta-description">These statistics represent years of dedication to creative excellence. Let's add your project to the success story.</p>
+                <div class="cta-buttons">
+                    <a href="collaboration.html" class="cta-btn primary">Start Project</a>
+                    <a href="gallery.html" class="cta-btn">View Portfolio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Steven Chaplinski</h3>
+                    <p>Digital Artist & Creative Developer</p>
+                    <p>Transforming ideas into visual reality through innovative digital art and creative solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="statistics.html">Statistics</a></li>
+                        <li><a href="testimonials.html">Testimonials</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Me</h4>
+                    <div class="social-links">
+                        <a href="https://behance.net/ichoake" class="social-link"><i class="fab fa-behance"></i></a>
+                        <a href="https://bit.ly/iChoake" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="https://aiavatar.etsy.com/" class="social-link"><i class="fas fa-store"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Steven Chaplinski. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Statistics animation
+        function animateNumbers() {
+            const numbers = document.querySelectorAll('.overview-number');
+            numbers.forEach(number => {
+                const target = parseInt(number.textContent.replace(/[^\d]/g, ''));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    number.textContent = Math.floor(current) + (number.textContent.includes('+') ? '+' : '') + (number.textContent.includes('%') ? '%' : '');
+                }, 16);
+            });
+        }
+
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate numbers when they come into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateNumbers();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+
+            const overviewSection = document.querySelector('.overview-section');
+            if (overviewSection) {
+                observer.observe(overviewSection);
+            }
+        });
+
+        // Add hover effects for achievement cards
+        document.querySelectorAll('.achievement-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

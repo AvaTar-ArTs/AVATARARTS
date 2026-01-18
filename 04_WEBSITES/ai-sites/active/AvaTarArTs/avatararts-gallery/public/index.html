@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🖼️  AvatarArts Gallery</title>
+    <link rel="stylesheet" href="./styles/AVATARARTS_GLOBAL_STYLES.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: var(--page-bg);
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--page-text);
+        }
+        
+        .theme-switcher {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.2s;
+        }
+        
+        .theme-switcher:hover {
+            transform: scale(1.2);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links a {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: opacity 0.2s;
+        }
+        
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            color: var(--page-text);
+            background-color: var(--page-bg);
+            min-height: calc(100vh - 100px);
+        }
+        
+        section {
+            margin: 2rem 0;
+        }
+        
+        section h2 {
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .gallery-item {
+            background-color: var(--page-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .gallery-item-content {
+            padding: 1rem;
+        }
+        
+        .gallery-item-content h3 {
+            margin: 0 0 0.5rem 0;
+            color: var(--accent-color);
+        }
+        
+        .gallery-item-content p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+        }
+        
+        footer {
+            background-color: var(--page-bg);
+            border-top: 1px solid var(--border-light);
+            padding: 2rem;
+            text-align: center;
+            color: var(--secondary-text);
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            main {
+                padding: 1rem;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <h1>🖼️  AvatarArts Gallery</h1>
+            <p style="margin: 0; font-size: 0.9rem; color: var(--secondary-text);">Beautiful gallery showcase of AI-generated and digital art</p>
+        </div>
+        <button class="theme-switcher" id="themeBtn" title="Toggle theme">🌙</button>
+    </header>
+    
+    <main>
+        <section>
+            <h2>Welcome</h2>
+            <p>Welcome to 🖼️  AvatarArts Gallery. This is a beautiful, responsive site built with pure HTML, CSS, and JavaScript.</p>
+            <p>Features:</p>
+            <ul>
+                <li>🌓 Dark/Light theme toggle</li>
+                <li>📱 Fully responsive design</li>
+                <li>✨ Smooth animations</li>
+                <li>⚡ No build tools required</li>
+                <li>🎨 Professional styling</li>
+            </ul>
+        </section>
+        
+        <section>
+            <h2>Sample Gallery</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">🎨</div>
+                    <div class="gallery-item-content">
+                        <h3>Art Piece 1</h3>
+                        <p>Beautiful digital artwork</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">✨</div>
+                    <div class="gallery-item-content">
+                        <h3>Art Piece 2</h3>
+                        <p>Creative composition</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">🌟</div>
+                    <div class="gallery-item-content">
+                        <h3>Art Piece 3</h3>
+                        <p>Stunning visual</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Navigation</h2>
+            <div class="nav-links">
+                <a href="../../static-projects/index.html">← Back to Main</a>
+                <a href="./index.html">Refresh</a>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 AvatarArts. Built with HTML, CSS, and JavaScript.</p>
+        <p style="font-size: 0.8rem; margin-top: 1rem;">No build tools. No npm. No complexity. Just pure web technologies.</p>
+    </footer>
+    
+    <script>
+        // Theme switcher
+        const themeBtn = document.getElementById('themeBtn');
+        const html = document.documentElement;
+        
+        // Get saved theme or system preference
+        const savedTheme = localStorage.getItem('theme') || 
+            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        
+        html.setAttribute('data-theme', savedTheme);
+        updateThemeButton(savedTheme);
+        
+        function updateThemeButton(theme) {
+            themeBtn.textContent = theme === 'light' ? '🌙' : '☀️';
+        }
+        
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeButton(newTheme);
+        });
+    </script>
+</body>
+</html>

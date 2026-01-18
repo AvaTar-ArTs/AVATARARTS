@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 Business Dashboard - Quantum Creative Alchemist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .stat {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 8px;
+        }
+        
+        .stat-label {
+            font-weight: 500;
+        }
+        
+        .stat-value {
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(102, 126, 234, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transition: width 0.3s;
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 80px;
+            resize: vertical;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+        
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+        
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #aaa;
+        }
+        
+        .close:hover {
+            color: #000;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            border-bottom-color: #667eea;
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .list-item {
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background: rgba(102, 126, 234, 0.05);
+        }
+        
+        .list-item h4 {
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .list-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status.active {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status.completed {
+            background: #cce5ff;
+            color: #004085;
+        }
+        
+        .status.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status.paid {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌟 Business Dashboard</h1>
+            <p>Quantum Creative Alchemist - Manage Your Creative Business</p>
+        </div>
+        
+        <div class="dashboard-grid">
+            <!-- Revenue Card -->
+            <div class="card">
+                <h3>💰 Revenue Overview</h3>
+                <div class="stat">
+                    <span class="stat-label">Total Revenue</span>
+                    <span class="stat-value" id="total-revenue">$0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Pending Revenue</span>
+                    <span class="stat-value" id="pending-revenue">$0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Monthly Goal Progress</span>
+                    <span class="stat-value" id="goal-progress">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-bar" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <!-- Projects Card -->
+            <div class="card">
+                <h3>🚀 Projects</h3>
+                <div class="stat">
+                    <span class="stat-label">Active Projects</span>
+                    <span class="stat-value" id="active-projects">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Completed Projects</span>
+                    <span class="stat-value" id="completed-projects">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Total Clients</span>
+                    <span class="stat-value" id="total-clients">0</span>
+                </div>
+                <button class="btn" onclick="openModal('project-modal')">Add Project</button>
+            </div>
+            
+            <!-- Invoices Card -->
+            <div class="card">
+                <h3>📄 Invoices</h3>
+                <div class="stat">
+                    <span class="stat-label">Pending Invoices</span>
+                    <span class="stat-value" id="pending-invoices">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Total Invoices</span>
+                    <span class="stat-value" id="total-invoices">0</span>
+                </div>
+                <button class="btn" onclick="openModal('invoice-modal')">Create Invoice</button>
+            </div>
+            
+            <!-- Quick Actions Card -->
+            <div class="card">
+                <h3>⚡ Quick Actions</h3>
+                <button class="btn" onclick="openModal('client-modal')">Add Client</button>
+                <button class="btn btn-secondary" onclick="generateContent()">Generate Content</button>
+                <button class="btn btn-secondary" onclick="exportData()">Export Data</button>
+                <button class="btn btn-secondary" onclick="viewAnalytics()">View Analytics</button>
+            </div>
+        </div>
+        
+        <!-- Tabs for detailed views -->
+        <div class="card">
+            <div class="tabs">
+                <div class="tab active" onclick="switchTab('projects')">Projects</div>
+                <div class="tab" onclick="switchTab('clients')">Clients</div>
+                <div class="tab" onclick="switchTab('invoices')">Invoices</div>
+                <div class="tab" onclick="switchTab('content')">Content</div>
+            </div>
+            
+            <div id="projects-tab" class="tab-content active">
+                <h3>Active Projects</h3>
+                <div id="projects-list">
+                    <!-- Projects will be loaded here -->
+                </div>
+            </div>
+            
+            <div id="clients-tab" class="tab-content">
+                <h3>Clients</h3>
+                <div id="clients-list">
+                    <!-- Clients will be loaded here -->
+                </div>
+            </div>
+            
+            <div id="invoices-tab" class="tab-content">
+                <h3>Invoices</h3>
+                <div id="invoices-list">
+                    <!-- Invoices will be loaded here -->
+                </div>
+            </div>
+            
+            <div id="content-tab" class="tab-content">
+                <h3>Content Generator</h3>
+                <div class="form-group">
+                    <label for="content-type">Content Type</label>
+                    <select id="content-type">
+                        <option value="linkedin">LinkedIn Post</option>
+                        <option value="twitter">Twitter Post</option>
+                        <option value="youtube">YouTube Title</option>
+                        <option value="blog">Blog Post Outline</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="persona">Persona</label>
+                    <select id="persona">
+                        <option value="syntax_sinner">Syntax Sinner</option>
+                        <option value="promptocalypse">Promptocalypse</option>
+                        <option value="codex_forge">Codex Forge</option>
+                        <option value="sonic_spells">Sonic Spells</option>
+                        <option value="frankenstack_labs">Frankenstack Labs</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="generateContent()">Generate Content</button>
+                <div id="generated-content" style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; display: none;">
+                    <h4>Generated Content:</h4>
+                    <p id="content-text"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modals -->
+    <div id="client-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('client-modal')">&times;</span>
+            <h3>Add New Client</h3>
+            <form id="client-form">
+                <div class="form-group">
+                    <label for="client-name">Name</label>
+                    <input type="text" id="client-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="client-email">Email</label>
+                    <input type="email" id="client-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="client-project-type">Project Type</label>
+                    <select id="client-project-type" required>
+                        <option value="AI Integration">AI Integration</option>
+                        <option value="Creative Automation">Creative Automation</option>
+                        <option value="Web Development">Web Development</option>
+                        <option value="Consulting">Consulting</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="client-budget">Budget Range</label>
+                    <select id="client-budget" required>
+                        <option value="$500-1000">$500-1000</option>
+                        <option value="$1000-2000">$1000-2000</option>
+                        <option value="$2000-3000">$2000-3000</option>
+                        <option value="$3000+">$3000+</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="client-notes">Notes</label>
+                    <textarea id="client-notes"></textarea>
+                </div>
+                <button type="submit" class="btn">Add Client</button>
+            </form>
+        </div>
+    </div>
+    
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('project-modal')">&times;</span>
+            <h3>Add New Project</h3>
+            <form id="project-form">
+                <div class="form-group">
+                    <label for="project-name">Project Name</label>
+                    <input type="text" id="project-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="project-client">Client</label>
+                    <select id="project-client" required>
+                        <!-- Will be populated with clients -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="project-description">Description</label>
+                    <textarea id="project-description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="project-budget">Budget</label>
+                    <input type="number" id="project-budget" required>
+                </div>
+                <div class="form-group">
+                    <label for="project-due-date">Due Date</label>
+                    <input type="date" id="project-due-date" required>
+                </div>
+                <button type="submit" class="btn">Add Project</button>
+            </form>
+        </div>
+    </div>
+    
+    <div id="invoice-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('invoice-modal')">&times;</span>
+            <h3>Create Invoice</h3>
+            <form id="invoice-form">
+                <div class="form-group">
+                    <label for="invoice-client">Client</label>
+                    <select id="invoice-client" required>
+                        <!-- Will be populated with clients -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="invoice-amount">Amount</label>
+                    <input type="number" id="invoice-amount" required>
+                </div>
+                <div class="form-group">
+                    <label for="invoice-description">Description</label>
+                    <textarea id="invoice-description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="invoice-due-days">Due in (days)</label>
+                    <input type="number" id="invoice-due-days" value="30" required>
+                </div>
+                <button type="submit" class="btn">Create Invoice</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Sample data
+        let dashboardData = {
+            totalRevenue: 0,
+            pendingRevenue: 0,
+            activeProjects: 0,
+            completedProjects: 0,
+            totalClients: 0,
+            pendingInvoices: 0,
+            monthlyGoalProgress: 0
+        };
+        
+        let clients = [];
+        let projects = [];
+        let invoices = [];
+        
+        // Initialize dashboard
+        function initDashboard() {
+            loadSampleData();
+            updateDashboard();
+            loadProjects();
+            loadClients();
+            loadInvoices();
+        }
+        
+        function loadSampleData() {
+            // Sample clients
+            clients = [
+                {name: "Sarah Johnson", email: "sarah@example.com", projectType: "AI Integration", budget: "$500-1000", status: "active"},
+                {name: "Mike Chen", email: "mike@example.com", projectType: "Creative Automation", budget: "$1000-2000", status: "active"},
+                {name: "Jessica Williams", email: "jessica@example.com", projectType: "Web Development", budget: "$2000-3000", status: "completed"}
+            ];
+            
+            // Sample projects
+            projects = [
+                {name: "AI Art Generator", client: "Sarah Johnson", description: "Custom DALL-E integration", budget: 800, status: "active", progress: 75},
+                {name: "YouTube Automation", client: "Mike Chen", description: "Complete automation pipeline", budget: 1200, status: "active", progress: 50},
+                {name: "E-commerce Website", client: "Jessica Williams", description: "Full-stack platform", budget: 2500, status: "completed", progress: 100}
+            ];
+            
+            // Sample invoices
+            invoices = [
+                {number: "INV-001", client: "Sarah Johnson", amount: 800, status: "paid", dueDate: "2025-02-15"},
+                {number: "INV-002", client: "Mike Chen", amount: 1200, status: "pending", dueDate: "2025-02-20"},
+                {number: "INV-003", client: "Jessica Williams", amount: 2500, status: "paid", dueDate: "2025-03-01"}
+            ];
+            
+            // Calculate dashboard data
+            dashboardData.totalRevenue = invoices.filter(i => i.status === 'paid').reduce((sum, i) => sum + i.amount, 0);
+            dashboardData.pendingRevenue = invoices.filter(i => i.status === 'pending').reduce((sum, i) => sum + i.amount, 0);
+            dashboardData.activeProjects = projects.filter(p => p.status === 'active').length;
+            dashboardData.completedProjects = projects.filter(p => p.status === 'completed').length;
+            dashboardData.totalClients = clients.length;
+            dashboardData.pendingInvoices = invoices.filter(i => i.status === 'pending').length;
+            dashboardData.monthlyGoalProgress = (dashboardData.totalRevenue / 10000) * 100;
+        }
+        
+        function updateDashboard() {
+            document.getElementById('total-revenue').textContent = `$${dashboardData.totalRevenue.toLocaleString()}`;
+            document.getElementById('pending-revenue').textContent = `$${dashboardData.pendingRevenue.toLocaleString()}`;
+            document.getElementById('active-projects').textContent = dashboardData.activeProjects;
+            document.getElementById('completed-projects').textContent = dashboardData.completedProjects;
+            document.getElementById('total-clients').textContent = dashboardData.totalClients;
+            document.getElementById('pending-invoices').textContent = dashboardData.pendingInvoices;
+            document.getElementById('goal-progress').textContent = `${dashboardData.monthlyGoalProgress.toFixed(1)}%`;
+            document.getElementById('progress-bar').style.width = `${Math.min(dashboardData.monthlyGoalProgress, 100)}%`;
+        }
+        
+        function loadProjects() {
+            const projectsList = document.getElementById('projects-list');
+            projectsList.innerHTML = '';
+            
+            projects.forEach(project => {
+                const div = document.createElement('div');
+                div.className = 'list-item';
+                div.innerHTML = `
+                    <h4>${project.name}</h4>
+                    <p><strong>Client:</strong> ${project.client}</p>
+                    <p><strong>Budget:</strong> $${project.budget.toLocaleString()}</p>
+                    <p><strong>Progress:</strong> ${project.progress}%</p>
+                    <span class="status ${project.status}">${project.status}</span>
+                `;
+                projectsList.appendChild(div);
+            });
+        }
+        
+        function loadClients() {
+            const clientsList = document.getElementById('clients-list');
+            clientsList.innerHTML = '';
+            
+            clients.forEach(client => {
+                const div = document.createElement('div');
+                div.className = 'list-item';
+                div.innerHTML = `
+                    <h4>${client.name}</h4>
+                    <p><strong>Email:</strong> ${client.email}</p>
+                    <p><strong>Project Type:</strong> ${client.projectType}</p>
+                    <p><strong>Budget:</strong> ${client.budget}</p>
+                    <span class="status ${client.status}">${client.status}</span>
+                `;
+                clientsList.appendChild(div);
+            });
+        }
+        
+        function loadInvoices() {
+            const invoicesList = document.getElementById('invoices-list');
+            invoicesList.innerHTML = '';
+            
+            invoices.forEach(invoice => {
+                const div = document.createElement('div');
+                div.className = 'list-item';
+                div.innerHTML = `
+                    <h4>${invoice.number}</h4>
+                    <p><strong>Client:</strong> ${invoice.client}</p>
+                    <p><strong>Amount:</strong> $${invoice.amount.toLocaleString()}</p>
+                    <p><strong>Due Date:</strong> ${invoice.dueDate}</p>
+                    <span class="status ${invoice.status}">${invoice.status}</span>
+                `;
+                invoicesList.appendChild(div);
+            });
+        }
+        
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // Show selected tab
+            event.target.classList.add('active');
+            document.getElementById(tabName + '-tab').classList.add('active');
+        }
+        
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            
+            // Populate client dropdowns
+            if (modalId === 'project-modal' || modalId === 'invoice-modal') {
+                const select = document.getElementById(modalId === 'project-modal' ? 'project-client' : 'invoice-client');
+                select.innerHTML = '';
+                clients.forEach(client => {
+                    const option = document.createElement('option');
+                    option.value = client.name;
+                    option.textContent = client.name;
+                    select.appendChild(option);
+                });
+            }
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        function generateContent() {
+            const contentType = document.getElementById('content-type').value;
+            const persona = document.getElementById('persona').value;
+            
+            // Sample content generation (in real app, this would call the Python script)
+            const contentSamples = {
+                linkedin: "🚀 Just built an AI Art Generator - a creative automation solution. Built with Python and OpenAI API. What's your latest coding adventure? #Python #Automation #AI",
+                twitter: "Just automated image processing with Python 🐍 🚀 #Python #Automation #Tech",
+                youtube: "How I Built AI Art Generator in Python (Self-Taught Developer)",
+                blog: "The Self-Taught Developer's Guide to AI Integration"
+            };
+            
+            const content = contentSamples[contentType] || "Content generated successfully!";
+            
+            document.getElementById('content-text').textContent = content;
+            document.getElementById('generated-content').style.display = 'block';
+        }
+        
+        function exportData() {
+            const data = {
+                clients: clients,
+                projects: projects,
+                invoices: invoices,
+                dashboard: dashboardData,
+                exportDate: new Date().toISOString()
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `business_export_${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+        
+        function viewAnalytics() {
+            alert('Analytics view would open here. This would show detailed charts and metrics.');
+        }
+        
+        // Form submissions
+        document.getElementById('client-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const client = {
+                name: document.getElementById('client-name').value,
+                email: document.getElementById('client-email').value,
+                projectType: document.getElementById('client-project-type').value,
+                budget: document.getElementById('client-budget').value,
+                status: 'active'
+            };
+            clients.push(client);
+            loadClients();
+            updateDashboard();
+            closeModal('client-modal');
+            this.reset();
+        });
+        
+        document.getElementById('project-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const project = {
+                name: document.getElementById('project-name').value,
+                client: document.getElementById('project-client').value,
+                description: document.getElementById('project-description').value,
+                budget: parseFloat(document.getElementById('project-budget').value),
+                status: 'active',
+                progress: 0
+            };
+            projects.push(project);
+            loadProjects();
+            updateDashboard();
+            closeModal('project-modal');
+            this.reset();
+        });
+        
+        document.getElementById('invoice-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const invoice = {
+                number: `INV-${String(invoices.length + 1).padStart(3, '0')}`,
+                client: document.getElementById('invoice-client').value,
+                amount: parseFloat(document.getElementById('invoice-amount').value),
+                status: 'pending',
+                dueDate: new Date(Date.now() + parseInt(document.getElementById('invoice-due-days').value) * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+            };
+            invoices.push(invoice);
+            loadInvoices();
+            updateDashboard();
+            closeModal('invoice-modal');
+            this.reset();
+        });
+        
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+        
+        // Initialize dashboard when page loads
+        document.addEventListener('DOMContentLoaded', initDashboard);
+    </script>
+</body>
+</html>

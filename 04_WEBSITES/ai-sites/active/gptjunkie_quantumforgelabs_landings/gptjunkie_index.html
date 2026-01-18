@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GPTJunkie — Prompts, Hacks, and AI Chaos</title>
+  <meta name="description" content="GPTJunkie is a playful lab of prompts, hacks, and honest reviews. We break AI to learn how to build with it—fast." />
+  <meta name="theme-color" content="#0f172a" />
+  <meta property="og:title" content="GPTJunkie — Prompts, Hacks, and AI Chaos" />
+  <meta property="og:description" content="Prompts, hacks, fail-to-win guides, and tools. Addicted to AI? Same." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gptjunkie.com/" />
+  <meta property="og:image" content="/og-image.jpg" />
+  <link rel="icon" href="/favicon.ico" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .glass { backdrop-filter: blur(10px); background: rgba(255,255,255,0.06); }
+    .grid-card:hover { transform: translateY(-4px); }
+    .tag { border: 1px solid rgba(255,255,255,0.15); }
+  </style>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "WebSite", "name": "GPTJunkie", "url": "https://gptjunkie.com/", "potentialAction": {"@type": "SearchAction", "target": "https://gptjunkie.com/search?q={query}", "query-input": "required name=query"}, "dateModified": "2025-09-03"}
+  </script>
+</head>
+<body class="bg-gray-900 text-gray-100 antialiased">
+  <header class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-purple-700/20 via-indigo-600/10 to-fuchsia-500/20"></div>
+    <div class="max-w-7xl mx-auto px-6 py-16 sm:py-24 relative">
+      <div class="flex items-center justify-between">
+        <a class="text-2xl font-extrabold tracking-tight">GPT<span class="text-fuchsia-400">Junkie</span></a>
+        <nav class="space-x-6 hidden sm:block">
+          <a href="#reviews" class="hover:text-fuchsia-300">Reviews</a>
+          <a href="#guides" class="hover:text-fuchsia-300">Guides</a>
+          <a href="#tools" class="hover:text-fuchsia-300">Tools</a>
+          <a href="#subscribe" class="hover:text-fuchsia-300">Subscribe</a>
+        </nav>
+      </div>
+      <div class="mt-14 max-w-3xl">
+        <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight">Prompts, Hacks, and <span class="text-fuchsia-400">AI Chaos</span></h1>
+        <p class="mt-5 text-lg text-gray-300">We break models so you don't have to. Bite-sized experiments, brutally honest reviews, and copy‑pasteable workflows for builders.</p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <a href="#latest" class="px-6 py-3 rounded-xl bg-fuchsia-500 hover:bg-fuchsia-400 text-gray-900 font-semibold">Read the latest</a>
+          <a href="#tools" class="px-6 py-3 rounded-xl glass tag">Get the tools</a>
+        </div>
+        <div class="mt-6 flex gap-2 flex-wrap">
+          <span class="px-3 py-1 rounded-full tag text-sm">#promptcraft</span>
+          <span class="px-3 py-1 rounded-full tag text-sm">#rag</span>
+          <span class="px-3 py-1 rounded-full tag text-sm">#agents</span>
+          <span class="px-3 py-1 rounded-full tag text-sm">#vision</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6">
+    <!-- Featured grid -->
+    <section id="latest" class="py-12">
+      <h2 class="text-2xl font-bold mb-6">Latest drops</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <article class="grid-card glass rounded-xl p-6 transition">
+          <h3 class="text-xl font-semibold">Agent Playbook: Rank Handles by SEO</h3>
+          <p class="mt-2 text-gray-300">A step‑by‑step agent brief that extracts handles from JSON/chat and ranks top 2–5% with clean CSV output.</p>
+          <a href="#" class="mt-4 inline-block text-fuchsia-300 hover:underline">Open playbook →</a>
+        </article>
+        <article class="grid-card glass rounded-xl p-6 transition">
+          <h3 class="text-xl font-semibold">Local LLM Toolkit (CPU‑only)</h3>
+          <p class="mt-2 text-gray-300">Ollama scripts + menu to pull, alias, uninstall, and run 7–8B models on an Intel Mac. </p>
+          <a href="#" class="mt-4 inline-block text-fuchsia-300 hover:underline">Get the toolkit →</a>
+        </article>
+        <article class="grid-card glass rounded-xl p-6 transition">
+          <h3 class="text-xl font-semibold">RAG for Real People</h3>
+          <p class="mt-2 text-gray-300">Embeddings that matter: how to wire up search that actually finds things—without a GPU.</p>
+          <a href="#" class="mt-4 inline-block text-fuchsia-300 hover:underline">Read the guide →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Guides -->
+    <section id="guides" class="py-8">
+      <h2 class="text-2xl font-bold mb-4">Guides & Fail‑to‑Win</h2>
+      <ul class="space-y-3">
+        <li class="glass rounded-lg p-4">🧰 <strong>Prompt Surgery</strong> — how to cut 30% tokens and get better results.</li>
+        <li class="glass rounded-lg p-4">🕸️ <strong>Agent Chains</strong> — when to orchestrate vs. when to just script it.</li>
+        <li class="glass rounded-lg p-4">🧪 <strong>Benchmark Honesty</strong> — what most “leaderboards” hide.</li>
+      </ul>
+    </section>
+
+    <!-- Tools -->
+    <section id="tools" class="py-8">
+      <h2 class="text-2xl font-bold mb-4">Tools</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="glass rounded-xl p-6">
+          <h3 class="font-semibold">SEO Batch Tagger</h3>
+          <p class="text-gray-300">Generate titles, tags, and CSVs for art uploads.</p>
+          <a class="text-fuchsia-300 hover:underline" href="#">Try it →</a>
+        </div>
+        <div class="glass rounded-xl p-6">
+          <h3 class="font-semibold">OCR Renamer</h3>
+          <p class="text-gray-300">Rename files from on‑image text with confidence thresholds.</p>
+          <a class="text-fuchsia-300 hover:underline" href="#">CLI →</a>
+        </div>
+        <div class="glass rounded-xl p-6">
+          <h3 class="font-semibold">Upscale/Resize</h3>
+          <p class="text-gray-300">Make images storefront‑ready with DPI checks.</p>
+          <a class="text-fuchsia-300 hover:underline" href="#">Docs →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subscribe -->
+    <section id="subscribe" class="py-12">
+      <div class="glass rounded-2xl p-6 md:p-10">
+        <h2 class="text-2xl font-bold">Subscribe</h2>
+        <p class="text-gray-300 mt-2">One email per week with experiments, prompts, and tools.</p>
+        <form class="mt-6 grid sm:grid-cols-[1fr_auto] gap-3" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
+          <input type="email" required placeholder="you@domain.com" class="px-4 py-3 rounded-xl bg-gray-800 border border-gray-700 focus:outline-none" />
+          <button class="px-6 py-3 rounded-xl bg-fuchsia-500 text-gray-900 font-semibold">Join the chaos</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="max-w-7xl mx-auto px-6 py-14 text-sm text-gray-400">
+    © 2025 GPTJunkie — Addicted to prompts, hacks, and AI chaos.
+  </footer>
+</body>
+</html>

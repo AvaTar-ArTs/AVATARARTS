@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html_files - AVATARARTS</title>
+    <meta name="description" content="Directory">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            opacity: 0.95;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .navigation {
+            background: #f8f9fa;
+            padding: 15px 30px;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: #667eea;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .directory-listing {
+            padding: 30px;
+        }
+
+        .directory-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .directory-header h2 {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .search-box {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        thead {
+            background: #667eea;
+            color: white;
+        }
+
+        th {
+            text-align: left;
+            padding: 15px;
+            font-weight: 600;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .icon {
+            width: 30px;
+            text-align: center;
+            font-size: 1.3em;
+        }
+
+        .name {
+            font-weight: 500;
+        }
+
+        .name a {
+            color: #667eea;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .name a:hover {
+            text-decoration: underline;
+            color: #764ba2;
+        }
+
+        .size {
+            color: #6c757d;
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .type {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .folder-icon {
+            color: #ffc107;
+        }
+
+        .file-icon {
+            color: #6c757d;
+        }
+
+        .parent-dir {
+            background: #e7f3ff;
+            font-weight: 600;
+        }
+
+        .parent-dir a {
+            color: #0066cc;
+        }
+
+        .stats {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px;
+            border-top: 3px solid #667eea;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stat-label {
+            font-size: 0.85em;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .subdirectories {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .subdirectories h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .subdir-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .subdir-card {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s;
+        }
+
+        .subdir-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .subdir-card a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .subdir-card a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📁 html_files</h1>
+            <p>Directory</p>
+            <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.9;">Base URL: avatararts.org/SEO-revenue/all/04_WEBSITES/ai-sites/archived/New_Folder_With_Items_3_ORGANIZED/html_files/ | Path: /Users/steven/AVATARARTS/04_WEBSITES/ai-sites/archived/New_Folder_With_Items_3_ORGANIZED/html_files/ | Updated: January 13, 2026 11:59 AM</p>
+        </header>
+
+        <div class="navigation">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> / <a href="04_WEBSITES/index.html">04_WEBSITES</a> / <a href="04_WEBSITES/ai-sites/index.html">ai-sites</a> / <a href="04_WEBSITES/ai-sites/archived/index.html">archived</a> / <a href="04_WEBSITES/ai-sites/archived/New_Folder_With_Items_3_ORGANIZED/index.html">New_Folder_With_Items_3_ORGANIZED</a> / <span>html_files</span>
+            </div>
+            <div class="nav-links">
+                <a href="../../../../../index.html">🏠 Home</a>
+                <a href="../index.html">⬆️ Parent</a>
+            </div>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Search files and folders..." autocomplete="off">
+        </div>
+
+        <div class="directory-listing">
+            <div class="directory-header">
+                <h2>📂 /Users/steven/AVATARARTS/04_WEBSITES/ai-sites/archived/New_Folder_With_Items_3_ORGANIZED/html_files/</h2>
+                <p>Directory</p>
+            </div>
+
+            
+
+            <table>
+                <thead>
+                    <tr>
+                        <th class="icon"></th>
+                        <th class="name">Name</th>
+                        <th class="size">Size</th>
+                        <th class="type">Type</th>
+                    </tr>
+                </thead>
+                <tbody id="fileTable">
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="01-aa-8mb-squisher.html">01-aa-8mb-squisher.html</a></td>
+            <td class="size">3.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="02-youtube-to-csvifier.html">02-youtube-to-csvifier.html</a></td>
+            <td class="size">3.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="03-pod-accelerator-service.html">03-pod-accelerator-service.html</a></td>
+            <td class="size">3.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="500k-blueprint.html">500k-blueprint.html</a></td>
+            <td class="size">18.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AlchemyAPI-audio-showcase.html">AlchemyAPI-audio-showcase.html</a></td>
+            <td class="size">21.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Analyze_research_focus.html">Analyze_research_focus.html</a></td>
+            <td class="size">356.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AvaTarArTs_html_Artistic_Bio_Creation.html">AvaTarArTs_html_Artistic_Bio_Creation.html</a></td>
+            <td class="size">88.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AvatarArts_1.html">AvatarArts_1.html</a></td>
+            <td class="size">18.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AvatarArts_2.html">AvatarArts_2.html</a></td>
+            <td class="size">19.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AvatarArts_3.html">AvatarArts_3.html</a></td>
+            <td class="size">23.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AvatarArts_Landing_Page.html">AvatarArts_Landing_Page.html</a></td>
+            <td class="size">21.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Batch_Narrative_Typography_Prompts.html">Batch_Narrative_Typography_Prompts.html</a></td>
+            <td class="size">47.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Bioluminescent_Fantasy_Journey_Claude.html">Bioluminescent_Fantasy_Journey_Claude.html</a></td>
+            <td class="size">49.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPLETE_DATA_PROCESSING_PLAN.html">COMPLETE_DATA_PROCESSING_PLAN.html</a></td>
+            <td class="size">18.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPREHENSIVE_CURSOR_AGENT_COMPILATION.html">COMPREHENSIVE_CURSOR_AGENT_COMPILATION.html</a></td>
+            <td class="size">29.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPREHENSIVE_STRATEGIC_ANALYSIS_REPORT.html">COMPREHENSIVE_STRATEGIC_ANALYSIS_REPORT.html</a></td>
+            <td class="size">51.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="CURSOR_AGENT_COMPARATIVE_ANALYSIS.html">CURSOR_AGENT_COMPARATIVE_ANALYSIS.html</a></td>
+            <td class="size">26.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Complete_Creative_Framework_Music_Collection.html">Complete_Creative_Framework_Music_Collection.html</a></td>
+            <td class="size">41.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ComprehensiveSEOAnalysisDailyAI.html">ComprehensiveSEOAnalysisDailyAI.html</a></td>
+            <td class="size">368.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Convergence_Mathematical_Harmony_Cosmic_Com.html">Convergence_Mathematical_Harmony_Cosmic_Com.html</a></td>
+            <td class="size">41.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="DEEP_CONTENT_AWARE_ANALYSIS_REPORT.html">DEEP_CONTENT_AWARE_ANALYSIS_REPORT.html</a></td>
+            <td class="size">32.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Directory_Explorer.html">Directory_Explorer.html</a></td>
+            <td class="size">22.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Domain%20Deployment%20Guide.html">Domain Deployment Guide.html</a></td>
+            <td class="size">230.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="First_job_application_guide.html">First_job_application_guide.html</a></td>
+            <td class="size">29.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="GPTJunkie_Landing_Page.html">GPTJunkie_Landing_Page.html</a></td>
+            <td class="size">25.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="LinkdSeoPythonBio.html">LinkdSeoPythonBio.html</a></td>
+            <td class="size">328.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Lions_Cradle_Elsweyr_Guide_Return_Dragon.html">Lions_Cradle_Elsweyr_Guide_Return_Dragon.html</a></td>
+            <td class="size">40.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Mystical_Fox_Shaman_Batch.html">Mystical_Fox_Shaman_Batch.html</a></td>
+            <td class="size">48.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ORGANIZED_CONTENT_ANALYSIS_REPORT.html">ORGANIZED_CONTENT_ANALYSIS_REPORT.html</a></td>
+            <td class="size">42.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Phi_Fibonacci_Cosmic_Creation_Claude.html">Phi_Fibonacci_Cosmic_Creation_Claude.html</a></td>
+            <td class="size">35.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Phi_Fibonacci_Cosmic_Creation_Claude_2.html">Phi_Fibonacci_Cosmic_Creation_Claude_2.html</a></td>
+            <td class="size">44.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Phi_Fibonacci_Divine_Duality_1.html">Phi_Fibonacci_Divine_Duality_1.html</a></td>
+            <td class="size">69.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Phi_Fibonacci_Divine_Duality_Creation_1.html">Phi_Fibonacci_Divine_Duality_Creation_1.html</a></td>
+            <td class="size">35.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Phi_Fibonacci_Divine_Duality_Creation_2.html">Phi_Fibonacci_Divine_Duality_Creation_2.html</a></td>
+            <td class="size">23.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Python%20Projects%20Showcase.html">Python Projects Showcase.html</a></td>
+            <td class="size">8.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Python_Skill_Review.html">Python_Skill_Review.html</a></td>
+            <td class="size">616.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="QuantumForgeLabs.html">QuantumForgeLabs.html</a></td>
+            <td class="size">1.4 MB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="QuantumForgeLabs_Landing_Page.html">QuantumForgeLabs_Landing_Page.html</a></td>
+            <td class="size">24.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ROOT_SITE_STRUCTURE.html">ROOT_SITE_STRUCTURE.html</a></td>
+            <td class="size">22.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Randomly_Move_150_Images.html">Randomly_Move_150_Images.html</a></td>
+            <td class="size">127.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Rearranging_Columns_Trivia_Table_Claude.html">Rearranging_Columns_Trivia_Table_Claude.html</a></td>
+            <td class="size">113.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="SEO%20Pricing%20Guide%20What%27s%20The%20Cost%20of%20SEO%20Nutshell.html">SEO Pricing Guide What's The Cost of SEO Nutshell.html</a></td>
+            <td class="size">59.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="SEO-Linkd-Strat.html">SEO-Linkd-Strat.html</a></td>
+            <td class="size">36.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="SEO_Analytics_Dashboard.html">SEO_Analytics_Dashboard.html</a></td>
+            <td class="size">25.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Songwriting_AI_Process.html">Songwriting_AI_Process.html</a></td>
+            <td class="size">17.6 MB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Spectacular_Adventure_Elsweyr_Claude.html">Spectacular_Adventure_Elsweyr_Claude.html</a></td>
+            <td class="size">44.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Text_to_Image_AI_Model_Catalog.html">Text_to_Image_AI_Model_Catalog.html</a></td>
+            <td class="size">24.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Tone_Instruction_Ignore_Previous_1.html">Tone_Instruction_Ignore_Previous_1.html</a></td>
+            <td class="size">27.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Tone_Instruction_Ignore_Previous_2.html">Tone_Instruction_Ignore_Previous_2.html</a></td>
+            <td class="size">102.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Typographic_Design_Enhancement_Claude.html">Typographic_Design_Enhancement_Claude.html</a></td>
+            <td class="size">41.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Untitled.html">Untitled.html</a></td>
+            <td class="size">14.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="WILLOW_WHISPERS_EPIC_Claude.html">WILLOW_WHISPERS_EPIC_Claude.html</a></td>
+            <td class="size">48.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="WILLOW_WHISPERS_Typographic_Design_Enhancement.html">WILLOW_WHISPERS_Typographic_Design_Enhancement.html</a></td>
+            <td class="size">35.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="WillowWhispers_Origins_Prompt_Claude.html">WillowWhispers_Origins_Prompt_Claude.html</a></td>
+            <td class="size">36.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="_downloads.html">_downloads.html</a></td>
+            <td class="size">357.0 B</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="about.html">about.html</a></td>
+            <td class="size">13.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ai-analysis.html">ai-analysis.html</a></td>
+            <td class="size">23.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ai-quantum.html">ai-quantum.html</a></td>
+            <td class="size">13.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="aiAlchemy-Project-Portfolio.html">aiAlchemy-Project-Portfolio.html</a></td>
+            <td class="size">168.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="artist-story.html">artist-story.html</a></td>
+            <td class="size">30.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="asamantyhinketh-song.html">asamantyhinketh-song.html</a></td>
+            <td class="size">50.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="avatararts-profile.html">avatararts-profile.html</a></td>
+            <td class="size">5.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="avatararts_analysis.html">avatararts_analysis.html</a></td>
+            <td class="size">277.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="batched_content_analyzer.html">batched_content_analyzer.html</a></td>
+            <td class="size">6.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="blog.html">blog.html</a></td>
+            <td class="size">28.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="build_portfolio.html">build_portfolio.html</a></td>
+            <td class="size">3.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="business-analysis.html">business-analysis.html</a></td>
+            <td class="size">21.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="cart.html">cart.html</a></td>
+            <td class="size">87.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="case-studies.html">case-studies.html</a></td>
+            <td class="size">33.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="challenges.html">challenges.html</a></td>
+            <td class="size">37.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="chat.html">chat.html</a></td>
+            <td class="size">17.1 MB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="clean_analysis.html">clean_analysis.html</a></td>
+            <td class="size">5.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="collaboration.html">collaboration.html</a></td>
+            <td class="size">39.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="common.html">common.html</a></td>
+            <td class="size">8.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="community.html">community.html</a></td>
+            <td class="size">43.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="comprehensive-analysis-complete.html">comprehensive-analysis-complete.html</a></td>
+            <td class="size">16.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="comprehensive-professional-role-analysis.html">comprehensive-professional-role-analysis.html</a></td>
+            <td class="size">16.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="comprehensive-tehsites-analysis.html">comprehensive-tehsites-analysis.html</a></td>
+            <td class="size">19.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="comprehensive_chat_organizer.html">comprehensive_chat_organizer.html</a></td>
+            <td class="size">8.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="comprehensive_deep_analysis.html">comprehensive_deep_analysis.html</a></td>
+            <td class="size">44.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="content_aware_analyzer.html">content_aware_analyzer.html</a></td>
+            <td class="size">8.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="creative-portfolio-analysis.html">creative-portfolio-analysis.html</a></td>
+            <td class="size">19.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="creative_tts_generator.html">creative_tts_generator.html</a></td>
+            <td class="size">6.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="dalle-index-avatar.html">dalle-index-avatar.html</a></td>
+            <td class="size">2.0 MB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="dalle.html">dalle.html</a></td>
+            <td class="size">2.0 MB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="dallemod.html">dallemod.html</a></td>
+            <td class="size">6.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="dark.html">dark.html</a></td>
+            <td class="size">8.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="deep-analysis.html">deep-analysis.html</a></td>
+            <td class="size">13.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="deep-dive-professional-analysis.html">deep-dive-professional-analysis.html</a></td>
+            <td class="size">15.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="deepreach-analysis-complete.html">deepreach-analysis-complete.html</a></td>
+            <td class="size">14.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="demo_emotional_generator.html">demo_emotional_generator.html</a></td>
+            <td class="size">4.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="demo_mp3_generator.html">demo_mp3_generator.html</a></td>
+            <td class="size">2.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="digital_ecosystem_analysis.html">digital_ecosystem_analysis.html</a></td>
+            <td class="size">25.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="direct_content_analyzer.html">direct_content_analyzer.html</a></td>
+            <td class="size">8.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="disco.html">disco.html</a></td>
+            <td class="size">321.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="disco25-black.html">disco25-black.html</a></td>
+            <td class="size">407.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="discography_merger.html">discography_merger.html</a></td>
+            <td class="size">5.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="documents_analysis.html">documents_analysis.html</a></td>
+            <td class="size">985.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="downloads-deep-analysis.html">downloads-deep-analysis.html</a></td>
+            <td class="size">31.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="downloads_analysis.html">downloads_analysis.html</a></td>
+            <td class="size">56.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="dr-rosado-analysis.html">dr-rosado-analysis.html</a></td>
+            <td class="size">85.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="dradu-CLIENT_PROJECT_DASHBOARD.html">dradu-CLIENT_PROJECT_DASHBOARD.html</a></td>
+            <td class="size">21.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="dradu-COMPLETE_HTML_COMPARISON.html">dradu-COMPLETE_HTML_COMPARISON.html</a></td>
+            <td class="size">21.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="dradu-COMPREHENSIVE_SKILLS_SERVICES_REPORT.html">dradu-COMPREHENSIVE_SKILLS_SERVICES_REPORT.html</a></td>
+            <td class="size">98.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="dradu-LIVE_WEBPAGE_COMPARISON.html">dradu-LIVE_WEBPAGE_COMPARISON.html</a></td>
+            <td class="size">22.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="dradu-mental-health-services.html">dradu-mental-health-services.html</a></td>
+            <td class="size">12.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="emotional_quiz_generator.html">emotional_quiz_generator.html</a></td>
+            <td class="size">4.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="emotional_tts_generator.html">emotional_tts_generator.html</a></td>
+            <td class="size">4.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="enhanced_batch_gallery_generator.html">enhanced_batch_gallery_generator.html</a></td>
+            <td class="size">6.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="enhanced_content_analyzer.html">enhanced_content_analyzer.html</a></td>
+            <td class="size">8.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="enhanced_gallery.html">enhanced_gallery.html</a></td>
+            <td class="size">5.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="enhanced_index.html">enhanced_index.html</a></td>
+            <td class="size">17.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="enhanced_tms_therapy_page.html">enhanced_tms_therapy_page.html</a></td>
+            <td class="size">18.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="epic-assessments.html">epic-assessments.html</a></td>
+            <td class="size">13.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="epic-professional-assessment.html">epic-professional-assessment.html</a></td>
+            <td class="size">21.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="expertise.html">expertise.html</a></td>
+            <td class="size">37.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="fixed_chat_organizer.html">fixed_chat_organizer.html</a></td>
+            <td class="size">7.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="freelance-analysis-2025.html">freelance-analysis-2025.html</a></td>
+            <td class="size">17.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="freelance-examples-2025.html">freelance-examples-2025.html</a></td>
+            <td class="size">27.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="gallery.html">gallery.html</a></td>
+            <td class="size">25.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="gallery_build.html">gallery_build.html</a></td>
+            <td class="size">3.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="gallery_init.html">gallery_init.html</a></td>
+            <td class="size">4.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="generate_layouts.html">generate_layouts.html</a></td>
+            <td class="size">2.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="generate_mp3s.html">generate_mp3s.html</a></td>
+            <td class="size">2.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="genindex.html">genindex.html</a></td>
+            <td class="size">2.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="gptjunkie-index.html">gptjunkie-index.html</a></td>
+            <td class="size">7.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="html-file-management-ecosystem.html">html-file-management-ecosystem.html</a></td>
+            <td class="size">23.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index-Ai-Alchemy.html">index-Ai-Alchemy.html</a></td>
+            <td class="size">22.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index-backup.html">index-backup.html</a></td>
+            <td class="size">41.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index-modern.html">index-modern.html</a></td>
+            <td class="size">35.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_1.html">index_1.html</a></td>
+            <td class="size">6.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_2.html">index_2.html</a></td>
+            <td class="size">68.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="interactive.html">interactive.html</a></td>
+            <td class="size">38.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="josephrosadomd-index.html">josephrosadomd-index.html</a></td>
+            <td class="size">27.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="josephrosadomd-rework.html">josephrosadomd-rework.html</a></td>
+            <td class="size">99.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="leo-archive.html">leo-archive.html</a></td>
+            <td class="size">2.3 MB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="leo.html">leo.html</a></td>
+            <td class="size">8.2 MB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="leogal.html">leogal.html</a></td>
+            <td class="size">2.0 B</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="linkd-scrape.html">linkd-scrape.html</a></td>
+            <td class="size">664.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="linkseo.html">linkseo.html</a></td>
+            <td class="size">1.0 MB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="live-portfolio.html">live-portfolio.html</a></td>
+            <td class="size">32.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="mock-temps.html">mock-temps.html</a></td>
+            <td class="size">957.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="mush.html">mush.html</a></td>
+            <td class="size">2.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="mymock.html">mymock.html</a></td>
+            <td class="size">4.5 MB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="navigation.html">navigation.html</a></td>
+            <td class="size">10.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="optimization_recommendations.html">optimization_recommendations.html</a></td>
+            <td class="size">25.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="order_in_chaos.html">order_in_chaos.html</a></td>
+            <td class="size">633.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="playlist.html">playlist.html</a></td>
+            <td class="size">45.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="pod.html">pod.html</a></td>
+            <td class="size">275.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="portfolio-analysis.html">portfolio-analysis.html</a></td>
+            <td class="size">13.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="portfolio-showcase.html">portfolio-showcase.html</a></td>
+            <td class="size">26.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="priority-api-setup.html">priority-api-setup.html</a></td>
+            <td class="size">2.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="privacy.html">privacy.html</a></td>
+            <td class="size">5.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="process.html">process.html</a></td>
+            <td class="size">26.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="professional-analysis.html">professional-analysis.html</a></td>
+            <td class="size">14.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="professional_portfolio_analysis.html">professional_portfolio_analysis.html</a></td>
+            <td class="size">20.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="python.html">python.html</a></td>
+            <td class="size">71.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="python_enhanced.html">python_enhanced.html</a></td>
+            <td class="size">76.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="python_enhanced_links.html">python_enhanced_links.html</a></td>
+            <td class="size">13.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="qfl-index.html">qfl-index.html</a></td>
+            <td class="size">7.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="quantum-ai-automation-strategy.html">quantum-ai-automation-strategy.html</a></td>
+            <td class="size">15.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="quantum-ai-empire.html">quantum-ai-empire.html</a></td>
+            <td class="size">14.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="recommendations_report.html">recommendations_report.html</a></td>
+            <td class="size">11.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="resources.html">resources.html</a></td>
+            <td class="size">33.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="reviews.html">reviews.html</a></td>
+            <td class="size">239.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="sEOptimization-profession.html">sEOptimization-profession.html</a></td>
+            <td class="size">492.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="seam.html">seam.html</a></td>
+            <td class="size">4.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="seamless.html">seamless.html</a></td>
+            <td class="size">2.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="search.html">search.html</a></td>
+            <td class="size">3.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="seo-win_analysis.html">seo-win_analysis.html</a></td>
+            <td class="size">5.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="services-detailed.html">services-detailed.html</a></td>
+            <td class="size">35.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="simple_deep_reader.html">simple_deep_reader.html</a></td>
+            <td class="size">6.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="simple_discography_processor.html">simple_discography_processor.html</a></td>
+            <td class="size">2.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="site.html">site.html</a></td>
+            <td class="size">5.3 MB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="skill_competency_matrix.html">skill_competency_matrix.html</a></td>
+            <td class="size">26.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="skills-breakdown-detailed.html">skills-breakdown-detailed.html</a></td>
+            <td class="size">28.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="skills.html">skills.html</a></td>
+            <td class="size">18.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="skills_report.html">skills_report.html</a></td>
+            <td class="size">4.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="sort-analysis-complete.html">sort-analysis-complete.html</a></td>
+            <td class="size">8.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="sort-analysis.html">sort-analysis.html</a></td>
+            <td class="size">22.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="sort-organize-by_dater-files.html">sort-organize-by_dater-files.html</a></td>
+            <td class="size">69.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="statistics.html">statistics.html</a></td>
+            <td class="size">37.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="steven-conversation_analysis.html">steven-conversation_analysis.html</a></td>
+            <td class="size">15.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="store.html">store.html</a></td>
+            <td class="size">37.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="suno_analysis.html">suno_analysis.html</a></td>
+            <td class="size">5.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="system-tools.html">system-tools.html</a></td>
+            <td class="size">11.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="tehsites_analysis.html">tehsites_analysis.html</a></td>
+            <td class="size">232.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="test.html">test.html</a></td>
+            <td class="size">3.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="testimonials.html">testimonials.html</a></td>
+            <td class="size">31.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="tms-therapy-gainesville.html">tms-therapy-gainesville.html</a></td>
+            <td class="size">14.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ultimate-comprehensive-analysis.html">ultimate-comprehensive-analysis.html</a></td>
+            <td class="size">15.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ultimate-money-machine.html">ultimate-money-machine.html</a></td>
+            <td class="size">16.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ultra-comprehensive-analysis.html">ultra-comprehensive-analysis.html</a></td>
+            <td class="size">20.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="video-analysis.html">video-analysis.html</a></td>
+            <td class="size">23.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="video-content.html">video-content.html</a></td>
+            <td class="size">8.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="visual-dashboard-system.html">visual-dashboard-system.html</a></td>
+            <td class="size">9.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="website-Organize_and_Categorize_Content.html">website-Organize_and_Categorize_Content.html</a></td>
+            <td class="size">2.7 MB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="zombot-index_cinematic.html">zombot-index_cinematic.html</a></td>
+            <td class="size">189.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="zombot-index_masonry.html">zombot-index_masonry.html</a></td>
+            <td class="size">252.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="zombot-index_minimal.html">zombot-index_minimal.html</a></td>
+            <td class="size">253.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="%CE%9B%E2%88%80%CA%8C%E2%80%A0%CA%8C%CA%80_%E2%88%86%CA%80%E2%80%A0s_-Tester_1.html">Λ∀ʌ†ʌʀ_∆ʀ†s_-Tester_1.html</a></td>
+            <td class="size">85.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-label">Total Items</div>
+                <div class="stat-value">201</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Directories</div>
+                <div class="stat-value">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Files</div>
+                <div class="stat-value">201</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#fileTable tr');
+            const cards = document.querySelectorAll('.subdir-card');
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{
+  "song_title": "{{song_title}}",
+  "lyrics_snippets": {
+    "intro": "{{lyric_snippet_intro}}",
+    "chorus": "{{lyric_snippet_chorus}}",
+    "closing": "{{closing_line}}"
+  },
+  "batches": [
+    {
+      "cover_image": {
+        "prompt": "Create a wide cinematic scene based on the song '{{song_title}}'. Focus on {{symbolic_element_from_lyrics}} in {{setting}}. Mood: {{intro_tone}}. Lighting/Color: vibrant contrasts ({{neon_vs_dark}}). Typography (optional): '{{lyric_snippet_intro}}' integrated naturally (graffiti, billboard, carved surface). Aspect Ratio: 9:16 or 16:9.",
+        "negative_prompt": "Exclude: blurry, distorted faces, extra limbs, watermarks, generic stock-photo look.",
+        "reference": "AvaTarArTs DALL·E Gallery — https://www.avatararts.org/dalle.html"
+      },
+      "transition": {
+        "prompt": "Zoom in on a symbolic object from the lyrics: {{lyric_object}}. Backdrop: blurred {{environment_detail}}. Mood: {{shift_in_emotion}}. Lighting/Color: muted or subtle with soft highlights. Typography: optional if lyric directly references this object. Aspect Ratio: 16:9 or 1:1.",
+        "negative_prompt": "Exclude: flat background, artifacts, generic icons.",
+        "reference": "AvaTarArTs DALL·E Gallery — https://www.avatararts.org/dalle.html"
+      },
+      "main_image": {
+        "prompt": "Depict the core action or emotional highlight of the lyrics: {{character_state_or_action}}. Scene: {{narrative_scene}}. Lighting/Color: dramatic contrast ({{emotional_palette}}). Typography (optional): '{{lyric_snippet_chorus}}' embedded naturally (neon sign, glowing poster, wall graffiti). Aspect Ratio: 9:16 or 16:9.",
+        "negative_prompt": "Exclude: overly cartoony style unless specified, duplicate characters.",
+        "reference": "AvaTarArTs DALL·E Gallery — https://www.avatararts.org/dalle.html"
+      },
+      "filler": {
+        "prompt": "Focus on a symbolic detail from the lyrics: {{symbolic_detail}}. Mood: reflective / nostalgic. Lighting/Color: warm, golden tones with gentle shadows. Typography: only if subtle lyric reference enhances emotion. Aspect Ratio: 1:1 or 16:9.",
+        "negative_prompt": "Exclude: cluttered composition, irrelevant props.",
+        "reference": "AvaTarArTs DALL·E Gallery — https://www.avatararts.org/dalle.html"
+      },
+      "next_scene_transition": {
+        "prompt": "Expand the view to show {{wider_environment}}. Scene transition toward {{next_stage_of_lyrics}}. Lighting/Color: pastel fades or muted blues, suggesting change or closure. Typography: optional final lyric echo '{{closing_line}}'. Aspect Ratio: 16:9.",
+        "negative_prompt": "Exclude: incoherent transitions, disjointed perspective.",
+        "reference": "AvaTarArTs DALL·E Gallery — https://www.avatararts.org/dalle.html"
+      }
+    }
+  ],
+  "continuity_rule": "Ensure continuity by matching character appearance, lighting style, and environmental tone with previous batch.",
+  "next_batch_ideas": [
+    "{{expand_on_lyric_metaphor}}",
+    "{{explore_secondary_symbol}}",
+    "{{new_emotional_shift}}",
+    "{{alternate_perspective}}"
+  ]
+}

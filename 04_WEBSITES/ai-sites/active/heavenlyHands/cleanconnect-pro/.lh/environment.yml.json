@@ -1,0 +1,18 @@
+{
+    "sourceFile": "environment.yml",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1761266162623,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1761266162623,
+            "name": "Commit-0",
+            "content": "# CleanConnect Pro 2.0 - Mamba/Conda Environment Configuration\n#\n# Create environment with:\n#   mamba env create -f environment.yml\n#   conda env create -f environment.yml\n#\n# Activate environment:\n#   mamba activate cleanconnect-pro\n#   conda activate cleanconnect-pro\n#\n# Update environment:\n#   mamba env update -f environment.yml --prune\n#\n# Remove environment:\n#   mamba env remove -n cleanconnect-pro\n#   conda env remove -n cleanconnect-pro\n\nname: cleanconnect-pro\nchannels:\n  - conda-forge\n  - defaults\n\ndependencies:\n  # Core Runtime\n  - python=3.11\n  - nodejs=18.18.2\n  - npm::yarn@4.0.2\n\n  # Build Tools\n  - make\n  - cmake\n  - pkg-config\n  - gcc\n  - gxx\n\n  # Database & Data Management\n  - postgresql::postgresql=14\n  - postgresql::libpq\n\n  # System Utilities\n  - git\n  - curl\n  - wget\n  - jq\n  - grep\n  - sed\n  - awk\n\n  # Development Tools\n  - nano\n  - vim\n  - htop\n  - lsof\n\n  # Python Tools (Optional - for data analysis)\n  - pip\n  - pandas\n  - numpy\n  - matplotlib\n\n  # SSL/TLS\n  - openssl\n\n  # Version Management\n  - git-lfs\n\n# Python packages via pip\npip:\n  - python-dotenv==1.0.0\n  - psycopg2-binary==2.9.9\n  - paramiko==3.4.0\n  - requests==2.31.0\n  - pyyaml==6.0.1\n\nvariables:\n  NODE_ENV: development\n  YARN_VERSION: '>=4.0.0'\n  NODE_VERSION: '>=18.0.0'\n  PYTHON_VERSION: '>=3.11'\n  POSTGRES_VERSION: '>=14'\n"
+        }
+    ]
+}

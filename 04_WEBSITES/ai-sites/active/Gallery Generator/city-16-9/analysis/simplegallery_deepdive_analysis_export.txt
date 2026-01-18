@@ -1,0 +1,28 @@
+SimpleGallery Deep Dive Analysis Complete
+=================================
+
+Package Structure:
+- Main package: /Users/steven/Library/Mobile Documents/com~apple~CloudDocs/simplegallery-bin/simplegallery/
+- Logic modules in: /logic/ directory
+- Gallery variants in: /logic/variants/ directory
+- Media processing in: media.py
+
+Core Components:
+1. gallery_init.py - Initializes new galleries
+2. gallery_build.py - Builds the complete gallery
+3. gallery_logic.py - Factory for gallery logic implementations
+4. common.py - Shared utilities and exceptions
+5. media.py - Image processing and metadata extraction
+
+Gallery Logic Variants:
+- FilesGalleryLogic: For local file galleries
+- GoogleGalleryLogic: For Google Photos galleries
+- OnedriveGalleryLogic: For OneDrive galleries
+
+Features:
+- Thumbnail generation with configurable sizes
+- Metadata extraction from images
+- Responsive HTML gallery generation
+- Support for multiple remote gallery providers
+- Customizable templates using Jinja2
+- High-DPI/Retina display support

@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Collaboration - Steven Chaplinski | Let's Work Together</title>
+    <meta name="description" content="Get in touch with Steven Chaplinski for creative collaborations, custom projects, and artistic partnerships. Contact form, project briefs, and collaboration opportunities.">
+    <meta name="keywords" content="contact Steven Chaplinski, collaboration, custom art projects, creative partnerships, digital art commissions">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .collaboration-hero {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="collabGrid" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M 25 0 L 0 0 0 25" fill="none" stroke="rgba(78,205,196,0.3)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23collabGrid)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .contact-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-form {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-label {
+            display: block;
+            color: #4ecdc4;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: #4ecdc4;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-checkbox input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #4ecdc4;
+        }
+
+        .form-checkbox label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.4);
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(78, 205, 196, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(78, 205, 196, 0.2);
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .contact-details h4 {
+            color: #4ecdc4;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+        }
+
+        .contact-details p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+        }
+
+        .collaboration-types {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .collaboration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .collaboration-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .collaboration-card:hover {
+            transform: translateY(-10px);
+            border-color: #4ecdc4;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .collaboration-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.4);
+        }
+
+        .collaboration-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .collaboration-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .collaboration-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .collaboration-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+
+        .collaboration-features li {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .collaboration-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+
+        .collaboration-btn {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: 2px solid #4ecdc4;
+            color: #4ecdc4;
+            border-radius: 25px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .collaboration-btn:hover {
+            background: #4ecdc4;
+            color: #000;
+        }
+
+        .project-brief-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .brief-form {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+        }
+
+        .brief-section {
+            margin-bottom: 3rem;
+        }
+
+        .brief-section h3 {
+            color: #4ecdc4;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .brief-section p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+        }
+
+        .brief-questions {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .question-group {
+            background: rgba(78, 205, 196, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #4ecdc4;
+        }
+
+        .question-label {
+            color: #4ecdc4;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .question-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .question-input:focus {
+            outline: none;
+            border-color: #4ecdc4;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .question-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .question-textarea {
+            height: 80px;
+            resize: vertical;
+        }
+
+        .social-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.5);
+        }
+
+        .social-link i {
+            font-size: 2rem;
+        }
+
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="ctaDots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23ctaDots)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 15px 30px;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            border-radius: 25px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            background: white;
+            color: #ff6b6b;
+            transform: translateY(-2px);
+        }
+
+        .cta-btn.primary {
+            background: white;
+            color: #ff6b6b;
+        }
+
+        .cta-btn.primary:hover {
+            background: transparent;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .collaboration-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-links {
+                gap: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Steven</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="process.html" class="nav-link">Process</a>
+                <a href="case-studies.html" class="nav-link">Case Studies</a>
+                <a href="services-detailed.html" class="nav-link">Services</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="testimonials.html" class="nav-link">Testimonials</a>
+                <a href="store.html" class="nav-link">Store</a>
+                <a href="challenges.html" class="nav-link">Challenges</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="live-portfolio.html" class="nav-link">Live Portfolio</a>
+                <a href="collaboration.html" class="nav-link active">Collaboration</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Collaboration Hero -->
+    <section class="collaboration-hero">
+        <div class="container">
+            <h1 class="gradient-text">Let's Work Together</h1>
+            <p>Ready to bring your creative vision to life? I'm always excited to collaborate on new projects, explore innovative ideas, and create something amazing together. Let's start the conversation!</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <h3 style="color: #4ecdc4; font-family: 'Oswald', sans-serif; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 1px;">Send a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" class="form-input" placeholder="Your first name" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Your last name" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="your.email@example.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="form-input" placeholder="+1 (555) 123-4567">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="projectType">Project Type</label>
+                            <select id="projectType" name="projectType" class="form-select" required>
+                                <option value="">Select a project type</option>
+                                <option value="digital-art">Digital Art Commission</option>
+                                <option value="web-design">Web Design & Development</option>
+                                <option value="video-production">Video Production</option>
+                                <option value="branding">Branding & Identity</option>
+                                <option value="album-cover">Album Cover Design</option>
+                                <option value="collaboration">Creative Collaboration</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="budget">Budget Range</label>
+                            <select id="budget" name="budget" class="form-select">
+                                <option value="">Select budget range</option>
+                                <option value="under-500">Under $500</option>
+                                <option value="500-1000">$500 - $1,000</option>
+                                <option value="1000-2500">$1,000 - $2,500</option>
+                                <option value="2500-5000">$2,500 - $5,000</option>
+                                <option value="5000-plus">$5,000+</option>
+                                <option value="discuss">Let's discuss</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="timeline">Project Timeline</label>
+                            <select id="timeline" name="timeline" class="form-select">
+                                <option value="">Select timeline</option>
+                                <option value="asap">ASAP</option>
+                                <option value="1-week">Within 1 week</option>
+                                <option value="2-weeks">Within 2 weeks</option>
+                                <option value="1-month">Within 1 month</option>
+                                <option value="flexible">Flexible</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="message">Project Details</label>
+                            <textarea id="message" name="message" class="form-textarea" placeholder="Tell me about your project, vision, and any specific requirements..." required></textarea>
+                        </div>
+                        
+                        <div class="form-checkbox">
+                            <input type="checkbox" id="newsletter" name="newsletter">
+                            <label for="newsletter">Subscribe to my newsletter for updates and creative insights</label>
+                        </div>
+                        
+                        <div class="form-checkbox">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">I agree to the terms and conditions</label>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <h3 style="color: #4ecdc4; font-family: 'Oswald', sans-serif; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 1px;">Contact Information</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>steven@stevenchaplinski.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>Available Worldwide</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Response Time</h4>
+                            <p>Within 24 hours</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Availability</h4>
+                            <p>Monday - Friday, 9 AM - 6 PM EST</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collaboration Types -->
+    <section class="collaboration-types">
+        <div class="container">
+            <h2 class="section-title">Collaboration Opportunities</h2>
+            <div class="collaboration-grid">
+                <div class="collaboration-card">
+                    <div class="collaboration-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="collaboration-title">Art Commissions</h3>
+                    <p class="collaboration-description">Custom digital artwork tailored to your specific vision and requirements.</p>
+                    <ul class="collaboration-features">
+                        <li>Personalized artwork</li>
+                        <li>Multiple concepts</li>
+                        <li>Unlimited revisions</li>
+                        <li>High-resolution files</li>
+                        <li>Commercial rights included</li>
+                    </ul>
+                    <a href="#contact" class="collaboration-btn">Request Commission</a>
+                </div>
+
+                <div class="collaboration-card">
+                    <div class="collaboration-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="collaboration-title">Creative Partnerships</h3>
+                    <p class="collaboration-description">Long-term partnerships for ongoing creative projects and brand development.</p>
+                    <ul class="collaboration-features">
+                        <li>Ongoing collaboration</li>
+                        <li>Brand development</li>
+                        <li>Consistent creative direction</li>
+                        <li>Priority support</li>
+                        <li>Flexible pricing</li>
+                    </ul>
+                    <a href="#contact" class="collaboration-btn">Start Partnership</a>
+                </div>
+
+                <div class="collaboration-card">
+                    <div class="collaboration-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="collaboration-title">Team Projects</h3>
+                    <p class="collaboration-description">Join forces with other creatives for large-scale projects and initiatives.</p>
+                    <ul class="collaboration-features">
+                        <li>Multi-disciplinary teams</li>
+                        <li>Large-scale projects</li>
+                        <li>Shared expertise</li>
+                        <li>Creative problem solving</li>
+                        <li>Innovative solutions</li>
+                    </ul>
+                    <a href="#contact" class="collaboration-btn">Join Project</a>
+                </div>
+
+                <div class="collaboration-card">
+                    <div class="collaboration-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="collaboration-title">Mentorship</h3>
+                    <p class="collaboration-description">One-on-one guidance and mentorship for emerging artists and designers.</p>
+                    <ul class="collaboration-features">
+                        <li>Personalized guidance</li>
+                        <li>Portfolio reviews</li>
+                        <li>Career advice</li>
+                        <li>Skill development</li>
+                        <li>Industry insights</li>
+                    </ul>
+                    <a href="#contact" class="collaboration-btn">Apply for Mentorship</a>
+                </div>
+
+                <div class="collaboration-card">
+                    <div class="collaboration-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h3 class="collaboration-title">Speaking & Workshops</h3>
+                    <p class="collaboration-description">Invite me to speak at your event or conduct creative workshops.</p>
+                    <ul class="collaboration-features">
+                        <li>Keynote presentations</li>
+                        <li>Interactive workshops</li>
+                        <li>Creative demonstrations</li>
+                        <li>Q&A sessions</li>
+                        <li>Custom content</li>
+                    </ul>
+                    <a href="#contact" class="collaboration-btn">Book Speaking</a>
+                </div>
+
+                <div class="collaboration-card">
+                    <div class="collaboration-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="collaboration-title">Innovation Labs</h3>
+                    <p class="collaboration-description">Experimental projects pushing the boundaries of digital art and technology.</p>
+                    <ul class="collaboration-features">
+                        <li>Cutting-edge technology</li>
+                        <li>Experimental approaches</li>
+                        <li>Research & development</li>
+                        <li>Innovation focus</li>
+                        <li>Future-forward thinking</li>
+                    </ul>
+                    <a href="#contact" class="collaboration-btn">Join Innovation Lab</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Brief Section -->
+    <section class="project-brief-section">
+        <div class="container">
+            <h2 class="section-title">Project Brief Generator</h2>
+            <p style="text-align: center; color: rgba(255, 255, 255, 0.8); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Help me understand your project better by filling out this detailed brief. The more information you provide, the better I can tailor my approach to your needs.
+            </p>
+            <div class="brief-form">
+                <form id="projectBriefForm">
+                    <div class="brief-section">
+                        <h3>Project Overview</h3>
+                        <p>Tell me about your project in general terms.</p>
+                        <div class="brief-questions">
+                            <div class="question-group">
+                                <label class="question-label">What is the main goal of this project?</label>
+                                <textarea class="question-input question-textarea" placeholder="Describe the primary objective..."></textarea>
+                            </div>
+                            <div class="question-group">
+                                <label class="question-label">Who is your target audience?</label>
+                                <input type="text" class="question-input" placeholder="Describe your ideal audience...">
+                            </div>
+                            <div class="question-group">
+                                <label class="question-label">What inspired this project?</label>
+                                <textarea class="question-input question-textarea" placeholder="Share your inspiration and vision..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="brief-section">
+                        <h3>Visual Direction</h3>
+                        <p>Help me understand your visual preferences and style.</p>
+                        <div class="brief-questions">
+                            <div class="question-group">
+                                <label class="question-label">What style or aesthetic are you going for?</label>
+                                <input type="text" class="question-input" placeholder="e.g., modern, vintage, minimalist, bold...">
+                            </div>
+                            <div class="question-group">
+                                <label class="question-label">Do you have any color preferences?</label>
+                                <input type="text" class="question-input" placeholder="Specific colors or color schemes...">
+                            </div>
+                            <div class="question-group">
+                                <label class="question-label">Are there any visual references or examples?</label>
+                                <textarea class="question-input question-textarea" placeholder="Links to inspiration, mood boards, or reference images..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="brief-section">
+                        <h3>Technical Requirements</h3>
+                        <p>Any specific technical needs or constraints.</p>
+                        <div class="brief-questions">
+                            <div class="question-group">
+                                <label class="question-label">What file formats do you need?</label>
+                                <input type="text" class="question-input" placeholder="e.g., PNG, JPG, PSD, AI, PDF...">
+                            </div>
+                            <div class="question-group">
+                                <label class="question-label">What are the required dimensions?</label>
+                                <input type="text" class="question-input" placeholder="e.g., 1920x1080, 3000x3000, print size...">
+                            </div>
+                            <div class="question-group">
+                                <label class="question-label">Any specific technical constraints?</label>
+                                <textarea class="question-input question-textarea" placeholder="File size limits, platform requirements, etc..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit Project Brief</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Section -->
+    <section class="social-section">
+        <div class="container">
+            <h2 class="section-title">Connect With Me</h2>
+            <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 2rem;">Follow my creative journey and stay updated with my latest work and insights.</p>
+            <div class="social-links">
+                <a href="https://behance.net/ichoake" class="social-link">
+                    <i class="fab fa-behance"></i>
+                </a>
+                <a href="https://bit.ly/iChoake" class="social-link">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://aiavatar.etsy.com/" class="social-link">
+                    <i class="fas fa-store"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Start Your Project?</h2>
+                <p class="cta-description">Let's bring your creative vision to life. Contact me today and let's discuss how we can work together to create something amazing.</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="cta-btn primary">Get Started</a>
+                    <a href="gallery.html" class="cta-btn">View My Work</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Steven Chaplinski</h3>
+                    <p>Digital Artist & Creative Developer</p>
+                    <p>Transforming ideas into visual reality through innovative digital art and creative solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="collaboration.html">Collaboration</a></li>
+                        <li><a href="services-detailed.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Me</h4>
+                    <div class="social-links">
+                        <a href="https://behance.net/ichoake" class="social-link"><i class="fab fa-behance"></i></a>
+                        <a href="https://bit.ly/iChoake" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="https://aiavatar.etsy.com/" class="social-link"><i class="fas fa-store"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Steven Chaplinski. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Simple validation
+            if (!data.firstName || !data.lastName || !data.email || !data.message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Simulate form submission
+            alert('Thank you for your message! I\'ll get back to you within 24 hours.');
+            this.reset();
+        });
+
+        // Project brief form handling
+        document.getElementById('projectBriefForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for the detailed project brief! I\'ll review it and get back to you with a comprehensive proposal.');
+            this.reset();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form input animations
+        document.querySelectorAll('.form-input, .form-textarea, .form-select').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'translateY(-2px)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>

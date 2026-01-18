@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AvatarArts · Python Portfolio</title>
+<meta name="description" content="Steven Chaplinski — AvatarArts Python portfolio of automation tools, AI art pipelines, and creator workflows.">
+<style>
+  :root { --bg:#0d0f12; --card:#151821; --muted:#8aa0b2; --acc1:#00ffc3; --acc2:#ff3ea5; }
+  * { box-sizing: border-box; } body { margin:0; font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial; background:var(--bg); color:#e9eef5; }
+  header { padding:2rem 1rem; text-align:center; border-bottom:1px solid #1f2430; }
+  header h1 { margin:0 0 .25rem; font-size:2rem; color:var(--acc1); }
+  header p { margin:.25rem 0 0; color:#8aa0b2; }
+  .toolbar { display:flex; gap:.75rem; flex-wrap:wrap; align-items:center; justify-content:center; padding:1rem; }
+  .search { flex:1 1 340px; max-width:680px; }
+  .search input { width:100%; padding:.85rem 1rem; border-radius:.75rem; border:1px solid #263041; background:#0f131a; color:#e9eef5; }
+  .filters { display:flex; gap:.5rem; flex-wrap:wrap; justify-content:center; }
+  .filter-btn { border:1px solid #2b3648; background:#121722; color:#cfe3ff; padding:.6rem .9rem; border-radius:999px; cursor:pointer; font-size:.9rem; }
+  .filter-btn.active { background:linear-gradient(90deg, var(--acc1), var(--acc2)); color:#000; border-color:transparent; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:1rem; padding:1rem; max-width:1200px; margin:0 auto 4rem; }
+  .card { background:var(--card); border:1px solid #20283a; border-radius:1rem; padding:1rem; transition: transform .15s ease, box-shadow .2s ease; }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.3); }
+  .tag { display:inline-block; margin:.25rem .4rem .25rem 0; padding:.2rem .55rem; border-radius:999px; font-size:.75rem; color:#0b1020; background:#8bd3ff; }
+  .meta { color:#8aa0b2; font-size:.9rem; margin:.35rem 0 .5rem; }
+  .title { font-weight:700; margin:.25rem 0 .25rem; }
+  .linkbar a { color: #00ffc3; text-decoration:none; margin-right:.75rem; }
+  .footer { text-align:center; color:#8aa0b2; padding:2rem 1rem; border-top:1px solid #1f2430; }
+</style>
+</head>
+<body>
+<header>
+  <h1>AvatarArts · Python Portfolio</h1>
+  <p>Creative automation for artists & engineers — AI art, YouTube/Twitch ops, transcription, LLMs, and file alchemy.</p>
+</header>
+
+<section class="toolbar">
+  <div class="search"><input id="search" placeholder="Search by name, category, or tag… (e.g., YouTube, DALL·E, FFmpeg, Whisper)" /></div>
+  <div class="filters" id="filters"></div>
+</section>
+
+<section class="grid" id="grid"></section>
+
+<footer class="footer">
+  &copy; AvatarArts · Data auto-generated from your GitHub folders.
+</footer>
+
+<script>
+  async function loadData() {
+    try {
+      const res = await fetch('./portfolio/portfolio_descriptions.csv', { cache: 'no-store' });
+      const text = await res.text();
+      const rows = text.split(/\r?\n/).filter(Boolean);
+      const head = rows.shift().split(',');
+      return rows.map(line => {
+        const cols = line.split(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/);
+        const obj = {};
+        head.forEach((h,i)=> obj[h.trim()] = (cols[i]||'').replace(/^"|"$/g,''));
+        return obj;
+      });
+    } catch(e) { return []; }
+  }
+  function uniq(arr){ return [...new Set(arr)].sort(); }
+  function renderFilters(categories){
+    const wrap=document.getElementById('filters');
+    wrap.innerHTML='';
+    const all=document.createElement('button');
+    all.className='filter-btn active'; all.textContent='All'; all.dataset.cat='';
+    wrap.appendChild(all);
+    categories.forEach(cat=>{
+      const b=document.createElement('button');
+      b.className='filter-btn'; b.textContent=cat; b.dataset.cat=cat; wrap.appendChild(b);
+    });
+  }
+  function tagPills(tags){ if(!tags) return ''; return tags.split(',').slice(0,6).map(t=>`<span class="tag">${t.trim()}</span>`).join(''); }
+  function ghLink(name){ return `https://github.com/ichoake/python/tree/main/${name.replaceAll(' ','%20')}`; }
+  function renderGrid(data){
+    const grid=document.getElementById('grid');
+    grid.innerHTML=data.map(r=>`
+      <article class="card" data-cat="${r.category||''}">
+        <div class="meta">${r.category||''}</div>
+        <div class="title">${r.seo_title||r.name}</div>
+        <div class="desc">${r.summary||''}</div>
+        <div class="tags">${tagPills(r.suggested_tags||'')}</div>
+        <div class="linkbar" style="margin-top:.6rem;">
+          <a href="${ghLink(r.name)}" target="_blank" rel="noopener">View on GitHub ↗</a>
+        </div>
+      </article>
+    `).join('');
+  }
+  (async function init(){
+    const ALL = await loadData();
+    const cats = uniq(ALL.map(r=>r.category).filter(Boolean));
+    renderFilters(cats); renderGrid(ALL);
+    const search=document.getElementById('search'); const filters=document.getElementById('filters'); let activeCat='';
+    function apply(){
+      const q=(search.value||'').toLowerCase();
+      document.querySelectorAll('.card').forEach(c=>{
+        const text=c.textContent.toLowerCase(); const cat=c.getAttribute('data-cat');
+        const ok = (!activeCat || cat===activeCat) && (!q || text.includes(q));
+        c.style.display=ok?'':'none';
+      });
+    }
+    filters.addEventListener('click',e=>{
+      if(!e.target.classList.contains('filter-btn')) return;
+      filters.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+      e.target.classList.add('active'); activeCat=e.target.dataset.cat||''; apply();
+    });
+    search.addEventListener('input',apply);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Challenges - Steven Chaplinski | Community Art Projects</title>
+    <meta name="description" content="Join Steven Chaplinski's creative challenges and community art projects. Participate in themed contests, showcase your work, and connect with fellow artists.">
+    <meta name="keywords" content="creative challenges, art contests, community projects, Steven Chaplinski challenges, digital art community">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .challenges-hero {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="challengeGrid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255,107,107,0.3)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23challengeGrid)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .challenge-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            border: 2px solid #4ecdc4;
+            background: transparent;
+            color: #4ecdc4;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #4ecdc4;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
+        }
+
+        .challenges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .challenge-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .challenge-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: #4ecdc4;
+        }
+
+        .challenge-status {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .challenge-status.active {
+            background: #4ecdc4;
+            color: #000;
+        }
+
+        .challenge-status.upcoming {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .challenge-status.completed {
+            background: #45b7d1;
+            color: white;
+        }
+
+        .challenge-image {
+            height: 200px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .challenge-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.8), rgba(78, 205, 196, 0.8));
+            animation: challengeShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes challengeShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .challenge-placeholder {
+            color: white;
+            font-size: 3rem;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .challenge-content {
+            padding: 2rem;
+            color: #fff;
+        }
+
+        .challenge-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            color: #4ecdc4;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .challenge-theme {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .challenge-description {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .challenge-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .challenge-detail {
+            text-align: center;
+            padding: 0.8rem;
+            background: rgba(78, 205, 196, 0.1);
+            border: 1px solid rgba(78, 205, 196, 0.3);
+            border-radius: 10px;
+        }
+
+        .challenge-detail-label {
+            color: #4ecdc4;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 0.3rem;
+        }
+
+        .challenge-detail-value {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .challenge-participants {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .participant-avatars {
+            display: flex;
+            gap: -10px;
+        }
+
+        .participant-avatar {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border: 2px solid rgba(0, 0, 0, 0.3);
+            margin-left: -5px;
+        }
+
+        .participant-avatar:first-child {
+            margin-left: 0;
+        }
+
+        .participant-count {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .challenge-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .join-btn {
+            flex: 1;
+            padding: 12px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .join-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.4);
+        }
+
+        .join-btn:disabled {
+            background: rgba(255, 255, 255, 0.2);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .view-btn {
+            padding: 12px 20px;
+            background: transparent;
+            border: 2px solid #4ecdc4;
+            color: #4ecdc4;
+            border-radius: 25px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn:hover {
+            background: #4ecdc4;
+            color: #000;
+        }
+
+        .featured-challenge {
+            grid-column: span 2;
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(255, 107, 107, 0.1));
+            border: 2px solid #4ecdc4;
+        }
+
+        .featured-challenge .challenge-image {
+            height: 300px;
+        }
+
+        .featured-challenge .challenge-title {
+            font-size: 2rem;
+        }
+
+        .leaderboard-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .leaderboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .leaderboard-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .leaderboard-position {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+        }
+
+        .leaderboard-position.first {
+            color: #ffd700;
+        }
+
+        .leaderboard-position.second {
+            color: #c0c0c0;
+        }
+
+        .leaderboard-position.third {
+            color: #cd7f32;
+        }
+
+        .leaderboard-artist {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .leaderboard-score {
+            color: #4ecdc4;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .leaderboard-artwork {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .community-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .community-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #4ecdc4;
+            text-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
+            display: block;
+        }
+
+        .stat-label {
+            color: #fff;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="ctaDots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23ctaDots)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 15px 30px;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            border-radius: 25px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            background: white;
+            color: #ff6b6b;
+            transform: translateY(-2px);
+        }
+
+        .cta-btn.primary {
+            background: white;
+            color: #ff6b6b;
+        }
+
+        .cta-btn.primary:hover {
+            background: transparent;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .challenges-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-challenge {
+                grid-column: span 1;
+            }
+            
+            .challenge-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 200px;
+            }
+
+            .challenge-details {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Steven</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="process.html" class="nav-link">Process</a>
+                <a href="case-studies.html" class="nav-link">Case Studies</a>
+                <a href="services-detailed.html" class="nav-link">Services</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="testimonials.html" class="nav-link">Testimonials</a>
+                <a href="store.html" class="nav-link">Store</a>
+                <a href="challenges.html" class="nav-link active">Challenges</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Challenges Hero -->
+    <section class="challenges-hero">
+        <div class="container">
+            <h1 class="gradient-text">Creative Challenges</h1>
+            <p>Join our vibrant community of artists and creators! Participate in themed challenges, showcase your work, and connect with fellow artists from around the world.</p>
+        </div>
+    </section>
+
+    <!-- Challenge Filters -->
+    <section class="container">
+        <div class="challenge-filters">
+            <button class="filter-btn active" data-filter="all">All Challenges</button>
+            <button class="filter-btn" data-filter="active">Active</button>
+            <button class="filter-btn" data-filter="upcoming">Upcoming</button>
+            <button class="filter-btn" data-filter="completed">Completed</button>
+            <button class="filter-btn" data-filter="monthly">Monthly</button>
+            <button class="filter-btn" data-filter="weekly">Weekly</button>
+        </div>
+
+        <!-- Challenges Grid -->
+        <div class="challenges-grid" id="challenges-grid">
+            <!-- Featured Challenge -->
+            <div class="challenge-card featured" data-category="active">
+                <div class="challenge-status active">Active</div>
+                <div class="challenge-image">
+                    <i class="challenge-placeholder fas fa-palette"></i>
+                </div>
+                <div class="challenge-content">
+                    <h3 class="challenge-title">Neon Dreams Challenge</h3>
+                    <div class="challenge-theme">Theme: Cyberpunk Aesthetics</div>
+                    <p class="challenge-description">Create stunning digital artwork inspired by cyberpunk aesthetics, neon lights, and futuristic cityscapes. Let your imagination run wild with vibrant colors and bold compositions!</p>
+                    <div class="challenge-details">
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Duration</div>
+                            <div class="challenge-detail-value">2 weeks</div>
+                        </div>
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Prize</div>
+                            <div class="challenge-detail-value">$500</div>
+                        </div>
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Deadline</div>
+                            <div class="challenge-detail-value">Dec 30, 2024</div>
+                        </div>
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Format</div>
+                            <div class="challenge-detail-value">Digital Art</div>
+                        </div>
+                    </div>
+                    <div class="challenge-participants">
+                        <div class="participant-avatars">
+                            <div class="participant-avatar">A</div>
+                            <div class="participant-avatar">B</div>
+                            <div class="participant-avatar">C</div>
+                            <div class="participant-avatar">+</div>
+                        </div>
+                        <div class="participant-count">127 participants</div>
+                    </div>
+                    <div class="challenge-actions">
+                        <button class="join-btn">Join Challenge</button>
+                        <button class="view-btn">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Regular Challenges -->
+            <div class="challenge-card" data-category="active">
+                <div class="challenge-status active">Active</div>
+                <div class="challenge-image">
+                    <i class="challenge-placeholder fas fa-music"></i>
+                </div>
+                <div class="challenge-content">
+                    <h3 class="challenge-title">Album Cover Design</h3>
+                    <div class="challenge-theme">Theme: Electronic Music</div>
+                    <p class="challenge-description">Design an eye-catching album cover for electronic music. Focus on bold typography, vibrant colors, and visual elements that capture the energy of electronic beats.</p>
+                    <div class="challenge-details">
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Duration</div>
+                            <div class="challenge-detail-value">1 week</div>
+                        </div>
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Prize</div>
+                            <div class="challenge-detail-value">$200</div>
+                        </div>
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Deadline</div>
+                            <div class="challenge-detail-value">Dec 25, 2024</div>
+                        </div>
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Format</div>
+                            <div class="challenge-detail-value">Cover Art</div>
+                        </div>
+                    </div>
+                    <div class="challenge-participants">
+                        <div class="participant-avatars">
+                            <div class="participant-avatar">D</div>
+                            <div class="participant-avatar">E</div>
+                            <div class="participant-avatar">F</div>
+                        </div>
+                        <div class="participant-count">89 participants</div>
+                    </div>
+                    <div class="challenge-actions">
+                        <button class="join-btn">Join Challenge</button>
+                        <button class="view-btn">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="challenge-card" data-category="upcoming">
+                <div class="challenge-status upcoming">Upcoming</div>
+                <div class="challenge-image">
+                    <i class="challenge-placeholder fas fa-video"></i>
+                </div>
+                <div class="challenge-content">
+                    <h3 class="challenge-title">Motion Graphics Mastery</h3>
+                    <div class="challenge-theme">Theme: Kinetic Typography</div>
+                    <p class="challenge-description">Create stunning kinetic typography animations. Show off your motion graphics skills with creative text animations and visual effects.</p>
+                    <div class="challenge-details">
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Duration</div>
+                            <div class="challenge-detail-value">3 weeks</div>
+                        </div>
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Prize</div>
+                            <div class="challenge-detail-value">$750</div>
+                        </div>
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Starts</div>
+                            <div class="challenge-detail-value">Jan 1, 2025</div>
+                        </div>
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Format</div>
+                            <div class="challenge-detail-value">Video</div>
+                        </div>
+                    </div>
+                    <div class="challenge-participants">
+                        <div class="participant-avatars">
+                            <div class="participant-avatar">G</div>
+                            <div class="participant-avatar">H</div>
+                        </div>
+                        <div class="participant-count">45 registered</div>
+                    </div>
+                    <div class="challenge-actions">
+                        <button class="join-btn" disabled>Register Now</button>
+                        <button class="view-btn">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="challenge-card" data-category="completed">
+                <div class="challenge-status completed">Completed</div>
+                <div class="challenge-image">
+                    <i class="challenge-placeholder fas fa-paint-brush"></i>
+                </div>
+                <div class="challenge-content">
+                    <h3 class="challenge-title">Abstract Emotions</h3>
+                    <div class="challenge-theme">Theme: Color Psychology</div>
+                    <p class="challenge-description">Express emotions through abstract art using color psychology principles. Create pieces that evoke specific feelings through color choices and composition.</p>
+                    <div class="challenge-details">
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Duration</div>
+                            <div class="challenge-detail-value">2 weeks</div>
+                        </div>
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Prize</div>
+                            <div class="challenge-detail-value">$300</div>
+                        </div>
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Ended</div>
+                            <div class="challenge-detail-value">Dec 10, 2024</div>
+                        </div>
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Format</div>
+                            <div class="challenge-detail-value">Digital Art</div>
+                        </div>
+                    </div>
+                    <div class="challenge-participants">
+                        <div class="participant-avatars">
+                            <div class="participant-avatar">I</div>
+                            <div class="participant-avatar">J</div>
+                            <div class="participant-avatar">K</div>
+                        </div>
+                        <div class="participant-count">156 participants</div>
+                    </div>
+                    <div class="challenge-actions">
+                        <button class="join-btn" disabled>Challenge Ended</button>
+                        <button class="view-btn">View Results</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="challenge-card" data-category="weekly">
+                <div class="challenge-status active">Active</div>
+                <div class="challenge-image">
+                    <i class="challenge-placeholder fas fa-magic"></i>
+                </div>
+                <div class="challenge-content">
+                    <h3 class="challenge-title">Weekly Sketch Challenge</h3>
+                    <div class="challenge-theme">Theme: Character Design</div>
+                    <p class="challenge-description">Design a unique character every week. This ongoing challenge helps you develop your character design skills and build a diverse portfolio.</p>
+                    <div class="challenge-details">
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Duration</div>
+                            <div class="challenge-detail-value">1 week</div>
+                        </div>
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Prize</div>
+                            <div class="challenge-detail-value">$50</div>
+                        </div>
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Deadline</div>
+                            <div class="challenge-detail-value">Every Sunday</div>
+                        </div>
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Format</div>
+                            <div class="challenge-detail-value">Character Art</div>
+                        </div>
+                    </div>
+                    <div class="challenge-participants">
+                        <div class="participant-avatars">
+                            <div class="participant-avatar">L</div>
+                            <div class="participant-avatar">M</div>
+                            <div class="participant-avatar">N</div>
+                        </div>
+                        <div class="participant-count">203 participants</div>
+                    </div>
+                    <div class="challenge-actions">
+                        <button class="join-btn">Join Challenge</button>
+                        <button class="view-btn">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="challenge-card" data-category="monthly">
+                <div class="challenge-status upcoming">Upcoming</div>
+                <div class="challenge-image">
+                    <i class="challenge-placeholder fas fa-globe"></i>
+                </div>
+                <div class="challenge-content">
+                    <h3 class="challenge-title">Environmental Storytelling</h3>
+                    <div class="challenge-theme">Theme: Climate Change</div>
+                    <p class="challenge-description">Create powerful visual narratives about climate change and environmental issues. Use your art to raise awareness and inspire action.</p>
+                    <div class="challenge-details">
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Duration</div>
+                            <div class="challenge-detail-value">1 month</div>
+                        </div>
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Prize</div>
+                            <div class="challenge-detail-value">$1,000</div>
+                        </div>
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Starts</div>
+                            <div class="challenge-detail-value">Jan 15, 2025</div>
+                        </div>
+                        <div class="challenge-detail">
+                            <div class="challenge-detail-label">Format</div>
+                            <div class="challenge-detail-value">Any Medium</div>
+                        </div>
+                    </div>
+                    <div class="challenge-participants">
+                        <div class="participant-avatars">
+                            <div class="participant-avatar">O</div>
+                            <div class="participant-avatar">P</div>
+                        </div>
+                        <div class="participant-count">78 registered</div>
+                    </div>
+                    <div class="challenge-actions">
+                        <button class="join-btn" disabled>Register Now</button>
+                        <button class="view-btn">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaderboard Section -->
+    <section class="leaderboard-section">
+        <div class="container">
+            <h2 class="section-title">Challenge Leaderboard</h2>
+            <div class="leaderboard-grid">
+                <div class="leaderboard-card">
+                    <div class="leaderboard-position first">1st</div>
+                    <div class="leaderboard-artist">Alex Chen</div>
+                    <div class="leaderboard-score">2,450 points</div>
+                    <div class="leaderboard-artwork"></div>
+                </div>
+
+                <div class="leaderboard-card">
+                    <div class="leaderboard-position second">2nd</div>
+                    <div class="leaderboard-artist">Maya Rodriguez</div>
+                    <div class="leaderboard-score">2,180 points</div>
+                    <div class="leaderboard-artwork"></div>
+                </div>
+
+                <div class="leaderboard-card">
+                    <div class="leaderboard-position third">3rd</div>
+                    <div class="leaderboard-artist">David Kim</div>
+                    <div class="leaderboard-score">1,950 points</div>
+                    <div class="leaderboard-artwork"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community-section">
+        <div class="container">
+            <h2 class="section-title">Community Impact</h2>
+            <div class="community-stats">
+                <div class="stat-item">
+                    <span class="stat-number">2,500+</span>
+                    <div class="stat-label">Active Artists</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">150+</span>
+                    <div class="stat-label">Challenges Completed</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">15,000+</span>
+                    <div class="stat-label">Artworks Created</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">$50,000+</span>
+                    <div class="stat-label">Prizes Awarded</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Join the Community?</h2>
+                <p class="cta-description">Start participating in challenges today and showcase your creative talent to a global audience of artists and art enthusiasts.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="cta-btn primary">Join Now</a>
+                    <a href="gallery.html" class="cta-btn">View Gallery</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Steven Chaplinski</h3>
+                    <p>Digital Artist & Creative Developer</p>
+                    <p>Transforming ideas into visual reality through innovative digital art and creative solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="challenges.html">Challenges</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Me</h4>
+                    <div class="social-links">
+                        <a href="https://behance.net/ichoake" class="social-link"><i class="fab fa-behance"></i></a>
+                        <a href="https://bit.ly/iChoake" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="https://aiavatar.etsy.com/" class="social-link"><i class="fas fa-store"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Steven Chaplinski. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Challenge filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const challengeCards = document.querySelectorAll('.challenge-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+
+                    const filter = this.getAttribute('data-filter');
+
+                    challengeCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                            card.style.animation = 'fadeIn 0.5s ease-in-out';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+
+        // Challenge join functionality
+        document.querySelectorAll('.join-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (!this.disabled) {
+                    alert('Challenge join functionality would be implemented here. This is a demo.');
+                }
+            });
+        });
+
+        // Add fadeIn animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

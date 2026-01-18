@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zombot Gallery - Layout Switcher</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            margin: 0;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .layouts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .layout-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .layout-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .layout-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .layout-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+        .layout-btn {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .layout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Zombot AvatarArts Gallery</h1>
+        <div class="layouts-grid">
+            <div class="layout-card">
+                <div class="layout-title">Minimal</div>
+                <div class="layout-description">Clean minimal design with neon accents</div>
+                <a href="index_minimal.html" class="layout-btn">View Minimal</a>
+            </div>
+            <div class="layout-card">
+                <div class="layout-title">Masonry</div>
+                <div class="layout-description">Pinterest-style with advanced filters</div>
+                <a href="index_masonry.html" class="layout-btn">View Masonry</a>
+            </div>
+            <div class="layout-card">
+                <div class="layout-title">Cinematic</div>
+                <div class="layout-description">Full-screen cinematic experience</div>
+                <a href="index_cinematic.html" class="layout-btn">View Cinematic</a>
+            </div>
+            <div class="layout-card">
+                <div class="layout-title">Neon</div>
+                <div class="layout-description">Cyberpunk neon aesthetic</div>
+                <a href="index_neon.html" class="layout-btn">View Neon</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+        

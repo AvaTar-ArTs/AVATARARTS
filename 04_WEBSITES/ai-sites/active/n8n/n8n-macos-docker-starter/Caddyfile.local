@@ -1,0 +1,13 @@
+{
+    # Local HTTPS with Caddy's internal CA (auto-trusted on mac after prompt)
+    auto_https on
+}
+
+https://localhost {
+    encode gzip
+    reverse_proxy n8n:5678 {
+        header_up X-Forwarded-Proto {scheme}
+        header_up X-Forwarded-Host {host}
+        header_up X-Forwarded-For {remote}
+    }
+}

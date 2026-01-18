@@ -1,0 +1,64 @@
+# AI Agent Server Dockerfile
+# ==========================
+# Multi-stage build for optimized AI agent server
+
+FROM python:3.11-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    wget \
+    git \
+    build-essential \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Install additional AI libraries
+RUN pip install --no-cache-dir \
+    openai \
+    anthropic \
+    groq \
+    elevenlabs \
+    stability-sdk \
+    replicate \
+    pinecone-client \
+    cohere \
+    notion-client \
+    requests \
+    beautifulsoup4 \
+    lxml \
+    PyPDF2 \
+    pdfplumber \
+    python-dotenv
+
+# Copy application files
+COPY ai_agent_server.py .
+COPY content_research_agent.py .
+COPY env_d_loader.py .
+
+# Copy environment loader
+COPY env-loader.py .
+
+# Create necessary directories
+RUN mkdir -p /app/data /app/logs /app/research
+
+# Set environment variables
+ENV PYTHONPATH=/app
+ENV PYTHONUNBUFFERED=1
+
+# Expose port
+EXPOSE 5000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:5000/health || exit 1
+
+# Run the application
+CMD ["python", "ai_agent_server.py"]

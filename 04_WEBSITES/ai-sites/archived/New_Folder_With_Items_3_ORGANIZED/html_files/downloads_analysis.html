@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloads - Detailed Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .header {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        .section {
+            background: rgba(255,255,255,0.95);
+            margin-bottom: 30px;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border-left: 4px solid #667eea;
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .skill-item {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .skill-name {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .skill-level {
+            color: #667eea;
+            font-size: 0.9em;
+        }
+        
+        .skill-evidence {
+            color: #666;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+        
+        .recommendation {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+        }
+        
+        .recommendation.priority-high {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+        }
+        
+        .recommendation.priority-medium {
+            background: #fff3cd;
+            border-color: #ffeaa7;
+        }
+        
+        .recommendation.priority-low {
+            background: #d1ecf1;
+            border-color: #bee5eb;
+        }
+        
+        .btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+        }
+        
+        .btn:hover {
+            background: #5a6fd8;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📁 Downloads</h1>
+        <p>Detailed Analysis Report</p>
+    </div>
+    
+    <div class="container">
+        <div class="section">
+            <h2>📊 Basic Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">4,215</div>
+                    <div class="stat-label">Total Files</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2405.9 MB</div>
+                    <div class="stat-label">Total Size</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">Skills Identified</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">132</div>
+                    <div class="stat-label">Active Projects</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🎯 Skills Identified</h2>
+            
+            <div class="skill-item">
+                <div class="skill-name">Python Development</div>
+                <div class="skill-level">Level: Advanced</div>
+                <div class="skill-evidence">875 Python files</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">JavaScript Development</div>
+                <div class="skill-level">Level: Intermediate</div>
+                <div class="skill-evidence">110 JavaScript files</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Web Development</div>
+                <div class="skill-level">Level: Advanced</div>
+                <div class="skill-evidence">338 HTML files</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">CSS Styling</div>
+                <div class="skill-level">Level: Intermediate</div>
+                <div class="skill-evidence">7 CSS files</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">AI Integration</div>
+                <div class="skill-level">Level: Advanced</div>
+                <div class="skill-evidence">4064 AI-related content matches</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Creative Digital Work</div>
+                <div class="skill-level">Level: Advanced</div>
+                <div class="skill-evidence">7593 creative content matches</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Business Analysis & SEO</div>
+                <div class="skill-level">Level: Advanced</div>
+                <div class="skill-evidence">4238 business-related content matches</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📋 Active Projects</h2>
+            
+            <div class="skill-item">
+                <div class="skill-name">Tactical Income Roadmap for Steven’s Python Automation Projects.pdf</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Tactical Income Roadmap for Steven’s Python Automation Projects.pdf</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Project_2025_Decoded__How_the__Grand_Game__Used_Trump_s_Chaos_t.m4a</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Project_2025_Decoded__How_the__Grand_Game__Used_Trump_s_Chaos_t.m4a</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">AI-Enabled Workflows for PMs by Project Management Institute.pdf</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/AI-Enabled Workflows for PMs by Project Management Institute.pdf</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Tactical Income Roadmap for Steven’s Python Automation Projects (1).pdf</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Tactical Income Roadmap for Steven’s Python Automation Projects (1).pdf</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Claude Project Files Extractor.user.js</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/tampermonkey-backup-chrome-2025-10-15T07-15-55-158Z/Claude Project Files Extractor.user.js</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Sticky ChatGPT Projects.user.js</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/tampermonkey-backup-chrome-2025-10-15T07-15-55-158Z/Sticky ChatGPT Projects.user.js</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Claude Project Files Extractor.storage.json</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/tampermonkey-backup-chrome-2025-10-15T07-15-55-158Z/Claude Project Files Extractor.storage.json</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Sticky ChatGPT Projects.storage.json</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/tampermonkey-backup-chrome-2025-10-15T07-15-55-158Z/Sticky ChatGPT Projects.storage.json</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Sticky ChatGPT Projects.options.json</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/tampermonkey-backup-chrome-2025-10-15T07-15-55-158Z/Sticky ChatGPT Projects.options.json</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Claude Project Files Extractor.options.json</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/tampermonkey-backup-chrome-2025-10-15T07-15-55-158Z/Claude Project Files Extractor.options.json</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README_whisper_json_to_csv.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Misc/README_whisper_json_to_csv.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/ollama-setup-kit/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Fetched_AI_Alchemy_Project_Portfolioavatararts.org.txt</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Creative_Automation_Portfolio_Strategy_export_2025-09-05T22-59/Fetched_AI_Alchemy_Project_Portfolioavatararts.org.txt</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">02_Development_Projects</div>
+                <div class="skill-level">Type: Directory Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">01_AI_Tools_and_Frameworks</div>
+                <div class="skill-level">Type: Directory Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/09_Utilities/miniforge_mamba_secure_setup/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README-Colima.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/09_Utilities/n8n-colima-starter/README-Colima.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">miniforge_mamba_project_starter.zip</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/10_Uncategorized/miniforge_mamba_project_starter.zip</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/10_Uncategorized/Scripty_Feature_Documentation/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Song_Titles_Optimization_SEO_Keywords_Project_Management.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/10_Uncategorized/marks/05_General_Other/Song_Titles_Optimization_SEO_Keywords_Project_Management.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Creative_Automation_Portfolio_Unified_Content_Strategy.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/10_Uncategorized/marks/01_Portfolio_Professional/Creative_Automation_Portfolio_Unified_Content_Strategy.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/10_Uncategorized/Scripty_Custom_Action_Bundle/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/10_Uncategorized/Scripty_Complete_Upgrade_Pack/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/10_Uncategorized/launch_assets_bundle/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">audit_python_project.sh</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/06_Automation_Scripts/audit_python_project.sh</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/06_Automation_Scripts/refresh_keys_tool/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README_FIX.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/06_Automation_Scripts/analyzer_prompt_cli_fix_v2/README_FIX.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/as_a_man_thinketh_package_intel/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.zh.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/deepwiki-open-main/README.zh.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.fr.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/deepwiki-open-main/README.fr.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.es.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/deepwiki-open-main/README.es.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">pyproject.toml</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/deepwiki-open-main/pyproject.toml</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/deepwiki-open-main/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.ja.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/deepwiki-open-main/README.ja.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.pt-br.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/deepwiki-open-main/README.pt-br.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.zh-tw.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/deepwiki-open-main/README.zh-tw.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.vi.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/deepwiki-open-main/README.vi.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.ru.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/deepwiki-open-main/README.ru.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.kr.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/deepwiki-open-main/README.kr.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/deepwiki-open-main/tests/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">workflows</div>
+                <div class="skill-level">Type: Directory Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/deepwiki-open-main/.github/workflows</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/deepwiki-open-main/api/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">app</div>
+                <div class="skill-level">Type: Directory Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/deepwiki-open-main/src/app</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">projects</div>
+                <div class="skill-level">Type: Directory Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/deepwiki-open-main/src/app/wiki/projects</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">projects</div>
+                <div class="skill-level">Type: Directory Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/deepwiki-open-main/src/app/api/wiki/projects</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">workshop</div>
+                <div class="skill-level">Type: Directory Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/deepwiki-open-main/src/app/[owner]/[repo]/workshop</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">ProcessedProjects.tsx</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/deepwiki-open-main/src/components/ProcessedProjects.tsx</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">useProcessedProjects.ts</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/deepwiki-open-main/src/hooks/useProcessedProjects.ts</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/Auto_Authenticated_API_Python/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/pyrepo_doc_organizer_pkg/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/universal_api_env_kit_20251007_0611/docs/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md.json</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/universal_api_env_kit_20251007_0611/.lh/docs/README.md.json</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/as_a_man_thinketh_package/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.txt</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/02_Development_Projects/thinketh_tts_mine/README.txt</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">CHECKOUT_SETUP_README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/05_Media_Processing/redone_with_og_and_injector/CHECKOUT_SETUP_README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">readme.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/05_Media_Processing/redone_with_og_and_injector/podcast_to_video_v2/readme.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Notion_README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/05_Media_Processing/shadowchannel_medium_notion_bundle/Notion_README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">projects</div>
+                <div class="skill-level">Type: Directory Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/05_Media_Processing/storyboarder_adaptive_setup/projects</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/05_Media_Processing/storyboarder_adaptive_setup/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">readme_template.j2</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/05_Media_Processing/storyboarder_adaptive_setup/templates/readme_template.j2</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/05_Media_Processing/shadowchannel_design_pack/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">sora_json_sitegen</div>
+                <div class="skill-level">Type: Directory Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/sora_json_sitegen</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">digital_dive_framework_v3_full</div>
+                <div class="skill-level">Type: Directory Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/digital_dive_framework_v3_full</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/opus_clip_v0_2_2_auto_style_reframe/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">projects.sample.json</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/alchemy_cards_bundle/projects.sample.json</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">projects.json</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/qlabs_portfolio_cards/projects.json</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/one_click_media_pipeline/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README_macOS.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/gemini_grabber_clean/README_macOS.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/opus_clip_v0_2_1_auto_style/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">site-packages</div>
+                <div class="skill-level">Type: Directory Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/opus_clip_v0_2_1_auto_style/.venv/lib/python3.11/site-packages</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">pyproject_hooks</div>
+                <div class="skill-level">Type: Directory Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/opus_clip_v0_2_1_auto_style/.venv/lib/python3.11/site-packages/pip-25.2.dist-info/licenses/src/pip/_vendor/pyproject_hooks</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">network</div>
+                <div class="skill-level">Type: Directory Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/opus_clip_v0_2_1_auto_style/.venv/lib/python3.11/site-packages/pip/_internal/network</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">pyproject.py</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/opus_clip_v0_2_1_auto_style/.venv/lib/python3.11/site-packages/pip/_internal/pyproject.py</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">pyproject.cpython-311.pyc</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/opus_clip_v0_2_1_auto_style/.venv/lib/python3.11/site-packages/pip/_internal/__pycache__/pyproject.cpython-311.pyc</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">pyproject_hooks</div>
+                <div class="skill-level">Type: Directory Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/opus_clip_v0_2_1_auto_style/.venv/lib/python3.11/site-packages/pip/_vendor/pyproject_hooks</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">_validate_pyproject</div>
+                <div class="skill-level">Type: Directory Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/opus_clip_v0_2_1_auto_style/.venv/lib/python3.11/site-packages/setuptools/config/_validate_pyproject</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">_apply_pyprojecttoml.py</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/opus_clip_v0_2_1_auto_style/.venv/lib/python3.11/site-packages/setuptools/config/_apply_pyprojecttoml.py</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">pyprojecttoml.py</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/opus_clip_v0_2_1_auto_style/.venv/lib/python3.11/site-packages/setuptools/config/pyprojecttoml.py</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">_apply_pyprojecttoml.cpython-311.pyc</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/opus_clip_v0_2_1_auto_style/.venv/lib/python3.11/site-packages/setuptools/config/__pycache__/_apply_pyprojecttoml.cpython-311.pyc</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">pyprojecttoml.cpython-311.pyc</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/opus_clip_v0_2_1_auto_style/.venv/lib/python3.11/site-packages/setuptools/config/__pycache__/pyprojecttoml.cpython-311.pyc</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">test_pyprojecttoml_dynamic_deps.py</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/opus_clip_v0_2_1_auto_style/.venv/lib/python3.11/site-packages/setuptools/tests/config/test_pyprojecttoml_dynamic_deps.py</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">test_pyprojecttoml.py</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/opus_clip_v0_2_1_auto_style/.venv/lib/python3.11/site-packages/setuptools/tests/config/test_pyprojecttoml.py</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">test_apply_pyprojecttoml.py</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/opus_clip_v0_2_1_auto_style/.venv/lib/python3.11/site-packages/setuptools/tests/config/test_apply_pyprojecttoml.py</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">test_pyprojecttoml_dynamic_deps.cpython-311.pyc</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/opus_clip_v0_2_1_auto_style/.venv/lib/python3.11/site-packages/setuptools/tests/config/__pycache__/test_pyprojecttoml_dynamic_deps.cpython-311.pyc</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">test_pyprojecttoml.cpython-311.pyc</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/opus_clip_v0_2_1_auto_style/.venv/lib/python3.11/site-packages/setuptools/tests/config/__pycache__/test_pyprojecttoml.cpython-311.pyc</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">test_apply_pyprojecttoml.cpython-311.pyc</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/opus_clip_v0_2_1_auto_style/.venv/lib/python3.11/site-packages/setuptools/tests/config/__pycache__/test_apply_pyprojecttoml.cpython-311.pyc</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/Feather_Fang_Creative_Bundle/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/multimedia_analysis_toolkit/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/oss_mp3_analysis/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">pyproject.toml</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/digital_dive_framework_v3_full/pyproject.toml</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/01_AI_Tools_and_Frameworks/digital_dive_framework_v3_full/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">README.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/README.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">plantagenet-dynasty-english-rule-and-legacy.html</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/plantagenet-dynasty-english-rule-and-legacy.html</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">ai-automation-and-monetization-strategy-plan.html</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/ai-automation-and-monetization-strategy-plan.html</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">ai-alchemy-project-portfolio-strategy-guide.html</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/ai-alchemy-project-portfolio-strategy-guide.html</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">traptalk-s-hip-hop-celebrity-scandal-strategy.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/traptalk-s-hip-hop-celebrity-scandal-strategy.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">ai-model-selection-and-workflow-optimization-plan.html</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/ai-model-selection-and-workflow-optimization-plan.html</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">trashcats-branding-and-music-project-plan.html</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/trashcats-branding-and-music-project-plan.html</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">analyzing-david-p-max-s-linkedin-strategy.html</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/analyzing-david-p-max-s-linkedin-strategy.html</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">automated-valentine-s-day-product-strategy.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/automated-valentine-s-day-product-strategy.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">neuroforge-labs-branding-and-strategy.html</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/neuroforge-labs-branding-and-strategy.html</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">trashcat-project-visual-storytelling-plan.html</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/trashcat-project-visual-storytelling-plan.html</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">linkedin-seo-and-brand-optimization-strategy.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/linkedin-seo-and-brand-optimization-strategy.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">linkedin-seo-and-brand-optimization-strategy.html</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/linkedin-seo-and-brand-optimization-strategy.html</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">automated-valentine-s-day-product-strategy.html</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/automated-valentine-s-day-product-strategy.html</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">brand-strategy-and-seo-optimization-guide.html</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/brand-strategy-and-seo-optimization-guide.html</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">seo-optimized-username-rankings-strategy-guide.html</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/seo-optimized-username-rankings-strategy-guide.html</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">trashcats-branding-and-music-project-plan.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/trashcats-branding-and-music-project-plan.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">ai-domain-strategy-and-seo-master-plan.html</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/ai-domain-strategy-and-seo-master-plan.html</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">ai-content-creation-plan-for-2025-trends.html</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/ai-content-creation-plan-for-2025-trends.html</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">brand-strategy-and-seo-optimization-guide.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/brand-strategy-and-seo-optimization-guide.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">plantagenet-dynasty-english-rule-and-legacy.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/plantagenet-dynasty-english-rule-and-legacy.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">ai-model-selection-and-workflow-optimization-plan.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/ai-model-selection-and-workflow-optimization-plan.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">traptalk-s-hip-hop-celebrity-scandal-strategy.html</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/traptalk-s-hip-hop-celebrity-scandal-strategy.html</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">neuroforge-labs-branding-and-strategy.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/neuroforge-labs-branding-and-strategy.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">seo-optimized-username-rankings-strategy-guide.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/seo-optimized-username-rankings-strategy-guide.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">ai-automation-and-monetization-strategy-plan.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/ai-automation-and-monetization-strategy-plan.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">analyzing-david-p-max-s-linkedin-strategy.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/output/analyzing-david-p-max-s-linkedin-strategy.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">conversation-analyzing-david-p-max-s-linkedin-strategy.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/content/conversation-analyzing-david-p-max-s-linkedin-strategy.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">conversation-seo-optimized-username-rankings-strategy-guide.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/content/conversation-seo-optimized-username-rankings-strategy-guide.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">conversation-neuroforge-labs-branding-and-strategy.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/content/conversation-neuroforge-labs-branding-and-strategy.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">conversation-trashcats-branding-and-music-project-plan.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/content/conversation-trashcats-branding-and-music-project-plan.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">conversation-plantagenet-dynasty-english-rule-and-legacy.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/content/conversation-plantagenet-dynasty-english-rule-and-legacy.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">conversation-brand-strategy-and-seo-optimization-guide.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/content/conversation-brand-strategy-and-seo-optimization-guide.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">conversation-linkedin-seo-and-brand-optimization-strategy.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/content/conversation-linkedin-seo-and-brand-optimization-strategy.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">conversation-automated-valentine-s-day-product-strategy.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/content/conversation-automated-valentine-s-day-product-strategy.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">conversation-traptalk-s-hip-hop-celebrity-scandal-strategy.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/content/conversation-traptalk-s-hip-hop-celebrity-scandal-strategy.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">conversation-ai-model-selection-and-workflow-optimization-plan.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/content/conversation-ai-model-selection-and-workflow-optimization-plan.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">conversation-ai-automation-and-monetization-strategy-plan.md</div>
+                <div class="skill-level">Type: Documentation Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/Compressed/04_Web_Development/page_maker_v3/content/conversation-ai-automation-and-monetization-strategy-plan.md</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">pattern-rapport-creator-offset-overflow-2023-11-27-05-00-45-utc</div>
+                <div class="skill-level">Type: Directory Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/PSD EXTENM/pattern-rapport-creator-offset-overflow-2023-11-27-05-00-45-utc</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">workflow-helper-3-1-1</div>
+                <div class="skill-level">Type: Directory Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/PSD EXTENM/Pixnub/workflow-helper-3-1-1</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">background-swapper-3-1-1</div>
+                <div class="skill-level">Type: Directory Project</div>
+                <div class="skill-evidence">Path: /Users/steven/Downloads/PSD EXTENM/Pixnub/background-swapper-3-1-1</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>💡 Recommendations</h2>
+            
+            <div class="recommendation priority-high">
+                <strong>Organization - High Priority</strong><br>
+                Consider implementing automated file organization system<br>
+                <em>Large number of files (4215) may benefit from better organization</em>
+            </div>
+            <div class="recommendation priority-medium">
+                <strong>Storage - Medium Priority</strong><br>
+                Consider archiving old files or implementing compression<br>
+                <em>Directory size is 2.35 GB</em>
+            </div>
+            <div class="recommendation priority-high">
+                <strong>Structure - High Priority</strong><br>
+                Reorganize directory structure to reduce nesting depth<br>
+                <em>Current depth is 13 levels</em>
+            </div>
+            <div class="recommendation priority-low">
+                <strong>Skills - Low Priority</strong><br>
+                Consider creating a portfolio showcasing diverse skills<br>
+                <em>Demonstrates 7 different technical skills</em>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="index.html" class="btn">← Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

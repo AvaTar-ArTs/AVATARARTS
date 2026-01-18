@@ -1,0 +1,61 @@
+{
+  "title": "{{short_title}}",
+  "aspect_ratio": "{{aspect_ratio}}", 
+  "beats": [
+    {
+      "type": "cover",
+      "scene": "{{cover_scene}}",
+      "mood": "{{cover_mood}}",
+      "prompt": "{{cover_prompt}}",
+      "typography": {
+        "font_style": "bold_shattered",
+        "placement": "top",
+        "text": "{{cover_text}}"
+      },
+      "duration_ms": 1200,
+      "transition": "hard_cut",
+      "audio": { "sfx": ["whoosh", "neon_buzz"], "music_cue": "{{cue_cover}}" }
+    },
+    {
+      "type": "transition",
+      "scene": "{{trans1_scene}}",
+      "mood": "{{trans1_mood}}",
+      "prompt": "{{trans1_prompt}}",
+      "typography": { "font_style": "sleek_grotesk", "placement": "embedded", "text": "{{trans1_text}}" },
+      "duration_ms": 800,
+      "transition": "glitch",
+      "audio": { "sfx": ["glitch"], "music_cue": "{{cue_trans1}}" }
+    },
+    {
+      "type": "main",
+      "scene": "{{main_scene}}",
+      "mood": "{{main_mood}}",
+      "prompt": "{{main_prompt}}",
+      "typography": { "font_style": "dramatic_serif", "placement": "in_world", "text": "{{main_text}}" },
+      "duration_ms": 1800,
+      "transition": "match_cut",
+      "audio": { "sfx": ["crowd_rise"], "music_cue": "{{cue_main}}" }
+    },
+    {
+      "type": "reflection",
+      "scene": "{{reflect_scene}}",
+      "mood": "{{reflect_mood}}",
+      "prompt": "{{reflect_prompt}}",
+      "typography": { "font_style": "handwritten_faded", "placement": "whisper", "text": "{{reflect_text}}" },
+      "duration_ms": 900,
+      "transition": "crossfade",
+      "audio": { "sfx": ["vinyl_hiss"], "music_cue": "{{cue_reflect}}" }
+    }
+  ],
+  "pacing": {
+    "notes": "Fast open, breathe, surge, linger",
+    "beat_markers_ms": [0, 1200, 2000, 3800, 4700]
+  },
+  "seo": {
+    "title": "{{seo_title}}",
+    "description": "{{seo_description}}",
+    "keywords": [ {{seo_keywords_csv}} ]
+  },
+  "hashtags": [ {{hashtags_csv}} ],
+  "reference": "AvaTarArTs DALL·E Gallery — https://www.avatararts.org/dalle.html"
+}

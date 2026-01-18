@@ -1,0 +1,11 @@
+{
+  "name": "Social Media Scheduler",
+  "active": false,
+  "nodes": [
+    {"parameters": {"triggerTimes": {"item": [{"mode": "everyHour"}]}}, "id": "Cron1", "name": "Cron", "type": "n8n-nodes-base.cron", "typeVersion": 2, "position": [300, 300]},
+    {"parameters": {"path": "~/ai-sites/passive-income-empire/marketing/templates/social-posts.csv", "options": {"delimiter": ",", "header": true}}, "id": "ReadCSV1", "name": "Read CSV", "type": "n8n-nodes-base.readBinaryFile", "typeVersion": 1, "position": [520, 300]},
+    {"parameters": {"functionCode": "// Placeholder: transform CSV row to API payload\nreturn items;"}, "id": "Func1", "name": "Build Payload", "type": "n8n-nodes-base.function", "typeVersion": 2, "position": [740, 300]},
+    {"parameters": {"authentication": "predefinedCredentialType", "requestMethod": "POST", "url": "https://api.bufferapp.com/1/updates/create.json"}, "id": "HTTP1", "name": "Post to Buffer (placeholder)", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4, "position": [980, 300]}
+  ],
+  "connections": {"Read CSV": {"main": [[{"node": "Build Payload", "type": "main", "index": 0}]]}, "Cron": {"main": [[{"node": "Read CSV", "type": "main", "index": 0}]]}, "Build Payload": {"main": [[{"node": "Post to Buffer (placeholder)", "type": "main", "index": 0}]]}}
+}

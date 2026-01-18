@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>CleanConnect Pro Admin Dashboard | Platform Management</title>
+    <meta name="description" content="Admin dashboard for CleanConnect Pro - Manage users, bookings, payments, and platform analytics.">
+    <meta name="theme-color" content="#1f2937">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --danger: #ef4444;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            --dark: #1f2937;
+            --light: #f8fafc;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: var(--gray-100);
+        }
+        
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: var(--dark);
+            color: white;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-700);
+        }
+        
+        .sidebar-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .sidebar-subtitle {
+            font-size: 0.875rem;
+            color: var(--gray-400);
+            margin-top: 0.25rem;
+        }
+        
+        .sidebar-nav {
+            padding: 1rem 0;
+        }
+        
+        .nav-section {
+            margin-bottom: 2rem;
+        }
+        
+        .nav-section-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--gray-400);
+            padding: 0 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            color: var(--gray-300);
+            text-decoration: none;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+        
+        .nav-item:hover {
+            background: var(--gray-800);
+            color: white;
+        }
+        
+        .nav-item.active {
+            background: var(--gray-800);
+            color: white;
+            border-left-color: var(--primary);
+        }
+        
+        .nav-item-icon {
+            width: 20px;
+            margin-right: 0.75rem;
+            text-align: center;
+        }
+        
+        .nav-item-label {
+            font-weight: 500;
+        }
+        
+        .nav-item-badge {
+            background: var(--danger);
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            margin-left: auto;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 2rem;
+        }
+        
+        .content-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .page-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--gray-900);
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+        
+        .btn-secondary {
+            background: var(--gray-200);
+            color: var(--gray-800);
+        }
+        
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+        
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+        
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+        }
+        
+        .stat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .stat-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-600);
+        }
+        
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+        
+        .stat-icon.primary {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+        }
+        
+        .stat-icon.success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+        
+        .stat-icon.warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+        
+        .stat-icon.danger {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 0.25rem;
+        }
+        
+        .stat-change {
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        .stat-change.positive {
+            color: var(--success);
+        }
+        
+        .stat-change.negative {
+            color: var(--danger);
+        }
+        
+        /* Tables */
+        .table-container {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+        }
+        
+        .table-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .table-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        
+        .table-filters {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .filter-select {
+            padding: 0.5rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .table th {
+            background: var(--gray-50);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--gray-700);
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .table tr:hover {
+            background: var(--gray-50);
+        }
+        
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .status-active {
+            background: var(--success);
+            color: white;
+        }
+        
+        .status-pending {
+            background: var(--warning);
+            color: white;
+        }
+        
+        .status-inactive {
+            background: var(--gray-400);
+            color: white;
+        }
+        
+        .status-banned {
+            background: var(--danger);
+            color: white;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 0.75rem;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-details h4 {
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.25rem;
+        }
+        
+        .user-details p {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        /* Charts */
+        .chart-container {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+            margin-bottom: 2rem;
+        }
+        
+        .chart-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+        
+        .chart-placeholder {
+            height: 300px;
+            background: var(--gray-100);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-500);
+            font-size: 1.125rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .table-filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .table {
+                font-size: 0.875rem;
+            }
+            
+            .table th,
+            .table td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+        
+        /* Loading States */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--gray-200);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Hide/show content based on active tab */
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-title">CleanConnect Pro</div>
+                <div class="sidebar-subtitle">Admin Dashboard</div>
+            </div>
+            
+            <div class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Overview</div>
+                    <a href="#dashboard" class="nav-item active" onclick="showTab('dashboard')">
+                        <div class="nav-item-icon">📊</div>
+                        <div class="nav-item-label">Dashboard</div>
+                    </a>
+                    <a href="#analytics" class="nav-item" onclick="showTab('analytics')">
+                        <div class="nav-item-icon">📈</div>
+                        <div class="nav-item-label">Analytics</div>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Users</div>
+                    <a href="#users" class="nav-item" onclick="showTab('users')">
+                        <div class="nav-item-icon">👥</div>
+                        <div class="nav-item-label">All Users</div>
+                        <div class="nav-item-badge">12</div>
+                    </a>
+                    <a href="#hosts" class="nav-item" onclick="showTab('hosts')">
+                        <div class="nav-item-icon">🏠</div>
+                        <div class="nav-item-label">Hosts</div>
+                    </a>
+                    <a href="#cleaners" class="nav-item" onclick="showTab('cleaners')">
+                        <div class="nav-item-icon">🧹</div>
+                        <div class="nav-item-label">Cleaners</div>
+                    </a>
+                    <a href="#verifications" class="nav-item" onclick="showTab('verifications')">
+                        <div class="nav-item-icon">✅</div>
+                        <div class="nav-item-label">Verifications</div>
+                        <div class="nav-item-badge">5</div>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Bookings</div>
+                    <a href="#bookings" class="nav-item" onclick="showTab('bookings')">
+                        <div class="nav-item-icon">📅</div>
+                        <div class="nav-item-label">All Bookings</div>
+                    </a>
+                    <a href="#requests" class="nav-item" onclick="showTab('requests')">
+                        <div class="nav-item-icon">📋</div>
+                        <div class="nav-item-label">Requests</div>
+                    </a>
+                    <a href="#quotes" class="nav-item" onclick="showTab('quotes')">
+                        <div class="nav-item-icon">💰</div>
+                        <div class="nav-item-label">Quotes</div>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Financial</div>
+                    <a href="#payments" class="nav-item" onclick="showTab('payments')">
+                        <div class="nav-item-icon">💳</div>
+                        <div class="nav-item-label">Payments</div>
+                    </a>
+                    <a href="#earnings" class="nav-item" onclick="showTab('earnings')">
+                        <div class="nav-item-icon">💵</div>
+                        <div class="nav-item-label">Earnings</div>
+                    </a>
+                    <a href="#refunds" class="nav-item" onclick="showTab('refunds')">
+                        <div class="nav-item-icon">↩️</div>
+                        <div class="nav-item-label">Refunds</div>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">System</div>
+                    <a href="#settings" class="nav-item" onclick="showTab('settings')">
+                        <div class="nav-item-icon">⚙️</div>
+                        <div class="nav-item-label">Settings</div>
+                    </a>
+                    <a href="#logs" class="nav-item" onclick="showTab('logs')">
+                        <div class="nav-item-icon">📝</div>
+                        <div class="nav-item-label">Logs</div>
+                    </a>
+                    <a href="#support" class="nav-item" onclick="showTab('support')">
+                        <div class="nav-item-icon">🎧</div>
+                        <div class="nav-item-label">Support</div>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Tab -->
+            <div id="dashboard" class="tab-content active">
+                <div class="content-header">
+                    <h1 class="page-title">Dashboard</h1>
+                    <div class="header-actions">
+                        <button class="btn btn-secondary">Export Data</button>
+                        <button class="btn btn-primary">Generate Report</button>
+                    </div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-title">Total Users</div>
+                            <div class="stat-icon primary">👥</div>
+                        </div>
+                        <div class="stat-value">1,247</div>
+                        <div class="stat-change positive">
+                            <span>↗</span>
+                            <span>+12% from last month</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-title">Active Bookings</div>
+                            <div class="stat-icon success">📅</div>
+                        </div>
+                        <div class="stat-value">89</div>
+                        <div class="stat-change positive">
+                            <span>↗</span>
+                            <span>+8% from last week</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-title">Monthly Revenue</div>
+                            <div class="stat-icon warning">💰</div>
+                        </div>
+                        <div class="stat-value">$45,230</div>
+                        <div class="stat-change positive">
+                            <span>↗</span>
+                            <span>+23% from last month</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-title">Platform Fee</div>
+                            <div class="stat-icon danger">💳</div>
+                        </div>
+                        <div class="stat-value">$6,785</div>
+                        <div class="stat-change positive">
+                            <span>↗</span>
+                            <span>+15% from last month</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="chart-container">
+                    <div class="chart-title">Revenue Trends</div>
+                    <div class="chart-placeholder">📈 Revenue Chart (Last 6 Months)</div>
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart-title">User Growth</div>
+                    <div class="chart-placeholder">📊 User Growth Chart (Last 12 Months)</div>
+                </div>
+            </div>
+
+            <!-- Users Tab -->
+            <div id="users" class="tab-content">
+                <div class="content-header">
+                    <h1 class="page-title">All Users</h1>
+                    <div class="header-actions">
+                        <button class="btn btn-secondary">Export Users</button>
+                        <button class="btn btn-primary">Add User</button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="table-title">User Management</div>
+                        <div class="table-filters">
+                            <select class="filter-select">
+                                <option>All Users</option>
+                                <option>Hosts Only</option>
+                                <option>Cleaners Only</option>
+                            </select>
+                            <select class="filter-select">
+                                <option>All Status</option>
+                                <option>Active</option>
+                                <option>Inactive</option>
+                                <option>Banned</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Joined</th>
+                                <th>Last Active</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">JD</div>
+                                        <div class="user-details">
+                                            <h4>John Doe</h4>
+                                            <p>john.doe@example.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Host</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>Jan 15, 2025</td>
+                                <td>2 hours ago</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-sm btn-secondary">View</button>
+                                        <button class="btn btn-sm btn-danger">Ban</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">SM</div>
+                                        <div class="user-details">
+                                            <h4>Sarah Miller</h4>
+                                            <p>sarah.miller@example.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Cleaner</td>
+                                <td><span class="status-badge status-pending">Pending</span></td>
+                                <td>Jan 20, 2025</td>
+                                <td>1 day ago</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-sm btn-secondary">View</button>
+                                        <button class="btn btn-sm btn-success">Verify</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">MJ</div>
+                                        <div class="user-details">
+                                            <h4>Mike Johnson</h4>
+                                            <p>mike.johnson@example.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Cleaner</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>Jan 10, 2025</td>
+                                <td>30 minutes ago</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-sm btn-secondary">View</button>
+                                        <button class="btn btn-sm btn-danger">Ban</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Bookings Tab -->
+            <div id="bookings" class="tab-content">
+                <div class="content-header">
+                    <h1 class="page-title">All Bookings</h1>
+                    <div class="header-actions">
+                        <button class="btn btn-secondary">Export Bookings</button>
+                        <button class="btn btn-primary">Create Booking</button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="table-title">Booking Management</div>
+                        <div class="table-filters">
+                            <select class="filter-select">
+                                <option>All Bookings</option>
+                                <option>Scheduled</option>
+                                <option>In Progress</option>
+                                <option>Completed</option>
+                                <option>Cancelled</option>
+                            </select>
+                            <select class="filter-select">
+                                <option>All Dates</option>
+                                <option>Today</option>
+                                <option>This Week</option>
+                                <option>This Month</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Host</th>
+                                <th>Cleaner</th>
+                                <th>Service</th>
+                                <th>Date & Time</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#BK-001</td>
+                                <td>John Doe</td>
+                                <td>Sarah Miller</td>
+                                <td>Turnover Cleaning</td>
+                                <td>Jan 28, 2025 9:00 AM</td>
+                                <td>$150.00</td>
+                                <td><span class="status-badge status-active">Scheduled</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-sm btn-secondary">View</button>
+                                        <button class="btn btn-sm btn-danger">Cancel</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#BK-002</td>
+                                <td>Jane Smith</td>
+                                <td>Mike Johnson</td>
+                                <td>Deep Clean</td>
+                                <td>Jan 27, 2025 2:00 PM</td>
+                                <td>$280.00</td>
+                                <td><span class="status-badge status-pending">In Progress</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-sm btn-secondary">View</button>
+                                        <button class="btn btn-sm btn-success">Complete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div id="settings" class="tab-content">
+                <div class="content-header">
+                    <h1 class="page-title">System Settings</h1>
+                    <div class="header-actions">
+                        <button class="btn btn-primary">Save Changes</button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="table-title">Platform Configuration</div>
+                    </div>
+                    
+                    <div style="padding: 1.5rem;">
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Platform Fee Percentage</label>
+                            <input type="number" value="15" style="width: 100px; padding: 0.5rem; border: 1px solid var(--gray-300); border-radius: 0.5rem;">
+                            <span style="margin-left: 0.5rem; color: var(--gray-600);">%</span>
+                        </div>
+                        
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Quote Expiry Hours</label>
+                            <input type="number" value="24" style="width: 100px; padding: 0.5rem; border: 1px solid var(--gray-300); border-radius: 0.5rem;">
+                            <span style="margin-left: 0.5rem; color: var(--gray-600);">hours</span>
+                        </div>
+                        
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Minimum Cleaner Rating</label>
+                            <input type="number" value="4.0" step="0.1" style="width: 100px; padding: 0.5rem; border: 1px solid var(--gray-300); border-radius: 0.5rem;">
+                            <span style="margin-left: 0.5rem; color: var(--gray-600);">stars</span>
+                        </div>
+                        
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Support Email</label>
+                            <input type="email" value="support@cleanconnectpro.com" style="width: 300px; padding: 0.5rem; border: 1px solid var(--gray-300); border-radius: 0.5rem;">
+                        </div>
+                        
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Support Phone</label>
+                            <input type="tel" value="(352) 555-CLEAN" style="width: 200px; padding: 0.5rem; border: 1px solid var(--gray-300); border-radius: 0.5rem;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Tab switching
+        function showTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked nav item
+            event.target.closest('.nav-item').classList.add('active');
+        }
+        
+        // Simulate real-time data updates
+        setInterval(() => {
+            // Update stats with random changes
+            const statValues = document.querySelectorAll('.stat-value');
+            statValues.forEach(stat => {
+                const currentValue = parseInt(stat.textContent.replace(/[^0-9]/g, ''));
+                if (currentValue && Math.random() < 0.1) {
+                    const change = Math.floor(Math.random() * 3) - 1;
+                    const newValue = Math.max(0, currentValue + change);
+                    stat.textContent = stat.textContent.replace(/\d+/, newValue);
+                }
+            });
+        }, 10000);
+        
+        // Add click handlers for action buttons
+        document.addEventListener('click', function(e) {
+            if (e.target.textContent === 'View') {
+                alert('Opening user/booking details...');
+            } else if (e.target.textContent === 'Ban') {
+                if (confirm('Are you sure you want to ban this user?')) {
+                    alert('User has been banned.');
+                }
+            } else if (e.target.textContent === 'Verify') {
+                if (confirm('Verify this user?')) {
+                    alert('User has been verified.');
+                }
+            } else if (e.target.textContent === 'Cancel') {
+                if (confirm('Cancel this booking?')) {
+                    alert('Booking has been cancelled.');
+                }
+            } else if (e.target.textContent === 'Complete') {
+                if (confirm('Mark this booking as completed?')) {
+                    alert('Booking marked as completed.');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

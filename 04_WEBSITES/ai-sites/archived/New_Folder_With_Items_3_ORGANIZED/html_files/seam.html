@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Seamless pattern background example with drag and drop functionality">
+    <title>Seamless Pattern</title>
+    <style>
+        html, body {
+            margin: 0;
+            width: 100%;
+            height: 100vh;
+            background-size: 350px;
+            background-repeat: repeat;
+            transition: background-size 0.1s;
+        }
+        #drop-area {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ccc;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            font-family: Arial, sans-serif;
+            color: #666;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        #drop-area.hover {
+            border-color: #333;
+            background-color: rgba(200, 230, 255, 0.8);
+            color: #000;
+        }
+        #clear-btn, #size-controls {
+            position: absolute;
+            padding: 10px 20px;
+            background: #f00;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+            font-family: Arial, sans-serif;
+        }
+        #clear-btn {
+            top: 10px;
+            right: 10px;
+        }
+        #size-controls {
+            top: 10px;
+            left: 10px;
+            background: #333;
+        }
+        #size-controls label {
+            margin-right: 10px;
+            color: #fff;
+        }
+        #size-slider {
+            width: 150px;
+        }
+        #error-message {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: red;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="drop-area" aria-label="Drop area for images">Drop an image here</div>
+    <button id="clear-btn" onclick="clearImage()">Clear Image</button>
+    <div id="size-controls">
+        <label for="size-slider">Pattern Size:</label>
+        <input type="range" id="size-slider" min="50" max="500" value="350" oninput="updateBackgroundSize(this.value)">
+    </div>
+    <div id="error-message"></div>
+    <script>
+        const dropArea = document.getElementById('drop-area');
+        const clearBtn = document.getElementById('clear-btn');
+        const sizeControls = document.getElementById('size-controls');
+        const errorMessage = document.getElementById('error-message');
+
+        dropArea.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            dropArea.classList.add('hover');
+        });
+
+        dropArea.addEventListener('dragleave', () => {
+            dropArea.classList.remove('hover');
+        });
+
+        dropArea.addEventListener('drop', (event) => {
+            event.preventDefault();
+            dropArea.classList.remove('hover');
+            const file = event.dataTransfer.files[0];
+
+            if (!file) return;
+
+            // Check if the file is an image
+            if (!file.type.match('image.*')) {
+                showError("Please drop an image file (e.g., JPEG, PNG)");
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+                document.body.style.backgroundImage = `url(${e.target.result})`;
+                clearBtn.style.display = 'block';
+                sizeControls.style.display = 'block';
+                hideError();
+            };
+
+            reader.onerror = () => {
+                showError("Error reading the file. Please try another image.");
+            };
+
+            reader.readAsDataURL(file);
+        });
+
+        function clearImage() {
+            document.body.style.backgroundImage = '';
+            clearBtn.style.display = 'none';
+            sizeControls.style.display = 'none';
+        }
+
+        function updateBackgroundSize(size) {
+            document.body.style.backgroundSize = `${size}px`;
+        }
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            setTimeout(hideError, 3000);
+        }
+
+        function hideError() {
+            errorMessage.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

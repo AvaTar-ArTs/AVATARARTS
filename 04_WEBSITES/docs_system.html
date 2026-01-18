@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVATARARTS - Directory Documentation System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>AVATARARTS</h1>
+                <p>Directory Documentation System</p>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#dashboard" data-target="dashboard">Dashboard</a></li>
+                    <li><a href="#browse" data-target="browse">Browse</a></li>
+                    <li><a href="#search" data-target="search">Search</a></li>
+                    <li><a href="#categories" data-target="categories">Categories</a></li>
+                    <li><a href="#analytics" data-target="analytics">Analytics</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="dashboard-section">
+                <div class="dashboard-header">
+                    <h2>System Overview</h2>
+                    <div class="stats-container">
+                        <div class="stat-card">
+                            <h3 id="total-files">0</h3>
+                            <p>Total Files</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3 id="total-dirs">0</h3>
+                            <p>Total Directories</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3 id="total-size">0 GB</h3>
+                            <p>Total Size</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3 id="categories-count">0</h3>
+                            <p>Categories</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quick-access">
+                    <h3>Quick Access</h3>
+                    <div class="quick-links">
+                        <a href="#AVATARARTS" class="quick-link">AVATARARTS Project</a>
+                        <a href="#analysis" class="quick-link">Analysis Reports</a>
+                        <a href="#scripts" class="quick-link">Scripts</a>
+                        <a href="#documents" class="quick-link">Documents</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Browse Section -->
+            <section id="browse" class="browse-section">
+                <div class="browse-header">
+                    <h2>Directory Browser</h2>
+                    <div class="browser-controls">
+                        <input type="text" id="path-input" placeholder="/Users/steven" readonly>
+                        <button id="up-dir-btn">Up Directory</button>
+                        <select id="sort-options">
+                            <option value="name">Sort by Name</option>
+                            <option value="size">Sort by Size</option>
+                            <option value="date">Sort by Date</option>
+                            <option value="type">Sort by Type</option>
+                        </select>
+                    </div>
+                    <div class="filter-controls">
+                        <button class="btn" data-filter="all">All</button>
+                        <button class="btn" data-filter="files">Files</button>
+                        <button class="btn" data-filter="directories">Directories</button>
+                        <button class="btn" data-filter="large">Large Items</button>
+                        <button class="btn" data-filter="recent">Recent</button>
+                    </div>
+                </div>
+                
+                <div class="file-browser">
+                    <div class="breadcrumb">
+                        <span id="current-path">/Users/steven</span>
+                    </div>
+                    <div class="directory-content">
+                        <table class="file-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Size</th>
+                                    <th>Modified</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="file-list">
+                                <!-- File list will be populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Search Section -->
+            <section id="search" class="search-section">
+                <div class="search-header">
+                    <h2>Search Files & Directories</h2>
+                    <div class="search-controls">
+                        <input type="text" id="search-input" placeholder="Enter search term...">
+                        <select id="search-type">
+                            <option value="all">All Types</option>
+                            <option value="code">Code Files</option>
+                            <option value="docs">Documentation</option>
+                            <option value="data">Data Files</option>
+                            <option value="media">Media Files</option>
+                            <option value="archives">Archives</option>
+                            <option value="documents">Documents</option>
+                        </select>
+                        <button id="search-btn">Search</button>
+                    </div>
+                </div>
+                
+                <div class="search-results">
+                    <div id="search-stats"></div>
+                    <div id="search-results-list"></div>
+                </div>
+            </section>
+
+            <!-- Categories Section -->
+            <section id="categories" class="categories-section">
+                <div class="categories-header">
+                    <h2>File Categories</h2>
+                </div>
+                
+                <div class="category-grid">
+                    <div class="category-card" data-category="code">
+                        <h3>Code</h3>
+                        <p id="code-count">0 items</p>
+                        <div class="category-preview"></div>
+                    </div>
+                    <div class="category-card" data-category="documentation">
+                        <h3>Documentation</h3>
+                        <p id="docs-count">0 items</p>
+                        <div class="category-preview"></div>
+                    </div>
+                    <div class="category-card" data-category="data">
+                        <h3>Data</h3>
+                        <p id="data-count">0 items</p>
+                        <div class="category-preview"></div>
+                    </div>
+                    <div class="category-card" data-category="image">
+                        <h3>Images</h3>
+                        <p id="image-count">0 items</p>
+                        <div class="category-preview"></div>
+                    </div>
+                    <div class="category-card" data-category="archive">
+                        <h3>Archives</h3>
+                        <p id="archives-count">0 items</p>
+                        <div class="category-preview"></div>
+                    </div>
+                    <div class="category-card" data-category="document">
+                        <h3>Documents</h3>
+                        <p id="document-count">0 items</p>
+                        <div class="category-preview"></div>
+                    </div>
+                    <div class="category-card" data-category="other">
+                        <h3>Other</h3>
+                        <p id="other-count">0 items</p>
+                        <div class="category-preview"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics" class="analytics-section">
+                <div class="analytics-header">
+                    <h2>System Analytics</h2>
+                </div>
+                
+                <div class="analytics-grid">
+                    <div class="chart-container">
+                        <h3>Storage by Category</h3>
+                        <canvas id="storage-chart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>File Count by Category</h3>
+                        <canvas id="count-chart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Largest Directories</h3>
+                        <div id="largest-dirs-list"></div>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Recent Activity</h3>
+                        <div id="recent-files-list"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>AVATARARTS Directory Documentation System &copy; 2026</p>
+            <p>Total indexed: <span id="indexed-count">0</span> items</p>
+        </footer>
+    </div>
+
+    <!-- Load data separately to avoid huge HTML file -->
+    <script src="data.js"></script>
+    <script src="application.js"></script>
+</body>
+</html>

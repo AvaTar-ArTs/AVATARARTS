@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Studies - Steven Chaplinski | Client Work & Project Showcase</title>
+    <meta name="description" content="Explore detailed case studies of Steven Chaplinski's client projects, including digital art, web design, video editing, and creative solutions.">
+    <meta name="keywords" content="case studies, client work, project showcase, digital art projects, web design portfolio, Steven Chaplinski">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .case-studies-hero {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="caseGrid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(78,205,196,0.3)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23caseGrid)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .case-study-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            border: 2px solid #4ecdc4;
+            background: transparent;
+            color: #4ecdc4;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #4ecdc4;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
+        }
+
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            padding: 2rem 0;
+        }
+
+        .case-study-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .case-study-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: #4ecdc4;
+        }
+
+        .case-study-image {
+            height: 250px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .case-study-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.8), rgba(78, 205, 196, 0.8));
+            animation: caseShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes caseShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .case-study-placeholder {
+            color: white;
+            font-size: 4rem;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .case-study-content {
+            padding: 2rem;
+            color: #fff;
+        }
+
+        .case-study-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .case-study-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            color: #4ecdc4;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+
+        .case-study-category {
+            background: rgba(78, 205, 196, 0.2);
+            border: 1px solid #4ecdc4;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #4ecdc4;
+            text-transform: uppercase;
+        }
+
+        .case-study-client {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .case-study-description {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .case-study-challenge {
+            background: rgba(255, 107, 107, 0.1);
+            border-left: 3px solid #ff6b6b;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .case-study-challenge h4 {
+            color: #ff6b6b;
+            margin-bottom: 0.5rem;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .case-study-solution {
+            background: rgba(78, 205, 196, 0.1);
+            border-left: 3px solid #4ecdc4;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .case-study-solution h4 {
+            color: #4ecdc4;
+            margin-bottom: 0.5rem;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .case-study-results {
+            background: rgba(69, 183, 209, 0.1);
+            border-left: 3px solid #45b7d1;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .case-study-results h4 {
+            color: #45b7d1;
+            margin-bottom: 0.5rem;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .case-study-tech {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(78, 205, 196, 0.2);
+            border: 1px solid #4ecdc4;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #4ecdc4;
+        }
+
+        .case-study-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .case-study-btn {
+            padding: 8px 16px;
+            border: 2px solid #4ecdc4;
+            background: transparent;
+            color: #4ecdc4;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .case-study-btn:hover {
+            background: #4ecdc4;
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        .case-study-btn.primary {
+            background: #4ecdc4;
+            color: #000;
+        }
+
+        .case-study-btn.primary:hover {
+            background: #45b7d1;
+            border-color: #45b7d1;
+        }
+
+        .testimonials-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: #4ecdc4;
+            font-family: serif;
+        }
+
+        .testimonial-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            color: #4ecdc4;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial-company {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .stats-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #4ecdc4;
+            text-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
+            display: block;
+        }
+
+        .stat-label {
+            color: #fff;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .case-studies-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .case-study-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 200px;
+            }
+
+            .case-study-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Steven</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="process.html" class="nav-link">Process</a>
+                <a href="case-studies.html" class="nav-link active">Case Studies</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Case Studies Hero -->
+    <section class="case-studies-hero">
+        <div class="container">
+            <h1 class="gradient-text">Case Studies</h1>
+            <p>Explore detailed breakdowns of my client projects, showcasing the creative process, challenges overcome, and results achieved. Each case study demonstrates how I transform client visions into compelling digital experiences.</p>
+        </div>
+    </section>
+
+    <!-- Case Study Filters -->
+    <section class="container">
+        <div class="case-study-filters">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="digital-art">Digital Art</button>
+            <button class="filter-btn" data-filter="web-design">Web Design</button>
+            <button class="filter-btn" data-filter="video">Video Production</button>
+            <button class="filter-btn" data-filter="branding">Branding</button>
+            <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+        </div>
+
+        <!-- Case Studies Grid -->
+        <div class="case-studies-grid" id="case-studies-grid">
+            <!-- Digital Art Project -->
+            <div class="case-study-card" data-category="digital-art">
+                <div class="case-study-image">
+                    <i class="case-study-placeholder fas fa-palette"></i>
+                </div>
+                <div class="case-study-content">
+                    <div class="case-study-header">
+                        <h3 class="case-study-title">Neon Dreams Album Cover</h3>
+                        <span class="case-study-category">Digital Art</span>
+                    </div>
+                    <div class="case-study-client">Client: Independent Music Producer</div>
+                    <p class="case-study-description">Created a striking album cover for an electronic music producer's debut EP, combining neon aesthetics with organic forms to capture the essence of their sound.</p>
+                    
+                    <div class="case-study-challenge">
+                        <h4>Challenge</h4>
+                        <p>Client wanted a cover that would stand out in digital music platforms while maintaining artistic integrity and reflecting the experimental nature of their music.</p>
+                    </div>
+                    
+                    <div class="case-study-solution">
+                        <h4>Solution</h4>
+                        <p>Developed a custom neon-inspired design using digital painting techniques, incorporating flowing organic shapes and vibrant color gradients that created visual movement and energy.</p>
+                    </div>
+                    
+                    <div class="case-study-results">
+                        <h4>Results</h4>
+                        <p>Album cover received 50% more engagement on streaming platforms, helped increase pre-save rates by 200%, and became a signature visual element for the artist's brand.</p>
+                    </div>
+                    
+                    <div class="case-study-tech">
+                        <span class="tech-tag">Photoshop</span>
+                        <span class="tech-tag">Digital Painting</span>
+                        <span class="tech-tag">Color Theory</span>
+                        <span class="tech-tag">Typography</span>
+                    </div>
+                    
+                    <div class="case-study-actions">
+                        <a href="#" class="case-study-btn primary">View Project</a>
+                        <a href="#" class="case-study-btn">Process Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Web Design Project -->
+            <div class="case-study-card" data-category="web-design">
+                <div class="case-study-image">
+                    <i class="case-study-placeholder fas fa-laptop-code"></i>
+                </div>
+                <div class="case-study-content">
+                    <div class="case-study-header">
+                        <h3 class="case-study-title">Creative Agency Website</h3>
+                        <span class="case-study-category">Web Design</span>
+                    </div>
+                    <div class="case-study-client">Client: Local Creative Agency</div>
+                    <p class="case-study-description">Designed and developed a modern, interactive website for a creative agency, featuring portfolio showcases, client testimonials, and seamless user experience.</p>
+                    
+                    <div class="case-study-challenge">
+                        <h4>Challenge</h4>
+                        <p>Client needed a website that would showcase their diverse creative work while maintaining fast loading times and mobile responsiveness across all devices.</p>
+                    </div>
+                    
+                    <div class="case-study-solution">
+                        <h4>Solution</h4>
+                        <p>Created a custom WordPress theme with optimized image galleries, implemented lazy loading, and designed an intuitive navigation system that highlighted their best work.</p>
+                    </div>
+                    
+                    <div class="case-study-results">
+                        <h4>Results</h4>
+                        <p>Website load time improved by 60%, mobile traffic increased by 150%, and client inquiries rose by 300% within the first three months of launch.</p>
+                    </div>
+                    
+                    <div class="case-study-tech">
+                        <span class="tech-tag">WordPress</span>
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">Responsive Design</span>
+                    </div>
+                    
+                    <div class="case-study-actions">
+                        <a href="#" class="case-study-btn primary">View Live Site</a>
+                        <a href="#" class="case-study-btn">Technical Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Production Project -->
+            <div class="case-study-card" data-category="video">
+                <div class="case-study-image">
+                    <i class="case-study-placeholder fas fa-video"></i>
+                </div>
+                <div class="case-study-content">
+                    <div class="case-study-header">
+                        <h3 class="case-study-title">Product Launch Video</h3>
+                        <span class="case-study-category">Video Production</span>
+                    </div>
+                    <div class="case-study-client">Client: Tech Startup</div>
+                    <p class="case-study-description">Produced a compelling product launch video combining live-action footage with motion graphics to introduce a new mobile app to the market.</p>
+                    
+                    <div class="case-study-challenge">
+                        <h4>Challenge</h4>
+                        <p>Client needed a video that would explain complex technical features in an engaging, easy-to-understand way while maintaining professional quality on a limited budget.</p>
+                    </div>
+                    
+                    <div class="case-study-solution">
+                        <h4>Solution</h4>
+                        <p>Created a hybrid approach using screen recordings, custom animations, and professional voiceover to demonstrate app functionality while keeping production costs low.</p>
+                    </div>
+                    
+                    <div class="case-study-results">
+                        <h4>Results</h4>
+                        <p>Video achieved 100K+ views in first month, contributed to 25% increase in app downloads, and became the centerpiece of their marketing campaign.</p>
+                    </div>
+                    
+                    <div class="case-study-tech">
+                        <span class="tech-tag">After Effects</span>
+                        <span class="tech-tag">Premiere Pro</span>
+                        <span class="tech-tag">Motion Graphics</span>
+                        <span class="tech-tag">Color Grading</span>
+                    </div>
+                    
+                    <div class="case-study-actions">
+                        <a href="#" class="case-study-btn primary">Watch Video</a>
+                        <a href="#" class="case-study-btn">Behind Scenes</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Branding Project -->
+            <div class="case-study-card" data-category="branding">
+                <div class="case-study-image">
+                    <i class="case-study-placeholder fas fa-paint-brush"></i>
+                </div>
+                <div class="case-study-content">
+                    <div class="case-study-header">
+                        <h3 class="case-study-title">Restaurant Brand Identity</h3>
+                        <span class="case-study-category">Branding</span>
+                    </div>
+                    <div class="case-study-client">Client: Local Restaurant Chain</div>
+                    <p class="case-study-description">Developed complete brand identity including logo design, color palette, typography, and marketing materials for a new restaurant concept.</p>
+                    
+                    <div class="case-study-challenge">
+                        <h4>Challenge</h4>
+                        <p>Client wanted a brand that would appeal to both traditional and modern diners while standing out in a competitive local market.</p>
+                    </div>
+                    
+                    <div class="case-study-solution">
+                        <h4>Solution</h4>
+                        <p>Created a contemporary brand identity that blended classic restaurant aesthetics with modern design elements, including custom illustrations and cohesive visual language.</p>
+                    </div>
+                    
+                    <div class="case-study-results">
+                        <h4>Results</h4>
+                        <p>Brand recognition increased by 80% within six months, social media engagement rose by 200%, and the visual identity became a key differentiator in the market.</p>
+                    </div>
+                    
+                    <div class="case-study-tech">
+                        <span class="tech-tag">Illustrator</span>
+                        <span class="tech-tag">Brand Strategy</span>
+                        <span class="tech-tag">Typography</span>
+                        <span class="tech-tag">Print Design</span>
+                    </div>
+                    
+                    <div class="case-study-actions">
+                        <a href="#" class="case-study-btn primary">View Brand Guide</a>
+                        <a href="#" class="case-study-btn">Portfolio</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E-commerce Project -->
+            <div class="case-study-card" data-category="ecommerce">
+                <div class="case-study-image">
+                    <i class="case-study-placeholder fas fa-shopping-cart"></i>
+                </div>
+                <div class="case-study-content">
+                    <div class="case-study-header">
+                        <h3 class="case-study-title">Art Supply Store</h3>
+                        <span class="case-study-category">E-commerce</span>
+                    </div>
+                    <div class="case-study-client">Client: Online Art Supply Store</div>
+                    <p class="case-study-description">Designed and developed a comprehensive e-commerce platform for an art supply store, featuring product galleries, shopping cart, and artist community features.</p>
+                    
+                    <div class="case-study-challenge">
+                        <h4>Challenge</h4>
+                        <p>Client needed a platform that would handle high-resolution product images, complex inventory management, and provide an engaging shopping experience for artists.</p>
+                    </div>
+                    
+                    <div class="case-study-solution">
+                        <h4>Solution</h4>
+                        <p>Built a custom Shopify theme with optimized image handling, implemented advanced filtering systems, and created artist showcase galleries to build community engagement.</p>
+                    </div>
+                    
+                    <div class="case-study-results">
+                        <h4>Results</h4>
+                        <p>Online sales increased by 300%, average order value rose by 45%, and the platform became a hub for the local artist community with 500+ active users.</p>
+                    </div>
+                    
+                    <div class="case-study-tech">
+                        <span class="tech-tag">Shopify</span>
+                        <span class="tech-tag">Liquid</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">E-commerce</span>
+                        <span class="tech-tag">UX Design</span>
+                    </div>
+                    
+                    <div class="case-study-actions">
+                        <a href="#" class="case-study-btn primary">Visit Store</a>
+                        <a href="#" class="case-study-btn">Case Study</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Digital Art Project 2 -->
+            <div class="case-study-card" data-category="digital-art">
+                <div class="case-study-image">
+                    <i class="case-study-placeholder fas fa-magic"></i>
+                </div>
+                <div class="case-study-content">
+                    <div class="case-study-header">
+                        <h3 class="case-study-title">Book Cover Series</h3>
+                        <span class="case-study-category">Digital Art</span>
+                    </div>
+                    <div class="case-study-client">Client: Fantasy Book Publisher</div>
+                    <p class="case-study-description">Created a series of book covers for a fantasy trilogy, developing a consistent visual style while ensuring each cover was unique and compelling.</p>
+                    
+                    <div class="case-study-challenge">
+                        <h4>Challenge</h4>
+                        <p>Publisher needed covers that would work as a cohesive series while each telling its own story and appealing to the target fantasy reader demographic.</p>
+                    </div>
+                    
+                    <div class="case-study-solution">
+                        <h4>Solution</h4>
+                        <p>Developed a signature art style using digital painting techniques, created recurring visual elements across all three covers, and ensured each cover captured the essence of its respective book.</p>
+                    </div>
+                    
+                    <div class="case-study-results">
+                        <h4>Results</h4>
+                        <p>Book series sales increased by 150%, covers received industry recognition, and the visual style became the publisher's signature for future fantasy releases.</p>
+                    </div>
+                    
+                    <div class="case-study-tech">
+                        <span class="tech-tag">Photoshop</span>
+                        <span class="tech-tag">Digital Painting</span>
+                        <span class="tech-tag">Concept Art</span>
+                        <span class="tech-tag">Typography</span>
+                    </div>
+                    
+                    <div class="case-study-actions">
+                        <a href="#" class="case-study-btn primary">View Series</a>
+                        <a href="#" class="case-study-btn">Process</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">Client Testimonials</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Steven's creative vision transformed our brand completely. His attention to detail and ability to understand our vision was exceptional.</p>
+                    <div class="testimonial-author">Sarah Johnson</div>
+                    <div class="testimonial-company">Creative Director, Local Agency</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">The website Steven created for us exceeded all expectations. It's not just beautiful, it's functional and drives real business results.</p>
+                    <div class="testimonial-author">Mike Chen</div>
+                    <div class="testimonial-company">CEO, Tech Startup</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Working with Steven was a game-changer. His artistic talent combined with technical expertise delivered exactly what we needed.</p>
+                    <div class="testimonial-author">Lisa Rodriguez</div>
+                    <div class="testimonial-company">Marketing Manager, Restaurant Chain</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title">Project Impact</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">95%</span>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">300%</span>
+                    <div class="stat-label">Average ROI</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <div class="stat-label">Support Available</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Steven Chaplinski</h3>
+                    <p>Digital Artist & Creative Developer</p>
+                    <p>Transforming ideas into visual reality through innovative digital art and creative solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Me</h4>
+                    <div class="social-links">
+                        <a href="https://behance.net/ichoake" class="social-link"><i class="fab fa-behance"></i></a>
+                        <a href="https://bit.ly/iChoake" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="https://aiavatar.etsy.com/" class="social-link"><i class="fas fa-store"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Steven Chaplinski. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Case study filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const caseStudyCards = document.querySelectorAll('.case-study-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+
+                    const filter = this.getAttribute('data-filter');
+
+                    caseStudyCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                            card.style.animation = 'fadeIn 0.5s ease-in-out';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+
+        // Add fadeIn animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

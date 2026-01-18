@@ -1,0 +1,9 @@
+{
+  "name": "Retention: Weekly Music Sampler",
+  "active": false,
+  "nodes": [
+    {"parameters": {"triggerTimes": {"item": [{"mode": "everyWeek", "weekday": "monday", "hour": 12}]}}, "id": "Cron1", "name": "Cron", "type": "n8n-nodes-base.cron", "typeVersion": 2, "position": [300, 300]},
+    {"parameters": {"command": "python3", "arguments": ["/Users/steven/ai-sites/content-management/retention-hub/weekly-music/generate_weekly_playlist.py"]}, "id": "Exec1", "name": "Generate Weekly Music", "type": "n8n-nodes-base.executeCommand", "typeVersion": 1, "position": [600, 300]}
+  ],
+  "connections": {"Cron": {"main": [[{"node": "Generate Weekly Music", "type": "main", "index": 0}]]}}
+}

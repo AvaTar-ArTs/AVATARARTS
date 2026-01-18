@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog & Insights - Steven Chaplinski | Creative Tutorials & Industry News</title>
+    <meta name="description" content="Explore Steven Chaplinski's blog featuring digital art tutorials, creative insights, industry trends, and behind-the-scenes content from his creative process.">
+    <meta name="keywords" content="digital art blog, creative tutorials, art insights, design tips, Steven Chaplinski blog, creative process">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .blog-hero {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="blogGrid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(78,205,196,0.3)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23blogGrid)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .blog-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            border: 2px solid #4ecdc4;
+            background: transparent;
+            color: #4ecdc4;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #4ecdc4;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .blog-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: #4ecdc4;
+        }
+
+        .blog-image {
+            height: 200px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.8), rgba(78, 205, 196, 0.8));
+            animation: blogShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes blogShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .blog-placeholder {
+            color: white;
+            font-size: 3rem;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .blog-content {
+            padding: 2rem;
+            color: #fff;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .blog-category {
+            background: rgba(78, 205, 196, 0.2);
+            border: 1px solid #4ecdc4;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            color: #4ecdc4;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .blog-date {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .blog-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.3;
+        }
+
+        .blog-excerpt {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-tag {
+            background: rgba(255, 107, 107, 0.2);
+            border: 1px solid #ff6b6b;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #ff6b6b;
+        }
+
+        .blog-read-more {
+            color: #4ecdc4;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .blog-read-more:hover {
+            color: #45b7d1;
+        }
+
+        .featured-post {
+            grid-column: span 2;
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(255, 107, 107, 0.1));
+            border: 2px solid #4ecdc4;
+        }
+
+        .featured-post .blog-image {
+            height: 300px;
+        }
+
+        .featured-post .blog-title {
+            font-size: 2rem;
+        }
+
+        .newsletter-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 2rem auto;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px;
+            border: 2px solid #4ecdc4;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 25px;
+            font-size: 1rem;
+        }
+
+        .newsletter-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .newsletter-btn {
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.4);
+        }
+
+        .tutorial-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .tutorial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tutorial-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .tutorial-card:hover {
+            transform: translateY(-5px);
+            border-color: #4ecdc4;
+        }
+
+        .tutorial-icon {
+            font-size: 3rem;
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .tutorial-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+        }
+
+        .tutorial-duration {
+            color: #4ecdc4;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-btn {
+            padding: 10px 20px;
+            background: transparent;
+            border: 2px solid #4ecdc4;
+            color: #4ecdc4;
+            border-radius: 20px;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .tutorial-btn:hover {
+            background: #4ecdc4;
+            color: #000;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+        }
+
+        .pagination-btn {
+            padding: 10px 15px;
+            border: 2px solid #4ecdc4;
+            background: transparent;
+            color: #4ecdc4;
+            border-radius: 20px;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-btn:hover,
+        .pagination-btn.active {
+            background: #4ecdc4;
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-post {
+                grid-column: span 1;
+            }
+            
+            .blog-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 200px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-input {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Steven</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="process.html" class="nav-link">Process</a>
+                <a href="case-studies.html" class="nav-link">Case Studies</a>
+                <a href="services-detailed.html" class="nav-link">Services</a>
+                <a href="blog.html" class="nav-link active">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Hero -->
+    <section class="blog-hero">
+        <div class="container">
+            <h1 class="gradient-text">Blog & Insights</h1>
+            <p>Explore tutorials, creative insights, industry trends, and behind-the-scenes content from my creative process. Learn new techniques and stay inspired with the latest in digital art and design.</p>
+        </div>
+    </section>
+
+    <!-- Blog Filters -->
+    <section class="container">
+        <div class="blog-filters">
+            <button class="filter-btn active" data-filter="all">All Posts</button>
+            <button class="filter-btn" data-filter="tutorials">Tutorials</button>
+            <button class="filter-btn" data-filter="insights">Insights</button>
+            <button class="filter-btn" data-filter="process">Process</button>
+            <button class="filter-btn" data-filter="industry">Industry</button>
+            <button class="filter-btn" data-filter="tools">Tools</button>
+        </div>
+
+        <!-- Blog Grid -->
+        <div class="blog-grid" id="blog-grid">
+            <!-- Featured Post -->
+            <article class="blog-card featured" data-category="tutorials">
+                <div class="blog-image">
+                    <i class="blog-placeholder fas fa-paint-brush"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Tutorial</span>
+                        <span class="blog-date">Dec 15, 2024</span>
+                    </div>
+                    <h2 class="blog-title">Mastering Digital Painting: From Sketch to Final Artwork</h2>
+                    <p class="blog-excerpt">A comprehensive guide to digital painting techniques, covering everything from initial sketches to final touches. Learn professional workflows, brush techniques, and color theory applications that will elevate your digital art to the next level.</p>
+                    <div class="blog-tags">
+                        <span class="blog-tag">Digital Art</span>
+                        <span class="blog-tag">Tutorial</span>
+                        <span class="blog-tag">Photoshop</span>
+                        <span class="blog-tag">Techniques</span>
+                    </div>
+                    <a href="#" class="blog-read-more">Read Full Tutorial →</a>
+                </div>
+            </article>
+
+            <!-- Regular Posts -->
+            <article class="blog-card" data-category="insights">
+                <div class="blog-image">
+                    <i class="blog-placeholder fas fa-lightbulb"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Insights</span>
+                        <span class="blog-date">Dec 12, 2024</span>
+                    </div>
+                    <h3 class="blog-title">Finding Inspiration in Unexpected Places</h3>
+                    <p class="blog-excerpt">How everyday experiences, music, and even mundane objects can spark creative ideas and lead to breakthrough artistic concepts.</p>
+                    <div class="blog-tags">
+                        <span class="blog-tag">Inspiration</span>
+                        <span class="blog-tag">Creativity</span>
+                        <span class="blog-tag">Process</span>
+                    </div>
+                    <a href="#" class="blog-read-more">Read More →</a>
+                </div>
+            </article>
+
+            <article class="blog-card" data-category="tools">
+                <div class="blog-image">
+                    <i class="blog-placeholder fas fa-tools"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Tools</span>
+                        <span class="blog-date">Dec 10, 2024</span>
+                    </div>
+                    <h3 class="blog-title">Essential Digital Art Tools for 2024</h3>
+                    <p class="blog-excerpt">A curated list of the best software, hardware, and resources every digital artist should know about, from beginner-friendly options to professional-grade tools.</p>
+                    <div class="blog-tags">
+                        <span class="blog-tag">Tools</span>
+                        <span class="blog-tag">Software</span>
+                        <span class="blog-tag">Hardware</span>
+                    </div>
+                    <a href="#" class="blog-read-more">Read More →</a>
+                </div>
+            </article>
+
+            <article class="blog-card" data-category="process">
+                <div class="blog-image">
+                    <i class="blog-placeholder fas fa-cogs"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Process</span>
+                        <span class="blog-date">Dec 8, 2024</span>
+                    </div>
+                    <h3 class="blog-title">Behind the Scenes: Creating Album Cover Art</h3>
+                    <p class="blog-excerpt">A detailed walkthrough of my process for creating album cover art, from initial client consultation to final delivery and the challenges along the way.</p>
+                    <div class="blog-tags">
+                        <span class="blog-tag">Process</span>
+                        <span class="blog-tag">Case Study</span>
+                        <span class="blog-tag">Music</span>
+                    </div>
+                    <a href="#" class="blog-read-more">Read More →</a>
+                </div>
+            </article>
+
+            <article class="blog-card" data-category="industry">
+                <div class="blog-image">
+                    <i class="blog-placeholder fas fa-chart-line"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Industry</span>
+                        <span class="blog-date">Dec 5, 2024</span>
+                    </div>
+                    <h3 class="blog-title">The Future of Digital Art: AI and Human Creativity</h3>
+                    <p class="blog-excerpt">Exploring how artificial intelligence is changing the landscape of digital art and what it means for artists and creative professionals.</p>
+                    <div class="blog-tags">
+                        <span class="blog-tag">AI</span>
+                        <span class="blog-tag">Future</span>
+                        <span class="blog-tag">Technology</span>
+                    </div>
+                    <a href="#" class="blog-read-more">Read More →</a>
+                </div>
+            </article>
+
+            <article class="blog-card" data-category="tutorials">
+                <div class="blog-image">
+                    <i class="blog-placeholder fas fa-video"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Tutorial</span>
+                        <span class="blog-date">Dec 3, 2024</span>
+                    </div>
+                    <h3 class="blog-title">Video Editing Workflow for Creators</h3>
+                    <p class="blog-excerpt">Step-by-step guide to efficient video editing workflows, from organization to final export, with tips for both beginners and experienced editors.</p>
+                    <div class="blog-tags">
+                        <span class="blog-tag">Video</span>
+                        <span class="blog-tag">Editing</span>
+                        <span class="blog-tag">Workflow</span>
+                    </div>
+                    <a href="#" class="blog-read-more">Read More →</a>
+                </div>
+            </article>
+
+            <article class="blog-card" data-category="insights">
+                <div class="blog-image">
+                    <i class="blog-placeholder fas fa-heart"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Insights</span>
+                        <span class="blog-date">Nov 30, 2024</span>
+                    </div>
+                    <h3 class="blog-title">Building a Creative Brand: Lessons Learned</h3>
+                    <p class="blog-excerpt">Personal insights on building a successful creative brand, including mistakes made, lessons learned, and strategies that actually work.</p>
+                    <div class="blog-tags">
+                        <span class="blog-tag">Branding</span>
+                        <span class="blog-tag">Business</span>
+                        <span class="blog-tag">Personal</span>
+                    </div>
+                    <a href="#" class="blog-read-more">Read More →</a>
+                </div>
+            </article>
+
+            <article class="blog-card" data-category="tools">
+                <div class="blog-image">
+                    <i class="blog-placeholder fas fa-palette"></i>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Tools</span>
+                        <span class="blog-date">Nov 28, 2024</span>
+                    </div>
+                    <h3 class="blog-title">Custom Brush Creation in Photoshop</h3>
+                    <p class="blog-excerpt">Learn how to create custom brushes in Photoshop that match your artistic style and workflow, with downloadable brush sets included.</p>
+                    <div class="blog-tags">
+                        <span class="blog-tag">Photoshop</span>
+                        <span class="blog-tag">Brushes</span>
+                        <span class="blog-tag">Custom</span>
+                    </div>
+                    <a href="#" class="blog-read-more">Read More →</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <a href="#" class="pagination-btn">← Previous</a>
+            <a href="#" class="pagination-btn active">1</a>
+            <a href="#" class="pagination-btn">2</a>
+            <a href="#" class="pagination-btn">3</a>
+            <a href="#" class="pagination-btn">Next →</a>
+        </div>
+    </section>
+
+    <!-- Tutorial Section -->
+    <section class="tutorial-section">
+        <div class="container">
+            <h2 class="section-title">Featured Tutorials</h2>
+            <div class="tutorial-grid">
+                <div class="tutorial-card">
+                    <div class="tutorial-icon">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <h3 class="tutorial-title">Digital Painting Basics</h3>
+                    <p class="tutorial-description">Learn the fundamentals of digital painting with this comprehensive beginner-friendly tutorial.</p>
+                    <div class="tutorial-duration">45 min video</div>
+                    <a href="#" class="tutorial-btn">Watch Now</a>
+                </div>
+
+                <div class="tutorial-card">
+                    <div class="tutorial-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3 class="tutorial-title">Photo Manipulation Techniques</h3>
+                    <p class="tutorial-description">Master advanced photo manipulation skills and create surreal, eye-catching compositions.</p>
+                    <div class="tutorial-duration">60 min video</div>
+                    <a href="#" class="tutorial-btn">Watch Now</a>
+                </div>
+
+                <div class="tutorial-card">
+                    <div class="tutorial-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="tutorial-title">Motion Graphics in After Effects</h3>
+                    <p class="tutorial-description">Create stunning motion graphics and animations using Adobe After Effects.</p>
+                    <div class="tutorial-duration">90 min video</div>
+                    <a href="#" class="tutorial-btn">Watch Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <h2 class="section-title">Stay Updated</h2>
+            <p>Subscribe to my newsletter for the latest tutorials, insights, and creative inspiration delivered straight to your inbox.</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+            <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin-top: 1rem;">
+                No spam, unsubscribe at any time. We respect your privacy.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Steven Chaplinski</h3>
+                    <p>Digital Artist & Creative Developer</p>
+                    <p>Transforming ideas into visual reality through innovative digital art and creative solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="tutorials.html">Tutorials</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Me</h4>
+                    <div class="social-links">
+                        <a href="https://behance.net/ichoake" class="social-link"><i class="fab fa-behance"></i></a>
+                        <a href="https://bit.ly/iChoake" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="https://aiavatar.etsy.com/" class="social-link"><i class="fas fa-store"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Steven Chaplinski. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Blog filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const blogCards = document.querySelectorAll('.blog-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+
+                    const filter = this.getAttribute('data-filter');
+
+                    blogCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                            card.style.animation = 'fadeIn 0.5s ease-in-out';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+
+        // Newsletter form
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('.newsletter-input').value;
+            if (email) {
+                alert('Thank you for subscribing! You\'ll receive our latest updates soon.');
+                this.querySelector('.newsletter-input').value = '';
+            }
+        });
+
+        // Add fadeIn animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

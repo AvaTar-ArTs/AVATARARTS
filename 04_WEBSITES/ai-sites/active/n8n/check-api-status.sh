@@ -1,0 +1,138 @@
+#!/bin/bash
+# AI Agent API Status Checker
+# ===========================
+# Checks which APIs are available and configured
+
+set -e
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
+
+echo -e "${BLUE}🔍 AI Agent API Status Check${NC}"
+echo "================================"
+
+# Load environment from ~/.env.d
+echo -e "${BLUE}🔄 Loading environment from ~/.env.d...${NC}"
+source ~/.env.d/loader.sh 2>/dev/null || {
+    echo -e "${YELLOW}⚠️  Failed to load from ~/.env.d, trying direct loading...${NC}"
+    # Try loading individual files
+    for file in ~/.env.d/*.env; do
+        if [ -f "$file" ]; then
+            source "$file" 2>/dev/null || true
+        fi
+    done
+}
+
+# Core LLM APIs
+echo -e "\n${CYAN}🤖 Core LLM APIs:${NC}"
+check_api_key() {
+    local key_name="$1"
+    local key_value="${!key_name}"
+    local pattern="$2"
+    
+    if [ -n "$key_value" ] && [ "$key_value" != "your_$(echo $key_name | tr '[:upper:]' '[:lower:]')_here" ]; then
+        if [[ "$key_value" =~ $pattern ]]; then
+            echo -e "  ${GREEN}✅${NC} $key_name"
+            return 0
+        else
+            echo -e "  ${YELLOW}⚠️${NC} $key_name (invalid format)"
+            return 1
+        fi
+    else
+        echo -e "  ${RED}❌${NC} $key_name (missing)"
+        return 1
+    fi
+}
+
+# Check core LLM APIs
+core_llm_count=0
+check_api_key "OPENAI_API_KEY" "^sk-" && ((core_llm_count++))
+check_api_key "ANTHROPIC_API_KEY" "^sk-ant-" && ((core_llm_count++))
+check_api_key "GROQ_API_KEY" "^gsk_" && ((core_llm_count++))
+check_api_key "XAI_API_KEY" "^xai-" && ((core_llm_count++))
+check_api_key "DEEPSEEK_API_KEY" "^sk-" && ((core_llm_count++))
+
+# Audio & Music APIs
+echo -e "\n${CYAN}🎵 Audio & Music APIs:${NC}"
+audio_count=0
+check_api_key "ELEVENLABS_API_KEY" "^sk_" && ((audio_count++))
+check_api_key "SUNO_COOKIE" "^.*" && ((audio_count++))
+check_api_key "ASSEMBLYAI_API_KEY" "^[a-f0-9]{32}$" && ((audio_count++))
+check_api_key "DEEPGRAM_API_KEY" "^[a-f0-9]{40}$" && ((audio_count++))
+
+# Art & Vision APIs
+echo -e "\n${CYAN}🎨 Art & Vision APIs:${NC}"
+art_count=0
+check_api_key "STABILITY_API_KEY" "^sk-" && ((art_count++))
+check_api_key "REPLICATE_API_TOKEN" "^r8_" && ((art_count++))
+check_api_key "RUNWAY_API_KEY" "^.*" && ((art_count++))
+check_api_key "LEONARDO_API_KEY" "^.*" && ((art_count++))
+
+# Automation & Agents APIs
+echo -e "\n${CYAN}🤖 Automation & Agents APIs:${NC}"
+automation_count=0
+check_api_key "PINECONE_API_KEY" "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$" && ((automation_count++))
+check_api_key "OPENROUTER_API_KEY" "^sk-or-" && ((automation_count++))
+check_api_key "COHERE_API_KEY" "^.*" && ((automation_count++))
+check_api_key "FIREWORKS_API_KEY" "^.*" && ((automation_count++))
+check_api_key "LANGSMITH_API_KEY" "^.*" && ((automation_count++))
+
+# Documents & Knowledge APIs
+echo -e "\n${CYAN}📚 Documents & Knowledge APIs:${NC}"
+docs_count=0
+check_api_key "NOTION_TOKEN" "^secret_" && ((docs_count++))
+
+# SEO & Analytics APIs
+echo -e "\n${CYAN}📊 SEO & Analytics APIs:${NC}"
+seo_count=0
+check_api_key "SERPAPI_KEY" "^[a-f0-9]{16}$" && ((seo_count++))
+check_api_key "NEWSAPI_KEY" "^[a-f0-9]{32}$" && ((seo_count++))
+
+# Summary
+total_apis=$((core_llm_count + audio_count + art_count + automation_count + docs_count + seo_count))
+total_possible=18
+
+echo -e "\n${BLUE}📊 API Status Summary:${NC}"
+echo -e "  ${GREEN}✅ Configured: $total_apis/$total_possible APIs${NC}"
+echo -e "  ${CYAN}🤖 Core LLMs: $core_llm_count/5${NC}"
+echo -e "  ${CYAN}🎵 Audio: $audio_count/4${NC}"
+echo -e "  ${CYAN}🎨 Art: $art_count/4${NC}"
+echo -e "  ${CYAN}🤖 Automation: $automation_count/5${NC}"
+echo -e "  ${CYAN}📚 Docs: $docs_count/1${NC}"
+echo -e "  ${CYAN}📊 SEO: $seo_count/2${NC}"
+
+# Deployment readiness
+echo -e "\n${BLUE}🚀 Deployment Readiness:${NC}"
+if [ $core_llm_count -ge 3 ] && [ $total_apis -ge 8 ]; then
+    echo -e "  ${GREEN}🎉 Ready for deployment!${NC}"
+    echo -e "  ${GREEN}   You have sufficient APIs for content generation${NC}"
+elif [ $core_llm_count -ge 1 ] && [ $total_apis -ge 5 ]; then
+    echo -e "  ${YELLOW}⚠️  Partially ready${NC}"
+    echo -e "  ${YELLOW}   You have basic functionality but may want more APIs${NC}"
+else
+    echo -e "  ${RED}❌ Not ready${NC}"
+    echo -e "  ${RED}   Please configure more API keys${NC}"
+fi
+
+# Recommendations
+echo -e "\n${BLUE}💡 Recommendations:${NC}"
+if [ $core_llm_count -lt 3 ]; then
+    echo -e "  ${YELLOW}• Add more LLM APIs for better reliability${NC}"
+fi
+if [ $audio_count -eq 0 ]; then
+    echo -e "  ${YELLOW}• Consider adding audio APIs for voice generation${NC}"
+fi
+if [ $art_count -eq 0 ]; then
+    echo -e "  ${YELLOW}• Consider adding art APIs for image generation${NC}"
+fi
+if [ $seo_count -eq 0 ]; then
+    echo -e "  ${YELLOW}• Consider adding SEO APIs for research${NC}"
+fi
+
+echo -e "\n${GREEN}🔍 API status check complete!${NC}"

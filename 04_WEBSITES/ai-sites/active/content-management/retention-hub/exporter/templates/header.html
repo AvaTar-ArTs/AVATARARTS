@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{TITLE}}</title>
+  <style>
+    :root {
+      --bg: #0b0b0f;
+      --fg: #f5f7fb;
+      --muted: #9aa4b2;
+      --card: #12121a;
+      --accent: #e23aff; /* neon magenta */
+      --accent-2: #00e0ff; /* neon cyan */
+      --link: #9df3ff;
+      --border: #1f2230;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #ffffff; --fg: #111; --muted: #6b7280; --card: #f8fafc; --accent: #b018d0; --accent-2: #00a9c7; --link: #0ea5b7; --border: #e5e7eb;
+      }
+    }
+    .theme-dark {
+      --bg: #0b0b0f; --fg: #f5f7fb; --muted: #9aa4b2; --card: #12121a; --accent: #e23aff; --accent-2: #00e0ff; --link: #9df3ff; --border: #1f2230;
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0 auto; max-width: 960px; padding: 0 16px 48px; line-height: 1.65; color: var(--fg); background: var(--bg); }
+    h1, h2, h3 { line-height: 1.25; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; height: auto; display: block; margin: 0.75rem 0; border-radius: 8px; }
+    pre { background: var(--card); padding: 12px; overflow:auto; border: 1px solid var(--border); border-radius: 8px; }
+    code { background: var(--card); padding: 2px 4px; border-radius: 4px; }
+    hr { border: 0; border-top: 1px solid var(--border); margin: 2rem 0; }
+    .meta { color: var(--muted); font-size: 0.92rem; }
+    .site-header { position: sticky; top: 0; z-index: 10; backdrop-filter: saturate(140%) blur(6px); background: linear-gradient(90deg, rgba(226,58,255,0.08), rgba(0,224,255,0.08)); border-bottom: 1px solid var(--border); }
+    .site-nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 0; }
+    .brand { display: flex; align-items: baseline; gap: 10px; font-weight: 700; letter-spacing: 0.2px; }
+    .brand .dot { color: var(--accent); }
+    .brand small { color: var(--muted); font-weight: 500; }
+    .links { display: flex; gap: 14px; align-items: center; }
+    .links a { padding: 6px 8px; border-radius: 6px; border: 1px solid transparent; }
+    .links a:hover { border-color: var(--border); background: var(--card); }
+    .toggle { border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 8px; padding: 6px 10px; cursor: pointer; }
+    main { margin-top: 18px; }
+  </style>
+  <!-- Site header/nav placeholder -->
+</head>
+<body>
+<header class="site-header">
+  <div class="site-nav">
+    <div class="brand">
+      <a href="/">AvaTarArTs<span class="dot">●</span></a>
+      <small>AI Art · Music · Dark Fantasy · Raccoon Punk</small>
+    </div>
+    <nav class="links">
+      <a href="/disco.html">Disco</a>
+      <a href="/dalle.html">DALL·E</a>
+      <a href="/python.html">Python</a>
+      <a href="/alchemy.html">Alchemy</a>
+      <button id="themeToggle" class="toggle" aria-label="Toggle theme">☾</button>
+    </nav>
+  </div>
+</header>
+<script>
+  (function(){
+    const root = document.documentElement;
+    const key = 'theme';
+    const apply = (t) => root.classList.toggle('theme-dark', t === 'dark');
+    const stored = localStorage.getItem(key);
+    if (!stored) {
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      localStorage.setItem(key, prefersDark ? 'dark' : 'light');
+    }
+    apply(localStorage.getItem(key));
+    document.addEventListener('DOMContentLoaded', function(){
+      const btn = document.getElementById('themeToggle');
+      if (!btn) return;
+      btn.addEventListener('click', function(){
+        const current = localStorage.getItem(key) === 'dark' ? 'light' : 'dark';
+        localStorage.setItem(key, current);
+        apply(current);
+      });
+    });
+  })();
+</script>
+<main>

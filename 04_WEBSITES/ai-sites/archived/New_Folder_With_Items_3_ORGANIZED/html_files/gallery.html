@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Gallery - Steven Chaplinski | Digital Artist</title>
+    <meta name="description" content="Explore Steven Chaplinski's digital art gallery featuring conceptual art, photomanipulation, video edits, and creative web projects.">
+    <meta name="keywords" content="digital art gallery, conceptual art, photomanipulation, video editing, creative portfolio, Steven Chaplinski">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .gallery-hero {
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="artGrid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(78,205,196,0.3)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23artGrid)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            border: 2px solid #4ecdc4;
+            background: transparent;
+            color: #4ecdc4;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #4ecdc4;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .artwork-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .artwork-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: #4ecdc4;
+        }
+
+        .artwork-image {
+            height: 250px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .artwork-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.8), rgba(78, 205, 196, 0.8));
+            animation: artworkShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes artworkShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .artwork-placeholder {
+            color: white;
+            font-size: 4rem;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .artwork-info {
+            padding: 1.5rem;
+            color: #fff;
+        }
+
+        .artwork-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .artwork-category {
+            color: #4ecdc4;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .artwork-description {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .artwork-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .artwork-tag {
+            background: rgba(78, 205, 196, 0.2);
+            border: 1px solid #4ecdc4;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #4ecdc4;
+        }
+
+        .artwork-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .artwork-card:hover .artwork-overlay {
+            opacity: 1;
+        }
+
+        .view-btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
+        }
+
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 70vh;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            color: #4ecdc4;
+        }
+
+        .lightbox-info {
+            color: #fff;
+            text-align: left;
+        }
+
+        .lightbox-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .lightbox-category {
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .lightbox-description {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .stats-section {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #4ecdc4;
+            text-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
+            display: block;
+        }
+
+        .stat-label {
+            color: #fff;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Steven</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="gallery.html" class="nav-link active">Gallery</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Gallery Hero -->
+    <section class="gallery-hero">
+        <div class="container">
+            <h1 class="gradient-text">Art Gallery</h1>
+            <p>Explore my collection of digital art, photomanipulation, video edits, and creative projects. Each piece tells a story and invites you to see the world through a different lens.</p>
+        </div>
+    </section>
+
+    <!-- Gallery Filters -->
+    <section class="container">
+        <div class="gallery-filters">
+            <button class="filter-btn active" data-filter="all">All Works</button>
+            <button class="filter-btn" data-filter="digital-art">Digital Art</button>
+            <button class="filter-btn" data-filter="photomanipulation">PhotoMods</button>
+            <button class="filter-btn" data-filter="video">Video Edits</button>
+            <button class="filter-btn" data-filter="web-design">Web Design</button>
+            <button class="filter-btn" data-filter="cover-art">Cover Art</button>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="gallery-grid" id="gallery-grid">
+            <!-- Digital Art -->
+            <div class="artwork-card" data-category="digital-art">
+                <div class="artwork-image">
+                    <i class="artwork-placeholder fas fa-palette"></i>
+                    <div class="artwork-overlay">
+                        <button class="view-btn" onclick="openLightbox('abstract-1')">View Details</button>
+                    </div>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title">Neon Dreams</h3>
+                    <div class="artwork-category">Digital Art</div>
+                    <p class="artwork-description">An abstract exploration of color and light, blending neon aesthetics with organic forms to create a dreamlike landscape.</p>
+                    <div class="artwork-tags">
+                        <span class="artwork-tag">Abstract</span>
+                        <span class="artwork-tag">Neon</span>
+                        <span class="artwork-tag">Digital Painting</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="artwork-card" data-category="digital-art">
+                <div class="artwork-image">
+                    <i class="artwork-placeholder fas fa-paint-brush"></i>
+                    <div class="artwork-overlay">
+                        <button class="view-btn" onclick="openLightbox('abstract-2')">View Details</button>
+                    </div>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title">Cosmic Symphony</h3>
+                    <div class="artwork-category">Digital Art</div>
+                    <p class="artwork-description">A vibrant composition inspired by the cosmos, featuring swirling galaxies and stardust in a symphony of colors.</p>
+                    <div class="artwork-tags">
+                        <span class="artwork-tag">Space</span>
+                        <span class="artwork-tag">Galaxy</span>
+                        <span class="artwork-tag">Vibrant</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PhotoManipulation -->
+            <div class="artwork-card" data-category="photomanipulation">
+                <div class="artwork-image">
+                    <i class="artwork-placeholder fas fa-camera"></i>
+                    <div class="artwork-overlay">
+                        <button class="view-btn" onclick="openLightbox('photo-1')">View Details</button>
+                    </div>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title">Urban Metamorphosis</h3>
+                    <div class="artwork-category">PhotoMods</div>
+                    <p class="artwork-description">A surreal transformation of urban architecture, blending reality with fantasy elements to create impossible structures.</p>
+                    <div class="artwork-tags">
+                        <span class="artwork-tag">Surreal</span>
+                        <span class="artwork-tag">Architecture</span>
+                        <span class="artwork-tag">Transformation</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="artwork-card" data-category="photomanipulation">
+                <div class="artwork-image">
+                    <i class="artwork-placeholder fas fa-magic"></i>
+                    <div class="artwork-overlay">
+                        <button class="view-btn" onclick="openLightbox('photo-2')">View Details</button>
+                    </div>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title">Digital Portraits</h3>
+                    <div class="artwork-category">PhotoMods</div>
+                    <p class="artwork-description">Portrait photography enhanced with digital artistry, creating ethereal and otherworldly character studies.</p>
+                    <div class="artwork-tags">
+                        <span class="artwork-tag">Portrait</span>
+                        <span class="artwork-tag">Ethereal</span>
+                        <span class="artwork-tag">Enhancement</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Edits -->
+            <div class="artwork-card" data-category="video">
+                <div class="artwork-image">
+                    <i class="artwork-placeholder fas fa-video"></i>
+                    <div class="artwork-overlay">
+                        <button class="view-btn" onclick="openLightbox('video-1')">View Details</button>
+                    </div>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title">Motion Graphics</h3>
+                    <div class="artwork-category">Video Edits</div>
+                    <p class="artwork-description">Dynamic motion graphics combining typography, animation, and visual effects to create engaging video content.</p>
+                    <div class="artwork-tags">
+                        <span class="artwork-tag">Animation</span>
+                        <span class="artwork-tag">Typography</span>
+                        <span class="artwork-tag">Effects</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="artwork-card" data-category="video">
+                <div class="artwork-image">
+                    <i class="artwork-placeholder fas fa-film"></i>
+                    <div class="artwork-overlay">
+                        <button class="view-btn" onclick="openLightbox('video-2')">View Details</button>
+                    </div>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title">Color Grading</h3>
+                    <div class="artwork-category">Video Edits</div>
+                    <p class="artwork-description">Professional color grading and post-production work, transforming raw footage into cinematic masterpieces.</p>
+                    <div class="artwork-tags">
+                        <span class="artwork-tag">Color</span>
+                        <span class="artwork-tag">Cinematic</span>
+                        <span class="artwork-tag">Post-Production</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Web Design -->
+            <div class="artwork-card" data-category="web-design">
+                <div class="artwork-image">
+                    <i class="artwork-placeholder fas fa-laptop-code"></i>
+                    <div class="artwork-overlay">
+                        <button class="view-btn" onclick="openLightbox('web-1')">View Details</button>
+                    </div>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title">Interactive Websites</h3>
+                    <div class="artwork-category">Web Design</div>
+                    <p class="artwork-description">Creative web solutions that blend artistic vision with modern technology and exceptional user experience.</p>
+                    <div class="artwork-tags">
+                        <span class="artwork-tag">Interactive</span>
+                        <span class="artwork-tag">Modern</span>
+                        <span class="artwork-tag">UX/UI</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cover Art -->
+            <div class="artwork-card" data-category="cover-art">
+                <div class="artwork-image">
+                    <i class="artwork-placeholder fas fa-music"></i>
+                    <div class="artwork-overlay">
+                        <button class="view-btn" onclick="openLightbox('cover-1')">View Details</button>
+                    </div>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title">Album Covers</h3>
+                    <div class="artwork-category">Cover Art</div>
+                    <p class="artwork-description">Eye-catching album covers and music artwork that capture the essence and mood of musical compositions.</p>
+                    <div class="artwork-tags">
+                        <span class="artwork-tag">Music</span>
+                        <span class="artwork-tag">Album</span>
+                        <span class="artwork-tag">Visual Identity</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="artwork-card" data-category="cover-art">
+                <div class="artwork-image">
+                    <i class="artwork-placeholder fas fa-headphones"></i>
+                    <div class="artwork-overlay">
+                        <button class="view-btn" onclick="openLightbox('cover-2')">View Details</button>
+                    </div>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title">YouTube Thumbnails</h3>
+                    <div class="artwork-category">Cover Art</div>
+                    <p class="artwork-description">Compelling YouTube thumbnails and channel art designed to maximize engagement and visual appeal.</p>
+                    <div class="artwork-tags">
+                        <span class="artwork-tag">YouTube</span>
+                        <span class="artwork-tag">Thumbnail</span>
+                        <span class="artwork-tag">Engagement</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title">Gallery Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <div class="stat-label">Artworks Created</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <div class="stat-label">Art Categories</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <div class="stat-label">Client Projects</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10+</span>
+                    <div class="stat-label">Years Creating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <div class="lightbox-image" id="lightbox-image">
+                <i class="fas fa-image" style="font-size: 4rem; color: #4ecdc4;"></i>
+            </div>
+            <div class="lightbox-info">
+                <h3 class="lightbox-title" id="lightbox-title">Artwork Title</h3>
+                <div class="lightbox-category" id="lightbox-category">Category</div>
+                <p class="lightbox-description" id="lightbox-description">Detailed description of the artwork...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Steven Chaplinski</h3>
+                    <p>Digital Artist & Creative Developer</p>
+                    <p>Transforming ideas into visual reality through innovative digital art and creative solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Me</h4>
+                    <div class="social-links">
+                        <a href="https://behance.net/ichoake" class="social-link"><i class="fab fa-behance"></i></a>
+                        <a href="https://bit.ly/iChoake" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="https://aiavatar.etsy.com/" class="social-link"><i class="fas fa-store"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Steven Chaplinski. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Gallery filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const artworkCards = document.querySelectorAll('.artwork-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+
+                    const filter = this.getAttribute('data-filter');
+
+                    artworkCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                            card.style.animation = 'fadeIn 0.5s ease-in-out';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+
+        // Lightbox functionality
+        function openLightbox(artworkId) {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close lightbox when clicking outside
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Add fadeIn animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

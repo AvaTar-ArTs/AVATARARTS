@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials & Reviews - Steven Chaplinski | Client Feedback</title>
+    <meta name="description" content="Read testimonials and reviews from Steven Chaplinski's satisfied clients. Discover why businesses and individuals choose his digital art and creative services.">
+    <meta name="keywords" content="testimonials, client reviews, Steven Chaplinski feedback, digital art reviews, creative services testimonials">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .testimonials-hero {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="testimonialGrid" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M 25 0 L 0 0 0 25" fill="none" stroke="rgba(255,107,107,0.3)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23testimonialGrid)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .testimonial-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            border: 2px solid #4ecdc4;
+            background: transparent;
+            color: #4ecdc4;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #4ecdc4;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: #4ecdc4;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: #4ecdc4;
+            font-family: serif;
+            opacity: 0.3;
+        }
+
+        .testimonial-rating {
+            display: flex;
+            gap: 0.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .star {
+            color: #ffd700;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .author-info h4 {
+            color: #4ecdc4;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .author-title {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .author-company {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+        }
+
+        .testimonial-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .testimonial-date {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .testimonial-category {
+            background: rgba(78, 205, 196, 0.2);
+            border: 1px solid #4ecdc4;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #4ecdc4;
+            text-transform: uppercase;
+        }
+
+        .featured-testimonial {
+            grid-column: span 2;
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(255, 107, 107, 0.1));
+            border: 2px solid #4ecdc4;
+        }
+
+        .featured-testimonial .testimonial-text {
+            font-size: 1.3rem;
+        }
+
+        .stats-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #4ecdc4;
+            text-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
+            display: block;
+        }
+
+        .stat-label {
+            color: #fff;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .video-testimonials {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .video-testimonial {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .video-testimonial:hover {
+            transform: translateY(-5px);
+            border-color: #4ecdc4;
+        }
+
+        .video-thumbnail {
+            height: 200px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .video-thumbnail::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #ff6b6b;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .video-thumbnail:hover .play-button {
+            transform: scale(1.1);
+            background: white;
+        }
+
+        .video-content {
+            padding: 1.5rem;
+            color: #fff;
+        }
+
+        .video-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            color: #4ecdc4;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .video-author {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        .video-duration {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="ctaDots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23ctaDots)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 15px 30px;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            border-radius: 25px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            background: white;
+            color: #ff6b6b;
+            transform: translateY(-2px);
+        }
+
+        .cta-btn.primary {
+            background: white;
+            color: #ff6b6b;
+        }
+
+        .cta-btn.primary:hover {
+            background: transparent;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-testimonial {
+                grid-column: span 1;
+            }
+            
+            .testimonial-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 200px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Steven</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="process.html" class="nav-link">Process</a>
+                <a href="case-studies.html" class="nav-link">Case Studies</a>
+                <a href="services-detailed.html" class="nav-link">Services</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="testimonials.html" class="nav-link active">Testimonials</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Testimonials Hero -->
+    <section class="testimonials-hero">
+        <div class="container">
+            <h1 class="gradient-text">Client Testimonials</h1>
+            <p>Hear from the clients and collaborators who have worked with me. Their feedback reflects the quality, creativity, and professionalism I bring to every project.</p>
+        </div>
+    </section>
+
+    <!-- Testimonial Filters -->
+    <section class="container">
+        <div class="testimonial-filters">
+            <button class="filter-btn active" data-filter="all">All Reviews</button>
+            <button class="filter-btn" data-filter="digital-art">Digital Art</button>
+            <button class="filter-btn" data-filter="web-design">Web Design</button>
+            <button class="filter-btn" data-filter="video">Video Production</button>
+            <button class="filter-btn" data-filter="branding">Branding</button>
+            <button class="filter-btn" data-filter="music">Music Industry</button>
+        </div>
+
+        <!-- Testimonials Grid -->
+        <div class="testimonials-grid" id="testimonials-grid">
+            <!-- Featured Testimonial -->
+            <div class="testimonial-card featured" data-category="digital-art">
+                <div class="testimonial-rating">
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                </div>
+                <p class="testimonial-text">Steven's artistic vision completely transformed our brand identity. His attention to detail and ability to understand our vision was exceptional. The album covers he created not only look stunning but perfectly capture the essence of our music. We've seen a significant increase in engagement and recognition since working with him.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">SJ</div>
+                    <div class="author-info">
+                        <h4>Sarah Johnson</h4>
+                        <div class="author-title">Creative Director</div>
+                        <div class="author-company">Neon Records</div>
+                    </div>
+                </div>
+                <div class="testimonial-meta">
+                    <span class="testimonial-date">December 2024</span>
+                    <span class="testimonial-category">Digital Art</span>
+                </div>
+            </div>
+
+            <!-- Regular Testimonials -->
+            <div class="testimonial-card" data-category="web-design">
+                <div class="testimonial-rating">
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                </div>
+                <p class="testimonial-text">The website Steven created for our creative agency exceeded all expectations. It's not just beautiful, it's functional and drives real business results. Our client inquiries have tripled since the launch, and the site loads incredibly fast on all devices.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">MC</div>
+                    <div class="author-info">
+                        <h4>Mike Chen</h4>
+                        <div class="author-title">CEO</div>
+                        <div class="author-company">Pixel Creative Agency</div>
+                    </div>
+                </div>
+                <div class="testimonial-meta">
+                    <span class="testimonial-date">November 2024</span>
+                    <span class="testimonial-category">Web Design</span>
+                </div>
+            </div>
+
+            <div class="testimonial-card" data-category="video">
+                <div class="testimonial-rating">
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                </div>
+                <p class="testimonial-text">Working with Steven on our product launch video was a game-changer. His creative approach and technical expertise delivered exactly what we needed. The video achieved over 100K views in the first month and significantly boosted our app downloads.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">LR</div>
+                    <div class="author-info">
+                        <h4>Lisa Rodriguez</h4>
+                        <div class="author-title">Marketing Manager</div>
+                        <div class="author-company">TechFlow Solutions</div>
+                    </div>
+                </div>
+                <div class="testimonial-meta">
+                    <span class="testimonial-date">October 2024</span>
+                    <span class="testimonial-category">Video Production</span>
+                </div>
+            </div>
+
+            <div class="testimonial-card" data-category="branding">
+                <div class="testimonial-rating">
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                </div>
+                <p class="testimonial-text">Steven's brand identity work for our restaurant chain was outstanding. He understood our vision perfectly and created a cohesive visual system that works across all touchpoints. Our brand recognition has increased by 80% since the rebrand.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">DW</div>
+                    <div class="author-info">
+                        <h4>David Wilson</h4>
+                        <div class="author-title">Brand Manager</div>
+                        <div class="author-company">Urban Eats Restaurant Group</div>
+                    </div>
+                </div>
+                <div class="testimonial-meta">
+                    <span class="testimonial-date">September 2024</span>
+                    <span class="testimonial-category">Branding</span>
+                </div>
+            </div>
+
+            <div class="testimonial-card" data-category="music">
+                <div class="testimonial-rating">
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                </div>
+                <p class="testimonial-text">Steven's album cover designs are absolutely incredible. He has a unique ability to translate musical concepts into visual art. The covers he created for our indie band helped us stand out in a crowded market and increased our streaming numbers significantly.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AJ</div>
+                    <div class="author-info">
+                        <h4>Alex Johnson</h4>
+                        <div class="author-title">Musician</div>
+                        <div class="author-company">The Neon Dreams</div>
+                    </div>
+                </div>
+                <div class="testimonial-meta">
+                    <span class="testimonial-date">August 2024</span>
+                    <span class="testimonial-category">Music Industry</span>
+                </div>
+            </div>
+
+            <div class="testimonial-card" data-category="web-design">
+                <div class="testimonial-rating">
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                </div>
+                <p class="testimonial-text">The e-commerce platform Steven built for our art supply store is phenomenal. It handles high-resolution images beautifully, has an intuitive user interface, and our sales have increased by 300% since launch. The artist community features he added have been a huge hit.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">EM</div>
+                    <div class="author-info">
+                        <h4>Emma Martinez</h4>
+                        <div class="author-title">Store Owner</div>
+                        <div class="author-company">Creative Supply Co.</div>
+                    </div>
+                </div>
+                <div class="testimonial-meta">
+                    <span class="testimonial-date">July 2024</span>
+                    <span class="testimonial-category">Web Design</span>
+                </div>
+            </div>
+
+            <div class="testimonial-card" data-category="digital-art">
+                <div class="testimonial-rating">
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                </div>
+                <p class="testimonial-text">Steven's digital art is simply breathtaking. He created a series of book covers for our fantasy trilogy that perfectly captured the essence of each story. The covers have received industry recognition and helped increase our book sales by 150%.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">RB</div>
+                    <div class="author-info">
+                        <h4>Robert Brown</h4>
+                        <div class="author-title">Publisher</div>
+                        <div class="author-company">Mystic Press</div>
+                    </div>
+                </div>
+                <div class="testimonial-meta">
+                    <span class="testimonial-date">June 2024</span>
+                    <span class="testimonial-category">Digital Art</span>
+                </div>
+            </div>
+
+            <div class="testimonial-card" data-category="video">
+                <div class="testimonial-rating">
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                </div>
+                <p class="testimonial-text">Steven's video editing skills are top-notch. He transformed our raw footage into a compelling promotional video that perfectly represents our brand. The motion graphics and color grading he added made all the difference. Highly recommended!</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">KT</div>
+                    <div class="author-info">
+                        <h4>Kate Thompson</h4>
+                        <div class="author-title">Marketing Director</div>
+                        <div class="author-company">Innovate Labs</div>
+                    </div>
+                </div>
+                <div class="testimonial-meta">
+                    <span class="testimonial-date">May 2024</span>
+                    <span class="testimonial-category">Video Production</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title">Client Satisfaction</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">98%</span>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4.9/5</span>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">95%</span>
+                    <div class="stat-label">Repeat Clients</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Testimonials -->
+    <section class="video-testimonials">
+        <div class="container">
+            <h2 class="section-title">Video Testimonials</h2>
+            <div class="video-grid">
+                <div class="video-testimonial">
+                    <div class="video-thumbnail">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <h3 class="video-title">Sarah Johnson - Creative Director</h3>
+                        <p class="video-author">Neon Records</p>
+                        <p class="video-duration">2:30 min</p>
+                    </div>
+                </div>
+
+                <div class="video-testimonial">
+                    <div class="video-thumbnail">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <h3 class="video-title">Mike Chen - CEO</h3>
+                        <p class="video-author">Pixel Creative Agency</p>
+                        <p class="video-duration">1:45 min</p>
+                    </div>
+                </div>
+
+                <div class="video-testimonial">
+                    <div class="video-thumbnail">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <h3 class="video-title">Lisa Rodriguez - Marketing Manager</h3>
+                        <p class="video-author">TechFlow Solutions</p>
+                        <p class="video-duration">3:15 min</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Join Our Happy Clients?</h2>
+                <p class="cta-description">Let's work together to create something amazing. Contact me today to discuss your project and see how I can help bring your vision to life.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="cta-btn primary">Start Your Project</a>
+                    <a href="case-studies.html" class="cta-btn">View Case Studies</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Steven Chaplinski</h3>
+                    <p>Digital Artist & Creative Developer</p>
+                    <p>Transforming ideas into visual reality through innovative digital art and creative solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="testimonials.html">Testimonials</a></li>
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Me</h4>
+                    <div class="social-links">
+                        <a href="https://behance.net/ichoake" class="social-link"><i class="fab fa-behance"></i></a>
+                        <a href="https://bit.ly/iChoake" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="https://aiavatar.etsy.com/" class="social-link"><i class="fas fa-store"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Steven Chaplinski. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Testimonial filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+
+                    const filter = this.getAttribute('data-filter');
+
+                    testimonialCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                            card.style.animation = 'fadeIn 0.5s ease-in-out';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+
+        // Video testimonial click handlers
+        document.querySelectorAll('.video-thumbnail').forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                // In a real implementation, this would open a video modal or redirect to video
+                alert('Video testimonial would open here. This is a demo.');
+            });
+        });
+
+        // Add fadeIn animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+# Javascript_Function - Code Analysis\n**Generated:** 2025-10-15 16:53:43\n\n## Code Type Overview\n- **Total Blocks:** 4\n- **Total Size:** 2,741 bytes\n- **Languages:** javascript\n- **Files:** 2\n\n## Source Files\n- chat_0dff79ec-b7a7-47f6-823b-8cd77a381496_analysis.html\n- chat_f38aa4f1-d7ce-4211-bfd8-233ab8994eba_analysis.md\n

@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community & Social - Steven Chaplinski | Creative Community Hub</title>
+    <meta name="description" content="Join Steven Chaplinski's creative community. Connect with fellow artists, participate in discussions, and be part of a vibrant digital art community.">
+    <meta name="keywords" content="creative community, digital art community, Steven Chaplinski community, artist network, social platform">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .community-hero {
+            background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(0,0,0,0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="communityGrid" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M 25 0 L 0 0 0 25" fill="none" stroke="rgba(78,205,196,0.3)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23communityGrid)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .community-stats {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            border-color: #4ecdc4;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #4ecdc4;
+            text-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
+            display: block;
+        }
+
+        .stat-label {
+            color: #fff;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .featured-artists {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .artists-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .artist-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .artist-card:hover {
+            transform: translateY(-10px);
+            border-color: #4ecdc4;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .artist-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        }
+
+        .artist-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.4);
+            font-size: 2rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .artist-name {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            color: #4ecdc4;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .artist-specialty {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .artist-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .artist-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1.5rem;
+        }
+
+        .artist-stat {
+            text-align: center;
+        }
+
+        .artist-stat-number {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            display: block;
+        }
+
+        .artist-stat-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+        }
+
+        .artist-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .artist-social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(78, 205, 196, 0.2);
+            border: 1px solid #4ecdc4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4ecdc4;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .artist-social-link:hover {
+            background: #4ecdc4;
+            color: #000;
+            transform: scale(1.1);
+        }
+
+        .discussions-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .discussions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .discussion-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+        }
+
+        .discussion-card:hover {
+            transform: translateY(-5px);
+            border-color: #4ecdc4;
+        }
+
+        .discussion-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .discussion-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .discussion-meta {
+            flex: 1;
+        }
+
+        .discussion-author {
+            color: #4ecdc4;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .discussion-time {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .discussion-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .discussion-preview {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .discussion-stats {
+            display: flex;
+            gap: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .discussion-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .events-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .event-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            border-color: #4ecdc4;
+        }
+
+        .event-date {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .event-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .event-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .event-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .event-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .event-detail i {
+            color: #4ecdc4;
+            width: 16px;
+        }
+
+        .event-btn {
+            width: 100%;
+            padding: 10px;
+            background: transparent;
+            border: 2px solid #4ecdc4;
+            color: #4ecdc4;
+            border-radius: 20px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .event-btn:hover {
+            background: #4ecdc4;
+            color: #000;
+        }
+
+        .social-links-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .social-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+        }
+
+        .social-card:hover {
+            transform: translateY(-5px);
+            border-color: #4ecdc4;
+        }
+
+        .social-icon {
+            font-size: 3rem;
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+        }
+
+        .social-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .social-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+        }
+
+        .social-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-stat {
+            text-align: center;
+        }
+
+        .social-stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4ecdc4;
+            display: block;
+        }
+
+        .social-stat-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+        }
+
+        .social-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.4);
+        }
+
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="ctaDots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23ctaDots)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 15px 30px;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            border-radius: 25px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            background: white;
+            color: #ff6b6b;
+            transform: translateY(-2px);
+        }
+
+        .cta-btn.primary {
+            background: white;
+            color: #ff6b6b;
+        }
+
+        .cta-btn.primary:hover {
+            background: transparent;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .artists-grid,
+            .discussions-grid,
+            .events-grid,
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .artist-stats,
+            .social-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Steven</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="process.html" class="nav-link">Process</a>
+                <a href="case-studies.html" class="nav-link">Case Studies</a>
+                <a href="services-detailed.html" class="nav-link">Services</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="testimonials.html" class="nav-link">Testimonials</a>
+                <a href="store.html" class="nav-link">Store</a>
+                <a href="challenges.html" class="nav-link">Challenges</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="live-portfolio.html" class="nav-link">Live Portfolio</a>
+                <a href="collaboration.html" class="nav-link">Collaboration</a>
+                <a href="artist-story.html" class="nav-link">Artist Story</a>
+                <a href="interactive.html" class="nav-link">Interactive</a>
+                <a href="community.html" class="nav-link active">Community</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Community Hero -->
+    <section class="community-hero">
+        <div class="container">
+            <h1 class="gradient-text">Creative Community</h1>
+            <p>Join a vibrant community of artists, designers, and creative minds. Share your work, get feedback, collaborate on projects, and grow together in this supportive creative ecosystem.</p>
+        </div>
+    </section>
+
+    <!-- Community Stats -->
+    <section class="community-stats">
+        <div class="container">
+            <h2 class="section-title">Community Impact</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">15,000+</span>
+                    <div class="stat-label">Active Members</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50,000+</span>
+                    <div class="stat-label">Artworks Shared</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2,500+</span>
+                    <div class="stat-label">Collaborations</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100+</span>
+                    <div class="stat-label">Countries</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <div class="stat-label">Active Community</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">95%</span>
+                    <div class="stat-label">Satisfaction Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Artists -->
+    <section class="featured-artists">
+        <div class="container">
+            <h2 class="section-title">Featured Artists</h2>
+            <div class="artists-grid">
+                <div class="artist-card">
+                    <div class="artist-avatar">AC</div>
+                    <h3 class="artist-name">Alex Chen</h3>
+                    <div class="artist-specialty">Digital Illustrator</div>
+                    <p class="artist-description">Specializing in character design and concept art. Known for vibrant color palettes and dynamic compositions.</p>
+                    <div class="artist-stats">
+                        <div class="artist-stat">
+                            <span class="artist-stat-number">2.3K</span>
+                            <span class="artist-stat-label">Followers</span>
+                        </div>
+                        <div class="artist-stat">
+                            <span class="artist-stat-number">156</span>
+                            <span class="artist-stat-label">Artworks</span>
+                        </div>
+                        <div class="artist-stat">
+                            <span class="artist-stat-number">89</span>
+                            <span class="artist-stat-label">Likes</span>
+                        </div>
+                    </div>
+                    <div class="artist-social">
+                        <a href="#" class="artist-social-link"><i class="fab fa-behance"></i></a>
+                        <a href="#" class="artist-social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="artist-social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="artist-card">
+                    <div class="artist-avatar">MR</div>
+                    <h3 class="artist-name">Maya Rodriguez</h3>
+                    <div class="artist-specialty">Motion Graphics</div>
+                    <p class="artist-description">Creating stunning motion graphics and animations. Expert in After Effects and 3D animation techniques.</p>
+                    <div class="artist-stats">
+                        <div class="artist-stat">
+                            <span class="artist-stat-number">1.8K</span>
+                            <span class="artist-stat-label">Followers</span>
+                        </div>
+                        <div class="artist-stat">
+                            <span class="artist-stat-number">203</span>
+                            <span class="artist-stat-label">Videos</span>
+                        </div>
+                        <div class="artist-stat">
+                            <span class="artist-stat-number">67</span>
+                            <span class="artist-stat-label">Likes</span>
+                        </div>
+                    </div>
+                    <div class="artist-social">
+                        <a href="#" class="artist-social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="artist-social-link"><i class="fab fa-vimeo"></i></a>
+                        <a href="#" class="artist-social-link"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+
+                <div class="artist-card">
+                    <div class="artist-avatar">DK</div>
+                    <h3 class="artist-name">David Kim</h3>
+                    <div class="artist-specialty">Web Design</div>
+                    <p class="artist-description">Frontend developer and UI/UX designer. Creating beautiful, functional websites with modern design principles.</p>
+                    <div class="artist-stats">
+                        <div class="artist-stat">
+                            <span class="artist-stat-number">3.1K</span>
+                            <span class="artist-stat-label">Followers</span>
+                        </div>
+                        <div class="artist-stat">
+                            <span class="artist-stat-number">78</span>
+                            <span class="artist-stat-label">Projects</span>
+                        </div>
+                        <div class="artist-stat">
+                            <span class="artist-stat-number">124</span>
+                            <span class="artist-stat-label">Likes</span>
+                        </div>
+                    </div>
+                    <div class="artist-social">
+                        <a href="#" class="artist-social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="artist-social-link"><i class="fab fa-codepen"></i></a>
+                        <a href="#" class="artist-social-link"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="artist-card">
+                    <div class="artist-avatar">ST</div>
+                    <h3 class="artist-name">Sarah Thompson</h3>
+                    <div class="artist-specialty">Photography</div>
+                    <p class="artist-description">Portrait and fashion photographer with a unique eye for composition and lighting. Specializing in creative portraiture.</p>
+                    <div class="artist-stats">
+                        <div class="artist-stat">
+                            <span class="artist-stat-number">4.2K</span>
+                            <span class="artist-stat-label">Followers</span>
+                        </div>
+                        <div class="artist-stat">
+                            <span class="artist-stat-number">312</span>
+                            <span class="artist-stat-label">Photos</span>
+                        </div>
+                        <div class="artist-stat">
+                            <span class="artist-stat-number">201</span>
+                            <span class="artist-stat-label">Likes</span>
+                        </div>
+                    </div>
+                    <div class="artist-social">
+                        <a href="#" class="artist-social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="artist-social-link"><i class="fab fa-500px"></i></a>
+                        <a href="#" class="artist-social-link"><i class="fab fa-flickr"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discussions Section -->
+    <section class="discussions-section">
+        <div class="container">
+            <h2 class="section-title">Community Discussions</h2>
+            <div class="discussions-grid">
+                <div class="discussion-card">
+                    <div class="discussion-header">
+                        <div class="discussion-avatar">AC</div>
+                        <div class="discussion-meta">
+                            <div class="discussion-author">Alex Chen</div>
+                            <div class="discussion-time">2 hours ago</div>
+                        </div>
+                    </div>
+                    <h3 class="discussion-title">Best Practices for Color Theory in Digital Art</h3>
+                    <p class="discussion-preview">I've been experimenting with different color combinations lately and wanted to share some insights about creating harmonious color palettes...</p>
+                    <div class="discussion-stats">
+                        <div class="discussion-stat">
+                            <i class="fas fa-comments"></i>
+                            <span>23 replies</span>
+                        </div>
+                        <div class="discussion-stat">
+                            <i class="fas fa-heart"></i>
+                            <span>45 likes</span>
+                        </div>
+                        <div class="discussion-stat">
+                            <i class="fas fa-eye"></i>
+                            <span>156 views</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="discussion-card">
+                    <div class="discussion-header">
+                        <div class="discussion-avatar">MR</div>
+                        <div class="discussion-meta">
+                            <div class="discussion-author">Maya Rodriguez</div>
+                            <div class="discussion-time">5 hours ago</div>
+                        </div>
+                    </div>
+                    <h3 class="discussion-title">After Effects Tips for Smooth Animations</h3>
+                    <p class="discussion-preview">Just finished a project where I learned some valuable techniques for creating fluid motion graphics. Here are my top tips...</p>
+                    <div class="discussion-stats">
+                        <div class="discussion-stat">
+                            <i class="fas fa-comments"></i>
+                            <span>18 replies</span>
+                        </div>
+                        <div class="discussion-stat">
+                            <i class="fas fa-heart"></i>
+                            <span>32 likes</span>
+                        </div>
+                        <div class="discussion-stat">
+                            <i class="fas fa-eye"></i>
+                            <span>89 views</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="discussion-card">
+                    <div class="discussion-header">
+                        <div class="discussion-avatar">DK</div>
+                        <div class="discussion-meta">
+                            <div class="discussion-author">David Kim</div>
+                            <div class="discussion-time">1 day ago</div>
+                        </div>
+                    </div>
+                    <h3 class="discussion-title">CSS Grid vs Flexbox: When to Use What?</h3>
+                    <p class="discussion-preview">I often get asked about the differences between CSS Grid and Flexbox. Let me break down when to use each approach...</p>
+                    <div class="discussion-stats">
+                        <div class="discussion-stat">
+                            <i class="fas fa-comments"></i>
+                            <span>31 replies</span>
+                        </div>
+                        <div class="discussion-stat">
+                            <i class="fas fa-heart"></i>
+                            <span>67 likes</span>
+                        </div>
+                        <div class="discussion-stat">
+                            <i class="fas fa-eye"></i>
+                            <span>234 views</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="discussion-card">
+                    <div class="discussion-header">
+                        <div class="discussion-avatar">ST</div>
+                        <div class="discussion-meta">
+                            <div class="discussion-author">Sarah Thompson</div>
+                            <div class="discussion-time">2 days ago</div>
+                        </div>
+                    </div>
+                    <h3 class="discussion-title">Lighting Setup for Portrait Photography</h3>
+                    <p class="discussion-preview">Sharing my go-to lighting setups for different types of portrait photography. From natural light to studio setups...</p>
+                    <div class="discussion-stats">
+                        <div class="discussion-stat">
+                            <i class="fas fa-comments"></i>
+                            <span>27 replies</span>
+                        </div>
+                        <div class="discussion-stat">
+                            <i class="fas fa-heart"></i>
+                            <span>54 likes</span>
+                        </div>
+                        <div class="discussion-stat">
+                            <i class="fas fa-eye"></i>
+                            <span>178 views</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events-section">
+        <div class="container">
+            <h2 class="section-title">Upcoming Events</h2>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-date">Dec 20</div>
+                    <h3 class="event-title">Digital Art Workshop</h3>
+                    <p class="event-description">Join us for an interactive workshop on digital painting techniques and color theory. Perfect for beginners and intermediate artists.</p>
+                    <div class="event-details">
+                        <div class="event-detail">
+                            <i class="fas fa-clock"></i>
+                            <span>2:00 PM - 5:00 PM EST</span>
+                        </div>
+                        <div class="event-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Online via Zoom</span>
+                        </div>
+                        <div class="event-detail">
+                            <i class="fas fa-users"></i>
+                            <span>Max 25 participants</span>
+                        </div>
+                    </div>
+                    <button class="event-btn">Register Now</button>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">Dec 25</div>
+                    <h3 class="event-title">Community Art Challenge</h3>
+                    <p class="event-description">Participate in our monthly art challenge with the theme "Winter Wonderland". Submit your creations and vote for your favorites.</p>
+                    <div class="event-details">
+                        <div class="event-detail">
+                            <i class="fas fa-clock"></i>
+                            <span>All day event</span>
+                        </div>
+                        <div class="event-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Online platform</span>
+                        </div>
+                        <div class="event-detail">
+                            <i class="fas fa-trophy"></i>
+                            <span>Prizes for winners</span>
+                        </div>
+                    </div>
+                    <button class="event-btn">Join Challenge</button>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">Jan 5</div>
+                    <h3 class="event-title">Portfolio Review Session</h3>
+                    <p class="event-description">Get feedback on your portfolio from industry professionals. Bring your work for constructive critique and improvement suggestions.</p>
+                    <div class="event-details">
+                        <div class="event-detail">
+                            <i class="fas fa-clock"></i>
+                            <span>7:00 PM - 9:00 PM EST</span>
+                        </div>
+                        <div class="event-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Online via Zoom</span>
+                        </div>
+                        <div class="event-detail">
+                            <i class="fas fa-users"></i>
+                            <span>Max 15 participants</span>
+                        </div>
+                    </div>
+                    <button class="event-btn">Book Session</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Links Section -->
+    <section class="social-links-section">
+        <div class="container">
+            <h2 class="section-title">Connect With Us</h2>
+            <div class="social-grid">
+                <div class="social-card">
+                    <div class="social-icon">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <h3 class="social-title">Discord Server</h3>
+                    <p class="social-description">Join our active Discord community for real-time discussions, voice chats, and collaborative projects.</p>
+                    <div class="social-stats">
+                        <div class="social-stat">
+                            <span class="social-stat-number">2.5K</span>
+                            <span class="social-stat-label">Members</span>
+                        </div>
+                        <div class="social-stat">
+                            <span class="social-stat-number">24/7</span>
+                            <span class="social-stat-label">Active</span>
+                        </div>
+                    </div>
+                    <a href="#" class="social-btn">Join Discord</a>
+                </div>
+
+                <div class="social-card">
+                    <div class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3 class="social-title">Instagram</h3>
+                    <p class="social-description">Follow us for daily inspiration, behind-the-scenes content, and featured artist spotlights.</p>
+                    <div class="social-stats">
+                        <div class="social-stat">
+                            <span class="social-stat-number">15K</span>
+                            <span class="social-stat-label">Followers</span>
+                        </div>
+                        <div class="social-stat">
+                            <span class="social-stat-number">500</span>
+                            <span class="social-stat-label">Posts</span>
+                        </div>
+                    </div>
+                    <a href="#" class="social-btn">Follow Us</a>
+                </div>
+
+                <div class="social-card">
+                    <div class="social-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <h3 class="social-title">YouTube</h3>
+                    <p class="social-description">Watch tutorials, process videos, and live streams from our community of talented artists.</p>
+                    <div class="social-stats">
+                        <div class="social-stat">
+                            <span class="social-stat-number">8.2K</span>
+                            <span class="social-stat-label">Subscribers</span>
+                        </div>
+                        <div class="social-stat">
+                            <span class="social-stat-number">150</span>
+                            <span class="social-stat-label">Videos</span>
+                        </div>
+                    </div>
+                    <a href="#" class="social-btn">Subscribe</a>
+                </div>
+
+                <div class="social-card">
+                    <div class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <h3 class="social-title">Twitter</h3>
+                    <p class="social-description">Stay updated with the latest news, trends, and quick tips from the creative community.</p>
+                    <div class="social-stats">
+                        <div class="social-stat">
+                            <span class="social-stat-number">12K</span>
+                            <span class="social-stat-label">Followers</span>
+                        </div>
+                        <div class="social-stat">
+                            <span class="social-stat-number">2.1K</span>
+                            <span class="social-stat-label">Tweets</span>
+                        </div>
+                    </div>
+                    <a href="#" class="social-btn">Follow Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Join Our Community</h2>
+                <p class="cta-description">Ready to connect with fellow creatives? Join our community today and start sharing your work, getting feedback, and growing as an artist.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="cta-btn primary">Join Now</a>
+                    <a href="challenges.html" class="cta-btn">View Challenges</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Steven Chaplinski</h3>
+                    <p>Digital Artist & Creative Developer</p>
+                    <p>Transforming ideas into visual reality through innovative digital art and creative solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="challenges.html">Challenges</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Me</h4>
+                    <div class="social-links">
+                        <a href="https://behance.net/ichoake" class="social-link"><i class="fab fa-behance"></i></a>
+                        <a href="https://bit.ly/iChoake" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="https://aiavatar.etsy.com/" class="social-link"><i class="fas fa-store"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Steven Chaplinski. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Community interaction functions
+        function joinCommunity() {
+            alert('Community join functionality would be implemented here. This is a demo.');
+        }
+
+        function registerEvent() {
+            alert('Event registration would be implemented here. This is a demo.');
+        }
+
+        function joinChallenge() {
+            alert('Challenge participation would be implemented here. This is a demo.');
+        }
+
+        function bookSession() {
+            alert('Portfolio review booking would be implemented here. This is a demo.');
+        }
+
+        // Add event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click handlers for buttons
+            document.querySelectorAll('.event-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const eventTitle = this.closest('.event-card').querySelector('.event-title').textContent;
+                    if (eventTitle.includes('Workshop')) {
+                        registerEvent();
+                    } else if (eventTitle.includes('Challenge')) {
+                        joinChallenge();
+                    } else if (eventTitle.includes('Portfolio')) {
+                        bookSession();
+                    }
+                });
+            });
+
+            document.querySelectorAll('.social-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    alert('Social platform integration would be implemented here. This is a demo.');
+                });
+            });
+
+            document.querySelectorAll('.cta-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (this.textContent.includes('Join Now')) {
+                        joinCommunity();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

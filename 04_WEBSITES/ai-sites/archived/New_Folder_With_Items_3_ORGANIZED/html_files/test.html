@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Λ∀ʌ†ʌʀ 🦄 ∆ʀ†s - DALL-E Gallery">
+    <meta property="og:description" content="Explore creative DALL-E-generated prompts in a sleek gallery.">
+    <meta property="og:image" content="images/sample-og-image.jpg">
+    <meta property="og:url" content="https://avatararts.org/dalle.html">
+    <title>Λ∀ʌ†ʌʀ 🦄 ∆ʀ†s - DALL-E Gallery</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/photoswipe.css">
+    <link rel="stylesheet" href="css/default-skin.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Scroll Buttons -->
+    <button onclick="topFunction()" id="myBtn" title="Go to top" aria-label="Go to top">Top</button>
+    <button onclick="jumpDown()" id="jumpBtn" title="Down" aria-label="Jump Down">Jump Down</button>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Λ∀ʌ†ʌʀ 🦄 ∆ʀ†s</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="images.html">Images</a></li>
+                <li class="nav-item"><a class="nav-link" href="shorts.html">Shorts</a></li>
+                <li class="nav-item"><a class="nav-link" href="videos.html">Videos</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Gallery Section -->
+    <div class="container-fluid gallery-section">
+        <h2>DaLL-E Prompts</h2>
+        <div class="gallery">
+            <!-- Placeholder for dynamically added gallery items -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="container-fluid text-center">
+        <p><a href="https://avatararts.org">Λ∀ʌ†ʌʀ 🦄 ∆ʀ†s</a></p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/photoswipe.min.js"></script>
+    <script src="js/photoswipe-ui-default.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Scroll Functions
+        window.onscroll = function () {
+            document.getElementById("myBtn").style.display = window.pageYOffset > 20 ? "block" : "none";
+            document.getElementById("jumpBtn").style.display = window.pageYOffset > 20 ? "block" : "none";
+        };
+
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+
+        function jumpDown() {
+            window.scrollBy(0, window.innerHeight);
+        }
+    </script>
+</body>
+
+</html>

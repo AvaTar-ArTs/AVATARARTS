@@ -1,0 +1,689 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>A Spectacular Adventure Awaits in Elsweyr - Claude</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 99, 174, 0.172); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="67ae54bf-29ae-4810-ae6a-f424c50d8d04" class="page sans"><header><h1 class="page-title"><a href="https://claude.ai/chat/7137e310-a72d-418f-8cfb-28aab5554db6">A Spectacular Adventure Awaits in Elsweyr - Claude</a></h1><p class="page-description"></p></header><div class="page-body"><p id="90f1ef88-3726-405d-8247-a64fdc933a44" class="">A Spectacular Adventure Awaits in Elsweyr</p><p id="022a2d03-c459-424a-9cb4-d784abdf8c63" class="">🐉Dragons Next Door: ESO Elsweyr 🏝️ create a catchy youtube title and description based on <a href="https://en.uesp.net/wiki/Online:Hall\_of\_the\_Lunar\_Champion">https://en.uesp.net/wiki/Online:Hall\_of\_the\_Lunar\_Champion</a> and this info/quest The Behold Khunzar-ri&#x27;s Ambition tablet is obtained as a reward for completing the Return of the Dragonguard achievement. It can be placed on the Altar of Ambition, opening a portal to the Lion&#x27;s Cradle, a raised Khajiiti house overlooking Pridehome, for additional outdoor and indoor furnishing. info - <a href="https://en.uesp.net/wiki/Online:The\_Dragonguard">https://en.uesp.net/wiki/Online:The\_Dragonguard</a> || Purpose is to get the last The Behold Khunzar-ri&#x27;s Ambition tablet is obtained as a reward for completing the Return of the Dragonguard achievement. It can be placed on the Altar of Ambition, opening a portal to the Lion&#x27;s Cradle, a raised Khajiiti house overlooking Pridehome, #TideholmTales #DragonsNextDoor #FantasyStory #ShortFilm #MagicandDragons #YouTubeShort #FantasyAnimation #MagicRealm #AdventuresofDragons #TideholmSeries #DragonNeighbors #CreativeContent #AnimationFIlm #FantasyAdventure #MythicalCreatures #OriginalStory #WhimsicalTales #FantasyShortFilm #ImaginaryWorld #StorytellingAnimation Behold Khunzar-ri&#x27;s Ambition Khunzar-ri was not a humble Khajiit. Even as a young cat on the prowl, he dreamed of grand adventures, honor, fame, and a place in history. And with his own claws and a positive disposition, he achieved all that and more. But he did so in a way that endeared him to others. It was something in his smile. Take, for example, the time he hired a scribe to follow him around and record his exploits. The scribe, an unimposing Alfiq whose name has been forgotten, dutifully wrote down pages and pages of anecdotes from the daily life of Khunzar-ri. She constantly remained by his side, despite circumstances, danger, or propriety, in order to carry out her assigned duties. Anequina became so annoyed by the Alfiq&#x27;s presence, that she refused to associate with Khunzar-ri until the scribe departed. Khunzar-ri shrugged and wished Anequina well during their sabbatical. &quot;Too much of Zar makes the heart beat too fast,&quot; said Khunzar-ri with a sigh as she walked away. A few days later, as dusk spread across the land, Khunzar-ri and his Alfiq scribe came upon a young Khajiit warrior. He appeared upset and unsure what to do, holding his spear and staring across the stream at a trio of ravening river trolls. &quot;You seem troubled, friend warrior,&quot; said Khunzar-ri, his scribe writing furiously to record every word. The young warrior turned. &quot;Those trolls attacked this one&#x27;s village,&quot; he said, &quot;killing some, maiming others, and stealing the great wamasu that was roasting over the village cooking pit for our Festival of the Two Moons. This one came to retrieve the carcass, but fear of the three trolls stays his hand. This one will be marked a coward and never gain honor and prestige in his own home.&quot; Khunzar-ri considered the young warrior, the spear, and the three river trolls across the way. He held out his hand and motioned for the young warrior to give him the spear. Once he had tested the weight and straightness of the weapon, Khunzar-ri called to the trolls. &quot;River trolls of a most ugly and disgusting countenance,&quot; he yelled, &quot;this one has a gift for you!&quot; Curious, the three river trolls lined up to see who had dared call out to them. They looked like a single body with three heads, one peaking out from behind another. &quot;Perfect!&quot; said Khunzar-ri, and he threw the spear with all his might. It pierced all three trolls and pinned them to a nearby tree, where their blood flowed down to feed its roots. &quot;Go,&quot; Khunzar-ri said to the young warrior,&quot; retrieve the festival meal and return to your village as a hero.&quot; &quot;But Khunzar-ri,&quot; the Alfiq scribe asked, &quot;that was your kill! And a great kill it was, too! What of your ambition?&quot; Khunzar-ri shrugged. &quot;Zar&#x27;s ambition is as strong as ever, but the young warrior needs this honor more. Besides, there will be an even more spectacular adventure tomorrow, Zar just knows it!&quot; These are the words, and the words are true.</p><p id="aa5d2c75-b449-45e2-8a78-50c4b7e59a51" class="">🐉Dragons Next Door: ESO Elsweyr 🏝️ create a catchy youtube title and description based on <a href="https://en.uesp.net/wiki/Online:Hall\_of\_the\_Lunar\_Champion">https://en.uesp.net/wiki/Online:Hall\_of\_the\_Lunar\_Champion</a> and this info/quest The Behold Khunzar-ri&#x27;s Ambition tablet is obtained as a reward for completing the Return of the Dragonguard achievement. It ca</p><p id="cb36ffb6-f0f6-48ce-ba92-774f8b5dd47d" class="">pasted</p><p id="b6c4269b-58f3-4978-af39-c49adff8e993" class="">A</p><p id="8567ee10-0adc-4f90-8534-6b0f1551a7a0" class="">Edit</p><p id="0d226f3d-a2a2-411d-a31f-be64f96c76bf" class="">Here is a suggested YouTube title and description:</p><p id="e7ce64b5-4cda-4cdf-83e2-4d5e81bf4460" class="">Title: Behold Khunzar-ri&#x27;s Ambition | ESO Elsweyr Quest Walkthrough</p><p id="0c504511-71cf-4a68-ad76-3710c8b97f49" class="">Description: Join me as I complete the quest to obtain the final tablet, &quot;The Behold Khunzar-ri&#x27;s Ambition,&quot; in ESO&#x27;s Elsweyr chapter. This tablet is earned by finishing the Return of the Dragonguard achievement and can be placed on the Altar of Ambition. Placing it opens a portal to the Lion&#x27;s Cradle, a unique Khajiit home with stunning views of Pridehome. Journey through the land of the Khajiit and witness the ambition of Khunzar-ri in this ESO quest guide. From river trolls to festivals, I&#x27;ll showcase this immersive questline in the homeland of the catfolk. If you&#x27;re looking to fully experience Elsweyr&#x27;s engaging storylines and environments, be sure to subscribe!</p><p id="2879bb49-5a06-4d8a-b645-70c3d6fd4ced" class="">Retry</p><p id="0763dfe5-88c3-48d3-9002-39d75d4b54c9" class="">A</p><p id="7fb32006-be34-4203-a594-ac47c5005524" class=""><a href="https://en.uesp.net/wiki/Online:Hall\%5Fof\%5Fthe\%5FLunar\%5FChampion">https://en.uesp.net/wiki/Online:Hall\%5Fof\%5Fthe\%5FLunar\%5FChampion</a> and this info/quest The Behold Khunzar-ri&#x27;s Ambition tablet is obtained as a reward for completing the Return of the Dragonguard achievement. It can be placed on the Altar of Ambition, opening a portal to the Lion&#x27;s Cradle, a raised Khajiiti house overlooking Pridehome, for additional outdoor and indoor furnishing. info - <a href="https://en.uesp.net/wiki/Online:The\%5FDragonguard">https://en.uesp.net/wiki/Online:The\%5FDragonguard</a> || Purpose is to get the last The Behold Khunzar-ri&#x27;s Ambition tablet is obtained as a reward for completing the Return of the Dragonguard achievement. It can be placed on the Altar of Ambition, opening a portal to the Lion&#x27;s Cradle, a raised Khajiiti house overlooking Pridehome, for additional outdoor and indoor furnishing.</p><p id="2f83fbae-1aee-4415-b025-b113867d4f2c" class="">Edit</p><p id="55ef99a0-57dd-4f74-818e-263c71f0dd1c" class="">Here is an updated YouTube title and description focusing on the specific quest details you provided:</p><p id="0dcb879e-29a4-4c78-a18d-6128ced75498" class="">Title: Unlock the Lion&#x27;s Cradle Home in ESO Elsweyr - Return of the Dragonguard Quest Guide</p><p id="d806cb8f-6c88-4a3f-b710-59aa2fc617d6" class="">Description: Want to unlock the unique Lion&#x27;s Cradle player home in ESO&#x27;s Elsweyr chapter? Join me as I show you how in this guide. Complete the Return of the Dragonguard achievement to obtain The Behold Khunzar-ri&#x27;s Ambition tablet as a reward. This tablet can then be placed on the Altar of Ambition, opening a portal to the Lion&#x27;s Cradle, a lavish raised Khajiiti house overlooking Pridehome. With stunning views and plentiful furnishings, the Lion&#x27;s Cradle is a worthy reward for completing the Return of the Dragonguard questline. Follow along as I detail the steps needed to earn this exceptional Elsweyr player home. Whether you&#x27;re a housing enthusiast or just want to fully experience ESO&#x27;s Elsweyr content, this video has you covered!</p><p id="7e1db102-ccb4-4cd4-908f-425485a16480" class="">Retry</p><p id="c44c9023-662c-41e5-b149-f0495a3adf62" class="">A</p><p id="3618c85b-e6df-41bb-b1d3-92c966e8363b" class="">rework \[Here is an updated YouTube title and description focusing on the specific quest details you provided:</p><p id="c5c3815c-0736-4569-a811-24b8a922f173" class="">Title: Unlock the Lion&#x27;s Cradle Home in ESO Elsweyr - Return of the Dragonguard Quest Guide</p><p id="c6970450-286f-420d-aa6b-a7b739abd766" class="">Description: Want to unlock the unique Lion&#x27;s Cradle player home in ESO&#x27;s Elsweyr chapter? Join me as I show you how in this guide. Complete the Return of the Dragonguard achievement to obtain The Behold Khunzar-ri&#x27;s Ambition tablet as a reward. This tablet can then be placed on the Altar of Ambition, opening a portal to the Lion&#x27;s Cradle, a lavish raised Khajiiti house overlooking Pridehome. With stunning views and plentiful furnishings, the Lion&#x27;s Cradle is a worthy reward for completing the Return of the Dragonguard questline. Follow along as I detail the steps needed to earn this exceptional Elsweyr player home. Whether you&#x27;re a housing enthusiast or just want to fully experience ESO&#x27;s Elsweyr content, this video has you covered!\] in the style fellow players of eso would watch, add in some khajiit speak</p><p id="a325ff34-467d-4114-8098-ebad44c2b4df" class="">Edit</p><p id="e90c7ab3-4401-4cfb-9e23-024d6a3882fa" class="">Here is a reworked title and description in a more immersive Khajiit style for ESO players:</p><p id="98042232-94df-436e-a616-a4e49f70543e" class="">Title: This one shows you how to unlock the Lion&#x27;s Cradle in Elsweyr - Guide for Return of Dragonguard</p><p id="ac6d8525-160a-4fda-90d1-cde94eb453e2" class="">Description: Ah, you wish to make the Lion&#x27;s Cradle your lair, yes? This one will lead you on the path, moon-kittens. Complete the Return of the Dragonguard and earn the tablet, The Behold Khunzar-ri&#x27;s Ambition. Place this treasure on the Altar of Ambition to reveal the portal, and the Pridehome vista shall be yours! Such a lovely view from this raised Khajiiti house, with the warm sands and lush gardens below. The furnishings within provide much comfort for resting your weary paws after prowl. Join this one, show you the way, earn your rightful place among the cushions and moon-sugar of the Lion&#x27;s Cradle! Any true child of Elsweyr would relish this fine abode - this one will guide you on the trail.</p><p id="b0ce72ac-f313-47ee-b6a8-2091a7b951d0" class="">Retry</p><p id="6277cd79-d5e9-468b-853c-bced3f5bf079" class="">A</p><p id="4c19fa9c-21dc-4223-a5cd-46f9938c95ea" class="">create catchy trendy youtube / twitch titles with seo keyword optimied and emoji</p><p id="2ffe76a1-1067-43b4-bbf9-64b010a7da98" class="">Edit</p><p id="37d42867-e05b-45f9-b8fa-7dbdcd32f031" class="">Here are some catchy, trendy YouTube/Twitch titles utilizing SEO keywords and emojis:</p><p id="1fda0d75-83aa-4a17-b42c-d4510940c9e2" class="">🔥 Unlock the ULTIMATE House in Elsweyr! - Lion&#x27;s Cradle Guide 🏡👌</p><p id="ba2153a2-df42-4431-95d3-b39ccbd9af5e" class="">🚪How to Get the Lion&#x27;s Cradle Player House! 🏘️ Return of the Dragonguard Quest Walkthrough!🐱</p><p id="2ae6474f-04cc-451f-afac-7949c11bb72c" class="">🏅 FINALLY Got the Lion&#x27;s Cradle House! 😃| ESO Elsweyr Housing Guide</p><p id="49755a14-edff-4bb2-9b3a-6608959b4cc6" class="">✨ Pridehome PENTHOUSE Tour! 😻🌴 Unlocking the Lion&#x27;s Cradle in Elsweyr!</p><p id="9a753b3b-b3dc-4218-817b-19c5bd1ecb45" class="">🏡 ESO Housing Alert! 🚨 How to Unlock the Lion&#x27;s Cradle Pad in Elsweyr 🐈</p><p id="e46b19bb-d975-403c-9bf1-34cc798e807b" class="">The ULTIMATE Crib for Khajiit Roleplayers! 😼🌇 Unlocking Lion&#x27;s Cradle in Elsweyr!</p><p id="61b7bb2b-bcda-4780-8b60-5adae5868a65" class="">Retry</p><p id="b77f7f10-8ad2-4e64-ad06-4b340c35d7ad" class="">A</p><p id="a0c19609-d8fa-42ec-973e-473745b0983f" class="">not so general in the manners, continue with the khajiit speak and theme of the story</p><p id="0d19434e-1f29-4083-ae42-7434ad2d7420" class="">Edit</p><p id="a83babe3-833d-414b-ac39-ccf3fb41d1b2" class="">Here are some more Khajiit-themed YouTube titles utilizing SEO keywords:</p><p id="9b79dcae-9cdf-42d3-9b5b-e99e8face976" class="">😼 This one shows you the trail to the Lion&#x27;s Cradle lair! - Guide for Return of Dragonguard</p><p id="1eaf504c-fee9-41b6-9813-26fcbd4fa35a" class="">🐱 Unlock prized abode in Elsweyr - How to get Pridehome&#x27;s Lion&#x27;s Cradle house</p><p id="6a2d8ed0-30fe-4cc0-88f7-39b6fa1f49ab" class="">🌄 By Azurah! Guide to acquiring the prestigious Lion&#x27;s Cradle homestead</p><p id="904a431a-923e-4850-84c6-986c13a35e69" class="">⚔️ Complete the Dragonguard questline, earn Khunzar-ri&#x27;s tablet - Portal to Lion&#x27;s Cradle</p><p id="3b21cf46-53af-4a2b-a256-e29085316419" class="">🌴 New moon, new den - Walkthrough for unlocking Lion&#x27;s Cradle overlooking Pridehome</p><p id="ffc0ff2b-f09e-4263-9a1a-76d7c54ea138" class="">🏕️ Feline lounging - Obtaining lavish furnishings within the Lion&#x27;s Cradle estate</p><p id="38f29278-0a0a-4ede-82d0-2632db04408d" class="">😻 This one covets the cushions! - Walkthrough to unlock coveted Lion&#x27;s Cradle manor</p><p id="f4b89315-d2a9-4c0f-8e0e-75c8a6a875b8" class="">⛰️ Guide for earning well-appointed Lion&#x27;s Cradle domicile with stunning Elsweyr vista</p><p id="65ab7616-de20-44e8-8bb5-4260f6098643" class="">Retry</p><p id="89f8c789-d113-4d3c-ba44-0b424078f65b" class="">A</p><p id="f4d9d9a4-772d-46d3-9009-beb060ba9023" class="">add in the idea of warm sands, bright moons type culture from khajiit to New moon, new den - Walkthrough for unlocking Lion&#x27;s Cradle overlooking Pridehome ||| This one covets the cushions! - Walkthrough to unlock coveted Lion&#x27;s Cradle manor</p><p id="9ca72941-aeb3-4afb-b8dd-14475cca80bb" class="">Edit</p><p id="d33cf030-ae6d-4105-bad2-36a0bedfe69d" class="">Here are some titles incorporating more Khajiit cultural elements:</p><p id="1b457e05-e7d3-4f72-890c-e927d9edf2fa" class="">🌙 New moon, new den - Walkthrough for unlocking Lion&#x27;s Cradle overlooking golden sands and bright moons</p><p id="07ad5739-32cb-4f55-9798-262c18966438" class="">😻 This one covets the cushions under the twin moons! - Walkthrough to unlock coveted Lion&#x27;s Cradle manor with stunning vista</p><p id="5be0dd5a-2812-4226-8c9a-d3eaace2bdb1" class="">🌕 Guide under Masser and Secunda to acquire prestigious Pridehome Lion&#x27;s Cradle estate</p><p id="f12b0045-567d-44df-9304-f7af2676eda8" class="">🌄 By Azurah&#x27;s blessings, this one shows you the trail to Lion&#x27;s Cradle abode above Elsweyr&#x27;s warm sands</p><p id="34b82354-9f9b-41b6-bfde-1831cb9819f2" class="">🐾 Path to the prestigious Lion&#x27;s Cradle homestead under Masser and Secunda&#x27;s light</p><p id="f3b483e5-23bc-4b36-acdf-c2dd9bbd3745" class="">⚔️ Walking the twin moons&#x27; path - Earning the Lion&#x27;s Cradle manor through the Dragonguard questline</p><p id="b4ed98b9-0067-4767-ba5e-5aaf5e332490" class="">🏜️ Across Elsweyr&#x27;s golden dunes - Unlocking the lavish Lion&#x27;s Cradle household overlooking Pridehome</p><p id="7cc28340-0af0-439e-85ae-490090c82b4a" class="">Retry</p><p id="452cffc5-bf93-4c8d-bad3-561ba1853576" class="">A</p><p id="eea41c0f-2611-4aa6-b247-7cab482a5f4e" class="">further background \[The Pride of Alkosh is a clan of Khajiiti warriors who serve Alkosh. They protect Elsweyr in its time of need. The order is housed at Pridehome, and comprises Khajiit who were born under the eclipse, but are not destined to lead as the Mane. These individuals are known as the Forgotten Manes.</p><p id="05ee8796-1f0d-4632-942f-891471b4ac31" class="">The order was founded by the legendary hero Ja&#x27;darri, the first champion of Alkosh. The order has historically worked alongside the Dragonguard to defend Elsweyr against the Dragons. The Pride selects one champion to undergo solitary training so that they may one day wield the Mask of Alkosh.</p><p id="f7afbf24-8953-4448-b437-8601f17d1ce6" class="">Contents------------</p><p id="1cebac9c-a640-4a72-b2de-f7a4b3c0ff8e" class="">\[hide\]</p><ul id="048bf9a3-5085-4dab-9b1a-48c262ec2f70" class="bulleted-list"><li style="list-style-type:disc">1Members</li></ul><ul id="dca85786-5d77-4bad-bf20-e6cd0089b505" class="bulleted-list"><li style="list-style-type:disc">2Locations</li></ul><ul id="9da03690-8696-476d-8099-445fc64bf83b" class="bulleted-list"><li style="list-style-type:disc">3Quests</li></ul><ul id="fd08187e-6627-4c8d-a95d-7cbbc175f064" class="bulleted-list"><li style="list-style-type:disc">4Books</li></ul><p id="d789948a-c339-4901-9ff2-3bbc26148989" class="">Members\[edit\] ---------------</p><p id="8d0e9b9f-a030-4937-a24c-f59caac291c2" class="">Named MembersJa&#x27;darri (Founder) Clan Mother Hizuni (Clan Mother) Moon-Priest Nuziwa Ra&#x27;khajin (formerly)</p><p id="c2f75f1f-64fa-4c53-a46b-b3a376f195be" class="">Locations\[edit\] -----------------</p><ul id="395dae22-bda0-4ba5-844d-f495f2f5809c" class="bulleted-list"><li style="list-style-type:disc">The Forgotten Mane — A monument in Southern Elsweyr located south of Khenarthi&#x27;s Breath Temple. (map)</li></ul><ul id="d87a952c-10b5-4154-928d-664993edffbf" class="bulleted-list"><li style="list-style-type:disc">Pridehome — A temple dedicated to Alkosh in the Tenmar Forest. (map)</li></ul><ul id="684a4645-2091-4b7d-9c93-b040685193a5" class="bulleted-list"><li style="list-style-type:disc">Halls of the Highmane — Chambers deep within the Halls of the Highmane. (map)</li></ul><p id="9f723c53-4369-4325-b1c6-7872fb6394e6" class="">Quests\[edit\] --------------</p><ul id="03a73995-8bf4-4206-8c3a-f06868a9a987" class="bulleted-list"><li style="list-style-type:disc">The Pride of Alkosh: Investigate the Order of the New Moon&#x27;s invasion of Pridehome.</li></ul><ul id="8a3ce044-0908-41c7-a34f-ca6a860cc6bf" class="bulleted-list"><li style="list-style-type:disc">The Dragonguard: End the New Moon threat.</li></ul><p id="6d06f794-4514-4bba-bc69-4da9627a8315" class="">Books\[edit\] -------------</p><ul id="cc1ea934-f180-45db-a1ae-0b336c5f0d3a" class="bulleted-list"><li style="list-style-type:disc">Battle of the Black Beast — A poem surrounding the Mask of Alkosh</li></ul><ul id="2c181a18-9b90-4edd-826a-d1d7f759732e" class="bulleted-list"><li style="list-style-type:disc">By Gentle Winds — An inscription instructing the Chosen Warrior along the Path of the Winged Goddess</li></ul><ul id="aeae7cbf-de03-41cf-aa89-72ec890e2d60" class="bulleted-list"><li style="list-style-type:disc">Demon from the East — A short tale of the rise and fall of the Demon of the East</li></ul><ul id="cfe3ddd0-ce1a-4026-82c5-3a32f19495bc" class="bulleted-list"><li style="list-style-type:disc">Ja&#x27;darri the Endless — A great Khajiiti hero&#x27;s epitaph</li></ul><ul id="0b11daa7-9dc4-4752-bcb8-b904a09d17f0" class="bulleted-list"><li style="list-style-type:disc">Letter from Clan Mother Tadali by Clan Mother Tadali — A letter from one Clan Mother to another</li></ul><ul id="af4f2c65-ef32-4cbb-9c1b-3490365e77b1" class="bulleted-list"><li style="list-style-type:disc">Mend the Threads — An inscription instructing the Chosen Warrior along the Path of Pride</li></ul><ul id="de8c8b9f-6002-42ee-a753-289b6393c4f0" class="bulleted-list"><li style="list-style-type:disc">Pridehome: A Place Outside Time? Transcribed by Kaalaleth of the Mages Guild — The history of Pridehome and its non-linear nature</li></ul><ul id="1792e0fa-63d7-4155-a1fe-d4dbfa50405b" class="bulleted-list"><li style="list-style-type:disc">Song of Alkosh&#x27;s Champion — A song about a Khajiit undergoing the trials of the Halls of the Highmane</li></ul><ul id="6fc1338c-b794-4bba-a68d-ab55f1cf1f92" class="bulleted-list"><li style="list-style-type:disc">The Pride of Alkosh by Clan Mother Hizuni — Notes on a group of Forgotten Manes</li></ul><ul id="0df56113-1b51-4d41-a74c-2d37616afae7" class="bulleted-list"><li style="list-style-type:disc">Through Doom and Darkness — An inscription instructing the Chosen Warrior along the Path of the Moon Prince\]</li></ul><p id="5bc2cdbb-122d-4786-a7c3-8e7cceb6ac6c" class="">Edit</p><p id="bc9e8749-a966-4073-ae46-e6ff6c7a8a3c" class="">Here are some title ideas incorporating context about the Pride of Alkosh and Khajiiti culture:</p><p id="a5235ee2-b4c1-4f86-99b1-48aba3c2a14f" class="">🌄 Guide to acquiring Lion&#x27;s Cradle homestead above Pridehome sands</p><p id="46ae8fe4-16de-44a6-8665-891f4879df86" class="">Join this one on the Path of Alkosh, unlock the prestigious Lion&#x27;s Cradle manor</p><p id="a9895c19-2095-4a10-8893-d9c2765db240" class="">🌙 Walk proud as Ja&#x27;darri once did - Unlock the Lion&#x27;s Cradle overlooking golden dunes</p><p id="59b754d4-b57d-494c-bb5c-a017ec621998" class="">⚔️ Forgotten Mane covets Lion&#x27;s Cradle cushions - Quest walkthrough under Masser&#x27;s light</p><p id="2e1c74f9-306b-4bc5-96a7-d020aa136a15" class="">🐾 Follow in Pride of Alkosh footsteps to unlock lavish Lion&#x27;s Cradle household</p><p id="ab50aef5-1cd1-4a9c-bb3f-6fb8420fa785" class="">🌕 By Azurah&#x27;s blessing, earn Lion&#x27;s Cradle abode through Dragonguard trials</p><p id="b5e65131-6b13-4ea5-b758-ac9bb950b3ef" class="">🏜️ Journey through Elsweyr&#x27;s golden sands to unlock coveted Lion&#x27;s Cradle home</p><p id="32a0d4ee-cfd3-45f3-a449-c2cb2e2a9b8f" class="">🌄 Pridehome champion shows you the trail to prestigious Lion&#x27;s Cradle estate</p><p id="6c66f1f9-80c2-4757-a43f-cf25984b367c" class="">Retry</p><p id="5eb0a701-b808-4a34-938b-523bc86b149c" class="">A</p><p id="a4c1c4da-88e7-4b89-bb07-13f3bba761e3" class="">🌙 New moon, new den - Walkthrough for unlocking Lion&#x27;s Cradle overlooking golden sands and bright moons</p><p id="98ac7a7c-9288-4195-8cfa-ccde2b4a0556" class="">😻 This one covets the cu | rework with Lion&#x27;s Cradle portal to Pridehome 🌙 New moon, new den - Walkthrough for unlocking Lion&#x27;s Cradle overlooking golden sands and bright moons</p><p id="bb8289f0-800d-4684-b311-eb19b9b35853" class="">😻 This one covets the cu</p><p id="0d9f192f-2e20-4f9e-a45a-fabf97bdb964" class="">Edit</p><p id="4b8406c0-031f-4ddb-bed7-7a217aaa0a53" class="">Here are some reworked titles incorporating the Lion&#x27;s Cradle portal to Pridehome:</p><p id="d298b85c-e4f2-46a8-9dcb-4c734a366340" class="">🌙 New moon, new den - Unlocking the portal to Pridehome sands from Lion&#x27;s Cradle</p><p id="9afa3df5-4d4f-41b4-b380-032afd4eed0c" class="">😻 This one covets lounge above golden dunes - Guide to Lion&#x27;s Cradle portal with Pridehome vista</p><p id="6861e24e-6b33-4f9e-8b2b-c2907b60198d" class="">🌕 Follow twin moons to Lion&#x27;s Cradle portal with stunning Pridehome views</p><p id="80bed9f4-ae28-4903-b925-0730f3fe097f" class="">🏜️ Pridehome sands below, cushions above - Unlocking portal from Lion&#x27;s Cradle to golden dunes</p><p id="90785496-5304-4313-80c4-e27ac360ad0a" class="">🌄 Climb Dune&#x27;s Stairs, bask in Pridehome vista - Acquiring Lion&#x27;s Cradle portal to Elsweyr sands</p><p id="de427a86-b63b-42e0-9448-7185578ac676" class="">⚔️ Earn pathway to golden sands from lavish Lion&#x27;s Cradle abode</p><p id="505d3652-7a03-4ff6-bf5d-e3b341160bfb" class="">🌴 Pridehome palace in distance - Guide to unlocking portal from Lion&#x27;s Cradle manor</p><p id="f2426eb1-d182-44c2-844e-a2e3fdfc0d62" class="">🐾 Path to prestigous Lion&#x27;s Cradle portal with stunning Pridehome panorama</p><p id="7245e519-21c9-4659-ab28-cd2dd31e9cf2" class="">Retry</p><p id="683ca1ac-0cca-45fa-ab0c-a0ac795981ae" class="">A</p><p id="04247883-0816-49be-be5a-9c2f2d0710d4" class="">The Behold Khunzar-ri&#x27;s Ambition tablet is obtained as a reward for completing the Return of the Dragonguard achievement. It can be placed on the Altar of Ambition, opening a portal to the Lion&#x27;s Cradle, a raised Khajiiti house overlooking Pridehome, for additional outdoor and indoor furnishing.</p><p id="e647e130-6c27-4d39-927b-0533d48affe3" class="">Edit</p><p id="09104c99-7b89-4053-afd7-84f1af5db5a5" class="">Here are some additional title ideas incorporating details about the Behold Khunzar-ri&#x27;s Ambition tablet and the Lion&#x27;s Cradle portal:</p><p id="be890542-03da-4357-a37e-cbc84708334f" class="">🌄 Khunzar&#x27;s tablet opens portal to Lion&#x27;s Cradle overlooking Pridehome sands</p><p id="bc136867-5d3f-4965-82fd-3e6a4caa02e1" class="">🚪 Place tablet on Altar, unlock portal to Pridehome vista from Lion&#x27;s Cradle</p><p id="90908f95-5181-4bdb-af50-7f67a62b6ba2" class="">🏜️ Golden dunes below, cushions above - Khunzar&#x27;s tablet unlocks Lion&#x27;s Cradle portal</p><p id="c228fe23-c88d-41c0-84f1-3d7545f8b655" class="">🌕 Khunzar&#x27;s tablet shows the way to Lion&#x27;s Cradle portal with stunning panorama</p><p id="6eb8c267-6a29-457d-bc35-1bdaf83a8a84" class="">⚔️ Earn Khunzar&#x27;s tablet, gain portal from Lavish Lion&#x27;s Cradle to Pridehome</p><p id="6eb352db-351a-4787-80af-686b6e70049b" class="">🌙 New moon, new den - Khunzar&#x27;s tablet unlocks portal to Pridehome sands from Lion&#x27;s Cradle</p><p id="701c589a-d0da-4473-88dc-70e6217106b6" class="">😻 This one covets Lion&#x27;s Cradle portal - Guide to earning Khunzar&#x27;s tablet in Return of Dragonguard</p><p id="ad07ffd6-3d7b-486b-872c-9a8c46711b80" class="">🐾 Khunzar&#x27;s tablet grants pathway to prestigious Lion&#x27;s Cradle overview of Pridehome</p><p id="51264cb4-0572-4b22-bd26-c0cc2a38d76a" class="">Retry</p><p id="1adce173-41d6-4700-8ad8-31a33e377231" class="">A</p><p id="a7759314-80e5-4dea-b8db-e66c7b2e641c" class="">more linguistic like khajiit</p><p id="d39065d5-e8a1-49f1-8774-710035694547" class="">Edit</p><p id="e983e86c-ecaa-43d1-8a45-81f612cf8f7f" class="">Here are some more titles in a Khajiiti linguistic style:</p><p id="7408a02f-b874-4147-b473-c599f050f44d" class="">🐱 Khunzar-ri&#x27;s tablet shows path to portal with view of Pridehome&#x27;s warm sands</p><p id="7aae1001-23d7-42d3-b7dd-ada0caf42ef0" class="">🌄 This one places tablet on altar, unlocks moonlit vista from Lion&#x27;s Cradle</p><p id="8dafa0b7-e159-4db5-9129-822b9e64177c" class="">😼 Earn Khunzar&#x27;s gift, gaze upon golden dunes from cushy lounge</p><p id="3aec9205-896f-4c6c-bd60-33ed01fe0a59" class="">🐈 Guide to acquiring Khajiit&#x27;s prized tablet, opening portal to Pridehome oasis</p><p id="966ef619-7897-4a77-b3d4-b99e17c174f1" class="">🌌 Complete Dragonguard trials under Secunda&#x27;s glow, earn path to palace grounds</p><p id="9a2bdbd4-08ed-469d-8e0f-53f9742e2369" class="">🌙 New moon rises over golden sands seen through magic portal</p><p id="42da206b-a948-4199-8677-53daa8219721" class="">⚔️ With tablet in paw, pathway unlocked to Pridehome dunes from Lion&#x27;s perch</p><p id="39b30b79-ca89-44e9-8059-cc634febe03a" class="">🌕 View moons&#x27; bright blessings over Elsweyr sands through portal from Cradle</p><p id="b4a8019b-3e4b-40e2-bc65-c7189ea2bef3" class="">Retry</p><p id="8d088bf5-9716-4095-b8a2-a7b678d00da8" class="">A</p><p id="04a502a3-b632-45f1-845d-5456663c8340" class="">Title: This one shows you how to unlock the Lion&#x27;s Cradle in Elsweyr - Guide for Return of Dragonguard</p><p id="0583d1df-da2e-431f-8957-7adc2e6e8f15" class="">Description: Ah, you wish to make the Lion&#x27;s Cradle your lair, yes? This one will lead you on the path, moon-kittens. Complete the Return of the Dragonguard and earn the tablet, The Behold Khunzar-ri&#x27;s Ambition. Place this treasure on the Altar of Ambition to reveal the portal, and the Pridehome vista shall be yours! Such a lovely view from this raised Khajiiti house, with the warm sands and lush gardens below. The furnishings within provide much comfort for resting your weary paws after prowl. Join this one, show you the way, earn your rightful place among the cushions and moon-sugar of the Lion&#x27;s Cradle! Any true child of Elsweyr would relish this fine abode - this one will guide you on the trail.</p><p id="81f81ce7-8f1f-4776-93c7-e6bd73adcf62" class="">Edit</p><p id="155bd808-652e-444c-9b32-85b32e6c7fb8" class="">Here is an updated title and description in a more immersive Khajiit style:</p><p id="1dcd34d0-2ad7-4fda-bbc7-80f359d35555" class="">Title: This one traverses Elsweyr&#x27;s golden sands to Lion&#x27;s Cradle</p><p id="cc428377-ca88-49ed-87b6-3f48b40c8643" class="">Description: Ah, you wish to unlock the portal to Pridehome&#x27;s lush gardens and warm sands from the Lion&#x27;s Cradle manor, no? This one knows the way, follow along. Complete the trials of the Dragonguard under Masser&#x27;s glow, earn the gift from Khunzar-ri. Place this tablet upon the altar to unveil the moonlit path to Pridehome&#x27;s vista. Such stunning views of the oasis and palace grounds from the Cradle&#x27;s lofty lounge. Rest your weary paws on the cushions, gaze out across the twilight sands. The furnishings within provide much comfort after the long prowl. Join this one, earn your rightful place in the prestigious Lion&#x27;s Cradle estate! Any true child of Elsweyr would relish this fine abode - let your guide show you the trail under Secunda&#x27;s light.</p><p id="0ce156cd-b694-4cc3-b4f3-c117cc63a850" class="">Retry</p><p id="97f59467-1050-4319-b9dd-28722857178f" class=""><a href="https://support.anthropic.com/en/articles/8525154-claude-is-providing-incorrect-or-misleading-responses-what-s-going-on">Claude can make mistakes.  Please double-check responses.</a></p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

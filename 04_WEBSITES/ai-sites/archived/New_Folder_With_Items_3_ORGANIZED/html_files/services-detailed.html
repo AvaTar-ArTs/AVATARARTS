@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services & Pricing - Steven Chaplinski | Digital Art & Creative Solutions</title>
+    <meta name="description" content="Explore Steven Chaplinski's comprehensive creative services including digital art, web design, video production, and branding with detailed pricing and packages.">
+    <meta name="keywords" content="creative services, digital art services, web design pricing, video production, branding services, Steven Chaplinski">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .services-hero {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="servicesGrid" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M 25 0 L 0 0 0 25" fill="none" stroke="rgba(255,107,107,0.3)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23servicesGrid)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .service-categories {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .service-category {
+            margin-bottom: 4rem;
+        }
+
+        .service-category-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .service-category-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            color: #4ecdc4;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .service-category-description {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: #4ecdc4;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.4);
+        }
+
+        .service-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .service-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .service-description {
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+
+        .service-features li {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+
+        .service-pricing {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #4ecdc4;
+            text-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        .price-note {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .service-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .service-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.4);
+        }
+
+        .pricing-tiers {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .pricing-card.featured {
+            border-color: #4ecdc4;
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(78, 205, 196, 0.3);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: #4ecdc4;
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pricing-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            color: #4ecdc4;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-period {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+
+        .pricing-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .pricing-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.4);
+        }
+
+        .process-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .process-step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .process-step-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            color: #4ecdc4;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+        }
+
+        .process-step-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .faq-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .faq-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+
+        .faq-question {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .faq-answer {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="ctaDots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23ctaDots)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 15px 30px;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            border-radius: 25px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            background: white;
+            color: #ff6b6b;
+            transform: translateY(-2px);
+        }
+
+        .cta-btn.primary {
+            background: white;
+            color: #ff6b6b;
+        }
+
+        .cta-btn.primary:hover {
+            background: transparent;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Steven</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="process.html" class="nav-link">Process</a>
+                <a href="case-studies.html" class="nav-link">Case Studies</a>
+                <a href="services-detailed.html" class="nav-link active">Services</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Services Hero -->
+    <section class="services-hero">
+        <div class="container">
+            <h1 class="gradient-text">Services & Pricing</h1>
+            <p>Comprehensive creative solutions tailored to your needs. From digital art and web design to video production and branding, I offer professional services with transparent pricing and exceptional results.</p>
+        </div>
+    </section>
+
+    <!-- Digital Art Services -->
+    <section class="service-categories">
+        <div class="container">
+            <div class="service-category">
+                <div class="service-category-header">
+                    <h2 class="service-category-title">Digital Art & Design</h2>
+                    <p class="service-category-description">Transform your ideas into stunning visual art with custom digital paintings, illustrations, and creative designs.</p>
+                </div>
+                <div class="service-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3 class="service-title">Custom Digital Art</h3>
+                        <p class="service-description">Original digital paintings and illustrations tailored to your vision and style preferences.</p>
+                        <ul class="service-features">
+                            <li>High-resolution digital artwork</li>
+                            <li>Multiple concept sketches</li>
+                            <li>Unlimited revisions</li>
+                            <li>Commercial usage rights</li>
+                            <li>Source files included</li>
+                        </ul>
+                        <div class="service-pricing">
+                            <div class="price">$150-500</div>
+                            <div class="price-note">Per artwork</div>
+                        </div>
+                        <a href="contact.html" class="service-btn">Get Quote</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <h3 class="service-title">Album & Cover Art</h3>
+                        <p class="service-description">Eye-catching cover art for albums, singles, and music projects that capture your sound.</p>
+                        <ul class="service-features">
+                            <li>Album cover design</li>
+                            <li>Single artwork</li>
+                            <li>Social media assets</li>
+                            <li>Print-ready formats</li>
+                            <li>Digital distribution ready</li>
+                        </ul>
+                        <div class="service-pricing">
+                            <div class="price">$100-300</div>
+                            <div class="price-note">Per cover</div>
+                        </div>
+                        <a href="contact.html" class="service-btn">Get Quote</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <h3 class="service-title">Photo Manipulation</h3>
+                        <p class="service-description">Surreal and creative photo editing that transforms ordinary images into extraordinary art.</p>
+                        <ul class="service-features">
+                            <li>Advanced photo editing</li>
+                            <li>Surreal compositions</li>
+                            <li>Color grading & effects</li>
+                            <li>Background replacement</li>
+                            <li>Retouching & enhancement</li>
+                        </ul>
+                        <div class="service-pricing">
+                            <div class="price">$75-250</div>
+                            <div class="price-note">Per image</div>
+                        </div>
+                        <a href="contact.html" class="service-btn">Get Quote</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Web Design Services -->
+            <div class="service-category">
+                <div class="service-category-header">
+                    <h2 class="service-category-title">Web Design & Development</h2>
+                    <p class="service-category-description">Create stunning, functional websites that combine artistic vision with modern technology and user experience.</p>
+                </div>
+                <div class="service-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3 class="service-title">Custom Website Design</h3>
+                        <p class="service-description">Bespoke website design and development tailored to your brand and business needs.</p>
+                        <ul class="service-features">
+                            <li>Custom design & development</li>
+                            <li>Mobile responsive</li>
+                            <li>SEO optimized</li>
+                            <li>Content management system</li>
+                            <li>6 months support</li>
+                        </ul>
+                        <div class="service-pricing">
+                            <div class="price">$2,000-8,000</div>
+                            <div class="price-note">Per project</div>
+                        </div>
+                        <a href="contact.html" class="service-btn">Get Quote</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3 class="service-title">E-commerce Solutions</h3>
+                        <p class="service-description">Complete online store setup with payment processing and inventory management.</p>
+                        <ul class="service-features">
+                            <li>Online store setup</li>
+                            <li>Payment integration</li>
+                            <li>Product management</li>
+                            <li>Order tracking</li>
+                            <li>Security & SSL</li>
+                        </ul>
+                        <div class="service-pricing">
+                            <div class="price">$3,000-12,000</div>
+                            <div class="price-note">Per project</div>
+                        </div>
+                        <a href="contact.html" class="service-btn">Get Quote</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="service-title">Mobile App Design</h3>
+                        <p class="service-description">User interface and user experience design for mobile applications and web apps.</p>
+                        <ul class="service-features">
+                            <li>UI/UX design</li>
+                            <li>Prototyping</li>
+                            <li>User testing</li>
+                            <li>Design system</li>
+                            <li>Developer handoff</li>
+                        </ul>
+                        <div class="service-pricing">
+                            <div class="price">$1,500-5,000</div>
+                            <div class="price-note">Per project</div>
+                        </div>
+                        <a href="contact.html" class="service-btn">Get Quote</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Production Services -->
+            <div class="service-category">
+                <div class="service-category-header">
+                    <h2 class="service-category-title">Video Production & Editing</h2>
+                    <p class="service-category-description">Professional video production services from concept to final delivery with stunning visual effects and motion graphics.</p>
+                </div>
+                <div class="service-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3 class="service-title">Video Editing</h3>
+                        <p class="service-description">Professional video editing and post-production for any type of content or project.</p>
+                        <ul class="service-features">
+                            <li>Professional editing</li>
+                            <li>Color grading</li>
+                            <li>Audio enhancement</li>
+                            <li>Motion graphics</li>
+                            <li>Multiple format delivery</li>
+                        </ul>
+                        <div class="service-pricing">
+                            <div class="price">$50-150</div>
+                            <div class="price-note">Per hour</div>
+                        </div>
+                        <a href="contact.html" class="service-btn">Get Quote</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <h3 class="service-title">Motion Graphics</h3>
+                        <p class="service-description">Dynamic motion graphics and animated content for presentations, social media, and marketing.</p>
+                        <ul class="service-features">
+                            <li>2D/3D animations</li>
+                            <li>Logo animations</li>
+                            <li>Explainer videos</li>
+                            <li>Social media content</li>
+                            <li>Brand animations</li>
+                        </ul>
+                        <div class="service-pricing">
+                            <div class="price">$200-800</div>
+                            <div class="price-note">Per project</div>
+                        </div>
+                        <a href="contact.html" class="service-btn">Get Quote</a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-youtube"></i>
+                        </div>
+                        <h3 class="service-title">YouTube Content</h3>
+                        <p class="service-description">Complete YouTube channel setup including thumbnails, channel art, and video optimization.</p>
+                        <ul class="service-features">
+                            <li>Channel art & branding</li>
+                            <li>Thumbnail design</li>
+                            <li>Video optimization</li>
+                            <li>SEO optimization</li>
+                            <li>Content strategy</li>
+                        </ul>
+                        <div class="service-pricing">
+                            <div class="price">$300-1,200</div>
+                            <div class="price-note">Per package</div>
+                        </div>
+                        <a href="contact.html" class="service-btn">Get Quote</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Tiers -->
+    <section class="pricing-tiers">
+        <div class="container">
+            <h2 class="section-title">Service Packages</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Starter</h3>
+                    <div class="pricing-price">$500</div>
+                    <div class="pricing-period">One-time project</div>
+                    <ul class="pricing-features">
+                        <li>1 Digital artwork OR</li>
+                        <li>Basic website design</li>
+                        <li>2 revisions included</li>
+                        <li>Source files provided</li>
+                        <li>7-day delivery</li>
+                        <li>Email support</li>
+                    </ul>
+                    <a href="contact.html" class="pricing-btn">Choose Plan</a>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <h3 class="pricing-title">Professional</h3>
+                    <div class="pricing-price">$1,500</div>
+                    <div class="pricing-period">One-time project</div>
+                    <ul class="pricing-features">
+                        <li>3 Digital artworks OR</li>
+                        <li>Complete website with CMS</li>
+                        <li>5 revisions included</li>
+                        <li>All source files</li>
+                        <li>14-day delivery</li>
+                        <li>Priority support</li>
+                        <li>1 month maintenance</li>
+                    </ul>
+                    <a href="contact.html" class="pricing-btn">Choose Plan</a>
+                </div>
+
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Enterprise</h3>
+                    <div class="pricing-price">$3,000+</div>
+                    <div class="pricing-period">Custom project</div>
+                    <ul class="pricing-features">
+                        <li>Unlimited artworks OR</li>
+                        <li>Full web application</li>
+                        <li>Unlimited revisions</li>
+                        <li>Complete source code</li>
+                        <li>Flexible timeline</li>
+                        <li>Dedicated support</li>
+                        <li>3 months maintenance</li>
+                        <li>Training included</li>
+                    </ul>
+                    <a href="contact.html" class="pricing-btn">Contact Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="process-step-number">1</div>
+                    <h3 class="process-step-title">Consultation</h3>
+                    <p class="process-step-description">We discuss your project requirements, vision, and goals to ensure I understand exactly what you need.</p>
+                </div>
+
+                <div class="process-step">
+                    <div class="process-step-number">2</div>
+                    <h3 class="process-step-title">Proposal</h3>
+                    <p class="process-step-description">I provide a detailed proposal with timeline, pricing, and deliverables for your approval.</p>
+                </div>
+
+                <div class="process-step">
+                    <div class="process-step-number">3</div>
+                    <h3 class="process-step-title">Creation</h3>
+                    <p class="process-step-description">I begin working on your project, providing regular updates and seeking feedback throughout the process.</p>
+                </div>
+
+                <div class="process-step">
+                    <div class="process-step-number">4</div>
+                    <h3 class="process-step-title">Delivery</h3>
+                    <p class="process-step-description">Final files are delivered in all required formats with ongoing support and maintenance as needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3 class="faq-question">What's included in the pricing?</h3>
+                    <p class="faq-answer">All pricing includes source files, commercial usage rights, and the specified number of revisions. Additional services like rush delivery or extra revisions may incur additional charges.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">How long does a project take?</h3>
+                    <p class="faq-answer">Project timelines vary based on complexity. Simple digital art takes 3-7 days, while complex websites can take 2-6 weeks. I'll provide a specific timeline during consultation.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">Do you offer revisions?</h3>
+                    <p class="faq-answer">Yes! Each package includes a specific number of revisions. I want to ensure you're completely satisfied with the final result.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">What file formats do you provide?</h3>
+                    <p class="faq-answer">I provide files in all standard formats (PNG, JPG, PDF, PSD, etc.) and can create custom formats based on your specific needs.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">Do you work with international clients?</h3>
+                    <p class="faq-answer">Absolutely! I work with clients worldwide and can accommodate different time zones and communication preferences.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">What's your payment process?</h3>
+                    <p class="faq-answer">I typically require 50% upfront and 50% upon completion. For larger projects, we can arrange milestone-based payments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Start Your Project?</h2>
+                <p class="cta-description">Let's discuss your vision and create something amazing together. Contact me today for a free consultation and custom quote.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="cta-btn primary">Get Started</a>
+                    <a href="gallery.html" class="cta-btn">View Portfolio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Steven Chaplinski</h3>
+                    <p>Digital Artist & Creative Developer</p>
+                    <p>Transforming ideas into visual reality through innovative digital art and creative solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="services-detailed.html">Services</a></li>
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Me</h4>
+                    <div class="social-links">
+                        <a href="https://behance.net/ichoake" class="social-link"><i class="fab fa-behance"></i></a>
+                        <a href="https://bit.ly/iChoake" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="https://aiavatar.etsy.com/" class="social-link"><i class="fas fa-store"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Steven Chaplinski. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+    email you@example.com
+    # optional: acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+}
+
+# Replace n8n.example.com with your actual hostname
+n8n.example.com {
+    encode gzip
+    reverse_proxy n8n:5678 {
+        header_up X-Forwarded-Proto {scheme}
+        header_up X-Forwarded-Host {host}
+        header_up X-Forwarded-For {remote}
+    }
+}

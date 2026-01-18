@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module enhanced_batch_gallery_generator</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>enhanced_batch_gallery_generator</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/steven/tehSiTes/COMPLETE%20SONG%20LYRICS%20TO%20VISUAL%20STORYTELLING%20MASTER%20FRAMEWORK/enhanced_batch_gallery_generator.py">/Users/steven/tehSiTes/COMPLETE SONG LYRICS TO VISUAL STORYTELLING MASTER FRAMEWORK/enhanced_batch_gallery_generator.py</a></font></td></tr></table>
+    <p><tt>Enhanced&nbsp;Batch&nbsp;Gallery&nbsp;Generator&nbsp;for&nbsp;Simple&nbsp;Photo&nbsp;Gallery<br>
+&nbsp;<br>
+This&nbsp;script&nbsp;scans&nbsp;through&nbsp;a&nbsp;directory&nbsp;and&nbsp;creates&nbsp;Simple&nbsp;Photo&nbsp;Gallery&nbsp;instances&nbsp;<br>
+for&nbsp;each&nbsp;subdirectory&nbsp;that&nbsp;contains&nbsp;images,&nbsp;with&nbsp;advanced&nbsp;configuration&nbsp;options<br>
+based&nbsp;on&nbsp;the&nbsp;Simple&nbsp;Photo&nbsp;Gallery&nbsp;features.<br>
+&nbsp;<br>
+Usage:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;python&nbsp;enhanced_batch_gallery_generator.py&nbsp;[--pictures-path&nbsp;PATH]&nbsp;[--force]&nbsp;[--dry-run]<br>
+&nbsp;<br>
+Features:<br>
+-&nbsp;Recursively&nbsp;scans&nbsp;directories&nbsp;for&nbsp;image&nbsp;files<br>
+-&nbsp;Creates&nbsp;galleries&nbsp;only&nbsp;for&nbsp;directories&nbsp;with&nbsp;images<br>
+-&nbsp;Supports&nbsp;dry-run&nbsp;mode&nbsp;to&nbsp;preview&nbsp;what&nbsp;would&nbsp;be&nbsp;created<br>
+-&nbsp;Handles&nbsp;errors&nbsp;gracefully&nbsp;and&nbsp;continues&nbsp;processing<br>
+-&nbsp;Provides&nbsp;detailed&nbsp;logging&nbsp;of&nbsp;the&nbsp;process<br>
+-&nbsp;Advanced&nbsp;gallery&nbsp;configuration&nbsp;options<br>
+-&nbsp;Support&nbsp;for&nbsp;remote&nbsp;galleries&nbsp;(OneDrive,&nbsp;Google&nbsp;Photos)<br>
+-&nbsp;Custom&nbsp;thumbnail&nbsp;sizing&nbsp;and&nbsp;quality&nbsp;options<br>
+-&nbsp;Date&nbsp;formatting&nbsp;and&nbsp;EXIF&nbsp;data&nbsp;extraction<br>
+-&nbsp;Upload&nbsp;functionality&nbsp;for&nbsp;hosting&nbsp;providers</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="argparse.html">argparse</a><br>
+<a href="glob.html">glob</a><br>
+</td><td width="25%" valign=top><a href="json.html">json</a><br>
+<a href="logging.html">logging</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="subprocess.html">subprocess</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-build_gallery"><strong>build_gallery</strong></a>(directory: str, build_script: str, force_thumbnails: bool = False) -&gt; bool</dt><dd><tt>Build&nbsp;the&nbsp;gallery&nbsp;HTML&nbsp;and&nbsp;generate&nbsp;thumbnails.</tt></dd></dl>
+ <dl><dt><a name="-count_images"><strong>count_images</strong></a>(directory: str) -&gt; int</dt><dd><tt>Count&nbsp;the&nbsp;number&nbsp;of&nbsp;image&nbsp;files&nbsp;in&nbsp;a&nbsp;directory.</tt></dd></dl>
+ <dl><dt><a name="-create_enhanced_gallery_config"><strong>create_enhanced_gallery_config</strong></a>(directory: str, title: str = None, **kwargs) -&gt; bool</dt><dd><tt>Create&nbsp;an&nbsp;enhanced&nbsp;gallery.json&nbsp;configuration&nbsp;file&nbsp;with&nbsp;advanced&nbsp;options.</tt></dd></dl>
+ <dl><dt><a name="-detect_gallery_type"><strong>detect_gallery_type</strong></a>(directory: str) -&gt; str</dt><dd><tt>Detect&nbsp;the&nbsp;type&nbsp;of&nbsp;gallery&nbsp;based&nbsp;on&nbsp;directory&nbsp;name&nbsp;and&nbsp;contents.</tt></dd></dl>
+ <dl><dt><a name="-find_directories_with_images"><strong>find_directories_with_images</strong></a>(root_path: str) -&gt; List[str]</dt><dd><tt>Recursively&nbsp;find&nbsp;all&nbsp;directories&nbsp;that&nbsp;contain&nbsp;images.</tt></dd></dl>
+ <dl><dt><a name="-find_gallery_scripts"><strong>find_gallery_scripts</strong></a>() -&gt; Tuple[str, str]</dt><dd><tt>Find&nbsp;the&nbsp;gallery&nbsp;initialization&nbsp;and&nbsp;build&nbsp;scripts.<br>
+Returns&nbsp;tuple&nbsp;of&nbsp;(init_script,&nbsp;build_script)&nbsp;paths.</tt></dd></dl>
+ <dl><dt><a name="-get_gallery_config_for_directory"><strong>get_gallery_config_for_directory</strong></a>(directory: str) -&gt; Dict[str, Any]</dt><dd><tt>Get&nbsp;appropriate&nbsp;configuration&nbsp;for&nbsp;a&nbsp;directory&nbsp;based&nbsp;on&nbsp;its&nbsp;contents&nbsp;and&nbsp;name.</tt></dd></dl>
+ <dl><dt><a name="-has_images"><strong>has_images</strong></a>(directory: str) -&gt; bool</dt><dd><tt>Check&nbsp;if&nbsp;a&nbsp;directory&nbsp;contains&nbsp;any&nbsp;supported&nbsp;image&nbsp;files.</tt></dd></dl>
+ <dl><dt><a name="-initialize_gallery"><strong>initialize_gallery</strong></a>(directory: str, init_script: str, force: bool = False) -&gt; bool</dt><dd><tt>Initialize&nbsp;a&nbsp;gallery&nbsp;in&nbsp;the&nbsp;specified&nbsp;directory.</tt></dd></dl>
+ <dl><dt><a name="-is_gallery_initialized"><strong>is_gallery_initialized</strong></a>(directory: str) -&gt; bool</dt><dd><tt>Check&nbsp;if&nbsp;a&nbsp;directory&nbsp;already&nbsp;has&nbsp;a&nbsp;gallery&nbsp;initialized.</tt></dd></dl>
+ <dl><dt><a name="-main"><strong>main</strong></a>()</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>Any</strong> = typing.Any<br>
+<strong>Dict</strong> = typing.Dict<br>
+<strong>IMAGE_EXTENSIONS</strong> = {'.gif', '.jpeg', '.jpg', '.mp4', '.png'}<br>
+<strong>List</strong> = typing.List<br>
+<strong>Optional</strong> = typing.Optional<br>
+<strong>Tuple</strong> = typing.Tuple<br>
+<strong>logger</strong> = &lt;Logger enhanced_batch_gallery_generator (INFO)&gt;</td></tr></table>
+</body></html>

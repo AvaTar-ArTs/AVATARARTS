@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Story - Steven Chaplinski | Personal Journey & Creative Evolution</title>
+    <meta name="description" content="Discover Steven Chaplinski's personal journey as a digital artist, from early influences to creative evolution, philosophy, and vision for the future of digital art.">
+    <meta name="keywords" content="Steven Chaplinski story, artist journey, creative evolution, digital art philosophy, personal story">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .story-hero {
+            background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(0,0,0,0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="storyGrid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255,107,107,0.3)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23storyGrid)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .story-timeline {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #ff6b6b, #4ecdc4, #45b7d1);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 3rem 0;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 3rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 3rem;
+        }
+
+        .timeline-content {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border: 20px solid transparent;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -40px;
+            border-left-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -40px;
+            border-right-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.4);
+        }
+
+        .timeline-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .timeline-year {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .timeline-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timeline-description {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-highlights {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-highlights li {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .timeline-highlights li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+
+        .philosophy-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .philosophy-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .philosophy-card:hover {
+            transform: translateY(-10px);
+            border-color: #4ecdc4;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .philosophy-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.4);
+        }
+
+        .philosophy-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .philosophy-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .philosophy-description {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        .influences-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .influences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .influence-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .influence-card:hover {
+            transform: translateY(-5px);
+            border-color: #4ecdc4;
+        }
+
+        .influence-image {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .influence-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.8), rgba(78, 205, 196, 0.8));
+            animation: influenceShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes influenceShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .influence-placeholder {
+            color: white;
+            font-size: 2rem;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .influence-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .influence-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .vision-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .vision-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .vision-quote {
+            font-size: 2rem;
+            color: #4ecdc4;
+            font-style: italic;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+        }
+
+        .vision-quote::before,
+        .vision-quote::after {
+            content: '"';
+            font-size: 3rem;
+            color: #ff6b6b;
+            font-family: serif;
+        }
+
+        .vision-description {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .vision-goals {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .goal-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .goal-icon {
+            font-size: 3rem;
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+        }
+
+        .goal-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .goal-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .personal-section {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .personal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+            align-items: center;
+        }
+
+        .personal-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .personal-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.8), rgba(78, 205, 196, 0.8));
+            animation: personalShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes personalShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .personal-placeholder {
+            color: white;
+            font-size: 4rem;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .personal-content h3 {
+            color: #4ecdc4;
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .personal-content p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .personal-interests {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .interest-tag {
+            background: rgba(78, 205, 196, 0.2);
+            border: 1px solid #4ecdc4;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            color: #4ecdc4;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 3rem;
+                padding-right: 0;
+            }
+
+            .timeline-icon {
+                left: 20px;
+                transform: translateX(-50%);
+            }
+
+            .timeline-content::before {
+                display: none;
+            }
+
+            .personal-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .vision-quote {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Steven</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="process.html" class="nav-link">Process</a>
+                <a href="case-studies.html" class="nav-link">Case Studies</a>
+                <a href="services-detailed.html" class="nav-link">Services</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="testimonials.html" class="nav-link">Testimonials</a>
+                <a href="store.html" class="nav-link">Store</a>
+                <a href="challenges.html" class="nav-link">Challenges</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="live-portfolio.html" class="nav-link">Live Portfolio</a>
+                <a href="collaboration.html" class="nav-link">Collaboration</a>
+                <a href="artist-story.html" class="nav-link active">Artist Story</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Story Hero -->
+    <section class="story-hero">
+        <div class="container">
+            <h1 class="gradient-text">My Creative Journey</h1>
+            <p style="font-size: 1.3rem; color: rgba(255, 255, 255, 0.9); max-width: 600px; margin: 0 auto;">From early artistic influences to becoming a digital art innovator, discover the story behind my creative evolution and the philosophy that drives my work.</p>
+        </div>
+    </section>
+
+    <!-- Story Timeline -->
+    <section class="story-timeline">
+        <div class="container">
+            <h2 class="section-title">The Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">1990s</div>
+                        <h3 class="timeline-title">Early Beginnings</h3>
+                        <p class="timeline-description">Growing up in a creative household, I was always drawn to visual expression. My earliest memories involve sketching on any surface I could find, from napkins to walls (much to my parents' dismay).</p>
+                        <ul class="timeline-highlights">
+                            <li>First digital art experience at age 8</li>
+                            <li>Fascination with video games and their visual worlds</li>
+                            <li>Early experiments with MS Paint and basic drawing programs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2000s</div>
+                        <h3 class="timeline-title">Formal Education</h3>
+                        <p class="timeline-description">Pursued formal art education while simultaneously exploring the emerging world of digital art. This period shaped my understanding of traditional art principles and their application in digital mediums.</p>
+                        <ul class="timeline-highlights">
+                            <li>Studied fine arts and graphic design</li>
+                            <li>First exposure to professional design software</li>
+                            <li>Began experimenting with photo manipulation</li>
+                            <li>Discovered the power of digital storytelling</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2010s</div>
+                        <h3 class="timeline-title">Digital Revolution</h3>
+                        <p class="timeline-description">The rise of social media and digital platforms opened new possibilities for artistic expression. I began creating content that resonated with online communities and explored the intersection of art and technology.</p>
+                        <ul class="timeline-highlights">
+                            <li>Started sharing work on digital platforms</li>
+                            <li>First commercial projects and client work</li>
+                            <li>Explored motion graphics and video editing</li>
+                            <li>Developed signature neon and cyberpunk aesthetic</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2020s</div>
+                        <h3 class="timeline-title">Innovation & Impact</h3>
+                        <p class="timeline-description">Today, I focus on pushing the boundaries of digital art while mentoring emerging artists and contributing to the creative community. My work spans multiple disciplines and continues to evolve with technology.</p>
+                        <ul class="timeline-highlights">
+                            <li>Established successful freelance practice</li>
+                            <li>Created educational content and tutorials</li>
+                            <li>Collaborated with major brands and artists</li>
+                            <li>Developed unique artistic voice and style</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy-section">
+        <div class="container">
+            <h2 class="section-title">Creative Philosophy</h2>
+            <div class="philosophy-grid">
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="philosophy-title">Innovation Through Experimentation</h3>
+                    <p class="philosophy-description">I believe that true artistic growth comes from constantly pushing boundaries and experimenting with new techniques, tools, and concepts. Every project is an opportunity to learn and evolve.</p>
+                </div>
+
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="philosophy-title">Emotion-Driven Creation</h3>
+                    <p class="philosophy-description">Art should evoke emotion and create connections. I strive to infuse every piece with genuine feeling and meaning, whether it's joy, contemplation, or wonder.</p>
+                </div>
+
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="philosophy-title">Community & Collaboration</h3>
+                    <p class="philosophy-description">The creative community is essential to growth. I believe in sharing knowledge, collaborating with other artists, and helping emerging creators find their voice.</p>
+                </div>
+
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h3 class="philosophy-title">Continuous Learning</h3>
+                    <p class="philosophy-description">The digital art landscape is constantly evolving. I'm committed to lifelong learning, staying current with new technologies, and adapting my approach to remain relevant and innovative.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Influences Section -->
+    <section class="influences-section">
+        <div class="container">
+            <h2 class="section-title">Creative Influences</h2>
+            <div class="influences-grid">
+                <div class="influence-card">
+                    <div class="influence-image">
+                        <i class="influence-placeholder fas fa-music"></i>
+                    </div>
+                    <h3 class="influence-title">Electronic Music</h3>
+                    <p class="influence-description">The pulsating rhythms and atmospheric sounds of electronic music directly influence my visual compositions and color choices.</p>
+                </div>
+
+                <div class="influence-card">
+                    <div class="influence-image">
+                        <i class="influence-placeholder fas fa-film"></i>
+                    </div>
+                    <h3 class="influence-title">Sci-Fi Cinema</h3>
+                    <p class="influence-description">Classic and modern science fiction films inspire my futuristic aesthetics and storytelling approach.</p>
+                </div>
+
+                <div class="influence-card">
+                    <div class="influence-image">
+                        <i class="influence-placeholder fas fa-city"></i>
+                    </div>
+                    <h3 class="influence-title">Urban Landscapes</h3>
+                    <p class="influence-description">The energy and complexity of city life find their way into my compositions and color palettes.</p>
+                </div>
+
+                <div class="influence-card">
+                    <div class="influence-image">
+                        <i class="influence-placeholder fas fa-gamepad"></i>
+                    </div>
+                    <h3 class="influence-title">Video Games</h3>
+                    <p class="influence-description">Interactive media and game design influence my approach to user experience and visual storytelling.</p>
+                </div>
+
+                <div class="influence-card">
+                    <div class="influence-image">
+                        <i class="influence-placeholder fas fa-leaf"></i>
+                    </div>
+                    <h3 class="influence-title">Nature & Science</h3>
+                    <p class="influence-description">Natural patterns and scientific concepts often inspire the organic elements in my digital work.</p>
+                </div>
+
+                <div class="influence-card">
+                    <div class="influence-image">
+                        <i class="influence-placeholder fas fa-palette"></i>
+                    </div>
+                    <h3 class="influence-title">Digital Art Pioneers</h3>
+                    <p class="influence-description">Early digital artists and contemporary creators who pushed the boundaries of what's possible with technology.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section class="vision-section">
+        <div class="container">
+            <div class="vision-content">
+                <h2 class="section-title">Vision for the Future</h2>
+                <div class="vision-quote">
+                    Art has the power to bridge the gap between technology and humanity, creating experiences that inspire, challenge, and connect us in ways we never imagined possible.
+                </div>
+                <p class="vision-description">
+                    As we move forward into an increasingly digital world, I see my role as an artist evolving to not just create beautiful images, but to explore the deeper questions about our relationship with technology, identity, and the human experience. My vision is to continue pushing the boundaries of what's possible in digital art while maintaining the emotional core that makes art meaningful.
+                </p>
+                <div class="vision-goals">
+                    <div class="goal-item">
+                        <div class="goal-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 class="goal-title">Global Impact</h3>
+                        <p class="goal-description">Create art that resonates across cultures and languages, fostering global creative connections.</p>
+                    </div>
+                    <div class="goal-item">
+                        <div class="goal-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="goal-title">Education</h3>
+                        <p class="goal-description">Develop comprehensive educational resources to help the next generation of digital artists.</p>
+                    </div>
+                    <div class="goal-item">
+                        <div class="goal-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="goal-title">Innovation</h3>
+                        <p class="goal-description">Explore emerging technologies like AI, VR, and AR to create new forms of artistic expression.</p>
+                    </div>
+                    <div class="goal-item">
+                        <div class="goal-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3 class="goal-title">Community</h3>
+                        <p class="goal-description">Build a supportive creative community that encourages experimentation and growth.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Section -->
+    <section class="personal-section">
+        <div class="container">
+            <h2 class="section-title">Beyond the Canvas</h2>
+            <div class="personal-grid">
+                <div class="personal-image">
+                    <i class="personal-placeholder fas fa-user"></i>
+                </div>
+                <div class="personal-content">
+                    <h3>When I'm Not Creating</h3>
+                    <p>Outside of my artistic work, I'm passionate about exploring new technologies, reading science fiction, and spending time in nature. I believe that diverse experiences fuel creativity and help maintain a fresh perspective on the world.</p>
+                    <p>I'm also deeply committed to mental health awareness in the creative community and often speak about the importance of work-life balance for artists and designers.</p>
+                    <div class="personal-interests">
+                        <span class="interest-tag">Photography</span>
+                        <span class="interest-tag">Hiking</span>
+                        <span class="interest-tag">Cooking</span>
+                        <span class="interest-tag">Reading</span>
+                        <span class="interest-tag">Gaming</span>
+                        <span class="interest-tag">Travel</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Steven Chaplinski</h3>
+                    <p>Digital Artist & Creative Developer</p>
+                    <p>Transforming ideas into visual reality through innovative digital art and creative solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="artist-story.html">Artist Story</a></li>
+                        <li><a href="process.html">Process</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Me</h4>
+                    <div class="social-links">
+                        <a href="https://behance.net/ichoake" class="social-link"><i class="fab fa-behance"></i></a>
+                        <a href="https://bit.ly/iChoake" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="https://aiavatar.etsy.com/" class="social-link"><i class="fas fa-store"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Steven Chaplinski. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,689 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Rearranging Columns in a Trivia Table - Claude</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 99, 174, 0.172); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="20b4a753-2539-4d87-a2a9-a7dcad06561e" class="page sans"><header><h1 class="page-title"><a href="https://claude.ai/chat/08f38aaa-6a73-4c5b-9e51-ffec5b59628b">Rearranging Columns in a Trivia Table - Claude</a></h1><p class="page-description"></p></header><div class="page-body"><p id="6fd53e5c-8542-499c-b2a1-7193cbcab04b" class="">Rearranging Columns in a Trivia Table</p><p id="6d8b77eb-ddd0-4b37-8120-547714975974" class="">can you change around the Columns B C D || This is rows 2-160 What is the name of the fictional metal that serves as the primary component of Black Widow&#x27;s Widow&#x27;s Bite gauntlets in the Marvel Comics universe? Vibranium Adamantium Promethium Vibranium A &quot;Black Widow&#x27;s Secret Metal! 🕷️ #Marvel&quot; &quot;Uncover the mystery behind Black Widow&#x27;s gauntlets! #WidowsBite&quot; What is the name of the superhero alter ego of Bruce Banner in the Marvel Comics universe? Hulk Thor Iron Man Hulk A &quot;Hulk&#x27;s Alter Ego Revealed! 💪 #SuperheroSecrets&quot; &quot;Find out who&#x27;s the genius behind the Hulk&#x27;s rage! #MarvelUniverse&quot; In the &quot;Harry Potter&quot; series, what is the name of the magical plant that resembles a tentacle-covered sphere and emits a high-pitched scream? Devil&#x27;s Snare Mandrake Whomping Willow Devil&#x27;s Snare A &quot;Harry Potter&#x27;s Screaming Plant! 🌿 #MagicalMysteries&quot; &quot;Dive into the world of magical plants with this Harry Potter mystery! #WizardingWorld&quot; What is the name of the fictional metal that serves as the primary component of Wolverine&#x27;s indestructible claws in the Marvel Comics universe? Adamantium Vibranium Uru Adamantium A &quot;Wolverine&#x27;s Indestructible Metal! 🔩 #Marvel&quot; &quot;Explore the metal that makes Wolverine&#x27;s claws unstoppable! #Adamantium&quot; In the &quot;Star Trek&quot; series, what is the name of the species that is known for their highly logical and emotionless demeanor? Vulcan Betazoid Andorian Vulcan A &quot;The Logic of Star Trek&#x27;s Vulcans! 🖖 #TrekFacts&quot; &quot;Unravel the secrets of Vulcan logic in Star Trek! #SpocksSpecies&quot; What is the name of the superhero alter ego of Natasha Romanoff in the Marvel Comics universe? Black Widow Scarlet Witch Captain Marvel Black Widow A &quot;Black Widow&#x27;s Superhero Identity! 🕷️ #Marvel&quot; &quot;Who is the fierce alter ego of Natasha Romanoff? Find out! #BlackWidow&quot; In the &quot;Harry Potter&quot; series, what is the name of the magical plant that resembles a tree and can attack anyone who approaches it? Whomping Willow Mandrake Devil&#x27;s Snare Whomping Willow A &quot;Harry Potter&#x27;s Aggressive Plant! 🌳 #MagicalFlora&quot; &quot;Beware of this magical plant in the Harry Potter universe! #WhompingWillow&quot; What is the name of the fictional metal that serves as the primary component of Wonder Woman&#x27;s indestructible bracelets in the DC Comics universe? Amazonium Nth Metal Promethium Amazonium A &quot;Wonder Woman&#x27;s Bracelets&#x27; Secret! ⚔️ #DCComics&quot; &quot;Discover the metal behind Wonder Woman&#x27;s indestructible bracelets! #AmazonianMetal&quot; In the &quot;Star Trek&quot; series, what is the name of the species that is known for their strong sense of honor and adherence to tradition? Klingon Vulcan Romulan Klingon A &quot;Star Trek&#x27;s Honor-Bound Warriors! 🛡️ #KlingonCulture&quot; &quot;Explore the traditions of Star Trek&#x27;s most honorable species! #Klingon&quot; What is the name of the superhero alter ego of Hal Jordan in the DC Comics universe? Green Lantern The Flash Aquaman Green Lantern A 💫 Green Lantern Revealed: The Man Behind the Mask! 🎭 Discover the hero behind Green Lantern&#x27;s mask In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a small, flying horse with a single horn on its forehead? Thestral Hippogriff Centaur Thestral A &quot;Magical Creatures of Harry Potter! 🦄 #WizardWorld&quot; &quot;What magical creature resembles a flying unicorn? #HarryPotterMagic&quot; What is the name of the fictional metal that serves as the primary component of Aquaman&#x27;s trident in the DC Comics universe? Atlantean Steel Nth Metal Promethium Atlantean Steel A 🔱 Aquaman&#x27;s Trident: The Power of Mythical Metal! 🌊 Explore the depths of the DC universe to uncover the mystical metal powering Aquaman&#x27;s formidable trident. In the &quot;Star Trek&quot; series, what is the name of the species that is known for their ability to change their physical appearance? Changeling Betazoid Trill Changeling A 👽 The Shapeshifters of Star Trek: Revealing the Changelings! 🔄 Uncover the secrets of the Changelings, Star Trek&#x27;s enigmatic species capable of altering their appearance at will. What is the name of the superhero alter ego of Arthur Curry in the DC Comics universe? Aquaman Green Lantern The Flash Aquaman A Aquaman&#x27;s Superhero Identity! 🌊 #DCUniverse Dive into the depths to discover Aquaman&#x27;s true self! In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a small, furry creature with a long snout and bat-like ears? Niffler Bowtruckle Thestral Niffler A Harry Potter&#x27;s Furry Magical Creature! 🐾 #Magic&quot; &quot;Meet the cuddly creature with a unique talent in Harry Potter! #MagicalBeasts&quot; What is the name of the fictional metal that serves as the primary component of Hawkeye&#x27;s arrows in the Marvel Comics universe? Vibranium Adamantium Promethium Vibranium A &quot;Hawkeye&#x27;s Arrow Mystery Solved! 🏹 #MarvelSecrets&quot; &quot;What&#x27;s the secret metal in Hawkeye&#x27;s arsenal? #ArcheryMysteries&quot; In the &quot;Star Trek&quot; series, what is the name of the species that is known for their ability to absorb energy and fire it back at their enemies? Hirogen Species 8472 Borg Hirogen A &quot;Star Trek&#x27;s Energy Absorbers! ⚡ #AlienTech&quot; &quot;Identify the species that turns energy into a weapon! #StarTrek&quot; What is the name of the superhero alter ego of Clint Barton in the Marvel Comics universe? Hawkeye Ant-Man Falcon Hawkeye A &quot;Who is This Hero?! 🎯 #Marvel&quot; &quot;Who&#x27;s the sharpshooter behind Hawkeye&#x27;s mask? #AvengerSecrets&quot; In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a large spider with multiple eyes and legs? Acromantula Thestral Hippogriff Acromantula A &quot;Harry Potter&#x27;s Giant Spider! 🕷️ #CreatureFeature&quot; &quot;Uncover the giant arachnid lurking in the Wizarding World! #HarryPotter&quot; What is the name of the fictional metal that serves as the primary component of Black Panther&#x27;s suit in the Marvel Comics universe? Vibranium Adamantium Promethium Vibranium A &quot;Black Panther&#x27;s Suit Secret! 🐾 #MarvelTech&quot; &quot;Reveal the advanced metal behind Black Panther&#x27;s suit! #WakandaForever&quot; In the &quot;Star Trek&quot; series, what is the name of the species that is known for their highly advanced technology and scientific knowledge? Q Borg Voth Q A &quot;Star Trek&#x27;s Tech Geniuses! 🛠️ #TrekInnovators&quot; &quot;Which species leads with their groundbreaking tech? #StarTrek&quot; What is the name of the superhero alter ego of Carol Danvers in the Marvel Comics universe? Captain Marvel Black Widow Scarlet Witch Captain Marvel A In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a large, serpent-like creature with bat-like wings? Hungarian Horntail Basilisk Norwegian Ridgeback Hungarian Horntail A &quot;Harry Potter&#x27;s Flying Serpent! 🐍 #MagicalCreatures&quot; &quot;Encounter the serpent-like creature with wings in Harry Potter! #FantasyFauna&quot; What is the name of the fictional metal that serves as the primary component of Iron Man&#x27;s suit in the Marvel Comics universe? Iron Adamantium Promethium Iron Error &quot;Iron Man&#x27;s Suit Core! 🤖 #MarvelInnovation&quot; &quot;What&#x27;s the secret metal powering Iron Man&#x27;s suit? #StarkTech&quot; In the &quot;Star Trek&quot; series, what is the name of the species that is known for their ability to regenerate and heal rapidly from injuries? Xindi Founders Borg Founders A &quot;Star Trek&#x27;s Rapid Healers! 🚑 #AlienBiology&quot; &quot;Which species can heal at an astonishing rate? #StarTrekScience&quot; What is the name of the superhero alter ego of Peter Parker in the Marvel Comics universe? Spider-Man Iron Man Hulk Spider-Man A &quot;Spider-Man&#x27;s True Identity! 🕸️ #MarvelRevealed&quot; &quot;Swing into the secret life of Spider-Man! #PeterParker&quot; In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a small, elf-like being with large ears? House-elf Goblin Veela House-elf A &quot;Harry Potter&#x27;s Helpful Creature! 🧝 #MagicalHelp&quot; &quot;Meet the elf-like being aiding wizards in Harry Potter! #HouseElves&quot; What is the name of the fictional metal that serves as the primary component of Green Lantern&#x27;s power ring in the DC Comics universe? Oanite Nth Metal Promethium Oanite A &quot;Green Lantern&#x27;s Ring Source! 💍 #DCTech&quot; &quot;Discover the cosmic metal powering Green Lantern&#x27;s ring! #PowerRing&quot; In the &quot;Star Trek&quot; series, what is the name of the species that is known for their ability to communicate telepathically and form telepathic bonds with other species? Betazoid Bajoran Trill Betazoid A &quot;Star Trek&#x27;s Telepathic Species! 🧠 #MindMeld&quot; &quot;Explore the species known for their mind-to-mind communication! #StarTrek&quot; What is the name of the superhero alter ego of Oliver Queen in the DC Comics universe? Green Arrow The Flash Aquaman Green Arrow A #OliverQueen #DCHeroes In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a large, snake-like creature with a jewel set into its forehead? Runespoor Thestral Manticore Runespoor A &quot;Harry Potter&#x27;s Serpentine Guardian! 🐍 #MagicalBeasts&quot; &quot;Dive into the lore of the beast guarding a magical secret! #HarryPotter&quot; What is the name of the fictional metal that serves as the primary component of Doctor Doom&#x27;s armor in the Marvel Comics universe? Vibranium Adamantium Promethium Vibranium A &quot;Doctor Doom&#x27;s Armor Unveiled! 🛡️ #MarvelMysteries&quot; &quot;What metal fortifies Doctor Doom&#x27;s fearsome armor? #SuperVillainSecrets&quot; In the &quot;Star Trek&quot; series, what is the name of the species that is known for their highly logical and analytical thinking? Vulcan Betazoid Andorian Vulcan A &quot;Star Trek&#x27;s Logical Thinkers Uncovered! 🖖 #Vulcan&quot; &quot;Discover the species renowned for their logic in Star Trek! #Spock&quot; What is the name of the superhero alter ego of Matt Murdock in the Marvel Comics universe? Daredevil Wolverine Punisher Daredevil A &quot;Alter Ego Exposed! 🦇 #MarvelHeroes&quot; &quot;Who is the man? Find out! #MattMurdock&quot; In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a small, bird-like creature with vibrant colors? Phoenix Thestral Hippogriff Phoenix A &quot;Harry Potter&#x27;s Colorful Creature! 🐦 #WizardingWorld&quot; &quot;Meet the vibrant creature adding magic to Harry Potter&#x27;s world! #MagicalCreatures&quot; What is the name of the fictional metal that serves as the primary component of Thor&#x27;s enchanted hammer, Mjolnir, in the Marvel Comics universe? Uru Vibranium Adamantium Uru A &quot;The Metal of Thor&#x27;s Hammer! 🔨 #MarvelLegends&quot; &quot;Unearth the mythical metal that crafts Mjolnir! #Thor&quot; In the &quot;Star Trek&quot; series, what is the name of the species that is known for their honor-bound warrior culture? Klingon Vulcan Romulan Klingon A &quot;Klingon Warriors Decoded! 🛡️ #StarTrek&quot; &quot;Explore the honor-bound culture of Star Trek&#x27;s Klingons! #WarriorRace&quot; What is the name of the superhero alter ego of Barry Allen in the DC Comics universe? The Flash Green Lantern Aquaman The Flash Error &quot;Flash&#x27;s Lightning Speed Secret! ⚡ #DCComics&quot; &quot;Discover the fast-paced world of Flash&#x27;s alter ego! #BarryAllen&quot; In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a large, humanoid creature covered in hair and resembles a mix between a bear and a human? Hagrid Werewolf Centaur Werewolf A &quot;Harry Potter&#x27;s Hairy Creature! 🐻 #FantasticBeasts&quot; &quot;Encounter the large, hairy being from the Harry Potter series! #MagicalWorld&quot; In the &quot;Star Trek&quot; series, what is the name of the species that is known for their ability to regenerate body parts and communicate telepathically? Vulcan Betazoid Andorian Vulcan A 🔁 The Regenerators of Star Trek: Voyager 💫 the resilient beings of Star Trek who can heal rapidly, in this fascinating reveal. What is the name of the superhero alter ego of Bruce Banner in the Marvel Comics universe? Hulk Thor Iron Man Hulk A In the &quot;Harry Potter&quot; series, what is the name of the magical plant that resembles a tentacle-covered sphere and emits a high-pitched scream? Devil&#x27;s Snare Mandrake Whomping Willow Devil&#x27;s Snare A &quot;Unravel the identity behind the Hulk&#x27;s unstoppable force! #BruceBanner&quot; What is the name of the fictional metal that serves as the primary component of Wolverine&#x27;s indestructible claws in the Marvel Comics universe? Adamantium Vibranium Uru Adamantium A &quot;Harry Potter&#x27;s Screaming Plant! 🌿 #MagicalFlora&quot; &quot;What magical plant screams in the wizarding world? #HarryPotter&quot; In the &quot;Star Trek&quot; series, what is the name of the species that is known for their highly logical and emotionless demeanor? Vulcan Betazoid Andorian Vulcan A &quot;The Essence of Wolverine&#x27;s Claws! 🔪 #XMen&quot; &quot;Dive into the core metal of Wolverine&#x27;s claws! #MarvelInsights&quot; In the &quot;Star Wars&quot; universe, what is the name of Darth Vader&#x27;s secret apprentice in &quot;The Force Unleashed&quot; video game? Starkiller Shadow Trooper Sith Assassin Starkiller A 🎮 Unleashing the Force: Vader&#x27;s Secret Apprentice Revealed! ⚔️ Dive into the &#x27;Star Wars&#x27; universe to uncover the identity of Darth Vader&#x27;s secret apprentice. Join us on this galactic revelation! Which fictional metal is known for being virtually indestructible and is used to construct Captain America&#x27;s shield in the Marvel Comics universe? Vibranium Adamantium Kryptonite Vibranium A &quot;Captain America&#x27;s Shield Core! 🛡️ #SuperheroTech&quot; &quot;What indestructible metal forms Captain America&#x27;s shield? #Marvel&quot; What is the name of the fictional city where Batman operates in the DC Comics universe? Gotham City Metropolis Star City Gotham City A &quot;Batman&#x27;s Domain Unmasked! 🦇 #Batman&quot; &quot;Step into the dark alleys of Batman&#x27;sCity! #DCUniverse&quot; In the &quot;Harry Potter&quot; series, what creature is known for guarding the entrance to the Gryffindor common room? The Fat Lady The Bloody Baron The Grey Lady The Fat Lady A &quot;Guardian of Gryffindor&#x27;s Secrets! 🦁 #HarryPotter&quot; &quot;Who guards the entrance to Gryffindor&#x27;s common room? #MagicalGuardian&quot; What is the name of the time-traveling spaceship featured in the British sci-fi TV series &quot;Doctor Who&quot;? TARDIS Millennium Falcon USS Enterprise TARDIS A In the &quot;Lord of the Rings&quot; trilogy, what is the name of the powerful artifact that Frodo Baggins must destroy to save Middle-earth? One Ring The Elder Wand The Philosopher&#x27;s Stone One Ring A What is the name of the superhero alter ego of journalist Clark Kent in the DC Comics universe? Superman Batman Spider-Man Superman A In the &quot;Star Trek&quot; series, what is the name of the Starfleet captain of the USS Enterprise? James T. Kirk Jean-Luc Picard Kathryn Janeway James T. Kirk A Which fictional city is the primary setting for the TV series &quot;Buffy the Vampire Slayer&quot;? Sunnydale Mystic Falls Beacon Hills Sunnydale A In the &quot;Star Wars&quot; universe, what is the name of the desert planet that is the home of Anakin and Luke Skywalker? Tatooine Hoth Endor Tatooine A What is the name of the fictional metal that powers Tony Stark&#x27;s Iron Man suit in the Marvel Comics universe? Arc Reactor Vibranium Adamantium Arc Reactor A In the &quot;Harry Potter&quot; series, what is the name of the magical school where Harry Potter learns to become a wizard? Hogwarts School of Witchcraft and Wizardry Beauxbatons Academy of Magic Durmstrang Institute Hogwarts School of Witchcraft and Wizardry Error What is the name of the computer system that controls the Matrix in the movie trilogy &quot;The Matrix&quot;? The Architect The Oracle The Matrix The Matrix A In the &quot;Star Wars&quot; universe, what is the name of the bounty hunter who captured Han Solo in &quot;The Empire Strikes Back&quot;? Boba Fett Greedo Dengar Boba Fett A Which comic book superhero is known for wielding a hammer called Mjolnir? Thor Iron Man Spider-Man Thor A In the &quot;Lord of the Rings&quot; trilogy, what is the name of the wizard who guides Frodo on his quest to destroy the One Ring? Gandalf Saruman Radagast Gandalf A What is the name of the spacecraft that serves as the primary setting for the TV series &quot;Firefly&quot;? Serenity Millennium Falcon USS Enterprise Serenity A In the &quot;Star Trek&quot; series, what is the name of the android crew member of the USS Enterprise-D? Data Spock Q Data A What is the name of the superhero team featured in the Marvel Comics series &quot;The Avengers&quot;? Avengers X-Men Justice League Avengers A In the &quot;Harry Potter&quot; series, what is the name of the snake that belongs to Voldemort and serves as one of his Horcruxes? Nagini Basilisk Fawkes Nagini A What is the name of the alien race that is known for assimilating other species in the &quot;Star Trek&quot; series? Borg Klingon Romulan Borg A In the &quot;Star Wars&quot; universe, what is the name of the bounty hunter who disguises himself as a Mandalorian in the TV series &quot;The Mandalorian&quot;? Din Djarin Boba Fett IG-11 Din Djarin A Which character is known as the &quot;Man of Steel&quot; in the DC Comics universe? Superman Batman Wonder Woman Superman A In the &quot;Lord of the Rings&quot; trilogy, what is the name of the magical ring that grants its wearer invisibility? The One Ring The Ring of Power The Precious The One Ring A What is the name of the fictional metal that serves as the primary power source for the Iron Man suit in the Marvel Comics universe? Arc Reactor Vibranium Adamantium Arc Reactor A In the &quot;Star Trek&quot; series, what is the name of the starship captained by Jean-Luc Picard? USS Enterprise USS Voyager USS Defiant USS Enterprise A What is the name of the superhero team featured in the DC Comics series &quot;Justice League&quot;? Justice League Avengers X-Men Justice League A In the &quot;Harry Potter&quot; series, what is the name of the wizard who serves as the headmaster of Hogwarts School of Witchcraft and Wizardry? Albus Dumbledore Severus Snape Minerva McGonagall Albus Dumbledore A What is the name of the spaceship piloted by Han Solo in the &quot;Star Wars&quot; universe? Millennium Falcon X-wing TIE Fighter Millennium Falcon A 🚀 Solo&#x27;s Ride: Unveiling the Millennium Falcon! 🌟 Climb aboard the Millennium Falcon and explore the iconic spaceship piloted by Han Solo in the &#x27;Star Wars&#x27; universe. Discover its legendary secrets! In the &quot;Lord of the Rings&quot; trilogy, what is the name of the elf who becomes the Fellowship&#x27;s guide through the Mines of Moria? Legolas Aragorn Gimli Legolas A What is the name of the fictional metal that makes up Wolverine&#x27;s indestructible claws in the Marvel Comics universe? Adamantium Vibranium Kryptonite Adamantium A In the &quot;Star Trek&quot; series, what is the name of the half-human, half-Vulcan science officer of the USS Enterprise? Spock Data Worf Spock A What is the name of the superhero alter ego of Bruce Wayne in the DC Comics universe? Batman Superman Wonder Woman Batman A In the &quot;Harry Potter&quot; series, what is the name of the house elf who serves the Malfoy family? Dobby Kreacher Winky Dobby A What is the name of the primary antagonist in the &quot;Star Wars&quot; original trilogy? Darth Vader Emperor Palpatine Darth Maul Darth Vader A In the &quot;Lord of the Rings&quot; trilogy, what is the name of the sword that was broken and later reforged for Aragorn? Anduril Sting Glamdring Anduril A What is the name of the fictional metal that makes up Thor&#x27;s enchanted hammer, Mjolnir, in the Marvel Comics universe? Uru Vibranium Adamantium Uru A In the &quot;Star Trek&quot; series, what is the name of the Klingon chancellor who plays a key role in &quot;Star Trek VI: The Undiscovered Country&quot;? Gorkon Martok Gowron Gorkon A What is the name of the superhero alter ego of Peter Parker in the Marvel Comics universe? Spider-Man Iron Man Hulk Spider-Man A In the &quot;Harry Potter&quot; series, what is the name of the giant three-headed dog that guards the Philosopher&#x27;s Stone? Fluffy Fang Buckbeak Fluffy A What is the name of the fictional metal that serves as the primary component of Captain America&#x27;s shield in the Marvel Comics universe? Vibranium Adamantium Uru Vibranium A In the &quot;Star Trek&quot; series, what is the name of the alien race that is known for their logical and stoic demeanor? Vulcan Klingon Romulan Vulcan A What is the name of the superhero alter ego of Diana Prince in the DC Comics universe? Wonder Woman Batgirl Supergirl Wonder Woman A In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a horse with a single horn on its forehead? Thestral Hippogriff Centaur Thestral A What is the name of the primary antagonist in the &quot;Star Wars&quot; prequel trilogy? Darth Sidious Darth Maul Count Dooku Darth Sidious A 🌟 Prequel Peril: Revealing the Mastermind Villain! 🌌 Delve into the &#x27;Star Wars&#x27; prequel trilogy to discover the mastermind behind the galactic turmoil. Who is this formidable antagonist? Uncover now! In the &quot;Lord of the Rings&quot; trilogy, what is the name of the wizard who leads the Fellowship of the Ring? Gandalf Saruman Radagast Gandalf A What is the name of the fictional metal that powers the Arc Reactor in the Marvel Comics universe? Palladium Vibranium Adamantium Palladium A In the &quot;Star Trek&quot; series, what is the name of the species that assimilates other species into their collective consciousness? Borg Klingon Romulan Borg A What is the name of the superhero alter ego of Tony Stark in the Marvel Comics universe? Iron Man Captain America Thor Iron Man A In the &quot;Harry Potter&quot; series, what is the name of the magical plant that screams when it is uprooted? Mandrake Devil&#x27;s Snare Whomping Willow Mandrake A What is the name of the fictional metal that serves as the primary component of Wolverine&#x27;s indestructible claws in the Marvel Comics universe? Adamantium Vibranium Uru Adamantium A In the &quot;Star Trek&quot; series, what is the name of the species that has a strict code of honor and values bravery and loyalty? Klingon Vulcan Romulan Klingon A What is the name of the superhero alter ego of Barry Allen in the DC Comics universe? The Flash Green Lantern Aquaman The Flash A In the &quot;Harry Potter&quot; series, what is the name of the magical school rivaling Hogwarts School of Witchcraft and Wizardry? Durmstrang Institute Beauxbatons Academy of Magic Ilvermorny School of Witchcraft and Wizardry Durmstrang Institute A What is the name of the primary antagonist in the &quot;Star Wars&quot; sequel trilogy? Kylo Ren Supreme Leader Snoke Emperor Palpatine Kylo Ren A In the &quot;Lord of the Rings&quot; trilogy, what is the name of the elf who is the daughter of Elrond and falls in love with Aragorn? Arwen Galadriel Tauriel Arwen A What is the name of the fictional metal that serves as the primary component of Doctor Strange&#x27;s mystical artifacts in the Marvel Comics universe? Enchanted Uru Nth Metal Orichalcum Enchanted Uru A In the &quot;Star Trek&quot; series, what is the name of the species that is known for their telepathic abilities and commitment to pacifism? Betazoid Bajoran Trill Betazoid A In the &quot;Harry Potter&quot; series, what is the name of the magical plant that is used in potion-making and is known for its healing properties? Mandrake Wolfsbane Gillyweed Mandrake A What is the name of the fictional metal that serves as the primary component of Doctor Doom&#x27;s armor in the Marvel Comics universe? Vibranium Adamantium Promethium Vibranium A In the &quot;Star Trek&quot; series, what is the name of the species that is known for their ability to regenerate body parts and communicate telepathically? Vulcan Betazoid Andorian Vulcan A What is the name of the superhero alter ego of Natasha Romanoff in the Marvel Comics universe? Black Widow Scarlet Witch Captain Marvel Black Widow A In the &quot;Harry Potter&quot; series, what is the name of the magical plant that resembles a tentacle-covered sphere and emits a high-pitched scream? Devil&#x27;s Snare Mandrake Whomping Willow Devil&#x27;s Snare A What is the name of the fictional metal that serves as the primary component of Black Panther&#x27;s suit in the Marvel Comics universe? Vibranium Adamantium Promethium Vibranium A In the &quot;Star Trek&quot; series, what is the name of the species that is known for their highly logical and emotionless demeanor? Vulcan Betazoid Andorian Vulcan A In the &quot;Harry Potter&quot; series, what is the name of the magical plant that is known for its rapid growth and strangling properties? Devil&#x27;s Snare Mandrake Whomping Willow Devil&#x27;s Snare A What is the name of the fictional metal that serves as the primary component of Thor&#x27;s enchanted hammer, Mjolnir, in the Marvel Comics universe? Uru Vibranium Adamantium Uru A In the &quot;Star Trek&quot; series, what is the name of the species that is known for their honor-bound warrior culture? Klingon Vulcan Romulan Klingon A What is the name of the superhero alter ego of Matt Murdock in the Marvel Comics universe? Daredevil Wolverine Punisher Daredevil A In the &quot;Harry Potter&quot; series, what is the name of the magical plant that is known for its ability to strangle its victims? Devil&#x27;s Snare Mandrake Whomping Willow Devil&#x27;s Snare A What is the name of the fictional metal that serves as the primary component of Green Lantern&#x27;s power ring in the DC Comics universe? Oanite Nth Metal Promethium Oanite A In the &quot;Star Trek&quot; series, what is the name of the species that is known for their empathic abilities and commitment to peace? Betazoid Bajoran Trill Betazoid A What is the name of the superhero alter ego of Oliver Queen in the DC Comics universe? Green Arrow The Flash Aquaman Green Arrow A In the &quot;Harry Potter&quot; series, what is the name of the magical plant that resembles a tree and can attack anyone who approaches it? Whomping Willow Mandrake Devil&#x27;s Snare Whomping Willow A What is the name of the fictional metal that serves as the primary component of Wonder Woman&#x27;s indestructible bracelets in the DC Comics universe? Amazonium Nth Metal Promethium Amazonium A In the &quot;Star Trek&quot; series, what is the name of the species that is known for their strong sense of honor and adherence to tradition? Klingon Vulcan Romulan Klingon A What is the name of the superhero alter ego of Hal Jordan in the DC Comics universe? Green Lantern The Flash Aquaman Green Lantern A In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a small, flying horse with a single horn on its forehead? Thestral Hippogriff Centaur Thestral A What is the name of the fictional metal that serves as the primary component of Aquaman&#x27;s trident in the DC Comics universe? Atlantean Steel Nth Metal Promethium Atlantean Steel A In the &quot;Star Trek&quot; series, what is the name of the species that is known for their ability to change their physical appearance? Changeling Betazoid Trill Changeling A What is the name of the superhero alter ego of Arthur Curry in the DC Comics universe? Aquaman Green Lantern The Flash Aquaman A Who is the captain of the USS Enterprise-D? Jean-Luc Picard James T. Kirk Benjamin Sisko Jean-Luc Picard A What is the name of the android officer serving aboard the USS Enterprise-D? Data Worf Geordi La Forge Data A Which species is known for their strict adherence to rules and honor, and often conflict with the Federation? Klingon Romulan Cardassian Klingon A What is the name of the doctor aboard the USS Enterprise-D? Beverly Crusher Leonard McCoy Julian Bashir Beverly Crusher A What is the name of the Klingon security officer aboard the USS Enterprise-D? Worf Tuvok Odo Worf A What is the name of the mysterious, god-like being encountered by the crew of the USS Enterprise-D in the pilot episode? Q The Borg The Prophets Q A What is the name of the bartender on the space station Deep Space Nine? Quark Guinan Neelix Quark A What is the name of the shape-shifting security officer on Deep Space Nine? Odo Seven of Nine Tuvok Odo A Who is the Ferengi leader and owner of the bar on Deep Space Nine? Quark Nog Rom Quark A What is the name of the wormhole near Deep Space Nine that leads to the Gamma Quadrant? The Bajoran Wormhole The Celestial Temple The Great Barrier The Bajoran Wormhole A What is the name of the genetically-engineered superhuman who serves as the chief of security on Deep Space Nine? Julian Bashir Worf Miles O&#x27;Brien Julian Bashir A What is the name of the Maquis ship that is stranded in the Delta Quadrant in Star Trek: Voyager? USS Voyager USS Defiant USS Equinox USS Voyager A What is the name of the Borg drone who is freed from the collective and joins the crew of Voyager? Seven of Nine Tuvok Kes Seven of Nine A What is the name of the holographic doctor who serves as the chief medical officer on Voyager? The Doctor Leonard McCoy Julian Bashir The Doctor A What is the name of the Talaxian who serves as the chef on Voyager? Neelix Tuvok Chakotay Neelix A Who is the captain of Voyager when it becomes stranded in the Delta Quadrant? Kathryn Janeway Jean-Luc Picard Benjamin Sisko Kathryn Janeway A What is the name of the quadrant of the galaxy where Voyager becomes stranded? Delta Quadrant Alpha Quadrant Beta Quadrant Delta Quadrant A What is the name of the hostile alien species encountered by Voyager in the Delta Quadrant? Kazon Ferengi Hirogen Kazon A What is the name of the ship that attacks Voyager and destroys its array, stranding it in the Delta Quadrant? Caretaker&#x27;s Array Borg Cube Hirogen Warship Caretaker&#x27;s Array A Who is the former Borg drone who serves as the chief engineer on Voyager? B&#x27;Elanna Torres Seven of Nine Kes B&#x27;Elanna Torres Error What is the name of the emergency holographic program that serves as the first officer on Voyager? The Doctor The EMH The ECH The EMH A What is the name of the space station that serves as the primary setting for Star Trek: Deep Space Nine? Deep Space Nine Babylon 5 Starbase 47 Deep Space Nine A What is the name of the Dominion leader who seeks to conquer the Alpha Quadrant in Deep Space Nine? The Founders Gul Dukat The Female Changeling The Founders A Who is the former resistance fighter who becomes the spiritual leader of the Bajoran people on Deep Space Nine? Kira Nerys Jadzia Dax Ezri Dax Kira Nerys A What is the name of the Cardassian tailor who operates a shop on Deep Space Nine? Elim Garak Quark Rom Elim Garak C What is the name of the mysterious alien species encountered by Voyager that exists outside of normal space and time? The Q Continuum The Caretaker Species 8472 Species 8472 A What is the name of the Hirogen leader who captures members of Voyager&#x27;s crew to use as prey in hunting games? Alpha Hirogen Beta Hirogen Gamma Hirogen Alpha Hirogen Error Who is the former Starfleet officer who serves as the captain of the Maquis ship that becomes stranded with Voyager? Tom Paris Chakotay Tuvok Chakotay A What is the name of the hostile alien species encountered by Voyager that uses biogenic weapons? The Vidiians The Kazon The Borg The Vidiians A What is the name of the ancient, powerful entity that protects the Bajoran wormhole in Deep Space Nine? The Prophets The Celestial Temple The Pah-wraiths The Prophets A Who is the Trill joined with the Dax symbiont who serves as the science officer on Deep Space Nine? Jadzia Dax Ezri Dax Curzon Dax Jadzia Dax Error What is the name of the scientist who becomes a member of the Voyager crew after being stranded in the Delta Quadrant? Kes Seven of Nine The Doctor Seven of Nine A What is the name of the powerful, god-like being encountered by Voyager that feeds on the fear of others? The Nacene The Caretaker The Q Continuum The Nacene A Who is the Cardassian Gul who serves as the primary antagonist in Deep Space Nine? Gul Dukat Damar Weyoun Gul Dukat A</p><p id="f60d5d0d-2726-4c76-9739-4527ee08c5fa" class="">Here is the table with the columns B, C, and D rearranged:</p><p id="18ce54c0-3f46-4a35-9a0f-7d7aae3838d3" class="">D B C &quot;Vibranium&quot; What is the name of the fictional metal that serves as the primary component of Black Widow&#x27;s Widow&#x27;s Bite gauntlets in the Marvel Comics universe? Adamantium Promethium &quot;Hulk&quot; What is the name of the superhero alter ego of Bruce Banner in the Marvel Comics universe? Thor Iron Man &quot;Devil&#x27;s Snare&quot; In the &quot;Harry Potter&quot; series, what is the name of the magical plant that resembles a tentacle-covered sphere and emits a high-pitched scream? Mandrake Whomping Willow &quot;Adamantium&quot; What is the name of the fictional metal that serves as the primary component of Wolverine&#x27;s indestructible claws in the Marvel Comics universe? Vibranium Uru &quot;Vulcan&quot; In the &quot;Star Trek&quot; series, what is the name of the species that is known for their highly logical and emotionless demeanor? Betazoid Andorian &quot;Black Widow&quot; What is the name of the superhero alter ego of Natasha Romanoff in the Marvel Comics universe? Scarlet Witch Captain Marvel &quot;Whomping Willow&quot; In the &quot;Harry Potter&quot; series, what is the name of the magical plant that resembles a tree and can attack anyone who approaches it? Mandrake Devil&#x27;s Snare &quot;Amazonium&quot; What is the name of the fictional metal that serves as the primary component of Wonder Woman&#x27;s indestructible bracelets in the DC Comics universe? Nth Metal Promethium &quot;Klingon&quot; In the &quot;Star Trek&quot; series, what is the name of the species that is known for their strong sense of honor and adherence to tradition? Vulcan Romulan &quot;Green Lantern&quot; What is the name of the superhero alter ego of Hal Jordan in the DC Comics universe? The Flash Aquaman &quot;Thestral&quot; In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a small, flying horse with a single horn on its forehead? Hippogriff Centaur &quot;Atlantean Steel&quot; What is the name of the fictional metal that serves as the primary component of Aquaman&#x27;s trident in the DC Comics universe? Nth Metal Promethium &quot;Changeling&quot; In the &quot;Star Trek&quot; series, what is the name of the species that is known for their ability to change their physical appearance? Betazoid Trill &quot;Aquaman&quot; What is the name of the superhero alter ego of Arthur Curry in the DC Comics universe? Green Lantern The Flash &quot;Niffler&quot; In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a small, furry creature with a long snout and bat-like ears? Bowtruckle Thestral &quot;Vibranium&quot; What is the name of the fictional metal that serves as the primary component of Hawkeye&#x27;s arrows in the Marvel Comics universe? Adamantium Promethium &quot;Hirogen&quot; In the &quot;Star Trek&quot; series, what is the name of the species that is known for their ability to absorb energy and fire it back at their enemies? Species 8472 Borg &quot;Hawkeye&quot; What is the name of the superhero alter ego of Clint Barton in the Marvel Comics universe? Ant-Man Falcon &quot;Acromantula&quot; In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a large spider with multiple eyes and legs? Thestral Hippogriff &quot;Vibranium&quot; What is the name of the fictional metal that serves as the primary component of Black Panther&#x27;s suit in the Marvel Comics universe? Adamantium Promethium &quot;Q&quot; In the &quot;Star Trek&quot; series, what is the name of the species that is known for their highly advanced technology and scientific knowledge? Borg Voth &quot;Captain Marvel&quot; What is the name of the superhero alter ego of Carol Danvers in the Marvel Comics universe? Black Widow Scarlet Witch &quot;Hungarian Horntail&quot; In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a large, serpent-like creature with bat-like wings? Basilisk Norwegian Ridgeback &quot;Iron&quot; What is the name of the fictional metal that serves as the primary component of Iron Man&#x27;s suit in the Marvel Comics universe? Adamantium Promethium &quot;Founders&quot; In the &quot;Star Trek&quot; series, what is the name of the species that is known for their ability to regenerate and heal rapidly from injuries? Xindi Borg &quot;Spider-Man&quot; What is the name of the superhero alter ego of Peter Parker in the Marvel Comics universe? Iron Man Hulk &quot;House-elf&quot; In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a small, elf-like being with large ears? Goblin Veela &quot;Oanite&quot; What is the name of the fictional metal that serves as the primary component of Green Lantern&#x27;s power ring in the DC Comics universe? Nth Metal Promethium &quot;Betazoid&quot; In the &quot;Star Trek&quot; series, what is the name of the species that is known for their ability to communicate telepathically and form telepathic bonds with other species? Bajoran Trill &quot;Green Arrow&quot; What is the name of the superhero alter ego of Oliver Queen in the DC Comics universe? The Flash Aquaman &quot;Runespoor&quot; In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a large, snake-like creature with a jewel set into its forehead? Thestral Manticore &quot;Vibranium&quot; What is the name of the fictional metal that serves as the primary component of Doctor Doom&#x27;s armor in the Marvel Comics universe? Adamantium Promethium &quot;Vulcan&quot; In the &quot;Star Trek&quot; series, what is the name of the species that is known for their highly logical and analytical thinking? Betazoid Andorian &quot;Daredevil&quot; What is the name of the superhero alter ego of Matt Murdock in the Marvel Comics universe? Wolverine Punisher &quot;Phoenix&quot; In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a small, bird-like creature with vibrant colors? Thestral Hippogriff &quot;Uru&quot; What is the name of the fictional metal that serves as the primary component of Thor&#x27;s enchanted hammer, Mjolnir, in the Marvel Comics universe? Vibranium Adamantium &quot;Klingon&quot; In the &quot;Star Trek&quot; series, what is the name of the species that is known for their honor-bound warrior culture? Vulcan Romulan Error What is the name of the superhero alter ego of Barry Allen in the DC Comics universe? Green Lantern Aquaman &quot;Werewolf&quot; In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a large, humanoid creature covered in hair and resembles a mix between a bear and a human? Hagrid Centaur &quot;Vulcan&quot; In the &quot;Star Trek&quot; series, what is the name of the species that is known for their ability to regenerate body parts and communicate telepathically? Betazoid Andorian &quot;Hulk&quot; What is the name of the superhero alter ego of Bruce Banner in the Marvel Comics universe? Thor Iron Man &quot;Devil&#x27;s Snare&quot; In the &quot;Harry Potter&quot; series, what is the name of the magical plant that resembles a tentacle-covered sphere and emits a high-pitched scream? Mandrake Whomping Willow &quot;Adamantium&quot; What is the name of the fictional metal that serves as the primary component of Wolverine&#x27;s indestructible claws in the Marvel Comics universe? Vibranium Uru &quot;Vulcan&quot; In the &quot;Star Trek&quot; series, what is the name of the species that is known for their highly logical and emotionless demeanor? Betazoid Andorian &quot;Starkiller&quot; In the &quot;Star Wars&quot; universe, what is the name of Darth Vader&#x27;s secret apprentice in &quot;The Force Unleashed&quot; video game? Shadow Trooper Sith Assassin &quot;Vibranium&quot; Which fictional metal is known for being virtually indestructible and is used to construct Captain America&#x27;s shield in the Marvel Comics universe? Adamantium Kryptonite &quot;Gotham City&quot; What is the name of the fictional city where Batman operates in the DC Comics universe? Metropolis Star City &quot;The Fat Lady&quot; In the &quot;Harry Potter&quot; series, what creature is known for guarding the entrance to the Gryffindor common room? The Bloody Baron The Grey Lady &quot;TARDIS&quot; What is the name of the time-traveling spaceship featured in the British sci-fi TV series &quot;Doctor Who&quot;? Millennium Falcon USS Enterprise &quot;One Ring&quot; In the &quot;Lord of the Rings&quot; trilogy, what is the name of the powerful artifact that Frodo Baggins must destroy to save Middle-earth? The Elder Wand The Philosopher&#x27;s Stone &quot;Superman&quot; What is the name of the superhero alter ego of journalist Clark Kent in the DC Comics universe? Batman Spider-Man &quot;James T. Kirk&quot; In the &quot;Star Trek&quot; series, what is the name of the Starfleet captain of the USS Enterprise? Jean-Luc Picard Kathryn Janeway &quot;Sunnydale&quot; Which fictional city is the primary setting for the TV series &quot;Buffy the Vampire Slayer&quot;? Mystic Falls Beacon Hills &quot;Tatooine&quot; In the &quot;Star Wars&quot; universe, what is the name of the desert planet that is the home of Anakin and Luke Skywalker? Hoth Endor Error What is the name of the fictional metal that powers Tony Stark&#x27;s Iron Man suit in the Marvel Comics universe? Vibranium Adamantium Error In the &quot;Harry Potter&quot; series, what is the name of the magical school where Harry Potter learns to become a wizard? Beauxbatons Academy of Magic Durmstrang Institute &quot;The Architect&quot; What is the name of the computer system that controls the Matrix in the movie trilogy &quot;The Matrix&quot;? The Oracle The Matrix &quot;Boba Fett&quot; In the &quot;Star Wars&quot; universe, what is the name of the bounty hunter who captured Han Solo in &quot;The Empire Strikes Back&quot;? Greedo Dengar &quot;Thor&quot; Which comic book superhero is known for wielding a hammer called Mjolnir? Iron Man Spider-Man &quot;Gandalf&quot; In the &quot;Lord of the Rings&quot; trilogy, what is the name of the wizard who guides Frodo on his quest to destroy the One Ring? Saruman Radagast &quot;Serenity&quot; What is the name of the spacecraft that serves as the primary setting for the TV series &quot;Firefly&quot;? Millennium Falcon USS Enterprise &quot;Data&quot; In the &quot;Star Trek&quot; series, what is the name of the android crew member of the USS Enterprise-D? Spock Q &quot;Avengers&quot; What is the name of the superhero team featured in the Marvel Comics series &quot;The Avengers&quot;? X-Men Justice League &quot;Nagini&quot; In the &quot;Harry Potter&quot; series, what is the name of the snake that belongs to Voldemort and serves as one of his Horcruxes? Basilisk Fawkes &quot;Borg&quot; What is the name of the alien race that is known for assimilating other species in the &quot;Star Trek&quot; series? Klingon Romulan &quot;Din Djarin&quot; In the &quot;Star Wars&quot; universe, what is the name of the bounty hunter who disguises himself as a Mandalorian in the TV series &quot;The Mandalorian&quot;? Boba Fett IG-11 &quot;Superman&quot; Which character is known as the &quot;Man of Steel&quot; in the DC Comics universe? Batman Wonder Woman &quot;The One Ring&quot; In the &quot;Lord of the Rings&quot; trilogy, what is the name of the magical ring that grants its wearer invisibility? The Ring of Power The Precious Error What is the name of the fictional metal that serves as the primary power source for the Iron Man suit in the Marvel Comics universe? Vibranium Adamantium &quot;USS Enterprise&quot; In the &quot;Star Trek&quot; series, what is the name of the starship captained by Jean-Luc Picard? USS Voyager USS Defiant &quot;Justice League&quot; What is the name of the superhero team featured in the DC Comics series &quot;Justice League&quot;? Avengers X-Men &quot;Albus Dumbledore&quot; In the &quot;Harry Potter&quot; series, what is the name of the wizard who serves as the headmaster of Hogwarts School of Witchcraft and Wizardry? Severus Snape Minerva McGonagall &quot;Millennium Falcon&quot; What is the name of the spaceship piloted by Han Solo in the &quot;Star Wars&quot; universe? X-wing TIE Fighter &quot;Legolas&quot; In the &quot;Lord of the Rings&quot; trilogy, what is the name of the elf who becomes the Fellowship&#x27;s guide through the Mines of Moria? Aragorn Gimli &quot;Adamantium&quot; What is the name of the fictional metal that makes up Wolverine&#x27;s indestructible claws in the Marvel Comics universe? Vibranium Kryptonite &quot;Spock&quot; In the &quot;Star Trek&quot; series, what is the name of the half-human, half-Vulcan science officer of the USS Enterprise? Data Worf &quot;Batman&quot; What is the name of the superhero alter ego of Bruce Wayne in the DC Comics universe? Superman Wonder Woman &quot;Dobby&quot; In the &quot;Harry Potter&quot; series, what is the name of the house elf who serves the Malfoy family? Kreacher Winky &quot;Darth Vader&quot; What is the name of the primary antagonist in the &quot;Star Wars&quot; original trilogy? Emperor Palpatine Darth Maul &quot;Anduril&quot; In the &quot;Lord of the Rings&quot; trilogy, what is the name of the sword that was broken and later reforged for Aragorn? Sting Glamdring &quot;Uru&quot; What is the name of the fictional metal that makes up Thor&#x27;s enchanted hammer, Mjolnir, in the Marvel Comics universe? Vibranium Adamantium &quot;Gorkon&quot; In the &quot;Star Trek&quot; series, what is the name of the Klingon chancellor who plays a key role in &quot;Star Trek VI: The Undiscovered Country&quot;? Martok Gowron &quot;Spider-Man&quot; What is the name of the superhero alter ego of Peter Parker in the Marvel Comics universe? Iron Man Hulk &quot;Fluffy&quot; In the &quot;Harry Potter&quot; series, what is the name of the giant three-headed dog that guards the Philosopher&#x27;s Stone? Fang Buckbeak &quot;Vibranium&quot; What is the name of the fictional metal that serves as the primary component of Captain America&#x27;s shield in the Marvel Comics universe? Adamantium Uru &quot;Vulcan&quot; In the &quot;Star Trek&quot; series, what is the name of the alien race that is known for their logical and stoic demeanor? Klingon Romulan &quot;Wonder Woman&quot; What is the name of the superhero alter ego of Diana Prince in the DC Comics universe? Batgirl Supergirl &quot;Thestral&quot; In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a horse with a single horn on its forehead? Hippogriff Centaur &quot;Darth Sidious&quot; What is the name of the primary antagonist in the &quot;Star Wars&quot; prequel trilogy? Darth Maul Count Dooku &quot;Gandalf&quot; In the &quot;Lord of the Rings&quot; trilogy, what is the name of the wizard who leads the Fellowship of the Ring? Saruman Radagast &quot;Palladium&quot; What is the name of the fictional metal that powers the Arc Reactor in the Marvel Comics universe? Vibranium Adamantium &quot;Borg&quot; In the &quot;Star Trek&quot; series, what is the name of the species that assimilates other species into their collective consciousness? Klingon Romulan &quot;Iron Man&quot; What is the name of the superhero alter ego of Tony Stark in the Marvel Comics universe? Captain America Thor &quot;Mandrake&quot; In the &quot;Harry Potter&quot; series, what is the name of the magical plant that screams when it is uprooted? Devil&#x27;s Sn</p><p id="60ded35e-9bb3-4abd-ac15-05d244383c5c" class="">Here is the table with the answer column added:</p><table id="1ab28b56-2377-47ba-b976-ff903e99f4d3" class="simple-table"><tbody><tr id="4be3a49f-759e-4fe7-aed3-dbd7457bdab7"><td id="col0" class="">D</td><td id="col1" class="">B</td><td id="col2" class="">C</td><td id="col3" class="">A</td></tr><tr id="8c28b446-c611-47e2-a16b-5d8a5a119397"><td id="col0" class="">&quot;Vibranium&quot;</td><td id="col1" class="">What is the name of the fictional metal that serves as the primary component of Black Widow&#x27;s Widow&#x27;s Bite gauntlets in the Marvel Comics universe?</td><td id="col2" class="">Adamantium</td><td id="col3" class="">Promethium</td></tr><tr id="62eb79e8-f8aa-4b1b-a02e-07f8192c8990"><td id="col0" class="">&quot;Hulk&quot;</td><td id="col1" class="">What is the name of the superhero alter ego of Bruce Banner in the Marvel Comics universe?</td><td id="col2" class="">Thor</td><td id="col3" class="">Iron Man</td></tr><tr id="14655d6f-0de1-478c-acd1-b7483cc8f504"><td id="col0" class="">&quot;Devil&#x27;s Snare&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the magical plant that resembles a tentacle-covered sphere and emits a high-pitched scream?</td><td id="col2" class="">Mandrake</td><td id="col3" class="">Whomping Willow</td></tr><tr id="cc5c2d22-9917-4550-a7f8-c20efd7a4ec5"><td id="col0" class="">&quot;Adamantium&quot;</td><td id="col1" class="">What is the name of the fictional metal that serves as the primary component of Wolverine&#x27;s indestructible claws in the Marvel Comics universe?</td><td id="col2" class="">Vibranium</td><td id="col3" class="">Uru</td></tr><tr id="71e4fa54-2521-4d27-a56d-eb41bdbd22d7"><td id="col0" class="">&quot;Vulcan&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the species that is known for their highly logical and emotionless demeanor?</td><td id="col2" class="">Betazoid</td><td id="col3" class="">Andorian</td></tr><tr id="0de7e67c-571e-49d9-9228-6e5b5f022b98"><td id="col0" class="">&quot;Black Widow&quot;</td><td id="col1" class="">What is the name of the superhero alter ego of Natasha Romanoff in the Marvel Comics universe?</td><td id="col2" class="">Scarlet Witch</td><td id="col3" class="">Captain Marvel</td></tr><tr id="68354474-f368-4ecd-b51b-ee22fca251fc"><td id="col0" class="">&quot;Whomping Willow&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the magical plant that resembles a tree and can attack anyone who approaches it?</td><td id="col2" class="">Mandrake</td><td id="col3" class="">Devil&#x27;s Snare</td></tr><tr id="3149b8a0-b6a8-494a-bb0d-fe1872ef38ab"><td id="col0" class="">&quot;Amazonium&quot;</td><td id="col1" class="">What is the name of the fictional metal that serves as the primary component of Wonder Woman&#x27;s indestructible bracelets in the DC Comics universe?</td><td id="col2" class="">Nth Metal</td><td id="col3" class="">Promethium</td></tr><tr id="7e2c12dc-f02d-48f1-b1c6-bbbec2546adb"><td id="col0" class="">&quot;Klingon&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the species that is known for their strong sense of honor and adherence to tradition?</td><td id="col2" class="">Vulcan</td><td id="col3" class="">Romulan</td></tr><tr id="41ef3b4e-6cbf-4e4d-87ec-8cf5990d16d5"><td id="col0" class="">&quot;Green Lantern&quot;</td><td id="col1" class="">What is the name of the superhero alter ego of Hal Jordan in the DC Comics universe?</td><td id="col2" class="">The Flash</td><td id="col3" class="">Aquaman</td></tr><tr id="13b5c86c-9f70-4106-918b-201ee4b00b16"><td id="col0" class="">&quot;Thestral&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a small, flying horse with a single horn on its forehead?</td><td id="col2" class="">Hippogriff</td><td id="col3" class="">Centaur</td></tr><tr id="84b51f5d-f221-4e4f-85ed-1ef65857c4d5"><td id="col0" class="">&quot;Atlantean Steel&quot;</td><td id="col1" class="">What is the name of the fictional metal that serves as the primary component of Aquaman&#x27;s trident in the DC Comics universe?</td><td id="col2" class="">Nth Metal</td><td id="col3" class="">Promethium</td></tr><tr id="e41dd6f5-8369-486e-9b49-37917c153749"><td id="col0" class="">&quot;Changeling&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the species that is known for their ability to change their physical appearance?</td><td id="col2" class="">Betazoid</td><td id="col3" class="">Trill</td></tr><tr id="0a8b27ee-db03-4817-aec2-4659e93635f3"><td id="col0" class="">&quot;Aquaman&quot;</td><td id="col1" class="">What is the name of the superhero alter ego of Arthur Curry in the DC Comics universe?</td><td id="col2" class="">Green Lantern</td><td id="col3" class="">The Flash</td></tr><tr id="3536fab3-1258-4934-bd88-a0c458b949c5"><td id="col0" class="">&quot;Niffler&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a small, furry creature with a long snout and bat-like ears?</td><td id="col2" class="">Bowtruckle</td><td id="col3" class="">Thestral</td></tr><tr id="8b353346-8c75-418c-bd8d-588da68f164c"><td id="col0" class="">&quot;Vibranium&quot;</td><td id="col1" class="">What is the name of the fictional metal that serves as the primary component of Hawkeye&#x27;s arrows in the Marvel Comics universe?</td><td id="col2" class="">Adamantium</td><td id="col3" class="">Promethium</td></tr><tr id="e217ad5c-e719-483a-961d-96ed0b8b40dc"><td id="col0" class="">&quot;Hirogen&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the species that is known for their ability to absorb energy and fire it back at their enemies?</td><td id="col2" class="">Species 8472</td><td id="col3" class="">Borg</td></tr><tr id="6c7421c8-af88-47fe-8f0c-18b3bb187e3c"><td id="col0" class="">&quot;Hawkeye&quot;</td><td id="col1" class="">What is the name of the superhero alter ego of Clint Barton in the Marvel Comics universe?</td><td id="col2" class="">Ant-Man</td><td id="col3" class="">Falcon</td></tr><tr id="11e80ac1-1b39-470f-b365-4ad3ace99ae2"><td id="col0" class="">&quot;Acromantula&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a large spider with multiple eyes and legs?</td><td id="col2" class="">Thestral</td><td id="col3" class="">Hippogriff</td></tr><tr id="8ce75e01-1807-47b2-8222-cc3a5e2fd969"><td id="col0" class="">&quot;Vibranium&quot;</td><td id="col1" class="">What is the name of the fictional metal that serves as the primary component of Black Panther&#x27;s suit in the Marvel Comics universe?</td><td id="col2" class="">Adamantium</td><td id="col3" class="">Promethium</td></tr><tr id="5e8f7e13-0469-43d9-809a-d08ae7539969"><td id="col0" class="">&quot;Q&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the species that is known for their highly advanced technology and scientific knowledge?</td><td id="col2" class="">Borg</td><td id="col3" class="">Voth</td></tr><tr id="ce58a0d2-bed0-4745-98d2-0536cbdb32e0"><td id="col0" class="">&quot;Captain Marvel&quot;</td><td id="col1" class="">What is the name of the superhero alter ego of Carol Danvers in the Marvel Comics universe?</td><td id="col2" class="">Black Widow</td><td id="col3" class="">Scarlet Witch</td></tr><tr id="99777b0e-78ba-47c9-a6bc-d303ae9fb3aa"><td id="col0" class="">&quot;Hungarian Horntail&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a large, serpent-like creature with bat-like wings?</td><td id="col2" class="">Basilisk</td><td id="col3" class="">Norwegian Ridgeback</td></tr><tr id="ce04c03b-0d0e-49f8-b6bf-d38d5868a476"><td id="col0" class="">Error</td><td id="col1" class="">What is the name of the fictional metal that serves as the primary component of Iron Man&#x27;s suit in the Marvel Comics universe?</td><td id="col2" class="">Adamantium</td><td id="col3" class="">Promethium</td></tr><tr id="56a4d1a3-8778-452b-a574-cc0d2a83c9b5"><td id="col0" class="">&quot;Founders&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the species that is known for their ability to regenerate and heal rapidly from injuries?</td><td id="col2" class="">Xindi</td><td id="col3" class="">Borg</td></tr><tr id="ee50d20a-e9ca-428b-ab16-84cbf05b8c69"><td id="col0" class="">&quot;Spider-Man&quot;</td><td id="col1" class="">What is the name of the superhero alter ego of Peter Parker in the Marvel Comics universe?</td><td id="col2" class="">Iron Man</td><td id="col3" class="">Hulk</td></tr><tr id="93006d94-14c4-46e6-8e42-2ad04ec9b6fb"><td id="col0" class="">&quot;House-elf&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a small, elf-like being with large ears?</td><td id="col2" class="">Goblin</td><td id="col3" class="">Veela</td></tr><tr id="cb051eb3-cdfb-471c-baa0-5a65f1cc51d9"><td id="col0" class="">&quot;Oanite&quot;</td><td id="col1" class="">What is the name of the fictional metal that serves as the primary component of Green Lantern&#x27;s power ring in the DC Comics universe?</td><td id="col2" class="">Nth Metal</td><td id="col3" class="">Promethium</td></tr><tr id="c6e9ac77-65b2-4d67-98c3-c239c8291fd8"><td id="col0" class="">&quot;Betazoid&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the species that is known for their ability to communicate telepathically and form telepathic bonds with other species?</td><td id="col2" class="">Bajoran</td><td id="col3" class="">Trill</td></tr><tr id="062424b5-10f3-44b2-8750-d3f9004e8fc8"><td id="col0" class="">&quot;Green Arrow&quot;</td><td id="col1" class="">What is the name of the superhero alter ego of Oliver Queen in the DC Comics universe?</td><td id="col2" class="">The Flash</td><td id="col3" class="">Aquaman</td></tr><tr id="9a7ed99f-5af2-4b58-8d5e-ed2dfe7dba59"><td id="col0" class="">&quot;Runespoor&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a large, snake-like creature with a jewel set into its forehead?</td><td id="col2" class="">Thestral</td><td id="col3" class="">Manticore</td></tr><tr id="c3ca118f-95f7-42e3-a1ae-d434966ba2a5"><td id="col0" class="">&quot;Vibranium&quot;</td><td id="col1" class="">What is the name of the fictional metal that serves as the primary component of Doctor Doom&#x27;s armor in the Marvel Comics universe?</td><td id="col2" class="">Adamantium</td><td id="col3" class="">Promethium</td></tr><tr id="7d610b3b-b0d5-4c8e-bb09-8bfa278a1b8b"><td id="col0" class="">&quot;Vulcan&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the species that is known for their highly logical and analytical thinking?</td><td id="col2" class="">Betazoid</td><td id="col3" class="">Andorian</td></tr><tr id="ea908940-7199-4850-9769-20dcc3f587e3"><td id="col0" class="">&quot;Daredevil&quot;</td><td id="col1" class="">What is the name of the superhero alter ego of Matt Murdock in the Marvel Comics universe?</td><td id="col2" class="">Wolverine</td><td id="col3" class="">Punisher</td></tr><tr id="ccef412c-ec9c-4575-9713-c9fe407a9e95"><td id="col0" class="">&quot;Phoenix&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a small, bird-like creature with vibrant colors?</td><td id="col2" class="">Thestral</td><td id="col3" class="">Hippogriff</td></tr><tr id="cf5815d1-704e-460b-bf67-63762b4c8780"><td id="col0" class="">&quot;Uru&quot;</td><td id="col1" class="">What is the name of the fictional metal that serves as the primary component of Thor&#x27;s enchanted hammer, Mjolnir, in the Marvel Comics universe?</td><td id="col2" class="">Vibranium</td><td id="col3" class="">Adamantium</td></tr><tr id="48764c7d-43d8-4a86-b1dc-f6ec3acd3d26"><td id="col0" class="">&quot;Klingon&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the species that is known for their honor-bound warrior culture?</td><td id="col2" class="">Vulcan</td><td id="col3" class="">Romulan</td></tr><tr id="af8eb2e1-e8f0-4720-9530-3b2cba9c1c0f"><td id="col0" class="">Error</td><td id="col1" class="">What is the name of the superhero alter ego of Barry Allen in the DC Comics universe?</td><td id="col2" class="">Green Lantern</td><td id="col3" class="">Aquaman</td></tr><tr id="85b86e40-49ca-4124-83f5-71b1c294aa45"><td id="col0" class="">&quot;Werewolf&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a large, humanoid creature covered in hair and resembles a mix between a bear and a human?</td><td id="col2" class="">Hagrid</td><td id="col3" class="">Centaur</td></tr><tr id="aac11a51-7d1e-4aec-aa3a-06f36f9f220e"><td id="col0" class="">&quot;Vulcan&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the species that is known for their ability to regenerate body parts and communicate telepathically?</td><td id="col2" class="">Betazoid</td><td id="col3" class="">Andorian</td></tr><tr id="bd005ded-d7cb-4077-89c6-108d180777ea"><td id="col0" class="">&quot;Hulk&quot;</td><td id="col1" class="">What is the name of the superhero alter ego of Bruce Banner in the Marvel Comics universe?</td><td id="col2" class="">Thor</td><td id="col3" class="">Iron Man</td></tr><tr id="bdd7793e-f895-4535-9d70-76901283da1d"><td id="col0" class="">&quot;Devil&#x27;s Snare&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the magical plant that resembles a tentacle-covered sphere and emits a high-pitched scream?</td><td id="col2" class="">Mandrake</td><td id="col3" class="">Whomping Willow</td></tr><tr id="e99f5280-a25f-4b5c-b388-aa40bd300fba"><td id="col0" class="">&quot;Adamantium&quot;</td><td id="col1" class="">What is the name of the fictional metal that serves as the primary component of Wolverine&#x27;s indestructible claws in the Marvel Comics universe?</td><td id="col2" class="">Vibranium</td><td id="col3" class="">Uru</td></tr><tr id="7bceff15-05e1-4ad7-9926-cfe1615efd74"><td id="col0" class="">&quot;Vulcan&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the species that is known for their highly logical and emotionless demeanor?</td><td id="col2" class="">Betazoid</td><td id="col3" class="">Andorian</td></tr><tr id="c24da224-21ee-4f98-bf6b-d679922d810e"><td id="col0" class="">&quot;Starkiller&quot;</td><td id="col1" class="">In the &quot;Star Wars&quot; universe, what is the name of Darth Vader&#x27;s secret apprentice in &quot;The Force Unleashed&quot; video game?</td><td id="col2" class="">Shadow Trooper</td><td id="col3" class="">Sith Assassin</td></tr><tr id="57a21590-b11a-4d2a-bab7-38757363747b"><td id="col0" class="">&quot;Vibranium&quot;</td><td id="col1" class="">Which fictional metal is known for being virtually indestructible and is used to construct Captain America&#x27;s shield in the Marvel Comics universe?</td><td id="col2" class="">Adamantium</td><td id="col3" class="">Kryptonite</td></tr><tr id="47c318de-3b2d-49dd-bea2-6c06bfa4088d"><td id="col0" class="">&quot;Gotham City&quot;</td><td id="col1" class="">What is the name of the fictional city where Batman operates in the DC Comics universe?</td><td id="col2" class="">Metropolis</td><td id="col3" class="">Star City</td></tr><tr id="63b04c72-49f8-4afa-b71c-dbdbcd63a012"><td id="col0" class="">&quot;The Fat Lady&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what creature is known for guarding the entrance to the Gryffindor common room?</td><td id="col2" class="">The Bloody Baron</td><td id="col3" class="">The Grey Lady</td></tr><tr id="2f43815d-67d1-422f-aed4-3b59e0e470b0"><td id="col0" class="">&quot;TARDIS&quot;</td><td id="col1" class="">What is the name of the time-traveling spaceship featured in the British sci-fi TV series &quot;Doctor Who&quot;?</td><td id="col2" class="">Millennium Falcon</td><td id="col3" class="">USS Enterprise</td></tr><tr id="c1f0101f-685c-4abd-9749-fe0d51a458b5"><td id="col0" class="">&quot;One Ring&quot;</td><td id="col1" class="">In the &quot;Lord of the Rings&quot; trilogy, what is the name of the powerful artifact that Frodo Baggins must destroy to save Middle-earth?</td><td id="col2" class="">The Elder Wand</td><td id="col3" class="">The Philosopher&#x27;s Stone</td></tr><tr id="e6e2c0f3-6020-4415-bbc3-6f90af659b4a"><td id="col0" class="">&quot;Superman&quot;</td><td id="col1" class="">What is the name of the superhero alter ego of journalist Clark Kent in the DC Comics universe?</td><td id="col2" class="">Batman</td><td id="col3" class="">Spider-Man</td></tr><tr id="ca2a166b-3c7b-4ca6-8e30-c35a92987a7b"><td id="col0" class="">&quot;James T. Kirk&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the Starfleet captain of the USS Enterprise?</td><td id="col2" class="">Jean-Luc Picard</td><td id="col3" class="">Kathryn Janeway</td></tr><tr id="c60f8e45-7aa3-44f2-8b16-7025289c75bc"><td id="col0" class="">&quot;Sunnydale&quot;</td><td id="col1" class="">Which fictional city is the primary setting for the TV series &quot;Buffy the Vampire Slayer&quot;?</td><td id="col2" class="">Mystic Falls</td><td id="col3" class="">Beacon Hills</td></tr><tr id="1234b33f-e79f-479b-8553-a35f3574440f"><td id="col0" class="">&quot;Tatooine&quot;</td><td id="col1" class="">In the &quot;Star Wars&quot; universe, what is the name of the desert planet that is the home of Anakin and Luke Skywalker?</td><td id="col2" class="">Hoth</td><td id="col3" class="">Endor</td></tr><tr id="776674bb-3337-4b9c-9d19-025431b0a31f"><td id="col0" class="">&quot;Arc Reactor&quot;</td><td id="col1" class="">What is the name of the fictional metal that powers Tony Stark&#x27;s Iron Man suit in the Marvel Comics universe?</td><td id="col2" class="">Vibranium</td><td id="col3" class="">Adamantium</td></tr><tr id="f5266562-a112-48c4-889a-00d37e9b44f6"><td id="col0" class="">&quot;Hogwarts School of Witchcraft and Wizardry&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the magical school where Harry Potter learns to become a wizard?</td><td id="col2" class="">Beauxbatons Academy of Magic</td><td id="col3" class="">Durmstrang Institute</td></tr><tr id="4f173c32-a2a5-4560-8028-03cf9b5e5ea9"><td id="col0" class="">&quot;The Architect&quot;</td><td id="col1" class="">What is the name of the computer system that controls the Matrix in the movie trilogy &quot;The Matrix&quot;?</td><td id="col2" class="">The Oracle</td><td id="col3" class="">The Matrix</td></tr><tr id="1f5edf2a-879d-4fe0-afe1-dbdf553af532"><td id="col0" class="">&quot;Boba Fett&quot;</td><td id="col1" class="">In the &quot;Star Wars&quot; universe, what is the name of the bounty hunter who captured Han Solo in &quot;The Empire Strikes Back&quot;?</td><td id="col2" class="">Greedo</td><td id="col3" class="">Dengar</td></tr><tr id="3ab5dca5-7b16-4cf8-96ee-a954480ecc0e"><td id="col0" class="">&quot;Thor&quot;</td><td id="col1" class="">Which comic book superhero is known for wielding a hammer called Mjolnir?</td><td id="col2" class="">Iron Man</td><td id="col3" class="">Spider-Man</td></tr><tr id="5d694af6-c985-474e-ab56-326cd04ab5a6"><td id="col0" class="">&quot;Gandalf&quot;</td><td id="col1" class="">In the &quot;Lord of the Rings&quot; trilogy, what is the name of the wizard who guides Frodo on his quest to destroy the One Ring?</td><td id="col2" class="">Saruman</td><td id="col3" class="">Radagast</td></tr><tr id="1a031933-2841-4d44-b852-bdfc64682d7a"><td id="col0" class="">&quot;Serenity&quot;</td><td id="col1" class="">What is the name of the spacecraft that serves as the primary setting for the TV series &quot;Firefly&quot;?</td><td id="col2" class="">Millennium Falcon</td><td id="col3" class="">USS Enterprise</td></tr><tr id="8ecf40c6-b24a-4952-9d1c-11702d84b6b9"><td id="col0" class="">&quot;Data&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the android crew member of the USS Enterprise-D?</td><td id="col2" class="">Spock</td><td id="col3" class="">Q</td></tr><tr id="5ed7d13c-4944-4a71-a488-f2bc6c7400e3"><td id="col0" class="">&quot;Avengers&quot;</td><td id="col1" class="">What is the name of the superhero team featured in the Marvel Comics series &quot;The Avengers&quot;?</td><td id="col2" class="">X-Men</td><td id="col3" class="">Justice League</td></tr><tr id="9caabb29-3ba8-4c25-8f7b-334ca7df983a"><td id="col0" class="">&quot;Nagini&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the snake that belongs to Voldemort and serves as one of his Horcruxes?</td><td id="col2" class="">Basilisk</td><td id="col3" class="">Fawkes</td></tr><tr id="388c88dc-e3e2-4612-bf46-f6b1f995b58b"><td id="col0" class="">&quot;Borg&quot;</td><td id="col1" class="">What is the name of the alien race that is known for assimilating other species in the &quot;Star Trek&quot; series?</td><td id="col2" class="">Klingon</td><td id="col3" class="">Romulan</td></tr><tr id="1dedff7a-f0e2-4102-8c7e-ef180b57898d"><td id="col0" class="">&quot;Din Djarin&quot;</td><td id="col1" class="">In the &quot;Star Wars&quot; universe, what is the name of the bounty hunter who disguises himself as a Mandalorian in the TV series &quot;The Mandalorian&quot;?</td><td id="col2" class="">Boba Fett</td><td id="col3" class="">IG-11</td></tr><tr id="452e5c66-e156-408f-8758-41457dbf7e9e"><td id="col0" class="">&quot;Superman&quot;</td><td id="col1" class="">Which character is known as the &quot;Man of Steel&quot; in the DC Comics universe?</td><td id="col2" class="">Batman</td><td id="col3" class="">Wonder Woman</td></tr><tr id="1687300f-16df-4152-87d9-70299a1fdb8e"><td id="col0" class="">&quot;The One Ring&quot;</td><td id="col1" class="">In the &quot;Lord of the Rings&quot; trilogy, what is the name of the magical ring that grants its wearer invisibility?</td><td id="col2" class="">The Ring of Power</td><td id="col3" class="">The Precious</td></tr><tr id="3aae5623-2d69-4e21-9d80-ccaebec5088c"><td id="col0" class="">&quot;Arc Reactor&quot;</td><td id="col1" class="">What is the name of the fictional metal that serves as the primary power source for the Iron Man suit in the Marvel Comics universe?</td><td id="col2" class="">Vibranium</td><td id="col3" class="">Adamantium</td></tr><tr id="79c6f1fd-46dc-48aa-aad3-9a8a6052761c"><td id="col0" class="">&quot;USS Enterprise&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the starship captained by Jean-Luc Picard?</td><td id="col2" class="">USS Voyager</td><td id="col3" class="">USS Defiant</td></tr><tr id="cbf2e879-991b-4351-875d-d1ce1d8b00b0"><td id="col0" class="">&quot;Justice League&quot;</td><td id="col1" class="">What is the name of the superhero team featured in the DC Comics series &quot;Justice League&quot;?</td><td id="col2" class="">Avengers</td><td id="col3" class="">X-Men</td></tr><tr id="39644a14-6ff2-4809-8a87-c2116f0d22f5"><td id="col0" class="">&quot;Albus Dumbledore&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the wizard who serves as the headmaster of Hogwarts School of Witchcraft and Wizardry?</td><td id="col2" class="">Severus Snape</td><td id="col3" class="">Minerva McGonagall</td></tr><tr id="9e62c2f5-448c-449c-904b-f3bf8d6020b5"><td id="col0" class="">&quot;Millennium Falcon&quot;</td><td id="col1" class="">What is the name of the spaceship piloted by Han Solo in the &quot;Star Wars&quot; universe?</td><td id="col2" class="">X-wing</td><td id="col3" class="">TIE Fighter</td></tr><tr id="e5b264cb-9554-47f1-b312-74ac7c581b33"><td id="col0" class="">&quot;Legolas&quot;</td><td id="col1" class="">In the &quot;Lord of the Rings&quot; trilogy, what is the name of the elf who becomes the Fellowship&#x27;s guide through the Mines of Moria?</td><td id="col2" class="">Aragorn</td><td id="col3" class="">Gimli</td></tr><tr id="b60fc905-b0b4-4219-93be-134ab489732f"><td id="col0" class="">&quot;Adamantium&quot;</td><td id="col1" class="">What is the name of the fictional metal that makes up Wolverine&#x27;s indestructible claws in the Marvel Comics universe?</td><td id="col2" class="">Vibranium</td><td id="col3" class="">Kryptonite</td></tr><tr id="1c7c6aec-7270-408e-b4d1-634c09cbd898"><td id="col0" class="">&quot;Spock&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the half-human, half-Vulcan science officer of the USS Enterprise?</td><td id="col2" class="">Data</td><td id="col3" class="">Worf</td></tr><tr id="e548855b-4428-4d03-8bf6-100dfd45326d"><td id="col0" class="">&quot;Batman&quot;</td><td id="col1" class="">What is the name of the superhero alter ego of Bruce Wayne in the DC Comics universe?</td><td id="col2" class="">Superman</td><td id="col3" class="">Wonder Woman</td></tr><tr id="72301d86-a00b-4477-aeae-3a9594c27c6b"><td id="col0" class="">&quot;Dobby&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the house elf who serves the Malfoy family?</td><td id="col2" class="">Kreacher</td><td id="col3" class="">Winky</td></tr><tr id="e2f6155d-32ad-4eea-9797-afa0452761ea"><td id="col0" class="">&quot;Darth Vader&quot;</td><td id="col1" class="">What is the name of the primary antagonist in the &quot;Star Wars&quot; original trilogy?</td><td id="col2" class="">Emperor Palpatine</td><td id="col3" class="">Darth Maul</td></tr><tr id="c94d0c50-0d43-4535-899c-921ed9765d33"><td id="col0" class="">&quot;Anduril&quot;</td><td id="col1" class="">In the &quot;Lord of the Rings&quot; trilogy, what is the name of the sword that was broken and later reforged for Aragorn?</td><td id="col2" class="">Sting</td><td id="col3" class="">Glamdring</td></tr><tr id="ea88a74d-f6e4-4424-9a2d-e0eab2f333c8"><td id="col0" class="">&quot;Uru&quot;</td><td id="col1" class="">What is the name of the fictional metal that makes up Thor&#x27;s enchanted hammer, Mjolnir, in the Marvel Comics universe?</td><td id="col2" class="">Vibranium</td><td id="col3" class="">Adamantium</td></tr><tr id="4fe6c97b-2c7e-40eb-aff4-07202d8c494d"><td id="col0" class="">&quot;Gorkon&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the Klingon chancellor who plays a key role in &quot;Star Trek VI: The Undiscovered Country&quot;?</td><td id="col2" class="">Martok</td><td id="col3" class="">Gowron</td></tr><tr id="1cad4d69-fee5-437f-be4f-92fddc89177b"><td id="col0" class="">&quot;Spider-Man&quot;</td><td id="col1" class="">What is the name of the superhero alter ego of Peter Parker in the Marvel Comics universe?</td><td id="col2" class="">Iron Man</td><td id="col3" class="">Hulk</td></tr><tr id="43cd4b3b-da3a-4081-b7c6-7cab1187d039"><td id="col0" class="">&quot;Fluffy&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the giant three-headed dog that guards the Philosopher&#x27;s Stone?</td><td id="col2" class="">Fang</td><td id="col3" class="">Buckbeak</td></tr><tr id="61172097-f023-43d9-ac77-c35627875ab8"><td id="col0" class="">&quot;Vibranium&quot;</td><td id="col1" class="">What is the name of the fictional metal that serves as the primary component of Captain America&#x27;s shield in the Marvel Comics universe?</td><td id="col2" class="">Adamantium</td><td id="col3" class="">Uru</td></tr><tr id="1bc4becc-07de-45ae-b161-6cacfd616c54"><td id="col0" class="">&quot;Vulcan&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the alien race that is known for their logical and stoic demeanor?</td><td id="col2" class="">Klingon</td><td id="col3" class="">Romulan</td></tr><tr id="c621ca95-f400-4c49-bf0b-1e24f7cd3655"><td id="col0" class="">&quot;Wonder Woman&quot;</td><td id="col1" class="">What is the name of the superhero alter ego of Diana Prince in the DC Comics universe?</td><td id="col2" class="">Batgirl</td><td id="col3" class="">Supergirl</td></tr><tr id="24b7a636-0e6d-460e-bea9-15f996bfca2b"><td id="col0" class="">&quot;Thestral&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a horse with a single horn on its forehead?</td><td id="col2" class="">Hippogriff</td><td id="col3" class="">Centaur</td></tr><tr id="def2dbaa-75fe-41bc-a8c5-47af0ad9bd3d"><td id="col0" class="">&quot;Darth Sidious&quot;</td><td id="col1" class="">What is the name of the primary antagonist in the &quot;Star Wars&quot; prequel trilogy?</td><td id="col2" class="">Darth Maul</td><td id="col3" class="">Count Dooku</td></tr><tr id="eb2b4857-e2fe-463a-86e9-48a4d8e8758b"><td id="col0" class="">&quot;Gandalf&quot;</td><td id="col1" class="">In the &quot;Lord of the Rings&quot; trilogy, what is the name of the wizard who leads the Fellowship of the Ring?</td><td id="col2" class="">Saruman</td><td id="col3" class="">Radagast</td></tr><tr id="10edc88d-b470-4cee-9313-ff096f353357"><td id="col0" class="">&quot;Palladium&quot;</td><td id="col1" class="">What is the name of the fictional metal that powers the Arc Reactor in the Marvel Comics universe?</td><td id="col2" class="">Vibranium</td><td id="col3" class="">Adamantium</td></tr><tr id="8984a5eb-8a03-4910-bad1-4094e63304a0"><td id="col0" class="">&quot;Borg&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the species that assimilates other species into their collective consciousness?</td><td id="col2" class="">Klingon</td><td id="col3" class="">Romulan</td></tr><tr id="a91fd7f7-2b08-42a3-92d0-be92a8188b2c"><td id="col0" class="">&quot;Iron Man&quot;</td><td id="col1" class="">What is the name of the superhero alter ego of Tony Stark in the Marvel Comics universe?</td><td id="col2" class="">Captain America</td><td id="col3" class="">Thor</td></tr><tr id="750e991c-1022-43d6-b7f7-2f33a7b9405b"><td id="col0" class="">&quot;Mandrake&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot;</td><td id="col2" class=""></td><td id="col3" class=""></td></tr></tbody></table><p id="689486a6-d085-49c2-a491-59f22647807f" class="">Here is the table continued:</p><table id="c940def3-f454-46af-9f19-4e6f2ef69d7d" class="simple-table"><tbody><tr id="2741567b-5e45-4db7-b0b7-924b85bdfa47"><td id="col0" class="">D</td><td id="col1" class="">B</td><td id="col2" class="">C</td><td id="col3" class="">A</td></tr><tr id="6a9fa2d4-1a2d-4c5d-89b3-d663f4b65a4b"><td id="col0" class="">&quot;Mandrake&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the magical plant that screams when it is uprooted?</td><td id="col2" class="">Devil&#x27;s Snare</td><td id="col3" class="">Whomping Willow</td></tr><tr id="ba13407a-6f1b-4bc8-a429-cbbcc527ccfd"><td id="col0" class="">&quot;Adamantium&quot;</td><td id="col1" class="">What is the name of the fictional metal that serves as the primary component of Wolverine&#x27;s indestructible claws in the Marvel Comics universe?</td><td id="col2" class="">Vibranium</td><td id="col3" class="">Uru</td></tr><tr id="f5260022-e4bd-44c5-8bf2-532033e2c0e7"><td id="col0" class="">&quot;Klingon&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the species that is known for their strict adherence to rules and honor, and often conflict with the Federation?</td><td id="col2" class="">Romulan</td><td id="col3" class="">Cardassian</td></tr><tr id="75a3ab1f-f02b-44cd-9bbc-8aea776b63e8"><td id="col0" class="">&quot;The Flash&quot;</td><td id="col1" class="">What is the name of the superhero alter ego of Barry Allen in the DC Comics universe?</td><td id="col2" class="">Green Lantern</td><td id="col3" class="">Aquaman</td></tr><tr id="e71b50a7-8543-4cbe-b285-918e8615b462"><td id="col0" class="">&quot;Durmstrang Institute&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the magical school rivaling Hogwarts School of Witchcraft and Wizardry?</td><td id="col2" class="">Beauxbatons Academy of Magic</td><td id="col3" class="">Ilvermorny School of Witchcraft and Wizardry</td></tr><tr id="23367917-a552-41ba-a0e0-91f578bc60c0"><td id="col0" class="">&quot;Kylo Ren&quot;</td><td id="col1" class="">What is the name of the primary antagonist in the &quot;Star Wars&quot; sequel trilogy?</td><td id="col2" class="">Supreme Leader Snoke</td><td id="col3" class="">Emperor Palpatine</td></tr><tr id="aff54c1f-bff8-446e-a336-10e9a451e3cc"><td id="col0" class="">&quot;Arwen&quot;</td><td id="col1" class="">In the &quot;Lord of the Rings&quot; trilogy, what is the name of the elf who is the daughter of Elrond and falls in love with Aragorn?</td><td id="col2" class="">Galadriel</td><td id="col3" class="">Tauriel</td></tr><tr id="e8911c54-c0f8-4cf5-8cde-315cd13edb16"><td id="col0" class="">&quot;Enchanted Uru&quot;</td><td id="col1" class="">What is the name of the fictional metal that serves as the primary component of Doctor Strange&#x27;s mystical artifacts in the Marvel Comics universe?</td><td id="col2" class="">Nth Metal</td><td id="col3" class="">Orichalcum</td></tr><tr id="3f4d2310-2cd9-41c1-a992-a9a1e52f47f3"><td id="col0" class="">&quot;Betazoid&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the species that is known for their telepathic abilities and commitment to pacifism?</td><td id="col2" class="">Bajoran</td><td id="col3" class="">Trill</td></tr><tr id="e0d13824-1bf4-4e81-bc7c-0569ae8634f9"><td id="col0" class="">&quot;Mandrake&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the magical plant that is used in potion-making and is known for its healing properties?</td><td id="col2" class="">Wolfsbane</td><td id="col3" class="">Gillyweed</td></tr><tr id="bb646b9c-de8f-492b-9984-6d62b3753c55"><td id="col0" class="">&quot;Vibranium&quot;</td><td id="col1" class="">What is the name of the fictional metal that serves as the primary component of Doctor Doom&#x27;s armor in the Marvel Comics universe?</td><td id="col2" class="">Adamantium</td><td id="col3" class="">Promethium</td></tr><tr id="fc880077-9d2a-45ff-92d7-3944e862487e"><td id="col0" class="">&quot;Vulcan&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the species that is known for their ability to regenerate body parts and communicate telepathically?</td><td id="col2" class="">Betazoid</td><td id="col3" class="">Andorian</td></tr><tr id="c2ae12ee-bf13-48ce-a1c7-c803acd76ab3"><td id="col0" class="">&quot;Black Widow&quot;</td><td id="col1" class="">What is the name of the superhero alter ego of Natasha Romanoff in the Marvel Comics universe?</td><td id="col2" class="">Scarlet Witch</td><td id="col3" class="">Captain Marvel</td></tr><tr id="b45eb7c9-ce71-4bda-8499-3d493c4a4357"><td id="col0" class="">&quot;Devil&#x27;s Snare&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the magical plant that resembles a tentacle-covered sphere and emits a high-pitched scream?</td><td id="col2" class="">Mandrake</td><td id="col3" class="">Whomping Willow</td></tr><tr id="e61d901e-15bd-48cd-a0a5-123a78a9dcdf"><td id="col0" class="">&quot;Vibranium&quot;</td><td id="col1" class="">What is the name of the fictional metal that serves as the primary component of Black Panther&#x27;s suit in the Marvel Comics universe?</td><td id="col2" class="">Adamantium</td><td id="col3" class="">Promethium</td></tr><tr id="2554fc5d-4a02-4050-a8da-151e3941ebde"><td id="col0" class="">&quot;Vulcan&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the species that is known for their highly logical and emotionless demeanor?</td><td id="col2" class="">Betazoid</td><td id="col3" class="">Andorian</td></tr><tr id="f7e84a73-6a4f-4b54-82c0-d25eb1ac6eb7"><td id="col0" class="">&quot;Devil&#x27;s Snare&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the magical plant that is known for its rapid growth and strangling properties?</td><td id="col2" class="">Mandrake</td><td id="col3" class="">Whomping Willow</td></tr><tr id="d014831a-c1ab-4b63-b1a4-3d7d9c04107e"><td id="col0" class="">&quot;Uru&quot;</td><td id="col1" class="">What is the name of the fictional metal that serves as the primary component of Thor&#x27;s enchanted hammer, Mjolnir, in the Marvel Comics universe?</td><td id="col2" class="">Vibranium</td><td id="col3" class="">Adamantium</td></tr><tr id="a02eca4f-32e1-46c5-995a-09e4efe30a2a"><td id="col0" class="">&quot;Klingon&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the species that is known for their honor-bound warrior culture?</td><td id="col2" class="">Vulcan</td><td id="col3" class="">Romulan</td></tr><tr id="3beeea5e-331c-44b1-b9bd-eb6db0862c5b"><td id="col0" class="">&quot;Daredevil&quot;</td><td id="col1" class="">What is the name of the superhero alter ego of Matt Murdock in the Marvel Comics universe?</td><td id="col2" class="">Wolverine</td><td id="col3" class="">Punisher</td></tr><tr id="4f765cd0-c56c-4488-b451-85d0d0f6e8c5"><td id="col0" class="">&quot;Devil&#x27;s Snare&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the magical plant that is known for its ability to strangle its victims?</td><td id="col2" class="">Mandrake</td><td id="col3" class="">Whomping Willow</td></tr><tr id="22154567-7190-4476-a85c-d650bfbfc44b"><td id="col0" class="">&quot;Oanite&quot;</td><td id="col1" class="">What is the name of the fictional metal that serves as the primary component of Green Lantern&#x27;s power ring in the DC Comics universe?</td><td id="col2" class="">Nth Metal</td><td id="col3" class="">Promethium</td></tr><tr id="7a8a83a6-dc37-47a4-b4aa-70198e50989c"><td id="col0" class="">&quot;Betazoid&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the species that is known for their empathic abilities and commitment to peace?</td><td id="col2" class="">Bajoran</td><td id="col3" class="">Trill</td></tr><tr id="c054d3f1-8973-41ec-bc2b-8cc3792551e2"><td id="col0" class="">&quot;Green Arrow&quot;</td><td id="col1" class="">What is the name of the superhero alter ego of Oliver Queen in the DC Comics universe?</td><td id="col2" class="">The Flash</td><td id="col3" class="">Aquaman</td></tr><tr id="4fc4d46f-d137-4919-91bd-19c0def04ab8"><td id="col0" class="">&quot;Whomping Willow&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the magical plant that resembles a tree and can attack anyone who approaches it?</td><td id="col2" class="">Mandrake</td><td id="col3" class="">Devil&#x27;s Snare</td></tr><tr id="56fb0110-3915-4e52-b6ae-9fb1ae14fd08"><td id="col0" class="">&quot;Amazonium&quot;</td><td id="col1" class="">What is the name of the fictional metal that serves as the primary component of Wonder Woman&#x27;s indestructible bracelets in the DC Comics universe?</td><td id="col2" class="">Nth Metal</td><td id="col3" class="">Promethium</td></tr><tr id="6e1492a8-be50-4d0c-b0bf-c5795798ce6d"><td id="col0" class="">&quot;Klingon&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the species that is known for their strong sense of honor and adherence to tradition?</td><td id="col2" class="">Vulcan</td><td id="col3" class="">Romulan</td></tr></tbody></table><p id="2aa06e89-c3a6-4eff-936a-f2daa21801b1" class="">Here is the table continued:</p><table id="e0e99f75-13e8-4488-9f86-c6489456a8a3" class="simple-table"><tbody><tr id="e8655cb1-9338-49dd-ae10-1af07c3a126c"><td id="col0" class="">D</td><td id="col1" class="">B</td><td id="col2" class="">C</td><td id="col3" class="">A</td></tr><tr id="59a8a10b-05b3-4b28-b4e7-efb5f89751ad"><td id="col0" class="">&quot;Green Lantern&quot;</td><td id="col1" class="">What is the name of the superhero alter ego of Hal Jordan in the DC Comics universe?</td><td id="col2" class="">The Flash</td><td id="col3" class="">Aquaman</td></tr><tr id="33d22049-7abe-48b3-bbec-02dcd9dd0a6b"><td id="col0" class="">&quot;Thestral&quot;</td><td id="col1" class="">In the &quot;Harry Potter&quot; series, what is the name of the magical creature that resembles a small, flying horse with a single horn on its forehead?</td><td id="col2" class="">Hippogriff</td><td id="col3" class="">Centaur</td></tr><tr id="d3bcad15-5304-4397-943f-f05f876f588b"><td id="col0" class="">&quot;Atlantean Steel&quot;</td><td id="col1" class="">What is the name of the fictional metal that serves as the primary component of Aquaman&#x27;s trident in the DC Comics universe?</td><td id="col2" class="">Nth Metal</td><td id="col3" class="">Promethium</td></tr><tr id="3444e55e-ebcd-4ac9-a887-a020fe21a368"><td id="col0" class="">&quot;Changeling&quot;</td><td id="col1" class="">In the &quot;Star Trek&quot; series, what is the name of the species that is known for their ability to change their physical appearance?</td><td id="col2" class="">Betazoid</td><td id="col3" class="">Trill</td></tr><tr id="e6a24fb2-c731-4976-a72c-58f3a02c871d"><td id="col0" class="">&quot;Aquaman&quot;</td><td id="col1" class="">What is the name of the superhero alter ego of Arthur Curry in the DC Comics universe?</td><td id="col2" class="">Green Lantern</td><td id="col3" class="">The Flash</td></tr><tr id="0224a7e4-b9d2-4ea7-8dca-5198dba11f63"><td id="col0" class="">&quot;Jean-Luc Picard&quot;</td><td id="col1" class="">Who is the captain of the USS Enterprise-D?</td><td id="col2" class="">James T. Kirk</td><td id="col3" class="">Benjamin Sisko</td></tr><tr id="9557d31f-0e41-4483-b726-f9b505a6ea0d"><td id="col0" class="">&quot;Data&quot;</td><td id="col1" class="">What is the name of the android officer serving aboard the USS Enterprise-D?</td><td id="col2" class="">Worf</td><td id="col3" class="">Geordi La Forge</td></tr><tr id="fcd9d4d2-a402-4b5e-b6ea-80806cd9c79f"><td id="col0" class="">&quot;Klingon&quot;</td><td id="col1" class="">Which species is known for their strict adherence to rules and honor, and often conflict with the Federation?</td><td id="col2" class="">Romulan</td><td id="col3" class="">Cardassian</td></tr><tr id="2d3a2035-e258-490c-8dc7-224aead142a1"><td id="col0" class="">&quot;Beverly Crusher&quot;</td><td id="col1" class="">What is the name of the doctor aboard the USS Enterprise-D?</td><td id="col2" class="">Leonard McCoy</td><td id="col3" class="">Julian Bashir</td></tr><tr id="9e0e2593-6ef7-4faf-a892-afe9e1210b43"><td id="col0" class="">&quot;Worf&quot;</td><td id="col1" class="">What is the name of the Klingon security officer aboard the USS Enterprise-D?</td><td id="col2" class="">Tuvok</td><td id="col3" class="">Odo</td></tr><tr id="b3dac236-e384-4927-b517-e6c570a1effe"><td id="col0" class="">&quot;Q&quot;</td><td id="col1" class="">What is the name of the mysterious, god-like being encountered by the crew of the USS Enterprise-D in the pilot episode?</td><td id="col2" class="">The Borg</td><td id="col3" class="">The Prophets</td></tr><tr id="70184670-9856-4614-9065-6ced6111dde2"><td id="col0" class="">&quot;Quark&quot;</td><td id="col1" class="">What is the name of the bartender on the space station Deep Space Nine?</td><td id="col2" class="">Guinan</td><td id="col3" class="">Neelix</td></tr><tr id="8fe58e66-f5da-400f-af66-33c90dab4c86"><td id="col0" class="">&quot;Odo&quot;</td><td id="col1" class="">What is the name of the shape-shifting security officer on Deep Space Nine?</td><td id="col2" class="">Seven of Nine</td><td id="col3" class="">Tuvok</td></tr><tr id="77365eee-7825-4b59-b56f-274cd2244adb"><td id="col0" class="">&quot;Quark&quot;</td><td id="col1" class="">Who is the Ferengi leader and owner of the bar on Deep Space Nine?</td><td id="col2" class="">Nog</td><td id="col3" class="">Rom</td></tr><tr id="cbc65675-79a5-4b61-92f8-b3e6043e04e9"><td id="col0" class="">&quot;The Bajoran Wormhole&quot;</td><td id="col1" class="">What is the name of the wormhole near Deep Space Nine that leads to the Gamma Quadrant?</td><td id="col2" class="">The Celestial Temple</td><td id="col3" class="">The Great Barrier</td></tr><tr id="9d88159a-1e02-4303-bf9a-9d1fac94074b"><td id="col0" class="">&quot;Julian Bashir&quot;</td><td id="col1" class="">What is the name of the genetically-engineered superhuman who serves as the chief of security on Deep Space Nine?</td><td id="col2" class="">Worf</td><td id="col3" class="">Miles O&#x27;Brien</td></tr><tr id="35fb41de-b6d0-4e4e-85a9-c89fc3dd5c0d"><td id="col0" class="">&quot;USS Voyager&quot;</td><td id="col1" class="">What is the name of the Maquis ship that is stranded in the Delta Quadrant in Star Trek: Voyager?</td><td id="col2" class="">USS Defiant</td><td id="col3" class="">USS Equinox</td></tr><tr id="75341633-2662-4e41-909b-9ee18cd37de1"><td id="col0" class="">&quot;Seven of Nine&quot;</td><td id="col1" class="">What is the name of the Borg drone who is freed from the collective and joins the crew of Voyager?</td><td id="col2" class="">Tuvok</td><td id="col3" class="">Kes</td></tr><tr id="aeb2e9ef-9abd-4453-a4d7-6471e6bb7a94"><td id="col0" class="">&quot;The Doctor&quot;</td><td id="col1" class="">What is the name of the holographic doctor who serves as the chief medical officer on Voyager?</td><td id="col2" class="">Leonard McCoy</td><td id="col3" class="">Julian Bashir</td></tr><tr id="c87817d3-5d8e-4a27-acfc-6d63493d77dd"><td id="col0" class="">&quot;Neelix&quot;</td><td id="col1" class="">What is the name of the Talaxian who serves as the chef on Voyager?</td><td id="col2" class="">Tuvok</td><td id="col3" class="">Chakotay</td></tr><tr id="69d79599-e8a4-4475-bb46-fcdc30d4a261"><td id="col0" class="">&quot;Kathryn Janeway&quot;</td><td id="col1" class="">Who is the captain of Voyager when it becomes stranded in the Delta Quadrant?</td><td id="col2" class="">Jean-Luc Picard</td><td id="col3" class="">Benjamin Sisko</td></tr><tr id="fb7058bf-11c2-494c-b5c5-0f0e618389fe"><td id="col0" class="">&quot;Delta Quadrant&quot;</td><td id="col1" class="">What is the name of the quadrant of the galaxy where Voyager becomes stranded?</td><td id="col2" class="">Alpha Quadrant</td><td id="col3" class="">Beta Quadrant</td></tr><tr id="2b3925ef-ca12-4225-b455-b5a6e62da835"><td id="col0" class="">&quot;Kazon&quot;</td><td id="col1" class="">What is the name of the hostile alien species encountered by Voyager in the Delta Quadrant?</td><td id="col2" class="">Ferengi</td><td id="col3" class="">Hirogen</td></tr><tr id="748aebb2-6a6b-4013-b381-c79afe7bc4ed"><td id="col0" class="">&quot;Caretaker&#x27;s Array&quot;</td><td id="col1" class="">What is the name of the ship that attacks Voyager and destroys its array, stranding it in the Delta Quadrant?</td><td id="col2" class="">Borg Cube</td><td id="col3" class="">Hirogen Warship</td></tr><tr id="9fddf54c-39c7-4b5f-aa66-7c39469959ad"><td id="col0" class="">&quot;B&#x27;Elanna Torres&quot;</td><td id="col1" class="">Who is the former Borg drone who serves as the chief engineer on Voyager?</td><td id="col2" class="">Seven of Nine</td><td id="col3" class="">Kes</td></tr><tr id="b72ec570-06c4-4619-b160-eef35f2feeea"><td id="col0" class="">&quot;The EMH&quot;</td><td id="col1" class="">What is the name of the emergency holographic program that serves as the first officer on Voyager?</td><td id="col2" class="">The Doctor</td><td id="col3" class="">The ECH</td></tr></tbody></table><p id="61803a60-f0f5-44a9-9ce2-adb2994a6b99" class="">Here is the table continued:</p><table id="59cbd2f1-53ab-4a7b-b7c9-a073de4c3c75" class="simple-table"><tbody><tr id="016a6b9b-f855-4985-bbb8-5f891728e3c0"><td id="col0" class="">D</td><td id="col1" class="">B</td><td id="col2" class="">C</td><td id="col3" class="">A</td></tr><tr id="1b2000a6-4441-4514-b13e-0299651f8ab0"><td id="col0" class="">&quot;Deep Space Nine&quot;</td><td id="col1" class="">What is the name of the space station that serves as the primary setting for Star Trek: Deep Space Nine?</td><td id="col2" class="">Babylon 5</td><td id="col3" class="">Starbase 47</td></tr><tr id="485352ad-107e-4098-bbca-5a4410efb2e8"><td id="col0" class="">&quot;The Founders&quot;</td><td id="col1" class="">What is the name of the Dominion leader who seeks to conquer the Alpha Quadrant in Deep Space Nine?</td><td id="col2" class="">Gul Dukat</td><td id="col3" class="">The Female Changeling</td></tr><tr id="baae76a2-e8db-45a6-8d8c-868b47957b54"><td id="col0" class="">&quot;Kira Nerys&quot;</td><td id="col1" class="">Who is the former resistance fighter who becomes the spiritual leader of the Bajoran people on Deep Space Nine?</td><td id="col2" class="">Jadzia Dax</td><td id="col3" class="">Ezri Dax</td></tr><tr id="8babc401-3d6b-4e8c-959a-1f7cdfd184be"><td id="col0" class="">&quot;Elim Garak&quot;</td><td id="col1" class="">What is the name of the Cardassian tailor who operates a shop on Deep Space Nine?</td><td id="col2" class="">Quark</td><td id="col3" class="">Rom</td></tr><tr id="cec64825-ba97-4f12-9bb3-cbafcdbeee86"><td id="col0" class="">&quot;Species 8472&quot;</td><td id="col1" class="">What is the name of the mysterious alien species encountered by Voyager that exists outside of normal space and time?</td><td id="col2" class="">The Q Continuum</td><td id="col3" class="">The Caretaker</td></tr><tr id="bfc3bf8a-0ceb-4cb5-9b99-8479cfc63d27"><td id="col0" class="">Error</td><td id="col1" class="">What is the name of the Hirogen leader who captures members of Voyager&#x27;s crew to use as prey in hunting games?</td><td id="col2" class="">Beta Hirogen</td><td id="col3" class="">Gamma Hirogen</td></tr><tr id="8d2ba7df-6c39-47f4-8488-30ea5c115a22"><td id="col0" class="">&quot;Chakotay&quot;</td><td id="col1" class="">Who is the former Starfleet officer who serves as the captain of the Maquis ship that becomes stranded with Voyager?</td><td id="col2" class="">Tom Paris</td><td id="col3" class="">Tuvok</td></tr><tr id="391d340f-85a6-4e2f-a106-2509173e19a8"><td id="col0" class="">&quot;The Vidiians&quot;</td><td id="col1" class="">What is the name of the hostile alien species encountered by Voyager that uses biogenic weapons?</td><td id="col2" class="">The Kazon</td><td id="col3" class="">The Borg</td></tr><tr id="9c132e95-79f0-4bf2-93a4-fc0d057c5521"><td id="col0" class="">&quot;The Prophets&quot;</td><td id="col1" class="">What is the name of the ancient, powerful entity that protects the Bajoran wormhole in Deep Space Nine?</td><td id="col2" class="">The Celestial Temple</td><td id="col3" class="">The Pah-wraiths</td></tr><tr id="34f75b67-aa62-4257-a0ae-11c41979aaee"><td id="col0" class="">Error</td><td id="col1" class="">Who is the Trill joined with the Dax symbiont who serves as the science officer on Deep Space Nine?</td><td id="col2" class="">Ezri Dax</td><td id="col3" class="">Curzon Dax</td></tr><tr id="afe49a3d-d0dd-4f2c-a9a9-7a398b8f74ae"><td id="col0" class="">&quot;Seven of Nine&quot;</td><td id="col1" class="">What is the name of the scientist who becomes a member of the Voyager crew after being stranded in the Delta Quadrant?</td><td id="col2" class="">Kes</td><td id="col3" class="">The Doctor</td></tr><tr id="6f1f635c-9a12-4f4d-a55e-b547e4919002"><td id="col0" class="">&quot;The Nacene&quot;</td><td id="col1" class="">What is the name of the powerful, god-like being encountered by Voyager that feeds on the fear of others?</td><td id="col2" class="">The Caretaker</td><td id="col3" class="">The Q Continuum</td></tr><tr id="ced967af-613c-47be-9d9d-391a7877b7c2"><td id="col0" class="">&quot;Gul Dukat&quot;</td><td id="col1" class="">Who is the Cardassian Gul who serves as the primary antagonist in Deep Space Nine?</td><td id="col2" class="">Damar</td><td id="col3" class="">Weyoun</td></tr></tbody></table></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
