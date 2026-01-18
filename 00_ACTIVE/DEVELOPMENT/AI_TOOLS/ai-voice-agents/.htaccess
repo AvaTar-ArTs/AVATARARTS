@@ -1,0 +1,32 @@
+RewriteEngine On
+
+# Enable Python execution
+AddHandler python-script .py
+
+# Set Python path to include ~/.env.d
+SetEnv PYTHONPATH "/home/u841983302/public_html/hh:/home/u841983302/.env.d"
+
+# Redirect all requests to the Python application
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ run_ai_voice_agents.py/$1 [QSA,L]
+
+# Enable error logging
+ErrorLog /home/u841983302/public_html/hh/error.log
+
+# Security headers
+Header always set X-Content-Type-Options nosniff
+Header always set X-Frame-Options DENY
+Header always set X-XSS-Protection "1; mode=block"
+
+# Cache static files
+<FilesMatch "\.(css|js|png|jpg|jpeg|gif|ico|svg)$">
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+</FilesMatch>
+
+# Protect environment files
+<Files "*.env*">
+    Order allow,deny
+    Deny from all
+</Files>

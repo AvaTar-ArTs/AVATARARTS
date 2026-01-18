@@ -1,0 +1,167 @@
+# Dr. Adu Gainesville PFS - Subdomain Configuration
+# dradu.avatararts.org
+
+# Enable Rewrite Engine
+RewriteEngine On
+
+# Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Force www to non-www (subdomain specific)
+RewriteCond %{HTTP_HOST} ^www\.dradu\.avatararts\.org [NC]
+RewriteRule ^(.*)$ https://dradu.avatararts.org/$1 [L,R=301]
+
+# Security Headers
+<IfModule mod_headers.c>
+    # Prevent clickjacking
+    Header always append X-Frame-Options SAMEORIGIN
+    
+    # Prevent MIME type sniffing
+    Header always set X-Content-Type-Options nosniff
+    
+    # Enable XSS protection
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Strict Transport Security (HTTPS only)
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    
+    # Referrer Policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Content Security Policy
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google-analytics.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';"
+</IfModule>
+
+# Cache Control
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    
+    # CSS and JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    
+    # Fonts
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+    
+    # HTML
+    ExpiresByType text/html "access plus 1 day"
+    
+    # Default
+    ExpiresDefault "access plus 1 week"
+</IfModule>
+
+# Compression
+<IfModule mod_deflate.c>
+    # Compress HTML, CSS, JavaScript, Text, XML and fonts
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+    AddOutputFilterByType DEFLATE application/x-font
+    AddOutputFilterByType DEFLATE application/x-font-opentype
+    AddOutputFilterByType DEFLATE application/x-font-otf
+    AddOutputFilterByType DEFLATE application/x-font-truetype
+    AddOutputFilterByType DEFLATE application/x-font-ttf
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE font/opentype
+    AddOutputFilterByType DEFLATE font/otf
+    AddOutputFilterByType DEFLATE font/ttf
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE image/x-icon
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/xml
+</IfModule>
+
+# Custom Error Pages
+ErrorDocument 404 /404.html
+ErrorDocument 500 /500.html
+
+# Prevent access to sensitive files
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|inc|bak)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Prevent access to backup files
+<FilesMatch "\.(bak|backup|old|orig|save|swp|tmp)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# SEO-friendly URLs
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Services pages
+RewriteRule ^services/tms-therapy/?$ /services/tms-therapy.html [L]
+RewriteRule ^services/forensic-psychiatry/?$ /services/forensic-psychiatry.html [L]
+RewriteRule ^services/addiction-medicine/?$ /services/addiction-medicine.html [L]
+RewriteRule ^services/general-psychiatry/?$ /services/general-psychiatry.html [L]
+
+# About pages
+RewriteRule ^about/dr-adu/?$ /about/dr-adu.html [L]
+RewriteRule ^about/practice/?$ /about/practice.html [L]
+
+# Contact pages
+RewriteRule ^contact/?$ /contact.html [L]
+RewriteRule ^appointments/?$ /appointments.html [L]
+
+# Blog/Resources
+RewriteRule ^blog/?$ /blog/index.html [L]
+RewriteRule ^resources/?$ /resources/index.html [L]
+
+# Sitemap and robots
+RewriteRule ^sitemap\.xml$ /sitemap.xml [L]
+RewriteRule ^robots\.txt$ /robots.txt [L]
+
+# Favicon
+RewriteRule ^favicon\.ico$ /favicon.ico [L]
+
+# Remove trailing slashes (except for root)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} (.+)/$
+RewriteRule ^ %1 [R=301,L]
+
+# Add trailing slash to directories
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteCond %{REQUEST_URI} !/$
+RewriteRule ^(.*)$ $1/ [R=301,L]
+
+# Redirect old URLs (if migrating from another domain)
+# RewriteRule ^old-page/?$ /new-page/ [R=301,L]
+
+# Force lowercase URLs
+RewriteCond %{REQUEST_URI} [A-Z]
+RewriteRule (.*) ${lowercase:$1} [R=301,L]
+
+# Prevent hotlinking
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?dradu\.avatararts\.org [NC]
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?avatararts\.org [NC]
+RewriteRule \.(jpg|jpeg|png|gif|webp)$ - [F]
+
+# Mobile redirect (if needed)
+# RewriteCond %{HTTP_USER_AGENT} "android|blackberry|iphone|ipod|iemobile|opera mobile|palmos|webos|googlebot-mobile" [NC]
+# RewriteRule ^$ /mobile/ [R=302,L]
+
+# Maintenance mode (uncomment when needed)
+# RewriteCond %{REQUEST_URI} !/maintenance.html$
+# RewriteCond %{REMOTE_ADDR} !^123\.456\.789\.000$
+# RewriteRule $ /maintenance.html [R=302,L]

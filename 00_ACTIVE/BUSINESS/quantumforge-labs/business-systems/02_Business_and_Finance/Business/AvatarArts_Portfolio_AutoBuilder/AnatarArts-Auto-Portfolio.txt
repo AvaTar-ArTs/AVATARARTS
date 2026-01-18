@@ -1,0 +1,31 @@
+# AvatarArts · Portfolio Auto-Builder
+
+This pack gives you:
+- `python.html` — static, filterable portfolio page (drop into your site root).
+- `portfolio/portfolio_descriptions.csv` — data source for the page.
+- `content/alchemy_case_studies.md` — 10 case studies to paste near the top of `alchemy.md`.
+- `scripts/build_portfolio.py` — scans your repo folders to regenerate CSV + MD.
+- `.github/workflows/portfolio.yml` — GitHub Actions to rebuild on every push and commit results.
+
+## How to use
+
+1) **Copy** this pack into your repo (preserve folders).  
+2) Commit and push. The action will run and populate `portfolio/` + `content/`.  
+3) Host `python.html` at `avatararts.org/python.html` (ensure the `portfolio/` folder is accessible so the CSV loads).  
+   - The page also has an embedded JSON fallback, but serving the CSV lets you auto-update without editing HTML.
+
+### Manual build
+```bash
+python scripts/build_portfolio.py .
+# Outputs:
+# - portfolio/portfolio_descriptions.csv
+# - content/python_portfolio.md
+# - content/alchemy_index.md
+```
+
+### Add the case studies
+Open `content/alchemy_case_studies.md` and paste the block at the **top** of `alchemy.md`.
+
+---
+
+Pro tip: The categorizer is heuristic-based. If you want precise mapping, edit keywords in `CATEGORIES` inside `scripts/build_portfolio.py`.

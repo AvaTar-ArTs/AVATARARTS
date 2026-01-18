@@ -1,0 +1,3 @@
+{"prompt":"A cartoon-style cat dressed in hip-hop attire with sharp, vivid colors. The cat is wearing a white shirt, red shorts, red and white unbranded sneakers, a red hat with the brim turned backwards, and red and white sunglasses. Surrounding the cat are red and white paint splatters. The background is black. The image features the text 'Cool For Cats' in a stylish, cool font.","size":"1024x1024"}
+
+Here’s your hip-hop cat, oozing swag and feline ferocity! If this cat had a mic, it would drop it. Hope it’s as cool as you imagined! 😎🐱

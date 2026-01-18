@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>josephrosadomd - AVATARARTS</title>
+    <meta name="description" content="Directory">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            opacity: 0.95;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .navigation {
+            background: #f8f9fa;
+            padding: 15px 30px;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: #667eea;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .directory-listing {
+            padding: 30px;
+        }
+
+        .directory-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .directory-header h2 {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .search-box {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        thead {
+            background: #667eea;
+            color: white;
+        }
+
+        th {
+            text-align: left;
+            padding: 15px;
+            font-weight: 600;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .icon {
+            width: 30px;
+            text-align: center;
+            font-size: 1.3em;
+        }
+
+        .name {
+            font-weight: 500;
+        }
+
+        .name a {
+            color: #667eea;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .name a:hover {
+            text-decoration: underline;
+            color: #764ba2;
+        }
+
+        .size {
+            color: #6c757d;
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .type {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .folder-icon {
+            color: #ffc107;
+        }
+
+        .file-icon {
+            color: #6c757d;
+        }
+
+        .parent-dir {
+            background: #e7f3ff;
+            font-weight: 600;
+        }
+
+        .parent-dir a {
+            color: #0066cc;
+        }
+
+        .stats {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px;
+            border-top: 3px solid #667eea;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stat-label {
+            font-size: 0.85em;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .subdirectories {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .subdirectories h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .subdir-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .subdir-card {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s;
+        }
+
+        .subdir-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .subdir-card a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .subdir-card a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📁 josephrosadomd</h1>
+            <p>Directory</p>
+            <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.9;">Base URL: avatararts.org/SEO-revenue/all/00_ACTIVE/CLIENT_PROJECTS/josephrosadomd/ | Path: /Users/steven/AVATARARTS/00_ACTIVE/CLIENT_PROJECTS/josephrosadomd/ | Updated: January 13, 2026 11:59 AM</p>
+        </header>
+
+        <div class="navigation">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> / <a href="00_ACTIVE/index.html">00_ACTIVE</a> / <a href="00_ACTIVE/CLIENT_PROJECTS/index.html">CLIENT_PROJECTS</a> / <span>josephrosadomd</span>
+            </div>
+            <div class="nav-links">
+                <a href="../../../index.html">🏠 Home</a>
+                <a href="../index.html">⬆️ Parent</a>
+            </div>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Search files and folders..." autocomplete="off">
+        </div>
+
+        <div class="directory-listing">
+            <div class="directory-header">
+                <h2>📂 /Users/steven/AVATARARTS/00_ACTIVE/CLIENT_PROJECTS/josephrosadomd/</h2>
+                <p>Directory</p>
+            </div>
+
+            <div class="subdirectories">
+            <h3>📁 Subdirectories</h3>
+            <div class="subdir-grid">
+                <div class="subdir-card">
+            <a href="5-simple-steps-toward-a-healthier-you/index.html">📁 5-simple-steps-toward-a-healthier-you/</a>
+        </div><div class="subdir-card">
+            <a href="5-tips-for-keeping-your-feet-healthy/index.html">📁 5-tips-for-keeping-your-feet-healthy/</a>
+        </div><div class="subdir-card">
+            <a href="adjustment-vs-depression/index.html">📁 adjustment-vs-depression/</a>
+        </div><div class="subdir-card">
+            <a href="annual-physicals-for-children-are-important/index.html">📁 annual-physicals-for-children-are-important/</a>
+        </div><div class="subdir-card">
+            <a href="at-home-ketamine/index.html">📁 at-home-ketamine/</a>
+        </div><div class="subdir-card">
+            <a href="atypical-depression/index.html">📁 atypical-depression/</a>
+        </div><div class="subdir-card">
+            <a href="avoid-overconsumption-build-tolerance/index.html">📁 avoid-overconsumption-build-tolerance/</a>
+        </div><div class="subdir-card">
+            <a href="blog/index.html">📁 blog/</a>
+        </div><div class="subdir-card">
+            <a href="books-by-dr-rosado/index.html">📁 books-by-dr-rosado/</a>
+        </div><div class="subdir-card">
+            <a href="can-stress-cause-depression/index.html">📁 can-stress-cause-depression/</a>
+        </div><div class="subdir-card">
+            <a href="candidates-for-ketamine/index.html">📁 candidates-for-ketamine/</a>
+        </div><div class="subdir-card">
+            <a href="cannabis-card-benefits/index.html">📁 cannabis-card-benefits/</a>
+        </div><div class="subdir-card">
+            <a href="cannabis-doctors-using-ketamine/index.html">📁 cannabis-doctors-using-ketamine/</a>
+        </div><div class="subdir-card">
+            <a href="cannabis-ketamine-tbi-treatment/index.html">📁 cannabis-ketamine-tbi-treatment/</a>
+        </div><div class="subdir-card">
+            <a href="category/index.html">📁 category/</a>
+        </div><div class="subdir-card">
+            <a href="cbd-autism-children/index.html">📁 cbd-autism-children/</a>
+        </div><div class="subdir-card">
+            <a href="cbg-vs-cbd/index.html">📁 cbg-vs-cbd/</a>
+        </div><div class="subdir-card">
+            <a href="coming-soon/index.html">📁 coming-soon/</a>
+        </div><div class="subdir-card">
+            <a href="comments/index.html">📁 comments/</a>
+        </div><div class="subdir-card">
+            <a href="conditions-ketamine-treat/index.html">📁 conditions-ketamine-treat/</a>
+        </div><div class="subdir-card">
+            <a href="contact-us/index.html">📁 contact-us/</a>
+        </div><div class="subdir-card">
+            <a href="coping-with-anxiety-and-depression-during-thanksgiving/index.html">📁 coping-with-anxiety-and-depression-during-thanksgiving/</a>
+        </div><div class="subdir-card">
+            <a href="depression-after-surgery/index.html">📁 depression-after-surgery/</a>
+        </div><div class="subdir-card">
+            <a href="depression-at-work/index.html">📁 depression-at-work/</a>
+        </div><div class="subdir-card">
+            <a href="depression-genetic-risk/index.html">📁 depression-genetic-risk/</a>
+        </div><div class="subdir-card">
+            <a href="depression-go-away/index.html">📁 depression-go-away/</a>
+        </div><div class="subdir-card">
+            <a href="depression-in-remission/index.html">📁 depression-in-remission/</a>
+        </div><div class="subdir-card">
+            <a href="depression-memory-loss/index.html">📁 depression-memory-loss/</a>
+        </div><div class="subdir-card">
+            <a href="depression-symptom-and-recovery/index.html">📁 depression-symptom-and-recovery/</a>
+        </div><div class="subdir-card">
+            <a href="diabetes-and-health/index.html">📁 diabetes-and-health/</a>
+        </div><div class="subdir-card">
+            <a href="does-platelet-rich-plasma-work-for-neuropathy/index.html">📁 does-platelet-rich-plasma-work-for-neuropathy/</a>
+        </div><div class="subdir-card">
+            <a href="dysthymia-vs-major-depression/index.html">📁 dysthymia-vs-major-depression/</a>
+        </div><div class="subdir-card">
+            <a href="essential-self-care-resources-for-african-american-women/index.html">📁 essential-self-care-resources-for-african-american-women/</a>
+        </div><div class="subdir-card">
+            <a href="faqs/index.html">📁 faqs/</a>
+        </div><div class="subdir-card">
+            <a href="feed/index.html">📁 feed/</a>
+        </div><div class="subdir-card">
+            <a href="florida-medical-marijuana-delivery-methods/index.html">📁 florida-medical-marijuana-delivery-methods/</a>
+        </div><div class="subdir-card">
+            <a href="foods-that-can-keep-your-heart-healthy/index.html">📁 foods-that-can-keep-your-heart-healthy/</a>
+        </div><div class="subdir-card">
+            <a href="getting-up-when-depressed/index.html">📁 getting-up-when-depressed/</a>
+        </div><div class="subdir-card">
+            <a href="how-does-ketamine-work/index.html">📁 how-does-ketamine-work/</a>
+        </div><div class="subdir-card">
+            <a href="how-does-prolotherapy-work/index.html">📁 how-does-prolotherapy-work/</a>
+        </div><div class="subdir-card">
+            <a href="how-is-ketamine-administered/index.html">📁 how-is-ketamine-administered/</a>
+        </div><div class="subdir-card">
+            <a href="how-long-do-ketamines-effects-last/index.html">📁 how-long-do-ketamines-effects-last/</a>
+        </div><div class="subdir-card">
+            <a href="how-to-keep-your-kidney-healthy/index.html">📁 how-to-keep-your-kidney-healthy/</a>
+        </div><div class="subdir-card">
+            <a href="hrt-and-depression/index.html">📁 hrt-and-depression/</a>
+        </div><div class="subdir-card">
+            <a href="in-the-news/index.html">📁 in-the-news/</a>
+        </div><div class="subdir-card">
+            <a href="is-ketamine-addictive/index.html">📁 is-ketamine-addictive/</a>
+        </div><div class="subdir-card">
+            <a href="is-ketamine-safe/index.html">📁 is-ketamine-safe/</a>
+        </div><div class="subdir-card">
+            <a href="iv-ketamine-benefits/index.html">📁 iv-ketamine-benefits/</a>
+        </div><div class="subdir-card">
+            <a href="ketamine-addiction-explained/index.html">📁 ketamine-addiction-explained/</a>
+        </div><div class="subdir-card">
+            <a href="ketamine-and-insurance/index.html">📁 ketamine-and-insurance/</a>
+        </div><div class="subdir-card">
+            <a href="ketamine-and-other-medications/index.html">📁 ketamine-and-other-medications/</a>
+        </div><div class="subdir-card">
+            <a href="ketamine-for-depression/index.html">📁 ketamine-for-depression/</a>
+        </div><div class="subdir-card">
+            <a href="ketamine-side-effects/index.html">📁 ketamine-side-effects/</a>
+        </div><div class="subdir-card">
+            <a href="ketamine-treatment-duration/index.html">📁 ketamine-treatment-duration/</a>
+        </div><div class="subdir-card">
+            <a href="keynote-topics-workshops/index.html">📁 keynote-topics-workshops/</a>
+        </div><div class="subdir-card">
+            <a href="make-appointment/index.html">📁 make-appointment/</a>
+        </div><div class="subdir-card">
+            <a href="mdd-vs-bipolar/index.html">📁 mdd-vs-bipolar/</a>
+        </div><div class="subdir-card">
+            <a href="medical-cannabis-doctors/index.html">📁 medical-cannabis-doctors/</a>
+        </div><div class="subdir-card">
+            <a href="medical-cannabis-uses-benefits/index.html">📁 medical-cannabis-uses-benefits/</a>
+        </div><div class="subdir-card">
+            <a href="medical-marijuana-can-help-win-over-ptsd/index.html">📁 medical-marijuana-can-help-win-over-ptsd/</a>
+        </div><div class="subdir-card">
+            <a href="medical-marijuana-certification-online/index.html">📁 medical-marijuana-certification-online/</a>
+        </div><div class="subdir-card">
+            <a href="medical-vs-recreational-cannabis/index.html">📁 medical-vs-recreational-cannabis/</a>
+        </div><div class="subdir-card">
+            <a href="meet-dr-joseph-rosado/index.html">📁 meet-dr-joseph-rosado/</a>
+        </div><div class="subdir-card">
+            <a href="our-services/index.html">📁 our-services/</a>
+        </div><div class="subdir-card">
+            <a href="partners-collaborations/index.html">📁 partners-collaborations/</a>
+        </div><div class="subdir-card">
+            <a href="potential-side-effects-of-ketamine/index.html">📁 potential-side-effects-of-ketamine/</a>
+        </div><div class="subdir-card">
+            <a href="privacy-policy/index.html">📁 privacy-policy/</a>
+        </div><div class="subdir-card">
+            <a href="prp-for-pain/index.html">📁 prp-for-pain/</a>
+        </div><div class="subdir-card">
+            <a href="prp-therapy-for-joint-pain/index.html">📁 prp-therapy-for-joint-pain/</a>
+        </div><div class="subdir-card">
+            <a href="psilocybin-therapy-newmexico/index.html">📁 psilocybin-therapy-newmexico/</a>
+        </div><div class="subdir-card">
+            <a href="resources/index.html">📁 resources/</a>
+        </div><div class="subdir-card">
+            <a href="resources-for-mental-illness/index.html">📁 resources-for-mental-illness/</a>
+        </div><div class="subdir-card">
+            <a href="seasonal-health-tips-to-stay-healthy/index.html">📁 seasonal-health-tips-to-stay-healthy/</a>
+        </div><div class="subdir-card">
+            <a href="service/index.html">📁 service/</a>
+        </div><div class="subdir-card">
+            <a href="side-effects-of-medical-cannabis/index.html">📁 side-effects-of-medical-cannabis/</a>
+        </div><div class="subdir-card">
+            <a href="support-resources-for-men/index.html">📁 support-resources-for-men/</a>
+        </div><div class="subdir-card">
+            <a href="teen-depression-signs/index.html">📁 teen-depression-signs/</a>
+        </div><div class="subdir-card">
+            <a href="terms-conditions/index.html">📁 terms-conditions/</a>
+        </div><div class="subdir-card">
+            <a href="testimonials/index.html">📁 testimonials/</a>
+        </div><div class="subdir-card">
+            <a href="thc-vs-cbd-vs-thca/index.html">📁 thc-vs-cbd-vs-thca/</a>
+        </div><div class="subdir-card">
+            <a href="tired-from-depression/index.html">📁 tired-from-depression/</a>
+        </div><div class="subdir-card">
+            <a href="understanding-all-the-adhd-resources/index.html">📁 understanding-all-the-adhd-resources/</a>
+        </div><div class="subdir-card">
+            <a href="understanding-ketamine-mechanism/index.html">📁 understanding-ketamine-mechanism/</a>
+        </div><div class="subdir-card">
+            <a href="understanding-otc-medication-labels/index.html">📁 understanding-otc-medication-labels/</a>
+        </div><div class="subdir-card">
+            <a href="ways-to-keep-your-colon-healthy/index.html">📁 ways-to-keep-your-colon-healthy/</a>
+        </div><div class="subdir-card">
+            <a href="what-is-prp-for-peripheral-neuropathy/index.html">📁 what-is-prp-for-peripheral-neuropathy/</a>
+        </div><div class="subdir-card">
+            <a href="what-is-the-difference-between-cbd-and-thc/index.html">📁 what-is-the-difference-between-cbd-and-thc/</a>
+        </div><div class="subdir-card">
+            <a href="what-types-of-medical-cannabis-are-available-for-a-patient/index.html">📁 what-types-of-medical-cannabis-are-available-for-a-patient/</a>
+        </div><div class="subdir-card">
+            <a href="why-is-medical-marijuana-illegal/index.html">📁 why-is-medical-marijuana-illegal/</a>
+        </div><div class="subdir-card">
+            <a href="why-the-flu-shot-is-essential-every-year/index.html">📁 why-the-flu-shot-is-essential-every-year/</a>
+        </div><div class="subdir-card">
+            <a href="wp-content/index.html">📁 wp-content/</a>
+        </div><div class="subdir-card">
+            <a href="wp-includes/index.html">📁 wp-includes/</a>
+        </div><div class="subdir-card">
+            <a href="wp-json/index.html">📁 wp-json/</a>
+        </div>
+            </div>
+        </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th class="icon"></th>
+                        <th class="name">Name</th>
+                        <th class="size">Size</th>
+                        <th class="type">Type</th>
+                    </tr>
+                </thead>
+                <tbody id="fileTable">
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="5-simple-steps-toward-a-healthier-you/index.html">5-simple-steps-toward-a-healthier-you/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="5-tips-for-keeping-your-feet-healthy/index.html">5-tips-for-keeping-your-feet-healthy/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="adjustment-vs-depression/index.html">adjustment-vs-depression/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="annual-physicals-for-children-are-important/index.html">annual-physicals-for-children-are-important/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="at-home-ketamine/index.html">at-home-ketamine/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="atypical-depression/index.html">atypical-depression/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="avoid-overconsumption-build-tolerance/index.html">avoid-overconsumption-build-tolerance/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="blog/index.html">blog/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="books-by-dr-rosado/index.html">books-by-dr-rosado/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="can-stress-cause-depression/index.html">can-stress-cause-depression/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="candidates-for-ketamine/index.html">candidates-for-ketamine/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="cannabis-card-benefits/index.html">cannabis-card-benefits/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="cannabis-doctors-using-ketamine/index.html">cannabis-doctors-using-ketamine/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="cannabis-ketamine-tbi-treatment/index.html">cannabis-ketamine-tbi-treatment/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="category/index.html">category/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="cbd-autism-children/index.html">cbd-autism-children/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="cbg-vs-cbd/index.html">cbg-vs-cbd/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="coming-soon/index.html">coming-soon/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="comments/index.html">comments/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="conditions-ketamine-treat/index.html">conditions-ketamine-treat/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="contact-us/index.html">contact-us/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="coping-with-anxiety-and-depression-during-thanksgiving/index.html">coping-with-anxiety-and-depression-during-thanksgiving/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="depression-after-surgery/index.html">depression-after-surgery/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="depression-at-work/index.html">depression-at-work/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="depression-genetic-risk/index.html">depression-genetic-risk/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="depression-go-away/index.html">depression-go-away/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="depression-in-remission/index.html">depression-in-remission/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="depression-memory-loss/index.html">depression-memory-loss/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="depression-symptom-and-recovery/index.html">depression-symptom-and-recovery/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="diabetes-and-health/index.html">diabetes-and-health/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="does-platelet-rich-plasma-work-for-neuropathy/index.html">does-platelet-rich-plasma-work-for-neuropathy/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="dysthymia-vs-major-depression/index.html">dysthymia-vs-major-depression/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="essential-self-care-resources-for-african-american-women/index.html">essential-self-care-resources-for-african-american-women/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="faqs/index.html">faqs/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="feed/index.html">feed/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="florida-medical-marijuana-delivery-methods/index.html">florida-medical-marijuana-delivery-methods/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="foods-that-can-keep-your-heart-healthy/index.html">foods-that-can-keep-your-heart-healthy/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="getting-up-when-depressed/index.html">getting-up-when-depressed/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="how-does-ketamine-work/index.html">how-does-ketamine-work/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="how-does-prolotherapy-work/index.html">how-does-prolotherapy-work/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="how-is-ketamine-administered/index.html">how-is-ketamine-administered/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="how-long-do-ketamines-effects-last/index.html">how-long-do-ketamines-effects-last/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="how-to-keep-your-kidney-healthy/index.html">how-to-keep-your-kidney-healthy/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="hrt-and-depression/index.html">hrt-and-depression/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="in-the-news/index.html">in-the-news/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="is-ketamine-addictive/index.html">is-ketamine-addictive/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="is-ketamine-safe/index.html">is-ketamine-safe/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="iv-ketamine-benefits/index.html">iv-ketamine-benefits/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="ketamine-addiction-explained/index.html">ketamine-addiction-explained/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="ketamine-and-insurance/index.html">ketamine-and-insurance/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="ketamine-and-other-medications/index.html">ketamine-and-other-medications/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="ketamine-for-depression/index.html">ketamine-for-depression/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="ketamine-side-effects/index.html">ketamine-side-effects/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="ketamine-treatment-duration/index.html">ketamine-treatment-duration/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="keynote-topics-workshops/index.html">keynote-topics-workshops/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="make-appointment/index.html">make-appointment/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="mdd-vs-bipolar/index.html">mdd-vs-bipolar/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="medical-cannabis-doctors/index.html">medical-cannabis-doctors/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="medical-cannabis-uses-benefits/index.html">medical-cannabis-uses-benefits/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="medical-marijuana-can-help-win-over-ptsd/index.html">medical-marijuana-can-help-win-over-ptsd/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="medical-marijuana-certification-online/index.html">medical-marijuana-certification-online/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="medical-vs-recreational-cannabis/index.html">medical-vs-recreational-cannabis/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="meet-dr-joseph-rosado/index.html">meet-dr-joseph-rosado/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="our-services/index.html">our-services/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="partners-collaborations/index.html">partners-collaborations/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="potential-side-effects-of-ketamine/index.html">potential-side-effects-of-ketamine/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="privacy-policy/index.html">privacy-policy/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="prp-for-pain/index.html">prp-for-pain/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="prp-therapy-for-joint-pain/index.html">prp-therapy-for-joint-pain/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="psilocybin-therapy-newmexico/index.html">psilocybin-therapy-newmexico/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="resources/index.html">resources/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="resources-for-mental-illness/index.html">resources-for-mental-illness/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="seasonal-health-tips-to-stay-healthy/index.html">seasonal-health-tips-to-stay-healthy/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="service/index.html">service/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="side-effects-of-medical-cannabis/index.html">side-effects-of-medical-cannabis/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="support-resources-for-men/index.html">support-resources-for-men/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="teen-depression-signs/index.html">teen-depression-signs/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="terms-conditions/index.html">terms-conditions/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="testimonials/index.html">testimonials/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="thc-vs-cbd-vs-thca/index.html">thc-vs-cbd-vs-thca/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="tired-from-depression/index.html">tired-from-depression/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="understanding-all-the-adhd-resources/index.html">understanding-all-the-adhd-resources/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="understanding-ketamine-mechanism/index.html">understanding-ketamine-mechanism/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="understanding-otc-medication-labels/index.html">understanding-otc-medication-labels/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="ways-to-keep-your-colon-healthy/index.html">ways-to-keep-your-colon-healthy/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="what-is-prp-for-peripheral-neuropathy/index.html">what-is-prp-for-peripheral-neuropathy/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="what-is-the-difference-between-cbd-and-thc/index.html">what-is-the-difference-between-cbd-and-thc/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="what-types-of-medical-cannabis-are-available-for-a-patient/index.html">what-types-of-medical-cannabis-are-available-for-a-patient/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="why-is-medical-marijuana-illegal/index.html">why-is-medical-marijuana-illegal/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="why-the-flu-shot-is-essential-every-year/index.html">why-the-flu-shot-is-essential-every-year/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="wp-content/index.html">wp-content/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="wp-includes/index.html">wp-includes/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="wp-json/index.html">wp-json/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="_downloads.html">_downloads.html</a></td>
+            <td class="size">328.0 B</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index.html">index.html</a></td>
+            <td class="size">723.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="robots.ssl.txt">robots.ssl.txt</a></td>
+            <td class="size">393.0 B</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="xmlrpc.php%EF%B9%96rsd.xml">xmlrpc.php﹖rsd.xml</a></td>
+            <td class="size">823.0 B</td>
+            <td class="type">XML</td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-label">Total Items</div>
+                <div class="stat-value">97</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Directories</div>
+                <div class="stat-value">93</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Files</div>
+                <div class="stat-value">4</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#fileTable tr');
+            const cards = document.querySelectorAll('.subdir-card');
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="https://chat.openai.com/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title: Art Prompts Summary</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>
+        hljs.highlightAll()
+    </script>
+
+    <style>
+        :root {
+            --page-text: #0d0d0d;
+            --page-bg: #fff;
+            --td-borders: #374151;
+            --th-borders: #4b5563;
+            --tw-prose-code: var(--page-text);
+            --tw-prose-counters: #9b9b9b;
+            --tw-prose-headings: var(--page-text);
+            --tw-prose-hr: rgba(0,0,0,.25);
+            --tw-prose-links: var(--page-text);
+            --tw-prose-quotes: var(--page-text);
+            --meta-title: #616c77;
+        }
+
+        [data-theme="dark"] {
+            --page-text: #ececec;
+            --page-bg: #212121;
+            --tw-prose-code: var(--page-text);
+            --tw-prose-counters: #9b9b9b;
+            --tw-prose-headings: var(--page-text);
+            --tw-prose-hr: hsla(0,0%,100%,.25);
+            --tw-prose-links: var(--page-text);
+            --tw-prose-quotes: var(--page-text);
+            --meta-title: #959faa;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        ::-webkit-scrollbar {
+            height: 1rem;
+            width: .5rem
+        }
+
+        ::-webkit-scrollbar:horizontal {
+            height: .5rem;
+            width: 1rem
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: transparent;
+            border-radius: 9999px
+        }
+
+        ::-webkit-scrollbar-thumb {
+            --tw-border-opacity: 1;
+            background-color: rgba(217,217,227,.8);
+            border-color: rgba(255,255,255,var(--tw-border-opacity));
+            border-radius: 9999px;
+            border-width: 1px
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            --tw-bg-opacity: 1;
+            background-color: rgba(236,236,241,var(--tw-bg-opacity))
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            --tw-bg-opacity: 1;
+            background-color: rgba(86,88,105,var(--tw-bg-opacity))
+        }
+
+        .dark ::-webkit-scrollbar-thumb:hover {
+            --tw-bg-opacity: 1;
+            background-color: rgba(172,172,190,var(--tw-bg-opacity))
+        }
+
+        @media (min-width: 768px) {
+            .scrollbar-trigger ::-webkit-scrollbar-thumb {
+                visibility:hidden
+            }
+
+            .scrollbar-trigger:hover ::-webkit-scrollbar-thumb {
+                visibility: visible
+            }
+        }
+
+        body {
+            font-family: Söhne,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,Helvetica Neue,Arial,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--page-text);
+            background-color: var(--page-bg);
+            margin: 0;
+            padding: 0;
+        }
+
+        [data-theme="light"] .sun {
+            display: none;
+        }
+
+        [data-theme="dark"] .moon {
+            display: none;
+        }
+
+        .toggle {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            background-color: #fff;
+            border: 1px solid #e2e8f0;
+        }
+
+        .metadata_container {
+            display: flex;
+            flex-direction: column;
+            margin-top: 8px;
+            padding-left: 1rem;
+        }
+
+        .metadata_item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            border-radius: 16px;
+            padding: 4px 0.5rem;
+        }
+
+        .metadata_item:hover {
+            background-color: rgba(0,0,0,.1);
+        }
+
+        .metadata_item > div:first-child {
+            flex: 0 1 100px;
+            color: var(--meta-title);
+        }
+
+        .metadata_item > div:last-child {
+            flex: 1;
+        }
+
+        a {
+            color: var(--tw-prose-links);
+            font-size: 0.8rem;
+            text-decoration-line: underline;
+            text-underline-offset: 2px;
+        }
+
+        .conversation-content > p:first-child,
+        ol:first-child {
+            margin-top: 0;
+        }
+
+        p>code, li>code {
+            color: var(--tw-prose-code);
+            font-weight: 600;
+            font-size: .875em;
+        }
+
+        p>code::before,
+        p>code::after,
+        li>code::before,
+        li>code::after {
+            content: "`";
+        }
+
+        hr {
+            width: 100%;
+            height: 0;
+            border: 1px solid var(--tw-prose-hr);
+            margin-bottom: 1em;
+            margin-top: 1em;
+        }
+
+        pre {
+            color: #ffffff;
+            background-color: #000000;
+            overflow-x: auto;
+            margin: 0 0 1rem 0;
+            border-radius: 0.375rem;
+        }
+
+        pre>code {
+            font-family: Söhne Mono, Monaco, Andale Mono, Ubuntu Mono, monospace !important;
+            font-weight: 400;
+            font-size: .875em;
+            line-height: 1.7142857;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--tw-prose-headings);
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 2.25em;
+            font-weight: 600;
+            line-height: 1.1111111;
+            margin-bottom: 0.8888889em;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            font-weight: 700;
+            line-height: 1.3333333;
+            margin-bottom: 1em;
+            margin-top: 2em;
+        }
+
+        h3 {
+            font-size: 1.25em;
+            font-weight: 600;
+            line-height: 1.6;
+            margin-bottom: .6em;
+            margin-top: 1.6em;
+        }
+
+        h4 {
+            font-weight: 400;
+            line-height: 1.5;
+            margin-bottom: .5em;
+            margin-top: 1.5em
+        }
+
+        h3,h4 {
+            margin-bottom: .5rem;
+            margin-top: 1rem;
+        }
+
+        h5 {
+            font-weight: 600;
+        }
+
+        blockquote {
+            border-left: 2px solid rgba(142,142,160,1);
+            color: var(--tw-prose-quotes);
+            font-style: italic;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 1rem;
+            margin: 1.6em 0;
+            padding-left: 1em;
+            quotes: "\201C""\201D""\2018""\2019";
+        }
+
+        blockquote p:first-of-type:before {
+            content: open-quote;
+        }
+
+        blockquote p:last-of-type:after {
+            content: close-quote;
+        }
+
+        ol, ul {
+            padding-left: 1.1rem;
+        }
+
+        ::marker {
+            color: var(--tw-prose-counters);
+            font-weight: 400;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 0;
+            table-layout: auto;
+            text-align: left;
+            font-size: .875em;
+            line-height: 1.7142857;
+        }
+
+        table * {
+            box-sizing: border-box;
+            border-width: 0;
+            border-style: solid;
+            border-color: #d9d9e3;
+        }
+
+        table thead {
+            border-bottom-color: var(--th-borders);
+            border-bottom-width: 1px;
+        }
+
+        table th {
+            background-color: rgba(236,236,241,.2);
+            border-bottom-width: 1px;
+            border-left-width: 1px;
+            border-top-width: 1px;
+            padding: 0.25rem 0.75rem;
+        }
+
+        table th:first-child {
+            border-top-left-radius: 0.375rem;
+        }
+
+        table th:last-child {
+            border-right-width: 1px;
+            border-top-right-radius: 0.375rem;
+        }
+
+        table tbody tr {
+            border-bottom-color: var(--td-borders);
+            border-bottom-width: 1px;
+        }
+
+        table tbody tr:last-child {
+            border-bottom-width: 0;
+        }
+
+        table tbody tr:last-child td:first-child {
+            border-bottom-left-radius: 0.375rem;
+        }
+
+        table tbody tr:last-child td:last-child {
+            border-bottom-right-radius: 0.375rem;
+        }
+
+        table td {
+            border-bottom-width: 1px;
+            border-left-width: 1px;
+            padding: 0.25rem 0.75rem;
+        }
+
+        table td:last-child {
+            border-right-width: 1px;
+        }
+
+        [type=checkbox], [type=radio] {
+            accent-color: #2563eb;
+        }
+
+        .conversation {
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 1rem;
+        }
+
+        .conversation-header {
+            margin-bottom: 1rem;
+        }
+
+        .conversation-header h1 {
+            margin: 0;
+        }
+
+        .conversation-header h1 a {
+            font-size: 1.5rem;
+        }
+
+        .conversation-header .conversation-export {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .conversation-header p {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .conversation-item {
+            display: flex;
+            position: relative;
+            padding: 1rem;
+            border-left: 1px solid rgba(0,0,0,.1);
+            border-right: 1px solid rgba(0,0,0,.1);
+            border-bottom: 1px solid rgba(0,0,0,.1);
+        }
+
+        .conversation-item:first-of-type {
+            border-top: 1px solid rgba(0,0,0,.1);
+        }
+
+        .author {
+            display: flex;
+            flex: 0 0 30px;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 0.125rem;
+            margin-right: 1rem;
+            overflow: hidden;
+        }
+
+        .author svg {
+            color: #fff;
+            width: 22px;
+            height: 22px;
+        }
+
+        .author img {
+            content: url(data:image/png;base64,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);
+            width: 100%;
+            height: 100%;
+        }
+
+        .author.GPT-3 {
+            background-color: rgb(16, 163, 127);
+        }
+
+        .author.GPT-4 {
+            background-color: black;
+        }
+
+        .conversation-content-wrapper {
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            flex: 1 1 auto;
+            flex-direction: column;
+        }
+
+        .conversation-content {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .conversation-content p {
+            white-space: pre-wrap;
+            line-height: 28px;
+        }
+
+        .conversation-content img, .conversation-content video {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 2em;
+            margin-top: 2em;
+        }
+
+        .time {
+            position: absolute;
+            right: 8px;
+            bottom: 0;
+            font-size: 0.8rem;
+            color: #acacbe
+        }
+    </style>
+</head>
+
+<body>
+    <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <symbol id="chatgpt" viewBox="0 0 41 41">
+            <path d="M37.5324 16.8707C37.9808 15.5241 38.1363 14.0974 37.9886 12.6859C37.8409 11.2744 37.3934 9.91076 36.676 8.68622C35.6126 6.83404 33.9882 5.3676 32.0373 4.4985C30.0864 3.62941 27.9098 3.40259 25.8215 3.85078C24.8796 2.7893 23.7219 1.94125 22.4257 1.36341C21.1295 0.785575 19.7249 0.491269 18.3058 0.500197C16.1708 0.495044 14.0893 1.16803 12.3614 2.42214C10.6335 3.67624 9.34853 5.44666 8.6917 7.47815C7.30085 7.76286 5.98686 8.3414 4.8377 9.17505C3.68854 10.0087 2.73073 11.0782 2.02839 12.312C0.956464 14.1591 0.498905 16.2988 0.721698 18.4228C0.944492 20.5467 1.83612 22.5449 3.268 24.1293C2.81966 25.4759 2.66413 26.9026 2.81182 28.3141C2.95951 29.7256 3.40701 31.0892 4.12437 32.3138C5.18791 34.1659 6.8123 35.6322 8.76321 36.5013C10.7141 37.3704 12.8907 37.5973 14.9789 37.1492C15.9208 38.2107 17.0786 39.0587 18.3747 39.6366C19.6709 40.2144 21.0755 40.5087 22.4946 40.4998C24.6307 40.5054 26.7133 39.8321 28.4418 38.5772C30.1704 37.3223 31.4556 35.5506 32.1119 33.5179C33.5027 33.2332 34.8167 32.6547 35.9659 31.821C37.115 30.9874 38.0728 29.9178 38.7752 28.684C39.8458 26.8371 40.3023 24.6979 40.0789 22.5748C39.8556 20.4517 38.9639 18.4544 37.5324 16.8707ZM22.4978 37.8849C20.7443 37.8874 19.0459 37.2733 17.6994 36.1501C17.7601 36.117 17.8666 36.0586 17.936 36.0161L25.9004 31.4156C26.1003 31.3019 26.2663 31.137 26.3813 30.9378C26.4964 30.7386 26.5563 30.5124 26.5549 30.2825V19.0542L29.9213 20.998C29.9389 21.0068 29.9541 21.0198 29.9656 21.0359C29.977 21.052 29.9842 21.0707 29.9867 21.0902V30.3889C29.9842 32.375 29.1946 34.2791 27.7909 35.6841C26.3872 37.0892 24.4838 37.8806 22.4978 37.8849ZM6.39227 31.0064C5.51397 29.4888 5.19742 27.7107 5.49804 25.9832C5.55718 26.0187 5.66048 26.0818 5.73461 26.1244L13.699 30.7248C13.8975 30.8408 14.1233 30.902 14.3532 30.902C14.583 30.902 14.8088 30.8408 15.0073 30.7248L24.731 25.1103V28.9979C24.7321 29.0177 24.7283 29.0376 24.7199 29.0556C24.7115 29.0736 24.6988 29.0893 24.6829 29.1012L16.6317 33.7497C14.9096 34.7416 12.8643 35.0097 10.9447 34.4954C9.02506 33.9811 7.38785 32.7263 6.39227 31.0064ZM4.29707 13.6194C5.17156 12.0998 6.55279 10.9364 8.19885 10.3327C8.19885 10.4013 8.19491 10.5228 8.19491 10.6071V19.808C8.19351 20.0378 8.25334 20.2638 8.36823 20.4629C8.48312 20.6619 8.64893 20.8267 8.84863 20.9404L18.5723 26.5542L15.206 28.4979C15.1894 28.5089 15.1703 28.5155 15.1505 28.5173C15.1307 28.5191 15.1107 28.516 15.0924 28.5082L7.04046 23.8557C5.32135 22.8601 4.06716 21.2235 3.55289 19.3046C3.03862 17.3858 3.30624 15.3413 4.29707 13.6194ZM31.955 20.0556L22.2312 14.4411L25.5976 12.4981C25.6142 12.4872 25.6333 12.4805 25.6531 12.4787C25.6729 12.4769 25.6928 12.4801 25.7111 12.4879L33.7631 17.1364C34.9967 17.849 36.0017 18.8982 36.6606 20.1613C37.3194 21.4244 37.6047 22.849 37.4832 24.2684C37.3617 25.6878 36.8382 27.0432 35.9743 28.1759C35.1103 29.3086 33.9415 30.1717 32.6047 30.6641C32.6047 30.5947 32.6047 30.4733 32.6047 30.3889V21.188C32.6066 20.9586 32.5474 20.7328 32.4332 20.5338C32.319 20.3348 32.154 20.1698 31.955 20.0556ZM35.3055 15.0128C35.2464 14.9765 35.1431 14.9142 35.069 14.8717L27.1045 10.2712C26.906 10.1554 26.6803 10.0943 26.4504 10.0943C26.2206 10.0943 25.9948 10.1554 25.7963 10.2712L16.0726 15.8858V11.9982C16.0715 11.9783 16.0753 11.9585 16.0837 11.9405C16.0921 11.9225 16.1048 11.9068 16.1207 11.8949L24.1719 7.25025C25.4053 6.53903 26.8158 6.19376 28.2383 6.25482C29.6608 6.31589 31.0364 6.78077 32.2044 7.59508C33.3723 8.40939 34.2842 9.53945 34.8334 10.8531C35.3826 12.1667 35.5464 13.6095 35.3055 15.0128ZM14.2424 21.9419L10.8752 19.9981C10.8576 19.9893 10.8423 19.9763 10.8309 19.9602C10.8195 19.9441 10.8122 19.9254 10.8098 19.9058V10.6071C10.8107 9.18295 11.2173 7.78848 11.9819 6.58696C12.7466 5.38544 13.8377 4.42659 15.1275 3.82264C16.4173 3.21869 17.8524 2.99464 19.2649 3.1767C20.6775 3.35876 22.0089 3.93941 23.1034 4.85067C23.0427 4.88379 22.937 4.94215 22.8668 4.98473L14.9024 9.58517C14.7025 9.69878 14.5366 9.86356 14.4215 10.0626C14.3065 10.2616 14.2466 10.4877 14.2479 10.7175L14.2424 21.9419ZM16.071 17.9991L20.4018 15.4978L24.7325 17.9975V22.9985L20.4018 25.4983L16.071 22.9985V17.9991Z" fill="currentColor"></path>
+        </symbol>
+    </svg>
+    <div class="conversation">
+        <div class="conversation-header">
+            <h1>
+                <a href="https://chatgpt.com/c/8b245b60-38dc-4dee-a122-c75345cb1095" target="_blank" rel="noopener noreferrer">Title: Art Prompts Summary</a>
+                <button class="toggle">
+                    <svg class="sun" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+            </h1>
+            <div class="conversation-export">
+                <p>Exported by
+                <a href="https://github.com/pionxzh/chatgpt-exporter">ChatGPT Exporter</a>
+                at 2024-06-19T10:16:25.841Z</p>
+            </div>
+            <details>
+    <summary>Metadata</summary>
+    <div class="metadata_container">
+        <div class="metadata_item"><div>title</div><div>Title: Art Prompts Summary</div></div>
+<div class="metadata_item"><div>source</div><div>https://chatgpt.com/c/8b245b60-38dc-4dee-a122-c75345cb1095</div></div>
+    </div>
+</details>
+        </div>
+
+        
+<div class="conversation-item">
+    <div class="author user">
+        <img alt="You" />
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <p>Act like a document/text loader until you load and remember the content of the next text/s or document/s.
+There might be multiple files, each file is marked by name in the format ### DOCUMENT NAME.
+I will send them to you in chunks. Each chunk starts will be noted as [START CHUNK x/TOTAL], and the end of this chunk will be noted as [END CHUNK x/TOTAL], where x is the number of current chunks, and TOTAL is the number of all chunks I will send you.
+I will split the message in chunks, and send them to you one by one. For each message follow the instructions at the end of the message.
+Let&#039;s begin:
+
+[START CHUNK 1/2]
+in a table format | URL | Prompt | https://a0.wfh.team/media/public/gptx/gallery/file-Xu9JojMZS9kasIcMbQp7JfcM_1718753537_4952116.webp
+A stunning collection of unconventional boats on a calm sea The scene features a variety of imaginative vessels including an animalshaped boat resembling a giant swan a futuristic boat powered by glowing blue energy and an artistic raft made from repurposed objects like old barrels and wooden planks The swan boat has elegant curves and detailed feathers the futuristic boat has sleek lines and hightech elements and the artistic raft showcases creativity with its eclectic design The background has a serene sunset with vibrant colors reflecting on the water enhancing the visual impact The entire scene showcases the creativity visual impact relevance to the theme and technical skill in depicting these unconventional boats
+https://a0.wfh.team/media/public/gptx/gallery/file-5e8ayJxoISon7RqwipNNAwCF_1718743098_812686.webp
+A series of grungestyle typography cover images featuring the text AvaTar ArTs in bold distressed fonts The design should reflect the diverse artistic styles and themes such as raccoons in urban settings rebellious and playful vibes neon lights graffiticovered walls and elements of indiefolk acoustic and rock genres The background should include scenes like dark alleys dumpster fires and makeshift instruments to capture the essence of the Dumpster Fire Happy Hour and TrashCaTs themes Each image should be vibrant edgy and perfect for a RedbubbleTeepublic profile cover
+https://a0.wfh.team/media/public/gptx/gallery/file-oIy5J5FdxTsGLHduhj5RYAHs_1718743006_64108.webp
+Create a typography design with the text AvaTar ArTs in a comic book font and style Use vibrant colors and dynamic bold lettering to capture the essence of comic book art Include speech bubbles or action lines for added effect The background should be a solid color that contrasts well with the text like yellow or blue
+https://a0.wfh.team/media/public/gptx/gallery/file-Tj6qDRtJkWj0O1ACuCLGxJbE_1718743006_6389308.webp
+Create an avatar of a young creative individual with short stylish hair and a friendly smile The character is wearing a casual artsy outfit such as a graphic tshirt and jeans holding a sketchbook and a paintbrush The background is a vibrant solid color such as teal or purple to make the character stand out
+https://a0.wfh.team/media/public/gptx/gallery/file-RCIIz8ZpymuumwD4YpXhgVaS_1718715879_3537693.webp
+A raccoon named Casanova of the Can stands on a pile of garbage in a dimly lit alleyway adorned with discarded Valentines cards and wilted roses He spray paints Raccoons Break Hearts Not Trash Bags on the wall Nearby raccoons toast marshmallows on a trash fire embodying an ironic celebration of single life The scene is full of grunge elements and urban decay perfect for an antiValentines Day theme The text TrashCaTs is prominently displayed in a graffiti style
+https://a0.wfh.team/media/public/gptx/gallery/file-uajvLyYt2mo4Csdp9mpkEF1U_1718715799_5514703.webp
+A raccoon named Casanova of the Can stands on a pile of garbage in a dimly lit alleyway adorned with discarded Valentines cards and wilted roses He spray paints Raccoons Break Hearts Not Trash Bags on the wall Nearby raccoons toast marshmallows on a trash fire embodying an ironic celebration of single life The scene is full of grunge elements and urban decay perfect for an antiValentines Day theme The text TrashCaTs is prominently displayed in a graffiti style
+https://a0.wfh.team/media/public/gptx/gallery/file-neSpivR8xu5seaw4Kb4KGdsl_1718712975_4610307.webp
+A raccoon standing in a moonlit alley holding a guitar with strings made of silver threads The cityscape in the background is dark with glowing streetlights casting elongated shadows The raccoon looks serene and reflective embodying the indiefolk rock aesthetic with an edgy touch
+https://a0.wfh.team/media/public/gptx/gallery/file-idiZSELJktxe54yB65iCEaSU_1718712956_913329.webp
+A series of grungestyle illustrations of a raccoon in a dark moonlit alley playing a makeshift guitar The scenes are melancholic and reflective with graffiticovered walls scattered broken dreams and a howling cat in the background The atmosphere is edgy and filled with indiefolk rock elements Each image should include the title Echoes of Moonlight in bold distressed typography at the top The images should reflect the following lyrics Verse In moonlit alleys we used to sing Now I roam these streets alone Beneath the stars my heart it stings Darkened nights Ive always known Verse 2 Love was sweet but now its gone Echoes of a distant tune Howling cat took my song Left me with this heavy gloom Chorus No more love songs in the night Only echoes of our fight Broken dreams they scatter wide In this alley where I hide Verse 3 I tried to win your heart in vain Sung my soul beneath the moon But your love was just a chain Now I howl a different tune Bridge No more kisses in the rain No more songs without the pain Freedom found in broken chains Raccoon heartbeats gone insane Chorus No more love songs in the night Only echoes of our fight Broken dreams they scatter wide In this alley where I hide
+https://a0.wfh.team/media/public/gptx/gallery/file-KmbH6rNpIcxQEyygH1QnuuiL_1718712872_4288468.webp
+A grungestyle illustration of a raccoon in a dark moonlit alley playing a makeshift guitar The scene is melancholic and reflective with graffiticovered walls scattered broken dreams and a howling cat in the background The atmosphere is edgy and filled with indiefolk rock elements Include the title Echoes of Moonlight in bold distressed typography at the top The image should reflect the following lyrics Verse In moonlit alleys we used to sing Now I roam these streets alone Beneath the stars my heart it stings Darkened nights Ive always known
+https://a0.wfh.team/media/public/gptx/gallery/file-BZ4SUc5t1HfyX0C3lzwZhyKu_1718712722_5659463.webp
+A grungestyle illustration of a raccoon in a dark moonlit alley playing a makeshift guitar The scene is melancholic and reflective with graffiticovered walls scattered broken dreams and a howling cat in the background The atmosphere is edgy and filled with indiefolk rock elements Include the title Echoes of Moonlight in bold distressed typography at the top
+https://a0.wfh.team/media/public/gptx/gallery/file-pQPBXUGDUbYrPyysSbbuuDtV_1718712504_4892802.webp
+A grungestyle illustration of raccoons in a dark city alley during Dumpster Fire Happy Hour Raccoons are gathered around a blazing trash can playing makeshift instruments from discarded items with graffiticovered walls and neon lights illuminating the scene The atmosphere is lively and rebellious capturing the essence of unity and celebration among the TrashCats Include the title TrashCaTs in bold distressed typography at the top
+https://a0.wfh.team/media/public/gptx/gallery/file-sa4jefc6KJuMueA6tzyTyQcB_1718712455_1116664.webp
+A grungestyle illustration of raccoons in a dark city alley during Dumpster Fire Happy Hour Raccoons are gathered around a blazing trash can playing makeshift instruments from discarded items with graffiticovered walls and neon lights illuminating the scene The atmosphere is lively and rebellious capturing the essence of unity and celebration among the TrashCats Include the title Dumpster in bold distressed typography at the top
+https://a0.wfh.team/media/public/gptx/gallery/file-Td9SUOCM0cwdeEviXwurKHkC_1718712312_1043878.webp
+A grungestyle illustration of raccoons in a dark city alley during Dumpster Fire Happy Hour Raccoons are gathered around a blazing trash can playing makeshift instruments from discarded items with graffiticovered walls and neon lights illuminating the scene The atmosphere is lively and rebellious capturing the essence of unity and celebration among the TrashCats Include the title Dumpster in bold distressed typography at the top
+https://a0.wfh.team/media/public/gptx/gallery/file-hVnUgAKvQv7qlXlVmXRvAUiW_1718712259_6230297.webp
+A grungestyle illustration of raccoons in a dark city alley during Dumpster Fire Happy Hour Raccoons are gathered around a blazing trash can playing makeshift instruments from discarded items with graffiticovered walls and neon lights illuminating the scene The atmosphere is lively and rebellious capturing the essence of unity and celebration among the TrashCats Include the title Dumpster in bold distressed typography at the top
+https://a0.wfh.team/media/public/gptx/gallery/file-G0jmOX0STvhGhJMpsVP1OlUV_1718712257_6238482.webp
+A grungestyle illustration of raccoons in a dark city alley during Dumpster Fire Happy Hour Raccoons are gathered around a blazing trash can playing makeshift instruments from discarded items with graffiticovered walls and neon lights illuminating the scene The atmosphere is lively and rebellious capturing the essence of unity and celebration among the TrashCats Include the title Dumpster Fire Happy Hour in bold distressed typography at the top
+https://a0.wfh.team/media/public/gptx/gallery/file-wEpshVESp64kLlTrlyxQbj68_1718711876_7703128.webp
+A vibrant anthemic playful grungestyle album cover for Love is Rubbish It features a raccoon band jamming around a dumpster fire in a gritty urban alley with neon signs and a sense of community among the TrashCats The raccoons are playing various instruments like guitars and drums surrounded by trash cans and graffiticovered walls The neon signs have text related to the band and the song title Love is Rubbish
+https://a0.wfh.team/media/public/gptx/gallery/file-OBUUKhqABAJRP87lAchqRmTL_1718711838_9641361.webp
+A grungestyle illustration of raccoons in a dark city alley They are gathered around a dumpster fire playing makeshift instruments and enjoying Dumpster Brew drinks The scene is lively with a rebellious and playful vibe Neon signs and graffiti add to the gritty urban atmosphere TrashCaTs logo is prominent
+https://a0.wfh.team/media/public/gptx/gallery/file-DtEPy6nopUVZp77wOYlOqUo1_1718711811_186157.webp
+A vibrant anthemic playful grungestyle album cover for Dumpster Brew It features a raccoon band jamming around a dumpster fire in a gritty urban alley with neon signs and a sense of community among the TrashCats The raccoons are playing various instruments like guitars and drums surrounded by trash cans and graffiticovered walls The neon signs have text related to the band and the song title Brew
+https://a0.wfh.team/media/public/gptx/gallery/file-CMirfcSLxPDS4QtYztrMImpJ_1718711779_1431012.webp
+A grungestyle illustration of raccoons in a dark city alley during Dumpster Fire Happy Hour Raccoons are gathered around a blazing trash can playing makeshift instruments from discarded items with graffiticovered walls and neon lights illuminating the scene The atmosphere is lively and rebellious capturing the essence of unity and celebration among the TrashCats Include the title Dumpster Fire Happy Hour in bold distressed typography at the top
+https://a0.wfh.team/media/public/gptx/gallery/file-35W15bTfRNGt79L4636kRkk8_1718711740_0578966.webp
+A vibrant anthemic playful grungestyle album cover for Dumpster Brew It features a raccoon band jamming around a dumpster fire in a gritty urban alley with neon signs and a sense of community among the TrashCats The raccoons are playing various instruments like guitars and drums surrounded by trash cans and graffiticovered walls The neon signs have text related to the band and the song title
+https://a0.wfh.team/media/public/gptx/gallery/file-HwBmE90HJurNS5B8xEe6Xd9o_1718711718_1008744.webp
+A grungestyle illustration of raccoons in a dark city alley They are gathered around a dumpster fire playing makeshift instruments and enjoying Dumpster Brew drinks The scene is lively with a rebellious and playful vibe Neon signs and graffiti add to the gritty urban atmosphere TrashCats logo is prominent
+https://a0.wfh.team/media/public/gptx/gallery/file-SuZTCSjTHJtY8lbJGsXvPPOJ_1718711716_691887.webp
+A vibrant anthemic playful grungestyle album cover for Dumpster Brew It features a raccoon band jamming around a dumpster fire in a gritty urban alley with neon signs and a sense of community among the TrashCats The raccoons are playing various instruments like guitars and drums surrounded by trash cans and graffiticovered walls The neon signs have text related to the band and the song title
+https://a0.wfh.team/media/public/gptx/gallery/file-ZD3Km6msltvHxL5zMXH6fY84_1718711693_756767.webp
+A grungestyle illustration of raccoons in a dark city alley They are gathered around a dumpster fire playing makeshift instruments and enjoying Dumpster Brew drinks The scene is lively with a rebellious and playful vibe Neon signs and graffiti add to the gritty urban atmosphere TrashCats logo is prominent
+https://a0.wfh.team/media/public/gptx/gallery/file-9IH2MI174AzfyjLyvKN4GNjE_1718711691_2326188.webp
+A vibrant anthemic playful grungestyle album cover for Dumpster Brew It features a raccoon band jamming around a dumpster fire in a gritty urban alley with neon signs and a sense of community among the TrashCats The raccoons are playing various instruments like guitars and drums surrounded by trash cans and graffiticovered walls The neon signs have text related to the band and the song title
+https://a0.wfh.team/media/public/gptx/gallery/file-5Ova2uzr43YtuEVE75NrdKhI_1718711533_2973502.webp
+A grungestyle illustration of raccoons in a dark city alley celebrating with cans of fizzy brew around a dumpster fire The scene should include elements like street art neon signs and the moon shining above The typography should read Dumpster Brew and reflect the anthemic playful grunge style Ensure the raccoons have a rebellious and playful demeanor capturing the essence of Dumpster Fire Happy Hour
+https://a0.wfh.team/media/public/gptx/gallery/file-yJJ9FXm0qBi75XUhFBADTuCH_1718711451_2128236.webp
+A grungestyle illustration of raccoons in a dark city alley playing makeshift instruments around a dumpster fire The scene is vibrant with neon lights graffiticovered walls and the raccoons wearing punk rock accessories The image should capture the anthemic playful grunge atmosphere of a Dumpster Fire Happy Hour Include typography elements with the song title Dumpster Brew and lyrics integrated into the design
+https://a0.wfh.team/media/public/gptx/gallery/file-tXPCXlBcyULhiswWaRDNfna9_1718711375_1064482.webp
+A grungestyle illustration of raccoons in a dark city alley playing makeshift instruments around a dumpster fire The scene is vibrant with neon lights graffiticovered walls and the raccoons wearing punk rock accessories The image should capture the anthemic playful grunge atmosphere of a Dumpster Fire Happy Hour Include typography elements with the song title Dumpster Brew and lyrics integrated into the design
+https://a0.wfh.team/media/public/gptx/gallery/file-CUiv6fvcHQdbhI6DZXsVpbET_1718711346_6173108.webp
+A TrashCat punk figure in a gritty urban alley holding a can of Dumpster Brew with graffiticovered walls dim streetlights and other TrashCats gathered around makeshift tables enjoying the brew The ambiance reflects a sense of community and rebellion with a moonlit sky in the background The style is anthemic playful grunge with vibrant yet gritty colors and a rebellious atmosphere The text Dumpster Brew is in a bold playful grunge font fitting the rebellious and festive mood
+https://a0.wfh.team/media/public/gptx/gallery/file-ivgZLWSxbQAjdcfwXy1wSGWK_1718711272_7648475.webp
+A TrashCat punk figure in a gritty urban alley holding a can of Dumpster Brew with graffiticovered walls dim streetlights and other TrashCats gathered around makeshift tables enjoying the brew The ambiance should reflect a sense of community and rebellion with a moonlit sky in the background The style should be anthemic playful grunge with vibrant yet gritty colors and a rebellious atmosphere The text Dumpster Brew should be in a bold playful grunge font fitting the rebellious and festive mood
+https://a0.wfh.team/media/public/gptx/gallery/file-PBaccBsUSpRgR2y5yUA9TsDc_1718711101_8012545.webp
+A TrashCat punk figure in a gritty urban alley holding a can of Dumpster Brew with graffiticovered walls dim streetlights and other TrashCats gathered around makeshift tables enjoying the brew The ambiance should reflect a sense of community and rebellion with a moonlit sky in the background The style should be anthemic playful grunge with vibrant yet gritty colors and a rebellious atmosphere The text Dumpster Brew should be in a bold playful grunge font fitting the rebellious and festive mood
+https://a0.wfh.team/media/public/gptx/gallery/file-fYscgGyjIs3q96efjNPtEm5x_1718710750_0014067.webp
+A grungestyle illustration of a raccoon band playing music in a dark city alley under the moonlight The band is surrounded by trash cans and graffiticovered walls In the background other raccoons are toasting and celebrating around a dumpster fire The scene is vibrant with a playful and rebellious atmosphere with bold distressed fonts featuring the lyrics Citys back alleys dark and bold Raccoons gather stories told TrashCats come and raise a cheer Dumpster Brew is always near
+https://a0.wfh.team/media/public/gptx/gallery/file-Hfelxcq77CfuxgtgUrZWSa8z_1718710666_4499547.webp
+A raccoon band playing grunge music in a dark city alley under the moonlight surrounded by graffiti and trash fires titled Dumpster Brew The atmosphere is anthemic playful grunge
+https://a0.wfh.team/media/public/gptx/gallery/file-jraup5lx6zrrC1hBf4yaUNYU_1718704614_699098.webp
+A gritty comicstyle cover image for the song Concrete Jungle Rumble by AvaTar ArTs The scene depicts a dark alleyway with shadows shifting and the echo of gold chains clinking City tension is palpable with heroes and villains on the brink of collision Masked faces in twilight good and evil in a constant fight and neon streaks slicing through the night SuperCrooks and Invincibleinspired characters with powerful punches and neon lights highlighting the chaotic urban setting The cover should be vibrant detailed and capture the essence of an epic superherosupervillain showdown in a concrete jungle Typography Concrete Jungle Rumble in a bold gritty font at the top
+https://a0.wfh.team/media/public/gptx/gallery/file-4MmcljDTxPHqQgP5zEbowoGw_1718704173_2392917.webp
+A gritty comicstyle cover image for the song Concrete Jungle Rumble by AvaTar ArTs The scene depicts a dark alleyway with shadows shifting and the echo of gold chains clinking City tension is palpable with heroes and villains on the brink of collision Masked faces in twilight good and evil in a constant fight and neon streaks slicing through the night SuperCrooks and Invincibleinspired characters with powerful punches and neon lights highlighting the chaotic urban setting The cover should be vibrant detailed and capture the essence of an epic superherosupervillain showdown in a concrete jungle Typography Concrete Jungle Rumble in a bold gritty font at the top
+https://a0.wfh.team/media/public/gptx/gallery/file-itM8tPlTLXhxgDxZ1KnxwnBw_1718704160_5105047.webp
+Create a gritty comicstyle cover image for the song Concrete Jungle Rumble The design should feature dark alleys shadows shifting and an echo of gold chains clinking Include masked heroes and villains in twilight with powerful punches and neon streaks slicing through the nightlight Add elements like capes swishing through smoke bloody knuckles gleaming and graffiticovered walls Emphasize the tension of a superhero and supervillain showdown with a boombap backdrop secret hideouts and heroes leaping rooftops The color scheme should be vibrant and detailed capturing the essence of a gritty urban battle
+https://a0.wfh.team/media/public/gptx/gallery/file-Iq9ghezRLJXNGJKN3pkLbOL1_1718704110_9254322.webp
+A gritty comicstyle cover image for the song Concrete Jungle Rumble The scene depicts a dark alleyway with shadows shifting and the echo of gold chains clinking City tension is palpable with heroes and villains on the brink of collision Masked faces in twilight good and evil in a constant fight and neon streaks slicing through the night SuperCrooks and Invincibleinspired characters with powerful punches and neon lights highlighting the chaotic urban setting The cover should be vibrant detailed and capture the essence of an epic superherosupervillain showdown in a concrete jungle
+https://a0.wfh.team/media/public/gptx/gallery/file-7US63mw1cdCuK42IsCsAaVIT_1718703908_4652853.webp
+A gritty comicstyle cover image for the song Concrete Jungle Rumble by AvaTar ArTs The scene depicts a city at night with dark alleys and neon lights where masked heroes and villains engage in a fierce battle Powerful punches neon streaks and shadows create a sense of tension and chaos The citys skyline is visible with buildings silhouetted against the moons cold glow Typography Concrete Jungle Rumble in a bold gritty font at the top capturing the essence of a superherosupervillain world inspired by SuperCrooks and Invincible
+https://a0.wfh.team/media/public/gptx/gallery/file-74BJFjyywLMrQ2k1bGVWgXwC_1718699952_576563.webp
+A raccoon named Casanova of the Can stands on a pile of garbage in a dimly lit alleyway adorned with discarded Valentines cards and wilted roses He spray paints Raccoons Break Hearts Not Trash Bags on the wall Nearby raccoons toast marshmallows on a trash fire embodying an ironic celebration of single life The scene is full of grunge elements and urban decay perfect for an antiValentines Day theme The text TrashCaTs is prominently displayed in a graffiti style
+https://a0.wfh.team/media/public/gptx/gallery/file-2SjSwGJvnCvkG78DGPu9gHTj_1718699952_4236016.webp
+A raccoon named Casanova of the Can stands on a pile of garbage in a dimly lit alleyway adorned with discarded Valentines cards and wilted roses He spray paints Raccoons Break Hearts Not Trash Bags on the wall Nearby raccoons toast marshmallows on a trash fire embodying an ironic celebration of single life The scene is full of grunge elements and urban decay perfect for an antiValentines Day theme
+https://a0.wfh.team/media/public/gptx/gallery/file-aNTCEIviUtPry8NduNNUoAW7_1718695774_9836833.webp
+A comic bookstyle typography illustration of ideogramai in comic book  graphic novel font and style featuring bright eyecatching colors stylized text with bold outlines and a dynamic actionpacked background The text should have a sense of motion and energy with elements like speed lines explosions and vibrant patterns in the background to create an engaging and dynamic visual impact
+https://a0.wfh.team/media/public/gptx/gallery/file-HRTuCuouNr2Fq5KGg0dfFQj2_1718695709_9407518.webp
+A comic bookstyle illustration of Leonardoai with vibrant colors bold outlines and dynamic background elements that evoke the feel of classic comic books The character Leonardoai should be depicted as a heroic figure with a confident stance futuristic attire and a glowing aura The background should include futuristic cityscapes action lines and dramatic lighting to enhance the classic comic book feel
+https://a0.wfh.team/media/public/gptx/gallery/file-Ho955SB2OJKppppAZCLZxcYm_1718670653_9164805.webp
+A gritty vibrant comicstyle cover image for the song In the Alley Where Hope Flies by AvaTar ArTs The scene depicts a raccoon in the harsh alleys of HeartBreak Alley at night surrounded by makeshift treasures created from discarded items The raccoon named Rusty stands defiantly with a determined expression holding a glowing piece of junk turned into treasure The background features dark alleys neon lights and graffiticovered walls capturing the essence of rebellion hope and transformation Typography In the Alley Where Hope Flies in a bold gritty font at the top inspired by the style and context of This Raccoons Cupids Trash
+https://a0.wfh.team/media/public/gptx/gallery/file-oIPq76gF4eRur9Zbzff9r4bB_1718670578_0661516.webp
+Create a typography cover image featuring the lyrics of the third verse of In the Alley Where Hope Flies Harsh whispers in the shadows Secrets in every 
+[END CHUNK 1/2]
+Reply with OK: [CHUNK x/TOTAL]
+Summary: A short summary of the last chunk. Keep important facts and names in the summary. Don&#039;t reply with anything else!</p>
+        </div>
+    </div>
+    <time class="time" datetime="2024-06-19T03:43:24.792Z" title="6/18/2024, 11:43:24 PM">11:43 PM</time>
+</div>
+
+
+<div class="conversation-item">
+    <div class="author GPT-3">
+        <svg width="41" height="41"><use xlink:href="#chatgpt" /></svg>
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <p>OK: [CHUNK 1/2]</p>
+<p>Summary:
+This chunk contains a series of art descriptions and prompt ideas for generating images. It includes unconventional boat designs, grunge-style typography for "AvaTar ArTs," avatars, raccoon-themed anti-Valentines illustrations, and grungy raccoon band scenes. The descriptions emphasize vibrant, edgy, and playful themes with urban and rebellious elements, perfect for album covers, profile covers, and anti-Valentines imagery.</p>
+        </div>
+    </div>
+    <time class="time" datetime="2024-06-19T03:43:29.583Z" title="6/18/2024, 11:43:29 PM">11:43 PM</time>
+</div>
+
+
+<div class="conversation-item">
+    <div class="author user">
+        <img alt="You" />
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <p>Please continue</p>
+        </div>
+    </div>
+    <time class="time" datetime="2024-06-19T03:43:36.278Z" title="6/18/2024, 11:43:36 PM">11:43 PM</time>
+</div>
+
+
+<div class="conversation-item">
+    <div class="author GPT-3">
+        <svg width="41" height="41"><use xlink:href="#chatgpt" /></svg>
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <p>[START CHUNK 2/2]
+whisper</p>
+<p><a href="https://a0.wfh.team/media/public/gptx/gallery/file-5XfKiMIX5qMB5qELMOkEZ09Q_1718660363_3279802.webp">https://a0.wfh.team/media/public/gptx/gallery/file-5XfKiMIX5qMB5qELMOkEZ09Q_1718660363_3279802.webp</a>
+A raccoon band playing music in a dark city alley under the moonlight surrounded by trash cans and graffiti-covered walls In the background, other raccoons are toasting and celebrating around a dumpster fire The scene is vibrant with a playful and rebellious atmosphere with bold distressed fonts featuring the lyrics "City's back alleys dark and bold Raccoons gather stories told TrashCats come and raise a cheer Dumpster Brew is always near"
+<a href="https://a0.wfh.team/media/public/gptx/gallery/file-Qfg2ytk9NrsfZBfPyafCpUmp_1718660363_8565464.webp">https://a0.wfh.team/media/public/gptx/gallery/file-Qfg2ytk9NrsfZBfPyafCpUmp_1718660363_8565464.webp</a>
+A grunge-style illustration of a raccoon band playing music in a dark city alley under the moonlight surrounded by graffiti and trash fires The atmosphere is anthemic playful grunge
+<a href="https://a0.wfh.team/media/public/gptx/gallery/file-lHQI5jBzoWfBaNgmUM3IsOPk_1718656098_8654280.webp">https://a0.wfh.team/media/public/gptx/gallery/file-lHQI5jBzoWfBaNgmUM3IsOPk_1718656098_8654280.webp</a>
+A vibrant anthemic playful grunge-style album cover for "Love is Rubbish"</p>
+        </div>
+    </div>
+    <time class="time" datetime="2024-06-19T03:43:47.363Z" title="6/18/2024, 11:43:47 PM">11:43 PM</time>
+</div>
+
+
+<div class="conversation-item">
+    <div class="author user">
+        <img alt="You" />
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <p>in a table format | URL | Info |</p>
+        </div>
+    </div>
+    <time class="time" datetime="2024-06-19T03:44:00.945Z" title="6/18/2024, 11:44:00 PM">11:44 PM</time>
+</div>
+
+
+<div class="conversation-item">
+    <div class="author GPT-3">
+        <svg width="41" height="41"><use xlink:href="#chatgpt" /></svg>
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-Xu9JojMZS9kasIcMbQp7JfcM_1718753537_4952116.webp">file-Xu9JojMZS9kasIcMbQp7JfcM_1718753537_4952116.webp</a></td>
+<td>A stunning collection of unconventional boats on a calm sea. Includes swan boat, futuristic boat powered by blue energy, artistic raft. Serene sunset background.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-5e8ayJxoISon7RqwipNNAwCF_1718743098_812686.webp">file-5e8ayJxoISon7RqwipNNAwCF_1718743098_812686.webp</a></td>
+<td>Grunge-style typography cover images with text "AvaTar ArTs". Reflects diverse artistic styles, raccoons, rebellious vibes, neon lights, graffiti. Background scenes like dark alleys and dumpster fires.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-oIy5J5FdxTsGLHduhj5RYAHs_1718743006_64108.webp">file-oIy5J5FdxTsGLHduhj5RYAHs_1718743006_64108.webp</a></td>
+<td>Typography design with text "AvaTar ArTs" in comic book font and style. Vibrant colors, dynamic bold lettering, speech bubbles, and action lines. Solid contrasting background.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-Tj6qDRtJkWj0O1ACuCLGxJbE_1718743006_6389308.webp">file-Tj6qDRtJkWj0O1ACuCLGxJbE_1718743006_6389308.webp</a></td>
+<td>Avatar of a young creative individual with short stylish hair, casual artsy outfit, holding a sketchbook and paintbrush. Vibrant solid color background.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-RCIIz8ZpymuumwD4YpXhgVaS_1718715879_3537693.webp">file-RCIIz8ZpymuumwD4YpXhgVaS_1718715879_3537693.webp</a></td>
+<td>Raccoon named Casanova in a dimly lit alley, graffiti "Raccoons Break Hearts Not Trash Bags", raccoons toasting marshmallows on a trash fire. Anti-Valentines Day theme.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-uajvLyYt2mo4Csdp9mpkEF1U_1718715799_5514703.webp">file-uajvLyYt2mo4Csdp9mpkEF1U_1718715799_5514703.webp</a></td>
+<td>Raccoon named Casanova in a dimly lit alley, graffiti "Raccoons Break Hearts Not Trash Bags", raccoons toasting marshmallows on a trash fire. Anti-Valentines Day theme.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-neSpivR8xu5seaw4Kb4KGdsl_1718712975_4610307.webp">file-neSpivR8xu5seaw4Kb4KGdsl_1718712975_4610307.webp</a></td>
+<td>Raccoon in a moonlit alley holding a guitar, dark cityscape, glowing streetlights. Indiefolk rock aesthetic.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-idiZSELJktxe54yB65iCEaSU_1718712956_913329.webp">file-idiZSELJktxe54yB65iCEaSU_1718712956_913329.webp</a></td>
+<td>Grunge-style illustrations of a raccoon in a dark alley playing a guitar. Melancholic scenes with graffiti, broken dreams, and a howling cat. Title "Echoes of Moonlight".</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-KmbH6rNpIcxQEyygH1QnuuiL_1718712872_4288468.webp">file-KmbH6rNpIcxQEyygH1QnuuiL_1718712872_4288468.webp</a></td>
+<td>Grunge-style illustration of a raccoon in a dark alley playing a guitar. Melancholic scene with graffiti, broken dreams, and a howling cat. Title "Echoes of Moonlight".</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-BZ4SUc5t1HfyX0C3lzwZhyKu_1718712722_5659463.webp">file-BZ4SUc5t1HfyX0C3lzwZhyKu_1718712722_5659463.webp</a></td>
+<td>Grunge-style illustration of a raccoon in a dark alley playing a guitar. Melancholic scene with graffiti, broken dreams, and a howling cat. Title "Echoes of Moonlight".</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-pQPBXUGDUbYrPyysSbbuuDtV_1718712504_4892802.webp">file-pQPBXUGDUbYrPyysSbbuuDtV_1718712504_4892802.webp</a></td>
+<td>Grunge-style illustration of raccoons in a dark city alley during Dumpster Fire Happy Hour. Raccoons playing makeshift instruments around a trash fire, graffiti, neon lights. Title "TrashCaTs".</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-sa4jefc6KJuMueA6tzyTyQcB_1718712455_1116664.webp">file-sa4jefc6KJuMueA6tzyTyQcB_1718712455_1116664.webp</a></td>
+<td>Grunge-style illustration of raccoons in a dark city alley during Dumpster Fire Happy Hour. Raccoons playing makeshift instruments around a trash fire, graffiti, neon lights. Title "Dumpster".</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-Td9SUOCM0cwdeEviXwurKHkC_1718712312_1043878.webp">file-Td9SUOCM0cwdeEviXwurKHkC_1718712312_1043878.webp</a></td>
+<td>Grunge-style illustration of raccoons in a dark city alley during Dumpster Fire Happy Hour. Raccoons playing makeshift instruments around a trash fire, graffiti, neon lights. Title "Dumpster".</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-hVnUgAKvQv7qlXlVmXRvAUiW_1718712259_6230297.webp">file-hVnUgAKvQv7qlXlVmXRvAUiW_1718712259_6230297.webp</a></td>
+<td>Grunge-style illustration of raccoons in a dark city alley during Dumpster Fire Happy Hour. Raccoons playing makeshift instruments around a trash fire, graffiti, neon lights. Title "Dumpster".</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-G0jmOX0STvhGhJMpsVP1OlUV_1718712257_6238482.webp">file-G0jmOX0STvhGhJMpsVP1OlUV_1718712257_6238482.webp</a></td>
+<td>Grunge-style illustration of raccoons in a dark city alley during Dumpster Fire Happy Hour. Raccoons playing makeshift instruments around a trash fire, graffiti, neon lights. Title "Dumpster Fire Happy Hour".</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-wEpshVESp64kLlTrlyxQbj68_1718711876_7703128.webp">file-wEpshVESp64kLlTrlyxQbj68_1718711876_7703128.webp</a></td>
+<td>Vibrant, anthemic, playful grunge-style album cover for "Love is Rubbish". Raccoon band jamming around a dumpster fire in an urban alley, neon signs.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-OBUUKhqABAJRP87lAchqRmTL_1718711838_9641361.webp">file-OBUUKhqABAJRP87lAchqRmTL_1718711838_9641361.webp</a></td>
+<td>Grunge-style illustration of raccoons in a dark city alley. Raccoons around a dumpster fire playing makeshift instruments, enjoying drinks. Neon signs and graffiti. Title "TrashCaTs".</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-DtEPy6nopUVZp77wOYlOqUo1_1718711811_186157.webp">file-DtEPy6nopUVZp77wOYlOqUo1_1718711811_186157.webp</a></td>
+<td>Vibrant, anthemic, playful grunge-style album cover for "Dumpster Brew". Raccoon band jamming around a dumpster fire in an urban alley, neon signs.</td>
+</tr>
+<tr>
+<td>[file-CMirfcSLxPDS4QtYztrM</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+        </div>
+    </div>
+    <time class="time" datetime="2024-06-19T03:44:56.600Z" title="6/18/2024, 11:44:56 PM">11:44 PM</time>
+</div>
+
+
+<div class="conversation-item">
+    <div class="author user">
+        <img alt="You" />
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <p>Please continue</p>
+        </div>
+    </div>
+    <time class="time" datetime="2024-06-19T03:45:08.022Z" title="6/18/2024, 11:45:08 PM">11:45 PM</time>
+</div>
+
+
+<div class="conversation-item">
+    <div class="author GPT-3">
+        <svg width="41" height="41"><use xlink:href="#chatgpt" /></svg>
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-CMirfcSLxPDS4QtYztrMImpJ_1718711779_1431012.webp">file-CMirfcSLxPDS4QtYztrMImpJ_1718711779_1431012.webp</a></td>
+<td>Grunge-style illustration of raccoons in a dark city alley during Dumpster Fire Happy Hour. Raccoons playing makeshift instruments around a trash fire, graffiti, neon lights. Title "Dumpster Fire Happy Hour".</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-35W15bTfRNGt79L4636kRkk8_1718711740_0578966.webp">file-35W15bTfRNGt79L4636kRkk8_1718711740_0578966.webp</a></td>
+<td>Vibrant, anthemic, playful grunge-style album cover for "Dumpster Brew". Raccoon band jamming around a dumpster fire in an urban alley, neon signs.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-HwBmE90HJurNS5B8xEe6Xd9o_1718711718_1008744.webp">file-HwBmE90HJurNS5B8xEe6Xd9o_1718711718_1008744.webp</a></td>
+<td>Grunge-style illustration of raccoons in a dark city alley. Raccoons around a dumpster fire playing makeshift instruments, enjoying drinks. Neon signs and graffiti. Title "TrashCats".</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-SuZTCSjTHJtY8lbJGsXvPPOJ_1718711716_691887.webp">file-SuZTCSjTHJtY8lbJGsXvPPOJ_1718711716_691887.webp</a></td>
+<td>Vibrant, anthemic, playful grunge-style album cover for "Dumpster Brew". Raccoon band jamming around a dumpster fire in an urban alley, neon signs.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-ZD3Km6msltvHxL5zMXH6fY84_1718711693_756767.webp">file-ZD3Km6msltvHxL5zMXH6fY84_1718711693_756767.webp</a></td>
+<td>Grunge-style illustration of raccoons in a dark city alley. Raccoons around a dumpster fire playing makeshift instruments, enjoying drinks. Neon signs and graffiti. Title "TrashCats".</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-9IH2MI174AzfyjLyvKN4GNjE_1718711691_2326188.webp">file-9IH2MI174AzfyjLyvKN4GNjE_1718711691_2326188.webp</a></td>
+<td>Vibrant, anthemic, playful grunge-style album cover for "Dumpster Brew". Raccoon band jamming around a dumpster fire in an urban alley, neon signs.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-5Ova2uzr43YtuEVE75NrdKhI_1718711533_2973502.webp">file-5Ova2uzr43YtuEVE75NrdKhI_1718711533_2973502.webp</a></td>
+<td>Grunge-style illustration of raccoons in a dark city alley celebrating with cans of fizzy brew around a dumpster fire. Street art, neon signs, and moonlight. Title "Dumpster Brew".</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-yJJ9FXm0qBi75XUhFBADTuCH_1718711451_2128236.webp">file-yJJ9FXm0qBi75XUhFBADTuCH_1718711451_2128236.webp</a></td>
+<td>Grunge-style illustration of raccoons in a dark city alley playing makeshift instruments around a dumpster fire. Vibrant neon lights, graffiti, punk rock accessories. Title "Dumpster Brew".</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-tXPCXlBcyULhiswWaRDNfna9_1718711375_1064482.webp">file-tXPCXlBcyULhiswWaRDNfna9_1718711375_1064482.webp</a></td>
+<td>Grunge-style illustration of raccoons in a dark city alley playing makeshift instruments around a dumpster fire. Vibrant neon lights, graffiti, punk rock accessories. Title "Dumpster Brew".</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-CUiv6fvcHQdbhI6DZXsVpbET_1718711346_6173108.webp">file-CUiv6fvcHQdbhI6DZXsVpbET_1718711346_6173108.webp</a></td>
+<td>TrashCat punk figure in a gritty urban alley holding a can of Dumpster Brew. Graffiti-covered walls, dim streetlights, TrashCats gathered around makeshift tables. Rebellious atmosphere. Title "Dumpster Brew".</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-ivgZLWSxbQAjdcfwXy1wSGWK_1718711272_7648475.webp">file-ivgZLWSxbQAjdcfwXy1wSGWK_1718711272_7648475.webp</a></td>
+<td>TrashCat punk figure in a gritty urban alley holding a can of Dumpster Brew. Graffiti-covered walls, dim streetlights, TrashCats gathered around makeshift tables. Rebellious atmosphere. Title "Dumpster Brew".</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-PBaccBsUSpRgR2y5yUA9TsDc_1718711101_8012545.webp">file-PBaccBsUSpRgR2y5yUA9TsDc_1718711101_8012545.webp</a></td>
+<td>TrashCat punk figure in a gritty urban alley holding a can of Dumpster Brew. Graffiti-covered walls, dim streetlights, TrashCats gathered around makeshift tables. Rebellious atmosphere. Title "Dumpster Brew".</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-fYscgGyjIs3q96efjNPtEm5x_1718710750_0014067.webp">file-fYscgGyjIs3q96efjNPtEm5x_1718710750_0014067.webp</a></td>
+<td>Grunge-style illustration of a raccoon band playing music in a dark city alley under the moonlight. Raccoons celebrating around a dumpster fire. Title "City's back alleys dark and bold Raccoons gather stories told TrashCats come and raise a cheer Dumpster Brew is always near".</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-Hfelxcq77CfuxgtgUrZWSa8z_1718710666_4499547.webp">file-Hfelxcq77CfuxgtgUrZWSa8z_1718710666_4499547.webp</a></td>
+<td>Raccoon band playing grunge music in a dark city alley under the moonlight surrounded by graffiti and trash fires. Title "Dumpster Brew".</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-jraup5lx6zrrC1hBf4yaUNYU_1718704614_699098.webp">file-jraup5lx6zrrC1hBf4yaUNYU_1718704614_699098.webp</a></td>
+<td>Gritty comic-style cover image for the song "Concrete Jungle Rumble" by AvaTar ArTs. Dark alleyway with shifting shadows, gold chains clinking, city tension, masked heroes and villains, neon streaks.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-4MmcljDTxPHqQgP5zEbowoGw_1718704173_2392917.webp">file-4MmcljDTxPHqQgP5zEbowoGw_1718704173_2392917.webp</a></td>
+<td>Gritty comic-style cover image for the song "Concrete Jungle Rumble" by AvaTar ArTs. Dark alleyway with shifting shadows, gold chains clinking, city tension, masked heroes and villains, neon streaks.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-itM8tPlTLXhxgDxZ1KnxwnBw_1718704160_5105047.webp">file-itM8tPlTLXhxgDxZ1KnxwnBw_1718704160_5105047.webp</a></td>
+<td>Gritty comic-style cover image for the song "Concrete Jungle Rumble". Dark alleys, shadows, gold chains clinking, masked heroes and villains, neon streaks, powerful punches, graffiti-covered walls.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-Iq9ghezRLJXNGJKN3pkLbOL1_1718704110_9254322.webp">file-Iq9ghezRLJXNGJKN3pkLbOL1_1718704110_9254322.webp</a></td>
+<td>Gritty comic-style cover image for the song "Concrete Jungle Rumble". Dark</td>
+</tr>
+</tbody>
+</table>
+        </div>
+    </div>
+    <time class="time" datetime="2024-06-19T03:46:07.045Z" title="6/18/2024, 11:46:07 PM">11:46 PM</time>
+</div>
+
+
+<div class="conversation-item">
+    <div class="author user">
+        <img alt="You" />
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <p>Please continue</p>
+        </div>
+    </div>
+    <time class="time" datetime="2024-06-19T03:46:17.324Z" title="6/18/2024, 11:46:17 PM">11:46 PM</time>
+</div>
+
+
+<div class="conversation-item">
+    <div class="author GPT-3">
+        <svg width="41" height="41"><use xlink:href="#chatgpt" /></svg>
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-Iq9ghezRLJXNGJKN3pkLbOL1_1718704110_9254322.webp">file-Iq9ghezRLJXNGJKN3pkLbOL1_1718704110_9254322.webp</a></td>
+<td>Gritty comic-style cover image for the song "Concrete Jungle Rumble". Dark alleyway with shifting shadows, gold chains clinking, city tension, masked heroes and villains, neon streaks, powerful punches.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-7US63mw1cdCuK42IsCsAaVIT_1718703908_4652853.webp">file-7US63mw1cdCuK42IsCsAaVIT_1718703908_4652853.webp</a></td>
+<td>Gritty comic-style cover image for the song "Concrete Jungle Rumble" by AvaTar ArTs. Dark alleys, neon lights, masked heroes and villains in a fierce battle, city skyline.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-74BJFjyywLMrQ2k1bGVWgXwC_1718699952_576563.webp">file-74BJFjyywLMrQ2k1bGVWgXwC_1718699952_576563.webp</a></td>
+<td>Raccoon named Casanova in a dimly lit alley, graffiti "Raccoons Break Hearts Not Trash Bags", raccoons toasting marshmallows on a trash fire. Anti-Valentines Day theme.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-2SjSwGJvnCvkG78DGPu9gHTj_1718699952_4236016.webp">file-2SjSwGJvnCvkG78DGPu9gHTj_1718699952_4236016.webp</a></td>
+<td>Raccoon named Casanova in a dimly lit alley, graffiti "Raccoons Break Hearts Not Trash Bags", raccoons toasting marshmallows on a trash fire. Anti-Valentines Day theme.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-aNTCEIviUtPry8NduNNUoAW7_1718695774_9836833.webp">file-aNTCEIviUtPry8NduNNUoAW7_1718695774_9836833.webp</a></td>
+<td>Comic book-style typography illustration of "ideogramai" with bright colors, bold outlines, dynamic background elements, speed lines, explosions.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-HRTuCuouNr2Fq5KGg0dfFQj2_1718695709_9407518.webp">file-HRTuCuouNr2Fq5KGg0dfFQj2_1718695709_9407518.webp</a></td>
+<td>Comic book-style illustration of "Leonardoai" with vibrant colors, bold outlines, dynamic background elements. Heroic figure, futuristic attire, glowing aura, futuristic cityscapes, action lines.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-Ho955SB2OJKppppAZCLZxcYm_1718670653_9164805.webp">file-Ho955SB2OJKppppAZCLZxcYm_1718670653_9164805.webp</a></td>
+<td>Gritty vibrant comic-style cover image for the song "In the Alley Where Hope Flies" by AvaTar ArTs. Raccoon in harsh alleys of HeartBreak Alley at night, holding a glowing piece of junk turned into treasure. Rebellion, hope, transformation.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-oIPq76gF4eRur9Zbzff9r4bB_1718670578_0661516.webp">file-oIPq76gF4eRur9Zbzff9r4bB_1718670578_0661516.webp</a></td>
+<td>Typography cover image featuring the lyrics of the third verse of "In the Alley Where Hope Flies". Harsh whispers in the shadows, secrets in every corner.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-5XfKiMIX5qMB5qELMOkEZ09Q_1718660363_3279802.webp">file-5XfKiMIX5qMB5qELMOkEZ09Q_1718660363_3279802.webp</a></td>
+<td>Raccoon band playing music in a dark city alley under the moonlight, surrounded by trash cans and graffiti-covered walls. Raccoons toasting and celebrating around a dumpster fire. Playful and rebellious atmosphere.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-Qfg2ytk9NrsfZBfPyafCpUmp_1718660363_8565464.webp">file-Qfg2ytk9NrsfZBfPyafCpUmp_1718660363_8565464.webp</a></td>
+<td>Grunge-style illustration of a raccoon band playing music in a dark city alley under the moonlight, surrounded by graffiti and trash fires. Anthemic playful grunge atmosphere.</td>
+</tr>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-lHQI5jBzoWfBaNgmUM3IsOPk_1718656098_8654280.webp">file-lHQI5jBzoWfBaNgmUM3IsOPk_1718656098_8654280.webp</a></td>
+<td>Vibrant anthemic playful grunge-style album cover for "Love is Rubbish".</td>
+</tr>
+</tbody>
+</table>
+        </div>
+    </div>
+    <time class="time" datetime="2024-06-19T03:46:47.213Z" title="6/18/2024, 11:46:47 PM">11:46 PM</time>
+</div>
+
+
+<div class="conversation-item">
+    <div class="author user">
+        <img alt="You" />
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <p>Please continue</p>
+        </div>
+    </div>
+    <time class="time" datetime="2024-06-19T03:46:55.262Z" title="6/18/2024, 11:46:55 PM">11:46 PM</time>
+</div>
+
+
+<div class="conversation-item">
+    <div class="author GPT-3">
+        <svg width="41" height="41"><use xlink:href="#chatgpt" /></svg>
+    </div>
+    <div class="conversation-content-wrapper">
+        <div class="conversation-content">
+            <table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://a0.wfh.team/media/public/gptx/gallery/file-lHQI5jBzoWfBaNgmUM3IsOPk_1718656098_8654280.webp">file-lHQI5jBzoWfBaNgmUM3IsOPk_1718656098_8654280.webp</a></td>
+<td>Vibrant anthemic playful grunge-style album cover for "Love is Rubbish". Raccoon band jamming around a dumpster fire in an urban alley with neon signs and a sense of community among the TrashCats.</td>
+</tr>
+</tbody>
+</table>
+<p>This concludes the table with the provided URLs and their respective info.</p>
+        </div>
+    </div>
+    <time class="time" datetime="2024-06-19T03:47:01.202Z" title="6/18/2024, 11:47:01 PM">11:47 PM</time>
+</div>
+    </div>
+
+
+    <script>
+        function toggleDarkMode(mode) {
+            const html = document.querySelector('html')
+            const isDarkMode = html.getAttribute('data-theme') === 'dark'
+            const newMode = mode || (isDarkMode ? 'light' : 'dark')
+            if (newMode !== 'dark' && newMode !== 'light') return
+            html.setAttribute('data-theme', newMode)
+
+            const url = new URL(window.location)
+            url.searchParams.set('theme', newMode)
+            window.history.replaceState({}, '', url)
+        }
+
+        // Support for ?theme=dark
+        const urlParams = new URLSearchParams(window.location.search)
+        const theme = urlParams.get('theme')
+        if (theme) toggleDarkMode(theme)
+
+        document.querySelector('.toggle').addEventListener('click', () => toggleDarkMode())
+    </script>
+</body>
+
+</html>

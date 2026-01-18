@@ -1,0 +1,9 @@
+{
+  "name": "Retention: Daily Art Drop",
+  "active": false,
+  "nodes": [
+    {"parameters": {"triggerTimes": {"item": [{"mode": "everyDay", "hour": 9}]}}, "id": "Cron1", "name": "Cron", "type": "n8n-nodes-base.cron", "typeVersion": 2, "position": [300, 300]},
+    {"parameters": {"command": "python3", "arguments": ["/Users/steven/ai-sites/passive-income-empire/retention-hub/daily-art/generate_daily_art.py"]}, "id": "Exec1", "name": "Generate Art Drop", "type": "n8n-nodes-base.executeCommand", "typeVersion": 1, "position": [560, 300]}
+  ],
+  "connections": {"Cron": {"main": [[{"node": "Generate Art Drop", "type": "main", "index": 0}]]}}
+}

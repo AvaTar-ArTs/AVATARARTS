@@ -1,0 +1,684 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Raccoon Image Prompts (6)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="16f36221-d8b2-8178-bb21-f6956f397796" class="page sans"><header><h1 class="page-title">Raccoon Image Prompts (6)</h1><p class="page-description"></p></header><div class="page-body"><p id="16f36221-d8b2-8106-aacf-e194ccd00fee" class="block-color-blue_background">ChatGPT</p><p id="16f36221-d8b2-8164-922f-db8d308e6686" class=""><mark class="highlight-default">Here is the album cover for &quot;Love is Rubbish.&quot; If you need further variations or any other modifications, let me know!</mark></p><p id="16f36221-d8b2-819c-8431-d8e0fc565ac8" class=""><mark class="highlight-default">12:28 AM00:28</mark></p><hr id="16f36221-d8b2-81e2-9b2a-f121d136e2fb"/><p id="16f36221-d8b2-81c3-a7d7-d8a997c877e4" class="block-color-teal_background">User:</p><p id="16f36221-d8b2-816b-a708-fc7f2863b906" class=""><mark class="highlight-default"><a href="https://files.oaiusercontent.com/file-2ZSXpXBm31uWgHHINysJxlxH?se=2025-01-02T00%3A17%3A55Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D299%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3Dfile-0LbdKQOuph866OwbqVZKoTNf%5F1718588556%5F7049987.png&amp;sig=gsWmfStGgGBFtPmJ2QCmjl3iwj17jtw2sVW%2BHGDSuZU%3D">https://files.oaiusercontent.com/file-2ZSXpXBm31uWgHHINysJxlxH?se=2025-01-02T00%3A17%3A55Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D299%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3Dfile-0LbdKQOuph866OwbqVZKoTNf%5F1718588556%5F7049987.png&amp;sig=gsWmfStGgGBFtPmJ2QCmjl3iwj17jtw2sVW%2BHGDSuZU%3D</a></mark></p><p id="16f36221-d8b2-8129-93ca-e2e39823ad6d" class=""><mark class="highlight-default"><a href="https://files.oaiusercontent.com/file-tBIBbBuC7f85HVSjDEsBHfpC?se=2025-01-02T00%3A17%3A55Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D299%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3Dfile-3emCeCi06yZScRXfKqpMkIGt%5F1718430774%5F170787.png&amp;sig=5E9cBiJwD5WN7XOjP1g56%2B8zWJhomb3KSQq76Zq2uBw%3D">https://files.oaiusercontent.com/file-tBIBbBuC7f85HVSjDEsBHfpC?se=2025-01-02T00%3A17%3A55Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D299%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3Dfile-3emCeCi06yZScRXfKqpMkIGt%5F1718430774%5F170787.png&amp;sig=5E9cBiJwD5WN7XOjP1g56%2B8zWJhomb3KSQq76Zq2uBw%3D</a></mark></p><p id="16f36221-d8b2-81b4-97ab-d0625915d155" class=""><mark class="highlight-default"><a href="https://files.oaiusercontent.com/file-o8ALiepJdUZxOJztG1jhOxac?se=2025-01-02T00%3A17%3A55Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D299%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3Dfile-5CdNwnCHVmlB1LE8rKmuQvTA%5F1718316404%5F0656266.png&amp;sig=Zb6kfGU5qN8Q22fiVq/qy//ZDvIL9avkIIAPjz3MrNE%3D">https://files.oaiusercontent.com/file-o8ALiepJdUZxOJztG1jhOxac?se=2025-01-02T00%3A17%3A55Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D299%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3Dfile-5CdNwnCHVmlB1LE8rKmuQvTA%5F1718316404%5F0656266.png&amp;sig=Zb6kfGU5qN8Q22fiVq/qy//ZDvIL9avkIIAPjz3MrNE%3D</a></mark></p><p id="16f36221-d8b2-81d1-a819-ec3bbcc611e5" class=""><mark class="highlight-default"><a href="https://files.oaiusercontent.com/file-eI1RBjrzGQAbn2081ifNYzyq?se=2025-01-02T00%3A17%3A56Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D299%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3Dfile-7U5W0jNLSE5pvoVbBMdsYNMP%5F1718587111%5F6545136.png&amp;sig=5X5awz8eUULjwLVu8alrmyuIKIAEevHClMGVRzkhxY0%3D">https://files.oaiusercontent.com/file-eI1RBjrzGQAbn2081ifNYzyq?se=2025-01-02T00%3A17%3A56Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D299%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3Dfile-7U5W0jNLSE5pvoVbBMdsYNMP%5F1718587111%5F6545136.png&amp;sig=5X5awz8eUULjwLVu8alrmyuIKIAEevHClMGVRzkhxY0%3D</a></mark></p><p id="16f36221-d8b2-816c-bc15-d40e07461cb2" class="block-color-blue_background">ChatGPT</p><p id="16f36221-d8b2-8184-9fe7-fa92115467ce" class=""><mark class="highlight-default">Here are the typography cover images for &quot;Echoes of Moonlight,&quot; inspired by acoustic indie-folk rock with an edgy touch:</mark></p><ol type="1" id="16f36221-d8b2-8135-8886-d72161237b9f" class="numbered-list" start="1"><li><mark class="highlight-default"><strong>Raccoon by Moonlight</strong></mark><ul id="16f36221-d8b2-8149-8194-fc568e8019f1" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default">A raccoon standing in a moonlit alley, holding a guitar with strings made of silver threads. The cityscape in the background is dark with glowing streetlights casting elongated shadows.</mark></li></ul><ul id="16f36221-d8b2-8199-85f2-d02737b31f1b" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default"><strong>Title:</strong></mark><mark class="highlight-default"> Echoes of Moonlight: Raccoon by Moonlight</mark></li></ul><ul id="16f36221-d8b2-8121-ba76-e7713649fd38" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default"><strong>Keywords:</strong></mark><mark class="highlight-default"> raccoon, moonlight, alley, guitar, cityscape, streetlights, silver strings, indie-folk, edgy, night, urban wildlife, musical, nocturnal, acoustic, rock, poetic, serene, urban setting, whimsical, reflective.</mark></li></ul><ul id="16f36221-d8b2-81c0-ae0f-d1decc4dedb8" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default"><strong>Description:</strong></mark><mark class="highlight-default"> &quot;Echoes of Moonlight: Raccoon by Moonlight&quot; captures a serene raccoon playing a silver-stringed guitar under the soft glow of streetlights. Perfect for fans of indie-folk rock, this design brings a poetic, urban charm to life.</mark></li></ul></li></ol><ol type="1" id="16f36221-d8b2-81b9-bde6-e1c88cc84af5" class="numbered-list" start="2"><li><mark class="highlight-default"><strong>Lone Raccoon Serenade</strong></mark><ul id="16f36221-d8b2-815e-93c7-fc8e9c34f44b" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default">A raccoon sitting on a rooftop, strumming a guitar under a starlit sky. The city below is bustling, but the raccoon finds solace in its music.</mark></li></ul><ul id="16f36221-d8b2-8107-bb62-eac121266fdd" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default"><strong>Title:</strong></mark><mark class="highlight-default"> Echoes of Moonlight: Lone Raccoon Serenade</mark></li></ul><ul id="16f36221-d8b2-8116-9d21-d47ac1523e40" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default"><strong>Keywords:</strong></mark><mark class="highlight-default"> raccoon, rooftop, guitar, starlit sky, cityscape, music, serenity, night, indie-folk, acoustic rock, urban, solitude, tranquility, whimsical, reflective, nocturnal, skyline, poetic, peaceful.</mark></li></ul><ul id="16f36221-d8b2-816b-bfd8-ffa420eff485" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default"><strong>Description:</strong></mark><mark class="highlight-default"> &quot;Echoes of Moonlight: Lone Raccoon Serenade&quot; features a raccoon strumming a guitar on a rooftop under a starry sky. Ideal for those who love the quiet moments of city life, it captures a tranquil, reflective mood.</mark></li></ul></li></ol><ol type="1" id="16f36221-d8b2-812d-ae5e-d3653d7f19fe" class="numbered-list" start="3"><li><mark class="highlight-default"><strong>Raccoon’s Alley Concert</strong></mark><ul id="16f36221-d8b2-8113-ac8c-dd43bba9a995" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default">A raccoon performing an impromptu concert in a dark alley, illuminated by the soft glow of the moon and streetlights. The audience consists of other urban wildlife.</mark></li></ul><ul id="16f36221-d8b2-815c-9ce0-fb628120affe" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default"><strong>Title:</strong></mark><mark class="highlight-default"> Echoes of Moonlight: Raccoon’s Alley Concert</mark></li></ul><ul id="16f36221-d8b2-813a-83da-cc2fd6463585" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default"><strong>Keywords:</strong></mark><mark class="highlight-default"> raccoon, alley, concert, moonlight, streetlights, urban wildlife, guitar, indie-folk, acoustic rock, night, city life, performance, whimsical, nocturnal, musical, serene, edgy, poetic, reflective.</mark></li></ul><ul id="16f36221-d8b2-8162-aeee-c35ac4e0983a" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default"><strong>Description:</strong></mark><mark class="highlight-default"> &quot;Echoes of Moonlight: Raccoon’s Alley Concert&quot; brings to life a raccoon performing for an audience of urban wildlife under the moonlit sky. Perfect for music lovers and city dwellers, this design highlights the beauty of spontaneous moments.</mark></li></ul></li></ol><ol type="1" id="16f36221-d8b2-8160-8715-f7806a8e331b" class="numbered-list" start="4"><li><mark class="highlight-default"><strong>Moonlit Guitarist Raccoon</strong></mark><ul id="16f36221-d8b2-8192-ba99-cd18d5a7ac37" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default">A raccoon sitting on a park bench, playing a guitar with the moon shining brightly overhead. The park is serene, with only the raccoon and its music breaking the silence.</mark></li></ul><ul id="16f36221-d8b2-8138-b411-c8d25861d1b3" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default"><strong>Title:</strong></mark><mark class="highlight-default"> Echoes of Moonlight: Moonlit Guitarist Raccoon</mark></li></ul><ul id="16f36221-d8b2-814e-a39c-ca258df8471e" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default"><strong>Keywords:</strong></mark><mark class="highlight-default"> raccoon, park bench, guitar, moonlight, park, serene, night, music, indie-folk, acoustic rock, urban wildlife, tranquility, peaceful, whimsical, nocturnal, poetic, reflective, nature, solitude.</mark></li></ul><ul id="16f36221-d8b2-81c7-acf3-ca8349214bb3" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-default"><strong>Description:</strong></mark><mark class="highlight-default"> &quot;Echoes of Moonlight: Moonlit Guitarist Raccoon&quot; features a raccoon playing a guitar on a quiet park bench under the bright moon. This design is ideal for those who appreciate the serene, reflective moments in nature and music.</mark></li></ul></li></ol><p id="16f36221-d8b2-8195-81fc-c134055a1da6" class=""><mark class="highlight-default">These covers can be used in various pixel sizes, such as 1024x1024, 1080x1920, and 1280x720, ensuring versatility for different media and formats.</mark></p><p id="16f36221-d8b2-81a3-b3f1-ea77445182a2" class=""><mark class="highlight-default">04:41 PM16:41</mark></p><hr id="16f36221-d8b2-815e-bd65-f3bd2fb9d0ff"/><p id="16f36221-d8b2-8197-9f33-d122ea16de78" class="block-color-teal_background">User:</p><p id="16f36221-d8b2-81bd-90c2-d290789febd6" class=""><mark class="highlight-default"><a href="https://files.oaiusercontent.com/file-PBaccBsUSpRgR2y5yUA9TsDc?se=2025-01-02T00%3A17%3A52Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D604800%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3D46f9789a-4883-4fb8-8b5d-c8e112c7e248.webp&amp;sig=OC4Tq/l6Es2gF%2ByjCDZ4sNi7iHbE5akaKxFvsfCfHno%3D">https://files.oaiusercontent.com/file-PBaccBsUSpRgR2y5yUA9TsDc?se=2025-01-02T00%3A17%3A52Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D604800%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3D46f9789a-4883-4fb8-8b5d-c8e112c7e248.webp&amp;sig=OC4Tq/l6Es2gF%2ByjCDZ4sNi7iHbE5akaKxFvsfCfHno%3D</a></mark></p><p id="16f36221-d8b2-81f7-bace-f061f74d4003" class=""><mark class="highlight-default"><a href="https://files.oaiusercontent.com/file-msK5ge4FvYdWVyY0sssOwyuu?se=2025-01-02T00%3A17%3A56Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D299%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3Dfile-60rXtajPBBH5IVfeRNj9Rhfc%5F1718360724%5F8777523.png&amp;sig=h14xMKwkBsMSVjoGFujh2NXPvh3uTuD9UoqEaSy1lcg%3D">https://files.oaiusercontent.com/file-msK5ge4FvYdWVyY0sssOwyuu?se=2025-01-02T00%3A17%3A56Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D299%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3Dfile-60rXtajPBBH5IVfeRNj9Rhfc%5F1718360724%5F8777523.png&amp;sig=h14xMKwkBsMSVjoGFujh2NXPvh3uTuD9UoqEaSy1lcg%3D</a></mark></p><p id="16f36221-d8b2-8155-8818-eb288b4cc00f" class=""><mark class="highlight-default"><a href="https://files.oaiusercontent.com/file-llcFdWsGfSlJHo7B9TdqBChH?se=2025-01-02T00%3A17%3A56Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D299%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3Dfile-71X3LaWF6wzhHwU9Pm8vxcT8%5F1718163889%5F6604412.png&amp;sig=YGuPCXxQvh1gTT3021mogS03eIfHdnxdQVeKY5K2S%2Bo%3D">https://files.oaiusercontent.com/file-llcFdWsGfSlJHo7B9TdqBChH?se=2025-01-02T00%3A17%3A56Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D299%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3Dfile-71X3LaWF6wzhHwU9Pm8vxcT8%5F1718163889%5F6604412.png&amp;sig=YGuPCXxQvh1gTT3021mogS03eIfHdnxdQVeKY5K2S%2Bo%3D</a></mark></p><p id="16f36221-d8b2-81bf-a35d-ca57ca18dd04" class=""><mark class="highlight-default"><a href="https://files.oaiusercontent.com/file-odnLHJ8opl3j1aw8gFjcZuH3?se=2025-01-02T00%3A17%3A56Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D299%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3Dfile-7U5W0jNLSE5pvoVbBMdsYNMP%5F1718587111%5F6545136.png&amp;sig=WFacZ1m/QrzNrew3qiYFcG0zYDRXeW9UMcH1wUhAfy8%3D">https://files.oaiusercontent.com/file-odnLHJ8opl3j1aw8gFjcZuH3?se=2025-01-02T00%3A17%3A56Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D299%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3Dfile-7U5W0jNLSE5pvoVbBMdsYNMP%5F1718587111%5F6545136.png&amp;sig=WFacZ1m/QrzNrew3qiYFcG0zYDRXeW9UMcH1wUhAfy8%3D</a></mark></p><p id="16f36221-d8b2-819f-8e68-fb69fb5015c9" class=""><mark class="highlight-default"><a href="https://files.oaiusercontent.com/file-t7LPVwL0crrdnFXDV8e8UEV9?se=2025-01-02T00%3A17%3A56Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D299%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3Dfile-0LbdKQOuph866OwbqVZKoTNf%5F1718588556%5F7049987.png&amp;sig=5CTeWQbD1jz354YAr0j/JaH5Zyo67DEZy%2BU5H3xDzG0%3D">https://files.oaiusercontent.com/file-t7LPVwL0crrdnFXDV8e8UEV9?se=2025-01-02T00%3A17%3A56Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D299%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3Dfile-0LbdKQOuph866OwbqVZKoTNf%5F1718588556%5F7049987.png&amp;sig=5CTeWQbD1jz354YAr0j/JaH5Zyo67DEZy%2BU5H3xDzG0%3D</a></mark></p><p id="16f36221-d8b2-811b-a079-d9b351cb8338" class="block-color-blue_background">ChatGPT</p><p id="16f36221-d8b2-81ed-af92-f2b9dd01a8d5" class=""><mark class="highlight-default">Here is the album cover featuring the raccoon in a moonlit alley, embodying the indie-folk rock aesthetic with an edgy touch.</mark></p><h3 id="16f36221-d8b2-8128-948c-f74ef758edf9" class=""><mark class="highlight-default">New Ideas for Typography Cover Images:</mark></h3><ol type="1" id="16f36221-d8b2-81c7-ab4d-e4f5eec52521" class="numbered-list" start="1"><li><mark class="highlight-default"><strong>Raccoon Serenade</strong></mark><mark class="highlight-default"> - A raccoon singing under the moon with a vintage microphone.</mark></li></ol><ol type="1" id="16f36221-d8b2-8164-b5bf-e78388a13cf1" class="numbered-list" start="2"><li><mark class="highlight-default"><strong>Moonlit Melody</strong></mark><mark class="highlight-default"> - A raccoon playing a banjo in an enchanted forest.</mark></li></ol><ol type="1" id="16f36221-d8b2-8172-87a3-d54920530f90" class="numbered-list" start="3"><li><mark class="highlight-default"><strong>Alley Echoes</strong></mark><mark class="highlight-default"> - A raccoon band performing in an alley filled with neon lights.</mark></li></ol><ol type="1" id="16f36221-d8b2-81d8-87aa-eb4f394b1fce" class="numbered-list" start="4"><li><mark class="highlight-default"><strong>Urban Nocturne</strong></mark><mark class="highlight-default"> - A raccoon DJ spinning records on a rooftop under the stars.</mark></li></ol><p id="16f36221-d8b2-813b-8e56-e2f235e42113" class=""><mark class="highlight-default">07:41 AM07:41</mark></p><hr id="16f36221-d8b2-8176-99c9-d763f182f2f1"/><p id="16f36221-d8b2-81f6-b6cf-decab0d54312" class="block-color-teal_background">User:</p><p id="16f36221-d8b2-817a-931c-deff288a9d37" class=""><mark class="highlight-default"><a href="https://files.oaiusercontent.com/file-ivgZLWSxbQAjdcfwXy1wSGWK?se=2025-01-02T00%3A17%3A52Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D604800%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3D7f60015e-8fea-45f0-a60e-1a60e94d0286.webp&amp;sig=gPqj6liUzMSNQefUTpty1RqghPP9aNvem4Y4UkCFFuQ%3D">https://files.oaiusercontent.com/file-ivgZLWSxbQAjdcfwXy1wSGWK?se=2025-01-02T00%3A17%3A52Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D604800%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3D7f60015e-8fea-45f0-a60e-1a60e94d0286.webp&amp;sig=gPqj6liUzMSNQefUTpty1RqghPP9aNvem4Y4UkCFFuQ%3D</a></mark></p><p id="16f36221-d8b2-8198-afc8-d3f294f2e08a" class="block-color-blue_background">ChatGPT</p><hr id="16f36221-d8b2-81bf-89df-d5d897d64c97"/><p id="16f36221-d8b2-8146-aaed-c959456e3407" class="block-color-teal_background">User:</p><p id="16f36221-d8b2-8193-a288-cbb169f9aec1" class=""><mark class="highlight-default"><a href="https://files.oaiusercontent.com/file-qy0Hq5sFu1ZaUTOofQinqUP8?se=2025-01-02T00%3A17%3A56Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D299%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3Dimage.png&amp;sig=KB4UTPD9mjnZnkSacGXBSTScxCjbTHoe1P9LkjkHA1Q%3D">https://files.oaiusercontent.com/file-qy0Hq5sFu1ZaUTOofQinqUP8?se=2025-01-02T00%3A17%3A56Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D299%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3Dimage.png&amp;sig=KB4UTPD9mjnZnkSacGXBSTScxCjbTHoe1P9LkjkHA1Q%3D</a></mark></p><p id="16f36221-d8b2-8183-b634-e1bb72c6a0bc" class=""><mark class="highlight-default"><a href="https://files.oaiusercontent.com/file-keL9Fa0jBMj8i9rlZ6O2G2HK?se=2025-01-02T00%3A17%3A56Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D299%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3Dimage.png&amp;sig=HtyNSKFs0zqDbrx4AwgDZmQP5y11XM5%2B4DpglF0vSMo%3D">https://files.oaiusercontent.com/file-keL9Fa0jBMj8i9rlZ6O2G2HK?se=2025-01-02T00%3A17%3A56Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D299%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3Dimage.png&amp;sig=HtyNSKFs0zqDbrx4AwgDZmQP5y11XM5%2B4DpglF0vSMo%3D</a></mark></p><p id="16f36221-d8b2-816f-acbf-fce9b8327c7d" class="block-color-blue_background">ChatGPT</p><hr id="16f36221-d8b2-812c-95c5-f8beb4fe9376"/><p id="16f36221-d8b2-81b5-b874-fc41250050b7" class="block-color-teal_background">User:</p><p id="16f36221-d8b2-81d0-bfb5-d9ea95e1205e" class=""><mark class="highlight-default">create variations featuring elements from above in various pixel sizes: 1024x1024 / 1080x1920 / 1280x720</mark></p><p id="16f36221-d8b2-819c-a281-ebfc1b1402fd" class=""><mark class="highlight-default">10:15 PM22:15</mark></p><p id="16f36221-d8b2-81e8-abed-e7e8f36b9aa6" class=""><mark class="highlight-default">10:15 PM22:15</mark></p><p id="16f36221-d8b2-8109-ad5d-c39757a72a28" class="block-color-blue_background">ChatGPT</p><hr id="16f36221-d8b2-81fe-b957-d10f72c298bb"/><p id="16f36221-d8b2-816d-ae4b-e36c5ef1026f" class="block-color-teal_background">User:</p><p id="16f36221-d8b2-8119-93d8-d253021c73f9" class=""><mark class="highlight-default"><a href="https://files.oaiusercontent.com/file-35W15bTfRNGt79L4636kRkk8?se=2025-01-02T00%3A17%3A52Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D604800%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3D676bb0e1-1c43-4d9e-b3ee-b55c1e704d6a.webp&amp;sig=QNg9UO5lQ%2B%2BWNDx%2BN8ClzGSBnzpriu3aIxOJbrQEChs%3D">https://files.oaiusercontent.com/file-35W15bTfRNGt79L4636kRkk8?se=2025-01-02T00%3A17%3A52Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D604800%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3D676bb0e1-1c43-4d9e-b3ee-b55c1e704d6a.webp&amp;sig=QNg9UO5lQ%2B%2BWNDx%2BN8ClzGSBnzpriu3aIxOJbrQEChs%3D</a></mark></p><p id="16f36221-d8b2-8149-b85b-d8410e9ca6c1" class="block-color-blue_background">ChatGPT</p><hr id="16f36221-d8b2-81f8-a940-eaf3f928ccd5"/><p id="16f36221-d8b2-815b-8638-e19b221ab8f6" class="block-color-teal_background">User:</p><p id="16f36221-d8b2-811d-b623-dc32876dfef6" class=""><mark class="highlight-default"><a href="https://files.oaiusercontent.com/file-DtEPy6nopUVZp77wOYlOqUo1?se=2025-01-02T00%3A17%3A52Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D604800%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3D64e3a6ea-8227-40bb-b414-3f8a3f6fef71.webp&amp;sig=vXOM56SHbNc/8RrXwEPqtua2Q6EsH1wlsz9DOJAiApE%3D">https://files.oaiusercontent.com/file-DtEPy6nopUVZp77wOYlOqUo1?se=2025-01-02T00%3A17%3A52Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscc=max-age%3D604800%2C%20immutable%2C%20private&amp;rscd=attachment%3B%20filename%3D64e3a6ea-8227-40bb-b414-3f8a3f6fef71.webp&amp;sig=vXOM56SHbNc/8RrXwEPqtua2Q6EsH1wlsz9DOJAiApE%3D</a></mark></p><p id="16f36221-d8b2-81bd-bb40-d8039c3aabe7" class="block-color-blue_background">ChatGPT</p><hr id="16f36221-d8b2-814b-b11c-df4bf7223dde"/><p id="16f36221-d8b2-819d-bfc7-d678bde314e5" class="block-color-teal_background">User:</p><p id="16f36221-d8b2-8123-98d0-d5253726da51" class=""><mark class="highlight-default">lets create a series of typography cover image for &#x27;Echoes of Moonlight&#x27; in the Font and style and contexts to tell the story | </mark><mark class="highlight-default"><a href="https://suno.com/song/3c0cf4e3-804e-4c02-a0cf-118956ead761">https://suno.com/song/3c0cf4e3-804e-4c02-a0cf-118956ead761</a></mark><mark class="highlight-default"> Echoes of Moonlight Profile AvaTar ArTs acoustic indie-folk rock edgy June 13, 2024 at 5:45 PM [Verse] In moonlit alleys we used to sing Now I roam these streets alone Beneath the stars my heart it stings Darkened nights I&#x27;ve always known [Verse 2] Love was sweet but now it&#x27;s gone Echoes of a distant tune Howling cat took my song Left me with this heavy gloom [Chorus] No more love songs in the night Only echoes of our fight Broken dreams they scatter wide In this alley where I hide [Verse 3] I tried to win your heart in vain Sung my soul beneath the moon But your love was just a chain Now I howl a different tune [Bridge] No more kisses in the rain No more songs without the pain Freedom found in broken chains Raccoon heartbeats gone insane [Chorus] No more love songs in the night Only echoes of our fight Broken dreams they scatter wide In this alley where I hide</mark></p><p id="16f36221-d8b2-817f-91b9-fa107bc79c44" class=""><mark class="highlight-default">04:04 PM16:04</mark></p><p id="16f36221-d8b2-8171-973a-d3f5e0aca0d6" class=""><mark class="highlight-default">03:07 PM15:07</mark></p><p id="16f36221-d8b2-817a-bc7b-efb075abb4a3" class="block-color-blue_background">ChatGPT</p><hr id="16f36221-d8b2-81a3-8a15-f1924ec38b08"/><p id="16f36221-d8b2-814c-90e5-df6d1a661335" class="block-color-teal_background">User:</p><p id="16f36221-d8b2-815f-90b5-e8d5530d86be" class=""><mark class="highlight-default">Please continue</mark></p><p id="16f36221-d8b2-81a3-9b07-e1ee517c30d2" class=""><mark class="highlight-default">04:38 PM16:38</mark></p><p id="16f36221-d8b2-8100-b0f0-da579f5c299d" class=""><mark class="highlight-default">04:34 PM16:34</mark></p><p id="16f36221-d8b2-81cf-a316-e925c3e208e8" class="block-color-blue_background">ChatGPT</p><hr id="16f36221-d8b2-81e5-90a5-e8314f94ff6e"/><p id="16f36221-d8b2-811d-86ba-e30bc3bd799a" class="block-color-teal_background">User:</p><p id="16f36221-d8b2-81f6-b3eb-e66d0f000ec5" class=""><mark class="highlight-default">create</mark></p><p id="16f36221-d8b2-81a0-a696-facb4bf7a473" class=""><mark class="highlight-default">07:41 AM07:41</mark></p><p id="16f36221-d8b2-81ff-9f35-c6e2cfb90ca8" class=""><mark class="highlight-default">07:41 AM07:41</mark></p><p id="16f36221-d8b2-8140-90c7-cd1eb62199b5" class="block-color-blue_background">ChatGPT</p><hr id="16f36221-d8b2-81fd-aae8-d02687cbfbfc"/></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

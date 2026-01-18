@@ -1,0 +1,202 @@
+# DNA Cold Case AI - Configuration Settings
+
+system:
+  name: "DNA Cold Case AI"
+  version: "1.0.0"
+  environment: "production"  # development, staging, production
+
+# DNA Matching Parameters
+dna_matching:
+  min_segment_cm: 7.0  # Minimum IBD segment length in centiMorgans
+  min_total_cm: 15.0   # Minimum total shared cM for match
+  min_confidence: 0.70  # Minimum confidence threshold
+
+  # Relationship detection thresholds
+  relationship_thresholds:
+    parent_child: 0.25
+    full_sibling: 0.125
+    first_cousin: 0.0625
+    second_cousin: 0.0156
+    third_cousin: 0.0039
+    fourth_cousin: 0.00098
+
+# Probability Simulations
+simulation:
+  num_simulations: 10000  # Monte Carlo iterations
+  random_seed: 42
+  confidence_intervals: [68, 95, 99]  # Percentiles to compute
+
+  # Prior probabilities
+  priors:
+    relationship_exists: 0.001  # 1 in 1000 prior
+
+# Machine Learning
+machine_learning:
+  models:
+    random_forest:
+      n_estimators: 200
+      max_depth: 10
+      min_samples_split: 5
+
+    gradient_boosting:
+      n_estimators: 200
+      learning_rate: 0.1
+      max_depth: 5
+
+  training:
+    test_size: 0.2
+    cross_validation_folds: 5
+
+  # Feature weights (for ensemble)
+  feature_weights:
+    shared_cm: 0.25
+    likelihood_ratio: 0.30
+    confidence: 0.20
+    geographic: 0.10
+    temporal: 0.10
+    criminal_history: 0.05
+
+# Case Management
+case_management:
+  # Priority levels
+  priority_levels:
+    1: "Critical"
+    2: "High"
+    3: "Medium"
+    4: "Low"
+    5: "Minimal"
+
+  # Status options
+  status_options:
+    - "open"
+    - "leads_identified"
+    - "suspect_identified"
+    - "under_investigation"
+    - "pending_arrest"
+    - "closed_solved"
+    - "closed_unsolved"
+
+  # Evidence types
+  evidence_types:
+    - "blood"
+    - "saliva"
+    - "hair"
+    - "skin_cells"
+    - "touch_dna"
+    - "bone"
+    - "teeth"
+    - "other"
+
+# Database Settings
+database:
+  assumed_size: 1000000  # 1 million profiles
+  population_groups:
+    - "EUR"  # European
+    - "AFR"  # African
+    - "ASN"  # Asian
+    - "AMR"  # American
+    - "SAS"  # South Asian
+
+# Reporting
+reporting:
+  generate_pdf: true
+  include_visualizations: true
+
+  # Report sections
+  sections:
+    - "case_overview"
+    - "evidence_summary"
+    - "dna_analysis"
+    - "suspect_list"
+    - "probability_analysis"
+    - "recommendations"
+    - "chain_of_custody"
+
+  # Likelihood ratio interpretation
+  lr_interpretation:
+    1000000: "Extremely strong support"
+    10000: "Very strong support"
+    1000: "Strong support"
+    100: "Moderate support"
+    10: "Weak support"
+    1: "Minimal support"
+
+# Legal & Compliance
+compliance:
+  # DOJ Guidelines
+  doj_interim_policy: true
+
+  # Approved use cases
+  approved_crimes:
+    - "homicide"
+    - "sexual_assault"
+    - "aggravated_assault"
+    - "unidentified_remains"
+
+  # Require judicial oversight
+  require_warrant: true
+
+  # Audit requirements
+  audit:
+    log_all_queries: true
+    chain_of_custody_required: true
+    blockchain_verification: false  # Future feature
+
+# Privacy Settings
+privacy:
+  # Database opt-in requirement
+  require_opt_in: true
+
+  # Anonymization
+  anonymize_non_suspects: true
+
+  # Data retention
+  retention_days: 365
+
+  # Access control
+  role_based_access: true
+  multi_factor_auth: true
+
+# Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+
+  log_to_file: true
+  log_dir: "logs"
+
+  # Log rotation
+  rotation:
+    max_bytes: 10485760  # 10 MB
+    backup_count: 5
+
+# Alerts & Notifications
+alerts:
+  email_notifications: false
+
+  # Alert conditions
+  alert_on:
+    high_priority_match: true  # LR > 10^6
+    case_status_change: true
+    evidence_chain_break: true
+
+# Performance
+performance:
+  # Parallel processing
+  max_workers: 4
+
+  # Caching
+  enable_cache: true
+  cache_ttl_seconds: 3600
+
+  # Batch processing
+  batch_size: 100
+
+# Data Paths
+paths:
+  data_dir: "data"
+  cases_dir: "data/cases"
+  evidence_dir: "data/evidence"
+  profiles_dir: "data/profiles"
+  reports_dir: "reports"
+  logs_dir: "logs"
+  models_dir: "models"

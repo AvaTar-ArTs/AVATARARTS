@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html-assets - AVATARARTS</title>
+    <meta name="description" content="Directory">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            opacity: 0.95;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .navigation {
+            background: #f8f9fa;
+            padding: 15px 30px;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: #667eea;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .directory-listing {
+            padding: 30px;
+        }
+
+        .directory-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .directory-header h2 {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .search-box {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        thead {
+            background: #667eea;
+            color: white;
+        }
+
+        th {
+            text-align: left;
+            padding: 15px;
+            font-weight: 600;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .icon {
+            width: 30px;
+            text-align: center;
+            font-size: 1.3em;
+        }
+
+        .name {
+            font-weight: 500;
+        }
+
+        .name a {
+            color: #667eea;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .name a:hover {
+            text-decoration: underline;
+            color: #764ba2;
+        }
+
+        .size {
+            color: #6c757d;
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .type {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .folder-icon {
+            color: #ffc107;
+        }
+
+        .file-icon {
+            color: #6c757d;
+        }
+
+        .parent-dir {
+            background: #e7f3ff;
+            font-weight: 600;
+        }
+
+        .parent-dir a {
+            color: #0066cc;
+        }
+
+        .stats {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px;
+            border-top: 3px solid #667eea;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stat-label {
+            font-size: 0.85em;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .subdirectories {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .subdirectories h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .subdir-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .subdir-card {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s;
+        }
+
+        .subdir-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .subdir-card a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .subdir-card a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📁 html-assets</h1>
+            <p>Directory</p>
+            <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.9;">Base URL: avatararts.org/SEO-revenue/all/00_ACTIVE/CONTENT/html-assets/ | Path: /Users/steven/AVATARARTS/00_ACTIVE/CONTENT/html-assets/ | Updated: January 13, 2026 11:59 AM</p>
+        </header>
+
+        <div class="navigation">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> / <a href="00_ACTIVE/index.html">00_ACTIVE</a> / <a href="00_ACTIVE/CONTENT/index.html">CONTENT</a> / <span>html-assets</span>
+            </div>
+            <div class="nav-links">
+                <a href="../../../index.html">🏠 Home</a>
+                <a href="../index.html">⬆️ Parent</a>
+            </div>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Search files and folders..." autocomplete="off">
+        </div>
+
+        <div class="directory-listing">
+            <div class="directory-header">
+                <h2>📂 /Users/steven/AVATARARTS/00_ACTIVE/CONTENT/html-assets/</h2>
+                <p>Directory</p>
+            </div>
+
+            <div class="subdirectories">
+            <h3>📁 Subdirectories</h3>
+            <div class="subdir-grid">
+                <div class="subdir-card">
+            <a href="assets/index.html">📁 assets/</a>
+        </div><div class="subdir-card">
+            <a href="business/index.html">📁 business/</a>
+        </div><div class="subdir-card">
+            <a href="creative/index.html">📁 creative/</a>
+        </div><div class="subdir-card">
+            <a href="discography/index.html">📁 discography/</a>
+        </div><div class="subdir-card">
+            <a href="forms/index.html">📁 forms/</a>
+        </div><div class="subdir-card">
+            <a href="galleries/index.html">📁 galleries/</a>
+        </div><div class="subdir-card">
+            <a href="personal/index.html">📁 personal/</a>
+        </div><div class="subdir-card">
+            <a href="tools/index.html">📁 tools/</a>
+        </div>
+            </div>
+        </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th class="icon"></th>
+                        <th class="name">Name</th>
+                        <th class="size">Size</th>
+                        <th class="type">Type</th>
+                    </tr>
+                </thead>
+                <tbody id="fileTable">
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="assets/index.html">assets/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="business/index.html">business/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="creative/index.html">creative/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="discography/index.html">discography/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="forms/index.html">forms/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="galleries/index.html">galleries/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="personal/index.html">personal/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="tools/index.html">tools/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="1001.html">1001.html</a></td>
+            <td class="size">6.7 MB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="3D_Cracked_Wall_Designs.html">3D_Cracked_Wall_Designs.html</a></td>
+            <td class="size">65.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ANALYZE_AND_ORGANIZE_HTML.py">ANALYZE_AND_ORGANIZE_HTML.py</a></td>
+            <td class="size">7.2 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ANALYZE_DUPLICATES_AND_ROOT.py">ANALYZE_DUPLICATES_AND_ROOT.py</a></td>
+            <td class="size">3.7 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ANALYZE_TOPICS.py">ANALYZE_TOPICS.py</a></td>
+            <td class="size">3.1 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Add_Jump_Up_Button.html">Add_Jump_Up_Button.html</a></td>
+            <td class="size">54.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Alfred_Image_Processing_Workflow.html">Alfred_Image_Processing_Workflow.html</a></td>
+            <td class="size">143.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Anti-Valentine%27s_Raccoon_Designs2%202.html">Anti-Valentine's_Raccoon_Designs2 2.html</a></td>
+            <td class="size">14.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AutoUploadShorts.html">AutoUploadShorts.html</a></td>
+            <td class="size">197.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Automation-Sora-epic.html">Automation-Sora-epic.html</a></td>
+            <td class="size">104.4 MB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Best-AI-Tools-7cf54c1fdd3149b6a868a84f74403450.html">Best-AI-Tools-7cf54c1fdd3149b6a868a84f74403450.html</a></td>
+            <td class="size">32.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Catchy_YouTube_%23Shorts_Titles-2025-05-01%201.html">Catchy_YouTube_#Shorts_Titles-2025-05-01 1.html</a></td>
+            <td class="size">114.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="CodeAnalysis.html">CodeAnalysis.html</a></td>
+            <td class="size">694.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Converting_markdown_to_PDFs_with_pandoc_on_macOS%202.html">Converting_markdown_to_PDFs_with_pandoc_on_macOS 2.html</a></td>
+            <td class="size">4.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Creating_a_shortcut_in_vscode_to_switch_between_the_terminal_and_editor%202.html">Creating_a_shortcut_in_vscode_to_switch_between_the_terminal_and_editor 2.html</a></td>
+            <td class="size">6.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Debunking%20the%20Mayan%20Calendar%20Myths%20A%20comprehensi%2015336221d8b281ad99e3cc6dc2e09ecf.html">Debunking the Mayan Calendar Myths A comprehensi 15336221d8b281ad99e3cc6dc2e09ecf.html</a></td>
+            <td class="size">40.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Design%20Assistant%2053c27f5899f248458bc8ccbceb594692.html">Design Assistant 53c27f5899f248458bc8ccbceb594692.html</a></td>
+            <td class="size">55.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="DiGiTaL%20DiVe%20Instructions.html">DiGiTaL DiVe Instructions.html</a></td>
+            <td class="size">11.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="DiGiTaL_DiVe%202.html">DiGiTaL_DiVe 2.html</a></td>
+            <td class="size">5.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="DiGiTaL_DiVe_Image_Generation_Instructions%202.html">DiGiTaL_DiVe_Image_Generation_Instructions 2.html</a></td>
+            <td class="size">13.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="DighitalDiVe.zip">DighitalDiVe.zip</a></td>
+            <td class="size">693.7 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Domain%20Deployment%20Guide.html">Domain Deployment Guide.html</a></td>
+            <td class="size">230.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Epic%20History%20of%20the%20Inca%20Empire%20A%20Journey%20Throug%2015336221d8b281669d24e079941f729d.html">Epic History of the Inca Empire A Journey Throug 15336221d8b281669d24e079941f729d.html</a></td>
+            <td class="size">43.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="FFmpeg_MP4_to_MP3_Conversion.html">FFmpeg_MP4_to_MP3_Conversion.html</a></td>
+            <td class="size">34.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Fun%20Tools%20e46d44efa2eb488987e7511103b97870.html">Fun Tools e46d44efa2eb488987e7511103b97870.html</a></td>
+            <td class="size">70.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Funny%20Gingerbread%20Nurse%20Christmas%20PNG%20Graphic%20by%20T%2095cfecd23cef437285d717242e660937.html">Funny Gingerbread Nurse Christmas PNG Graphic by T 95cfecd23cef437285d717242e660937.html</a></td>
+            <td class="size">27.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Funny%20Sarcastic%20Mug%20Sublimation%20Bundle%20Graphic%20by%20%2036f981b342f149bcaa00a1cd6c48f62c.html">Funny Sarcastic Mug Sublimation Bundle Graphic by  36f981b342f149bcaa00a1cd6c48f62c.html</a></td>
+            <td class="size">32.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="HTML_ROOT_MERGE_LOG_20251127_100030.csv">HTML_ROOT_MERGE_LOG_20251127_100030.csv</a></td>
+            <td class="size">134.1 KB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Hilarious%20Christmas%20Puns%20Bundle%20PNG%20Graphic%20by%20Ell%20558cdd0e824c4605b2e3198797eaa058.html">Hilarious Christmas Puns Bundle PNG Graphic by Ell 558cdd0e824c4605b2e3198797eaa058.html</a></td>
+            <td class="size">52.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="I%20Do%20It%20for%20the%20Ho%27s%2CRetro%20Santa%20Png%20Graphic%20by%20Ma%209abf2ac559894754b9e0136f8de78789.html">I Do It for the Ho's,Retro Santa Png Graphic by Ma 9abf2ac559894754b9e0136f8de78789.html</a></td>
+            <td class="size">60.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Image%20Editing%20682d6f8e245348068be4de155a243c3f%201.html">Image Editing 682d6f8e245348068be4de155a243c3f 1.html</a></td>
+            <td class="size">50.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Image%20Generator%20bed0f44d07454df1ac703f3a3b987f59.html">Image Generator bed0f44d07454df1ac703f3a3b987f59.html</a></td>
+            <td class="size">67.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Image%20Tools%2015936221d8b28149be92f1b400137243.html">Image Tools 15936221d8b28149be92f1b400137243.html</a></td>
+            <td class="size">31.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Image%20Tools%2015936221d8b281ba8732fffc846ae604.html">Image Tools 15936221d8b281ba8732fffc846ae604.html</a></td>
+            <td class="size">31.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Image_Series_Beautiful_Mess%202.html">Image_Series_Beautiful_Mess 2.html</a></td>
+            <td class="size">12.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Inflated%20Christmas%20Tumbler%20Bundle%20Graphic%20by%20Chris%20ca7c20dab2d54e1d9ef2c389803244d2.html">Inflated Christmas Tumbler Bundle Graphic by Chris ca7c20dab2d54e1d9ef2c389803244d2.html</a></td>
+            <td class="size">54.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="I%E2%80%99m%20Not%20a%20Grinch%2C%20I%E2%80%99m%20Just%20Selectively%20Festive%20Gra%20dd033029b23943b9a625aeac470618c2.html">I’m Not a Grinch, I’m Just Selectively Festive Gra dd033029b23943b9a625aeac470618c2.html</a></td>
+            <td class="size">56.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Leonardo%20Ai%20f844c620a036427ba7916c9366599a99.html">Leonardo Ai f844c620a036427ba7916c9366599a99.html</a></td>
+            <td class="size">50.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="MiXeD%202.html">MiXeD 2.html</a></td>
+            <td class="size">10.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ORGANIZE_ROOT_AND_MERGE.py">ORGANIZE_ROOT_AND_MERGE.py</a></td>
+            <td class="size">3.7 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Organizing%20and%20improving%20AI%20directories%20list.html">Organizing and improving AI directories list.html</a></td>
+            <td class="size">204.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="README.md">README.md</a></td>
+            <td class="size">2.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="REORGANIZE_HTML_BY_TOPIC.py">REORGANIZE_HTML_BY_TOPIC.py</a></td>
+            <td class="size">4.5 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="REVIEW_INDEX.html">REVIEW_INDEX.html</a></td>
+            <td class="size">1.4 MB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Split_Large_HTML_File.html">Split_Large_HTML_File.html</a></td>
+            <td class="size">168.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="TrashCaTs%202.html">TrashCaTs 2.html</a></td>
+            <td class="size">8.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Video%20Editing%20240fc9561f78429b98d924816a075964%201.html">Video Editing 240fc9561f78429b98d924816a075964 1.html</a></td>
+            <td class="size">46.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Video%20Tools%2015936221d8b2817b8074e69cd969f4c7.html">Video Tools 15936221d8b2817b8074e69cd969f4c7.html</a></td>
+            <td class="size">28.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Video%20Tools%2015936221d8b2819fbf4acc001889d694.html">Video Tools 15936221d8b2819fbf4acc001889d694.html</a></td>
+            <td class="size">28.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="What%20is%20Phi%20%28The%20Basics%20of%20the%20Golden%20Ratio%29%200e3775ace2e146828dbcc9c7b21bab47.html">What is Phi (The Basics of the Golden Ratio) 0e3775ace2e146828dbcc9c7b21bab47.html</a></td>
+            <td class="size">29.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="YouTube%20Shorts%20Content%20GeneratorTrashCat%20Origin%2017036221d8b281428eddc4476d3cae1b.html">YouTube Shorts Content GeneratorTrashCat Origin 17036221d8b281428eddc4476d3cae1b.html</a></td>
+            <td class="size">36.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="YouTube%20Shorts%20Content%20GeneratorTrashCat%20Origin%2017036221d8b2818388baddd0fb528e12.html">YouTube Shorts Content GeneratorTrashCat Origin 17036221d8b2818388baddd0fb528e12.html</a></td>
+            <td class="size">39.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="YouTube%20Shorts%20Content%20GeneratorTrashCat%20Origin%2017036221d8b281de84c8d555fd5decc5.html">YouTube Shorts Content GeneratorTrashCat Origin 17036221d8b281de84c8d555fd5decc5.html</a></td>
+            <td class="size">61.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="YouTube%20Shorts%20Content%20GeneratorTrashCat%20Origin%2017036221d8b281eb9bd8f91deb651988.html">YouTube Shorts Content GeneratorTrashCat Origin 17036221d8b281eb9bd8f91deb651988.html</a></td>
+            <td class="size">47.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="card.html">card.html</a></td>
+            <td class="size">3.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="character_portraits-lore-driven.html">character_portraits-lore-driven.html</a></td>
+            <td class="size">45.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="cover2.html">cover2.html</a></td>
+            <td class="size">3.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="covers%201.html">covers 1.html</a></td>
+            <td class="size">1.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="dark%201.html">dark 1.html</a></td>
+            <td class="size">7.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="dedup.txt">dedup.txt</a></td>
+            <td class="size">1.8 MB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="fancy.html">fancy.html</a></td>
+            <td class="size">1.5 MB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="gall.html">gall.html</a></td>
+            <td class="size">3.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="glitch.html">glitch.html</a></td>
+            <td class="size">59.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="hovercard%201.html">hovercard 1.html</a></td>
+            <td class="size">3.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="iterm2.txt">iterm2.txt</a></td>
+            <td class="size">196.1 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="layout.html">layout.html</a></td>
+            <td class="size">5.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="leo1.html">leo1.html</a></td>
+            <td class="size">42.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="leo2.html">leo2.html</a></td>
+            <td class="size">43.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="leo3.html">leo3.html</a></td>
+            <td class="size">43.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="popup.html">popup.html</a></td>
+            <td class="size">456.0 B</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="python-script-for-image-renaming-and-copying-6c58f096.html">python-script-for-image-renaming-and-copying-6c58f096.html</a></td>
+            <td class="size">14.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="qf-labs%202.html">qf-labs 2.html</a></td>
+            <td class="size">3.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="refind-img-generation%202.html">refind-img-generation 2.html</a></td>
+            <td class="size">7.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="saved_resource.html">saved_resource.html</a></td>
+            <td class="size">905.0 B</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="seamless.html">seamless.html</a></td>
+            <td class="size">28.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="sun3%201.html">sun3 1.html</a></td>
+            <td class="size">3.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="test_20250102115142.html">test_20250102115142.html</a></td>
+            <td class="size">4.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="test_sample.html">test_sample.html</a></td>
+            <td class="size">802.0 B</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ultimate_analysis_20251026_022230.json">ultimate_analysis_20251026_022230.json</a></td>
+            <td class="size">348.8 KB</td>
+            <td class="type">JSON</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="waLL-art.md">waLL-art.md</a></td>
+            <td class="size">18.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-label">Total Items</div>
+                <div class="stat-value">88</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Directories</div>
+                <div class="stat-value">8</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Files</div>
+                <div class="stat-value">80</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#fileTable tr');
+            const cards = document.querySelectorAll('.subdir-card');
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

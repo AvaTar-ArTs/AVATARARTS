@@ -1,0 +1,150 @@
+		/**
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    contenteditable attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that are clearfixed.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
+}
+body{
+	font-family: sans-serif;
+	margin: 0;
+}
+
+.cell{
+	height: 20px;
+	width: 20px;
+	border: 1px solid;
+    float: left;
+    cursor: pointer;
+}
+
+.selected{
+	background: #000;
+}
+.header{
+    width: 100%;
+    margin: auto;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.title {
+    margin: 15px;
+    text-align: center;
+    font-size: 15px;
+    border-bottom: 1px solid;
+    padding-bottom: 15px;
+}
+#selected{
+    font-size: 10px;
+    margin: 0 15px 15px;
+    padding: 6px 0;
+    float: left;
+}
+#clear{
+    font-size: 10px;
+    margin: 0 15px 15px;
+    float: right;
+    cursor: pointer;
+    border: 1px solid;
+    padding: 5px;
+}
+.grid-container {
+    width: fit-content;
+    border: 1px solid;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+.error {
+    color: red;
+    font-size: 11px;
+    padding-top: 20px;
+}
+input:disabled {
+    background-color: lightgray;
+    border: 1px solid darkgray;
+    opacity: 0.7;
+}
+
+input.size-input {
+    margin-bottom: 17px;
+}
+
+.color-option {
+    text-align: left;
+    padding: 4px;
+    float: left;
+    width: 45px;
+    height: 45px;
+    font-size: 8px;
+    cursor: pointer;
+}
+
+.chosen-color {
+    height: 20px;
+    border: 1px solid;
+    width: 127px;
+    margin: 0 auto 15px;
+}
+
+.color-grid-container.cf {
+    overflow-y: scroll;
+    max-height: 250px;
+    transition-property: all;
+    transition-duration: .5s;
+    transition-timing-function: ease-in-out;
+    margin-bottom: 15px;
+}
+
+.color-grid-container.cf.hide {
+    max-height: 0;
+    overflow-y: hidden;
+    margin-bottom: 0;
+}
+
+.button {
+    font-size: 11px;
+    text-transform: uppercase;
+    padding: 5px;
+    border: 1px solid black;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.button.palette_mode {
+    background-color: black;
+    color: white;
+}
+
+.palette_circle {
+    width: 25px;
+    height: 25px;
+    float: left;
+    margin: 0 5px;
+    border-radius: 50%;
+}
+
+.palette.cf {
+    display: inline-block;
+}

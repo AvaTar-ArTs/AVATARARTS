@@ -1,0 +1,4 @@
+{
+  "prompt": "In a moody, neon-lit alley soaked in midnight rain, a grungy raccoon singer known as 'The Alley Cat' steps into the light. Its sleek, damp fur shimmers under the moonlight, and the raccoon begins to sing with an unexpectedly melodious voice. The scene is alive with flickering neon signs, puddles reflecting colorful glows, and the windows of nearby buildings gently flicker as if applauding. The moment is emotional and cinematic, filled with urban grunge and heart. The raccoon's expression is passionate, eyes half-closed, microphone clutched in paw, lost in the music.",
+  "size": "1024x1792"
+}

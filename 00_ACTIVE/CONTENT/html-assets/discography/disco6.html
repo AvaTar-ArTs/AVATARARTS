@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discography with MP3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 32px;
+            color: #333;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .album {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .album img {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+        .album h3 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .album p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .album a {
+            text-decoration: none;
+            color: #007BFF;
+            font-size: 14px;
+        }
+        .album a:hover {
+            text-decoration: underline;
+        }
+        .lyrics {
+            display: none;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #444;
+            text-align: left;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        .lyrics-btn {
+            margin-top: 5px;
+            background-color: #007BFF;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .lyrics-btn:hover {
+            background-color: #0056b3;
+        }
+        audio {
+            margin-top: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Discography</h1>
+    <div class="grid-container">
+        <!-- Album 1 - Love in Imperfection -->
+        <div class="album">
+            <img src="https://via.placeholder.com/150" alt="Album Cover">
+            <h3>Love in Imperfection</h3>
+            <p>Genre: Acoustic Indie-Folk</p>
+            <a href="#">Listen on Suno</a>
+            <audio controls>
+                <source src="/mnt/data/Love in Imperfection.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <button class="lyrics-btn" onclick="toggleLyrics(this)">Show Lyrics</button>
+            <div class="lyrics">
+                <p><strong>Themes:</strong> Love, Imperfection, Beauty in Chaos, Resilience</p>
+                <p><strong>Lyrics:</strong></p>
+                <p>Rusty chains tangled around a broken swing...</p>
+            </div>
+        </div>
+
+        <!-- Album 2 - Beautiful Mess -->
+        <div class="album">
+            <img src="https://via.placeholder.com/150" alt="Album Cover">
+            <h3>Beautiful Mess</h3>
+            <p>Genre: Grunge Rock</p>
+            <a href="#">Listen on Suno</a>
+            <audio controls>
+                <source src="/mnt/data/Beautiful Mess.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <button class="lyrics-btn" onclick="toggleLyrics(this)">Show Lyrics</button>
+            <div class="lyrics">
+                <p><strong>Themes:</strong> Embracing Flaws, Chaos and Beauty</p>
+                <p><strong>Lyrics:</strong></p>
+                <p>Rusty chains tangled around a broken swing...</p>
+            </div>
+        </div>
+
+        <!-- Album 3 - Blues in the Alley -->
+        <div class="album">
+            <img src="https://via.placeholder.com/150" alt="Album Cover">
+            <h3>Blues in the Alley</h3>
+            <p>Genre: Jazz Blues</p>
+            <a href="#">Listen on Suno</a>
+            <audio controls>
+                <source src="/mnt/data/Blues in the Alley.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <button class="lyrics-btn" onclick="toggleLyrics(this)">Show Lyrics</button>
+            <div class="lyrics">
+                <p><strong>Themes:</strong> Lost Romance, Haunting Memories</p>
+                <p><strong>Lyrics:</strong></p>
+                <p>In an alley where shadows dance, whispers of lost romance...</p>
+            </div>
+        </div>
+
+        <!-- Add more albums as needed -->
+    </div>
+
+    <script>
+        function toggleLyrics(button) {
+            const lyricsDiv = button.nextElementSibling;
+            if (lyricsDiv.style.display === "none" || lyricsDiv.style.display === "") {
+                lyricsDiv.style.display = "block";
+                button.textContent = "Hide Lyrics";
+            } else {
+                lyricsDiv.style.display = "none";
+                button.textContent = "Show Lyrics";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+# Robots.txt for Gainesville Psychiatry and Forensic Services
+# Dr. Lawrence Adu - Top Psychiatrist in Gainesville, FL
+# Optimized for maximum search engine visibility
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.gainesvillepfs.com/sitemap.xml
+
+# Allow all important pages
+Allow: /pages/
+Allow: /assets/
+Allow: /schema/
+Allow: /blog/
+Allow: /resources/
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /reports/
+Disallow: /temp/
+Disallow: /backup/
+Disallow: /old/
+Disallow: /test/
+
+# Disallow file types that don't need indexing
+Disallow: /*.pdf$
+Disallow: /*.doc$
+Disallow: /*.docx$
+Disallow: /*.xls$
+Disallow: /*.xlsx$
+Disallow: /*.ppt$
+Disallow: /*.pptx$
+Disallow: /*.zip$
+Disallow: /*.rar$
+Disallow: /*.tar$
+Disallow: /*.gz$
+
+# Allow specific important files
+Allow: /assets/images/
+Allow: /assets/css/
+Allow: /assets/js/
+Allow: /schema/localbusiness.json
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1
+
+# Specific bot instructions
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+# Host directive
+Host: www.gainesvillepfs.com

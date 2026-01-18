@@ -1,0 +1,62 @@
+
+:root{
+  --bg:#0b0b0c;
+  --fg:#f6f3ea;
+  --gold:#d9b36f;
+  --muted:#b6b3aa;
+  --accent:#caa468;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color:var(--fg);
+  background: radial-gradient(1200px 800px at 80% -10%, rgba(217,179,111,0.25), transparent 60%), var(--bg);
+  line-height:1.6;
+}
+a{color:var(--gold);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:1120px;margin:0 auto;padding:24px}
+header{
+  position:sticky;top:0;z-index:1000;
+  background: rgba(11,11,12,.8); backdrop-filter: blur(6px);
+  border-bottom:1px solid rgba(217,179,111,.25);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{
+  width:40px;height:40px;border-radius:50%;
+  background: radial-gradient(circle at 30% 30%, #fff8, #0000), linear-gradient(135deg,#d9b36f,#846b3a);
+  box-shadow:0 0 0 2px #000 inset, 0 0 20px rgba(217,179,111,.25);
+}
+.btn{
+  display:inline-block;padding:12px 18px;border:1px solid var(--gold);
+  border-radius:12px;color:var(--bg);background:var(--gold);font-weight:700
+}
+.btn.outline{background:transparent;color:var(--fg)}
+.hero{
+  padding:80px 0;border-bottom:1px solid rgba(217,179,111,.25);
+  background:
+    radial-gradient(800px 400px at 85% 15%, rgba(217,179,111,.2), transparent 60%);
+}
+.grid{display:grid;gap:24px}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.card{
+  background:#111;border:1px solid rgba(217,179,111,.25);border-radius:16px;padding:20px
+}
+.badge{display:inline-block;background:#1a1a1a;border:1px solid rgba(217,179,111,.35);color:var(--gold);
+  padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px}
+ul.check{list-style:none;padding:0;margin:0}
+ul.check li{padding:8px 0 8px 30px;position:relative}
+ul.check li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:900}
+section h2{margin-top:8px}
+footer{border-top:1px solid rgba(217,179,111,.25);padding:24px 0;background:#0d0d0e;color:var(--muted)}
+.small{font-size:.9rem;color:var(--muted)}
+.kv{display:flex;flex-wrap:wrap;gap:12px}
+.kv div{min-width:200px}
+.cta-bar{position:sticky;bottom:0;background:#0f0f10; border-top:1px solid rgba(217,179,111,.25);
+  padding:12px; display:flex; gap:12px; justify-content:center}
+.faq summary{cursor:pointer;font-weight:700}
+.faq details{background:#111;border:1px solid rgba(217,179,111,.25);border-radius:12px;padding:12px;margin:10px 0}
+.notice{font-size:.95rem;color:var(--muted)}

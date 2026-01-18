@@ -1,0 +1,1 @@
+What specific aspects of writing would you like to improve? (e.g., storytelling, character development, descriptive writing, dialogue, persuasive writing, poetry, etc.) Also, do you prefer short prompts, detailed scenarios, or specific challenges?

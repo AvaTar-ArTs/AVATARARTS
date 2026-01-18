@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01_Project_Files - AVATARARTS</title>
+    <meta name="description" content="Directory">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            opacity: 0.95;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .navigation {
+            background: #f8f9fa;
+            padding: 15px 30px;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: #667eea;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .directory-listing {
+            padding: 30px;
+        }
+
+        .directory-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .directory-header h2 {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .search-box {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        thead {
+            background: #667eea;
+            color: white;
+        }
+
+        th {
+            text-align: left;
+            padding: 15px;
+            font-weight: 600;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .icon {
+            width: 30px;
+            text-align: center;
+            font-size: 1.3em;
+        }
+
+        .name {
+            font-weight: 500;
+        }
+
+        .name a {
+            color: #667eea;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .name a:hover {
+            text-decoration: underline;
+            color: #764ba2;
+        }
+
+        .size {
+            color: #6c757d;
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .type {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .folder-icon {
+            color: #ffc107;
+        }
+
+        .file-icon {
+            color: #6c757d;
+        }
+
+        .parent-dir {
+            background: #e7f3ff;
+            font-weight: 600;
+        }
+
+        .parent-dir a {
+            color: #0066cc;
+        }
+
+        .stats {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px;
+            border-top: 3px solid #667eea;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stat-label {
+            font-size: 0.85em;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .subdirectories {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .subdirectories h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .subdir-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .subdir-card {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s;
+        }
+
+        .subdir-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .subdir-card a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .subdir-card a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📁 01_Project_Files</h1>
+            <p>Directory</p>
+            <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.9;">Base URL: avatararts.org/SEO-revenue/all/00_ACTIVE/CLIENT_PROJECTS/Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/ | Path: /Users/steven/AVATARARTS/00_ACTIVE/CLIENT_PROJECTS/Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/ | Updated: January 13, 2026 11:59 AM</p>
+        </header>
+
+        <div class="navigation">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> / <a href="00_ACTIVE/index.html">00_ACTIVE</a> / <a href="00_ACTIVE/CLIENT_PROJECTS/index.html">CLIENT_PROJECTS</a> / <a href="00_ACTIVE/CLIENT_PROJECTS/Dr_Adu_GainesvillePFS_SEO_Project/index.html">Dr_Adu_GainesvillePFS_SEO_Project</a> / <span>01_Project_Files</span>
+            </div>
+            <div class="nav-links">
+                <a href="../../../../index.html">🏠 Home</a>
+                <a href="../index.html">⬆️ Parent</a>
+            </div>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Search files and folders..." autocomplete="off">
+        </div>
+
+        <div class="directory-listing">
+            <div class="directory-header">
+                <h2>📂 /Users/steven/AVATARARTS/00_ACTIVE/CLIENT_PROJECTS/Dr_Adu_GainesvillePFS_SEO_Project/01_Project_Files/</h2>
+                <p>Directory</p>
+            </div>
+
+            <div class="subdirectories">
+            <h3>📁 Subdirectories</h3>
+            <div class="subdir-grid">
+                <div class="subdir-card">
+            <a href="DrAdu-SEO-OPTIMIZED/index.html">📁 DrAdu-SEO-OPTIMIZED/</a>
+        </div><div class="subdir-card">
+            <a href="Dr_Adu_GainesvillePFS_SEO_Project/index.html">📁 Dr_Adu_GainesvillePFS_SEO_Project/</a>
+        </div>
+            </div>
+        </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th class="icon"></th>
+                        <th class="name">Name</th>
+                        <th class="size">Size</th>
+                        <th class="type">Type</th>
+                    </tr>
+                </thead>
+                <tbody id="fileTable">
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="DrAdu-SEO-OPTIMIZED/index.html">DrAdu-SEO-OPTIMIZED/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="Dr_Adu_GainesvillePFS_SEO_Project/index.html">Dr_Adu_GainesvillePFS_SEO_Project/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="1950%20horror_set_7_copy_26.xlsx">1950 horror_set_7_copy_26.xlsx</a></td>
+            <td class="size">13.5 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="20251015_111728_f04380f5-3abb-44df-8fcc-6cbb9e235358_imports_json%204_set_22_copy_103.json">20251015_111728_f04380f5-3abb-44df-8fcc-6cbb9e235358_imports_json 4_set_22_copy_103.json</a></td>
+            <td class="size">30.4 KB</td>
+            <td class="type">JSON</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="20251015_111728_f04380f5-3abb-44df-8fcc-6cbb9e235358_imports_markdown%206_set_273_copy_1300.markdown">20251015_111728_f04380f5-3abb-44df-8fcc-6cbb9e235358_imports_markdown 6_set_273_copy_1300.markdown</a></td>
+            <td class="size">15.4 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="2b.%20Example_set_100_copy_525.xlsx">2b. Example_set_100_copy_525.xlsx</a></td>
+            <td class="size">25.4 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="CHANGES%203_set_166_copy_861.md">CHANGES 3_set_166_copy_861.md</a></td>
+            <td class="size">141.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="CLEANUP_SUCCESS_REPORT_set_299_copy_1362.md">CLEANUP_SUCCESS_REPORT_set_299_copy_1362.md</a></td>
+            <td class="size">4.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="CLIENT_REPORT_NON_TECHNICAL_set_194_copy_965.md">CLIENT_REPORT_NON_TECHNICAL_set_194_copy_965.md</a></td>
+            <td class="size">28.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPLETE_ORGANIZATION_SUCCESS_set_234_copy_1146.md">COMPLETE_ORGANIZATION_SUCCESS_set_234_copy_1146.md</a></td>
+            <td class="size">9.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPREHENSIVE_ORIGINAL_ANALYSIS_REPORT_set_219_copy_1080.html">COMPREHENSIVE_ORIGINAL_ANALYSIS_REPORT_set_219_copy_1080.html</a></td>
+            <td class="size">105.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPREHENSIVE_ORIGINAL_ANALYSIS_REPORT_set_220_copy_1087.md">COMPREHENSIVE_ORIGINAL_ANALYSIS_REPORT_set_220_copy_1087.md</a></td>
+            <td class="size">11.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPREHENSIVE_ORIGINAL_ANALYSIS_REPORT_set_230_copy_1125.pdf">COMPREHENSIVE_ORIGINAL_ANALYSIS_REPORT_set_230_copy_1125.pdf</a></td>
+            <td class="size">113.8 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPREHENSIVE_SKILLS_SERVICES_REPORT_set_117_copy_632.md">COMPREHENSIVE_SKILLS_SERVICES_REPORT_set_117_copy_632.md</a></td>
+            <td class="size">16.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPREHENSIVE_WEBSITE_ANALYSIS_set_213_copy_1053.md">COMPREHENSIVE_WEBSITE_ANALYSIS_set_213_copy_1053.md</a></td>
+            <td class="size">9.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="DEEP_ANALYSIS_REPORT_set_120_copy_641.md">DEEP_ANALYSIS_REPORT_set_120_copy_641.md</a></td>
+            <td class="size">332.0 B</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="DIRECTORY_ORGANIZATION_SUMMARY_set_186_copy_934.md">DIRECTORY_ORGANIZATION_SUMMARY_set_186_copy_934.md</a></td>
+            <td class="size">8.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ENHANCED_MASTER_ANALYSIS_V2_set_187_copy_938.md">ENHANCED_MASTER_ANALYSIS_V2_set_187_copy_938.md</a></td>
+            <td class="size">139.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ENHANCED_MASTER_ANALYSIS_set_108_copy_575.md">ENHANCED_MASTER_ANALYSIS_set_108_copy_575.md</a></td>
+            <td class="size">31.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Explain-MCP-settings-2025-09-09_set_301_copy_1366.md">Explain-MCP-settings-2025-09-09_set_301_copy_1366.md</a></td>
+            <td class="size">37.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="GPTJunkie---Content-aware-deep-analysis-2025-10-15%202_set_289_copy_1337.md">GPTJunkie---Content-aware-deep-analysis-2025-10-15 2_set_289_copy_1337.md</a></td>
+            <td class="size">22.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="MASTER_ANALYSIS_REPORT%203_set_207_copy_1028.md">MASTER_ANALYSIS_REPORT 3_set_207_copy_1028.md</a></td>
+            <td class="size">159.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="MASTER_ANALYSIS_REPORT%206_set_142_copy_770.md">MASTER_ANALYSIS_REPORT 6_set_142_copy_770.md</a></td>
+            <td class="size">150.7 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="MASTER_BATCHED_REPORT_set_116_copy_627.md">MASTER_BATCHED_REPORT_set_116_copy_627.md</a></td>
+            <td class="size">80.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="MASTER_SUMMARY_set_110_copy_587.json">MASTER_SUMMARY_set_110_copy_587.json</a></td>
+            <td class="size">93.1 KB</td>
+            <td class="type">JSON</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ORGANIZATION_SUMMARY_set_215_copy_1063.md">ORGANIZATION_SUMMARY_set_215_copy_1063.md</a></td>
+            <td class="size">5.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="README%2011_set_150_copy_803.md">README 11_set_150_copy_803.md</a></td>
+            <td class="size">2.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="README%203_set_296_copy_1355.md">README 3_set_296_copy_1355.md</a></td>
+            <td class="size">4.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="README%206_set_224_copy_1099.md">README 6_set_224_copy_1099.md</a></td>
+            <td class="size">152.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="SEO_CONTINUOUS_IMPROVEMENT_PLAN_set_280_copy_1316.md">SEO_CONTINUOUS_IMPROVEMENT_PLAN_set_280_copy_1316.md</a></td>
+            <td class="size">9.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="SEO_IMPROVEMENTS_REPORT_set_147_copy_787.md">SEO_IMPROVEMENTS_REPORT_set_147_copy_787.md</a></td>
+            <td class="size">14.7 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="SEO_IMPROVEMENTS_REPORT_set_196_copy_973.md">SEO_IMPROVEMENTS_REPORT_set_196_copy_973.md</a></td>
+            <td class="size">41.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="SEO_IMPROVEMENTS_REPORT_set_214_copy_1061.md">SEO_IMPROVEMENTS_REPORT_set_214_copy_1061.md</a></td>
+            <td class="size">13.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="SEO_SERVICES_INVOICE_set_15_copy_70.md">SEO_SERVICES_INVOICE_set_15_copy_70.md</a></td>
+            <td class="size">8.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="SEO_SERVICES_INVOICE_set_222_copy_1092.md">SEO_SERVICES_INVOICE_set_222_copy_1092.md</a></td>
+            <td class="size">10.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="SEO_SERVICES_INVOICE_set_266_copy_1264.md">SEO_SERVICES_INVOICE_set_266_copy_1264.md</a></td>
+            <td class="size">38.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="STEVEN_CHAPLINSKI_FREELANCE_ANALYSIS_2025_set_294_copy_1349.md">STEVEN_CHAPLINSKI_FREELANCE_ANALYSIS_2025_set_294_copy_1349.md</a></td>
+            <td class="size">13.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="STEVEN_FREELANCE_EXAMPLES_2025%202_set_307_copy_1381.md">STEVEN_FREELANCE_EXAMPLES_2025 2_set_307_copy_1381.md</a></td>
+            <td class="size">11.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="TOP_1_5_PERCENT_SEO_ANALYSIS_set_92_copy_490.md">TOP_1_5_PERCENT_SEO_ANALYSIS_set_92_copy_490.md</a></td>
+            <td class="size">14.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="Twitch_API%202_set_1_copy_4.ipynb">Twitch_API 2_set_1_copy_4.ipynb</a></td>
+            <td class="size">9.0 MB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ULTIMATE_COMPREHENSIVE_DEEP_REACH_ANALYSIS_set_177_copy_898.md">ULTIMATE_COMPREHENSIVE_DEEP_REACH_ANALYSIS_set_177_copy_898.md</a></td>
+            <td class="size">44.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="WEBSITE_ANALYSIS_REPORT_set_276_copy_1307.md">WEBSITE_ANALYSIS_REPORT_set_276_copy_1307.md</a></td>
+            <td class="size">7.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="_downloads_set_134_copy_732.html">_downloads_set_134_copy_732.html</a></td>
+            <td class="size">357.0 B</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="about%2016_set_173_copy_883.html">about 16_set_173_copy_883.html</a></td>
+            <td class="size">14.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="about.html_set_36_copy_213.json">about.html_set_36_copy_213.json</a></td>
+            <td class="size">21.9 KB</td>
+            <td class="type">JSON</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="about_20251016145115_set_47_copy_267.html">about_20251016145115_set_47_copy_267.html</a></td>
+            <td class="size">14.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="about_20251016145121_set_84_copy_456.html">about_20251016145121_set_84_copy_456.html</a></td>
+            <td class="size">13.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="about_20251016145133_set_57_copy_292.html">about_20251016145133_set_57_copy_292.html</a></td>
+            <td class="size">14.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="about_set_138_copy_755.html">about_set_138_copy_755.html</a></td>
+            <td class="size">721.0 B</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="about_set_29_copy_158.html">about_set_29_copy_158.html</a></td>
+            <td class="size">142.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ai-powered-multimedia-analysis-system_set_212_copy_1051.txt">ai-powered-multimedia-analysis-system_set_212_copy_1051.txt</a></td>
+            <td class="size">3.9 MB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="appointments%2011_set_17_copy_81.html">appointments 11_set_17_copy_81.html</a></td>
+            <td class="size">18.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="appointments%2013_set_162_copy_844.html">appointments 13_set_162_copy_844.html</a></td>
+            <td class="size">18.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="appointments_set_133_copy_714.html">appointments_set_133_copy_714.html</a></td>
+            <td class="size">708.0 B</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="appointments_set_26_copy_132.html">appointments_set_26_copy_132.html</a></td>
+            <td class="size">100.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="automation_ANALYSIS%202_set_226_copy_1104.md">automation_ANALYSIS 2_set_226_copy_1104.md</a></td>
+            <td class="size">191.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="automation_ANALYSIS%206_set_10_copy_38.md">automation_ANALYSIS 6_set_10_copy_38.md</a></td>
+            <td class="size">199.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="batch_001_enhanced_analysis_set_251_copy_1204.md">batch_001_enhanced_analysis_set_251_copy_1204.md</a></td>
+            <td class="size">14.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="batch_002_enhanced_analysis_set_248_copy_1194.md">batch_002_enhanced_analysis_set_248_copy_1194.md</a></td>
+            <td class="size">34.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="batch_003_enhanced_analysis_set_244_copy_1180.md">batch_003_enhanced_analysis_set_244_copy_1180.md</a></td>
+            <td class="size">104.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="batch_005_enhanced_analysis_set_254_copy_1214.md">batch_005_enhanced_analysis_set_254_copy_1214.md</a></td>
+            <td class="size">59.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="batch_006_enhanced_analysis_set_243_copy_1176.md">batch_006_enhanced_analysis_set_243_copy_1176.md</a></td>
+            <td class="size">72.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="batch_007_enhanced_analysis_set_247_copy_1190.md">batch_007_enhanced_analysis_set_247_copy_1190.md</a></td>
+            <td class="size">164.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="batch_008_enhanced_analysis_set_249_copy_1198.md">batch_008_enhanced_analysis_set_249_copy_1198.md</a></td>
+            <td class="size">70.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="batch_009_enhanced_analysis_set_241_copy_1170.md">batch_009_enhanced_analysis_set_241_copy_1170.md</a></td>
+            <td class="size">56.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="batch_010_enhanced_analysis_set_246_copy_1186.md">batch_010_enhanced_analysis_set_246_copy_1186.md</a></td>
+            <td class="size">36.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="batched_content_analyzer_set_106_copy_563.py">batched_content_analyzer_set_106_copy_563.py</a></td>
+            <td class="size">20.6 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="bubble-top%204_set_122_copy_651.txt">bubble-top 4_set_122_copy_651.txt</a></td>
+            <td class="size">4.1 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="chatbot_set_41_copy_235.js">chatbot_set_41_copy_235.js</a></td>
+            <td class="size">10.6 KB</td>
+            <td class="type">JavaScript</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="comprehensive_chat_organizer_set_111_copy_595.py">comprehensive_chat_organizer_set_111_copy_595.py</a></td>
+            <td class="size">21.6 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="contact%206_set_18_copy_89.html">contact 6_set_18_copy_89.html</a></td>
+            <td class="size">16.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="contact_set_137_copy_747.html">contact_set_137_copy_747.html</a></td>
+            <td class="size">682.0 B</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="contact_set_28_copy_149.html">contact_set_28_copy_149.html</a></td>
+            <td class="size">124.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="content_aware_analyzer_set_114_copy_619.py">content_aware_analyzer_set_114_copy_619.py</a></td>
+            <td class="size">27.7 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="content_creation_ANALYSIS%203_set_156_copy_823.md">content_creation_ANALYSIS 3_set_156_copy_823.md</a></td>
+            <td class="size">191.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="content_creation_ANALYSIS%206_set_148_copy_789.md">content_creation_ANALYSIS 6_set_148_copy_789.md</a></td>
+            <td class="size">199.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="data_analysis_ANALYSIS%205_set_221_copy_1088.md">data_analysis_ANALYSIS 5_set_221_copy_1088.md</a></td>
+            <td class="size">190.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="data_analysis_ANALYSIS_set_8_copy_30.md">data_analysis_ANALYSIS_set_8_copy_30.md</a></td>
+            <td class="size">199.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="deep_read_organizer_set_107_copy_571.py">deep_read_organizer_set_107_copy_571.py</a></td>
+            <td class="size">15.9 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="direct_content_analyzer_set_113_copy_611.py">direct_content_analyzer_set_113_copy_611.py</a></td>
+            <td class="size">25.6 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="dr-adu-1_set_3_copy_9.png">dr-adu-1_set_3_copy_9.png</a></td>
+            <td class="size">146.7 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="dr-adu-2_set_210_copy_1040.png">dr-adu-2_set_210_copy_1040.png</a></td>
+            <td class="size">119.5 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="dr-adu-3_set_4_copy_12.png">dr-adu-3_set_4_copy_12.png</a></td>
+            <td class="size">116.1 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="dr-adu-4_set_5_copy_16.png">dr-adu-4_set_5_copy_16.png</a></td>
+            <td class="size">113.5 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="dr-adu-5_set_211_copy_1044.png">dr-adu-5_set_211_copy_1044.png</a></td>
+            <td class="size">115.6 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="dr-adu-portrait_set_43_copy_256.png">dr-adu-portrait_set_43_copy_256.png</a></td>
+            <td class="size">115.6 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="dr-adu_set_167_copy_864.jpeg">dr-adu_set_167_copy_864.jpeg</a></td>
+            <td class="size">28.0 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="enhanced_content_analyzer_set_149_copy_798.py">enhanced_content_analyzer_set_149_copy_798.py</a></td>
+            <td class="size">36.7 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="enhanced_content_analyzer_v2_set_115_copy_623.py">enhanced_content_analyzer_v2_set_115_copy_623.py</a></td>
+            <td class="size">47.5 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="enhanced_image_pipeline_set_0_copy_1.py">enhanced_image_pipeline_set_0_copy_1.py</a></td>
+            <td class="size">50.4 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="enhanced_main_set_126_copy_670.js">enhanced_main_set_126_copy_670.js</a></td>
+            <td class="size">11.1 KB</td>
+            <td class="type">JavaScript</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="enhanced_schema_localbusiness_set_125_copy_665.json">enhanced_schema_localbusiness_set_125_copy_665.json</a></td>
+            <td class="size">7.2 KB</td>
+            <td class="type">JSON</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="etsy-prompts-mcp-server_set_298_copy_1360.md">etsy-prompts-mcp-server_set_298_copy_1360.md</a></td>
+            <td class="size">25.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="extract_set_21_copy_98.md">extract_set_21_copy_98.md</a></td>
+            <td class="size">498.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="file_analyzer_set_112_copy_603.py">file_analyzer_set_112_copy_603.py</a></td>
+            <td class="size">13.9 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="file_management_ANALYSIS%202_set_118_copy_636.md">file_management_ANALYSIS 2_set_118_copy_636.md</a></td>
+            <td class="size">199.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="file_management_ANALYSIS%205_set_157_copy_825.md">file_management_ANALYSIS 5_set_157_copy_825.md</a></td>
+            <td class="size">191.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="fill_log_set_270_copy_1286.txt">fill_log_set_270_copy_1286.txt</a></td>
+            <td class="size">1.4 MB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="fixed_chat_organizer_set_109_copy_583.py">fixed_chat_organizer_set_109_copy_583.py</a></td>
+            <td class="size">22.7 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="fixed_chat_organizer_set_4904_copy_10654.html">fixed_chat_organizer_set_4904_copy_10654.html</a></td>
+            <td class="size">7.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="forensic_set_140_copy_765.html">forensic_set_140_copy_765.html</a></td>
+            <td class="size">720.0 B</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="freelance-analysis-2025_set_4672_copy_10188.html">freelance-analysis-2025_set_4672_copy_10188.html</a></td>
+            <td class="size">17.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="get-pip_set_183_copy_920.py">get-pip_set_183_copy_920.py</a></td>
+            <td class="size">2.5 MB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index%203_set_223_copy_1094.html">index 3_set_223_copy_1094.html</a></td>
+            <td class="size">35.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index%207_set_101_copy_536.js">index 7_set_101_copy_536.js</a></td>
+            <td class="size">341.4 KB</td>
+            <td class="type">JavaScript</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index.html_set_37_copy_215.json">index.html_set_37_copy_215.json</a></td>
+            <td class="size">145.9 KB</td>
+            <td class="type">JSON</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016130408_set_68_copy_320.html">index_20251016130408_set_68_copy_320.html</a></td>
+            <td class="size">67.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016131331_set_67_copy_316.html">index_20251016131331_set_67_copy_316.html</a></td>
+            <td class="size">68.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016131338_set_55_copy_288.html">index_20251016131338_set_55_copy_288.html</a></td>
+            <td class="size">68.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016131404_set_74_copy_432.html">index_20251016131404_set_74_copy_432.html</a></td>
+            <td class="size">67.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016131427_set_56_copy_290.html">index_20251016131427_set_56_copy_290.html</a></td>
+            <td class="size">68.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016131435_set_82_copy_448.html">index_20251016131435_set_82_copy_448.html</a></td>
+            <td class="size">68.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016131437_set_50_copy_273.html">index_20251016131437_set_50_copy_273.html</a></td>
+            <td class="size">68.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016131439_set_79_copy_442.html">index_20251016131439_set_79_copy_442.html</a></td>
+            <td class="size">68.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016131749_set_51_copy_275.html">index_20251016131749_set_51_copy_275.html</a></td>
+            <td class="size">69.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016131751_set_80_copy_444.html">index_20251016131751_set_80_copy_444.html</a></td>
+            <td class="size">68.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016131758_set_66_copy_314.html">index_20251016131758_set_66_copy_314.html</a></td>
+            <td class="size">69.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016131801_set_46_copy_265.html">index_20251016131801_set_46_copy_265.html</a></td>
+            <td class="size">70.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016131940_set_64_copy_310.html">index_20251016131940_set_64_copy_310.html</a></td>
+            <td class="size">83.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016132028_set_70_copy_324.html">index_20251016132028_set_70_copy_324.html</a></td>
+            <td class="size">83.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016132031_set_65_copy_312.html">index_20251016132031_set_65_copy_312.html</a></td>
+            <td class="size">83.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016132033_set_76_copy_436.html">index_20251016132033_set_76_copy_436.html</a></td>
+            <td class="size">83.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016132034_set_83_copy_450.html">index_20251016132034_set_83_copy_450.html</a></td>
+            <td class="size">83.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016132042_set_89_copy_468.html">index_20251016132042_set_89_copy_468.html</a></td>
+            <td class="size">83.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016132047_set_59_copy_298.html">index_20251016132047_set_59_copy_298.html</a></td>
+            <td class="size">58.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016132116_set_69_copy_322.html">index_20251016132116_set_69_copy_322.html</a></td>
+            <td class="size">58.3 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016132301_set_71_copy_326.html">index_20251016132301_set_71_copy_326.html</a></td>
+            <td class="size">40.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016132412_set_88_copy_466.html">index_20251016132412_set_88_copy_466.html</a></td>
+            <td class="size">40.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016132600_set_58_copy_294.html">index_20251016132600_set_58_copy_294.html</a></td>
+            <td class="size">58.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016132612_set_78_copy_440.html">index_20251016132612_set_78_copy_440.html</a></td>
+            <td class="size">56.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016132613_set_85_copy_458.html">index_20251016132613_set_85_copy_458.html</a></td>
+            <td class="size">56.6 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016132718_set_49_copy_271.html">index_20251016132718_set_49_copy_271.html</a></td>
+            <td class="size">56.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016132738_set_48_copy_269.html">index_20251016132738_set_48_copy_269.html</a></td>
+            <td class="size">62.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016132752_set_61_copy_302.html">index_20251016132752_set_61_copy_302.html</a></td>
+            <td class="size">85.1 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016132759_set_52_copy_277.html">index_20251016132759_set_52_copy_277.html</a></td>
+            <td class="size">66.2 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016132900_set_87_copy_464.html">index_20251016132900_set_87_copy_464.html</a></td>
+            <td class="size">65.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016133307_set_73_copy_430.html">index_20251016133307_set_73_copy_430.html</a></td>
+            <td class="size">52.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016133408_set_81_copy_446.html">index_20251016133408_set_81_copy_446.html</a></td>
+            <td class="size">52.5 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016143909_set_53_copy_279.html">index_20251016143909_set_53_copy_279.html</a></td>
+            <td class="size">52.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016143914_set_60_copy_300.html">index_20251016143914_set_60_copy_300.html</a></td>
+            <td class="size">52.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016144011_set_75_copy_434.html">index_20251016144011_set_75_copy_434.html</a></td>
+            <td class="size">32.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016144121_set_63_copy_306.html">index_20251016144121_set_63_copy_306.html</a></td>
+            <td class="size">52.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016145238_set_45_copy_263.html">index_20251016145238_set_45_copy_263.html</a></td>
+            <td class="size">54.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016145248_set_62_copy_304.html">index_20251016145248_set_62_copy_304.html</a></td>
+            <td class="size">53.9 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016145335_set_77_copy_438.html">index_20251016145335_set_77_copy_438.html</a></td>
+            <td class="size">53.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_20251016145338_set_72_copy_328.html">index_20251016145338_set_72_copy_328.html</a></td>
+            <td class="size">34.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_set_139_copy_762.html">index_set_139_copy_762.html</a></td>
+            <td class="size">782.0 B</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_set_176_copy_896.html">index_set_176_copy_896.html</a></td>
+            <td class="size">16.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="index_set_30_copy_166.html">index_set_30_copy_166.html</a></td>
+            <td class="size">191.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="localbusiness_set_132_copy_706.json">localbusiness_set_132_copy_706.json</a></td>
+            <td class="size">854.0 B</td>
+            <td class="type">JSON</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="main_set_135_copy_736.js">main_set_135_copy_736.js</a></td>
+            <td class="size">145.0 B</td>
+            <td class="type">JavaScript</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="main_set_203_copy_1009.js">main_set_203_copy_1009.js</a></td>
+            <td class="size">10.3 KB</td>
+            <td class="type">JavaScript</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="main_set_33_copy_195.js">main_set_33_copy_195.js</a></td>
+            <td class="size">20.3 KB</td>
+            <td class="type">JavaScript</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="mathematica%204_set_202_copy_1006.js">mathematica 4_set_202_copy_1006.js</a></td>
+            <td class="size">144.5 KB</td>
+            <td class="type">JavaScript</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="mathematica%209_set_103_copy_544.js">mathematica 9_set_103_copy_544.js</a></td>
+            <td class="size">144.5 KB</td>
+            <td class="type">JavaScript</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="mental-health-services_set_141_copy_768.html">mental-health-services_set_141_copy_768.html</a></td>
+            <td class="size">753.0 B</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="merged_discography_set_201_copy_1001.json">merged_discography_set_201_copy_1001.json</a></td>
+            <td class="size">1.9 MB</td>
+            <td class="type">JSON</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="merged_discography_set_218_copy_1072.csv">merged_discography_set_218_copy_1072.csv</a></td>
+            <td class="size">1.8 MB</td>
+            <td class="type">CSV</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="motivational%202_set_153_copy_814.txt">motivational 2_set_153_copy_814.txt</a></td>
+            <td class="size">413.5 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="neurostar-tms_set_136_copy_739.html">neurostar-tms_set_136_copy_739.html</a></td>
+            <td class="size">699.0 B</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="neurostar-tms_set_27_copy_141.html">neurostar-tms_set_27_copy_141.html</a></td>
+            <td class="size">152.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="patch-fetch%2010_set_165_copy_856.js">patch-fetch 10_set_165_copy_856.js</a></td>
+            <td class="size">31.6 KB</td>
+            <td class="type">JavaScript</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="patch-fetch%209_set_123_copy_656.js">patch-fetch 9_set_123_copy_656.js</a></td>
+            <td class="size">29.6 KB</td>
+            <td class="type">JavaScript</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="professional_format_log_set_146_copy_784.txt">professional_format_log_set_146_copy_784.txt</a></td>
+            <td class="size">3.3 MB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="psl%204_set_154_copy_819.cjs">psl 4_set_154_copy_819.cjs</a></td>
+            <td class="size">153.7 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="psl%205_set_9_copy_36.mjs">psl 5_set_9_copy_36.mjs</a></td>
+            <td class="size">184.6 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="psl.umd%205_set_170_copy_875.cjs">psl.umd 5_set_170_copy_875.cjs</a></td>
+            <td class="size">153.9 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="python_cleanup_report_20251015_061241_set_308_copy_1383.md">python_cleanup_report_20251015_061241_set_308_copy_1383.md</a></td>
+            <td class="size">4.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="registry%203_set_216_copy_1068.json">registry 3_set_216_copy_1068.json</a></td>
+            <td class="size">1.1 MB</td>
+            <td class="type">JSON</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="robots.ssl_set_24_copy_113.txt">robots.ssl_set_24_copy_113.txt</a></td>
+            <td class="size">1.3 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="robots_set_179_copy_904.txt">robots_set_179_copy_904.txt</a></td>
+            <td class="size">1.3 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="robots_set_34_copy_203.txt">robots_set_34_copy_203.txt</a></td>
+            <td class="size">1.5 KB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="rules%203_set_209_copy_1036.js">rules 3_set_209_copy_1036.js</a></td>
+            <td class="size">177.4 KB</td>
+            <td class="type">JavaScript</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="seo_optimization_ANALYSIS%205_set_164_copy_851.md">seo_optimization_ANALYSIS 5_set_164_copy_851.md</a></td>
+            <td class="size">195.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="seo_optimization_ANALYSIS%206_set_155_copy_821.md">seo_optimization_ANALYSIS 6_set_155_copy_821.md</a></td>
+            <td class="size">186.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="seo_optimization_log_set_159_copy_830.txt">seo_optimization_log_set_159_copy_830.txt</a></td>
+            <td class="size">3.9 MB</td>
+            <td class="type">Text</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="services%207_set_16_copy_76.html">services 7_set_16_copy_76.html</a></td>
+            <td class="size">17.8 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="services_set_130_copy_700.html">services_set_130_copy_700.html</a></td>
+            <td class="size">712.0 B</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="services_set_25_copy_123.html">services_set_25_copy_123.html</a></td>
+            <td class="size">177.7 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="simple_deep_reader_set_105_copy_555.py">simple_deep_reader_set_105_copy_555.py</a></td>
+            <td class="size">15.8 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="sitemap_set_180_copy_908.xml">sitemap_set_180_copy_908.xml</a></td>
+            <td class="size">4.5 KB</td>
+            <td class="type">XML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="sitemap_set_35_copy_211.xml">sitemap_set_35_copy_211.xml</a></td>
+            <td class="size">5.9 KB</td>
+            <td class="type">XML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="style_set_131_copy_703.css">style_set_131_copy_703.css</a></td>
+            <td class="size">329.0 B</td>
+            <td class="type">CSS</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="style_set_143_copy_774.css">style_set_143_copy_774.css</a></td>
+            <td class="size">10.7 KB</td>
+            <td class="type">CSS</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="style_set_160_copy_837.css">style_set_160_copy_837.css</a></td>
+            <td class="size">18.4 KB</td>
+            <td class="type">CSS</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="style_set_94_copy_500.css">style_set_94_copy_500.css</a></td>
+            <td class="size">25.5 KB</td>
+            <td class="type">CSS</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="targeted_cleanup_report_20251015_061510_set_285_copy_1326.md">targeted_cleanup_report_20251015_061510_set_285_copy_1326.md</a></td>
+            <td class="size">367.0 B</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="targeted_cleanup_report_20251015_061530_set_284_copy_1324.md">targeted_cleanup_report_20251015_061530_set_284_copy_1324.md</a></td>
+            <td class="size">372.0 B</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="technical-analysis%202_set_217_copy_1069.html">technical-analysis 2_set_217_copy_1069.html</a></td>
+            <td class="size">25.0 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="tehsites_set_119_copy_638.rst">tehsites_set_119_copy_638.rst</a></td>
+            <td class="size">3.1 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="tts-doc_set_2_copy_6.py">tts-doc_set_2_copy_6.py</a></td>
+            <td class="size">7.5 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="video-content_set_144_copy_777.html">video-content_set_144_copy_777.html</a></td>
+            <td class="size">2.4 KB</td>
+            <td class="type">HTML</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="web_development_ANALYSIS%203_set_269_copy_1280.md">web_development_ANALYSIS 3_set_269_copy_1280.md</a></td>
+            <td class="size">198.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="yarn%205_set_13_copy_50.lock">yarn 5_set_13_copy_50.lock</a></td>
+            <td class="size">101.5 KB</td>
+            <td class="type">File</td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-label">Total Items</div>
+                <div class="stat-value">194</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Directories</div>
+                <div class="stat-value">2</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Files</div>
+                <div class="stat-value">192</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#fileTable tr');
+            const cards = document.querySelectorAll('.subdir-card');
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

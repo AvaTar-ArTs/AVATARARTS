@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SBHTML - AVATARARTS</title>
+    <meta name="description" content="Directory">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            opacity: 0.95;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .navigation {
+            background: #f8f9fa;
+            padding: 15px 30px;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .breadcrumb {
+            font-size: 0.9em;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: #667eea;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .directory-listing {
+            padding: 30px;
+        }
+
+        .directory-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .directory-header h2 {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .search-box {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        thead {
+            background: #667eea;
+            color: white;
+        }
+
+        th {
+            text-align: left;
+            padding: 15px;
+            font-weight: 600;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .icon {
+            width: 30px;
+            text-align: center;
+            font-size: 1.3em;
+        }
+
+        .name {
+            font-weight: 500;
+        }
+
+        .name a {
+            color: #667eea;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .name a:hover {
+            text-decoration: underline;
+            color: #764ba2;
+        }
+
+        .size {
+            color: #6c757d;
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .type {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .folder-icon {
+            color: #ffc107;
+        }
+
+        .file-icon {
+            color: #6c757d;
+        }
+
+        .parent-dir {
+            background: #e7f3ff;
+            font-weight: 600;
+        }
+
+        .parent-dir a {
+            color: #0066cc;
+        }
+
+        .stats {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px;
+            border-top: 3px solid #667eea;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stat-label {
+            font-size: 0.85em;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .subdirectories {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .subdirectories h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .subdir-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .subdir-card {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s;
+        }
+
+        .subdir-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .subdir-card a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .subdir-card a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📁 SBHTML</h1>
+            <p>Directory</p>
+            <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.9;">Base URL: avatararts.org/SEO-revenue/all/00_ACTIVE/CONTENT/html-assets/assets/SBHTML/ | Path: /Users/steven/AVATARARTS/00_ACTIVE/CONTENT/html-assets/assets/SBHTML/ | Updated: January 13, 2026 11:59 AM</p>
+        </header>
+
+        <div class="navigation">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> / <a href="00_ACTIVE/index.html">00_ACTIVE</a> / <a href="00_ACTIVE/CONTENT/index.html">CONTENT</a> / <a href="00_ACTIVE/CONTENT/html-assets/index.html">html-assets</a> / <a href="00_ACTIVE/CONTENT/html-assets/assets/index.html">assets</a> / <span>SBHTML</span>
+            </div>
+            <div class="nav-links">
+                <a href="../../../../../index.html">🏠 Home</a>
+                <a href="../index.html">⬆️ Parent</a>
+            </div>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Search files and folders..." autocomplete="off">
+        </div>
+
+        <div class="directory-listing">
+            <div class="directory-header">
+                <h2>📂 /Users/steven/AVATARARTS/00_ACTIVE/CONTENT/html-assets/assets/SBHTML/</h2>
+                <p>Directory</p>
+            </div>
+
+            <div class="subdirectories">
+            <h3>📁 Subdirectories</h3>
+            <div class="subdir-grid">
+                <div class="subdir-card">
+            <a href="BuufJuiced-Armageddon-dubs%20SBHTML/index.html">📁 BuufJuiced-Armageddon-dubs SBHTML/</a>
+        </div><div class="subdir-card">
+            <a href="BuufJuiced-EyeballTree%20Brown%20Pot-burrzoo%20SBHTML/index.html">📁 BuufJuiced-EyeballTree Brown Pot-burrzoo SBHTML/</a>
+        </div><div class="subdir-card">
+            <a href="BuufJuiced-EyeballTree%20Green%20Pot-burrzoo%20SBHTML/index.html">📁 BuufJuiced-EyeballTree Green Pot-burrzoo SBHTML/</a>
+        </div><div class="subdir-card">
+            <a href="BuufJuiced-Pirates-dubs%20SBHTML/index.html">📁 BuufJuiced-Pirates-dubs SBHTML/</a>
+        </div><div class="subdir-card">
+            <a href="D0P3%20SB10/index.html">📁 D0P3 SB10/</a>
+        </div><div class="subdir-card">
+            <a href="D0P3%20SB11/index.html">📁 D0P3 SB11/</a>
+        </div><div class="subdir-card">
+            <a href="D0P3%20SB19/index.html">📁 D0P3 SB19/</a>
+        </div><div class="subdir-card">
+            <a href="D0P3%20SB2/index.html">📁 D0P3 SB2/</a>
+        </div><div class="subdir-card">
+            <a href="D0P3%20SB20/index.html">📁 D0P3 SB20/</a>
+        </div><div class="subdir-card">
+            <a href="D0P3%20SB21/index.html">📁 D0P3 SB21/</a>
+        </div><div class="subdir-card">
+            <a href="D0P3%20SB4/index.html">📁 D0P3 SB4/</a>
+        </div><div class="subdir-card">
+            <a href="D0P3%20SB6%20%28MathyWallrod%29/index.html">📁 D0P3 SB6 (MathyWallrod)/</a>
+        </div><div class="subdir-card">
+            <a href="D0P3%20SB7%20%28ChrisJ4ck%29/index.html">📁 D0P3 SB7 (ChrisJ4ck)/</a>
+        </div><div class="subdir-card">
+            <a href="D0P3%20SB8%20%28Twix%29/index.html">📁 D0P3 SB8 (Twix)/</a>
+        </div><div class="subdir-card">
+            <a href="Dragon%20Skellie/index.html">📁 Dragon Skellie/</a>
+        </div><div class="subdir-card">
+            <a href="EW.WdgtPack.4_SB1/index.html">📁 EW.WdgtPack.4_SB1/</a>
+        </div><div class="subdir-card">
+            <a href="Mattahan%20EarthNight%20-%20Floating%20Beast/index.html">📁 Mattahan EarthNight - Floating Beast/</a>
+        </div><div class="subdir-card">
+            <a href="Mattahan%20EarthNight%20-%20Girl%20%26%20World/index.html">📁 Mattahan EarthNight - Girl & World/</a>
+        </div><div class="subdir-card">
+            <a href="New%20Folder%20With%20Items/index.html">📁 New Folder With Items/</a>
+        </div><div class="subdir-card">
+            <a href="SB%20EW21/index.html">📁 SB EW21/</a>
+        </div><div class="subdir-card">
+            <a href="SB%20EW72/index.html">📁 SB EW72/</a>
+        </div><div class="subdir-card">
+            <a href="SB%20EW88/index.html">📁 SB EW88/</a>
+        </div><div class="subdir-card">
+            <a href="SB%20EW9/index.html">📁 SB EW9/</a>
+        </div><div class="subdir-card">
+            <a href="SBHTMLSmr100/index.html">📁 SBHTMLSmr100/</a>
+        </div><div class="subdir-card">
+            <a href="Smr2/index.html">📁 Smr2/</a>
+        </div>
+            </div>
+        </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th class="icon"></th>
+                        <th class="name">Name</th>
+                        <th class="size">Size</th>
+                        <th class="type">Type</th>
+                    </tr>
+                </thead>
+                <tbody id="fileTable">
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="BuufJuiced-Armageddon-dubs%20SBHTML/index.html">BuufJuiced-Armageddon-dubs SBHTML/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="BuufJuiced-EyeballTree%20Brown%20Pot-burrzoo%20SBHTML/index.html">BuufJuiced-EyeballTree Brown Pot-burrzoo SBHTML/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="BuufJuiced-EyeballTree%20Green%20Pot-burrzoo%20SBHTML/index.html">BuufJuiced-EyeballTree Green Pot-burrzoo SBHTML/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="BuufJuiced-Pirates-dubs%20SBHTML/index.html">BuufJuiced-Pirates-dubs SBHTML/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="D0P3%20SB10/index.html">D0P3 SB10/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="D0P3%20SB11/index.html">D0P3 SB11/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="D0P3%20SB19/index.html">D0P3 SB19/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="D0P3%20SB2/index.html">D0P3 SB2/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="D0P3%20SB20/index.html">D0P3 SB20/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="D0P3%20SB21/index.html">D0P3 SB21/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="D0P3%20SB4/index.html">D0P3 SB4/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="D0P3%20SB6%20%28MathyWallrod%29/index.html">D0P3 SB6 (MathyWallrod)/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="D0P3%20SB7%20%28ChrisJ4ck%29/index.html">D0P3 SB7 (ChrisJ4ck)/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="D0P3%20SB8%20%28Twix%29/index.html">D0P3 SB8 (Twix)/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="Dragon%20Skellie/index.html">Dragon Skellie/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="EW.WdgtPack.4_SB1/index.html">EW.WdgtPack.4_SB1/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="Mattahan%20EarthNight%20-%20Floating%20Beast/index.html">Mattahan EarthNight - Floating Beast/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="Mattahan%20EarthNight%20-%20Girl%20%26%20World/index.html">Mattahan EarthNight - Girl & World/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="New%20Folder%20With%20Items/index.html">New Folder With Items/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="SB%20EW21/index.html">SB EW21/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="SB%20EW72/index.html">SB EW72/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="SB%20EW88/index.html">SB EW88/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="SB%20EW9/index.html">SB EW9/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="SBHTMLSmr100/index.html">SBHTMLSmr100/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="Smr2/index.html">Smr2/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="1Archive.zip">1Archive.zip</a></td>
+            <td class="size">5.0 MB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="BuufWords%2BWeather.zip">BuufWords+Weather.zip</a></td>
+            <td class="size">768.0 KB</td>
+            <td class="type">File</td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-label">Total Items</div>
+                <div class="stat-value">27</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Directories</div>
+                <div class="stat-value">25</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Files</div>
+                <div class="stat-value">2</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#fileTable tr');
+            const cards = document.querySelectorAll('.subdir-card');
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

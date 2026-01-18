@@ -1,0 +1,147 @@
+
+# Etsy Collection Analysis Report
+
+## Overview
+- **Total Files:** 43,480
+- **Total Directories:** 1,052
+- **Total Size:** 21.50 GB
+- **High Resolution Files:** 3,023
+- **Duplicate Files:** 2,227
+
+## File Types
+- .jpg: 36,998 files
+- .png: 2,672 files
+- .jpeg: 1,507 files
+- .pdf: 769 files
+- .mp4: 436 files
+- .svg: 328 files
+- .css: 118 files
+- .js: 118 files
+- .zip: 86 files
+- .jinja: 80 files
+- .json: 71 files
+- .html: 67 files
+- .gif: 39 files
+- .eps: 38 files
+- .dxf: 38 files
+- .csv: 30 files
+- .md: 22 files
+- .py: 18 files
+- .txt: 15 files
+- .psd: 13 files
+- .webp: 10 files
+- .mp3: 4 files
+- .crdownload: 1 files
+- .m4a: 1 files
+- .sh: 1 files
+
+## Categories
+- miscellaneous: 39,161 files
+- high_resolution: 3,023 files
+- sublimation: 629 files
+- christmas_holiday: 539 files
+- animals_pets: 504 files
+- bundles: 262 files
+- patterns: 157 files
+- t_shirts: 78 files
+
+## Project Folders (128)
+- photos: 4138 files
+- thumbnails: 4117 files
+- ideo-1012: 4026 files
+- ideogram-to-sell: 3598 files
+- photos: 3431 files
+- thumbnails: 3422 files
+- photos: 1864 files
+- thumbnails: 1864 files
+- photos: 1501 files
+- thumbnails: 1501 files
+- photos: 1499 files
+- thumbnails: 1499 files
+- duplicate_backup: 864 files
+- photos: 778 files
+- thumbnails: 775 files
+- pdf: 767 files
+- thumbnails: 470 files
+- photos: 411 files
+- 12-9: 314 files
+- Vert: 217 files
+
+## Bundle Folders (77)
+- Funny-Raccoon-PNG-Sublimation-Bundle-100305013: 3 files
+- public: 2 files
+- css: 3 files
+- images: 3 files
+- photos: 14 files
+- thumbnails: 14 files
+- js: 3 files
+- templates: 2 files
+- Kamala Collection PNG SVG: 13 files
+- SVG: 13 files
+- KAMALA-HARRIS-SVG-png-BUNDLE-102524677: 1 files
+- 6: 4 files
+- 1: 4 files
+- 4: 4 files
+- 3: 4 files
+- 2: 4 files
+- 5: 4 files
+- Funny Sarcastic SVG Bundle: 2 files
+- Dont Duck With Me: 1 files
+- Color: 4 files
+- Black: 4 files
+- Funny Pickle SVG: 1 files
+- Color: 4 files
+- Black: 4 files
+- I Havent Shit in Days: 1 files
+- Color: 4 files
+- Black: 4 files
+- Shh No One Cares: 1 files
+- Color: 4 files
+- Black: 4 files
+- Oops Another Chicken: 1 files
+- Color: 4 files
+- Black: 4 files
+- No Date Just Chocolate: 1 files
+- Color: 4 files
+- Black: 4 files
+- Lashes Longer Than My Patience: 1 files
+- Color: 4 files
+- Black: 4 files
+- None Of Your Emails Are Finding Me Well: 1 files
+- Color: 4 files
+- Black: 4 files
+- On The Way To Get My Shit Together: 1 files
+- Color: 4 files
+- Black: 4 files
+- Funny Racoon SVG: 1 files
+- Color: 4 files
+- Black: 4 files
+- public: 1 files
+- css: 3 files
+- images: 3 files
+- photos: 1 files
+- thumbnails: 1 files
+- js: 3 files
+- Im A Serious Goose Today: 1 files
+- Color: 4 files
+- Black: 4 files
+- Not My Trash Not My Dumpster: 1 files
+- Color: 4 files
+- Black: 4 files
+- templates: 2 files
+- Sorry Im Late I Was Dilly Dallying: 1 files
+- Color: 4 files
+- Black: 4 files
+- Strawberry Jams But My Glock: 1 files
+- Color: 4 files
+- Black: 4 files
+- Sorry Gotta Go The Vibes Are Off: 1 files
+- Color: 4 files
+- Black: 4 files
+- Kinda Boujee Kinda Broke: 1 files
+- Color: 4 files
+- Black: 4 files
+- Birds-Wine-Square-Coaster-Bundle: 33 files
+- Zodiac-Tarot-Card-Bundle: 13 files
+- Funny-Animal-On-Toilet-Bundle: 21 files
+- Cute-Grim-Reaper-Sublimation-Bundle-97249631: 23 files

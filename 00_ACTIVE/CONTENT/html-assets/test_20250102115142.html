@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            padding: 20px;
+            color: #f0a500;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px;
+        }
+        .image-card {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 280px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .image-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 1px solid #333;
+            transition: opacity 0.3s ease;
+        }
+        img[loading="lazy"] {
+            opacity: 0;
+        }
+        img.is-loaded {
+            opacity: 1;
+        }
+        .description {
+            padding: 15px;
+            font-size: 0.9em;
+            color: #bbb;
+            text-align: left;
+        }
+        #myBtn, #jumpBtn {
+            display: none;
+            position: fixed;
+            right: 30px;
+            z-index: 99;
+            font-size: 16px;
+            border: none;
+            outline: none;
+            background-color: #000;
+            color: #f0a500;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        #myBtn {
+            bottom: 20px;
+        }
+        #jumpBtn {
+            bottom: 60px;
+        }
+        #myBtn:hover, #jumpBtn:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Leonardo Image Gallery</h1>
+    <div class="gallery" id="gallery">
+        <!-- Image cards will go here -->
+    </div>
+    <button onclick="topFunction()" id="myBtn" title="Go to top" aria-label="Go to top">Top</button>
+    <button onclick="jumpDown()" id="jumpBtn" title="Down" aria-label="Down">Jump Down</button>
+
+    <script>
+        // Populate the gallery with images dynamically
+        const images = []; // Replace this with your array of image URLs and metadata
+        const gallery = document.getElementById("gallery");
+
+        images.forEach(image => {
+            const card = document.createElement("div");
+            card.className = "image-card";
+            card.innerHTML = `
+                <img src="${image.url}" alt="${image.prompt}" loading="lazy">
+                <div class="description">
+                    <strong>Prompt:</strong> ${image.prompt}<br>
+                    <strong>Created At:</strong> ${image.createdAt}
+                </div>
+            `;
+            gallery.appendChild(card);
+        });
+
+        // Lazy loading functionality
+        const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+        lazyImages.forEach(img => {
+            img.addEventListener("load", () => {
+                img.classList.add("is-loaded");
+            });
+        });
+
+        // Scroll to top or down functionality
+        const myBtn = document.getElementById("myBtn");
+        const jumpBtn = document.getElementById("jumpBtn");
+
+        window.onscroll = function () {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                myBtn.style.display = "block";
+                jumpBtn.style.display = "block";
+            } else {
+                myBtn.style.display = "none";
+                jumpBtn.style.display = "none";
+            }
+        };
+
+        function topFunction() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function jumpDown() {
+            window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
+        }
+    </script>
+</body>
+</html>

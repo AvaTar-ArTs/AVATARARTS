@@ -1,0 +1,26 @@
+tier,model,parameters,size,type,example,relevance,fit,notes
+must-have,Llama 3.1,8B,4.7GB,general,ollama run llama3.1,Balanced local general model,✅,Good default; aliases well
+must-have,Mistral,7B,4.1GB,general,ollama run mistral,Fast small general baseline,✅,Snappy on CPU
+must-have,DeepSeek-R1,7B,4.7GB,reasoning,ollama run deepseek-r1,Strong small reasoning,✅,Great for step-by-step
+must-have,Qwen 3,7B,~?,general,ollama run qwen3:7b,Good instruction & multilingual,✅,Alt to Llama 3.1; size varies by build
+must-have,Phi 4 Mini,3.8B,2.5GB,general/coding,ollama run phi4-mini,"Tiny, capable helper",✅,Great when speed matters
+must-have,Gemma 3,4B,3.3GB,general,ollama run gemma3,Efficient small model,✅,Solid lightweight chat
+must-have,Llama 3.2,3B,2.0GB,general,ollama run llama3.2,Compact Llama family,✅,Good fallback
+must-have,Llama 3.2,1B,1.3GB,general,ollama run llama3.2:1b,Ultra‑light utilities,✅,CLI tools & quick tasks
+must-have,Code Llama,7B,3.8GB,coding,ollama run codellama,Coding assistance,✅,Solid local copilot
+must-have,Neural Chat,7B,4.1GB,general,ollama run neural-chat,Helpful assistant tune,✅,Friendly responses
+must-have,Starling,7B,4.1GB,general,ollama run starling-lm,Chat-tuned small model,✅,Good conversational tone
+must-have,Granite-3.3,8B,4.9GB,general/reasoning,ollama run granite3.3,IBM small model w/ reasoning,✅,Tool/RAG-friendly
+nice-to-have,LLaVA,7B,4.5GB,vision,ollama run llava,Image+text understanding,⚠️,Works on CPU; slower; use small images
+nice-to-have,Moondream 2,1.4B,829MB,vision,ollama run moondream,Tiny VLM for captions,✅,Light vision tasks
+borderline,Phi 4,14B,9.1GB,general/reasoning,ollama run phi4,Better reasoning than 7B,⚠️,Very slow on CPU; try only for short tasks
+borderline,Gemma 3,12B,8.1GB,general,ollama run gemma3:12b,Higher quality Gemma,⚠️,Slow; may strain 16 GB if multitasking
+borderline,Llama 3.2 Vision,11B,7.9GB,vision,ollama run llama3.2-vision,Stronger vision,⚠️,CPU will be slow; keep images small
+avoid,Gemma 3,27B,17GB,general,ollama run gemma3:27b,Large quality bump,❌,Too heavy for 16 GB CPU
+avoid,QwQ,32B,20GB,reasoning,ollama run qwq,Reasoning-focused,❌,Not feasible on CPU 16 GB
+avoid,DeepSeek-R1,671B,404GB,reasoning,ollama run deepseek-r1:671b,Frontier reasoning,❌,Cluster-scale
+avoid,Llama 4,109B,67GB,general,ollama run llama4:scout,Frontier model,❌,Server/GPU only
+avoid,Llama 4,400B,245GB,general,ollama run llama4:maverick,Frontier model,❌,Server/GPU only
+avoid,Llama 3.3,70B,43GB,general,ollama run llama3.3,High quality,❌,Too slow on CPU; needs big VRAM
+avoid,Llama 3.1,405B,231GB,general,ollama run llama3.1:405b,Frontier,❌,Server/GPU only
+avoid,Llama 3.2 Vision,90B,55GB,vision,ollama run llama3.2-vision:90b,Strong vision,❌,Not for local CPU

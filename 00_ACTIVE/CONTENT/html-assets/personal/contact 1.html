@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - AvaTar Arts | Digital Artist Commission Form</title>
+    <meta name="description" content="Contact Steven Chaplinski for custom digital art commissions, AI-generated avatars, and creative projects. Professional digital artist available for hire.">
+    <meta name="keywords" content="contact digital artist, commission art, custom avatars, AI art commission, Steven Chaplinski, digital art services">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/modern.css">
+    
+    <style>
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4ecdc4;
+            box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .service-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .service-option {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .service-option:hover {
+            background: rgba(78, 205, 196, 0.2);
+            border-color: #4ecdc4;
+        }
+        
+        .service-option input[type="checkbox"] {
+            display: none;
+        }
+        
+        .service-option input[type="checkbox"]:checked + .service-content {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+        }
+        
+        .service-content {
+            display: block;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .budget-range {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .budget-range input[type="range"] {
+            flex: 1;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .budget-range input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            cursor: pointer;
+        }
+        
+        .budget-range input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            cursor: pointer;
+            border: none;
+        }
+        
+        .budget-display {
+            font-weight: 600;
+            color: #4ecdc4;
+            min-width: 80px;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .contact-info {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .contact-info h3 {
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .contact-info a {
+            color: #4ecdc4;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <div class="overlay"></div>
+        <div class="inner">
+            <h1>Contact AvaTar Arts</h1>
+            <h2>Commission Custom Digital Art & AI-Generated Avatars</h2>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p>Ready to bring your creative vision to life?</p>
+                    <p>Email: <a href="mailto:steven@avatararts.org">steven@avatararts.org</a></p>
+                    <p>Response time: Usually within 24 hours</p>
+                </div>
+                
+                <form id="contactForm" action="#" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required placeholder="Your full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                        </div>
+                        <div class="form-group">
+                            <label for="timeline">Project Timeline</label>
+                            <select id="timeline" name="timeline">
+                                <option value="">Select timeline</option>
+                                <option value="asap">ASAP (Rush job +50%)</option>
+                                <option value="1week">Within 1 week</option>
+                                <option value="2weeks">Within 2 weeks</option>
+                                <option value="1month">Within 1 month</option>
+                                <option value="flexible">Flexible</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Services Needed *</label>
+                        <div class="service-options">
+                            <label class="service-option">
+                                <input type="checkbox" name="services" value="ai-avatar">
+                                <div class="service-content">🤖 AI Avatar Creation</div>
+                            </label>
+                            <label class="service-option">
+                                <input type="checkbox" name="services" value="custom-art">
+                                <div class="service-content">🎨 Custom Digital Art</div>
+                            </label>
+                            <label class="service-option">
+                                <input type="checkbox" name="services" value="photo-manipulation">
+                                <div class="service-content">📸 Photo Manipulation</div>
+                            </label>
+                            <label class="service-option">
+                                <input type="checkbox" name="services" value="video-editing">
+                                <div class="service-content">🎬 Video Editing</div>
+                            </label>
+                            <label class="service-option">
+                                <input type="checkbox" name="services" value="cover-art">
+                                <div class="service-content">🎵 Cover Art Design</div>
+                            </label>
+                            <label class="service-option">
+                                <input type="checkbox" name="services" value="other">
+                                <div class="service-content">✨ Other Creative Project</div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="budget">Budget Range</label>
+                        <div class="budget-range">
+                            <span>$50</span>
+                            <input type="range" id="budget" name="budget" min="50" max="2000" value="200" step="50">
+                            <span>$2000+</span>
+                            <div class="budget-display" id="budgetDisplay">$200</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="project-details">Project Details *</label>
+                        <textarea id="project-details" name="project-details" required placeholder="Describe your project in detail. Include style preferences, colors, size requirements, and any specific ideas you have in mind..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reference-images">Reference Images or Links</label>
+                        <textarea id="reference-images" name="reference-images" placeholder="Paste links to reference images, Pinterest boards, or describe the style you're looking for..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Commission Request</button>
+                </form>
+            </div>
+            
+            <div class="btn-container" style="margin-top: 2rem;">
+                <button onclick="location.href='index.html'">🏠 Back to Home</button>
+                <button onclick="location.href='dalle.html'">🎨 View Gallery</button>
+                <button onclick="location.href='https://aiavatar.etsy.com/'">🛍️ Visit Store</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Budget range display update
+        const budgetSlider = document.getElementById('budget');
+        const budgetDisplay = document.getElementById('budgetDisplay');
+        
+        budgetSlider.addEventListener('input', function() {
+            budgetDisplay.textContent = '$' + this.value;
+        });
+        
+        // Form validation and submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const services = formData.getAll('services');
+            
+            // Validate required fields
+            if (services.length === 0) {
+                alert('Please select at least one service.');
+                return;
+            }
+            
+            // Show success message (in a real implementation, this would send to a server)
+            alert('Thank you for your commission request! I\'ll get back to you within 24 hours.');
+            
+            // Reset form
+            this.reset();
+            budgetDisplay.textContent = '$200';
+        });
+        
+        // Service option click handling
+        document.querySelectorAll('.service-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const checkbox = this.querySelector('input[type="checkbox"]');
+                checkbox.checked = !checkbox.checked;
+            });
+        });
+    </script>
+</body>
+</html>

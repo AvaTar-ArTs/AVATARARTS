@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Creating a shortcut in vscode to switch between the terminal and editor</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <p>Feb 12, 2021</p>
+<h1 id="creating-a-shortcut-in-vscode-to-switch-between-the-terminal-and-editor">Creating a shortcut in vscode to switch between the terminal and editor</h1>
+<h2 id="overview">Overview</h2>
+<p>I spend a lot of time in <code>vscode</code> swapping between the editor and terminal windows. To streamline the workflow and keep my hands from leaving the keyboard, I created the shortcut <code>ctrl + ;</code> to swap between the two windows.</p>
+<p><img src="https://jasonmurray.org/images/2021-02-12-12-43-16.png" alt="Image of vscode session with editor and terminal windows open"></p>
+<h2 id="details">Details</h2>
+<p>Open the keyboard shortcuts settings:</p>
+<p><img src="https://jasonmurray.org/images/2021-02-12-12-26-03.png" alt="Image of vscode keyboard shortcut settings menu"></p>
+<p>First, search for <code>Terminal: Focus on Terminal View</code>.</p>
+<p>Change the setting by <code>right clicking</code> the keyboard shortcut. Then change the <code>Keybinding</code> to <code>ctrl + ;</code> and change <code>When</code> to <code>!terminalFocus</code>:</p>
+<p><img src="https://jasonmurray.org/images/2021-02-12-12-27-29.png" alt="Image of vscode keyboard shortcut settings"></p>
+<p>Next, search for <code>View: Focus Active Editor Group</code>.</p>
+<p>Change the setting by <code>right clicking</code> the keyboard shortcut. Then change the <code>Keybinding</code> to <code>ctrl + ;</code> and change <code>When</code> to <code>terminalFocus</code>:</p>
+<p>Note: <code>vscode</code> may not let you change the <code>Keybinding</code> to the same shortcut as above. To resolve this issue, change the keybinding to <code>ctrl + =</code>, then change the <code>When</code> statement to <code>terminalFocus</code>. Now go back and change the <code>Keybinding</code> to <code>ctrl + ;</code>.</p>
+<p><img src="https://jasonmurray.org/images/2021-02-12-12-28-22.png" alt="Image of vscode keyboard shortcut settings"></p>
+<p>Both commands will look like this when finished:</p>
+<p><img src="https://jasonmurray.org/images/2021-02-12-12-15-36.png" alt="Image of vscode keyboard shortcut settings"></p>
+<p>Press <code>ctrl + ;</code> to toggle between the current editor window and the current terminal session.</p>
+<hr>
+<p><a href="https://jasonmurray.org/tags/vscode">vscode</a><a href="https://jasonmurray.org/tags/terminal">terminal</a><a href="https://jasonmurray.org/tags/editor">editor</a></p>
+<p>175 Words</p>
+<p>2021-02-12 12:15 -0600</p>
+<p><a href="https://jasonmurray.org/posts/2021/cml/"> NEWER
+Simulating production networks with Cisco Modeling Lab: Install Guide</a><a href="https://jasonmurray.org/posts/2021/tailsleak/">OLDER
+Caution: MAC address information leaked when booting Tails Linux on a MacBook Pro (not Tails fault)</a></p>
+<p>© 2024 <a href="https://jasonmurray.org/">Jason Murray</a> · <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a></p>
+<p>Made with <a href="https://gohugo.io/">Hugo</a> · Theme <a href="https://github.com/Track3/hermit">Hermit</a> ·</p>
+
+            
+            
+        </body>
+        </html>
