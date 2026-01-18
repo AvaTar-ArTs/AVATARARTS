@@ -1,0 +1,72 @@
+/* AVATARARTS Custom Styles for MkDocs Material */
+
+:root {
+  --md-primary-fg-color: #2980b9;
+  --md-primary-fg-color--light: #3498db;
+  --md-primary-fg-color--dark: #2472a8;
+  --md-accent-fg-color: #27ae60;
+}
+
+/* Stats grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: var(--md-default-bg-color);
+  border-radius: 8px;
+  border: 2px solid var(--md-primary-fg-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--md-primary-fg-color);
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: var(--md-default-fg-color--light);
+  margin-top: 0.5rem;
+}
+
+/* Enhanced cards */
+.md-typeset .grid.cards>:-webkit-any(ul,ol)>li {
+  border-color: var(--md-primary-fg-color);
+  transition: all 0.2s;
+}
+
+.md-typeset .grid.cards>:-webkit-any(ul,ol)>li:hover {
+  border-color: var(--md-primary-fg-color--light);
+  box-shadow: 0 4px 12px rgba(41, 128, 185, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Custom admonitions */
+.md-typeset .admonition.tip {
+  border-color: var(--md-primary-fg-color);
+}
+
+.md-typeset .admonition.info {
+  border-color: #3498db;
+}
+
+.md-typeset .admonition.success {
+  border-color: #27ae60;
+}
+
+/* Code blocks */
+.md-typeset pre>code {
+  border-radius: 4px;
+}
+
+/* Navigation tabs */
+.md-tabs {
+  background-color: var(--md-primary-fg-color);
+}

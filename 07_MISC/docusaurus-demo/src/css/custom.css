@@ -1,0 +1,113 @@
+/**
+ * AVATARARTS Custom Styling for Docusaurus
+ */
+
+:root {
+  --ifm-color-primary: #2980b9;
+  --ifm-color-primary-dark: #2472a8;
+  --ifm-color-primary-darker: #226c9e;
+  --ifm-color-primary-darkest: #1c5982;
+  --ifm-color-primary-light: #2e8eca;
+  --ifm-color-primary-lighter: #3094d4;
+  --ifm-color-primary-lightest: #46a1dc;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #3498db;
+  --ifm-color-primary-dark: #2589d1;
+  --ifm-color-primary-darker: #2381c5;
+  --ifm-color-primary-darkest: #1d6aa2;
+  --ifm-color-primary-light: #43a7e5;
+  --ifm-color-primary-lighter: #4fafeb;
+  --ifm-color-primary-lightest: #67b8ed;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Custom badges */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1;
+  border-radius: 0.25rem;
+  margin: 0 0.25rem;
+}
+
+.badge-success {
+  background-color: #27ae60;
+  color: white;
+}
+
+.badge-info {
+  background-color: #3498db;
+  color: white;
+}
+
+.badge-warning {
+  background-color: #f39c12;
+  color: white;
+}
+
+/* Hero section */
+.hero {
+  background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+  color: white;
+}
+
+.hero__title {
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+/* Cards */
+.card {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--ifm-color-primary);
+}
+
+/* Stats grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: var(--ifm-background-surface-color);
+  border-radius: 8px;
+  border: 2px solid var(--ifm-color-primary);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--ifm-color-primary);
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: var(--ifm-color-emphasis-600);
+  margin-top: 0.5rem;
+}

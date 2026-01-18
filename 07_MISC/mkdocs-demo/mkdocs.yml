@@ -1,0 +1,90 @@
+site_name: AVATARARTS
+site_description: Multi-Revenue Stream Digital Business Automation Platform
+site_author: Steven Chaplinski
+site_url: https://avatar-arts.github.io
+
+theme:
+  name: material
+  palette:
+    # Light mode
+    - scheme: default
+      primary: blue
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Dark mode
+    - scheme: slate
+      primary: blue
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+
+  icon:
+    repo: fontawesome/brands/github
+
+repo_name: AvaTar-ArTs/avatararts
+repo_url: https://github.com/AvaTar-ArTs
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/AvaTar-ArTs
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/avatararts
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+plugins:
+  - search
+  - tags
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Introduction: guide/index.md
+    - Quick Start: guide/quickstart.md
+  - Business Projects:
+    - Overview: business/index.md
+    - Heavenly Hands: business/heavenly-hands.md
+    - Retention Suite: business/retention-suite.md
+    - QuantumForge: business/quantumforge.md
+  - Client Projects:
+    - Overview: clients/index.md
+  - AI & Automation:
+    - Overview: ai-tools/index.md
+  - Tools & Utilities:
+    - Overview: utilities/index.md
+    - Organization Suite: utilities/organization.md
+    - Reindexing System: utilities/reindex.md
+
+extra_css:
+  - stylesheets/extra.css
