@@ -1,0 +1,113 @@
+{
+  "name": "Trend Analyzer Pro",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "webhook-trigger",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "trend-analyzer-pro"
+    },
+    {
+      "parameters": {
+        "model": "gpt-4",
+        "options": {
+          "temperature": 0.7
+        },
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are a trend analysis expert. Analyze keywords for SEO/AEO potential, growth trends, and market opportunity."
+            },
+            {
+              "role": "user",
+              "content": "Analyze this keyword: {{ $json.keyword }}\n\nProvide:\n1. Growth potential (0-100)\n2. SEO difficulty (0-10)\n3. AEO score (0-100)\n4. Market opportunity\n5. Recommended action"
+            }
+          ]
+        }
+      },
+      "id": "openai-analyzer",
+      "name": "AI Trend Analysis",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Pro version: Advanced trend analysis with AEO scoring\n\nconst aiResponse = $input.item.json.choices[0].message.content;\nconst keyword = $('Webhook').item.json.keyword;\n\n// Parse AI response and calculate scores\nconst growth = extractNumber(aiResponse, 'growth') || 50;\nconst difficulty = extractNumber(aiResponse, 'difficulty') || 5;\nconst aeoScore = extractNumber(aiResponse, 'AEO') || 75;\nconst score = (growth / Math.max(difficulty, 1)) * (aeoScore / 100);\n\n// Advanced analysis\nconst analysis = {\n  keyword: keyword,\n  growth: Math.round(growth * 100) / 100,\n  difficulty: Math.round(difficulty * 100) / 100,\n  aeoScore: Math.round(aeoScore * 100) / 100,\n  overallScore: Math.round(score * 100) / 100,\n  recommendation: getRecommendation(score),\n  aiAnalysis: aiResponse,\n  version: 'pro',\n  unlimited: true,\n  timestamp: new Date().toISOString()\n};\n\nfunction extractNumber(text, field) {\n  const regex = new RegExp(`${field}[\\s:]*([0-9.]+)`, 'i');\n  const match = text.match(regex);\n  return match ? parseFloat(match[1]) : null;\n}\n\nfunction getRecommendation(score) {\n  if (score > 70) return 'High Priority - Immediate Action';\n  if (score > 50) return 'Medium Priority - Consider';\n  if (score > 30) return 'Low Priority - Monitor';\n  return 'Not Recommended';\n}\n\nreturn analysis;"
+      },
+      "id": "process-analysis",
+      "name": "Process Analysis",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "mode": "id",
+          "value": "your-sheet-id"
+        },
+        "sheetName": {
+          "mode": "list",
+          "value": "Trends_Pro"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "keyword": "={{ $json.keyword }}",
+            "growth": "={{ $json.growth }}",
+            "difficulty": "={{ $json.difficulty }}",
+            "aeoScore": "={{ $json.aeoScore }}",
+            "overallScore": "={{ $json.overallScore }}",
+            "recommendation": "={{ $json.recommendation }}",
+            "timestamp": "={{ $json.timestamp }}"
+          }
+        }
+      },
+      "id": "save-results",
+      "name": "Save to Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}"
+      },
+      "id": "respond-webhook",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1050, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "AI Trend Analysis", "type": "main", "index": 0 }]]
+    },
+    "AI Trend Analysis": {
+      "main": [[{ "node": "Process Analysis", "type": "main", "index": 0 }]]
+    },
+    "Process Analysis": {
+      "main": [[{ "node": "Save to Sheets", "type": "main", "index": 0 }, { "node": "Respond to Webhook", "type": "main", "index": 0 }]]
+    },
+    "Save to Sheets": {
+      "main": [[{ "node": "Respond to Webhook", "type": "main", "index": 0 }]]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-01-13T00:00:00.000Z",
+  "versionId": "1"
+}

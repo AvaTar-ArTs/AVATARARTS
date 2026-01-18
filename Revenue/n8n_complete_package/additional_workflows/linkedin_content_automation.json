@@ -1,0 +1,196 @@
+{
+  "name": "LinkedIn Content Automation",
+  "nodes": [
+    {
+      "id": "content_trigger",
+      "type": "n8n-nodes-base.cron",
+      "name": "Content Trigger",
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24
+            }
+          ]
+        }
+      },
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "id": "content_generator",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "Content Generator",
+      "parameters": {
+        "url": "http://localhost:5000/generate-content",
+        "method": "POST",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "platform",
+              "value": "linkedin"
+            },
+            {
+              "name": "content_type",
+              "value": "professional"
+            },
+            {
+              "name": "topics",
+              "value": "['python', 'ai', 'automation', 'technology']"
+            },
+            {
+              "name": "tone",
+              "value": "professional"
+            },
+            {
+              "name": "length",
+              "value": "medium"
+            }
+          ]
+        }
+      },
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "id": "content_optimizer",
+      "type": "n8n-nodes-base.function",
+      "name": "Content Optimizer",
+      "parameters": {
+        "functionCode": "// Optimize LinkedIn content for engagement\nconst content = $input.first().json;\n\nconst optimizedContent = {\n  original: content.text,\n  optimized: content.text,\n  hashtags: [],\n  mentions: [],\n  call_to_action: '',\n  engagement_score: 0\n};\n\n// Extract and optimize hashtags\nconst hashtagRegex = /#\\w+/g;\nconst extractedHashtags = content.text.match(hashtagRegex) || [];\n\n// Add relevant hashtags if missing\nconst suggestedHashtags = [\n  '#Python', '#AI', '#Automation', '#Technology', '#Programming',\n  '#MachineLearning', '#DataScience', '#Innovation', '#Tech', '#Developer'\n];\n\noptimizedContent.hashtags = [...new Set([...extractedHashtags, ...suggestedHashtags])].slice(0, 5);\n\n// Extract mentions\nconst mentionRegex = /@\\w+/g;\noptimizedContent.mentions = content.text.match(mentionRegex) || [];\n\n// Add call to action\nconst ctaOptions = [\n  'What are your thoughts on this?',\n  'Have you tried this approach?',\n  'What challenges have you faced?',\n  'Share your experience below!',\n  'Let me know what you think!'\n];\noptimizedContent.call_to_action = ctaOptions[Math.floor(Math.random() * ctaOptions.length)];\n\n// Calculate engagement score\nlet score = 0;\nscore += optimizedContent.hashtags.length * 2; // 2 points per hashtag\nscore += optimizedContent.mentions.length * 3; // 3 points per mention\nscore += content.text.length > 100 ? 5 : 0; // 5 points for longer content\nscore += content.text.includes('?') ? 3 : 0; // 3 points for questions\nscore += content.text.includes('!') ? 2 : 0; // 2 points for excitement\n\noptimizedContent.engagement_score = Math.min(score, 20); // Cap at 20\n\n// Add CTA to content if engagement score is low\nif (optimizedContent.engagement_score < 10) {\n  optimizedContent.optimized += `\\n\\n${optimizedContent.call_to_action}`;\n}\n\n// Add hashtags to content\nif (optimizedContent.hashtags.length > 0) {\n  optimizedContent.optimized += `\\n\\n${optimizedContent.hashtags.join(' ')}`;\n}\n\nreturn [{\n  json: {\n    ...content,\n    optimization: optimizedContent\n  }\n}];"
+      },
+      "position": [
+        680,
+        300
+      ]
+    },
+    {
+      "id": "linkedin_publisher",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "LinkedIn Publisher",
+      "parameters": {
+        "url": "https://api.linkedin.com/v2/ugcPosts",
+        "method": "POST",
+        "authentication": "oAuth2",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "author",
+              "value": "urn:li:person:{{ $credentials.linkedin.personId }}"
+            },
+            {
+              "name": "lifecycleState",
+              "value": "PUBLISHED"
+            },
+            {
+              "name": "specificContent",
+              "value": "{\n  \"shareContent\": {\n    \"shareCommentary\": {\n      \"text\": \"{{ $json.optimization.optimized }}\"\n    },\n    \"shareMediaCategory\": \"NONE\"\n  }\n}"
+            },
+            {
+              "name": "visibility",
+              "value": "{\n  \"com.linkedin.ugc.MemberNetworkVisibility\": \"PUBLIC\"\n}"
+            }
+          ]
+        }
+      },
+      "position": [
+        900,
+        300
+      ]
+    },
+    {
+      "id": "engagement_tracker",
+      "type": "n8n-nodes-base.function",
+      "name": "Engagement Tracker",
+      "parameters": {
+        "functionCode": "// Track LinkedIn post engagement\nconst post = $input.first().json;\nconst timestamp = new Date().toISOString();\n\nconst engagement = {\n  post_id: post.id,\n  content: post.optimization.optimized,\n  hashtags: post.optimization.hashtags,\n  mentions: post.optimization.mentions,\n  call_to_action: post.optimization.call_to_action,\n  engagement_score: post.optimization.engagement_score,\n  published_at: timestamp,\n  metrics: {\n    likes: 0,\n    comments: 0,\n    shares: 0,\n    views: 0,\n    clicks: 0\n  },\n  performance: {\n    engagement_rate: 0,\n    reach: 0,\n    impressions: 0\n  }\n};\n\nreturn [{ json: engagement }];"
+      },
+      "position": [
+        1120,
+        300
+      ]
+    },
+    {
+      "id": "analytics_database",
+      "type": "n8n-nodes-base.postgres",
+      "name": "Analytics Database",
+      "parameters": {
+        "operation": "insert",
+        "schema": "public",
+        "table": "linkedin_analytics",
+        "columns": "post_id, content, hashtags, mentions, engagement_score, published_at, metrics, performance",
+        "additionalFields": {}
+      },
+      "position": [
+        1340,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "content_trigger": {
+      "main": [
+        [
+          {
+            "node": "content_generator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "content_generator": {
+      "main": [
+        [
+          {
+            "node": "content_optimizer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "content_optimizer": {
+      "main": [
+        [
+          {
+            "node": "linkedin_publisher",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "linkedin_publisher": {
+      "main": [
+        [
+          {
+            "node": "engagement_tracker",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "engagement_tracker": {
+      "main": [
+        [
+          {
+            "node": "analytics_database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": {},
+  "tags": [],
+  "pinData": {}
+}

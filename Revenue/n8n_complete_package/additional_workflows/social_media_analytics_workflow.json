@@ -1,0 +1,183 @@
+{
+  "name": "Social Media Analytics Workflow",
+  "nodes": [
+    {
+      "id": "analytics_trigger",
+      "type": "n8n-nodes-base.cron",
+      "name": "Analytics Trigger",
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "id": "platform_metrics_collector",
+      "type": "n8n-nodes-base.function",
+      "name": "Platform Metrics Collector",
+      "parameters": {
+        "functionCode": "// Collect metrics from all platforms\nconst platforms = ['linkedin', 'twitter', 'instagram', 'facebook', 'behance'];\nconst metrics = {};\nconst timestamp = new Date().toISOString();\n\n// Simulate API calls to each platform\nfor (const platform of platforms) {\n  try {\n    // This would be replaced with actual API calls\n    metrics[platform] = {\n      platform: platform,\n      timestamp: timestamp,\n      followers: Math.floor(Math.random() * 10000) + 1000,\n      posts_count: Math.floor(Math.random() * 100) + 10,\n      engagement_rate: Math.random() * 10 + 1,\n      reach: Math.floor(Math.random() * 50000) + 5000,\n      impressions: Math.floor(Math.random() * 100000) + 10000,\n      likes: Math.floor(Math.random() * 1000) + 100,\n      comments: Math.floor(Math.random() * 100) + 10,\n      shares: Math.floor(Math.random() * 50) + 5,\n      clicks: Math.floor(Math.random() * 200) + 20,\n      status: 'success'\n    };\n  } catch (error) {\n    metrics[platform] = {\n      platform: platform,\n      timestamp: timestamp,\n      error: error.message,\n      status: 'error'\n    };\n  }\n}\n\nreturn [{ json: { platforms: metrics, collected_at: timestamp } }];"
+      },
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "id": "metrics_analyzer",
+      "type": "n8n-nodes-base.function",
+      "name": "Metrics Analyzer",
+      "parameters": {
+        "functionCode": "// Analyze social media metrics\nconst data = $input.first().json;\nconst platforms = data.platforms;\nconst timestamp = data.collected_at;\n\nconst analysis = {\n  timestamp: timestamp,\n  total_platforms: Object.keys(platforms).length,\n  successful_platforms: 0,\n  failed_platforms: 0,\n  total_followers: 0,\n  total_engagement: 0,\n  total_reach: 0,\n  total_impressions: 0,\n  platform_performance: {},\n  insights: [],\n  recommendations: []\n};\n\n// Analyze each platform\nfor (const [platform, metrics] of Object.entries(platforms)) {\n  if (metrics.status === 'success') {\n    analysis.successful_platforms++;\n    analysis.total_followers += metrics.followers || 0;\n    analysis.total_engagement += metrics.engagement_rate || 0;\n    analysis.total_reach += metrics.reach || 0;\n    analysis.total_impressions += metrics.impressions || 0;\n    \n    // Calculate platform performance score\n    const performanceScore = (\n      (metrics.engagement_rate || 0) * 0.3 +\n      ((metrics.reach || 0) / (metrics.followers || 1)) * 0.2 +\n      ((metrics.likes || 0) + (metrics.comments || 0) + (metrics.shares || 0)) * 0.3 +\n      ((metrics.clicks || 0) / (metrics.impressions || 1)) * 0.2\n    ) * 100;\n    \n    analysis.platform_performance[platform] = {\n      score: Math.round(performanceScore),\n      grade: performanceScore >= 80 ? 'A' : performanceScore >= 60 ? 'B' : performanceScore >= 40 ? 'C' : 'D',\n      metrics: metrics\n    };\n  } else {\n    analysis.failed_platforms++;\n  }\n}\n\n// Calculate average engagement rate\nanalysis.average_engagement_rate = analysis.total_engagement / analysis.successful_platforms;\n\n// Generate insights\nif (analysis.average_engagement_rate > 5) {\n  analysis.insights.push('High engagement rate across platforms - content is resonating well');\n} else if (analysis.average_engagement_rate < 2) {\n  analysis.insights.push('Low engagement rate - consider improving content quality and timing');\n}\n\n// Find best performing platform\nconst bestPlatform = Object.entries(analysis.platform_performance)\n  .sort(([,a], [,b]) => b.score - a.score)[0];\n\nif (bestPlatform) {\n  analysis.insights.push(`Best performing platform: ${bestPlatform[0]} (Score: ${bestPlatform[1].score})`);\n}\n\n// Generate recommendations\nif (analysis.failed_platforms > 0) {\n  analysis.recommendations.push('Some platforms failed to provide metrics - check API connections');\n}\n\nif (analysis.average_engagement_rate < 3) {\n  analysis.recommendations.push('Focus on creating more engaging content and posting at optimal times');\n}\n\nif (analysis.total_followers < 10000) {\n  analysis.recommendations.push('Consider growing follower base through targeted content and engagement');\n}\n\nreturn [{ json: analysis }];"
+      },
+      "position": [
+        680,
+        300
+      ]
+    },
+    {
+      "id": "dashboard_updater",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "Dashboard Updater",
+      "parameters": {
+        "url": "http://localhost:5000/update-dashboard",
+        "method": "POST",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "analytics_data",
+              "value": "={{ $json }}"
+            }
+          ]
+        }
+      },
+      "position": [
+        900,
+        300
+      ]
+    },
+    {
+      "id": "analytics_database",
+      "type": "n8n-nodes-base.postgres",
+      "name": "Analytics Database",
+      "parameters": {
+        "operation": "insert",
+        "schema": "public",
+        "table": "social_media_analytics",
+        "columns": "timestamp, total_platforms, successful_platforms, total_followers, average_engagement_rate, platform_performance, insights, recommendations",
+        "additionalFields": {}
+      },
+      "position": [
+        1120,
+        300
+      ]
+    },
+    {
+      "id": "report_generator",
+      "type": "n8n-nodes-base.function",
+      "name": "Report Generator",
+      "parameters": {
+        "functionCode": "// Generate analytics report\nconst analysis = $input.first().json;\nconst timestamp = new Date().toISOString();\n\nconst report = {\n  report_id: Math.random().toString(36).substr(2, 9),\n  generated_at: timestamp,\n  period: '6 hours',\n  summary: {\n    total_platforms: analysis.total_platforms,\n    successful_platforms: analysis.successful_platforms,\n    success_rate: ((analysis.successful_platforms / analysis.total_platforms) * 100).toFixed(1) + '%',\n    total_followers: analysis.total_followers.toLocaleString(),\n    average_engagement_rate: analysis.average_engagement_rate.toFixed(2) + '%'\n  },\n  platform_breakdown: Object.entries(analysis.platform_performance).map(([platform, data]) => ({\n    platform: platform,\n    grade: data.grade,\n    score: data.score,\n    followers: data.metrics.followers?.toLocaleString() || 'N/A',\n    engagement_rate: data.metrics.engagement_rate?.toFixed(2) + '%' || 'N/A',\n    reach: data.metrics.reach?.toLocaleString() || 'N/A'\n  })),\n  insights: analysis.insights,\n  recommendations: analysis.recommendations,\n  next_analysis: new Date(Date.now() + 6 * 60 * 60 * 1000).toISOString()\n};\n\nreturn [{ json: report }];"
+      },
+      "position": [
+        1340,
+        300
+      ]
+    },
+    {
+      "id": "email_report",
+      "type": "n8n-nodes-base.emailSend",
+      "name": "Email Report",
+      "parameters": {
+        "toEmail": "admin@quantumforgelabs.com",
+        "subject": "Social Media Analytics Report - {{ $json.generated_at }}",
+        "message": "Social Media Analytics Report\n\nReport ID: {{ $json.report_id }}\nGenerated: {{ $json.generated_at }}\nPeriod: {{ $json.period }}\n\nSummary:\n- Total Platforms: {{ $json.summary.total_platforms }}\n- Successful Platforms: {{ $json.summary.successful_platforms }}\n- Success Rate: {{ $json.summary.success_rate }}\n- Total Followers: {{ $json.summary.total_followers }}\n- Average Engagement Rate: {{ $json.summary.average_engagement_rate }}\n\nPlatform Performance:\n{{ $json.platform_breakdown.map(platform => `- ${platform.platform}: ${platform.grade} (${platform.score}) - ${platform.followers} followers, ${platform.engagement_rate} engagement`).join('\\n') }}\n\nInsights:\n{{ $json.insights.map(insight => `- ${insight}`).join('\\n') }}\n\nRecommendations:\n{{ $json.recommendations.map(rec => `- ${rec}`).join('\\n') }}\n\nNext Analysis: {{ $json.next_analysis }}"
+      },
+      "position": [
+        1560,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "analytics_trigger": {
+      "main": [
+        [
+          {
+            "node": "platform_metrics_collector",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "platform_metrics_collector": {
+      "main": [
+        [
+          {
+            "node": "metrics_analyzer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "metrics_analyzer": {
+      "main": [
+        [
+          {
+            "node": "dashboard_updater",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "dashboard_updater": {
+      "main": [
+        [
+          {
+            "node": "analytics_database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "analytics_database": {
+      "main": [
+        [
+          {
+            "node": "report_generator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "report_generator": {
+      "main": [
+        [
+          {
+            "node": "email_report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": {},
+  "tags": [],
+  "pinData": {}
+}

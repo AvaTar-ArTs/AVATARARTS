@@ -1,0 +1,290 @@
+{
+  "name": "Advanced Data Pipeline Automation",
+  "nodes": [
+    {
+      "id": "data_source_trigger",
+      "type": "n8n-nodes-base.webhook",
+      "name": "Data Source Trigger",
+      "parameters": {
+        "path": "data-pipeline",
+        "httpMethod": "POST",
+        "responseMode": "responseNode"
+      },
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "id": "data_validator",
+      "type": "n8n-nodes-base.function",
+      "name": "Data Validator",
+      "parameters": {
+        "functionCode": "// Validate incoming data\nconst input = $input.first().json;\nconst validationRules = input.validation_rules || {};\nconst data = input.data || [];\n\nconst validationResults = {\n  valid: true,\n  errors: [],\n  warnings: [],\n  stats: {\n    total_records: data.length,\n    valid_records: 0,\n    invalid_records: 0\n  }\n};\n\n// Validate each record\nfor (let i = 0; i < data.length; i++) {\n  const record = data[i];\n  const recordErrors = [];\n  \n  // Check required fields\n  if (validationRules.required_fields) {\n    for (const field of validationRules.required_fields) {\n      if (!record[field] || record[field] === '') {\n        recordErrors.push(`Missing required field: ${field}`);\n      }\n    }\n  }\n  \n  // Check data types\n  if (validationRules.field_types) {\n    for (const [field, expectedType] of Object.entries(validationRules.field_types)) {\n      if (record[field] !== undefined) {\n        const actualType = typeof record[field];\n        if (actualType !== expectedType) {\n          recordErrors.push(`Field ${field} should be ${expectedType}, got ${actualType}`);\n        }\n      }\n    }\n  }\n  \n  // Check value ranges\n  if (validationRules.value_ranges) {\n    for (const [field, range] of Object.entries(validationRules.value_ranges)) {\n      if (record[field] !== undefined) {\n        const value = record[field];\n        if (value < range.min || value > range.max) {\n          recordErrors.push(`Field ${field} value ${value} is outside range [${range.min}, ${range.max}]`);\n        }\n      }\n    }\n  }\n  \n  if (recordErrors.length === 0) {\n    validationResults.stats.valid_records++;\n  } else {\n    validationResults.stats.invalid_records++;\n    validationResults.errors.push({\n      record_index: i,\n      record_id: record.id || `record_${i}`,\n      errors: recordErrors\n    });\n  }\n}\n\nif (validationResults.stats.invalid_records > 0) {\n  validationResults.valid = false;\n}\n\nreturn [{\n  json: {\n    ...input,\n    validation_results: validationResults,\n    valid_data: data.filter((record, index) => {\n      return !validationResults.errors.some(error => error.record_index === index);\n    })\n  }\n}];"
+      },
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "id": "data_transformer",
+      "type": "n8n-nodes-base.function",
+      "name": "Data Transformer",
+      "parameters": {
+        "functionCode": "// Transform and clean data\nconst input = $input.first().json;\nconst validData = input.valid_data || [];\nconst transformationRules = input.transformation_rules || {};\n\nconst transformedData = validData.map(record => {\n  const transformed = { ...record };\n  \n  // Apply field transformations\n  if (transformationRules.field_mappings) {\n    for (const [oldField, newField] of Object.entries(transformationRules.field_mappings)) {\n      if (transformed[oldField] !== undefined) {\n        transformed[newField] = transformed[oldField];\n        delete transformed[oldField];\n      }\n    }\n  }\n  \n  // Apply data cleaning\n  if (transformationRules.clean_text_fields) {\n    for (const field of transformationRules.clean_text_fields) {\n      if (transformed[field] && typeof transformed[field] === 'string') {\n        transformed[field] = transformed[field]\n          .trim()\n          .replace(/\\s+/g, ' ')\n          .toLowerCase();\n      }\n    }\n  }\n  \n  // Apply data type conversions\n  if (transformationRules.type_conversions) {\n    for (const [field, targetType] of Object.entries(transformationRules.type_conversions)) {\n      if (transformed[field] !== undefined) {\n        try {\n          switch (targetType) {\n            case 'number':\n              transformed[field] = Number(transformed[field]);\n              break;\n            case 'date':\n              transformed[field] = new Date(transformed[field]).toISOString();\n              break;\n            case 'boolean':\n              transformed[field] = Boolean(transformed[field]);\n              break;\n          }\n        } catch (error) {\n          console.log(`Error converting field ${field} to ${targetType}:`, error);\n        }\n      }\n    }\n  }\n  \n  // Add metadata\n  transformed._metadata = {\n    processed_at: new Date().toISOString(),\n    pipeline_version: '1.0',\n    source: input.source || 'unknown'\n  };\n  \n  return transformed;\n});\n\nreturn [{\n  json: {\n    ...input,\n    transformed_data: transformedData,\n    transformation_stats: {\n      total_records: validData.length,\n      transformed_records: transformedData.length,\n      transformation_time: new Date().toISOString()\n    }\n  }\n}];"
+      },
+      "position": [
+        680,
+        300
+      ]
+    },
+    {
+      "id": "data_enricher",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "Data Enricher",
+      "parameters": {
+        "url": "http://localhost:5000/enrich-data",
+        "method": "POST",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "data",
+              "value": "={{ $json.transformed_data }}"
+            },
+            {
+              "name": "enrichment_rules",
+              "value": "={{ $json.enrichment_rules || {} }}"
+            }
+          ]
+        }
+      },
+      "position": [
+        900,
+        300
+      ]
+    },
+    {
+      "id": "quality_checker",
+      "type": "n8n-nodes-base.function",
+      "name": "Quality Checker",
+      "parameters": {
+        "functionCode": "// Perform data quality checks\nconst input = $input.first().json;\nconst data = input.enriched_data || input.transformed_data || [];\n\nconst qualityChecks = {\n  completeness: 0,\n  accuracy: 0,\n  consistency: 0,\n  validity: 0,\n  uniqueness: 0\n};\n\n// Completeness check\nconst totalFields = data.length > 0 ? Object.keys(data[0]).length : 0;\nlet completeRecords = 0;\nfor (const record of data) {\n  const filledFields = Object.values(record).filter(value => \n    value !== null && value !== undefined && value !== ''\n  ).length;\n  if (filledFields / totalFields >= 0.8) {\n    completeRecords++;\n  }\n}\nqualityChecks.completeness = (completeRecords / data.length) * 100;\n\n// Uniqueness check\nconst uniqueKeys = new Set(data.map(record => record.id || JSON.stringify(record)));\nqualityChecks.uniqueness = (uniqueKeys.size / data.length) * 100;\n\n// Calculate overall quality score\nconst overallScore = Object.values(qualityChecks).reduce((sum, score) => sum + score, 0) / Object.keys(qualityChecks).length;\n\nconst qualityReport = {\n  overall_score: overallScore,\n  individual_scores: qualityChecks,\n  recommendations: [],\n  data_summary: {\n    total_records: data.length,\n    total_fields: totalFields,\n    complete_records: completeRecords,\n    unique_records: uniqueKeys.size\n  }\n};\n\n// Add recommendations based on scores\nif (qualityChecks.completeness < 80) {\n  qualityReport.recommendations.push('Improve data completeness - consider data collection improvements');\n}\nif (qualityChecks.uniqueness < 95) {\n  qualityReport.recommendations.push('Address duplicate records - implement deduplication');\n}\nif (overallScore < 70) {\n  qualityReport.recommendations.push('Overall data quality needs improvement');\n}\n\nreturn [{\n  json: {\n    ...input,\n    quality_report: qualityReport,\n    quality_score: overallScore\n  }\n}];"
+      },
+      "position": [
+        1120,
+        300
+      ]
+    },
+    {
+      "id": "database_loader",
+      "type": "n8n-nodes-base.postgres",
+      "name": "Database Loader",
+      "parameters": {
+        "operation": "insert",
+        "schema": "public",
+        "table": "processed_data",
+        "columns": "id, data, metadata, quality_score, created_at",
+        "additionalFields": {}
+      },
+      "position": [
+        1340,
+        200
+      ]
+    },
+    {
+      "id": "file_exporter",
+      "type": "n8n-nodes-base.writeFile",
+      "name": "File Exporter",
+      "parameters": {
+        "fileName": "processed_data_{{ $now.format('yyyy-MM-dd_HH-mm-ss') }}.json",
+        "filePath": "/data/processed/",
+        "fileContent": "={{ JSON.stringify($json, null, 2) }}"
+      },
+      "position": [
+        1340,
+        400
+      ]
+    },
+    {
+      "id": "api_publisher",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "API Publisher",
+      "parameters": {
+        "url": "http://localhost:5000/publish-data",
+        "method": "POST",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "data",
+              "value": "={{ $json.enriched_data }}"
+            },
+            {
+              "name": "quality_report",
+              "value": "={{ $json.quality_report }}"
+            },
+            {
+              "name": "pipeline_id",
+              "value": "={{ $json.pipeline_id || 'default' }}"
+            }
+          ]
+        }
+      },
+      "position": [
+        1340,
+        600
+      ]
+    },
+    {
+      "id": "monitoring_dashboard",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "Monitoring Dashboard",
+      "parameters": {
+        "url": "http://localhost:5000/update-dashboard",
+        "method": "POST",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "pipeline_stats",
+              "value": "={{ $json }}"
+            }
+          ]
+        }
+      },
+      "position": [
+        1560,
+        300
+      ]
+    },
+    {
+      "id": "alert_system",
+      "type": "n8n-nodes-base.function",
+      "name": "Alert System",
+      "parameters": {
+        "functionCode": "// Check for alerts and send notifications\nconst input = $input.first().json;\nconst qualityScore = input.quality_score || 0;\nconst validationResults = input.validation_results || {};\nconst stats = input.transformation_stats || {};\n\nconst alerts = [];\n\n// Quality score alert\nif (qualityScore < 70) {\n  alerts.push({\n    type: 'quality_warning',\n    message: `Data quality score is low: ${qualityScore.toFixed(2)}%`,\n    severity: 'warning'\n  });\n}\n\n// Validation errors alert\nif (validationResults.stats && validationResults.stats.invalid_records > 0) {\n  alerts.push({\n    type: 'validation_error',\n    message: `${validationResults.stats.invalid_records} records failed validation`,\n    severity: 'error'\n  });\n}\n\n// Processing time alert\nif (stats.processing_time && stats.processing_time > 300000) { // 5 minutes\n  alerts.push({\n    type: 'performance_warning',\n    message: `Pipeline processing time exceeded 5 minutes: ${stats.processing_time}ms`,\n    severity: 'warning'\n  });\n}\n\nif (alerts.length > 0) {\n  return [{\n    json: {\n      ...input,\n      alerts: alerts,\n      alert_count: alerts.length\n    }\n  }];\n}\n\nreturn [{ json: input }];"
+      },
+      "position": [
+        1560,
+        500
+      ]
+    },
+    {
+      "id": "email_alerts",
+      "type": "n8n-nodes-base.emailSend",
+      "name": "Email Alerts",
+      "parameters": {
+        "toEmail": "admin@quantumforgelabs.com",
+        "subject": "Data Pipeline Alert - {{ $json.alert_count || 0 }} issues detected",
+        "message": "Data pipeline processing completed with alerts:\n\n{{ $json.alerts ? $json.alerts.map(alert => `- ${alert.type}: ${alert.message}`).join('\\n') : 'No alerts' }}\n\nPipeline Stats:\n- Quality Score: {{ $json.quality_score || 'N/A' }}%\n- Total Records: {{ $json.transformation_stats ? $json.transformation_stats.total_records : 'N/A' }}\n- Processing Time: {{ $json.transformation_stats ? $json.transformation_stats.transformation_time : 'N/A' }}"
+      },
+      "position": [
+        1780,
+        500
+      ]
+    }
+  ],
+  "connections": {
+    "data_source_trigger": {
+      "main": [
+        [
+          {
+            "node": "data_validator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "data_validator": {
+      "main": [
+        [
+          {
+            "node": "data_transformer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "data_transformer": {
+      "main": [
+        [
+          {
+            "node": "data_enricher",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "data_enricher": {
+      "main": [
+        [
+          {
+            "node": "quality_checker",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "quality_checker": {
+      "main": [
+        [
+          {
+            "node": "database_loader",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "file_exporter",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "api_publisher",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "database_loader": {
+      "main": [
+        [
+          {
+            "node": "monitoring_dashboard",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "monitoring_dashboard": {
+      "main": [
+        [
+          {
+            "node": "alert_system",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "alert_system": {
+      "main": [
+        [
+          {
+            "node": "email_alerts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": {},
+  "tags": [],
+  "pinData": {}
+}

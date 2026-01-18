@@ -1,0 +1,216 @@
+{
+  "name": "Content Research Agent",
+  "nodes": [
+    {
+      "id": "trigger",
+      "name": "Research Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        240,
+        300
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "content-research",
+        "responseMode": "responseNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "content_analyzer",
+      "name": "Content Analyzer",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        460,
+        300
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "{{ $('trigger').item.json.webhook_url }}/content-research/analyze",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "content_type",
+              "value": "{{ $('trigger').item.json.content_type }}"
+            },
+            {
+              "name": "research_query",
+              "value": "{{ $('trigger').item.json.research_query }}"
+            },
+            {
+              "name": "target_audience",
+              "value": "{{ $('trigger').item.json.target_audience }}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pattern_extractor",
+      "name": "Pattern Extractor",
+      "type": "n8n-nodes-base.openAi",
+      "position": [
+        680,
+        300
+      ],
+      "parameters": {
+        "resource": "chat",
+        "operation": "create",
+        "model": "gpt-4",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are a content pattern analysis expert. Analyze the provided content and extract effective patterns, frameworks, and templates that could be used for similar content generation."
+            },
+            {
+              "role": "user",
+              "content": "Analyze this content and extract patterns:\n\nContent: {{ $('content_analyzer').item.json.content }}\n\nExtract:\n1. Effective prompt patterns\n2. Content structure frameworks\n3. Writing style templates\n4. Key success factors\n5. Optimization opportunities"
+            }
+          ]
+        },
+        "options": {
+          "responseFormat": "json"
+        }
+      }
+    },
+    {
+      "id": "framework_builder",
+      "name": "Framework Builder",
+      "type": "n8n-nodes-base.openAi",
+      "position": [
+        900,
+        300
+      ],
+      "parameters": {
+        "resource": "chat",
+        "operation": "create",
+        "model": "gpt-4",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are a content framework architect. Based on the analyzed patterns, create optimized frameworks and templates for content generation."
+            },
+            {
+              "role": "user",
+              "content": "Patterns Found: {{ $('pattern_extractor').item.json.patterns }}\n\nCreate:\n1. Optimized prompt templates\n2. Content structure frameworks\n3. Quality assessment criteria\n4. Best practices guide\n5. Implementation recommendations"
+            }
+          ]
+        },
+        "options": {
+          "responseFormat": "json"
+        }
+      }
+    },
+    {
+      "id": "knowledge_updater",
+      "name": "Knowledge Updater",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1120,
+        300
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "{{ $('trigger').item.json.webhook_url }}/content-research/update-knowledge",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "patterns",
+              "value": "{{ $('pattern_extractor').item.json.patterns }}"
+            },
+            {
+              "name": "frameworks",
+              "value": "{{ $('framework_builder').item.json.frameworks }}"
+            },
+            {
+              "name": "content_type",
+              "value": "{{ $('trigger').item.json.content_type }}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "response",
+      "name": "Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [
+        1340,
+        300
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": {
+          "status": "success",
+          "patterns_found": "{{ $('pattern_extractor').item.json.patterns.length }}",
+          "frameworks_created": "{{ $('framework_builder').item.json.frameworks.length }}",
+          "knowledge_updated": "{{ $('knowledge_updater').item.json.success }}",
+          "recommendations": "{{ $('framework_builder').item.json.recommendations }}"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "trigger": {
+      "main": [
+        [
+          {
+            "node": "content_analyzer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "content_analyzer": {
+      "main": [
+        [
+          {
+            "node": "pattern_extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pattern_extractor": {
+      "main": [
+        [
+          {
+            "node": "framework_builder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "framework_builder": {
+      "main": [
+        [
+          {
+            "node": "knowledge_updater",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "knowledge_updater": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": {},
+  "tags": [],
+  "pinData": {}
+}

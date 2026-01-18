@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revenue - AVATARARTS Directory</title>
+    <meta name="description" content="Revenue Generation">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        header p {
+            opacity: 0.95;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+        
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 15px 30px;
+            border-bottom: 1px solid #dee2e6;
+            font-size: 0.9em;
+        }
+        
+        .breadcrumb a {
+            color: #ffc107;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .directory-listing {
+            padding: 30px;
+        }
+        
+        .directory-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #ffc107;
+        }
+        
+        .directory-header h2 {
+            font-size: 1.8em;
+            color: #ffc107;
+            margin-bottom: 10px;
+        }
+        
+        .search-box {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: #ffc107;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        thead {
+            background: #ffc107;
+            color: white;
+        }
+        
+        th {
+            text-align: left;
+            padding: 15px;
+            font-weight: 600;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .icon {
+            width: 30px;
+            text-align: center;
+            font-size: 1.3em;
+        }
+        
+        .name {
+            font-weight: 500;
+        }
+        
+        .name a {
+            color: #ffc107;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .name a:hover {
+            text-decoration: underline;
+            color: #e0a800;
+        }
+        
+        .size {
+            color: #6c757d;
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .type {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+        
+        .folder-icon {
+            color: #ffc107;
+        }
+        
+        .file-icon {
+            color: #6c757d;
+        }
+        
+        .parent-dir {
+            background: #e7f3ff;
+            font-weight: 600;
+        }
+        
+        .parent-dir a {
+            color: #0066cc;
+        }
+        
+        .stats {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px;
+            border-top: 3px solid #ffc107;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .stat-label {
+            font-size: 0.85em;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💰 Revenue</h1>
+            <p>Revenue Generation</p>
+            <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.9;">Base URL: avatararts.org/Revenue/ | Last Updated: January 13, 2026 11:38 AM</p>
+        </header>
+        
+        <div class="breadcrumb">
+            <a href="/">Home</a> / <span>Revenue</span>
+        </div>
+        
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Search files and folders..." autocomplete="off">
+        </div>
+        
+        <div class="directory-listing">
+            <div class="directory-header">
+                <h2>📂 Directory: /Users/steven/AVATARARTS/Revenue/</h2>
+                <p>Revenue Generation</p>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th class="icon"></th>
+                        <th class="name">Name</th>
+                        <th class="size">Size</th>
+                        <th class="type">Type</th>
+                    </tr>
+                </thead>
+                <tbody id="fileTable">
+                    <tr class="parent-dir">
+            <td class="icon">📁</td>
+            <td class="name"><a href="../">..</a></td>
+            <td class="size">-</td>
+            <td class="type">Parent Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="AUTOMATION/">AUTOMATION/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="MONETIZATION/">MONETIZATION/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="Trend_Pulse_All_Expansion_Packs/">Trend_Pulse_All_Expansion_Packs/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="Trend_Pulse_All_Expansion_Packs_COMPILED/">Trend_Pulse_All_Expansion_Packs_COMPILED/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="WEB_DEPLOYMENT/">WEB_DEPLOYMENT/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="n8n_complete_package/">n8n_complete_package/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="n8n_workflows/">n8n_workflows/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="trend-pulse-os/">trend-pulse-os/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon folder-icon">📁</td>
+            <td class="name"><a href="trend-pulse-pro/">trend-pulse-pro/</a></td>
+            <td class="size">-</td>
+            <td class="type">Directory</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ALIAS_CLEANUP_COMPLETE.md">ALIAS_CLEANUP_COMPLETE.md</a></td>
+            <td class="size">4.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ALL_SCANS_COMPLETE.md">ALL_SCANS_COMPLETE.md</a></td>
+            <td class="size">3.7 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ANALYSIS.md">ANALYSIS.md</a></td>
+            <td class="size">13.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="AVATARARTS_SCAN_REPORT.md">AVATARARTS_SCAN_REPORT.md</a></td>
+            <td class="size">13.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPLETE_ASSET_INVENTORY.md">COMPLETE_ASSET_INVENTORY.md</a></td>
+            <td class="size">2.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPLETE_FILE_INDEX.md">COMPLETE_FILE_INDEX.md</a></td>
+            <td class="size">4.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPLETE_SYSTEM_OVERVIEW.md">COMPLETE_SYSTEM_OVERVIEW.md</a></td>
+            <td class="size">2.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPREHENSIVE_CLEANUP_SUMMARY.md">COMPREHENSIVE_CLEANUP_SUMMARY.md</a></td>
+            <td class="size">2.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="COMPREHENSIVE_HANDOFF.md">COMPREHENSIVE_HANDOFF.md</a></td>
+            <td class="size">33.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="DIRECTORY_COMPARISON.md">DIRECTORY_COMPARISON.md</a></td>
+            <td class="size">10.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ENTERPRISE_AI_AGENTS_COMPLETE.md">ENTERPRISE_AI_AGENTS_COMPLETE.md</a></td>
+            <td class="size">6.7 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ENV_PCLEAN_WORKFLOW.md">ENV_PCLEAN_WORKFLOW.md</a></td>
+            <td class="size">1.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="HANDOFF_COMPLETE.md">HANDOFF_COMPLETE.md</a></td>
+            <td class="size">5.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="HANDOFF_QUICK_REFERENCE.md">HANDOFF_QUICK_REFERENCE.md</a></td>
+            <td class="size">2.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="IMPROVEMENTS_SUMMARY.md">IMPROVEMENTS_SUMMARY.md</a></td>
+            <td class="size">6.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="PRIORITY_ACTION_PLAN.md">PRIORITY_ACTION_PLAN.md</a></td>
+            <td class="size">7.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="START_HERE_NOW.md">START_HERE_NOW.md</a></td>
+            <td class="size">9.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="SYSTEM_MAP.md">SYSTEM_MAP.md</a></td>
+            <td class="size">9.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="VOLUMES_INTEGRATION_SUMMARY.md">VOLUMES_INTEGRATION_SUMMARY.md</a></td>
+            <td class="size">1.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="VOLUMES_MONETIZATION_PLAN.md">VOLUMES_MONETIZATION_PLAN.md</a></td>
+            <td class="size">9.7 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="VOLUMES_SCAN_COMPLETE.md">VOLUMES_SCAN_COMPLETE.md</a></td>
+            <td class="size">3.2 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="VOLUMES_SCAN_REPORT.md">VOLUMES_SCAN_REPORT.md</a></td>
+            <td class="size">11.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ZSHRC_ENV_SHORTCUT_FIX.md">ZSHRC_ENV_SHORTCUT_FIX.md</a></td>
+            <td class="size">1.9 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ZSHRC_PYTHON_ENV_CHECK.md">ZSHRC_PYTHON_ENV_CHECK.md</a></td>
+            <td class="size">2.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ZSHRC_PYTHON_FIX.md">ZSHRC_PYTHON_FIX.md</a></td>
+            <td class="size">2.6 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="ZSHRC_VENV_FIX.md">ZSHRC_VENV_FIX.md</a></td>
+            <td class="size">1.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="aggressive_alias_cleanup.py">aggressive_alias_cleanup.py</a></td>
+            <td class="size">6.3 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="aggressive_alias_cleanup_20260113_044405.sh">aggressive_alias_cleanup_20260113_044405.sh</a></td>
+            <td class="size">6.1 KB</td>
+            <td class="type">Shell Script</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="alias_cleanup_summary.md">alias_cleanup_summary.md</a></td>
+            <td class="size">2.8 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="alias_test_final_report.md">alias_test_final_report.md</a></td>
+            <td class="size">2.4 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="alias_test_results.md">alias_test_results.md</a></td>
+            <td class="size">1.3 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="alias_usage_analyzer.py">alias_usage_analyzer.py</a></td>
+            <td class="size">12.4 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="alias_usage_report_20260113_043912.json">alias_usage_report_20260113_043912.json</a></td>
+            <td class="size">13.2 KB</td>
+            <td class="type">JSON</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="cache_cleanup_DRY_RUN_20260113_034457.log">cache_cleanup_DRY_RUN_20260113_034457.log</a></td>
+            <td class="size">1.8 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="cache_cleanup_EXECUTED_20260113_034511.log">cache_cleanup_EXECUTED_20260113_034511.log</a></td>
+            <td class="size">1.5 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="cleanup_DRY_RUN_20260113_033933.log">cleanup_DRY_RUN_20260113_033933.log</a></td>
+            <td class="size">35.6 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="cleanup_EXECUTED_20260113_033945.log">cleanup_EXECUTED_20260113_033945.log</a></td>
+            <td class="size">34.3 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="cleanup_aliases_20260113_044002.sh">cleanup_aliases_20260113_044002.sh</a></td>
+            <td class="size">4.9 KB</td>
+            <td class="type">Shell Script</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="cleanup_plan_20260113_033933.json">cleanup_plan_20260113_033933.json</a></td>
+            <td class="size">38.7 KB</td>
+            <td class="type">JSON</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="cleanup_unused_aliases.sh">cleanup_unused_aliases.sh</a></td>
+            <td class="size">6.4 KB</td>
+            <td class="type">Shell Script</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="comprehensive_cleanup.py">comprehensive_cleanup.py</a></td>
+            <td class="size">17.8 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="comprehensive_cleanup_DRY_RUN_20260113_035529.log">comprehensive_cleanup_DRY_RUN_20260113_035529.log</a></td>
+            <td class="size">0.0 B</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="comprehensive_master_cleanup.py">comprehensive_master_cleanup.py</a></td>
+            <td class="size">14.5 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="conservative_alias_cleanup.py">conservative_alias_cleanup.py</a></td>
+            <td class="size">6.2 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="conservative_alias_cleanup_20260113_044109.sh">conservative_alias_cleanup_20260113_044109.sh</a></td>
+            <td class="size">492.0 B</td>
+            <td class="type">Shell Script</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="deduplication_DRY_RUN_20260113_033548.log">deduplication_DRY_RUN_20260113_033548.log</a></td>
+            <td class="size">2.5 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="deduplication_EXECUTED_20260113_033556.log">deduplication_EXECUTED_20260113_033556.log</a></td>
+            <td class="size">42.0 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="deduplication_merge_plan.py">deduplication_merge_plan.py</a></td>
+            <td class="size">9.3 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="directory_cleanup_DRY_RUN_20260113_034025.log">directory_cleanup_DRY_RUN_20260113_034025.log</a></td>
+            <td class="size">1.5 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="directory_cleanup_EXECUTED_20260113_034031.log">directory_cleanup_EXECUTED_20260113_034031.log</a></td>
+            <td class="size">1.1 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="directory_comparison_analysis.py">directory_comparison_analysis.py</a></td>
+            <td class="size">11.5 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="directory_comparison_report_20260113_033115.json">directory_comparison_report_20260113_033115.json</a></td>
+            <td class="size">156.8 KB</td>
+            <td class="type">JSON</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="execute_deduplication.py">execute_deduplication.py</a></td>
+            <td class="size">6.9 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="execute_merge.py">execute_merge.py</a></td>
+            <td class="size">10.7 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="final_alias_cleanup_report.md">final_alias_cleanup_report.md</a></td>
+            <td class="size">3.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="final_alias_cleanup_summary.md">final_alias_cleanup_summary.md</a></td>
+            <td class="size">2.1 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="final_comprehensive_cleanup.py">final_comprehensive_cleanup.py</a></td>
+            <td class="size">3.5 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="final_directory_cleanup.py">final_directory_cleanup.py</a></td>
+            <td class="size">7.3 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="final_home_cleanup.py">final_home_cleanup.py</a></td>
+            <td class="size">8.9 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="final_home_cleanup_DRY_RUN_20260113_041711.log">final_home_cleanup_DRY_RUN_20260113_041711.log</a></td>
+            <td class="size">2.7 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="final_home_cleanup_EXECUTED_20260113_041728.log">final_home_cleanup_EXECUTED_20260113_041728.log</a></td>
+            <td class="size">10.2 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="fix_parent_awareness.py">fix_parent_awareness.py</a></td>
+            <td class="size">3.4 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="home_directory_scan.py">home_directory_scan.py</a></td>
+            <td class="size">8.8 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="home_directory_scan_20260113_041612.json">home_directory_scan_20260113_041612.json</a></td>
+            <td class="size">29.4 KB</td>
+            <td class="type">JSON</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="interactive_alias_cleanup.py">interactive_alias_cleanup.py</a></td>
+            <td class="size">8.8 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="library_cache_cleanup_DRY_RUN_20260113_035238.log">library_cache_cleanup_DRY_RUN_20260113_035238.log</a></td>
+            <td class="size">117.8 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="library_cache_cleanup_EXECUTED_20260113_035321.log">library_cache_cleanup_EXECUTED_20260113_035321.log</a></td>
+            <td class="size">102.1 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="library_cleanup_analysis.py">library_cleanup_analysis.py</a></td>
+            <td class="size">7.1 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="library_cleanup_analysis_20260113_035029.json">library_cleanup_analysis_20260113_035029.json</a></td>
+            <td class="size">53.3 KB</td>
+            <td class="type">JSON</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="library_deep_cleanup.py">library_deep_cleanup.py</a></td>
+            <td class="size">10.1 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="merge_EXECUTED_20260113_033600.log">merge_EXECUTED_20260113_033600.log</a></td>
+            <td class="size">10.6 KB</td>
+            <td class="type">File</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="merge_plan_20260113_033336.json">merge_plan_20260113_033336.json</a></td>
+            <td class="size">124.5 KB</td>
+            <td class="type">JSON</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="merge_plan_20260113_033336_README.md">merge_plan_20260113_033336_README.md</a></td>
+            <td class="size">12.5 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="restore_aliases.sh">restore_aliases.sh</a></td>
+            <td class="size">638.0 B</td>
+            <td class="type">Shell Script</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="system_cache_cleanup.py">system_cache_cleanup.py</a></td>
+            <td class="size">7.2 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="system_cleanup_analysis.py">system_cleanup_analysis.py</a></td>
+            <td class="size">9.5 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="system_cleanup_analysis_20260113_034409.json">system_cleanup_analysis_20260113_034409.json</a></td>
+            <td class="size">46.2 KB</td>
+            <td class="type">JSON</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="zshrc_analysis.py">zshrc_analysis.py</a></td>
+            <td class="size">6.5 KB</td>
+            <td class="type">Python</td>
+        </tr>
+                    <tr>
+            <td class="icon file-icon">📄</td>
+            <td class="name"><a href="zshrc_analysis_report.md">zshrc_analysis_report.md</a></td>
+            <td class="size">4.0 KB</td>
+            <td class="type">Markdown</td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-label">Total Items</div>
+                <div class="stat-value">88</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Directories</div>
+                <div class="stat-value">9</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Files</div>
+                <div class="stat-value">79</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#fileTable tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

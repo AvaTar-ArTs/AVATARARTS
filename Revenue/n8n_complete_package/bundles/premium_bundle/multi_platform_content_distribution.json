@@ -1,0 +1,431 @@
+{
+  "name": "Multi-Platform Content Distribution",
+  "nodes": [
+    {
+      "id": "content_trigger",
+      "type": "n8n-nodes-base.webhook",
+      "name": "Content Trigger",
+      "parameters": {
+        "path": "distribute-content",
+        "httpMethod": "POST",
+        "responseMode": "responseNode"
+      },
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "id": "platform_router",
+      "type": "n8n-nodes-base.switch",
+      "name": "Platform Router",
+      "parameters": {
+        "rules": {
+          "rules": [
+            {
+              "conditions": {
+                "string": [
+                  {
+                    "value1": "={{ $json.platforms }}",
+                    "operation": "contains",
+                    "value2": "linkedin"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "linkedin"
+            },
+            {
+              "conditions": {
+                "string": [
+                  {
+                    "value1": "={{ $json.platforms }}",
+                    "operation": "contains",
+                    "value2": "twitter"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "twitter"
+            },
+            {
+              "conditions": {
+                "string": [
+                  {
+                    "value1": "={{ $json.platforms }}",
+                    "operation": "contains",
+                    "value2": "instagram"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "instagram"
+            },
+            {
+              "conditions": {
+                "string": [
+                  {
+                    "value1": "={{ $json.platforms }}",
+                    "operation": "contains",
+                    "value2": "facebook"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "facebook"
+            },
+            {
+              "conditions": {
+                "string": [
+                  {
+                    "value1": "={{ $json.platforms }}",
+                    "operation": "contains",
+                    "value2": "behance"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "behance"
+            }
+          ]
+        }
+      },
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "id": "content_adaptor",
+      "type": "n8n-nodes-base.function",
+      "name": "Content Adaptor",
+      "parameters": {
+        "functionCode": "// Adapt content for different platforms\nconst input = $input.first().json;\nconst content = input.content || {};\nconst platforms = input.platforms || [];\n\nconst adaptedContent = {};\n\n// LinkedIn adaptation\nif (platforms.includes('linkedin')) {\n  adaptedContent.linkedin = {\n    text: content.text,\n    hashtags: content.hashtags || [],\n    mentions: content.mentions || [],\n    call_to_action: content.call_to_action || '',\n    max_length: 3000,\n    format: 'professional'\n  };\n}\n\n// Twitter adaptation\nif (platforms.includes('twitter')) {\n  adaptedContent.twitter = {\n    text: content.text.length > 280 ? content.text.substring(0, 277) + '...' : content.text,\n    hashtags: (content.hashtags || []).slice(0, 3),\n    mentions: content.mentions || [],\n    max_length: 280,\n    format: 'concise'\n  };\n}\n\n// Instagram adaptation\nif (platforms.includes('instagram')) {\n  adaptedContent.instagram = {\n    caption: content.text,\n    hashtags: (content.hashtags || []).slice(0, 30),\n    mentions: content.mentions || [],\n    max_length: 2200,\n    format: 'visual'\n  };\n}\n\n// Facebook adaptation\nif (platforms.includes('facebook')) {\n  adaptedContent.facebook = {\n    message: content.text,\n    hashtags: content.hashtags || [],\n    mentions: content.mentions || [],\n    max_length: 63206,\n    format: 'casual'\n  };\n}\n\n// Behance adaptation\nif (platforms.includes('behance')) {\n  adaptedContent.behance = {\n    title: content.title || 'Untitled Project',\n    description: content.text,\n    tags: content.hashtags || [],\n    category: content.category || 'Digital Art',\n    tools: content.tools || [],\n    format: 'portfolio'\n  };\n}\n\nreturn [{\n  json: {\n    ...input,\n    adapted_content: adaptedContent\n  }\n}];"
+      },
+      "position": [
+        680,
+        300
+      ]
+    },
+    {
+      "id": "linkedin_publisher",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "LinkedIn Publisher",
+      "parameters": {
+        "url": "https://api.linkedin.com/v2/ugcPosts",
+        "method": "POST",
+        "authentication": "oAuth2",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "author",
+              "value": "urn:li:person:{{ $credentials.linkedin.personId }}"
+            },
+            {
+              "name": "lifecycleState",
+              "value": "PUBLISHED"
+            },
+            {
+              "name": "specificContent",
+              "value": "{\n  \"shareContent\": {\n    \"shareCommentary\": {\n      \"text\": \"{{ $json.adapted_content.linkedin.text }}\"\n    },\n    \"shareMediaCategory\": \"NONE\"\n  }\n}"
+            },
+            {
+              "name": "visibility",
+              "value": "{\n  \"com.linkedin.ugc.MemberNetworkVisibility\": \"PUBLIC\"\n}"
+            }
+          ]
+        }
+      },
+      "position": [
+        900,
+        200
+      ]
+    },
+    {
+      "id": "twitter_publisher",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "Twitter Publisher",
+      "parameters": {
+        "url": "https://api.twitter.com/2/tweets",
+        "method": "POST",
+        "authentication": "oAuth2",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "={{ $json.adapted_content.twitter.text }}"
+            }
+          ]
+        }
+      },
+      "position": [
+        900,
+        300
+      ]
+    },
+    {
+      "id": "instagram_publisher",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "Instagram Publisher",
+      "parameters": {
+        "url": "https://graph.facebook.com/v18.0/{{ $credentials.instagram.businessAccountId }}/media",
+        "method": "POST",
+        "authentication": "oAuth2",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "image_url",
+              "value": "={{ $json.content.image_url }}"
+            },
+            {
+              "name": "caption",
+              "value": "={{ $json.adapted_content.instagram.caption }}"
+            }
+          ]
+        }
+      },
+      "position": [
+        900,
+        400
+      ]
+    },
+    {
+      "id": "facebook_publisher",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "Facebook Publisher",
+      "parameters": {
+        "url": "https://graph.facebook.com/v18.0/{{ $credentials.facebook.pageId }}/feed",
+        "method": "POST",
+        "authentication": "oAuth2",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "message",
+              "value": "={{ $json.adapted_content.facebook.message }}"
+            },
+            {
+              "name": "access_token",
+              "value": "={{ $credentials.facebook.accessToken }}"
+            }
+          ]
+        }
+      },
+      "position": [
+        900,
+        500
+      ]
+    },
+    {
+      "id": "behance_publisher",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "Behance Publisher",
+      "parameters": {
+        "url": "https://www.behance.net/v2/projects",
+        "method": "POST",
+        "authentication": "oAuth2",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "name",
+              "value": "={{ $json.adapted_content.behance.title }}"
+            },
+            {
+              "name": "description",
+              "value": "={{ $json.adapted_content.behance.description }}"
+            },
+            {
+              "name": "tags",
+              "value": "={{ $json.adapted_content.behance.tags.join(',') }}"
+            },
+            {
+              "name": "category",
+              "value": "={{ $json.adapted_content.behance.category }}"
+            }
+          ]
+        }
+      },
+      "position": [
+        900,
+        600
+      ]
+    },
+    {
+      "id": "results_aggregator",
+      "type": "n8n-nodes-base.function",
+      "name": "Results Aggregator",
+      "parameters": {
+        "functionCode": "// Aggregate results from all platforms\nconst results = $input.all();\nconst timestamp = new Date().toISOString();\n\nconst aggregatedResults = {\n  distribution_id: Math.random().toString(36).substr(2, 9),\n  original_content: results[0].json.content || {},\n  platforms: {},\n  success_count: 0,\n  failure_count: 0,\n  total_platforms: 0,\n  distributed_at: timestamp\n};\n\n// Process each platform result\nfor (const result of results) {\n  const platform = result.json.platform || 'unknown';\n  const success = result.json.success !== false;\n  \n  aggregatedResults.platforms[platform] = {\n    success: success,\n    post_id: result.json.id || result.json.post_id || null,\n    url: result.json.url || null,\n    error: result.json.error || null,\n    published_at: timestamp\n  };\n  \n  aggregatedResults.total_platforms++;\n  \n  if (success) {\n    aggregatedResults.success_count++;\n  } else {\n    aggregatedResults.failure_count++;\n  }\n}\n\n// Calculate success rate\naggregatedResults.success_rate = (aggregatedResults.success_count / aggregatedResults.total_platforms) * 100;\n\nreturn [{ json: aggregatedResults }];"
+      },
+      "position": [
+        1120,
+        300
+      ]
+    },
+    {
+      "id": "analytics_database",
+      "type": "n8n-nodes-base.postgres",
+      "name": "Analytics Database",
+      "parameters": {
+        "operation": "insert",
+        "schema": "public",
+        "table": "content_distribution",
+        "columns": "distribution_id, original_content, platforms, success_count, failure_count, success_rate, distributed_at",
+        "additionalFields": {}
+      },
+      "position": [
+        1340,
+        300
+      ]
+    },
+    {
+      "id": "notification_sender",
+      "type": "n8n-nodes-base.emailSend",
+      "name": "Notification Sender",
+      "parameters": {
+        "toEmail": "admin@quantumforgelabs.com",
+        "subject": "Content Distribution Complete - {{ $json.success_count }}/{{ $json.total_platforms }} platforms",
+        "message": "Content distribution completed:\n\nDistribution ID: {{ $json.distribution_id }}\nSuccess Rate: {{ $json.success_rate.toFixed(1) }}%\nSuccessful Platforms: {{ $json.success_count }}\nFailed Platforms: {{ $json.failure_count }}\n\nPlatform Details:\n{{ Object.entries($json.platforms).map(([platform, data]) => `- ${platform}: ${data.success ? 'Success' : 'Failed'} ${data.url ? '(' + data.url + ')' : ''}`).join('\\n') }}\n\nDistributed at: {{ $json.distributed_at }}"
+      },
+      "position": [
+        1560,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "content_trigger": {
+      "main": [
+        [
+          {
+            "node": "platform_router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "platform_router": {
+      "main": [
+        [
+          {
+            "node": "content_adaptor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "content_adaptor": {
+      "main": [
+        [
+          {
+            "node": "linkedin_publisher",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "twitter_publisher",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "instagram_publisher",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "facebook_publisher",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "behance_publisher",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "linkedin_publisher": {
+      "main": [
+        [
+          {
+            "node": "results_aggregator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "twitter_publisher": {
+      "main": [
+        [
+          {
+            "node": "results_aggregator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "instagram_publisher": {
+      "main": [
+        [
+          {
+            "node": "results_aggregator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "facebook_publisher": {
+      "main": [
+        [
+          {
+            "node": "results_aggregator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "behance_publisher": {
+      "main": [
+        [
+          {
+            "node": "results_aggregator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "results_aggregator": {
+      "main": [
+        [
+          {
+            "node": "analytics_database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "analytics_database": {
+      "main": [
+        [
+          {
+            "node": "notification_sender",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": {},
+  "tags": [],
+  "pinData": {}
+}

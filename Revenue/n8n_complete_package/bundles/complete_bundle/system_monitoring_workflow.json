@@ -1,0 +1,351 @@
+{
+  "name": "System Monitoring and Alerting",
+  "nodes": [
+    {
+      "id": "monitoring_trigger",
+      "type": "n8n-nodes-base.cron",
+      "name": "Monitoring Trigger",
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 5
+            }
+          ]
+        }
+      },
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "id": "system_metrics_collector",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "System Metrics Collector",
+      "parameters": {
+        "url": "http://localhost:5000/system-metrics",
+        "method": "GET",
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "id": "metrics_analyzer",
+      "type": "n8n-nodes-base.function",
+      "name": "Metrics Analyzer",
+      "parameters": {
+        "functionCode": "// Analyze system metrics and detect issues\nconst metrics = $input.first().json;\nconst thresholds = {\n  cpu_percent: 80,\n  memory_percent: 85,\n  disk_percent: 90,\n  temperature: 80,\n  load_average: 4.0\n};\n\nconst analysis = {\n  timestamp: new Date().toISOString(),\n  overall_status: 'healthy',\n  alerts: [],\n  recommendations: [],\n  metrics: metrics\n};\n\n// CPU Analysis\nif (metrics.cpu && metrics.cpu.usage_percent > thresholds.cpu_percent) {\n  analysis.alerts.push({\n    type: 'cpu_high',\n    severity: 'warning',\n    message: `CPU usage is high: ${metrics.cpu.usage_percent}%`,\n    value: metrics.cpu.usage_percent,\n    threshold: thresholds.cpu_percent\n  });\n  analysis.overall_status = 'warning';\n}\n\n// Memory Analysis\nif (metrics.memory && metrics.memory.percent > thresholds.memory_percent) {\n  analysis.alerts.push({\n    type: 'memory_high',\n    severity: 'warning',\n    message: `Memory usage is high: ${metrics.memory.percent}%`,\n    value: metrics.memory.percent,\n    threshold: thresholds.memory_percent\n  });\n  analysis.overall_status = 'warning';\n}\n\n// Disk Analysis\nif (metrics.disk && metrics.disk.percent > thresholds.disk_percent) {\n  analysis.alerts.push({\n    type: 'disk_high',\n    severity: 'critical',\n    message: `Disk usage is critical: ${metrics.disk.percent}%`,\n    value: metrics.disk.percent,\n    threshold: thresholds.disk_percent\n  });\n  analysis.overall_status = 'critical';\n}\n\n// Temperature Analysis\nif (metrics.temperature && metrics.temperature.cpu_temperature > thresholds.temperature) {\n  analysis.alerts.push({\n    type: 'temperature_high',\n    severity: 'critical',\n    message: `CPU temperature is high: ${metrics.temperature.cpu_temperature}\u00b0C`,\n    value: metrics.temperature.cpu_temperature,\n    threshold: thresholds.temperature\n  });\n  analysis.overall_status = 'critical';\n}\n\n// Load Average Analysis\nif (metrics.cpu && metrics.cpu.load_avg && metrics.cpu.load_avg[0] > thresholds.load_average) {\n  analysis.alerts.push({\n    type: 'load_high',\n    severity: 'warning',\n    message: `System load is high: ${metrics.cpu.load_avg[0]}`,\n    value: metrics.cpu.load_avg[0],\n    threshold: thresholds.load_average\n  });\n  analysis.overall_status = 'warning';\n}\n\n// Generate recommendations\nif (analysis.alerts.length > 0) {\n  if (analysis.alerts.some(alert => alert.type === 'cpu_high')) {\n    analysis.recommendations.push('Consider optimizing CPU-intensive processes or scaling horizontally');\n  }\n  if (analysis.alerts.some(alert => alert.type === 'memory_high')) {\n    analysis.recommendations.push('Check for memory leaks or consider increasing RAM');\n  }\n  if (analysis.alerts.some(alert => alert.type === 'disk_high')) {\n    analysis.recommendations.push('Clean up disk space or expand storage capacity');\n  }\n  if (analysis.alerts.some(alert => alert.type === 'temperature_high')) {\n    analysis.recommendations.push('Check cooling system and clean dust from components');\n  }\n}\n\nreturn [{ json: analysis }];"
+      },
+      "position": [
+        680,
+        300
+      ]
+    },
+    {
+      "id": "alert_router",
+      "type": "n8n-nodes-base.switch",
+      "name": "Alert Router",
+      "parameters": {
+        "rules": {
+          "rules": [
+            {
+              "conditions": {
+                "string": [
+                  {
+                    "value1": "={{ $json.overall_status }}",
+                    "operation": "equal",
+                    "value2": "critical"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "critical"
+            },
+            {
+              "conditions": {
+                "string": [
+                  {
+                    "value1": "={{ $json.overall_status }}",
+                    "operation": "equal",
+                    "value2": "warning"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "warning"
+            },
+            {
+              "conditions": {
+                "string": [
+                  {
+                    "value1": "={{ $json.overall_status }}",
+                    "operation": "equal",
+                    "value2": "healthy"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "healthy"
+            }
+          ]
+        }
+      },
+      "position": [
+        900,
+        300
+      ]
+    },
+    {
+      "id": "critical_alerts",
+      "type": "n8n-nodes-base.emailSend",
+      "name": "Critical Alerts",
+      "parameters": {
+        "toEmail": "admin@quantumforgelabs.com,alerts@quantumforgelabs.com",
+        "subject": "\ud83d\udea8 CRITICAL SYSTEM ALERT - Immediate Action Required",
+        "message": "CRITICAL system issues detected:\n\n{{ $json.alerts.map(alert => `\ud83d\udea8 ${alert.message}`).join('\\n') }}\n\nRecommendations:\n{{ $json.recommendations.map(rec => `- ${rec}`).join('\\n') }}\n\nTimestamp: {{ $json.timestamp }}\n\nPlease investigate immediately!"
+      },
+      "position": [
+        1120,
+        200
+      ]
+    },
+    {
+      "id": "warning_alerts",
+      "type": "n8n-nodes-base.emailSend",
+      "name": "Warning Alerts",
+      "parameters": {
+        "toEmail": "admin@quantumforgelabs.com",
+        "subject": "\u26a0\ufe0f System Warning - {{ $json.alerts.length }} issues detected",
+        "message": "System warnings detected:\n\n{{ $json.alerts.map(alert => `\u26a0\ufe0f ${alert.message}`).join('\\n') }}\n\nRecommendations:\n{{ $json.recommendations.map(rec => `- ${rec}`).join('\\n') }}\n\nTimestamp: {{ $json.timestamp }}"
+      },
+      "position": [
+        1120,
+        400
+      ]
+    },
+    {
+      "id": "health_logger",
+      "type": "n8n-nodes-base.writeFile",
+      "name": "Health Logger",
+      "parameters": {
+        "fileName": "system_health_{{ $now.format('yyyy-MM-dd') }}.log",
+        "filePath": "/logs/system/",
+        "fileContent": "{{ $now.format('yyyy-MM-dd HH:mm:ss') }} - {{ $json.overall_status.toUpperCase() }} - {{ $json.alerts.length }} alerts\\n",
+        "options": {
+          "append": true
+        }
+      },
+      "position": [
+        1120,
+        600
+      ]
+    },
+    {
+      "id": "metrics_database",
+      "type": "n8n-nodes-base.postgres",
+      "name": "Metrics Database",
+      "parameters": {
+        "operation": "insert",
+        "schema": "public",
+        "table": "system_metrics",
+        "columns": "timestamp, cpu_usage, memory_usage, disk_usage, temperature, load_avg, status, alerts_count",
+        "additionalFields": {}
+      },
+      "position": [
+        1340,
+        300
+      ]
+    },
+    {
+      "id": "dashboard_update",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "Dashboard Update",
+      "parameters": {
+        "url": "http://localhost:5000/update-dashboard",
+        "method": "POST",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "metrics_data",
+              "value": "={{ $json }}"
+            }
+          ]
+        }
+      },
+      "position": [
+        1340,
+        500
+      ]
+    },
+    {
+      "id": "auto_remediation",
+      "type": "n8n-nodes-base.function",
+      "name": "Auto Remediation",
+      "parameters": {
+        "functionCode": "// Attempt automatic remediation for common issues\nconst analysis = $input.first().json;\nconst remediationActions = [];\n\n// Auto-remediation for disk space issues\nif (analysis.alerts.some(alert => alert.type === 'disk_high')) {\n  remediationActions.push({\n    action: 'cleanup_temp_files',\n    description: 'Cleaning temporary files',\n    command: 'find /tmp -type f -mtime +7 -delete',\n    priority: 'high'\n  });\n  \n  remediationActions.push({\n    action: 'cleanup_logs',\n    description: 'Cleaning old log files',\n    command: 'find /var/log -name \"*.log\" -mtime +30 -delete',\n    priority: 'medium'\n  });\n}\n\n// Auto-remediation for memory issues\nif (analysis.alerts.some(alert => alert.type === 'memory_high')) {\n  remediationActions.push({\n    action: 'clear_cache',\n    description: 'Clearing system cache',\n    command: 'sync && echo 3 > /proc/sys/vm/drop_caches',\n    priority: 'high'\n  });\n}\n\n// Auto-remediation for high load\nif (analysis.alerts.some(alert => alert.type === 'load_high')) {\n  remediationActions.push({\n    action: 'restart_services',\n    description: 'Restarting non-critical services',\n    command: 'systemctl restart nginx',\n    priority: 'medium'\n  });\n}\n\nreturn [{\n  json: {\n    ...analysis,\n    remediation_actions: remediationActions,\n    auto_remediation_available: remediationActions.length > 0\n  }\n}];"
+      },
+      "position": [
+        1560,
+        300
+      ]
+    },
+    {
+      "id": "remediation_executor",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "Remediation Executor",
+      "parameters": {
+        "url": "http://localhost:5000/execute-remediation",
+        "method": "POST",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "actions",
+              "value": "={{ $json.remediation_actions }}"
+            }
+          ]
+        }
+      },
+      "position": [
+        1780,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "monitoring_trigger": {
+      "main": [
+        [
+          {
+            "node": "system_metrics_collector",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "system_metrics_collector": {
+      "main": [
+        [
+          {
+            "node": "metrics_analyzer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "metrics_analyzer": {
+      "main": [
+        [
+          {
+            "node": "alert_router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "alert_router": {
+      "main": [
+        [
+          {
+            "node": "critical_alerts",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "warning_alerts",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "health_logger",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "critical_alerts": {
+      "main": [
+        [
+          {
+            "node": "metrics_database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "warning_alerts": {
+      "main": [
+        [
+          {
+            "node": "metrics_database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "health_logger": {
+      "main": [
+        [
+          {
+            "node": "metrics_database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "metrics_database": {
+      "main": [
+        [
+          {
+            "node": "dashboard_update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "dashboard_update": {
+      "main": [
+        [
+          {
+            "node": "auto_remediation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "auto_remediation": {
+      "main": [
+        [
+          {
+            "node": "remediation_executor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": {},
+  "tags": [],
+  "pinData": {}
+}

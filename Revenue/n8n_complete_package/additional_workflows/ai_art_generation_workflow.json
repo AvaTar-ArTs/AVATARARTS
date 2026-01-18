@@ -1,0 +1,318 @@
+{
+  "name": "AI Art Generation Workflow",
+  "nodes": [
+    {
+      "id": "art_request_trigger",
+      "type": "n8n-nodes-base.webhook",
+      "name": "Art Request Trigger",
+      "parameters": {
+        "path": "generate-art",
+        "httpMethod": "POST",
+        "responseMode": "responseNode"
+      },
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "id": "prompt_processor",
+      "type": "n8n-nodes-base.function",
+      "name": "Prompt Processor",
+      "parameters": {
+        "functionCode": "// Process and enhance art generation prompts\nconst input = $input.first().json;\n\n// Extract parameters\nconst prompt = input.prompt || '';\nconst style = input.style || 'realistic';\nconst quality = input.quality || 'high';\nconst size = input.size || '512x512';\n\n// Style enhancement mapping\nconst styleEnhancements = {\n  'realistic': 'photorealistic, high detail, sharp focus',\n  'abstract': 'abstract art, geometric shapes, colorful',\n  'cyberpunk': 'neon lights, futuristic, dark atmosphere',\n  'fantasy': 'magical, mystical, fantasy art',\n  'minimalist': 'simple, clean, minimal design',\n  'vintage': 'vintage style, retro, aged look',\n  'digital': 'digital art, computer generated',\n  'watercolor': 'watercolor painting, soft edges, artistic'\n};\n\n// Quality modifiers\nconst qualityModifiers = {\n  'standard': 'good quality',\n  'high': 'high quality, detailed, professional',\n  'ultra': 'ultra high quality, masterpiece, award winning'\n};\n\n// Enhanced prompt\nconst enhancedPrompt = `${prompt}, ${styleEnhancements[style]}, ${qualityModifiers[quality]}`;\n\n// Parse size\nconst [width, height] = size.split('x').map(Number);\n\nreturn [{\n  json: {\n    original_prompt: prompt,\n    enhanced_prompt: enhancedPrompt,\n    style: style,\n    quality: quality,\n    width: width,\n    height: height,\n    request_id: Math.random().toString(36).substr(2, 9),\n    timestamp: new Date().toISOString()\n  }\n}];"
+      },
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "id": "ai_art_generator",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "AI Art Generator",
+      "parameters": {
+        "url": "http://localhost:5000/generate-art",
+        "method": "POST",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "prompt",
+              "value": "={{ $json.enhanced_prompt }}"
+            },
+            {
+              "name": "width",
+              "value": "={{ $json.width }}"
+            },
+            {
+              "name": "height",
+              "value": "={{ $json.height }}"
+            },
+            {
+              "name": "num_inference_steps",
+              "value": "={{ $json.quality === 'ultra' ? 50 : 30 }}"
+            },
+            {
+              "name": "guidance_scale",
+              "value": "7.5"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 300000
+        }
+      },
+      "position": [
+        680,
+        300
+      ]
+    },
+    {
+      "id": "image_enhancer",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "Image Enhancer",
+      "parameters": {
+        "url": "http://localhost:5000/enhance-image",
+        "method": "POST",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "image_data",
+              "value": "={{ $json.image_data }}"
+            },
+            {
+              "name": "enhancement_type",
+              "value": "{{ $json.quality }}"
+            },
+            {
+              "name": "brightness",
+              "value": "1.2"
+            },
+            {
+              "name": "contrast",
+              "value": "1.3"
+            },
+            {
+              "name": "saturation",
+              "value": "1.4"
+            },
+            {
+              "name": "sharpness",
+              "value": "1.5"
+            }
+          ]
+        }
+      },
+      "position": [
+        900,
+        300
+      ]
+    },
+    {
+      "id": "style_transfer",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "Style Transfer",
+      "parameters": {
+        "url": "http://localhost:5000/style-transfer",
+        "method": "POST",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "content_image",
+              "value": "={{ $json.enhanced_image }}"
+            },
+            {
+              "name": "style_image",
+              "value": "={{ $json.style_reference }}"
+            },
+            {
+              "name": "iterations",
+              "value": "1000"
+            },
+            {
+              "name": "style_weight",
+              "value": "1000000"
+            }
+          ]
+        }
+      },
+      "position": [
+        1120,
+        300
+      ]
+    },
+    {
+      "id": "image_storage",
+      "type": "n8n-nodes-base.writeFile",
+      "name": "Image Storage",
+      "parameters": {
+        "fileName": "ai_art_{{ $json.request_id }}_{{ $now.format('yyyy-MM-dd_HH-mm-ss') }}.png",
+        "filePath": "/data/ai_art/",
+        "fileContent": "={{ $json.final_image }}",
+        "options": {
+          "encoding": "base64"
+        }
+      },
+      "position": [
+        1340,
+        200
+      ]
+    },
+    {
+      "id": "metadata_storage",
+      "type": "n8n-nodes-base.postgres",
+      "name": "Metadata Storage",
+      "parameters": {
+        "operation": "insert",
+        "schema": "public",
+        "table": "ai_art_gallery",
+        "columns": "request_id, original_prompt, enhanced_prompt, style, quality, dimensions, file_path, created_at, metadata",
+        "additionalFields": {}
+      },
+      "position": [
+        1340,
+        400
+      ]
+    },
+    {
+      "id": "gallery_update",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "Gallery Update",
+      "parameters": {
+        "url": "http://localhost:5000/update-gallery",
+        "method": "POST",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "artwork_data",
+              "value": "={{ $json }}"
+            }
+          ]
+        }
+      },
+      "position": [
+        1560,
+        300
+      ]
+    },
+    {
+      "id": "notification_sender",
+      "type": "n8n-nodes-base.emailSend",
+      "name": "Notification Sender",
+      "parameters": {
+        "toEmail": "={{ $json.user_email || 'admin@quantumforgelabs.com' }}",
+        "subject": "Your AI Art is Ready!",
+        "message": "Your AI-generated artwork has been created successfully!\n\nRequest ID: {{ $json.request_id }}\nStyle: {{ $json.style }}\nQuality: {{ $json.quality }}\nDimensions: {{ $json.width }}x{{ $json.height }}\n\nYou can view your artwork at: https://avatararts.org/gallery/{{ $json.request_id }}"
+      },
+      "position": [
+        1780,
+        300
+      ]
+    },
+    {
+      "id": "response_formatter",
+      "type": "n8n-nodes-base.function",
+      "name": "Response Formatter",
+      "parameters": {
+        "functionCode": "// Format response for API\nconst data = $input.first().json;\n\nconst response = {\n  success: true,\n  request_id: data.request_id,\n  artwork: {\n    id: data.request_id,\n    prompt: data.original_prompt,\n    style: data.style,\n    quality: data.quality,\n    dimensions: `${data.width}x${data.height}`,\n    file_url: `https://avatararts.org/images/ai_art_${data.request_id}.png`,\n    gallery_url: `https://avatararts.org/gallery/${data.request_id}`,\n    created_at: data.timestamp\n  },\n  metadata: {\n    processing_time: data.processing_time || 'Unknown',\n    model_version: '1.0',\n    api_version: '1.0'\n  }\n};\n\nreturn [{ json: response }];"
+      },
+      "position": [
+        1780,
+        500
+      ]
+    }
+  ],
+  "connections": {
+    "art_request_trigger": {
+      "main": [
+        [
+          {
+            "node": "prompt_processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "prompt_processor": {
+      "main": [
+        [
+          {
+            "node": "ai_art_generator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ai_art_generator": {
+      "main": [
+        [
+          {
+            "node": "image_enhancer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "image_enhancer": {
+      "main": [
+        [
+          {
+            "node": "style_transfer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "style_transfer": {
+      "main": [
+        [
+          {
+            "node": "image_storage",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "metadata_storage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "metadata_storage": {
+      "main": [
+        [
+          {
+            "node": "gallery_update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "gallery_update": {
+      "main": [
+        [
+          {
+            "node": "notification_sender",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "response_formatter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": {},
+  "tags": [],
+  "pinData": {}
+}

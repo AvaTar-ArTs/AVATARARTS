@@ -1,0 +1,474 @@
+{
+  "name": "Behance Portfolio Automation",
+  "nodes": [
+    {
+      "id": "portfolio_trigger",
+      "type": "n8n-nodes-base.webhook",
+      "name": "Portfolio Trigger",
+      "parameters": {
+        "path": "behance-portfolio",
+        "httpMethod": "POST",
+        "responseMode": "responseNode"
+      },
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "id": "content_processor",
+      "type": "n8n-nodes-base.function",
+      "name": "Content Processor",
+      "parameters": {
+        "functionCode": "// Process portfolio content for Behance\nconst input = $input.first().json;\nconst content = input.content || {};\n\n// Behance-specific formatting\nconst behanceProject = {\n  title: content.title || 'Untitled Project',\n  description: content.description || '',\n  tags: content.tags || [],\n  category: content.category || 'Digital Art',\n  tools: content.tools || ['Photoshop', 'Illustrator'],\n  images: content.images || [],\n  cover_image: content.cover_image || content.images[0],\n  project_type: content.project_type || 'Personal Project',\n  client: content.client || null,\n  year: content.year || new Date().getFullYear(),\n  featured: content.featured || false,\n  behance_metadata: {\n    created_at: new Date().toISOString(),\n    updated_at: new Date().toISOString(),\n    status: 'draft',\n    visibility: 'public',\n    allow_comments: true,\n    allow_appreciations: true\n  }\n};\n\n// Validate required fields\nconst validation = {\n  valid: true,\n  errors: []\n};\n\nif (!behanceProject.title) {\n  validation.errors.push('Title is required');\n  validation.valid = false;\n}\n\nif (!behanceProject.cover_image) {\n  validation.errors.push('Cover image is required');\n  validation.valid = false;\n}\n\nif (behanceProject.images.length === 0) {\n  validation.errors.push('At least one project image is required');\n  validation.valid = false;\n}\n\nreturn [{\n  json: {\n    ...input,\n    behance_project: behanceProject,\n    validation: validation,\n    ready_for_upload: validation.valid\n  }\n}];"
+      },
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "id": "image_optimizer",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "Image Optimizer",
+      "parameters": {
+        "url": "http://localhost:5000/optimize-images",
+        "method": "POST",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "images",
+              "value": "={{ $json.behance_project.images }}"
+            },
+            {
+              "name": "platform",
+              "value": "behance"
+            },
+            {
+              "name": "quality",
+              "value": "high"
+            },
+            {
+              "name": "max_width",
+              "value": "1920"
+            },
+            {
+              "name": "max_height",
+              "value": "1080"
+            }
+          ]
+        }
+      },
+      "position": [
+        680,
+        300
+      ]
+    },
+    {
+      "id": "behance_api_upload",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "Behance API Upload",
+      "parameters": {
+        "url": "https://www.behance.net/v2/projects",
+        "method": "POST",
+        "authentication": "oAuth2",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "name",
+              "value": "={{ $json.behance_project.title }}"
+            },
+            {
+              "name": "description",
+              "value": "={{ $json.behance_project.description }}"
+            },
+            {
+              "name": "tags",
+              "value": "={{ $json.behance_project.tags.join(',') }}"
+            },
+            {
+              "name": "category",
+              "value": "={{ $json.behance_project.category }}"
+            },
+            {
+              "name": "tools",
+              "value": "={{ $json.behance_project.tools.join(',') }}"
+            },
+            {
+              "name": "project_type",
+              "value": "={{ $json.behance_project.project_type }}"
+            },
+            {
+              "name": "year",
+              "value": "={{ $json.behance_project.year }}"
+            },
+            {
+              "name": "featured",
+              "value": "={{ $json.behance_project.featured }}"
+            }
+          ]
+        },
+        "headers": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "X-API-Key",
+              "value": "={{ $credentials.behance.apiKey }}"
+            }
+          ]
+        }
+      },
+      "position": [
+        900,
+        300
+      ]
+    },
+    {
+      "id": "image_uploader",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "Image Uploader",
+      "parameters": {
+        "url": "https://www.behance.net/v2/projects/{{ $json.project_id }}/modules",
+        "method": "POST",
+        "authentication": "oAuth2",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "type",
+              "value": "image"
+            },
+            {
+              "name": "images",
+              "value": "={{ $json.optimized_images }}"
+            }
+          ]
+        }
+      },
+      "position": [
+        1120,
+        300
+      ]
+    },
+    {
+      "id": "portfolio_publisher",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "Portfolio Publisher",
+      "parameters": {
+        "url": "https://www.behance.net/v2/projects/{{ $json.project_id }}/publish",
+        "method": "POST",
+        "authentication": "oAuth2",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "visibility",
+              "value": "public"
+            },
+            {
+              "name": "allow_comments",
+              "value": "true"
+            },
+            {
+              "name": "allow_appreciations",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      "position": [
+        1340,
+        300
+      ]
+    },
+    {
+      "id": "social_media_promoter",
+      "type": "n8n-nodes-base.function",
+      "name": "Social Media Promoter",
+      "parameters": {
+        "functionCode": "// Create social media promotion content\nconst project = $input.first().json;\nconst behanceUrl = `https://www.behance.net/gallery/${project.project_id}`;\n\nconst socialContent = {\n  twitter: {\n    text: `Check out my latest project: \"${project.title}\" on Behance! ${behanceUrl} #design #art #behance`,\n    hashtags: ['#design', '#art', '#behance', '#creative', '#portfolio']\n  },\n  linkedin: {\n    text: `I'm excited to share my latest creative project: \"${project.title}\"\n\n${project.description}\n\nView the full project on Behance: ${behanceUrl}\n\n#design #art #creative #portfolio #behance`,\n    hashtags: ['#design', '#art', '#creative', '#portfolio', '#behance']\n  },\n  instagram: {\n    caption: `\u2728 New project alert! \u2728\n\n\"${project.title}\"\n\n${project.description}\n\nSwipe to see more details! \ud83d\udc46\n\n#design #art #creative #behance #portfolio`,\n    hashtags: ['#design', '#art', '#creative', '#behance', '#portfolio', '#inspiration']\n  },\n  facebook: {\n    message: `I'm thrilled to share my latest creative project: \"${project.title}\"\n\n${project.description}\n\nCheck out the full project on Behance: ${behanceUrl}`,\n    hashtags: ['#design', '#art', '#creative', '#portfolio']\n  }\n};\n\nreturn [{\n  json: {\n    ...project,\n    social_content: socialContent,\n    behance_url: behanceUrl\n  }\n}];"
+      },
+      "position": [
+        1560,
+        300
+      ]
+    },
+    {
+      "id": "linkedin_publisher",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "LinkedIn Publisher",
+      "parameters": {
+        "url": "https://api.linkedin.com/v2/ugcPosts",
+        "method": "POST",
+        "authentication": "oAuth2",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "author",
+              "value": "urn:li:person:{{ $credentials.linkedin.personId }}"
+            },
+            {
+              "name": "lifecycleState",
+              "value": "PUBLISHED"
+            },
+            {
+              "name": "specificContent",
+              "value": "{\n  \"shareContent\": {\n    \"shareCommentary\": {\n      \"text\": \"{{ $json.social_content.linkedin.text }}\"\n    },\n    \"shareMediaCategory\": \"ARTICLE\",\n    \"media\": [\n      {\n        \"status\": \"READY\",\n        \"description\": {\n          \"text\": \"{{ $json.social_content.linkedin.text }}\"\n        },\n        \"media\": {\n          \"title\": \"{{ $json.title }}\",\n          \"description\": \"{{ $json.description }}\"\n        }\n      }\n    ]\n  }\n}"
+            },
+            {
+              "name": "visibility",
+              "value": "{\n  \"com.linkedin.ugc.MemberNetworkVisibility\": \"PUBLIC\"\n}"
+            }
+          ]
+        }
+      },
+      "position": [
+        1780,
+        200
+      ]
+    },
+    {
+      "id": "twitter_publisher",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "Twitter Publisher",
+      "parameters": {
+        "url": "https://api.twitter.com/2/tweets",
+        "method": "POST",
+        "authentication": "oAuth2",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "={{ $json.social_content.twitter.text }}"
+            }
+          ]
+        }
+      },
+      "position": [
+        1780,
+        400
+      ]
+    },
+    {
+      "id": "instagram_publisher",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "Instagram Publisher",
+      "parameters": {
+        "url": "https://graph.facebook.com/v18.0/{{ $credentials.instagram.businessAccountId }}/media",
+        "method": "POST",
+        "authentication": "oAuth2",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "image_url",
+              "value": "={{ $json.cover_image }}"
+            },
+            {
+              "name": "caption",
+              "value": "={{ $json.social_content.instagram.caption }}"
+            },
+            {
+              "name": "access_token",
+              "value": "={{ $credentials.instagram.accessToken }}"
+            }
+          ]
+        }
+      },
+      "position": [
+        1780,
+        600
+      ]
+    },
+    {
+      "id": "analytics_tracker",
+      "type": "n8n-nodes-base.function",
+      "name": "Analytics Tracker",
+      "parameters": {
+        "functionCode": "// Track portfolio performance across platforms\nconst project = $input.first().json;\nconst timestamp = new Date().toISOString();\n\nconst analytics = {\n  project_id: project.project_id,\n  title: project.title,\n  platforms: {\n    behance: {\n      url: project.behance_url,\n      published_at: timestamp,\n      status: 'published'\n    },\n    linkedin: {\n      post_id: project.linkedin_post_id || null,\n      published_at: timestamp,\n      status: project.linkedin_post_id ? 'published' : 'pending'\n    },\n    twitter: {\n      tweet_id: project.twitter_tweet_id || null,\n      published_at: timestamp,\n      status: project.twitter_tweet_id ? 'published' : 'pending'\n    },\n    instagram: {\n      media_id: project.instagram_media_id || null,\n      published_at: timestamp,\n      status: project.instagram_media_id ? 'published' : 'pending'\n    }\n  },\n  metrics: {\n    total_platforms: 4,\n    published_platforms: 0,\n    pending_platforms: 0\n  },\n  created_at: timestamp\n};\n\n// Count published platforms\nfor (const [platform, data] of Object.entries(analytics.platforms)) {\n  if (data.status === 'published') {\n    analytics.metrics.published_platforms++;\n  } else {\n    analytics.metrics.pending_platforms++;\n  }\n}\n\nreturn [{ json: analytics }];"
+      },
+      "position": [
+        2000,
+        300
+      ]
+    },
+    {
+      "id": "database_logger",
+      "type": "n8n-nodes-base.postgres",
+      "name": "Database Logger",
+      "parameters": {
+        "operation": "insert",
+        "schema": "public",
+        "table": "portfolio_analytics",
+        "columns": "project_id, title, platforms, metrics, created_at",
+        "additionalFields": {}
+      },
+      "position": [
+        2220,
+        300
+      ]
+    },
+    {
+      "id": "notification_sender",
+      "type": "n8n-nodes-base.emailSend",
+      "name": "Notification Sender",
+      "parameters": {
+        "toEmail": "admin@quantumforgelabs.com",
+        "subject": "Portfolio Published Successfully - {{ $json.title }}",
+        "message": "Your portfolio project has been published across multiple platforms:\n\nProject: {{ $json.title }}\nBehance: {{ $json.platforms.behance.url }}\nLinkedIn: {{ $json.platforms.linkedin.status }}\nTwitter: {{ $json.platforms.twitter.status }}\nInstagram: {{ $json.platforms.instagram.status }}\n\nPublished on {{ $json.metrics.published_platforms }} out of {{ $json.metrics.total_platforms }} platforms.\n\nTimestamp: {{ $json.created_at }}"
+      },
+      "position": [
+        2440,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "portfolio_trigger": {
+      "main": [
+        [
+          {
+            "node": "content_processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "content_processor": {
+      "main": [
+        [
+          {
+            "node": "image_optimizer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "image_optimizer": {
+      "main": [
+        [
+          {
+            "node": "behance_api_upload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "behance_api_upload": {
+      "main": [
+        [
+          {
+            "node": "image_uploader",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "image_uploader": {
+      "main": [
+        [
+          {
+            "node": "portfolio_publisher",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "portfolio_publisher": {
+      "main": [
+        [
+          {
+            "node": "social_media_promoter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "social_media_promoter": {
+      "main": [
+        [
+          {
+            "node": "linkedin_publisher",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "twitter_publisher",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "instagram_publisher",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "linkedin_publisher": {
+      "main": [
+        [
+          {
+            "node": "analytics_tracker",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "twitter_publisher": {
+      "main": [
+        [
+          {
+            "node": "analytics_tracker",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "instagram_publisher": {
+      "main": [
+        [
+          {
+            "node": "analytics_tracker",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "analytics_tracker": {
+      "main": [
+        [
+          {
+            "node": "database_logger",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "database_logger": {
+      "main": [
+        [
+          {
+            "node": "notification_sender",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": {},
+  "tags": [],
+  "pinData": {}
+}

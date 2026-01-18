@@ -1,0 +1,390 @@
+{
+  "name": "Advanced Web Scraping Automation",
+  "nodes": [
+    {
+      "id": "trigger_schedule",
+      "type": "n8n-nodes-base.cron",
+      "name": "Schedule Trigger",
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "id": "webhook_trigger",
+      "type": "n8n-nodes-base.webhook",
+      "name": "Webhook Trigger",
+      "parameters": {
+        "path": "scrape",
+        "httpMethod": "POST",
+        "responseMode": "responseNode"
+      },
+      "position": [
+        240,
+        500
+      ]
+    },
+    {
+      "id": "scraper_selector",
+      "type": "n8n-nodes-base.switch",
+      "name": "Scraper Type Selector",
+      "parameters": {
+        "rules": {
+          "rules": [
+            {
+              "conditions": {
+                "string": [
+                  {
+                    "value1": "={{ $json.scraper_type }}",
+                    "operation": "equal",
+                    "value2": "selenium"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "selenium"
+            },
+            {
+              "conditions": {
+                "string": [
+                  {
+                    "value1": "={{ $json.scraper_type }}",
+                    "operation": "equal",
+                    "value2": "beautifulsoup"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "beautifulsoup"
+            },
+            {
+              "conditions": {
+                "string": [
+                  {
+                    "value1": "={{ $json.scraper_type }}",
+                    "operation": "equal",
+                    "value2": "api"
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "api"
+            }
+          ]
+        }
+      },
+      "position": [
+        460,
+        400
+      ]
+    },
+    {
+      "id": "selenium_scraper",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "Selenium Scraper",
+      "parameters": {
+        "url": "http://localhost:5000/scrape/selenium",
+        "method": "POST",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "url",
+              "value": "={{ $json.target_url }}"
+            },
+            {
+              "name": "selectors",
+              "value": "={{ $json.selectors }}"
+            },
+            {
+              "name": "wait_time",
+              "value": "={{ $json.wait_time || 10 }}"
+            },
+            {
+              "name": "headless",
+              "value": "={{ $json.headless || true }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 300000
+        }
+      },
+      "position": [
+        680,
+        200
+      ]
+    },
+    {
+      "id": "beautifulsoup_scraper",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "BeautifulSoup Scraper",
+      "parameters": {
+        "url": "http://localhost:5000/scrape/beautifulsoup",
+        "method": "POST",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "url",
+              "value": "={{ $json.target_url }}"
+            },
+            {
+              "name": "selectors",
+              "value": "={{ $json.selectors }}"
+            },
+            {
+              "name": "delay_range",
+              "value": "={{ $json.delay_range || [1, 3] }}"
+            }
+          ]
+        }
+      },
+      "position": [
+        680,
+        400
+      ]
+    },
+    {
+      "id": "api_scraper",
+      "type": "n8n-nodes-base.httpRequest",
+      "name": "API Scraper",
+      "parameters": {
+        "url": "http://localhost:5000/scrape/api",
+        "method": "POST",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "api_url",
+              "value": "={{ $json.api_url }}"
+            },
+            {
+              "name": "headers",
+              "value": "={{ $json.headers || {} }}"
+            },
+            {
+              "name": "pagination",
+              "value": "={{ $json.pagination || true }}"
+            }
+          ]
+        }
+      },
+      "position": [
+        680,
+        600
+      ]
+    },
+    {
+      "id": "data_processor",
+      "type": "n8n-nodes-base.function",
+      "name": "Data Processor",
+      "parameters": {
+        "functionCode": "// Data processing and cleaning\nconst items = $input.all();\nconst processedItems = [];\n\nfor (const item of items) {\n  const data = item.json;\n  \n  // Clean and validate data\n  const processedData = {\n    id: data.id || Math.random().toString(36).substr(2, 9),\n    title: data.title ? data.title.trim() : 'No Title',\n    content: data.content ? data.content.trim() : '',\n    url: data.url || data.source_url,\n    timestamp: new Date().toISOString(),\n    source: data.source || 'unknown',\n    category: data.category || 'general',\n    tags: data.tags || [],\n    metadata: {\n      scraped_at: new Date().toISOString(),\n      processor: 'n8n_automation',\n      version: '1.0'\n    }\n  };\n  \n  // Validate required fields\n  if (processedData.title && processedData.content) {\n    processedItems.push(processedData);\n  }\n}\n\nreturn processedItems.map(item => ({ json: item }));"
+      },
+      "position": [
+        900,
+        400
+      ]
+    },
+    {
+      "id": "duplicate_checker",
+      "type": "n8n-nodes-base.function",
+      "name": "Duplicate Checker",
+      "parameters": {
+        "functionCode": "// Check for duplicates based on URL and title\nconst items = $input.all();\nconst seen = new Set();\nconst uniqueItems = [];\n\nfor (const item of items) {\n  const data = item.json;\n  const key = `${data.url}_${data.title}`;\n  \n  if (!seen.has(key)) {\n    seen.add(key);\n    uniqueItems.push(item);\n  }\n}\n\nreturn uniqueItems;"
+      },
+      "position": [
+        1120,
+        400
+      ]
+    },
+    {
+      "id": "database_storage",
+      "type": "n8n-nodes-base.postgres",
+      "name": "Database Storage",
+      "parameters": {
+        "operation": "insert",
+        "schema": "public",
+        "table": "scraped_data",
+        "columns": "id, title, content, url, timestamp, source, category, tags, metadata",
+        "additionalFields": {}
+      },
+      "position": [
+        1340,
+        400
+      ]
+    },
+    {
+      "id": "file_storage",
+      "type": "n8n-nodes-base.writeFile",
+      "name": "File Storage",
+      "parameters": {
+        "fileName": "scraped_data_{{ $now.format('yyyy-MM-dd_HH-mm-ss') }}.json",
+        "filePath": "/data/scraped/",
+        "fileContent": "={{ JSON.stringify($input.all(), null, 2) }}"
+      },
+      "position": [
+        1340,
+        600
+      ]
+    },
+    {
+      "id": "email_notification",
+      "type": "n8n-nodes-base.emailSend",
+      "name": "Email Notification",
+      "parameters": {
+        "toEmail": "admin@quantumforgelabs.com",
+        "subject": "Scraping Complete - {{ $json.length }} items processed",
+        "message": "Scraping operation completed successfully.\n\nItems processed: {{ $json.length }}\nTimestamp: {{ $now.format('yyyy-MM-dd HH:mm:ss') }}\nSource: {{ $json.source || 'Unknown' }}"
+      },
+      "position": [
+        1560,
+        400
+      ]
+    },
+    {
+      "id": "error_handler",
+      "type": "n8n-nodes-base.function",
+      "name": "Error Handler",
+      "parameters": {
+        "functionCode": "// Error handling and logging\nconst error = $input.first().json;\n\nconst errorReport = {\n  timestamp: new Date().toISOString(),\n  error_type: error.error_type || 'Unknown',\n  message: error.message || 'An error occurred',\n  stack_trace: error.stack || '',\n  context: {\n    node: error.node || 'Unknown',\n    workflow: 'web_scraping_automation',\n    data: error.data || {}\n  },\n  severity: error.severity || 'medium'\n};\n\nreturn [{ json: errorReport }];"
+      },
+      "position": [
+        900,
+        600
+      ]
+    }
+  ],
+  "connections": {
+    "trigger_schedule": {
+      "main": [
+        [
+          {
+            "node": "scraper_selector",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "webhook_trigger": {
+      "main": [
+        [
+          {
+            "node": "scraper_selector",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "scraper_selector": {
+      "main": [
+        [
+          {
+            "node": "selenium_scraper",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "beautifulsoup_scraper",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "api_scraper",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "selenium_scraper": {
+      "main": [
+        [
+          {
+            "node": "data_processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "beautifulsoup_scraper": {
+      "main": [
+        [
+          {
+            "node": "data_processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "api_scraper": {
+      "main": [
+        [
+          {
+            "node": "data_processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "data_processor": {
+      "main": [
+        [
+          {
+            "node": "duplicate_checker",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "duplicate_checker": {
+      "main": [
+        [
+          {
+            "node": "database_storage",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "file_storage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "database_storage": {
+      "main": [
+        [
+          {
+            "node": "email_notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": {},
+  "tags": [],
+  "pinData": {}
+}

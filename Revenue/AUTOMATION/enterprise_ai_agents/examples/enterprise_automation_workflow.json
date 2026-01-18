@@ -1,0 +1,76 @@
+{
+  "name": "Enterprise Automation Workflow",
+  "description": "Complete enterprise automation using multi-agent system",
+  "target_keywords": [
+    "AI Agents Framework",
+    "Enterprise Automation",
+    "Multi-Agent Systems",
+    "Task Orchestration"
+  ],
+  "seo_score": 94,
+  "aeo_score": 96,
+  "steps": [
+    {
+      "id": "step_1",
+      "agent": "research",
+      "task": {
+        "query": "enterprise automation trends 2026",
+        "type": "trend_analysis"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "step_2",
+      "agent": "content",
+      "task": {
+        "topic": "Enterprise AI Agents Framework",
+        "format": "article",
+        "target_keywords": [
+          "AI Agents Framework",
+          "Enterprise Automation",
+          "Multi-Agent Systems"
+        ],
+        "seo_optimize": true,
+        "aeo_optimize": true
+      },
+      "dependencies": ["step_1"]
+    },
+    {
+      "id": "step_3",
+      "agent": "automation",
+      "task": {
+        "workflow_type": "enterprise_automation",
+        "steps": [
+          {"action": "data_collection", "agent": "research"},
+          {"action": "content_generation", "agent": "content"},
+          {"action": "integration", "agent": "integration"}
+        ],
+        "integrations": ["api", "database", "webhook"]
+      },
+      "dependencies": ["step_2"]
+    },
+    {
+      "id": "step_4",
+      "agent": "analytics",
+      "task": {
+        "data_source": "all",
+        "metrics": ["performance", "revenue", "engagement"],
+        "timeframe": "30d"
+      },
+      "dependencies": ["step_3"]
+    },
+    {
+      "id": "step_5",
+      "agent": "integration",
+      "task": {
+        "integration_type": "api",
+        "api_config": {
+          "base_url": "https://api.example.com",
+          "auth_type": "api_key"
+        },
+        "endpoints": ["/workflows", "/agents", "/analytics"]
+      },
+      "dependencies": ["step_4"]
+    }
+  ]
+}

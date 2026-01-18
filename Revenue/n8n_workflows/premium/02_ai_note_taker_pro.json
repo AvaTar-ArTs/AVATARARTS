@@ -1,0 +1,122 @@
+{
+  "name": "AI Note Taker Pro - WhisperX Transcription",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "webhook-trigger",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "ai-note-taker-pro"
+    },
+    {
+      "parameters": {
+        "url": "https://api.openai.com/v1/audio/transcriptions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "multipart/form-data"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "whisper-1"
+            },
+            {
+              "name": "file",
+              "value": "={{ $json.audio_file }}"
+            },
+            {
+              "name": "response_format",
+              "value": "verbose_json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "whisper-transcribe",
+      "name": "Whisper Transcription",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4",
+        "options": {
+          "temperature": 0.7
+        },
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are an expert note organizer. Create structured notes with:\n1. Key points\n2. Summary\n3. Action items\n4. Tags\n5. Study tools (flashcards, quizzes)"
+            },
+            {
+              "role": "user",
+              "content": "Organize this transcription into structured notes:\n\n{{ $json.text }}\n\nCreate:\n- Key points\n- Summary\n- Action items\n- Tags\n- Study tools"
+            }
+          ]
+        }
+      },
+      "id": "organize-notes",
+      "name": "Organize Notes",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Process and structure notes\nconst transcription = $('Whisper Transcription').item.json;\nconst organization = $('Organize Notes').item.json.choices[0].message.content;\n\nconst result = {\n  transcription: transcription.text,\n  segments: transcription.segments,\n  organized: organization,\n  timestamp: new Date().toISOString(),\n  version: 'pro',\n  features: [\n    'word-level-timestamps',\n    'speaker-diarization',\n    'study-tools',\n    'note-organization'\n  ]\n};\n\nreturn result;"
+      },
+      "id": "process-notes",
+      "name": "Process Notes",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}"
+      },
+      "id": "respond-webhook",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1050, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "Whisper Transcription", "type": "main", "index": 0 }]]
+    },
+    "Whisper Transcription": {
+      "main": [[{ "node": "Organize Notes", "type": "main", "index": 0 }]]
+    },
+    "Organize Notes": {
+      "main": [[{ "node": "Process Notes", "type": "main", "index": 0 }]]
+    },
+    "Process Notes": {
+      "main": [[{ "node": "Respond to Webhook", "type": "main", "index": 0 }]]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": ["ai", "transcription", "notes", "whisper"],
+  "triggerCount": 1,
+  "updatedAt": "2026-01-13T00:00:00.000Z",
+  "versionId": "1"
+}

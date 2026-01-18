@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trend Pulse OS - Complete Beginner's Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #34495e;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #ecf0f1;
+        }
+
+        h3 {
+            color: #555;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            color: #666;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #e74c3c;
+        }
+
+        pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: #ecf0f1;
+        }
+
+        .toc {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 30px 0;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .info {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .command {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-family: 'Monaco', 'Courier New', monospace;
+        }
+
+        .step {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .step-number {
+            background: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #3498db;
+            color: white;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Trend Pulse OS - Complete Beginner's Guide</h1>
+        <p><strong>Everything you need to know to get started with Trend Pulse OS, even if you've never coded before.</strong></p>
+
+        <div class="toc">
+            <h2>📑 Table of Contents</h2>
+            <ul>
+                <li><a href="#what-is">What is Trend Pulse OS?</a></li>
+                <li><a href="#programming">Do I Need to Know Programming?</a></li>
+                <li><a href="#requirements">What You'll Need</a></li>
+                <li><a href="#installation">Installation Step-by-Step</a></li>
+                <li><a href="#verify">First Steps - Verify Installation</a></li>
+                <li><a href="#basics">Understanding the Basics</a></li>
+                <li><a href="#first-analysis">Your First Analysis</a></li>
+                <li><a href="#examples">Using the Examples</a></li>
+                <li><a href="#your-data">Working with Your Own Data</a></li>
+                <li><a href="#workflows">Using Workflows</a></li>
+                <li><a href="#common-tasks">Common Tasks</a></li>
+                <li><a href="#troubleshooting">Troubleshooting</a></li>
+                <li><a href="#next-steps">Next Steps</a></li>
+            </ul>
+        </div>
+
+        <h2 id="what-is">What is Trend Pulse OS?</h2>
+        <p><strong>Trend Pulse OS</strong> is a tool that helps you:</p>
+        <ul>
+            <li><strong>Analyze trending topics</strong> - Find out what's popular and why</li>
+            <li><strong>Score opportunities</strong> - See which trends are worth pursuing</li>
+            <li><strong>Generate content ideas</strong> - Create video ideas, blog posts, product ideas, and more</li>
+            <li><strong>Export results</strong> - Save your analysis to files you can use elsewhere</li>
+        </ul>
+        <p>Think of it like having a research assistant that can analyze trends and suggest what content or products might be successful.</p>
+
+        <h2 id="programming">Do I Need to Know Programming?</h2>
+        <div class="success">
+            <strong>Short answer: Not really!</strong>
+        </div>
+        <p>This guide will show you how to:</p>
+        <ul>
+            <li>Run pre-built examples (no coding needed)</li>
+            <li>Use Trend Pulse OS with simple commands</li>
+            <li>Understand what's happening step-by-step</li>
+        </ul>
+        <p>If you want to customize things later, you can learn as you go. But you can get started right away using the examples we provide.</p>
+
+        <h2 id="requirements">What You'll Need</h2>
+        <p>Before you start, make sure you have:</p>
+
+        <h3>1. A Computer</h3>
+        <ul>
+            <li><strong>Mac</strong> (macOS 10.13 or newer) ✓</li>
+            <li><strong>Windows</strong> (Windows 10 or newer)</li>
+            <li><strong>Linux</strong> (Ubuntu 18.04 or newer)</li>
+        </ul>
+
+        <h3>2. Python Installed</h3>
+        <p>Python is a programming language that Trend Pulse OS uses.</p>
+
+        <div class="step">
+            <h4><span class="step-number">1</span> How to check if you have Python:</h4>
+            <ol>
+                <li>Open your terminal/command prompt (see instructions below)</li>
+                <li>Type: <code>python3 --version</code></li>
+                <li>Press Enter</li>
+            </ol>
+        </div>
+
+        <div class="info">
+            <strong>What you should see:</strong>
+            <ul>
+                <li>If you see something like <code>Python 3.8.0</code> or higher: ✅ You're good!</li>
+                <li>If you see an error or <code>command not found</code>: You need to install Python</li>
+            </ul>
+        </div>
+
+        <div class="warning">
+            <strong>How to install Python:</strong>
+            <ul>
+                <li><strong>Mac:</strong> Download from <a href="https://www.python.org/downloads/" target="_blank">python.org</a> or use Homebrew: <code>brew install python3</code></li>
+                <li><strong>Windows:</strong> Download from <a href="https://www.python.org/downloads/" target="_blank">python.org</a> (check "Add Python to PATH" during installation)</li>
+                <li><strong>Linux:</strong> <code>sudo apt-get install python3 python3-pip</code> (Ubuntu/Debian)</li>
+            </ul>
+        </div>
+
+        <h3>3. Terminal/Command Prompt Access</h3>
+        <table>
+            <tr>
+                <th>Platform</th>
+                <th>How to Open</th>
+            </tr>
+            <tr>
+                <td><strong>Mac</strong></td>
+                <td>Open "Terminal" from Applications > Utilities, or press <code>Cmd + Space</code>, type "Terminal", press Enter</td>
+            </tr>
+            <tr>
+                <td><strong>Windows</strong></td>
+                <td>Press <code>Windows + R</code>, type <code>cmd</code>, press Enter, or search for "Command Prompt"</td>
+            </tr>
+            <tr>
+                <td><strong>Linux</strong></td>
+                <td>Press <code>Ctrl + Alt + T</code> (usually opens terminal), or search for "Terminal"</td>
+            </tr>
+        </table>
+
+        <h3>4. Basic Computer Skills</h3>
+        <ul>
+            <li>Opening files and folders</li>
+            <li>Copying and pasting text</li>
+            <li>Typing commands (we'll show you exactly what to type)</li>
+        </ul>
+
+        <h2 id="installation">Installation Step-by-Step</h2>
+
+        <div class="step">
+            <h3><span class="step-number">1</span> Open Terminal/Command Prompt</h3>
+            <p>Follow the instructions above to open your terminal.</p>
+        </div>
+
+        <div class="step">
+            <h3><span class="step-number">2</span> Navigate to the Trend Pulse OS Folder</h3>
+            <div class="warning">
+                <strong>Important:</strong> You need to be in the Trend Pulse OS folder to run commands.
+            </div>
+            <p><strong>On Mac/Linux:</strong></p>
+            <div class="command">cd /Users/steven/AVATARARTS/Revenue/trend-pulse-os</div>
+            <p><strong>On Windows:</strong></p>
+            <div class="command">cd C:\Users\steven\AVATARARTS\Revenue\trend-pulse-os</div>
+            <p><strong>How to check if you're in the right folder:</strong></p>
+            <p>Type: <code>ls</code> (Mac/Linux) or <code>dir</code> (Windows)</p>
+            <p>You should see files like: <code>README.md</code>, <code>requirements.txt</code>, <code>__init__.py</code>, and folders: <code>core</code>, <code>workflows</code>, <code>examples</code>, <code>data</code></p>
+        </div>
+
+        <div class="step">
+            <h3><span class="step-number">3</span> Install Required Packages</h3>
+            <p>Trend Pulse OS needs some additional software packages to work. These are free and safe to install.</p>
+            <p><strong>Type this command and press Enter:</strong></p>
+            <div class="command">pip3 install -r requirements.txt</div>
+            <div class="info">
+                <strong>What this does:</strong>
+                <ul>
+                    <li>Downloads and installs the packages Trend Pulse OS needs</li>
+                    <li>This might take 1-2 minutes</li>
+                    <li>You'll see text scrolling - this is normal!</li>
+                </ul>
+            </div>
+            <div class="warning">
+                <strong>If you see errors:</strong>
+                <ul>
+                    <li>Try: <code>python3 -m pip install -r requirements.txt</code></li>
+                    <li>Make sure you're in the Trend Pulse OS folder</li>
+                    <li>Check that Python is installed correctly</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="step">
+            <h3><span class="step-number">4</span> Verify Installation</h3>
+            <p>Let's make sure everything installed correctly.</p>
+            <p><strong>Type this and press Enter:</strong></p>
+            <div class="command">python3 -c "print('Python is working!')"</div>
+            <div class="success">
+                <strong>What you should see:</strong><br>
+                Python is working!
+            </div>
+        </div>
+
+        <h2 id="verify">First Steps - Verify Installation</h2>
+        <p>Now let's test if Trend Pulse OS is working.</p>
+
+        <h3>Test 1: Check if Trend Pulse OS Can Be Imported</h3>
+        <div class="command">python3 -c "import sys; sys.path.insert(0, '.'); from core.trend_parser import load_trends; print('✓ Trend Pulse OS is working!')"</div>
+        <div class="success">
+            <strong>What you should see:</strong><br>
+            ✓ Trend Pulse OS is working!
+        </div>
+
+        <h3>Test 2: Run Your First Example</h3>
+        <p>Let's run a simple example to see Trend Pulse OS in action.</p>
+        <div class="command">python3 examples/example_1_basic_analysis.py</div>
+        <p>You should see output showing trend analysis results!</p>
+        <div class="success">
+            <strong>If you see this:</strong> ✅ <strong>Congratulations! Trend Pulse OS is working!</strong>
+        </div>
+
+        <h2 id="basics">Understanding the Basics</h2>
+        <p>Before diving in, let's understand what Trend Pulse OS does:</p>
+
+        <h3>Key Concepts</h3>
+
+        <h4>1. Trends</h4>
+        <p>A trend is a topic that's becoming popular. Examples:</p>
+        <ul>
+            <li>"AI Video Generator" - lots of people searching for this</li>
+            <li>"Electric Vehicles" - growing interest</li>
+            <li>"Sustainable Living" - increasing popularity</li>
+        </ul>
+
+        <h4>2. Scoring</h4>
+        <p>Trend Pulse OS gives each trend a score (0-100):</p>
+        <table>
+            <tr>
+                <th>Score Range</th>
+                <th>Meaning</th>
+            </tr>
+            <tr>
+                <td><strong>90-100</strong></td>
+                <td>Excellent opportunity (high potential)</td>
+            </tr>
+            <tr>
+                <td><strong>70-89</strong></td>
+                <td>Great opportunity (good potential)</td>
+            </tr>
+            <tr>
+                <td><strong>50-69</strong></td>
+                <td>Good opportunity (worth considering)</td>
+            </tr>
+            <tr>
+                <td><strong>Below 50</strong></td>
+                <td>Lower priority</td>
+            </tr>
+        </table>
+
+        <h4>3. Data Format</h4>
+        <p>Trend Pulse OS works with data in CSV format (like a spreadsheet).</p>
+        <p><strong>Example CSV file:</strong></p>
+        <pre><code>keyword,growth,difficulty,intent
+AI Video Generator,6700,2,creator
+AI Image Enhancer,9000,2,creator
+AI Personal Assistant,2600,3,productivity</code></pre>
+
+        <h2 id="first-analysis">Your First Analysis</h2>
+
+        <div class="step">
+            <h3>Option 1: Use the Sample Data (Easiest)</h3>
+            <p>The sample data is already included, so this is the fastest way to get started.</p>
+            <p><strong>Run the Complete Pipeline Example:</strong></p>
+            <div class="command">python3 examples/example_5_complete_pipeline.py</div>
+            <p>This will:</p>
+            <ul>
+                <li>Load the sample trends</li>
+                <li>Score all trends</li>
+                <li>Filter high-scoring trends</li>
+                <li>Generate video ideas</li>
+                <li>Export results to files</li>
+            </ul>
+            <p><strong>Results are saved in:</strong> <code>examples/output/</code></p>
+        </div>
+
+        <h2 id="examples">Using the Examples</h2>
+        <p>We've included 5 ready-to-use examples:</p>
+
+        <table>
+            <tr>
+                <th>Example</th>
+                <th>What It Does</th>
+                <th>How to Run</th>
+            </tr>
+            <tr>
+                <td><strong>Example 1</strong></td>
+                <td>Basic analysis and scoring</td>
+                <td><code>python3 examples/example_1_basic_analysis.py</code></td>
+            </tr>
+            <tr>
+                <td><strong>Example 2</strong></td>
+                <td>Filtering trends</td>
+                <td><code>python3 examples/example_2_filtering.py</code></td>
+            </tr>
+            <tr>
+                <td><strong>Example 3</strong></td>
+                <td>Clustering trends</td>
+                <td><code>python3 examples/example_3_clustering.py</code></td>
+            </tr>
+            <tr>
+                <td><strong>Example 4</strong></td>
+                <td>Generating workflows</td>
+                <td><code>python3 examples/example_4_workflows.py</code></td>
+            </tr>
+            <tr>
+                <td><strong>Example 5</strong></td>
+                <td>Complete pipeline</td>
+                <td><code>python3 examples/example_5_complete_pipeline.py</code></td>
+            </tr>
+        </table>
+
+        <h2 id="troubleshooting">Troubleshooting</h2>
+
+        <h3>Problem: "Command not found" or "python3: command not found"</h3>
+        <div class="warning">
+            <strong>Solution:</strong>
+            <ul>
+                <li>Python might not be installed</li>
+                <li>Try: <code>python --version</code> (without the 3)</li>
+                <li>Try: <code>py --version</code> (Windows)</li>
+                <li>Install Python from <a href="https://www.python.org/downloads/" target="_blank">python.org</a></li>
+            </ul>
+        </div>
+
+        <h3>Problem: "ModuleNotFoundError"</h3>
+        <div class="warning">
+            <strong>Solution:</strong>
+            <ul>
+                <li>Run: <code>pip3 install -r requirements.txt</code></li>
+                <li>Make sure you're in the Trend Pulse OS folder</li>
+            </ul>
+        </div>
+
+        <h3>Problem: "FileNotFoundError"</h3>
+        <div class="warning">
+            <strong>Solution:</strong>
+            <ul>
+                <li>Check the file path is correct</li>
+                <li>Make sure the file exists in the <code>data</code> folder</li>
+                <li>Check you're running from the Trend Pulse OS folder</li>
+            </ul>
+        </div>
+
+        <h2 id="next-steps">Next Steps</h2>
+        <div class="info">
+            <p><strong>Now that you've got Trend Pulse OS working:</strong></p>
+            <ol>
+                <li>Explore the examples - Run all 5 examples</li>
+                <li>Work with your own data - Create your own CSV file</li>
+                <li>Try different workflows - Generate video ideas, lesson plans, etc.</li>
+                <li>Learn more - Read USER_GUIDE.md for advanced usage</li>
+                <li>Customize - Modify examples to fit your needs</li>
+            </ol>
+        </div>
+
+        <h2>Quick Reference</h2>
+        <div class="command">
+# Navigate to Trend Pulse OS folder<br>
+cd /path/to/trend-pulse-os<br><br>
+# Install requirements<br>
+pip3 install -r requirements.txt<br><br>
+# Run example 1 (basic analysis)<br>
+python3 examples/example_1_basic_analysis.py<br><br>
+# Run example 5 (complete pipeline)<br>
+python3 examples/example_5_complete_pipeline.py
+        </div>
+
+        <div class="success" style="margin-top: 40px; padding: 30px; text-align: center;">
+            <h2>✅ You're Ready to Start!</h2>
+            <p>Remember: Start with the examples, use the sample data to practice, and have fun exploring!</p>
+            <p><strong>Happy trend analyzing! 🚀</strong></p>
+        </div>
+    </div>
+</body>
+</html>
